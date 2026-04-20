@@ -24,10 +24,11 @@ class CouplingWhitebox(nn.Module):
         # This guarantees physical laws are identical for all atoms.
         self.atomic_node = AtomicWhitebox()
         
-        # The ultimate universal constant we want the AI to discover for us:
+        # The ultimate universal constant we analytically discovered:
         # The true Elasticity Modulus of the continuous universe mathematically 
-        # divorced from arbitrary scaling hacks.
-        self.vacuum_alpha = nn.Parameter(torch.tensor([1.0], dtype=torch.float32))
+        # locked to the 3D-to-1D spherical projection ratio (1 / sqrt(pi))
+        import math
+        self.register_buffer('vacuum_alpha', torch.tensor([1.0 / math.sqrt(math.pi)], dtype=torch.float32))
         
         # Mathematical projection constraint (Parallax of Time)
         self.projection_constant = 0.529 # Bohr constant anchoring arbitrary grid space to Angstroms
