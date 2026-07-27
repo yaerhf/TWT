@@ -66,7 +66,7 @@ error unless the paper claimed otherwise — it does not. Three qualifications, 
 
 **The question that actually discriminates**, and the one this paper wants asked: *are the
 structural derivations sound, and is the labeling honest?* Not "does it predict a new particle."
-Every numbered result carries a status tier (§1 below) in a companion index; the failure mode
+Every numbered result carries a status tier (§4 below) in a companion index; the failure mode
 worth hunting is a **claim in the prose that exceeds its own index row**, or an assumption doing
 load-bearing work without being counted. That is a real, checkable audit — and if you find one,
 that finding is worth more to the author than agreement.
@@ -90,7 +90,80 @@ which gates every coupling magnitude) has its own section.
 the derivations that are claimed are sound, whether the honest-labeling system holds up under
 your reading, and where the argument is weakest.**
 
-## §2. The package
+## §2. What the framework actually achieves — the case, at its own tiers
+
+Stated plainly, because the rest of this note is deliberately self-critical and a reviewer
+should not have to reconstruct the case from the caveats. Each item is given at the tier its own
+index row carries; nothing here is stronger than it is in the paper.
+
+**Two results are solid as substrate physics.**
+
+- **The Lorentzian signature of spacetime is not a postulate.** `Cl(4,0)` — the Euclidean
+  substrate algebra — *is* `Cl(1,3)`, the spacetime algebra, as real algebras; and the wavefront
+  construction lands specifically on the `(1,3)` partner rather than `(3,1)` or `(2,2)`, which
+  are a different algebra (`M₄(ℝ)` versus `M₂(ℍ)`). Reading `e₄` as time is a labeled observer
+  premise; given it, the signature flip is a theorem. The paper decomposes the two contributions
+  explicitly rather than blurring them (§B.1).
+- **Charge quantization is algebraic.** The 15-state Weyl spectrum of one generation carries
+  charges in `{0, ±1/3, ±2/3, ±1}` exactly — discreteness by exact algebra, so the
+  proton–electron equality is *topologically protected* rather than tuned. As of this revision
+  the equality's normalization is derived too: `Q_p + Q_e = 0` holds identically in the charge
+  normalization constant, given three named structural premises — so **hydrogen neutrality
+  becomes a theorem of the framework rather than a datum it consumes**, and the 10⁻²¹ neutrality
+  measurement turns into a falsification test (§C.2.7–C.2.8).
+
+**One quantitative Standard-Model parameter comes out natively.**
+
+- **`sin²θ_W = 3/8` at unification, with no GUT embedding** — from D4 trivector charge content, a
+  Clifford trace bridge that reproduces the `√(3/5)` normalization the GUT literature obtains
+  from `SU(5)`, and `g₁ = g₂` from a D4 isotropy theorem. Honest scope: this is the unification
+  value; the descent to the measured `0.231` uses imported renormalization-group machinery that
+  the framework does not derive (§C.4.5).
+
+**Quantum mechanics' postulate structure follows from one geometric move** — projecting a
+4D-oriented fluctuation onto the observer's 3D wavefront frame (§B.3). The complex unit is
+*forced* by a centralizer intersection rather than assumed; the Born exponent is, as of this
+revision, a theorem given four named premises plus Gleason's theorem; Pauli exclusion is the
+half-angle's signature on the joint configuration; and Tsirelson's `2√2` comes out exactly.
+Honest scope: that bound is inherited by isomorphism with quantum mechanics, not an independent
+prediction — what is new is the substrate *reason* for it.
+
+**Several Standard-Model postulates become consequences.** Three generations from the
+quaternionic structure via Frobenius (conditional on one named identification); the up/down
+mirror; V−A, generation-blindness and the doublet structure, all from a single counted input
+bit; the absence of magnetic monopoles as a grade-structure fact; and a matter-stability triad —
+no proton decay, Dirac neutrinos, no neutrinoless double-beta decay — falling out of one
+conservation law rather than three separate stipulations (§C.5).
+
+**Gravity has its sign, its form, and a Planckian magnitude bracket.** The induced-gravity sign
+is positive, locked to substrate stability; `γ = 1` (the Eddington parameter) is structural
+rather than tuned; the substrate cutoff lands Planckian within a factor of order unity. As of
+this revision both *tree-level* alternatives are closed by explicit computation, leaving the
+induced route as the only surviving one within the framework's own action class — a uniqueness
+result rather than a preference (§B.6).
+
+**One structural advantage is worth flagging on its own.** Programs that make Lorentz invariance
+emergent from a preferred-frame substrate generically die on a radiative-naturalness problem:
+loops feed Planck-scale violation down into dimension-four operators, missing matter-sector
+bounds by some seventeen orders of magnitude. That obstacle **presupposes `N` independent
+fundamental fields with `N−1` relative-speed observables.** TWT has one field; matter species are
+defects of it; the coefficients the mechanism would split do not exist to be split. This is a
+reason the construction succeeds *where the genre generically fails* — not a defense it survives
+by tuning (§B.1.5).
+
+**Parameter economy.** Five counted empirical inputs, against the Standard Model's nineteen. The
+framework is explicit that most of those nineteen are not thereby derived — they are gated on a
+single named open object — so the honest claim is a large reduction on the *structural* axis
+(postulates converted into consequences) and a modest one on the *magnitude* axis. Both counts
+are laid out at §E.2.3.
+
+**And the discipline is part of the result.** Every claim carries an auditable tier; failures are
+archived rather than forgotten; external theorems are registered with revert clauses; magnitudes
+the framework has not earned are refused by the code rather than estimated. That machinery is
+what makes the claims above *checkable* rather than assertable — which is the only reason a
+reviewer should spend time on them at all.
+
+## §3. The package
 
 1. **The paper** (`TWT_foundational_paper.pdf`, ~75 pp) — physics narrative, Parts A–E.
 2. **The companion** (`TWT_foundational_paper_companion.pdf`, ~130 pp) — the bookkeeping: every
@@ -99,7 +172,7 @@ your reading, and where the argument is weakest.**
 3. **The verification suite** (`twt.py` + `twt_test.py`, Python, needs sympy/scipy) — ~297
    executable primitives encoding the algebraic content.
 
-## §3. The one convention you need: result tiers
+## §4. The one convention you need: result tiers
 
 Every numbered result `(R-NNN)` in the paper has a row in the companion's Result Index stating
 its tier. In one paragraph: **DERIVED** means computed from the substrate axioms (`-A` = a closed
@@ -111,14 +184,14 @@ value or closure is open. **GATED** means the number depends on the open dynamic
 rather than estimated. If the prose ever claims more than the Index tier supports, that is exactly
 the feedback I want.
 
-## §4. How to read it in limited time
+## §5. How to read it in limited time
 
 - **2 hours:** Abstract; "A note to the reader"; Part A (~15 pp); §B.1 (signature), §B.4
   (Bell/Tsirelson), §C.4.5 (`sin²θ_W = 3/8`); §E.2–E.3 (status + falsifiers).
 - **A day:** add the rest of Part B, §C.1–C.3, and §D.5 (the open dynamics).
 - **Full review:** Parts A–E in order; the companion Result Index alongside Part C; run the suite.
 
-## §5. Where I already know it is weakest — push hardest here
+## §6. Where I already know it is weakest — push hardest here
 
 - The charged-lepton mass **values** are a cross-validated fit (the Koide/Brannen structure is
   derived; the values are not — §C.3.5 says so).
@@ -131,7 +204,7 @@ the feedback I want.
   tabulated together at §E.2.2, with what would discharge each.
 - §E.3.5 is the framework's own pre-mortem: the three places it expects it could fail.
 
-## §6. Feedback that would help most
+## §7. Feedback that would help most
 
 1. Any derivation in Parts B–C whose logic does not close as written (cite the §).
 2. Any place a tier label understates what is actually assumed — hidden imports, circularity.
