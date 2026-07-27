@@ -473,7 +473,7 @@ configuration is doing. On the wavefront, `x_4 = c_meta · τ_5`. The observer's
 predicted (§B.6, §B.7) but small. The §B.2 Fourier-at-`k_4` reduction makes the on-average
 identification rigorous — the same `c` enters the Klein–Gordon dispersion as enters the kinematic
 constraint `x_4 = c_meta · τ_5`. Sector- or epoch-varying differential `c_meta` is canonical
-falsifier §E.3 row 8.
+falsifier §E.3 row 6.
 
 ### Quarks are not stable independent objects
 
@@ -797,10 +797,35 @@ defects, one light-cone — the species the mechanism would split are not there 
 an *offensive win*: it is a reason the construction *succeeds where the genre generically fails*,
 not a defense survived by tuning.
 
-The complementary rotational-anisotropy bound is closed by the D4 cubic point group, which forbids
-dimension-four anisotropy at all orders and pushes the leading anisotropy to dimension six. The two
-protections together leave the residual at dimension six `(E/Λ)²`, set by the defect's own form
-factor.
+The complementary rotational-anisotropy bound is closed by the D4 point group (R-165), and the
+reason is representation-theoretic rather than a property of any particular kernel. The
+automorphism group of the D4 root system has order 1152 — it is `W(F4)`, whose invariant degrees
+are `{2, 6, 8, 12}` — and its space of **degree-four** invariant polynomials is consequently
+*one-dimensional*, spanned by `(k²)²` alone. So for any dispersion kernel invariant under the
+lattice point group and analytic in `k`, there is no anisotropic quartic at all: the quartic term
+is forced isotropic by symmetry, whatever the dynamics turn out to be. The degree-six invariant
+space is two-dimensional, so an anisotropic sextic does exist, and the leading rotational
+anisotropy therefore sits at **dimension eight** — reached, not merely bounded —
+`(E/Λ)⁴ ≈ 7 × 10⁻³⁰` at the highest observed cosmic-ray energies: structurally out of any
+observational range. The concrete face of the same fact is the bond-moment tower: second moment
+`Σ v_i v_j = 12 δ_ij`, fourth moment exactly `4(δδ + δδ + δδ)` (`M_1111 = 12 = 3 M_1122`), sixth
+moment anisotropic. This is **not** generic to lattices: simple-cubic `Z⁴` has `N_1111 = 2` while
+`N_1122 = 0`, and its point group admits a two-dimensional degree-four invariant space containing
+`Σ k_i⁴`. Two premises carry the inference and are stated rather than buried: that a derivative
+expansion exists (a non-analytic driven-dissipative memory kernel — the #1 gap itself — is not
+covered by a polynomial-invariant argument), and that the *full* point group including triality
+acts (the reflection subgroup `W(D4)` alone has a three-dimensional degree-four space, and the
+second shell's two sub-orbits are each anisotropic, cancelling only at equal weight — so a
+substrate coupling weighting triality-related orbits unequally would restore dimension-six
+anisotropy).
+
+What these protections do **not** reach is the *rotationally invariant* dimension-six residual,
+conventionally `η⁽⁴⁾ p⁴/M²_Pl` — it is not a relative-boost observable (so R-016 does not apply)
+and it is not an anisotropy (so D4 does not apply), and at dimension six a *species-universal*
+coefficient is not removable by any rescaling, since the induced velocity shift `≈ (3/2) η p²/Λ²`
+is momentum-dependent. Its coefficient is set by the substrate's own strain-mode dispersion — an
+object the engine gates (`Cl41Wave().wave_speed_c` raises) — and by each defect's form factor.
+**It is named as an open exposure at §E.3.5(4), not as a prediction.**
 
 ---
 
@@ -1873,20 +1898,54 @@ Three scalar candidates are protected: (i) the rotor-norm direction, frozen by `
 (iii) the conformal-mode artifact, removed by the diffeomorphism (Hamiltonian) constraint
 (§B.6.4). None survives as a light propagating scalar — `γ = 1` is uncontaminated.
 
-The complementary rotational-anisotropy bound is closed by the D4 cubic point group; the boost
-bound is closed by matter-as-defect. The two together drive the residual to dimension six,
-`(E/Λ)²`. The four-probe table at the bracket lower corner `Λ = 0.16 M_Pl`:
+The complementary rotational-anisotropy bound is closed by the D4 point group, which drives
+anisotropy to dimension eight (R-165) — at the *monad* scale; the separate cell-scale question,
+whether the emergent cell pattern carries long-range space-fixed orientational order, remains open
+as §E.3.4 SC-2. The dimension-four boost bound is closed by matter-as-defect. What survives is the
+**rotationally invariant dimension-six residual**, conventionally written
+`E² = p² + m² + η⁽⁴⁾ p⁴/M²_Pl`. The theory-side object is therefore **not** an energy-dependent `δ`
+but a single energy-**independent** coefficient `η⁽⁴⁾`, which every dimension-six probe — photon,
+electron, proton — tests simultaneously.
 
-| Probe | `E` | `(E/Λ)²` |
-|---|---|---|
-| LHC collision | `1.4 × 10⁴ GeV` | `5.1 × 10⁻²⁹` |
-| Crab synchrotron electrons | `1.5 × 10⁶ GeV` | `5.9 × 10⁻²⁵` |
-| UHE cosmic ray (~10²⁰ eV) | `1.0 × 10¹¹ GeV` | `2.6 × 10⁻¹⁵` |
-| Solar-system gravity | `k ~ 1/AU` | `~ 10⁻⁹¹` |
+**Two normalizations, kept apart.** `η⁽⁴⁾` is by definition the coefficient of `p⁴/M²_Pl` — the
+convention the published bounds are quoted in. The substrate's own natural form is `c · p⁴/Λ²` with
+`c = O(1)`, since `Λ` is the substrate cutoff. The two are related by `η⁽⁴⁾ = c · (M_Pl/Λ)²`, so
+"the substrate's natural coefficient is unity" means `c = 1`, **not** `η⁽⁴⁾ = 1`. That factor is
+the entire content of what follows.
 
-The UHE-CR row sits *at* current matter-sector bounds `|δ| ≲ 10⁻¹⁵` — a tight near-term
-falsifier (§E.3 row 1). Crab is ~4 orders below current sensitivity; LHC and solar-system are
-structurally out of any observational range.
+Setting the substrate coefficient `c` to unity at the §B.6.2 `Λ`-bracket gives
+`η⁽⁴⁾ = (M_Pl/Λ)² ∈ [1.9, 39]`.
+**This is excluded by the published dimension-six limits by three to nine orders of magnitude**,
+sector by sector: photon `−10⁻⁷ ≲ ξ⁽⁴⁾ ≲ 10⁻⁸`, electron `−10⁻⁷ ≲ η⁽⁴⁾ ≲ 10⁻⁶` (Liberati 2013,
+eq. 77), proton `−10⁻³ ≲ η⁽⁴⁾_p ≲ 10⁻⁶` (Liberati 2013, eq. 78, 99% CL, pure-proton composition),
+and equivalently `δ^π_p < 4.5 × 10⁻²³` from the Auger spectrum above the GZK energy (Stecker 2009,
+eq. 18).
+
+**The framework does not claim `c = 1`, and it cannot presently compute `c`.** The coefficient is
+fixed by the substrate strain-mode dispersion, which is the #1 gap (§D.5; the engine gates it).
+Survival requires `|η⁽⁴⁾| ≲ 10⁻⁶` in the photon and superluminal-matter channels. The one
+suppression the framework can point to — the defect form factor — scales as `(f_π/M_defect)² ~ 10⁻²`
+for the proton and does not apply to the photon at all, since §B.5.4 makes the photon a *bulk*
+strain mode with no internal structure. **This is recorded as an open exposure (§E.3.5(4), §E.3.3
+VG-6), not as a passed test.** Coefficients are defined in the substrate rest frame, which the
+framework identifies with the cosmological comoving (CMB) frame (§B.4.5) — the same frame the cited
+bounds use.
+
+*Import notice:* two registered imports meet in the paragraph above. The `Λ`-bracket that converts a
+coefficient of unity into the number `[1.9, 39]` rides **I-3** (the Sakharov one-loop scaling), which
+is OPEN — strike it and the *size* of the naive value becomes unstated, though the exposure itself
+does not go away, since the framework would then owe both `Λ` and `η⁽⁴⁾`. The published limits are
+imported as data under **I-19** (an inside-frame data bridge, sibling of I-6); strike that row and
+the exposure statement reverts to "uncomputed and untested", while the D4 dimension-eight anisotropy
+result — a pure lattice identity — is unaffected. Both retirement handles are the same object: the
+§D.5 kernel.
+
+| Face | Order | Magnitude at `E = 10¹¹ GeV`, `Λ = 0.16 M_Pl` | Status |
+|---|---|---|---|
+| dim-4 relative-boost LV between species | — | 0 (R-016, structural) | closed |
+| dim-4 rotational anisotropy | — | 0 (D4 second moment `∝ δ`) | closed |
+| dim-6 **anisotropy** | `(E/Λ)⁴` | `6.9 × 10⁻³⁰` (pushed to dim-8 by D4 fourth-moment isotropy) | structurally out of range |
+| dim-6 **isotropic** `c · p⁴/Λ²` (≡ `η⁽⁴⁾ p⁴/M²_Pl`) | `c (E/Λ)²` | `c` **uncomputed**; `c = 1` ⇒ `η⁽⁴⁾ ∈ [1.9, 39]`, excluded by 3–9 orders | **open exposure** |
 
 ### B.6.4 Sign positive — substrate stability ≡ spin-2 spectral positivity
 
@@ -1914,9 +1973,19 @@ positive.**
 The same physics in different language is **substrate stability**. The substrate's ordered phase
 is stable: linear spin-wave theory for the canted DM ground state gives `ω²(k) ≥ 0` across the
 Brillouin zone (no imaginary modes). The induced graviton is a collective fluctuation of this
-stable medium, and it is massless (matter couples covariantly through the spin connection, the
-induced action is diffeomorphism-invariant, and the only graviton mass term is the dim-6 preferred
-frame remnant `(E/Λ)²`, far below bounds). For a stable medium, every physical propagating mode has
+stable medium, and it is massless: matter couples covariantly through the spin connection, the
+induced action is diffeomorphism-invariant, and there is **no graviton mass term at all**. The only
+preferred-frame remnant is the dimension-six *dispersion* correction `c (k/Λ)²`, which vanishes as
+`k → 0` and therefore cannot produce the Yukawa suppression that graviton-mass bounds constrain —
+it is a different observable, bounded separately. Its coefficient `c` is the same #1-gap-gated
+object §B.6.3 records as an open exposure, but the conclusion here does not turn on it: across the
+band where GW dispersion is actually measured, `(k/Λ)²` runs from `4.5 × 10⁻⁹⁰` (LISA, `10⁻³` Hz) to
+`4.5 × 10⁻⁸⁰` (LIGO, `10²` Hz), so even at the naive-value upper end of the `Λ`-bracket the term
+stays below `2 × 10⁻⁷⁸` — more than sixty orders under the tightest dispersion constraint
+`|c_GW/c − 1| ≲ 10⁻¹⁵`. (The `Λ`-bracket value is a *naturalness* estimate, not an upper bound on
+`c`; the point is only that the margin is enormous even there.) The masslessness conclusion is
+structural and the dispersion margin is coefficient-insensitive; the coefficient itself remains open
+(§E.3.3 VG-6). For a stable medium, every physical propagating mode has
 `E(k) ≥ 0` at every `k`; with no mass term to compensate, the gradient coefficient itself must
 satisfy `1/G ≥ 0`, strictly positive for a non-marginal stable phase. **The sign carries no scheme
 dependence**: a regulator rescales the magnitude but cannot make a stable medium's massless
@@ -2174,7 +2243,7 @@ across the wavefront** (R-045).
 
 A time-varying global `c_meta(τ_5)` is observable as cosmological expansion dynamics (and is a
 falsifier handle — sector-dependent or epoch-varying differential `c_meta` is canonical falsifier
-§E.3 row 8, closely tied to the `c_GW = c_γ` constraint §E.3 row 3).
+§E.3 row 6, closely tied to the `c_GW = c_γ` constraint §E.3 row 1).
 
 ### B.7.4 The Hubble radius as causal/crossover scale; Volovik's dissolution of Λ
 
@@ -2621,7 +2690,8 @@ as a static defect or as a driven attractor (R-054). Proton stability is a topol
 in this framework, not a finely-tuned hierarchy of decay rates: there is no operator that lowers
 the winding integer continuously, and the non-perturbative violation that the BPST instanton
 supplies (R-088) respects `ΔB = ΔL = N_gen = 3` — the proton's `B = 1` cannot be reached by such
-a process from any lower-`B` configuration. The empirical lower bound `τ_p > 1.6 × 10³⁴` years
+a process from any lower-`B` configuration. The empirical lower bound
+`τ/B(p → e⁺π⁰) > 2.4 × 10³⁴` years at 90% CL
 (Super-K) is structurally consistent.
 
 ### C.1.6 The electron as Hopf defect; QCP scaling
@@ -2712,7 +2782,7 @@ so a configuration that decomposes into three such facets carries one third of t
 charge per facet. The fractional charges `±2/3, ±1/3` follow algebraically from this trivector
 triple-product structure plus the per-blade hypercharge eigenvalues of §C.2.1 (R-057). No
 fractional-charge value outside the `{±1/3, ±2/3, ±1}` spectrum is reachable in the algebra —
-this is canonical falsifier §E.3 row 13.
+this is canonical falsifier §E.3 row 11.
 
 ### C.2.3 Weak isospin from the meta-time rotor doublet
 
@@ -2746,7 +2816,7 @@ the **V−A** structure. Given the weak=SD input, V−A is derived, not stipulat
 SD is the unique centralizer of the ASD generation triple. Acting on a generation-eigenstate
 basis, SD treats all three generations identically: the weak vertex carries no off-diagonal
 generation matrix element (R-061). This is the **no tree-level FCNC** result. It is also a
-consequence of the weak=SD input bit, and is canonical falsifier §E.3 row 17.
+consequence of the weak=SD input bit, and is canonical falsifier §E.3 row 15.
 
 ### C.2.7 GMN as algebraic identity (anti-circularity restored)
 
@@ -2956,7 +3026,7 @@ real division algebras are `ℝ`, `ℂ`, `ℍ` — three imaginary units in the 
 fourth generation would require a fourth imaginary unit — an associative real division algebra
 beyond `ℍ` — which by Frobenius does not exist (R-071). The no-fourth-generation prediction is
 therefore not a tuning of mass scales; it is a structural forbiddance from the algebra.
-Canonical falsifier §E.3 row 15.
+Canonical falsifier §E.3 row 13.
 
 The result is LOCATED-conditional: the orbit-phase → ℍ-unit identification is a structural
 mapping that is asserted rather than derived from substrate dynamics. So "three generations from
@@ -2978,7 +3048,7 @@ The CKM matrix element `V_us` admits a candidate identification
 > `|V_us|² = m_d / m_s ≈ 0.05`  (R-073),
 
 with the empirical ratio `m_d/m_s ≈ 0.0500` (PDG `4.67/93.4`) matching the empirical
-`|V_us|² ≈ 0.0503` at ~0.6% (§E.3 row 16). This is the
+`|V_us|² ≈ 0.0503` at ~0.6% (§E.3 row 14). This is the
 quark sector's Brannen-with-epicycle reading: the deviation from the lepton-sector circular
 projection is encoded as an eccentricity `ε ≠ 0` on a generalized Brannen ellipse, and the
 Cabibbo angle reads as the frequency ratio between the two leading mass eigenvalues. The
@@ -3488,7 +3558,7 @@ Three SM "extras" collapse to one substrate fact (R-089):
 - **No 0νββ.** The same `B − L` exact conservation forbids the neutrinoless double-beta-decay
   signature. **Forbidden.**
 
-Three predictions, one substrate reason. Canonical falsifiers §E.3 rows 4 + 5.
+Three predictions, one substrate reason. Canonical falsifiers §E.3 rows 2 + 3.
 
 ### C.5.7 β-decay as L-pair creation through I_4
 
@@ -3516,7 +3586,7 @@ The top quark facet's decay rate `Γ_t` and the baryon-circularizing timescale `
 
 The top facet decays before the baryon's circular winding can complete. **The top has no
 hadrons**, by the framework's own structural prediction — a single-detection-away falsifier
-(§E.3 row 14). The top mass remains a Standard-Model bookkeeping number, useful as an
+(§E.3 row 12). The top mass remains a Standard-Model bookkeeping number, useful as an
 abstraction (§A.4), but it is not a TWT verifier because no top-baryon mass eigenvalue exists
 in the framework's mass spectrum.
 
@@ -3775,7 +3845,7 @@ The substrate beneath the wave.
 
 ### D.3.1 The D4 lattice
 
-The D4 lattice is the densest 4D **lattice** packing (Korkin–Zolotarev 1872). Whether it is
+The D4 lattice is the densest 4D **lattice** packing (Korkine–Zolotareff 1877). Whether it is
 densest among *all* 4D packings is the open 24-cell conjecture; the recent optimality results
 (Viazovska, dimension 8; Cohn–Kumar–Miller–Radchenko–Viazovska, dimension 24) do not cover
 dimension 4. Its kissing number is 24. The bond structure is what the substrate's coherence-cell
@@ -4453,29 +4523,33 @@ discriminators are a smaller subset.
 
 **Row-by-row classification against this scope.** Reading E.3.1 with this lens:
 
-- *Kills TWT-current AND SM together* (both would need to reformulate): CHSH > 2√2 (row 11),
-  fractional charge outside `{±1/3, ±2/3, ±1}` (row 13), tree-level FCNC (row 17), and a
-  baryon containing a top quark (row 14 — standard QCD's `Γ_t ≫` hadronization-rate argument
+- *Kills TWT-current AND SM together* (both would need to reformulate): CHSH > 2√2 (row 9),
+  fractional charge outside `{±1/3, ±2/3, ±1}` (row 11), tree-level FCNC (row 15), and a
+  baryon containing a top quark (row 12 — standard QCD's `Γ_t ≫` hadronization-rate argument
   makes the same exclusion). These test
   QM-Tsirelson, algebraic charge quantization, Schur-lemma constraints, and a decay-timescale
   argument that the SM also commits to.
 - *TWT-current specific, SM survives* (would falsify TWT's current formulation but leave the SM
-  unaffected): proton decay (row 4; SM predicts stability too, but TWT's topological route is
-  what fails), `0νββ` (row 5; SM allows Majorana, TWT commits to Dirac), magnetic monopole
-  (row 12; SM allows monopoles, TWT forbids), fourth generation (row 15; SM allows,
-  TWT forbids), finite Geneva-class influence speed (row 6), Bell-selection foliation ≠
-  comoving (row 7).
+  unaffected): proton decay (row 2; SM predicts stability too, but TWT's topological route is
+  what fails), `0νββ` (row 3; SM allows Majorana, TWT commits to Dirac), magnetic monopole
+  (row 10; SM allows monopoles, TWT forbids), fourth generation (row 13; SM allows,
+  TWT forbids), finite Geneva-class influence speed (row 4), Bell-selection foliation ≠
+  comoving (row 5).
 - *Framework-general vs specific-derivation* (kill the current derivation but the framework's
-  ontology can plausibly evolve): UHE-CR LV (rows 1–2), `c_GW ≠ c_γ` (row 3),
-  differential `c_meta` (row 8), optical-clock decoherence (row 9), macromolecule decoherence
-  (row 10), truly independent `θ_C` (row 16).
+  ontology can plausibly evolve): `c_GW ≠ c_γ` (row 1),
+  differential `c_meta` (row 6), optical-clock decoherence (row 7), macromolecule decoherence
+  (row 8), truly independent `θ_C` (row 14).
+
+A fifth exposure sits outside all four categories: the dimension-six LV coefficient (§E.3.5(4))
+is not a pending detection but a **standing tension with existing data**, awaiting a substrate
+computation rather than an experiment.
 
 **How to read the tables.** A single-positive-detection kill for a specific row triggers the
 next paper, not a framework obituary. The ontological premise (wave + substrate + matter-as-defect)
 is more robust than any specific derivation. The framework's honest exposure is *what would
 trigger the next paper*, not *what could kill the framework outright*. The one class that could
 genuinely kill the underlying premise is fundamental incompatibility between a robust
-`c_meta ≠ c` differential detection (row 8) and the wavefront-locking premise (A-3) — which is
+`c_meta ≠ c` differential detection (row 6) and the wavefront-locking premise (A-3) — which is
 why §E.3.5's internal pre-mortem (3) also flags this as the framework's tightest existential
 exposure.
 
@@ -4486,34 +4560,31 @@ rather than external detections.
 
 ### E.3.1 Named near-term falsifiers (single-detection-away kills)
 
-The framework's tightest near-term LV test sits at the top: at the §B.6.2 `Λ`-bracket lower
-corner, the UHE-CR prediction is at-bounds with the tightest matter-sector LV bound
-`|δ| ≲ 10⁻¹⁵`. A factor-~3 tightening of UHE LV searches, or detection of LV at the current
-`~10⁻¹⁵` level, falsifies the framework's `Λ` two-scale closure across most of the bracket.
+The rows below are ordered by channel, not by tightness. **The framework has no LV row in this
+table**: its dimension-six residual coefficient is gated on the #1 gap and is recorded at §E.3.3
+(VG-6) and §E.3.5(4) as an open exposure rather than a near-term test.
 
 | # | Falsifier | Channel / apparatus | Current bound | TWT prediction | What it kills | Origin |
 |---|---|---|---|---|---|---|
-| 1 | LV `δ` at UHE cosmic rays | UHE-CR observatories | `\|δ\| ≲ 10⁻¹⁵` | `(E/Λ)² ∈ [1.3×10⁻¹⁶, 2.6×10⁻¹⁵]` across the `Λ`-bracket — at-bounds at the lower corner | the `(E/Λ)²` two-scale + cubic-isotropy + matter-as-defect closure | §B.6.3, §B.1.4 |
-| 2 | Binary-pulsar `\|α_3\|` tightened | radio binary-pulsar timing | `\|α_3\| < 4 × 10⁻²⁰` | reads against the same `(E/Λ)²` ceiling | same closure as row 1 | §B.6.3 |
-| 3 | `c_GW ≠ c_γ` beyond `10⁻¹⁵` | GW + EM multimessenger (GW170817-class) | `\|c_GW/c − 1\| ≲ 10⁻¹⁵` | structural `c_GW = c_γ`, automatic for matter-loop-induced gravity riding the same wavefront | induced gravity riding the wave | §B.6.3 |
-| 4 | Proton decay (`p → e⁺π⁰` etc.) | Super-K, Hyper-K, DUNE | `τ_p > 1.6 × 10³⁴` yr | absolutely stable (`B ∈ π_3 = ℤ`; non-perturbative violation only as `ΔB = ΔL = 3`) | topological protection of `B` | §C.1.5, §C.5.6 |
-| 5 | `0νββ` detected | KamLAND-Zen, LEGEND, nEXO, CUPID | `T_{1/2}(¹³⁶Xe) > 2.3 × 10²⁶` yr | forbidden (Dirac neutrino forced by `B − L` conservation; Majorana requires `Δ(B−L) = −2`) | Dirac character of the neutrino | §C.3.12, §C.5.6 |
-| 6 | Finite Geneva-class influence speed found (Salart et al. 2008; Yin et al. 2013) | Bell-correlation timing in candidate preferred frames | `v_inf > 10⁴ c` | no finite influence speed — operationally, signaling does not exist | non-separability without signaling (`τ_5`-foliation = cosmological comoving) | §B.4.5 |
-| 7 | Bell-selection foliation ≠ cosmological comoving frame | precision Bell + cosmology cross-comparison | n/a (corollary of row 6) | identical | the `τ_5`-foliation = comoving identification | §B.4.5 |
-| 8 | Time-varying differential `c_meta` between sectors / epochs | precision multimessenger astronomy | `c_meta = c` on average | structural identity globally | §A.4, §B.7 average-`c` identification | §A.4 |
-| 9 | Optical-clock decoherence below Goldstone-symmetry floor | atom-interferometry, optical clocks | experimental upper limits sit above the predicted floor | rate bounded below by the Goldstone floor (Adler-zero protection) | symmetry-protected decoherence safety | §D.5.5 |
-| 10 | Macromolecule-interferometry decoherence below `Im χ` floor | macromolecule interferometry | current experimental upper limits sit above the predicted floor | substrate sits near KSS `η/s ≥ ℏ/4π` floor; bracketed KSS-to-GW170817 | the `Im χ` master dial (one dial, two windows) | §B.4.5 Bell-memory bridge |
-| 11 | CHSH violation `> 2√2` | quantum optics | bounded by Tsirelson | bounded by `2√2` | one-sided rotor half-angle structure | §B.4.1 |
-| 12 | Magnetic monopole detected | various | none observed | forbidden (`F` is bivector, `∇F = J` with grade-1 source only) | geometric forbiddance | §B.5.2 |
-| 13 | Fractional charge outside `±1/3, ±2/3, ±1` | direct searches | none observed | forbidden (algebraic identity from D4 trivector content) | charge-spectrum algebraic identity | §C.2.2 |
-| 14 | Baryon containing a top quark | LHC | none observed | forbidden (`Γ_t · Θ_0 ≈ 7.2 ≫ 1`) | timescale-exclusion structural argument | §C.5.9 |
-| 15 | Fourth fermion generation | LHC + neutrino-oscillation precision | none observed | forbidden (`ℍ` has only three imaginary units; Frobenius) | Frobenius classification + `ℍ`-unit identification (conditional) | §C.3.8 |
-| 16 | Hierarchical CKM `θ_C` shown demonstrably independent of the `m_d, m_s` relation at sub-percent precision | high-precision CKM data | `\|V_us\|² ≈ 0.0503`; `m_d/m_s ≈ 0.0500` (~0.6% agreement) | frequency-ratio reading `\|V_us\|² = m_d/m_s` | the frequency-ratio reading of Cabibbo | §C.3.10 |
-| 17 | Tree-level FCNC observed | precision flavour physics | tight upper bounds | forbidden at tree level (weak = SD couples generation-blindly) | the `weak = SD` INPUT bit | §C.4.2 |
-| 18 | Proton–electron charge sum non-zero | neutrality-of-matter / bulk-matter charge tests | `\|Q_p + Q_e\|/e ≲ 10⁻²¹` | exactly zero, identically in the charge normalization `c` | the (P4, P5, P6) premise set — the framework reverts to an empirical charge anchor | §C.2.7, §C.2.8 |
+| 1 | `c_GW ≠ c_γ` beyond `10⁻¹⁵` | GW + EM multimessenger (GW170817-class) | `\|c_GW/c − 1\| ≲ 10⁻¹⁵` | structural `c_GW = c_γ`, automatic for matter-loop-induced gravity riding the same wavefront | induced gravity riding the wave | §B.6.3 |
+| 2 | Proton decay (`p → e⁺π⁰` etc.) | Super-K, Hyper-K, DUNE | `τ/B > 2.4 × 10³⁴` yr, 90% CL (Super-K, 2020) | absolutely stable (`B ∈ π_3 = ℤ`; non-perturbative violation only as `ΔB = ΔL = 3`) | topological protection of `B` | §C.1.5, §C.5.6 |
+| 3 | `0νββ` detected | KamLAND-Zen, LEGEND, nEXO, CUPID | `T_{1/2}(¹³⁶Xe) > 3.8 × 10²⁶` yr, 90% CL (KamLAND-Zen, complete 800 dataset) | forbidden (Dirac neutrino forced by `B − L` conservation; Majorana requires `Δ(B−L) = −2`) | Dirac character of the neutrino | §C.3.12, §C.5.6 |
+| 4 | Finite Geneva-class influence speed found (Salart et al. 2008; Yin et al. 2013) | Bell-correlation timing in candidate preferred frames | `v_inf > 10⁴ c` | no finite influence speed — operationally, signaling does not exist | non-separability without signaling (`τ_5`-foliation = cosmological comoving) | §B.4.5 |
+| 5 | Bell-selection foliation ≠ cosmological comoving frame | precision Bell + cosmology cross-comparison | n/a (corollary of row 4) | identical | the `τ_5`-foliation = comoving identification | §B.4.5 |
+| 6 | Time-varying differential `c_meta` between sectors / epochs | precision multimessenger astronomy | `c_meta = c` on average | structural identity globally | §A.4, §B.7 average-`c` identification | §A.4 |
+| 7 | Optical-clock decoherence below Goldstone-symmetry floor | atom-interferometry, optical clocks | experimental upper limits sit above the predicted floor | rate bounded below by the Goldstone floor (Adler-zero protection) | symmetry-protected decoherence safety | §D.5.5 |
+| 8 | Macromolecule-interferometry decoherence below `Im χ` floor | macromolecule interferometry | current experimental upper limits sit above the predicted floor | substrate sits near KSS `η/s ≥ ℏ/4π` floor; bracketed KSS-to-GW170817 | the `Im χ` master dial (one dial, two windows) | §B.4.5 Bell-memory bridge |
+| 9 | CHSH violation `> 2√2` | quantum optics | bounded by Tsirelson | bounded by `2√2` | one-sided rotor half-angle structure | §B.4.1 |
+| 10 | Magnetic monopole detected | various | none observed | forbidden (`F` is bivector, `∇F = J` with grade-1 source only) | geometric forbiddance | §B.5.2 |
+| 11 | Fractional charge outside `±1/3, ±2/3, ±1` | direct searches | none observed | forbidden (algebraic identity from D4 trivector content) | charge-spectrum algebraic identity | §C.2.2 |
+| 12 | Baryon containing a top quark | LHC | none observed | forbidden (`Γ_t · Θ_0 ≈ 7.2 ≫ 1`) | timescale-exclusion structural argument | §C.5.9 |
+| 13 | Fourth fermion generation | LHC + neutrino-oscillation precision | none observed | forbidden (`ℍ` has only three imaginary units; Frobenius) | Frobenius classification + `ℍ`-unit identification (conditional) | §C.3.8 |
+| 14 | Hierarchical CKM `θ_C` shown demonstrably independent of the `m_d, m_s` relation at sub-percent precision | high-precision CKM data | `\|V_us\|² ≈ 0.0503`; `m_d/m_s ≈ 0.0500` (~0.6% agreement) | frequency-ratio reading `\|V_us\|² = m_d/m_s` | the frequency-ratio reading of Cabibbo | §C.3.10 |
+| 15 | Tree-level FCNC observed | precision flavour physics | tight upper bounds | forbidden at tree level (weak = SD couples generation-blindly) | the `weak = SD` INPUT bit | §C.4.2 |
+| 16 | Proton–electron charge sum non-zero | neutrality-of-matter / bulk-matter charge tests | `\|Q_p + Q_e\|/e ≲ 10⁻²¹` | exactly zero, identically in the charge normalization `c` | the (P4, P5, P6) premise set — the framework reverts to an empirical charge anchor | §C.2.7, §C.2.8 |
 
 Each row is a single positive detection away from falsification, or a null result still consistent
-at current precision. (A frame hedge on rows 9–10: the laboratory limits there are
+at current precision. (A frame hedge on rows 7–8: the laboratory limits there are
 *inside-frame* data, binding the outside-frame `Im χ`/Goldstone floors only through the
 un-built outside↔inside projection — the same hedge §E.5 carries for its own inside-frame
 comparisons.) The parameter reduction (§E.2.3) is the framework's case; the falsifiers
@@ -4551,7 +4622,8 @@ Each records the operational shape of an open commitment.
 | VG-2 | `Λ ~ H²` cosmological-constant residual | `Im χ` (Volovik equilibrium is zero; residual is the drive signature) | A measured value inconsistent with the driven-dissipative deviation from Volovik equilibrium falsifies the identification | §E.1.1 |
 | VG-3 | `1/T_2` substrate-decoherence rate | `Im χ` / WP-IX4 | A measured `1/T_2` above the symmetry-protected boundary would falsify the symmetry-protection result | §D.5.5 |
 | VG-4 | Dark-matter signatures (DM-V2-1) | (Mostly) outside V3 derivational scope; sterile-RH 3-prediction is structural | The 3 sterile RH neutrinos are structural; relic ~2% Ω_DM (47× shortfall); remaining ~98% out of scope. Laboratory detection of heavy sterile RH at Dodelson–Widrow `keV` window would falsify the `m_sterile = m_active ≲ 0.12 eV` Dirac-character prediction | §E.1.3 |
-| VG-5 | Gravitational-wave dispersion at high `E` | dim-6 dispersion correction once GW propagation scale identified | Concrete prediction once the induced-EH propagator's effective `Λ` for the GW sector is computed (Paper-2) | §B.6.3 |
+| VG-5 | Gravitational-wave dispersion at high `E` | dim-6 dispersion correction once GW propagation scale identified | Concrete prediction once the induced-EH propagator's effective `Λ` for the GW sector is computed (Paper-2). **Not independent of VG-6:** per §B.6.4 the graviton's preferred-frame remnant is the same dimension-six coefficient in the tensor sector — one gated number, two sectors | §B.6.3, VG-6 |
+| VG-6 | Dimension-six isotropic LV coefficient `η⁽⁴⁾` | substrate strain-mode dispersion (#1 gap; `Cl41Wave().wave_speed_c` raises) | Published n = 4 limits: photon `\|ξ⁽⁴⁾\| ≲ 10⁻⁸`, electron `≲ 10⁻⁶`, proton `−10⁻³ … +10⁻⁶`. **At the substrate's natural coefficient `c = 1` this reads `η⁽⁴⁾ = (M_Pl/Λ)² ∈ [1.9, 39]` — excluded by 3–9 orders.** Survival requires either a substrate suppression to `\|η⁽⁴⁾\| ≲ 10⁻⁶` (the defect form factor supplies only `(f_π/m)² ~ 10⁻²`, and none for the photon), or `Λ_LV ≳ 10³ M_Pl` decoupled from the Sakharov cutoff, or a substrate symmetry forcing the isotropic quartic dispersion coefficient to vanish. Riding the OPEN import I-3 for the `Λ`-bracket and the inside-frame data import I-19 (whose premise (e) hedges the outside↔inside transfer). Sibling of VG-5: same coefficient, tensor sector | §B.6.3, §D.5 |
 
 ### E.3.4 Structural-coherence falsifiers
 
@@ -4563,14 +4635,15 @@ kills but break the internal construction.
 | SC-1 | Multi-defect well-posedness of the wavefront field equation | The Eulerian "atlas as projection artifact" reframing (§B.8.4) breaks; the multi-defect `Cl(4,1)` wave equation with `N` back-reacting topological sources not currently constructed. *Two `N = 2` static results exist (R-135 ansatz-reduced BVP; R-144 full-3D ansatz-free minimization, §C.1.2): the static two-defect sector is variationally coherent and strictly below threshold — the dynamical multi-defect EOM stays open (the condition's core face)* | §B.8.4, §E.1.2, §C.1.2 |
 | SC-2 | Cell-order requirement: emergent D4 cell pattern carries local coordination WITHOUT coherent long-range space-fixed cubic orientational order | A space-fixed cell crystal would produce hadronic-scale `(E/f_π)²` anisotropy — load-bearing OPEN for §B.6.3 closure | §B.6.3 |
 
-### E.3.5 Internal pre-mortem — three things to be wrong about
+### E.3.5 Internal pre-mortem — four things to be wrong about
 
 The four preceding categories list *external* detections that would kill the current
-formulation. The complement is the **internal pre-mortem**: the three biggest structural
+formulation. The complement is the **internal pre-mortem**: the four biggest structural
 exposures inside TWT itself, where the framework could be right about its pillars and still fail
-because a load-bearing construction does not close. These are not falsifiers in the E.3.1–E.3.4
-sense (there is nothing to detect); they are *internal* places where the framework's own
-machinery is loaded against open questions.
+because a load-bearing construction does not close. The first three are not falsifiers in the
+E.3.1–E.3.4 sense (there is nothing to detect); they are *internal* places where the framework's own
+machinery is loaded against open questions. The fourth is different in kind and is stated last: there
+the measurement already exists and it is the framework that owes a number.
 
 **(1) Gravity — sign-and-pillars right, achievability open.** §B.6 has structural geometry
 closed conditionally and the sign derived, but the absolute coefficient is #1-gap-gated
@@ -4596,6 +4669,14 @@ unified-frame picture rather than just trim a coefficient. Per the disclaimer ab
 one internal exposure that could plausibly reach the ontological premise itself: `c_meta = c` is
 downstream of A-3 (wavefront / signature locking), and a robust differential-`c` finding would
 force reformulation at the axiom layer rather than the derivation layer.
+
+**(4) Lorentz violation at dimension six — the pillars are protected, the residual is not.**
+Dimension-four LV is closed structurally (one field, one light-cone) and dimension-six anisotropy is
+closed by D4. What is not closed is the rotationally invariant dimension-six term, whose coefficient
+the framework cannot yet compute and whose *natural* value is excluded by three to nine orders. This
+is the framework's sharpest empirical exposure that is not merely a pending detection: **the number
+is already measured, and the framework owes a coefficient that fits under it.** If the substrate
+dynamics deliver `η⁽⁴⁾ ~ O(1)`, the current formulation is dead — not evolved.
 
 ---
 

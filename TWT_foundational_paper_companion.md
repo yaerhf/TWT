@@ -130,7 +130,7 @@ derived; they are listed in the *Axioms* table at the top.
 | R-013 | `γ⁰ := e_4, γʲ := e_4 e_j` satisfy Cl(1,3) Dirac relations `{γ^μ, γ^ν} = 2η^{μν}` | DERIVED-A | gammas + gamma0_gammaj_reduces_to_ej | B.1 | A-3, R-009 | R-014, R-017, R-026 | Engine-verified directly. |
 | R-014 | Cl(4,0) ≅ Cl(1,3) ≅ M₂(ℍ) — wavefront isomorphism lands on (1,3), not (3,1)/(2,2) | DERIVED-A | cl_dimension | B.1 | R-013 | R-015, R-038 | The Lorentzian signature is forced; the algebra (M₂(ℍ) vs M₄(ℝ)) is what's determined, not the sign convention. One of two cleanest spine results. |
 | R-015 | Lorentzian signature of observed spacetime is algebraic shadow of wavefront-locked observer in Euclidean substrate | DERIVED-A | gammas + cl_dimension | B.1 | A-3, R-013, R-014 | (paper headline) | Engine-verified. Two inputs: algebra fact + observer stipulation; both labeled. |
-| R-016 | Matter-as-defect Lorentz protection: one substrate, one light-cone | DERIVED-STRUCTURAL | equivalence_principle_protection + matter_stability_outside_frame | B.1, B.6 | R-004 | R-039, R-040 | Defuses Collins-2004 radiative naturalness obstacle. Offensive win, not defensive tuning. |
+| R-016 | Matter-as-defect Lorentz protection: one substrate, one light-cone | FRAMING + removed-falsifier + structural identification (**cooled 2026-07-27** from DERIVED-STRUCTURAL to match the engine's own self-tag on `equivalence_principle_protection`: "NOT a dynamical EP derivation") | equivalence_principle_protection + matter_stability_outside_frame + d4_lattice_lorentz_violation_orders | B.1, B.6 | R-004 | R-039, R-040, R-165 | Defuses Collins-2004 radiative naturalness obstacle. Offensive win, not defensive tuning. **SCOPE, named 2026-07-27 (R-165):** covers **dimension-four relative-boost** LV only. It does NOT reach rotational anisotropy (that is D4's job — and D4 closes it to dim-8) and it does NOT reach the rotationally invariant **dimension-six** residual `η⁽⁴⁾ p⁴/M²_Pl` (equivalently `c·p⁴/Λ²`), which is neither a relative-boost observable nor an anisotropy and is #1-gap GATED. The pre-2026-07-27 gloss "the two protections leave the residual at dimension six" conflated those two objects; see VG-6, §E.3.5(4), N52. |
 | R-017 | Klein–Gordon from 5D hyperbolic master by Fourier reduction at `k_4 = m` | DERIVED | wave_E_complex_structure | B.2 | R-007, R-013, R-123 | R-024, R-026 | Identifies rest mass with `e_4`-Fourier label. Engine support hardened 2026-07-02 by R-123: the consuming identification = R-123's derived restriction identity ∧ its named residue (ii) (one-particle sector at k_4) — previously the "m = k_4" identification existed in the engine only as a docstring string. |
 | R-018 | Lorentz generators K_j = (1/2)e_j (non-compact), J_i = −(1/2)e_{jk} (compact); so(1,3) closure | DERIVED-A | boost + rotation + so13_closure_signs | B.2 | R-013 | R-019 | Bulk's compact so(4) becomes observer's non-compact so(1,3) via φ. |
 | R-019 | Thomas precession from algebra: `[K_i, K_j] = −ε_{ijk} J_k` | DERIVED-A | thomas_KK | B.2 | R-018 | — | The minus sign is the signature of so(1,3) vs so(4). |
@@ -145,7 +145,7 @@ derived; they are listed in the *Axioms* table at the top.
 | R-028 | Multipartite MK bound `\|M_n\| = 2^{(n+1)/2}`, engine-verified n=2-5 | DERIVED-structural | mermin_klyshko_value + mermin_value | B.4 | R-027 | — | GHZ class. W (non-GHZ) class is a located construction gap (`w_state_located_gap`). |
 | R-029 | `ρ_A = (1/2)𝟙` identity — no-signaling and non-separability are the same fact | DERIVED (standard QM identity; engine partial-trace check proposed, none exists yet) | — | B.4 | R-027 | R-030, R-031 | All structure drained into correlations; locally pure noise, jointly perfectly ordered. |
 | R-030 | Bell-memory bridge: same `Im χ` governs decoherence and pair-memory | FRAMING + value-gated | im_chi_falsifier_budget_KSS_GW_macromolecule | B.4 | R-029 | R-119 | Canonical falsifier §E.3 VG-1. |
-| R-031 | Selection foliation = comoving frame (testable corollary) | FRAMING + falsifier-testable | — | B.4 | R-029 | — | Canonical falsifier §E.3 rows 6–7. |
+| R-031 | Selection foliation = comoving frame (testable corollary) | FRAMING + falsifier-testable | — | B.4 | R-029 | — | Canonical falsifier §E.3 rows 4–5. |
 | R-032 | Maxwell `∇F = J` in Cl(4,0); grade-1 source delivers Gauss + Ampère, grade-3 source = 0 delivers Faraday + ∇·B = 0 | DERIVED-A | maxwell_grade_structure + maxwell_four_laws | B.5 | R-009 | R-033, R-034, R-035 | Substrate origin: `J` is wavefront projection of L-orbit bivector winding. |
 | R-033 | No magnetic monopoles: grade-3 part of `∇F` vanishes because `J` is grade-1 only | DERIVED-A | maxwell_grade_structure | B.5 | R-032 | — | Geometric forbiddance, not mere observation. |
 | R-034 | Coulomb potential `V(R) = Σ_1 · Σ_2 / (4π R)`; like-repels, unlike-attracts | DERIVED | coulomb_potential + coulomb_sign_rule + coulomb_is_harmonic | B.5 | R-032 | — | Green's function in 3D. |
@@ -156,13 +156,13 @@ derived; they are listed in the *Axioms* table at the top.
 | R-036 | Rotor field as local Lorentz frame; substrate carries 4D frame with local Spin(4) symmetry | DERIVED-STRUCTURAL | — | B.6 | R-002, A-1c | R-037, R-039, R-042 | Spin(4) → Spin(3,1) after wavefront iso. |
 | R-037 | Sakharov induced EH: `G_N⁻¹ ~ N_eff Λ²/(12π)`; `Λ ∈ [0.16, 0.72] M_Pl` bracket | DERIVED-generic-given-4D | sakharov_induced_gravity + induced_G_bracket_mode_count + induced_G_only_monad_scale_enters + induced_G_leading_coefficient_mass_independent + induced_G_quadratic_divergence_from_4D | B.6 | R-036, A-1a | R-038, R-041 | The Λ² scaling is generic-given-4D, not a dynamical derivation. Absolute magnitude #1-gap-gated. |
 | R-038 | Newton 1/r law from Sakharov slow-motion limit; `T^{μν} = ρ u^μ u^ν` worldline stress | DERIVED | — | B.6 | R-037 | R-124 | Universal attraction from spin-2 sourcing by positive T^00. |
-| R-039 | `γ = 1` from matter-as-defect Lorentz protection | DERIVED-STRUCTURAL | equivalence_principle_protection | B.6 | R-016, R-037 | R-124 | One substrate, one light-cone. |
+| R-039 | `γ = 1` from matter-as-defect Lorentz protection | FRAMING + removed-falsifier + structural identification (**cooled 2026-07-27** to match the engine self-tag on `equivalence_principle_protection`, its sole engine backing) | equivalence_principle_protection | B.6 | R-016, R-037 | R-124, R-165 | One substrate, one light-cone. Inherits R-016's named scope: the protection is dimension-four relative-boost only. |
 | R-040 | Induced G sign positive: spin-2 spectral positivity (`C_T > 0` by unitarity) ≡ substrate stability | DERIVED-sign-only | induced_G_sign_cross_check | B.6 | R-037 | — | Two-pillar unification — same physics in different language. Removes RF-1 falsifier. |
 | R-041 | `ξ = 0` at leading order via Maurer–Cartan shift symmetry; catastrophic `ξ = 1/6` cancellation excluded | FRAMING + CONDITIONAL (engine self-tag: shift-symmetry lemma — substrate supplies the symmetry, QFT the implication) | sakharov_xi_minimal_coupling | B.6 | R-037 | — | Goldstone-protected. Residual ξ ~ (f_π/Λ)² ~ 10⁻⁴⁰–10⁻³⁹. Removes RF-2 falsifier. |
 | R-042 | Texture tetrad `e^a_μ[R, ∂R]` structural geometry CLOSED conditional | DERIVED-STRUCTURAL-CONDITIONAL | texture_tetrad + texture_metric_candidate + texture_metric_diffinvariance + texture_metric_tt_graviton + texture_metric_vierbein + texture_matter_gravity_coupling | B.6 | R-036 | — | Metric `h_{μν} = ⟨Ω_μ I_4 Ω_ν⟩_0` forced up to one premise. |
 | R-043 | Arrow of time as `+e_4` propagation; causality is the same fact | DERIVED-STRUCTURAL | — | B.7 | R-001, A-3 | R-044 | Not a separate postulate. |
 | R-044 | Three asymmetries (thermodynamic, causal, weak handedness) unified as one cosmological IC | DERIVED-STRUCTURAL | — | B.7 | R-043, R-086 | — | One direction picks all three. |
-| R-045 | `c_meta = c` on average across the wavefront | DERIVED-STRUCTURAL + falsifier-testable | — | B.7 | A-3 | R-047 | Sector- or epoch-varying differential c_meta is canonical falsifier §E.3 row 8. |
+| R-045 | `c_meta = c` on average across the wavefront | DERIVED-STRUCTURAL + falsifier-testable | — | B.7 | A-3 | R-047 | Sector- or epoch-varying differential c_meta is canonical falsifier §E.3 row 6. |
 | R-046 | Hubble radius as causal/crossover scale, not geometric radius of curvature | DERIVED-STRUCTURAL | — | B.7 | R-001 | R-119 | Topological S³ identification compatible with observed flatness if R_curv ≫ R_H. |
 | R-047 | Volovik dissolution of CC problem: self-sustained medium has zero gravitating vacuum energy at equilibrium (`ε − μn = −P = 0`) | DERIVED + framing-of-residual | gravitating_vacuum_energy + lambda_resolution_structure | B.7 | R-037 | R-119 | Equilibrium value zero by Gibbs-Duhem identity. Λ ~ H² residual is the driven-dissipative deviation (value-gated). |
 | R-048 | Macroscopic COM bivector reduction: six conserved blades collapse to three on `P = 0, R_cm = 0` | DERIVED-A | macroscopic_LQ_split + worldline_bivector + polar_moment_of_inertia | B.8 | R-009 | R-049, R-050 | Central-force pairwise cancellation by Newton-3. |
@@ -210,6 +210,7 @@ derived; they are listed in the *Axioms* table at the top.
 | R-162 | Coupling-sector channel disjointness: `⟨X I₄ X⟩₀ ≡ 0` on the colour sector; signed `⟨B I₄ B⟩₀ = \|B_ASD\|² − \|B_SD\|² = 2⟨B_L I₄ B_Q⟩₀`; EM = spin-1 multiplicity-2 block vs coset-5 = spin-2 multiplicity-1 block, cross-invariants 0; blocks dimensionally inequivalent (6 vs 5) ⇒ no intertwiner under any subgroup chain | DERIVED-A (the channel classification) + LOCATED-GAP (the α_s fold-in reduction) | coupling_sector_channel_disjointness | B.5b.3 | R-035a, R-081, R-085, R-151 | — | Closes the symmetry route to a derived shared-condition: the fold-in is equivalent to ONE named kernel property (cross-block rigidity) **plus an OPEN cross-block weight** (the missing 8/3-analogue). Conditional on the gluon-FRAMING channel assignment + the couplings-as-Im-χ-moments FRAMING. Scenario-scoped: the zero-cross statement is Spin(4)/spatial-SO(3); under Z₃-only — and a fortiori N10's Z₃-broken NESS — crosses are allowed-but-unforced (count 10). Two-point / magnitude-source scope ONLY, never the running or AF face. Vindicates the 2026-07-26 audit demotion of the fold-in. |
 | R-163 | Induced-EH coefficient computed on the framework's own DERIVED linear face: the proper-time integral over the derived D4 NN band converges with no regularization choice entering the flat-band measure; I-3's premise triple → two named assumptions | DERIVED-given-the-NN-band-INPUT (flat-band numbers) + DERIVED-conditional-on-(OA-LF-i ∧ OA-LF-ii) (the EH-coefficient reading) | induced_G_from_linear_face_band | B.6.2 | R-112, R-037, R-041 | — | **OA-LF-i** = NESS occupation is the ground-state one (a statement about the STATE); **OA-LF-ii** = covariant curvature coupling at monad scale (about the OPERATOR) — carries ~93% of the integral's support, i.e. the old regulator freedom RELOCATED and localized, not removed. "Regulator-free" describes the flat-band measure ONLY. Bracket stays CANDIDATE/conditional; inherits R-041's FRAMING+CONDITIONAL. In §B.6.2's own normalization this reads c_reg ≈ 1.8 (inside its "c_reg ~ 1"); the convention-invariant statement is that the monad spacing is Planckian within O(1). Gapless-shared-band idealization — canted-vacuum (N_G = 2) refinement softens it by tens of percent. Method externally validated (Z⁴ tadpole reproduced to 2e-8; independent Monte Carlo). |
 | R-164 | The banked Skyrme quartic contains NO tree-level Einstein–Hilbert term: quartic (Killing-built, parity-EVEN) and `√gR` (h-built, parity-ODD) fall in disjoint sectors of the R-151 invariant space with exactly zero overlap; nonperturbative kills at all four menu signatures | DERIVED-A (decomposition / orthogonality) + DERIVED-structural (the EH-ABSENT verdict), conditional on U2 + the banked Ω-algebraic action class + the {cc, R², Ric², Riem²} menu quantifier | skyrme_quartic_contains_no_tree_EH | B.6.6 | R-042, R-107, R-109, R-149, R-151 | — | Mechanism: the definiteness that makes the quartic a Derrick stabilizer is exactly what makes it EH-blind — stretching vs bending elasticity, with the Sakharov loop the standard generation of the second from fluctuations of the first. Kill chain (sequential, do not compress): parity/S-block disjointness ⇒ λ=0 at quadratic order; ddR-freeze ⇒ λ=0 nonperturbatively vs a cc term + any Ω-algebraic remainder; one-blade family ⇒ λ=Λ_cc=0 with Gauss–Bonnet the sole surviving direction; frozen-quartic sweeps ⇒ GB dies. R³/∇Riem-class fall to the same dE-independence schema but were NOT run. Sole-route consequence is CLASS-SCOPED (a new dE-dependent term or the Paper-2 thermodynamic route would reopen it). Negatives ledger **N51**; probes preserved at knowledge/candidates/probes_2026-07-27/. |
+| R-165 | Lorentz-violation orders separated: D4's bond-set **fourth** moment is EXACTLY isotropic (`M_1111 = 12 = 3 M_1122`, residual 0), which `Z⁴` is not — so rotational anisotropy is pushed past dimension six to **dimension eight**, `(E/Λ)⁴ ≈ 6.9×10⁻³⁰`; but the **rotationally invariant** dimension-six residual `η⁽⁴⁾ p⁴/M²_Pl` (equivalently `c·p⁴/Λ²`) is protected by neither R-016 nor D4 and is #1-gap GATED | DERIVED-A (the lattice moment identities AND the invariant-space dimensions, exact) + **DERIVED-conditional-on-(P-an ∧ P-pg)** for the dimension-eight *inference* + INPUT (published n = 4 bounds, import **I-19**) + GATED (the dim-6 isotropic coefficient itself) | d4_lattice_lorentz_violation_orders | B.1.5, B.6.3, B.6.4, E.3.3 VG-6, E.3.5(4) | R-004, R-016, R-112 | R-016, R-039 | **Two results in one, of opposite sign.** POSITIVE: the reason is REPRESENTATION-THEORETIC, not a kernel model (canon §3 — the nearest-neighbour-Laplacian argument was a model and is NOT what this rests on). `|Aut(D4 root system)| = 1152 = |W(F4)|`, whose invariant degrees `{2,6,8,12}` make the **degree-4 invariant space one-dimensional** (only `(k²)²`) — so symmetry forces the quartic isotropic for ANY point-group-symmetric analytic kernel, whatever the dynamics. The degree-6 space is 2-dimensional and D4's sixth bond moment is anisotropic (residual 12), so dim-8 is REACHED, not merely an upper bound — checked on both sides. Substrate-specific, not generic: `Z⁴`'s point group `B4` admits a 2-dimensional degree-4 space containing `Σk_i⁴` (and `N_1111 = 2`, `N_1122 = 0`, moment residual 2). **TWO PREMISES, named not buried — (P-an)** analyticity in `k`, i.e. a derivative expansion exists (a non-analytic driven-dissipative memory kernel, the #1 gap itself, is NOT covered by a polynomial-invariant argument); **(P-pg)** the FULL point group INCLUDING TRIALITY — `W(D4)` (order 192) alone has a 3-dim degree-4 space, and the shell-2 sub-orbits `{±2e_i}` and `(±1,±1,±1,±1)` are each anisotropic (residual 32 apiece), cancelling ONLY at equal weight, so a substrate coupling weighting triality-related orbits unequally would RESTORE dim-6 anisotropy (N52 risk note). NEGATIVE: the isotropic dim-6 term is unprotected, and at dimension six species-universality is **not** a symmetry (the induced velocity shift `≈ (3/2)η p²/Λ²` is momentum-dependent, so no rescaling removes it; Stecker's constrained combination is `η_π − 25η_p`, i.e. `−24η` for universal `η`, not zero). Setting the SUBSTRATE coefficient `c` to unity gives `η⁽⁴⁾ = (M_Pl/Λ)² ∈ [1.9, 39]`, excluded by 3–9 orders — reported ONLY to size the exposure, never as a prediction. The defect form factor supplies `(f_π/m_p)² ~ 10⁻²` (two orders where six are needed) and supplies NOTHING for the photon, which §B.5.4 makes a **bulk** strain mode with no internal structure — the most exposed sector, not the exempt one. NORMALIZATION (the two conventions must not collide): `η⁽⁴⁾` is the coefficient of `p⁴/M²_Pl` (Liberati); the substrate's own form is `c·p⁴/Λ²` with `c = O(1)`; hence `η⁽⁴⁾ = c·(M_Pl/Λ)²`, and "natural coefficient unity" means `c = 1`, NOT `η⁽⁴⁾ = 1`. FRAME: the **inertial**-frame question is a coherence WIN (the bounds are CMB-frame and the framework's τ₅-foliation IS the comoving frame, §B.4.5); the **jurisdiction** question is separate and hedged — these are INSIDE-frame inferences bounding an OUTSIDE-frame object through the un-built outside↔inside projection, so the exposure is named per canon §0a while its BINDINGNESS stays conditional (I-19 premise (e); same hedge as §E.3.1 rows 7–8). Supersedes the pre-2026-07-27 §B.1.5/§B.6.3 gloss and DELETED §E.3.1 rows 1–2 (documented V1→V2 drift, not fabrication: V1's "`10⁻¹⁵` to `10⁻²⁰`" dim-4 range had its **loose** end promoted to "the tightest matter-sector bound"). Negatives ledger **N52**; adjudication record `knowledge/audit/UHECR_VERDICT_2026-07-27.md`. |
 
 ---
 
@@ -220,14 +221,14 @@ derived; they are listed in the *Axioms* table at the top.
 | R-051 | Skyrme mass formula `M_0 = 36.47 f_π/e` at dressed-coupling level | DERIVED at dressed-coupling | skyrme_BVP_audit + skyrmion_mass_MeV + skyrme_length_fm | C.1 | R-007, A-1c | R-053 | Conditional on dressed-sector closure. ~1% favourable scheme, ~10% cross-scheme spread. |
 | R-052 | Exactly two conserved topological windings `(B, L)` — chiral counting from `Spin(4) = SU(2)_+ × SU(2)_−` relabeled to the orbit basis `(n_𝓛, n_𝓠)` via the §A.5.2 symmetric-pair / fibration bridge | DERIVED-A | pi3_S3_integer_completion | C.1 | R-002, R-009 | R-053, R-054, R-087 | Structural skeleton of all matter. The chiral basis gives the `ℤ × ℤ` directly; the orbit basis is the framework's working basis. Lepton hedgehog is subgroup-valued (into `Spin(3) = exp(𝓛)`); baryon hedgehog is coset-valued (into `Spin(4) / Spin(3) ≅ S³_𝓠`). Both yield `ℤ` degree; the targets are topologically distinct map types. |
 | R-053 | Baryon as one Q-orbit defect with three orthogonal facets (V2 §3.2 / §16.5.1.1) | DERIVED-STRUCTURAL | nonuniform_orbit_baryon_model + cogear_linkage_kinematic + baryon_mass_shared_rotor_nonadditive + e4_content_confines_quarks_not_leptons | C.1 | R-005, R-052, R-051 | R-084, R-085 | Three "quarks" are three facets of one circular winding. |
-| R-054 | Proton stability from `B ∈ π_3(SU(2)) = ℤ` integer winding | DERIVED-A | pi3_S3_integer_completion + lepton_number_topological_conservation | C.1 | R-006, R-052 | R-089 | Canonical falsifier §E.3 row 4. |
+| R-054 | Proton stability from `B ∈ π_3(SU(2)) = ℤ` integer winding | DERIVED-A | pi3_S3_integer_completion + lepton_number_topological_conservation | C.1 | R-006, R-052 | R-089 | Canonical falsifier §E.3 row 2. |
 | R-055 | Electron as Hopf defect on L-orbit; QCP scaling `f_L = f_π · (1 − D/J)^{9/2}` at L1 | DERIVED-CONDITIONAL | electron_two_windings + electron_QCP_nu + electron_f_L_MeV | C.1 | A-1c, R-007 | — | 35% in `f_L`, 4.5% in exponent. L2 mechanism unidentified (`ν = 3π/2 = 4.712`, CANDIDATE). |
 | R-056 | Per-blade hypercharge from `e_4`-bilinear `B̃ e_4 B` (±1 eigenvalues, engine-verified) | DERIVED-A | hypercharge + doublet_hypercharge + winding_charge | C.2 | R-010 | R-057, R-062, R-080 | — |
 | R-057 | Fractional quark charges `±2/3, ±1/3` from algebraic three-quark blade structure | DERIVED-A | gmn_coefficient + triple_product_Q + triple_product_color | C.2 | R-056, R-053 | R-062, R-063, R-073 | Algebraic identity. |
 | R-058 | Weak isospin from meta-time rotor doublet `(sin(ωτ/2), cos(ωτ/2))` | DERIVED | doublet_hypercharge (Y-side only; the T₃ doublet content is posited in-engine) | C.2 | R-007 | R-060, R-061 | Realizes lepton/quark doublet. |
 | R-059 | Lepton-quark weak universality as algebraic theorem on S_+ | DERIVED | universality_theorem | C.2 | R-058, R-079 | — | Algebraic, not coincidence. |
 | R-060 | V−A structure from SD's half-module kernel (couples one Weyl chirality only) | DERIVED-given-input-R-079 | weak_isospin_SD_parity_exclusion + vminusa_is_spin4_factor_chirality | C.2 | R-058, R-079 | — | DERIVED-given the weak=SD input bit. |
-| R-061 | Generation-blindness / no tree FCNC from SD centralizing ASD generation triple | DERIVED-given-input-R-079 | weak_isospin_zero_on_generations + weak_isospin_centralizer_is_SD | C.2 | R-079, R-071 | — | Canonical falsifier §E.3 row 17. |
+| R-061 | Generation-blindness / no tree FCNC from SD centralizing ASD generation triple | DERIVED-given-input-R-079 | weak_isospin_zero_on_generations + weak_isospin_centralizer_is_SD | C.2 | R-079, R-071 | — | Canonical falsifier §E.3 row 15. |
 | R-062 | Gell-Mann–Nishijima `Q = T_3 + Y/2` as DERIVED algebraic identity (not imported) | DERIVED-A | gmn_coefficient + generation_spectrum | C.2 | R-056, R-058 | R-063 | The combination — including the exact 1/2 — is derived. |
 | R-063 | Charge discreteness/commensurability `{0, ±1/3, ±2/3, ±1}·\|Q_e\|` exactly; `\|Q_p\| = \|Q_e\|` protected (tested `< 10⁻²¹`) | DERIVED-A (discreteness + GMN non-circularity); the equality NORMALIZATION conditional on the neutrality-of-atoms anchor — an inside-frame empirical import (engine tier note 2026-06-30) | winding_charge + gmn_coefficient + generation_spectrum + pi3_S3_integer_completion | C.2 | R-062, R-054 | (paper headline) | Anti-circularly grounded via §C.5 topological winding (integer-valuedness); equality protected by commensurability. **The normalization anchor is CONDITIONALLY REPLACED by R-159** — `Q_p + Q_e = 0` holds identically in `c` given (P4, P5, P6), so the neutrality-of-atoms datum is no longer consumed at this site (it reverts to being the anchor if those premises fail). Second-cleanest spine result. |
 | R-064 | Brannen amplitude form `A_k = 1 + c cos(...)` from V_4⊥ projection geometry | DERIVED | brannen_amplitude + koide_K + koide_from_c | C.3 | R-009 | R-065, R-066, R-068 | Projection of meta-time circle on V_4⊥. |
@@ -256,13 +257,13 @@ derived; they are listed in the *Axioms* table at the top.
 | R-086a | Doublet condensate `Φ` on spinor minimal ideal as EWSB order parameter; `⟨Φ⟩ = (0, v/√2)ᵀ` with `v ≈ 246 GeV` breaks `SU(2)_L × U(1)_Y → U(1)_em` via standard mechanism | FRAMING + GATED (magnitude) | — | C.5.3a | R-086, R-062 | — | Structural identification of EWSB on spinor module; absolute `v` and Higgs mass #1-gap-gated. The negative half (⟨I_4⟩ NOT EWSB) is R-086. |
 | R-087 | B − L anomaly cancellation from `3 × 1/3 = 1` | DERIVED-A | B_minus_L_anomaly + anomaly | C.5 | R-057 | R-089 | One quark of charge 1/3, three colours; one lepton of charge 1. |
 | R-088 | BPST instanton + index theorem ⇒ `ΔB = ΔL = N_gen = 3` selection rule | DERIVED-given-I-2 (imported instanton + index theorem, Section 13) | bpst_charge_Q + bpst_selection_rule | C.5 | R-087 | R-089 | Non-perturbative violation respects B − L exactly. |
-| R-089 | No proton decay + Dirac neutrinos + no `0νββ` as one structural fact | DERIVED | B_minus_L_anomaly + bpst_selection_rule + lepton_number_topological_conservation + pi3_S3_integer_completion | C.5 | R-054, R-076, R-087, R-088 | R-121 | Three SM "extras" collapse to one substrate fact. Canonical falsifiers §E.3 rows 4, 5. |
+| R-089 | No proton decay + Dirac neutrinos + no `0νββ` as one structural fact | DERIVED | B_minus_L_anomaly + bpst_selection_rule + lepton_number_topological_conservation + pi3_S3_integer_completion | C.5 | R-054, R-076, R-087, R-088 | R-121 | Three SM "extras" collapse to one substrate fact. Canonical falsifiers §E.3 rows 2, 3. |
 | R-090 | β-decay as L-pair creation through I_4 Hodge map; same D underwrites parity violation + Cabibbo + δ_L + Skyrme stabilizer | DERIVED | I4_maps_L_to_Q + lepton_number_topological_conservation | C.5 | R-010, R-086 | — | One D, multiple manifestations. |
 | R-091 | Wave-phase stability ladder across 20 states (engine-verified empirical-coherence) | DERIVED-STRUCTURAL | wave_E_complex_structure + wave_E5 | C.5 | R-007 | — | Validated on 9 orders of magnitude in N. |
-| R-091a | Top quark exclusion: `Γ_t · Θ_0 ≈ 7.2 ≫ 1` — top facet unwinds before circular winding completes; no top hadrons | DERIVED-STRUCTURAL | top_excluded + alpha_H_gap + x_Q | C.5 | R-053, R-008 | (falsifier §E.3 row 14) | Timescale-exclusion structural argument. The top mass is SM bookkeeping, not a TWT verifier (per canon §5). Was ≈6.5 before the R-133 Θ₀-coefficient correction (2026-07-03); STRENGTHENED. |
+| R-091a | Top quark exclusion: `Γ_t · Θ_0 ≈ 7.2 ≫ 1` — top facet unwinds before circular winding completes; no top hadrons | DERIVED-STRUCTURAL | top_excluded + alpha_H_gap + x_Q | C.5 | R-053, R-008 | (falsifier §E.3 row 12) | Timescale-exclusion structural argument. The top mass is SM bookkeeping, not a TWT verifier (per canon §5). Was ≈6.5 before the R-133 Θ₀-coefficient correction (2026-07-03); STRENGTHENED. |
 | R-091b | Nuclear length hierarchy: hard core `√2 ℓ_S ≈ 0.397 fm` vs empirical 0.40–0.50 fm (12%, no new parameter); pion Yukawa `~1.46 fm`; 25-cell footprint (1 + 24 = D4 kissing); `r_{90} ≈ 0.518 fm`, soliton diameter `~ 1.12 fm` | DERIVED-given-(e, f_π) — no NEW parameter (ℓ_S = ℏc/(e·f_π) rides the two ANW-fitted constants) | nuclear_length_hierarchy + skyrme_length_fm (cover the four lengths; the r_90/25-cell prose is not engine-covered) | C.5 | R-051, R-053 | — | Cell-exclusion phenomena set both hard core and confining-string diameter. 25-cell structure ties directly to A-1b D4 kissing. |
 | R-091c | Mesons are NOT topologically protected (`n_𝓠 = 0`, `H = 0` — trivial class on both orbits); stability is empirical: π Goldstone, K/η pseudo-Goldstone, η_c/η_b heavy quarkonia, σ/ρ/ω CANDIDATE substrate identifications. Kinematic mass formula `m = 2 ω · \|cos(α/2)\|` for two opposite-E-sign defect facets | DERIVED-STRUCTURAL (no-protection) + CANDIDATE (σ/ρ/ω) | meson_topological_status + meson_dynamical_current_split | C.5.11 | R-006, R-053 | — | Resolves §A.4's forward-reference to meson decomposition. The no-protection result is the DERIVED content; σ/ρ/ω identifications are CANDIDATE pending §D.5. |
-| R-159 | Charge-normalization ANCHOR-FREE: `Q_p + Q_e = 0` identically in `c` — the T₃ bracket and the hypercharge bracket `3Y_Q + Y_lep = 0` vanish separately; `uud` is the unique three-facet composite at `−Q_e`; hydrogen neutrality becomes a theorem rather than a consumed datum | DERIVED-structural CONDITIONAL on (P4, P5, P6), inheriting the counted weak=SD INPUT via R-058/R-079 | charge_normalization_anchor_free | C.2.7, C.2.8 | R-056, R-057, R-058, R-087 | R-063 | **P4** = one universal linear charge functional `Q = T₃ + c·Y` across all sectors — FRAMING-supported by R-035 (single photon bridge) + R-086a (unbroken combination); **R-086a has NO engine primitive — never cite this support as engine-checked**. **P5** = per-defect chirality-independence. **P6** = proton = `uud`, an inside-frame state identification. Counterfactual (derived-vs-generic): delete R-057's `/3` and the residue is `2c ≠ 0` — substrate-specific, not generic. `c = 1/2` fixings, honestly counted: ONE native route (itself conditional on the wave-decoupled ⇒ `Y(S_−) = 0` inference — its own would-change-if) + TWO independent conditions under the I-18 anomaly import + ONE downstream condensate check. Retires the neutrality-of-atoms import at this site CONDITIONALLY; would revert if per-orbit normalizations can differ. New falsifier §E.3 row 18. |
+| R-159 | Charge-normalization ANCHOR-FREE: `Q_p + Q_e = 0` identically in `c` — the T₃ bracket and the hypercharge bracket `3Y_Q + Y_lep = 0` vanish separately; `uud` is the unique three-facet composite at `−Q_e`; hydrogen neutrality becomes a theorem rather than a consumed datum | DERIVED-structural CONDITIONAL on (P4, P5, P6), inheriting the counted weak=SD INPUT via R-058/R-079 | charge_normalization_anchor_free | C.2.7, C.2.8 | R-056, R-057, R-058, R-087 | R-063 | **P4** = one universal linear charge functional `Q = T₃ + c·Y` across all sectors — FRAMING-supported by R-035 (single photon bridge) + R-086a (unbroken combination); **R-086a has NO engine primitive — never cite this support as engine-checked**. **P5** = per-defect chirality-independence. **P6** = proton = `uud`, an inside-frame state identification. Counterfactual (derived-vs-generic): delete R-057's `/3` and the residue is `2c ≠ 0` — substrate-specific, not generic. `c = 1/2` fixings, honestly counted: ONE native route (itself conditional on the wave-decoupled ⇒ `Y(S_−) = 0` inference — its own would-change-if) + TWO independent conditions under the I-18 anomaly import + ONE downstream condensate check. Retires the neutrality-of-atoms import at this site CONDITIONALLY; would revert if per-orbit normalizations can differ. New falsifier §E.3 row 16. |
 
 ---
 
@@ -323,17 +324,24 @@ synthesis result that doesn't need an R-NNN. Phase α-7 walks V2 §-by-§ to cat
 **Falsifier cross-references.** §E.3's four tables reference the R-NNN above; the canonical
 falsifiers from V2 §25.2 are:
 
-- *Named near-term* (17 rows): UHE-CR LV (R-039 / R-016), `α_3` (R-039), `c_GW = c_γ` (R-039),
-  proton decay (R-054), `0νββ` (R-089), Geneva influence speed (R-031), Bell-foliation (R-031),
-  differential `c_meta` (R-045), optical-clock decoherence (R-117), macromolecule decoherence
-  (R-030), CHSH > 2√2 (R-027), monopole (R-033), fractional charge (R-062), top baryon (R-091a),
-  4th generation (R-071), TRULY-independent `θ_C` (R-073), tree FCNC (R-061).
+- *Named near-term* (16 rows, in table order): `c_GW = c_γ` (R-039), proton decay (R-054),
+  `0νββ` (R-089), Geneva influence speed (R-031), Bell-foliation (R-031), differential `c_meta`
+  (R-045), optical-clock decoherence (R-117), macromolecule decoherence (R-030), CHSH > 2√2
+  (R-027), monopole (R-033), fractional charge (R-062), top baryon (R-091a), 4th generation
+  (R-071), TRULY-independent `θ_C` (R-073), tree FCNC (R-061), proton–electron charge sum
+  (R-159).
+  **Retired 2026-07-27:** the two former head rows — UHE-CR LV and `α_3` — were DELETED, not
+  renumbered away. The LV row read a dimension-six prediction against a dimension-four bound and
+  claimed "at current bounds"; the correct dimension-six comparison excludes the *naive* coefficient
+  by 3–9 orders, so the item is not a near-term test at all. It is now VG-6 (value-gated) plus the
+  §E.3.5(4) pre-mortem item, and negative N52. The `α_3` row rode the same ceiling against a
+  solar-scale `(E/Λ)² ~ 10⁻⁹¹` and was never a near-term test. See R-165.
 - *Removed*: chiral matter wrong-sign gravity (R-040), `ξ = 1/6` cancellation (R-041), Koide
   modus-tollens (R-061 family), Cabibbo f_perp (R-073 family), V_PMNS=I phantom (resolved
   per V2 Phase C; no R-NNN — defused prediction), nu-asymmetric (resolved per V2 Phase D; no
   R-NNN), over-production test (R-091 via `topological_overproduction_test`).
 - *Value-gated*: VG-1 Im χ budget (R-030), VG-2 Λ ~ H² (R-119), VG-3 1/T_2 (R-117), VG-4 dark
-  matter (R-122), VG-5 GW dispersion (R-039).
+  matter (R-122), VG-5 GW dispersion (R-039), VG-6 dim-6 isotropic LV coefficient `η⁽⁴⁾` (R-165).
 - *Structural coherence*: SC-1 multi-defect (R-120), SC-2 cell-order (R-016).
 
 ---
@@ -665,7 +673,7 @@ View A. No phantom cites (CLAUDE.md §2).
 
 ## View A — engine-keyed (primitive → V3 §, R-NNN, test)
 
-*Total primitives in `twt.py`: 323 as of 2026-07-27 (297 public + 26 helpers prefixed `_`; refresh this count+date at each banking pass). The table below lists the
+*Total primitives in `twt.py`: 323 as of 2026-07-27 (297 public + 26 helpers prefixed `_`; verified by direct count, `grep -c "^def " twt.py`. The previous figure of 323 was over-counted by one — adding `d4_lattice_lorentz_violation_orders` made the stated number true rather than incrementing it. Refresh this count+date at each banking pass, and count rather than increment). The table below lists the
 ~150 load-bearing primitives that V3 R-NNNs cite directly. Helpers and not-cited primitives are
 listed in §View A.Δ at the bottom for completeness.*
 
@@ -682,6 +690,7 @@ listed in §View A.Δ at the bottom for completeness.*
 | DoverJ_from_lepton_masses | C.3, D.3 | R-068, R-074, R-103 | twt_test.py |
 | DoverJ_from_skyrme | C.3 | R-074 | twt_test.py |
 | G_cycles_generations | C.3 | R-072 | twt_test.py |
+| d4_lattice_lorentz_violation_orders | B.1.5, B.6.3, B.6.4, E.3.3 VG-6, E.3.5(4) | R-165 | twt_test.py |
 | G_generator | C.3 | R-072 | twt_test.py |
 | I4_maps_L_to_Q | A.3, A.5, C.5 | R-005, R-010, R-090 | twt_test.py |
 | I4_squared | A.5, C.4 | R-010, R-080 | twt_test.py |
@@ -870,7 +879,7 @@ listed in §View A.Δ at the bottom for completeness.*
 | theta_rel_universality_located | D.5 | R-118 | twt_test.py |
 | theta_rel_z3_isotropy_dichotomy | D.5 | R-118 | twt_test.py |
 | thomas_KK | B.2 | R-019 | twt_test.py |
-| top_excluded | C.5, E.3 row 14 | R-091a | twt_test.py |
+| top_excluded | C.5, E.3 row 12 | R-091a | twt_test.py |
 | topological_overproduction_test | C.5, E.3 RF-7 | R-091 | twt_test.py |
 | triple_product_Q | C.2, D.2 | R-057, R-097 | twt_test.py |
 | triple_product_color | C.2, D.2 | R-057, R-097 | twt_test.py |
@@ -974,7 +983,8 @@ Compressed list — for the full set see Section 1 (Result Index) rows.
 - R-013: `gammas`, `gamma0_gammaj_reduces_to_ej`
 - R-014: `cl_dimension`
 - R-015: `gammas`, `cl_dimension`
-- R-016: `equivalence_principle_protection`, `matter_stability_outside_frame`
+- R-016: `equivalence_principle_protection`, `matter_stability_outside_frame`,
+  `d4_lattice_lorentz_violation_orders` (the dim-4-only scope, R-165)
 
 ### §B.2 Special relativity
 - R-017: `wave_E_complex_structure`
@@ -1013,10 +1023,13 @@ Compressed list — for the full set see Section 1 (Result Index) rows.
 ### §B.6 Gravity
 - R-036: paper-only structural
 - R-037: `sakharov_induced_gravity`, `induced_G_bracket_mode_count`,
-- R-163: `induced_G_from_linear_face_band` — I-3 narrowed to OA-LF-i ∧ OA-LF-ii; the flat-band measure derived
-- R-164: `skyrme_quartic_contains_no_tree_EH` — no tree-level EH in the banked action class (ledger N51)
   `induced_G_only_monad_scale_enters`, `induced_G_leading_coefficient_mass_independent`,
   `induced_G_quadratic_divergence_from_4D`
+- R-163: `induced_G_from_linear_face_band` — I-3 narrowed to OA-LF-i ∧ OA-LF-ii; the flat-band measure derived
+- R-164: `skyrme_quartic_contains_no_tree_EH` — no tree-level EH in the banked action class (ledger N51)
+- R-165: `d4_lattice_lorentz_violation_orders` — point-group invariant theory ⇒ dim-8 anisotropy, conditional
+  on (P-an ∧ P-pg) (positive); the isotropic dim-6 coefficient unprotected and GATED (negative; VG-6,
+  §E.3.5(4), ledger N52, import I-19)
 - R-038: paper-only Newton 1/r
 - R-039: `equivalence_principle_protection`
 - R-040: `induced_G_sign_cross_check`
@@ -1635,8 +1648,8 @@ V3 (2026-06-30) installed:
   V3 says explicitly: linearize around the canted vacuum in the twist-gauge; a defect, when
   present, sources a classical `V(x)` on top of the same free wave operator.
 - **§E.3 falsifier consolidation.** V2 had scattered falsifiers across the body; V3 collects
-  the named near-term (17 at V3 issue; 18 since R-159) + 7 removed + 5 value-gated + 2 structural-coherence falsifiers at
-  §E.3 alone. No falsifier sits forgotten in the middle of the paper.
+  the named near-term (16 since the 2026-07-27 LV-row deletion; was 17 at V3 issue, 18 after R-159) + 7 removed
+  + 6 value-gated (VG-6 added in the same pass) + 2 structural-coherence falsifiers at §E.3 alone. No falsifier sits forgotten in the middle of the paper.
 - **§24 cosmology hooks promoted.** V2 buried "arrow of time as +e_4", "three asymmetries
   from one IC", Volovik dissolution of Λ, and the macroscopic-limit Eulerian reframing at the
   back. V3 §B.7 + §B.8 make these reader-facing hooks.
@@ -1882,7 +1895,8 @@ Cohn–Kumar–Miller–**Parker**–Viazovska → **Radchenko**; §D.4.5's wron
 "(§C.5.2 / §D.4.1)" → R-111; §D.4.6's misquote of §B.3.4 aligned to the actual sentence;
 "(§C canon holds)" → §A.4's mass-scope rule; §E.2.3 "four CKM angles" → four CKM parameters
 (three angles + one CP phase); §E.3.1 rows 9/10 bound-direction wording aligned with the
-rows' own kill conditions (floor, not ceiling); row 10 / VG-1 Bell-memory-bridge cites
+rows' own kill conditions (floor, not ceiling) *[row numbers as of that pass — these are rows
+7/8 after the 2026-07-27 deletion of the two LV head rows]*; row 10 / VG-1 Bell-memory-bridge cites
 §B.4.4 → §B.4.5; RF-5/RF-6 grouping sentence corrected (RF-6 is an adjudicated negative, not
 a clarified-status removal); `2 × 36.462 = 72.923` → `≈` (last-digit rounding); the
 `#1-gap-gated.`-at-column-0 line starts re-wrapped (fragile in permissive Markdown); §C.1.6's
@@ -1891,6 +1905,93 @@ engine records (DERIVED-conditional, not unconditional).
 
 The full audit note (first pass + workflow findings) is archived at
 `knowledge/audit/paper_audit_note_2026-07-26.md`.
+
+---
+
+### G.8 Lorentz-violation correction pass (2026-07-27) — the citation sweep's largest catch
+
+**How it was found.** Not by an internal audit but by the citation sweep: checking what Liberati
+2013 and Stecker 2009 *actually say* (read as primaries, not via a search summary) against what
+§E.3.1 row 1 claimed they say. The paper's flagship near-term falsifier compared a **dimension-six**
+prediction against a **dimension-four** bound and reported the result as "at current bounds". The
+correct dimension-six comparison excludes the naive coefficient by three to nine orders. Escalated
+to adversarial review under canon §8a rather than patched in place, because it is a physics
+adjudication, not a citation fix; verdict and verbatim replacement wording at
+`knowledge/audit/UHECR_VERDICT_2026-07-27.md`.
+
+**Provenance of the error — drift, not fabrication, and worth recording as such.** V1 wrote a
+matter-sector range "`|δ| ≲ 10⁻¹⁵` to `10⁻²⁰`" and claimed agreement "within 3 orders" against the
+`10⁻²⁰` end. V2 lowered `Λ` to `0.16 M_Pl` and promoted the **loose** end of that range to "the
+tightest matter-sector bound". Both ends were dimension-four Coleman–Glashow-class figures. No step
+was dishonest; the composition of two reasonable-looking steps produced a claim neither step
+supported. This is the failure mode the sweep-after-patch rule exists for, appearing across
+*versions* rather than across sections.
+
+**The tier finding underneath it.** `(E/Λ)²` appeared four times in the paper and **zero** times in
+the companion — no R-NNN, no tier, no engine cite — while `Cl41Wave().wave_speed_c` raises
+`UnderivedError`. The row was using a numerical consequence of a GATED object by silently setting
+its coefficient to 1. Canon §2's "you may not use it by accident" was defeated because the *number*
+travelled into the paper while the *object* stayed behind in the engine. Bookkeeping lesson: a bare
+numeral with no companion row is exactly as dangerous as a phantom engine cite, and the suite cannot
+catch either.
+
+**The correction is not uniformly negative.** The same pass found the paper *underselling* its own
+protection. D4's bond-set fourth moment is exactly isotropic (`M_1111 = 12 = 3 M_1122`, residual 0),
+which `Z⁴`'s is not — so rotational anisotropy is pushed to dimension **eight**, `(E/Λ)⁴ ≈ 7×10⁻³⁰`,
+one order of protection better than claimed, and substrate-specific rather than generic. What is
+unprotected is the *rotationally invariant* dimension-six term, which is neither a relative-boost
+observable (so R-016 misses it) nor an anisotropy (so D4 misses it). Separating those two objects is
+the whole content of R-165.
+
+**What the implementation review then changed (canon §8a, second round).** The reviewer was asked to
+attack the implementation, not re-litigate the verdict, and it did two useful things in opposite
+directions. It **strengthened the positive half**: the dimension-eight claim had been argued from a
+nearest-neighbour Laplacian — a *model*, and therefore exposed to canon §3 — when the real reason is
+representation-theoretic and model-free. `Aut(D4 root system)` has order 1152 (it is `W(F4)`, invariant
+degrees `{2,6,8,12}`), so its degree-four invariant space is one-dimensional: symmetry alone forbids an
+anisotropic quartic for *any* point-group-symmetric analytic kernel. The engine now computes the group
+by closure and the invariant dimensions by Molien, so the argument is checked rather than asserted, and
+the degree-six space being two-dimensional (plus an anisotropic sixth bond moment) makes dimension eight
+*reached* rather than merely bounded — the claim is now verified on both sides. It also **weakened the
+claim where it was over-stated**: the inference is conditional on two premises now named in the paper,
+the docstring and the R-165 row — analyticity in `k` (a non-analytic memory kernel, i.e. the #1 gap
+itself, escapes any polynomial-invariant argument) and the full point group including triality (the
+reflection subgroup `W(D4)` alone has a three-dimensional degree-four space, and the second shell's two
+sub-orbits cancel only at equal weight, so unequal weighting restores dimension-six anisotropy).
+
+Four further defects the review caught, all fixed: a **normalization collision** — the paragraph defined
+`η⁽⁴⁾` as the coefficient of `p⁴/M²_Pl` and then said "setting that coefficient to unity gives
+`η⁽⁴⁾ = (M_Pl/Λ)²`", which is self-contradictory; the two conventions (`η⁽⁴⁾ p⁴/M²_Pl` versus the
+substrate's own `c·p⁴/Λ²`, related by `η⁽⁴⁾ = c(M_Pl/Λ)²`) are now stated once and used consistently.
+§B.6.4's margin was quoted at solar-system wavenumbers but claimed for the GW band too, where
+`(k/Λ)²` is eleven orders larger — corrected to the LISA-to-LIGO range with the margin stated against
+the actual dispersion bound, and the category slip fixed (the remnant is a *dispersion* correction, not
+a mass term: it vanishes as `k → 0` and so cannot be what graviton-mass bounds constrain). §B.6.3's
+"closed" anisotropy claim now carries the SC-2 pointer, since it is a monad-scale statement and the
+cell-scale orientational-order question is separately open. And I-19 gained **premise (e)**: the
+published bounds are inside-frame inferences about an outside-frame object, so the transfer rides the
+un-built outside↔inside projection — the same hedge §E.3.1 rows 7–8 already carry. Naming the exposure
+remains right (canon §0a); what is now honest is that its *bindingness* is itself conditional.
+
+**What changed.** §E.3.1 rows 1–2 deleted and the table renumbered 18 → 16 rows, with every
+cross-reference in the paper and this companion re-pointed; §B.1.5, §B.6.3 and §B.6.4 rewritten;
+new value-gated falsifier VG-6; new internal-pre-mortem item §E.3.5(4), taking that section from
+three items to four; the LV-EFT constraint machinery registered as import **I-19** (inside-frame
+data bridge, sibling of I-6) with a revert clause; R-016 and R-039 cooled from DERIVED-STRUCTURAL to
+the engine's own self-tag, with their dimension-four-only scope stated; new primitive
+`d4_lattice_lorentz_violation_orders` (suite 438 → 448 across both review rounds); negatives ledger **N52**; COVER_NOTE §0's
+"one falsifier sits at experimental limits" replaced with the honest statement that none does.
+
+**A bookkeeping correction made in the same pass.** The stated primitive total (323) was found to be
+over-counted by one against a direct `grep -c "^def "` of the committed engine (322). Adding R-165's
+primitive made the stated number true rather than incrementing it. The count line now says to
+*count* rather than increment at each banking pass.
+
+**The framing that belongs in the record.** The framework was falsifiable enough to be caught by its
+own citation sweep; the error is traceable drift rather than invention; and the correction
+strengthens one claim while converting an overstated test into a named tension. The advertised
+flagship near-term *test* is now the framework's most acute live empirical *exposure* — recorded at
+§E.3.5(4) rather than omitted.
 
 ---
 
@@ -2050,9 +2151,9 @@ foundational works; some are contemporary measurements the framework compares ag
 ## Bell tests, non-locality timing
 
 - **Salart, D., et al.** (2008). *Testing the speed of "spooky action at a distance"*. Nature
-  **454**, 861. — Geneva-class influence-speed lower bound; §E.3 row 6.
+  **454**, 861. — Geneva-class influence-speed lower bound; §E.3 row 4.
 - **Yin, J., et al.** (2013). *Bounding the speed of "spooky action at a distance"*. Phys. Rev.
-  Lett. **110**, 260407. — Higher-precision follow-up; §E.3 row 6.
+  Lett. **110**, 260407. — Higher-precision follow-up; §E.3 row 4.
 - **Toner, B. F., & Bacon, D.** (2003). *Communication cost of simulating Bell correlations*.
   Phys. Rev. Lett. **91**, 187904. — One-bit-per-run result; §B.4.5.
 - **Tsirelson, B. S.** (1980). *Quantum generalizations of Bell's inequality*. Lett. Math.
@@ -2067,7 +2168,7 @@ foundational works; some are contemporary measurements the framework compares ag
 
 - **LIGO / Virgo Collaboration** (2017). *Gravitational waves and gamma-rays from a binary
   neutron star merger: GW170817 and GRB 170817A*. Astrophys. J. Lett. **848**, L13. —
-  `|c_GW/c − 1| ≲ 10⁻¹⁵`; §E.3 row 3, §E.3 VG-1.
+  `|c_GW/c − 1| ≲ 10⁻¹⁵`; §E.3 row 1, §E.3 VG-1.
 - **Planck Collaboration** (2020). *Planck 2018 results: cosmological parameters*. Astron.
   Astrophys. **641**, A6. — `Ω_k`, `Ω_DM`, `Σ m_ν` bounds; §A.2, §E.1.3.
 
@@ -2416,6 +2517,7 @@ defensive, definitional, or inherited-by-isomorphism uses with no forward exposu
 | I-16 | **DQCP universality framework** (deconfined-quantum-critical-point scaling, Senthil et al. class) | R-055, §C.1.6 — the QCP exponent's `Δ_v` ingredient and the universality frame | Cell-layer critical scaling | A DQCP-class critical point governs the L-orbit `D = J` balance; engineering-dimension counting valid at leading order | OPEN (registered 2026-07-26 per coherence audit — previously unregistered) | Derive the exponent from the §D.5 kernel, or replace the universality frame with a substrate RG computation |
 | I-17 | **Witten SU(2) global anomaly** (odd number of LH Weyl doublets ⇒ SU(2) gauge theory inconsistent — the fermion-measure statement over the exempt-pure-math `π₄(SU(2)) = ℤ₂` classification) | §C.4.6 step (i) — gaugeability of weak SU(2)₊ | Inside-frame effective (fermion path-integral measure) | 4D chiral fermion path integral | JUSTIFIED as inside-frame theorem (registered 2026-07-26 per coherence audit — previously unregistered) | A substrate-level derivation of the mod-2 obstruction on the D4 rotor field |
 | I-18 | **Gauge-anomaly cancellation package** (mixed-gravitational `Tr Y = 0` and cubic `[U(1)_Y]³` conditions on a chiral fermion spectrum; the colour condition only under a continuous-completion reading, since TWT colour is ℤ₃-discrete) | R-159, §C.2.7 — the corroborating fixings of `c = 1/2` and the right-handed hypercharges; NOT used for the anchor-free identity itself | Inside-frame effective (fermion path-integral measure) | 4D chiral fermion content; a gauged U(1)_Y at the effective level; for the colour condition additionally that colour completes to a gauged SU(3) at that level | JUSTIFIED as inside-frame theorem (registered 2026-07-27) | Revert clause: strike this row and R-159's flagship identity is UNAFFECTED (it is import-free, holding identically in `c`); only the corroborating `c = 1/2` routes (ii)/(iii) and the RH-hypercharge forcing fall back, leaving the native sterile-Dirac route and §C.2.1's posited assignments |
+| I-19 | **Dimension-six Lorentz-violation EFT constraint machinery** (the `E² = p² + m² + η⁽⁴⁾ p⁴/M²_Pl` parametrization and the published n = 4 bounds derived in it: Liberati 2013 eqs. 77–78 — photon `−10⁻⁷ ≲ ξ⁽⁴⁾ ≲ 10⁻⁸`, electron `−10⁻⁷ ≲ η⁽⁴⁾ ≲ 10⁻⁶`, proton `−10⁻³ ≲ η⁽⁴⁾_p ≲ 10⁻⁶` at 99% CL for pure-proton composition; Stecker 2009 eq. 18, `δ^π_p < 4.5 × 10⁻²³` from the Auger spectrum above the GZK energy) | R-165, §B.1.5, §B.6.3, §B.6.4, §E.3.3 VG-6, §E.3.5(4) — the entire statement of the framework's dim-6 LV exposure | **Inside-frame data bridge** (sibling of I-6): the bounds are inferences from observed spectra *within* an effective-field-theory parametrization, imported as data, not derived | (a) an EFT description of propagation at the relevant energies; (b) the CPT-even dim-6 operator basis is the right parametrization; (c) the coefficients are defined in the CMB frame; (d) for the proton rows, the UHECR composition assumed in the fit (pure proton at 99% CL — Liberati §7.5 notes heavy composition, which Auger favours above 10¹⁹·⁶ eV, weakens the proton limits by 1–2 orders); **(e) FRAME JURISDICTION** — that the measured `η⁽⁴⁾` may be identified with the *substrate's own* quartic dispersion coefficient. The bounds are INSIDE-frame inferences about propagating particles; the object bounded is the OUTSIDE-frame strain-mode dispersion (`Cl41Wave().wave_speed_c`, which raises). The transfer runs through the un-built outside↔inside projection | **OPEN as derivation, SANCTIONED as data import** — the same status as I-6. Premise (c) closes the **inertial-frame** question only, and there it is a coherence *win* rather than a crack: TWT's τ₅-foliation IS the comoving/CMB frame (§B.4.5), so the frames agree. The **frame-jurisdiction** question is separate and is premise (e) — the same crack §E.3.1 rows 7–8 and §E.5 already carry for inside-frame laboratory limits binding outside-frame floors; it does not weaken the case for NAMING the exposure (canon §0a), but the exposure's BINDINGNESS is itself conditional and saying so costs nothing. Premise (d) is the one live *empirical* loosening, and it is far too small to close a 6-order gap | A TWT-native computation of the substrate strain-mode dispersion (the #1 gap, §D.5) — which would let the framework state its own `η⁽⁴⁾` and read the bounds directly rather than through the EFT parametrization. **REVERT CLAUSE:** strike this row and the *positive* half of R-165 (D4 fourth-moment isotropy ⇒ dim-8 anisotropy) is UNAFFECTED — it is a pure lattice identity with no import. What falls is the *exposure* statement: VG-6, §E.3.5(4) and N52 revert to "the dim-6 isotropic coefficient is uncomputed and untested", and §E.3.1 does not regain its deleted rows 1–2 (those were deleted for reading a dim-6 object against a dim-4 bound — an error independent of this import) |
 
 ## 13.2 Negative and defensive uses (closures conditional on the import)
 

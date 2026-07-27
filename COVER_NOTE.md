@@ -1,7 +1,7 @@
 # Cover note for reviewers — Time-Wave Theory, Foundational Paper V3
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-07-27 · verification suite: 438 checks · engine: 297 public primitives
+Paper revision 2026-07-27 · verification suite: 448 checks · engine: 297 public primitives
 
 ---
 
@@ -25,7 +25,7 @@ What follows is not a plea for charity — it is a list of things you can **chec
 each of which the reference class reliably fails. Check them, then form your view.
 
 **1. Run the verification suite.** `python twt_test.py` should print
-`ALL 438 CHECKS PASSED`. These are executable algebraic assertions on a Clifford-algebra
+`ALL 448 CHECKS PASSED`. These are executable algebraic assertions on a Clifford-algebra
 engine — Dirac relations, the invariant decompositions, the charge spectrum, the Weinberg
 ratio — not prose. Falsify any of them and the corresponding claim falls; the paper's claims
 are cross-indexed to the primitives that check them.
@@ -35,12 +35,12 @@ are cross-indexed to the primitives that check them.
 return numbers, by design, because those magnitudes are not derived. A framework that fabricates
 results does not build guardrails against its own author.
 
-**3. Read the negatives ledger** (`TWT_NEGATIVES_LEDGER.md`): 44 entries recording what was
+**3. Read the negatives ledger** (`TWT_NEGATIVES_LEDGER.md`): 45 entries recording what was
 tried and **failed**, in `tried → failed because → would change if` form, including a negative
 banked the same week as this revision that killed one of the author's own favoured ideas.
 Pseudoscience does not maintain a failure archive.
 
-**4. Check the import registry** (companion Section 13): 18 external theorems the framework
+**4. Check the import registry** (companion Section 13): 19 external theorems the framework
 leans on, each with its premises, the level it is applied at, and an explicit **revert clause**
 naming what falls back if the import is wrong. The framework is engineered to be *excised*
 cleanly, not defended.
@@ -58,8 +58,11 @@ error unless the paper claimed otherwise — it does not. Three qualifications, 
 
 - Its predictions are mostly **prohibitions**, and prohibitions are falsifiable: no magnetic
   monopoles, no proton decay, no fourth generation, no top-quark hadrons, Dirac neutrinos, no
-  neutrinoless double-beta decay. §E.3 lists 18 named near-term falsifiers with current bounds;
-  one (Lorentz violation at ultra-high-energy cosmic rays) sits *at* current experimental limits.
+  neutrinoless double-beta decay. §E.3 lists 16 named near-term falsifiers with current bounds;
+  **none currently sits at experimental limits**. The framework's sharpest *empirical* exposure is
+  not a falsifier row at all but a standing tension: its dimension-six Lorentz-violation coefficient
+  is gated on the open substrate dynamics, and the natural value is excluded by existing cosmic-ray
+  and gamma-ray limits by several orders (§E.3.5(4)). We name it rather than omit it.
 - One quantity is derived and non-trivial: `sin²θ_W = 3/8` at unification, with no GUT embedding.
 - **The contribution is ontological, and it subtracts rather than adds.** The framework needs no
   irreducible chance: it is configuration-realist, and the Born rule is *derived* (as of this

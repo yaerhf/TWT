@@ -17,14 +17,14 @@ pip install -r requirements.txt
 python twt_test.py
 ```
 
-Expected output: `ALL 438 CHECKS PASSED across 10 modules.`
+Expected output: `ALL 448 CHECKS PASSED across 10 modules.`
 
 ## What is in here
 
 | File | Contents |
 |---|---|
 | `twt.py` | The substrate oracle — ~297 public primitives. Clifford `Cl(4,0)` / `Cl(4,1)` algebra, the D4 lattice layer, spinor and grade machinery, and one function per banked result. Each carries a docstring stating its **status tier** and the premises it consumes. |
-| `twt_test.py` | The harness: 438 assertions across 10 modules. |
+| `twt_test.py` | The harness: 448 assertions across 10 modules. |
 | `TWT_foundational_paper.md` | The paper (Parts A–E): the physics narrative. |
 | `TWT_foundational_paper_companion.md` | The bookkeeping volume: result index with per-result tiers, dependency graph, engine ↔ paper map, import registry, falsifier registries, development log. |
 | `COVER_NOTE.md` | **Start here if you are reviewing** — what to check, in what order, and where the work is weakest. Its §0 is addressed to language models. |

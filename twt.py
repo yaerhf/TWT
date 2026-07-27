@@ -9713,6 +9713,13 @@ def equivalence_principle_protection():
           the substrate to couple DIFFERENTLY to different defects' INTERNAL structure → resolving them
           at scale Λ → dim-6 form-factor effects, negligible — §line 621 / WP-LV1 = the dim-4 D4
           isotropy theorem), the WEP holds at leading order regardless of the unbuilt substrate dynamics.
+          SCOPE WARNING (2026-07-27, R-165 — do NOT generalize the "dim-6 ... negligible" clause above):
+          it is negligible HERE because EP violation is a SPECIES-DIFFERENCE effect, and at MICROSCOPE
+          energies the differential form-factor term is ~(E/Λ)² with E utterly sub-Planckian. It says
+          NOTHING about the SPECIES-UNIVERSAL isotropic dim-6 dispersion term η⁽⁴⁾p⁴/M²_Pl, which produces
+          no EP violation at all yet is the framework's sharpest live empirical exposure and is #1-gap
+          GATED — see d4_lattice_lorentz_violation_orders, VG-6, N52. Two different objects; the
+          pre-2026-07-27 paper conflated them.
 
     GENERIC (honesty — derived-vs-generic): the induced-gravity universality STEP itself — matter
     couples via ½ h_μν T^μν and diffeomorphism invariance ⇒ coupling to the CONSERVED T_μν alone (the
@@ -9760,6 +9767,240 @@ def equivalence_principle_protection():
         "tier": "FRAMING + removed-falsifier + structural identification (NOT a dynamical EP derivation)",
         "MC_form_offgrade_norm": round(off, 12),
         "MC_form_grade2_norm": round(g2, 6),
+    }
+
+
+def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
+    """[DERIVED-A for the lattice-moment + invariant-dimension identities; the dim-8 INFERENCE is
+    DERIVED-conditional on two named premises; the dim-6 ISOTROPIC coefficient is #1-gap GATED]
+    R-165. §B.1.5 / §B.6.3: WHICH orders of Lorentz violation the substrate actually protects — and,
+    equally load-bearing, WHICH IT DOES NOT. Supersedes the pre-2026-07-27 claim that "the two
+    protections leave the residual at dimension six (E/Λ)²", which conflated two different objects
+    (anisotropy vs isotropic dispersion) and read a dim-6 number against a dim-4 bound.
+
+    THE THREE FACES, separated:
+      (1) dim-4 RELATIVE-BOOST LV between species — CLOSED structurally by matter-as-defect
+          (R-016, equivalence_principle_protection): one field, one light cone, no independent
+          coefficient for the violation to live in.
+      (2) ROTATIONAL ANISOTROPY — closed by the D4 point group, and closed HARDER than the paper
+          claimed. The REASON IS REPRESENTATION-THEORETIC, not a property of any particular kernel
+          (the earlier nearest-neighbour-Laplacian argument was a model, canon §3, and is NOT what
+          this rests on). Engine-checked here:
+            |Aut(D4 root system)| = 1152 = |W(F4)| (built by closure, verified to permute the roots)
+            dim of degree-d point-group-invariant polynomials, by Molien:  d=2 → 1, d=4 → 1,
+            d=6 → 2, d=8 → 3   [= F4's known invariant degrees {2, 6, 8, 12}]
+          The degree-4 invariant space is ONE-dimensional — spanned by (k²)² alone. So for ANY
+          dispersion kernel invariant under the lattice point group and analytic in k, there is no
+          anisotropic quartic AT ALL: the quartic term is forced isotropic by symmetry, whatever the
+          dynamics. The degree-6 space is TWO-dimensional, so an anisotropic sextic DOES exist and
+          the order is not merely bounded but LEADING — checked on both sides here (the 6th bond
+          moment is anisotropic, residual 12). Consequence: leading rotational anisotropy sits at
+          DIMENSION EIGHT, (E/Λ)⁴ ~ 7e-30 at the highest observed cosmic-ray energies — structurally
+          out of any observational range. A genuine strengthening of §B.1.5.
+          The bond moments are retained as the concrete face: 2nd = 12 δ_ij, 4th = 4(δδ+δδ+δδ)
+          exactly (M_1111 = 12 = 3 M_1122).
+          NOT GENERIC TO LATTICES (the derived-vs-generic discriminator, canon §5): simple-cubic Z⁴
+          has N_1111 = 2 while N_1122 = 0 (4th-moment residual 2), and its point group B4 (order 384)
+          has a TWO-dimensional degree-4 invariant space — Σk_i⁴ exists there. Dim-8 is an F4/D4
+          fact, not a 4-dimensionality fact.
+          TWO PREMISES, NAMED (do not drop them — the inference is conditional, not absolute):
+            (P-an) ANALYTICITY in k, i.e. a derivative expansion exists. A driven-dissipative memory
+                   kernel — the #1 gap itself — need not be analytic, and a non-analytic kernel is
+                   not covered by any polynomial-invariant argument.
+            (P-pg) the FULL point group, INCLUDING TRIALITY. The reflection subgroup W(D4) (order
+                   192) has a 3-dimensional degree-4 invariant space; the order-384 subgroup has 2.
+                   Concretely: at the second D4 shell the roots split into two W(D4) orbits — {±2e_i}
+                   and (±1,±1,±1,±1) — each individually anisotropic (residual 32 apiece), cancelling
+                   ONLY at equal weight. A substrate coupling that weights triality-related orbits
+                   unequally RESTORES dimension-six anisotropy. This is the positive result's own
+                   would-change-if (N52), and it is why the result must not be over-trusted.
+      (3) the ROTATIONALLY INVARIANT dim-6 residual η⁽⁴⁾ p⁴/M²_Pl — NOT PROTECTED BY EITHER.
+          It is not a relative-boost observable (so (1) does not reach it) and it is not an
+          anisotropy (so (2) does not reach it). At dim 6 a species-UNIVERSAL coefficient is NOT
+          removable by rescaling either: the induced velocity shift ≈ (3/2)η p²/Λ² is
+          MOMENTUM-dependent (x → λx scales E²−p² by λ⁻² but p⁴/Λ² by λ⁻⁴), so universality is not
+          a symmetry here. Its value is set by the substrate strain-mode dispersion = the #1 gap
+          (Cl41Wave().wave_speed_c RAISES); this primitive therefore returns NO prediction for it.
+
+    THE EXPOSURE (INPUT — inside-frame data; Import Registry I-19, dim-6 LV-EFT constraint bridge):
+    published n = 4 (= dim-6) limits, CMB frame — which the framework identifies with its own
+    τ₅-foliation/comoving frame (§B.4.5), so the frames agree:
+        photon    −1e-7 ≲ ξ⁽⁴⁾   ≲ 1e-8   (Liberati 2013 arXiv:1304.5795 eq. 77)
+        electron  −1e-7 ≲ η⁽⁴⁾   ≲ 1e-6   (ibid. eq. 77)
+        proton    −1e-3 ≲ η⁽⁴⁾_p ≲ 1e-6   (ibid. eq. 78, 99% CL, pure-proton composition)
+        equivalently δ^π_p < 4.5e-23 from the Auger spectrum above the GZK energy
+                                         (Stecker 2009 arXiv:0912.0500 eq. 18)
+    NORMALIZATION — TWO CONVENTIONS, DO NOT CONFLATE (this is where the old text contradicted
+    itself): η⁽⁴⁾ is by definition the coefficient of p⁴/M²_Pl (the Liberati convention, in which the
+    bounds above are quoted). The SUBSTRATE's own natural form is c·p⁴/Λ² with c = O(1), since Λ is
+    the substrate cutoff. The two are related by η⁽⁴⁾ = c·(M_Pl/Λ)². So "the substrate's natural
+    coefficient is unity" means c = 1, NOT η⁽⁴⁾ = 1 — and c = 1 at the §B.6.2 Λ-bracket gives
+    η⁽⁴⁾ = (M_Pl/Λ)² ∈ [1.9, 39], EXCLUDED by 3 to 9 orders. The framework does NOT claim that value
+    (it cannot compute it); the number is reported here only to size the exposure. The defect form
+    factor supplies (f_π/m_p)² ~ 1e-2, two orders where six are needed, and supplies NOTHING for the
+    photon, which §B.5.4 makes a BULK strain mode with no internal structure — the most exposed
+    sector, not the exempt one.
+
+    JURISDICTION HEDGE (canon §0 / the N49 shape; I-19 premise (e)): the published bounds are
+    INSIDE-frame inferences about propagating particles, while the object they are taken to bound is
+    the OUTSIDE-frame substrate strain-mode dispersion. The transfer runs through the un-built
+    outside↔inside projection — the same hedge §E.3.1 rows 7–8 carry for the Im χ / Goldstone floors.
+    So the exposure is real and must be named (canon §0a), but its BINDINGNESS is itself conditional.
+
+    Recorded as an open exposure at §E.3.3 VG-6 and §E.3.5(4), NOT as a falsifier row and NOT as a
+    passed test. Negative N52.
+
+    self-check: |Aut(D4)| = 1152 with degree-4 invariant space 1-dimensional (⇒ no anisotropic
+    quartic) and degree-6 2-dimensional (⇒ dim-8 is LEADING, not merely bounded); D4's 2nd and 4th
+    bond moments exactly isotropic and its 6th NOT; Z⁴'s 4th moment anisotropic (the contrast)."""
+    import itertools
+    bonds = []
+    for i, j in itertools.combinations(range(4), 2):
+        for si in (1, -1):
+            for sj in (1, -1):
+                v = [0, 0, 0, 0]
+                v[i], v[j] = si, sj
+                bonds.append(v)
+    cubic = [[(s if k == i else 0) for k in range(4)] for i in range(4) for s in (1, -1)]
+
+    def _moments(vs):
+        m2 = [[sum(v[a] * v[b] for v in vs) for b in range(4)] for a in range(4)]
+        m4 = {}
+        for a, b, c, d in itertools.product(range(4), repeat=4):
+            m4[(a, b, c, d)] = sum(v[a] * v[b] * v[c] * v[d] for v in vs)
+        return m2, m4
+
+    def _iso_residual(m4):
+        # best isotropic form A(δδ + δδ + δδ) is fixed by the mixed component A = M_1122
+        A = m4[(0, 0, 1, 1)]
+        dl = lambda p, q: 1 if p == q else 0
+        return max(abs(m4[(a, b, c, d)] - A * (dl(a, b) * dl(c, d) + dl(a, c) * dl(b, d) + dl(a, d) * dl(b, c)))
+                   for a, b, c, d in itertools.product(range(4), repeat=4)), A
+
+    m2, m4 = _moments(bonds)
+    z2, z4 = _moments(cubic)
+    d4_offdiag = max(abs(m2[a][b]) for a in range(4) for b in range(4) if a != b)
+    d4_diag = {m2[a][a] for a in range(4)}
+    d4_res, d4_A = _iso_residual(m4)
+    z_res, _ = _iso_residual(z4)
+
+    assert len(bonds) == 24 and d4_diag == {12} and d4_offdiag == 0, (
+        "D4 bond set must have 24 bonds with second moment exactly 12*delta_ij")
+    assert d4_res == 0, f"D4 fourth bond moment must be EXACTLY isotropic, residual={d4_res}"
+    assert m4[(0, 0, 0, 0)] == 12 == 3 * m4[(0, 0, 1, 1)], "D4: M_1111 = 12 = 3*M_1122"
+    assert z_res > 0 and z4[(0, 0, 0, 0)] == 2 and z4[(0, 0, 1, 1)] == 0, (
+        "Z^4 fourth moment must NOT be isotropic — the contrast is the point")
+
+    # --- the OTHER side of "leading": the SIXTH bond moment must be ANISOTROPIC, else "dimension
+    #     eight" would be an unchecked upper bound rather than the leading order.
+    #     Isotropic rank-6 form is B*(sum of the 15 delta-pairings): M_112233 = B, M_111111 = 15B.
+    m6 = lambda idx: sum(v[idx[0]] * v[idx[1]] * v[idx[2]] * v[idx[3]] * v[idx[4]] * v[idx[5]]
+                         for v in bonds)
+    m6_1x6, m6_112233 = m6((0,) * 6), m6((0, 0, 1, 1, 2, 2))
+    sixth_residual = abs(m6_1x6 - 15 * m6_112233)
+    assert sixth_residual > 0, (
+        "D4 SIXTH bond moment must be ANISOTROPIC — otherwise the leading anisotropy is not dim-8")
+
+    # --- the REAL reason (representation theory, not any particular kernel): build Aut(D4 root
+    #     system) by closure and count invariant polynomials by Molien. Degree 4 one-dimensional
+    #     ⇒ the quartic is forced isotropic for ANY point-group-symmetric analytic kernel.
+    import numpy as _np
+    _roots = {tuple(v) for v in bonds}
+    _R = _np.array(sorted(_roots), dtype=float)
+
+    def _permutes_roots(A):
+        return all(tuple(q) in _roots for q in _np.rint(_R @ A.T).astype(int))
+
+    _gens = []
+    for _p in itertools.permutations(range(4)):
+        _A = _np.zeros((4, 4))
+        for _i, _pi in enumerate(_p):
+            _A[_i, _pi] = 1.0
+        _gens.append(_A)
+    _gens += [_np.diag(_s).astype(float) for _s in itertools.product((1, -1), repeat=4)]
+    _tri = 0.5 * _np.array([[1, 1, 1, 1], [1, 1, -1, -1], [1, -1, 1, -1], [1, -1, -1, 1]], dtype=float)
+    _gens = [_g for _g in _gens if _permutes_roots(_g)] + ([_tri] if _permutes_roots(_tri) else [])
+    _grp = {_np.eye(4).tobytes(): _np.eye(4)}
+    _frontier = [_np.eye(4)]
+    while _frontier:
+        _nxt = []
+        for _A in _frontier:
+            for _g in _gens:
+                _B = _np.round(_g @ _A, 6) + 0.0
+                _k = _B.tobytes()
+                if _k not in _grp:
+                    _grp[_k] = _B
+                    _nxt.append(_B)
+        _frontier = _nxt
+    _G = list(_grp.values())
+
+    def _molien_dim(deg):
+        # dim of degree-`deg` G-invariant polynomials = (1/|G|) sum_g h_deg(eigenvalues(g))
+        tot = 0.0
+        for _A in _G:
+            lam = _np.linalg.eigvals(_A)
+            ps = [complex(_np.sum(lam ** k)) for k in range(1, deg + 1)]
+            h = [1.0 + 0j] + [0j] * deg
+            for n in range(1, deg + 1):
+                h[n] = sum(ps[k - 1] * h[n - k] for k in range(1, n + 1)) / n
+            tot += h[deg].real
+        return tot / len(_G)
+
+    inv_dims = {d: round(_molien_dim(d), 6) for d in (2, 4, 6)}
+    assert len(_G) == 1152, f"Aut(D4 root system) must have order 1152 = |W(F4)|, got {len(_G)}"
+    assert abs(inv_dims[4] - 1.0) < 1e-6, (
+        "degree-4 point-group-invariant space must be 1-DIMENSIONAL (only (k^2)^2) — this, not any "
+        f"particular kernel, is why there is no anisotropic quartic; got {inv_dims[4]}")
+    assert abs(inv_dims[6] - 2.0) < 1e-6, (
+        f"degree-6 invariant space must be 2-dimensional (an anisotropic sextic EXISTS, so dim-8 is "
+        f"LEADING not merely an upper bound); got {inv_dims[6]}")
+
+    MPl = 1.220910e19  # GeV
+    lam_lo, lam_hi = 0.16, 0.72   # the §B.6.2 Sakharov Λ-bracket, in units of M_Pl (import I-3, OPEN)
+    x2 = (E_GeV / (lam_lo * MPl)) ** 2
+    return {
+        "dim4_relative_boost": "CLOSED structurally (R-016 matter-as-defect: one field, one light cone)",
+        "D4_second_moment_12_delta": True,
+        "D4_fourth_moment_isotropy_residual": d4_res,
+        "D4_fourth_moment_A": d4_A,
+        "Z4_fourth_moment_isotropy_residual": z_res,
+        "D4_sixth_moment_isotropy_residual": sixth_residual,
+        "point_group_order": len(_G),
+        "invariant_poly_dims_deg_2_4_6": inv_dims,
+        "why_no_dim6_anisotropy": ("degree-4 invariant space is 1-DIMENSIONAL (only (k^2)^2) under the "
+                                   "order-1152 point group — symmetry forces the quartic isotropic for ANY "
+                                   "point-group-symmetric analytic kernel; NOT a property of one model"),
+        "anisotropy_leading_order": ("dimension EIGHT — LEADING (checked both sides: deg-4 invariant space "
+                                     "1-dim ⇒ no anisotropic quartic; deg-6 2-dim and 6th bond moment "
+                                     "anisotropic ⇒ dim-8 is reached, not merely bounded)"),
+        "anisotropy_magnitude_(E/Lambda)^4": x2 ** 2,
+        "anisotropy_premises": {
+            "P-an": "ANALYTICITY in k (a derivative expansion exists); a non-analytic driven-dissipative "
+                    "memory kernel — the #1 gap itself — is NOT covered by a polynomial-invariant argument",
+            "P-pg": "the FULL point group INCLUDING TRIALITY; W(D4) (order 192) alone has a 3-dim degree-4 "
+                    "invariant space, and the shell-2 sub-orbits {±2e_i} and (±1,±1,±1,±1) are each "
+                    "anisotropic (residual 32 apiece), cancelling ONLY at equal weight — unequal weighting "
+                    "of triality-related orbits RESTORES dim-6 anisotropy (N52 risk note)"},
+        "dim6_isotropic_eta4": "GATED (#1 gap: substrate strain-mode dispersion; Cl41Wave().wave_speed_c raises)",
+        "normalization": ("eta4 is the coefficient of p^4/M_Pl^2 (Liberati convention); the SUBSTRATE's "
+                          "natural form is c*p^4/Lambda^2 with c = O(1), so eta4 = c*(M_Pl/Lambda)^2. "
+                          "'natural coefficient unity' means c = 1, NOT eta4 = 1"),
+        "naive_eta4_at_c_equals_1": ((1.0 / lam_hi) ** 2, (1.0 / lam_lo) ** 2),
+        "naive_eta4_status": "NOT a prediction — excluded by published n=4 limits by 3-9 orders; sizes the exposure",
+        "published_n4_bounds_INPUT": {"photon_xi4": (-1e-7, 1e-8), "electron_eta4": (-1e-7, 1e-6),
+                                      "proton_eta4": (-1e-3, 1e-6), "delta_pi_p_Stecker": 4.5e-23},
+        "form_factor_insufficient": "(f_pi/m_p)^2 ~ 1e-2 for the proton; NONE for the photon (bulk mode, B.5.4)",
+        "frame_inertial": "coefficients defined in the CMB frame = the tau5-foliation/comoving frame (B.4.5) "
+                          "— frames agree; this closes the INERTIAL-frame question only",
+        "frame_jurisdiction_HEDGE": ("the bounds are INSIDE-frame inferences; the object bounded is the "
+                                     "OUTSIDE-frame strain-mode dispersion. The transfer rides the un-built "
+                                     "outside<->inside projection (same hedge as E.3.1 rows 7-8). The exposure "
+                                     "is named per canon §0a, but its BINDINGNESS is itself conditional — "
+                                     "I-19 premise (e)"),
+        "tier": ("DERIVED-A (lattice moment identities + invariant-space dimensions, exact) + "
+                 "DERIVED-conditional-on-(P-an ∧ P-pg) (the dimension-EIGHT inference) + "
+                 "INPUT (published n=4 bounds, I-19) + GATED (the dim-6 isotropic coefficient itself)"),
+        "recorded_as": "open exposure E.3.3 VG-6 / E.3.5(4) + negative N52 — NOT a falsifier row, NOT a passed test",
     }
 
 

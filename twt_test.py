@@ -2304,6 +2304,54 @@ def check_twt_cosmo():
     print("        ⇒ item 16 cheap-win: WEP is the gravitational TWIN of WP-LV1, gate-free + consistent with MICROSCOPE η<1e-15; "
           "the STRONG EP stays tetrad-gated.")
 
+    print("§B.1.5/§B.6.3 LORENTZ-VIOLATION ORDERS — R-165, which orders D4 protects AND WHICH IT DOES NOT (2026-07-27):")
+    lv = d4_lattice_lorentz_violation_orders()
+    _ck("D4 bond set 2nd moment EXACTLY 12·δ_ij (no dim-4 anisotropy) — DERIVED-A",
+        lv["D4_second_moment_12_delta"] is True)
+    _ck("D4 bond set 4th moment EXACTLY isotropic, residual = 0 with A = 4 (M_1111 = 12 = 3·M_1122) ⇒ leading "
+        "rotational anisotropy pushed to DIMENSION EIGHT, (E/Λ)⁴ ≈ 6.9e-30 — STRENGTHENS the old dim-6 claim",
+        lv["D4_fourth_moment_isotropy_residual"] == 0 and lv["D4_fourth_moment_A"] == 4
+        and "EIGHT" in lv["anisotropy_leading_order"] and lv["anisotropy_magnitude_(E/Lambda)^4"] < 1e-29)
+    _ck("THE REAL REASON is representation-theoretic, not a kernel model (canon §3): |Aut(D4 root system)| = "
+        "1152 = |W(F4)| and its degree-4 invariant space is ONE-dimensional (only (k²)²) ⇒ symmetry forces the "
+        "quartic isotropic for ANY point-group-symmetric analytic kernel — matches F4's known invariant "
+        "degrees {2,6,8,12}",
+        lv["point_group_order"] == 1152 and abs(lv["invariant_poly_dims_deg_2_4_6"][4] - 1.0) < 1e-6
+        and "1-DIMENSIONAL" in lv["why_no_dim6_anisotropy"])
+    _ck("'LEADING' checked on BOTH sides, not just as an upper bound: degree-6 invariant space is 2-dimensional "
+        "and D4's SIXTH bond moment is ANISOTROPIC (residual 12 ≠ 0) ⇒ dimension eight is actually REACHED",
+        abs(lv["invariant_poly_dims_deg_2_4_6"][6] - 2.0) < 1e-6
+        and lv["D4_sixth_moment_isotropy_residual"] > 0 and "LEADING" in lv["anisotropy_leading_order"])
+    _ck("the dim-8 inference is CONDITIONAL and its two premises are NAMED, not buried: (P-an) analyticity in k "
+        "— a non-analytic driven-dissipative memory kernel (the #1 gap itself) is not covered; (P-pg) the FULL "
+        "point group INCLUDING TRIALITY — W(D4) alone has a 3-dim degree-4 space, and unequal weighting of "
+        "triality-related shell-2 orbits RESTORES dim-6 anisotropy",
+        "P-an" in lv["anisotropy_premises"] and "P-pg" in lv["anisotropy_premises"]
+        and "DERIVED-conditional-on-(P-an ∧ P-pg)" in lv["tier"])
+    _ck("NOT generic to lattices: simple-cubic Z⁴ 4th moment is ANISOTROPIC (residual 2, N_1111=2 vs N_1122=0) — "
+        "the D4-vs-Z⁴ contrast is what makes the dim-8 push substrate-specific rather than generic",
+        lv["Z4_fourth_moment_isotropy_residual"] > 0)
+    _ck("NORMALIZATION stated so the two conventions cannot collide: η⁽⁴⁾ is the coefficient of p⁴/M²_Pl "
+        "(Liberati), the substrate's own form is c·p⁴/Λ² with c = O(1), hence η⁽⁴⁾ = c·(M_Pl/Λ)² — "
+        "'natural coefficient unity' means c = 1, NOT η⁽⁴⁾ = 1",
+        "eta4 = c*(M_Pl/Lambda)^2" in lv["normalization"] and "NOT eta4 = 1" in lv["normalization"])
+    _ck("FRAME JURISDICTION hedged, not glossed (canon §0 / N49 shape): the inertial-frame question is closed "
+        "(CMB = τ₅-foliation comoving frame) but the bounds are INSIDE-frame inferences about an OUTSIDE-frame "
+        "object, so the transfer rides the un-built outside↔inside projection — the exposure is named per §0a "
+        "while its BINDINGNESS stays conditional (I-19 premise (e))",
+        "INSIDE-frame" in lv["frame_jurisdiction_HEDGE"] and "BINDINGNESS" in lv["frame_jurisdiction_HEDGE"]
+        and "INERTIAL-frame question only" in lv["frame_inertial"])
+    _ck("the ROTATIONALLY INVARIANT dim-6 residual η⁽⁴⁾ is NOT protected by either face and is #1-gap GATED — "
+        "the engine returns NO prediction for it (Cl41Wave().wave_speed_c raises)",
+        "GATED" in lv["dim6_isotropic_eta4"] and "NOT a prediction" in lv["naive_eta4_status"])
+    _ck("HONEST EXPOSURE recorded, not hidden: naive coefficient-1 value η⁽⁴⁾ = (M_Pl/Λ)² ∈ [1.9, 39] is EXCLUDED "
+        "by published n=4 limits by 3-9 orders; form factor gives only (f_π/m_p)² ~ 1e-2 and NOTHING for the photon "
+        "(bulk mode) ⇒ logged as E.3.3 VG-6 / E.3.5(4) + N52, NOT as a falsifier row and NOT as a passed test",
+        1.9 < lv["naive_eta4_at_c_equals_1"][0] < 2.0 and 39 < lv["naive_eta4_at_c_equals_1"][1] < 40
+        and "NOT a falsifier row" in lv["recorded_as"] and "NONE for the photon" in lv["form_factor_insufficient"])
+    print("        ⇒ R-165: dim-4 boost CLOSED (R-016); anisotropy CLOSED HARDER than claimed (dim-8, D4-specific); "
+          "the isotropic dim-6 term is the framework's sharpest standing empirical tension (N52).")
+
     print("§21.6.1 TEXTURE METRIC — formula DERIVED-STRUCTURAL-CONDITIONAL (Schur uniqueness, gauge premise); dynamics CANDIDATE (2026-06-28):")
     tc = texture_metric_candidate()
     _ck("FORMULA DERIVED-STRUCTURAL-CONDITIONAL (Schur uniqueness engine-verified; conditional on gauge "
