@@ -24,8 +24,9 @@ quantum mechanics' postulate structure recovered from one geometric projection �
 Born exponent as a theorem given four named structural premises, and spin-statistics by an
 empirically anchored selection whose structural half is exact algebra — with the Tsirelson
 bound `2√2` exact; electromagnetism with magnetic monopoles algebraically forbidden; induced
-gravity with the sign and the form (`γ = 1`) established, and a Planckian magnitude bracket
-via a registered spectral-sum import; exact charge
+gravity with the sign derived and the form (`γ = 1`) identified structurally rather than
+derived dynamically, and a Planckian magnitude bracket via a registered spectral-sum import;
+exact charge
 discreteness across the 15-state generation spectrum, with the proton–electron equality
 topologically protected; a three-generation count from the
 quaternionic structure (conditional on one named identification); the electroweak mixing angle
@@ -37,9 +38,12 @@ definite configurations rather than as an axiom, so what standard quantum mechan
 is here computed (the mechanism of single-outcome selection remains open). The
 framework's principal open object, the driven-dissipative substrate dynamics that gates all
 coupling magnitudes and absolute scales, is named explicitly, with a candidate kernel class
-and pre-registered falsifiers. Every numbered result carries an auditable status tier
+and pre-registered falsifiers. One of the quantities it gates has already been measured against:
+the isotropic dimension-six Lorentz-violation coefficient, whose natural value existing
+cosmic-ray and gamma-ray limits exclude by several orders. The framework records this as its
+sharpest live empirical tension rather than omitting it. Every numbered result carries an auditable status tier
 (derived / input / fit / candidate) in a companion result index, and the algebraic content is
-backed by an executable verification suite (438 checks at this revision).
+backed by an executable verification suite (448 checks at this revision).
 
 ---
 
@@ -824,7 +828,7 @@ conventionally `η⁽⁴⁾ p⁴/M²_Pl` — it is not a relative-boost observab
 and it is not an anisotropy (so D4 does not apply), and at dimension six a *species-universal*
 coefficient is not removable by any rescaling, since the induced velocity shift `≈ (3/2) η p²/Λ²`
 is momentum-dependent. Its coefficient is set by the substrate's own strain-mode dispersion — an
-object the engine gates (`Cl41Wave().wave_speed_c` raises) — and by each defect's form factor.
+object the engine gates (`Cl41Wave().wave_speed_c()` raises) — and by each defect's form factor.
 **It is named as an open exposure at §E.3.5(4), not as a prediction.**
 
 ---
@@ -2449,7 +2453,8 @@ the *output* of the relation would be circular — the
 baryon-side `D/J ≈ 0.778` of §C.3.11 is itself *defined* by back-solving `√18/e` at the
 empirical `e = 5.45`. The ~1.1% cross-sector spread between the two calibrations is the honest
 content of the over-determination signal. The numerical coefficient
-`36.47` is standard ANW Skyrme phenomenology, fixed by the BVP (R-051). With the displayed
+`36.47` is the exact hedgehog-BVP eigenvalue (R-051); ANW publish it to three figures as
+`M = 36.5 F_π/e`. With the displayed
 inputs this
 lands at `M_0 ≈ 863 MeV` — about **8% below the empirical nucleon mass** of `939 MeV`.
 
@@ -2586,8 +2591,15 @@ repulsive, and π-rotation about a *perpendicular* axis is **attractive** — th
 the bound `B = 2` configuration (R-135) realizes — with magnitudes matching the law at the
 10–20% level raw and the residual accounted by named grid systematics (an independent
 box-size/refinement probe puts the Richardson-extrapolated ratios at ~0.9–1.0). The headline
-physics is literature-known (Skyrme; Jackson–Jackson–Pasquier 1985; Manton–Sutcliffe —
-citations pending independent verification); what R-139 adds is the in-framework
+physics is literature-known (Skyrme; Jackson–Jackson–Pasquier 1985; Manton–Sutcliffe **§9.2–§9.3**,
+where Eq. (9.23) and the sentence following it give the massless asymptotic Skyrmion as a triplet of
+orthogonal pion dipoles and Eqs. (9.26)–(9.31) compute the dipole-dipole interaction and identify the
+perpendicular-rotation attractive channel — *verified against the source 2026-07-28*; the Skyrme and
+Jackson–Jackson–Pasquier citations remain pending). One scope note, which makes the result
+**less** import-dependent rather than more: Manton–Sutcliffe carry the **massless** dipole triplet
+only — their sole massive-tail statement (§9.9, Eq. 9.147) does not solve the linearized massive
+profile equation — so the massive dipole-Yukawa tail `(1+μr)e^{−μr}/r²` used here is TWT's own
+identity, not an import. What R-139 adds is the in-framework
 derivation from the derived tails with fork-resolved constants, the exact-identity
 certificates, and one scope correction: the dominant tensor
 force is OPE-class — D4 lattice anisotropy contributes only the sub-percent
@@ -3083,7 +3095,7 @@ framework itself disclaims. The cross-sector agreement is
 honest; the chain has one acknowledged geometric coincidence at the relating link.)*
 
 **A second cross-sector convergence, recorded as a candidate (R-134).** The Brannen lepton scale
-`μ = (√m_e + √m_μ + √m_τ)/3` satisfies `μ² = 313.84 MeV` against the nucleon's per-rotor share
+`μ = (√m_e + √m_μ + √m_τ)/3` satisfies `μ² = 313.85 MeV` against the nucleon's per-rotor share
 `m_N/3 = 312.97 MeV` — a **0.28% zero-parameter convergence** between two measured quantities
 (in the framework's own `√m` measure — the *same single convergence*, the square root halving
 the deviation identically: `√(m_N/3) = 17.691` vs `μ = 17.716 MeV^{1/2}`, 0.14% — the baryon's
@@ -3249,7 +3261,11 @@ the **L = 2 quintet** the `SU(3)/SO(3)` coset complement.
 
 > `C_A / C_F = 9/4 = 2.25`
 
-is forced by pure representation theory, and matches the empirical LEP value `2.27 ± 0.06`. The
+is forced by pure representation theory, and is consistent with the LEP three-jet-multiplicity
+value `C_A/C_F = 2.277 ± 0.02 (stat) ± 0.05 (syst)` (DELPHI/Uvarov 2002, preliminary). **Read this as
+corroboration, not as an independent test:** the extraction is colour-dipole-model-dependent, and its
+alternative fit variant gives `2.093` — the variant being chosen partly by agreement with `9/4`, so
+the comparison is not model-independent. The
 match is **a consistency check** that the framework's elastic-response octet is `su(3)` as a
 static algebra — not an independent quantitative output the way `sin²θ_W = 3/8` is (the
 U(3)→SU(3) restriction and all colour dynamics remain gated, §C.5.2). A subtly
@@ -3654,7 +3670,8 @@ chromoelectric flux tube** — TWT is gluon-free (R-085). The transverse map `S�
 The string is the **integer-completion defect** of §C.5.1: a fractional facet trying to
 separate from the baryon's three-facet circular winding cannot smoothly interpolate to
 vacuum, and the string is the energy-minimizing configuration of the integer-completion
-constraint. Its tension `σ_QCD ≈ 0.18–0.19 GeV²` (lattice / Regge slope `(440 MeV)² ≈ 0.194 GeV²`)
+constraint. Its tension — `√σ_QCD ≈ 0.44 GeV`, i.e. `σ_QCD ≈ 0.19 GeV²`, the value the high-spin
+light-quark meson spectrum requires (Campbell, Michael & Rakow 1984)
 is a Q-orbit dynamical quantity at the §D.5 layer — **open**, gated on the substrate
 dynamics. The chiral topology explains *why* a string is required (integer completion); it
 does not yet compute what it *costs*.
@@ -4445,6 +4462,14 @@ The framework's open numerical values cluster on a small number of deep objects:
   for `m_ν`.
 - **Located-gap items with named re-attack handles:** the critical canting/magnon stiffness
   `K_c`; the sterile-RH dark-matter lead (Z1/Z2/Z3).
+- **Gated on the strain-mode dispersion — and, uniquely, already measured against:** the
+  isotropic dimension-six Lorentz-violation coefficient `η⁽⁴⁾` (§E.3.3 VG-6). Every other entry
+  above is a magnitude the gap fails to *deliver*; this one the gap must deliver *beneath an
+  existing number*. At the substrate's natural coefficient — `c = 1`, a naive value the framework
+  does not claim and cannot presently compute — it would read `η⁽⁴⁾ ∈ [1.9, 39]`, excluded by
+  three to nine orders. It is therefore a **ceiling, not a target**: it can refute a candidate
+  kernel outright, but supplies no equation and so adds nothing to the over-determination count
+  below.
 
 Alongside the *value* gates above, the framework's structural results carry a second, shorter
 inventory: the **named premises** on which otherwise-derived conclusions still rest. These are
@@ -4459,14 +4484,21 @@ honest distance between the current text and a fully forward-derived spine:
 | **cross-block rigidity** (+ an open cross-block weight) | folding `α_s` into the single-dial economy (§B.5b.3, R-162) | a kernel with the named universality across inequivalent Schur blocks |
 | **P4 / P5** — one universal charge functional; per-defect chirality-independence | the proton–electron equality as theorem rather than anchor (§C.2.7, R-159) | an EM-sector construction fixing the functional's universality |
 | **the ℍ-unit identification** | the three-generation count (§C.3.8) | a substrate-dynamical selection of the generation triple |
+| **P-an / P-pg** — analyticity of the dispersion kernel in `k`; the *full* point group including triality | the dimension-eight anisotropy result (§B.1.5, R-165) | a kernel shown analytic at monad scale (a non-analytic memory kernel — the #1 gap itself — escapes any polynomial-invariant argument), and a substrate coupling shown to weight triality-related orbits equally (unequal weighting restores dimension-six anisotropy) |
 
-Four of the six route into the same place the value gates do — the driven-dissipative dynamics
+Five of the seven route into the same place the value gates do — the driven-dissipative dynamics
 of §D.5 — which is the framework's central structural claim about its own incompleteness: not
-many independent gaps, but one object with many faces.
+many independent gaps, but one object with many faces. P-an is the sharpest instance: the premise
+that would discharge it and the object that would break it are the same object.
 
 The **over-determination opportunity**: pin-and-check across
 the registry's collective set provides constraints on the kernel objects beyond what any one
-item gives. A candidate `Im χ` value must satisfy all the gates simultaneously.
+item gives. A candidate `Im χ` value must satisfy all the gates simultaneously. Since 2026-07-27
+that programme has acquired a second and different kind of leverage: one of the gates is a
+measured *ceiling* rather than an unpinned target, so a candidate kernel can now be **refuted by
+existing data** before any over-determination is assembled. This does not raise the anchor count —
+an inequality supplies no equation — but it changes the programme's character, from purely
+internal consistency-checking to a search that external measurement can already cut.
 
 ### E.2.3 Parameter reduction — honest count
 
@@ -4623,7 +4655,7 @@ Each records the operational shape of an open commitment.
 | VG-3 | `1/T_2` substrate-decoherence rate | `Im χ` / WP-IX4 | A measured `1/T_2` above the symmetry-protected boundary would falsify the symmetry-protection result | §D.5.5 |
 | VG-4 | Dark-matter signatures (DM-V2-1) | (Mostly) outside V3 derivational scope; sterile-RH 3-prediction is structural | The 3 sterile RH neutrinos are structural; relic ~2% Ω_DM (47× shortfall); remaining ~98% out of scope. Laboratory detection of heavy sterile RH at Dodelson–Widrow `keV` window would falsify the `m_sterile = m_active ≲ 0.12 eV` Dirac-character prediction | §E.1.3 |
 | VG-5 | Gravitational-wave dispersion at high `E` | dim-6 dispersion correction once GW propagation scale identified | Concrete prediction once the induced-EH propagator's effective `Λ` for the GW sector is computed (Paper-2). **Not independent of VG-6:** per §B.6.4 the graviton's preferred-frame remnant is the same dimension-six coefficient in the tensor sector — one gated number, two sectors | §B.6.3, VG-6 |
-| VG-6 | Dimension-six isotropic LV coefficient `η⁽⁴⁾` | substrate strain-mode dispersion (#1 gap; `Cl41Wave().wave_speed_c` raises) | Published n = 4 limits: photon `\|ξ⁽⁴⁾\| ≲ 10⁻⁸`, electron `≲ 10⁻⁶`, proton `−10⁻³ … +10⁻⁶`. **At the substrate's natural coefficient `c = 1` this reads `η⁽⁴⁾ = (M_Pl/Λ)² ∈ [1.9, 39]` — excluded by 3–9 orders.** Survival requires either a substrate suppression to `\|η⁽⁴⁾\| ≲ 10⁻⁶` (the defect form factor supplies only `(f_π/m)² ~ 10⁻²`, and none for the photon), or `Λ_LV ≳ 10³ M_Pl` decoupled from the Sakharov cutoff, or a substrate symmetry forcing the isotropic quartic dispersion coefficient to vanish. Riding the OPEN import I-3 for the `Λ`-bracket and the inside-frame data import I-19 (whose premise (e) hedges the outside↔inside transfer). Sibling of VG-5: same coefficient, tensor sector | §B.6.3, §D.5 |
+| VG-6 | Dimension-six isotropic LV coefficient `η⁽⁴⁾` | substrate strain-mode dispersion (#1 gap; `Cl41Wave().wave_speed_c()` raises) | Published n = 4 limits: photon `\|ξ⁽⁴⁾\| ≲ 10⁻⁸`, electron `≲ 10⁻⁶`, proton `−10⁻³ … +10⁻⁶`. **At the substrate's natural coefficient `c = 1` this reads `η⁽⁴⁾ = (M_Pl/Λ)² ∈ [1.9, 39]` — excluded by 3–9 orders.** Survival requires either a substrate suppression to `\|η⁽⁴⁾\| ≲ 10⁻⁶` (the defect form factor supplies only `(f_π/m)² ~ 10⁻²`, and none for the photon), or `Λ_LV ≳ 10³ M_Pl` decoupled from the Sakharov cutoff, or a substrate symmetry forcing the isotropic quartic dispersion coefficient to vanish. Riding the OPEN import I-3 for the `Λ`-bracket and the inside-frame data import I-19 (whose premise (e) hedges the outside↔inside transfer). Sibling of VG-5: same coefficient, tensor sector | §B.6.3, §D.5 |
 
 ### E.3.4 Structural-coherence falsifiers
 
@@ -4701,8 +4733,10 @@ typically unchanged. Seven representative items:
   Clifford trace bridge giving native `√(3/5)`. The cross-term `Σ T_3 · Y = 0` enters too, but as
   a *generic* SU(2)×U(1) doublet-Schur-lemma fact (§C.4.5(ii) honest scope) — its TWT-specific
   expression as grade-0 L⊥Q orthogonality is Cl-native phrasing, not new content. With those
-  ingredients in hand, `g_1 = g_2` is enforced by D4 isotropy (the same theorem protecting
-  Lorentz invariance, §B.1.4), and `sin²θ_W = 3/8` follows. SU(5) is removed throughout; the
+  ingredients in hand, `g_1 = g_2` is enforced by D4 isotropy — specifically the bond set's
+  *second*-moment isotropy, the dimension-four statement, which is a different fact from the
+  degree-four invariant-space argument that pushes anisotropy to dimension eight (§B.1.5) — and
+  `sin²θ_W = 3/8` follows. SU(5) is removed throughout; the
   historical `24 = z(D_4) = dim(SU(5))` is a representation-theoretic match, not a load-bearing
   identification (§C.4.5).
 
@@ -4744,7 +4778,10 @@ typically unchanged. Seven representative items:
   framework's "primary contribution" character follows. Defects are configurations of one
   substrate rotor field; stability is topological, mass is meta-time rotor frequency, and Lorentz
   invariance is *protected* against the radiative species-splitting that plagues generic
-  emergent-LI programs — one fundamental field, not `N` independent ones (§B.1.4).
+  emergent-LI programs — one fundamental field, not `N` independent ones. The protection is
+  **dimension-four**; the lattice point group independently pushes rotational anisotropy to
+  dimension eight; and the rotationally invariant dimension-six residual escapes both and is
+  the framework's named open exposure (§B.1.5, §E.3.5(4)).
 
 **The pattern.** Each turns an SM postulate or unexplained feature into a substrate consequence.
 The numerical value is typically unchanged; the *ontological status* shifts. What TWT does that

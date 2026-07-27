@@ -2731,10 +2731,30 @@ def check_twt_cosmo():
         "⇒ the compatible-field boundary is built of LIVE banked facts, not paraphrase",
         ec["n_engine_checks"] == 12 and len(ec["HARD_boundary_engine_backed"]) == 9
         and "H2_klein_gordon" in ec["HARD_boundary_inline_engine"])
-    _ck("GAP INTACT: the class-VARIANT value-gates (alpha_em_value, qcd_collider_phenomenology) + the Layer-3 structural "
-        "gate (texture_tetrad) all still RAISE — computing a variant from one ansatz would be a toy (canon §3)",
-        ec["gates_intact"]["value_#1gap"] == ["alpha_em_value", "qcd_collider_phenomenology"]
+    _ck("GAP INTACT: the class-VARIANT value-gates (alpha_em_value, qcd_collider_phenomenology, and — added 2026-07-27 — "
+        "wave_speed_c, the strain-mode dispersion that E1 constrains) + the Layer-3 structural gate (texture_tetrad) all "
+        "still RAISE — computing a variant from one ansatz would be a toy (canon §3)",
+        ec["gates_intact"]["value_#1gap"] == ["alpha_em_value", "qcd_collider_phenomenology", "wave_speed_c"]
         and ec["gates_intact"]["structural_Layer3"] == ["texture_tetrad"])
+    _ck("H4 RESCOPED (R-165) and now COMPUTED, not a flag: the boundary's H4 label carries BOTH orders separately — "
+        "(a) 2nd-moment one-stiffness g1=g2 (the dim-4 statement) and (b) degree-4 invariant space 1-dimensional ⇒ no "
+        "anisotropic quartic ⇒ anisotropy only at dim-8 — AND states that neither reaches the isotropic dim-6 term",
+        any("H4_isotropy_orders" in x and "deg-4 invariant space 1-dim" in x and "that is E1" in x
+            for x in ec["HARD_boundary_inline_engine"]))
+    _ck("E1 ADDED as the class's FIRST EMPIRICAL constraint — and deliberately NOT numbered H12: it is IMPORTED data "
+        "(I-19), it is a CEILING that can refute but supplies no equation (zero anchor rank), and its bindingness is "
+        "CONDITIONAL on the un-built outside↔inside projection, carried as an explicit field so an I-19 excision fires "
+        "against E1 alone and leaves H1-H11 untouched",
+        ec["EMPIRICAL_boundary_conditional"]["id"] == "E1_dim6_isotropic_LV_ceiling"
+        and "I-19" in ec["EMPIRICAL_boundary_conditional"]["source"]
+        and "CONDITIONAL" in ec["EMPIRICAL_boundary_conditional"]["bindingness_HEDGE"]
+        and "zero anchor rank" in ec["EMPIRICAL_boundary_conditional"]["kind"]
+        and "NAIVE" in ec["EMPIRICAL_boundary_conditional"]["naive_value_status"])
+    _ck("the substrate-normalization CEILING is a BANKED RETURNED FIELD, not a floating number: "
+        "implied_substrate_c_ceiling spans 2.6e-10 … 5.2e-7 across {species, Λ-corner}, so downstream text cites the "
+        "primitive rather than quoting an unbacked bracket (canon §2)",
+        (lambda d: abs(d["photon_eta4_1e-8"][0] - 2.56e-10) < 1e-12 and abs(d["matter_eta4_1e-6"][1] - 5.184e-7) < 1e-9)(
+            lv["implied_substrate_c_ceiling"]))
     _ck("INVARIANT/VARIANT partition + epistemics recorded: invariants (s=3, sin²θ_W=3/8, π₃, Z3-dichotomy, WEAK-EP) = "
         "DERIVABLE-by-class-invariance; variants (α,g,g_s,σ_QCD,masses,v,τ_mem,Θ_rel-value) = provably gated; "
         "binary=boundary-only, plausibility=within-field, revision=bidirectional",

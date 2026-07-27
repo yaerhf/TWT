@@ -1,7 +1,7 @@
 # Cover note for reviewers — Time-Wave Theory, Foundational Paper V3
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-07-27 · verification suite: 448 checks · engine: 297 public primitives
+Paper revision 2026-07-27 · verification suite: 451 checks · engine: 297 public primitives
 
 ---
 
@@ -25,7 +25,7 @@ What follows is not a plea for charity — it is a list of things you can **chec
 each of which the reference class reliably fails. Check them, then form your view.
 
 **1. Run the verification suite.** `python twt_test.py` should print
-`ALL 448 CHECKS PASSED`. These are executable algebraic assertions on a Clifford-algebra
+`ALL 451 CHECKS PASSED`. These are executable algebraic assertions on a Clifford-algebra
 engine — Dirac relations, the invariant decompositions, the charge spectrum, the Weinberg
 ratio — not prose. Falsify any of them and the corresponding claim falls; the paper's claims
 are cross-indexed to the primitives that check them.
@@ -191,6 +191,17 @@ fundamental fields with `N−1` relative-speed observables.** TWT has one field;
 defects of it; the coefficients the mechanism would split do not exist to be split. This is a
 reason the construction succeeds *where the genre generically fails* — not a defense it survives
 by tuning (§B.1.5).
+
+**And the scope of that advantage, stated so it is not overread.** It is **dimension-four only**.
+A second protection, from the D4 point group, is stronger than the paper previously claimed: the
+degree-four invariant space of the lattice's order-1152 point group is one-dimensional, so for any
+point-group-symmetric *analytic* kernel there is no anisotropic quartic at all, and rotational
+anisotropy is pushed to dimension **eight**. But a third object escapes both — the rotationally
+invariant dimension-**six** dispersion term. It is not a relative-boost observable, so the
+one-field argument misses it; it is not an anisotropy, so the point-group theorem misses it. Its
+coefficient is gated on the open substrate dynamics, and at the natural size it would be excluded
+by existing cosmic-ray and gamma-ray limits by several orders. That is the tension named earlier in
+this note, and it is the honest boundary of the advantage claimed above (§B.6.3, §E.3.5(4)).
 
 **Parameter economy.** Five counted empirical inputs, against the Standard Model's nineteen. The
 framework is explicit that most of those nineteen are not thereby derived — they are gated on a

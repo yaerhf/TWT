@@ -1297,8 +1297,15 @@ def sakharov_xi_minimal_coupling():
     (E = I4*e5, I4 = e1234 the central pseudoscalar) — a SEVENTH direction, distinct from the 6 grade-2
     bivectors [engine]. A would-be mass term V(R) that lifts the bivector directions breaks left-Spin(4),
     but only at the IR scale f_pi; at the Sakharov UV scale Lambda >> f_pi it generates xi ~ (f_pi/Lambda)^2
-    ~ 1e-40..1e-39, NOT xi=1/6. The residual is the SAME dim-6 / scale-Lambda order as the WP-LV1 / WEAK-EP
-    violations (equivalence_principle_protection) — negligible, and tied to the SAME isotropy protection.
+    ~ 1e-40..1e-39, NOT xi=1/6. The residual is a scale-Lambda-suppressed IR effect of the SAME general
+    family as the WP-LV1 / WEAK-EP species-difference violations (equivalence_principle_protection) —
+    negligible, and tied to the same isotropy protection.
+    SCOPE CORRECTION (2026-07-27, R-165 — swept here): do NOT read 'the same dim-6 order' off this any
+    more. Three DISTINCT objects were being merged: (i) this xi residual, an IR (f_pi/Lambda)^2
+    suppression of a non-minimal-coupling operator; (ii) WP-LV1's rotational ANISOTROPY, now known to be
+    dimension-EIGHT (the degree-4 point-group invariant space is 1-dimensional); (iii) the rotationally
+    INVARIANT dim-6 dispersion term, which no isotropy protection reaches and which is #1-gap GATED and
+    empirically constrained (E1/VG-6/N52). They are not the same order and not gated on the same thing.
 
     TIER: FRAMING + removed-falsifier, CONDITIONAL (matches the sibling equivalence_principle_protection;
     NOT a dynamical derivation of G_N — it removes the xi=1/6 catastrophic branch, like item 5 removes a
@@ -1406,7 +1413,8 @@ def sakharov_xi_minimal_coupling():
                   "correction remains (symmetry only approximate, broken by the IR mass at f_pi). "
                   "Gate (1) (#1-gap substrate EOM / full nonlinear propagator coefficient) STAYS GATED "
                   "(sakharov_induced_gravity stays CANDIDATE for the coefficient). N27: two gates -> one gate "
-                  "(#1-gap) + controlled (f_pi/Lambda)^2 correction (same dim-6/scale-Lambda order as WP-LV1/WEAK-EP)."),
+                  "(#1-gap) + controlled (f_pi/Lambda)^2 correction — an IR scale-Lambda suppression; NOT the "
+                  "same object as WP-LV1 anisotropy (now dim-8) nor the gated isotropic dim-6 term (R-165)."),
         "coherence": ("same homogeneity/compactness + isotropy protection as matter_stability_outside_frame (H1) "
                       "and equivalence_principle_protection (WEAK-EP) — minimal coupling is the gravitational "
                       "vertex face of the SAME WP-LV1-twin protection."),
@@ -1704,7 +1712,11 @@ class Substrate:
     """L0. Fluid/continuum substrate over the D4 lattice."""
     # --- discrete D4 facts (NOT derivable from the fluid limit; needed downstream) ---
     coordination_number: int = 24          # D4 kissing number z = 24 = 12 spatial + 12 e4-bearing (Sec 20.5)
-    dim4_isotropy: bool = True             # Sec 10.4/12.6: 4th-moment ∝ δ; gives g1=g2 AND Lorentz protection
+    dim4_isotropy: bool = True             # Sec 10.4/12.6: 2nd moment ∝ δ ⇒ ONE STIFFNESS (g1=g2), the
+    # dimension-FOUR statement. NAME IS HISTORICAL — do NOT read it as 'Lorentz protection' full stop
+    # (R-165, 2026-07-27): the separate 4th-moment/degree-4-invariant fact kills dim-6 ANISOTROPY (⇒ dim-8),
+    # and NEITHER reaches the rotationally invariant dim-6 term, which is #1-gap GATED. See
+    # d4_lattice_lorentz_violation_orders and eom_constraint_class E1.
     # --- continuum / fluid constitutive structure ---
     memory_kernel: MemoryKernel = MemoryKernel.HYSTERETIC   # the FORK; Author's focus = hysteretic
     # --- INPUTS (empirical; explicit) ---
@@ -1834,7 +1846,8 @@ def closure_report():
 
     print("\nCLOSES (computed from the structure):")
     print(f"  L0 D4 bonds 12+12 = {sub.bonds_split()};  dim-4 isotropy = {sub.dim4_isotropy} "
-          f"(=> g1=g2 AND Lorentz protection)")
+          f"(=> g1=g2; anisotropy pushed to dim-8 by the deg-4 invariant space [R-165]")
+    print( "       -- but the ISOTROPIC dim-6 term is reached by NEITHER and stays GATED: E1/VG-6/N52)")
     print(f"  L2 Cl^+(4,0) ≅ H⊕H dim check = {QuaternionEngine().iso_consistency()};  "
           f"3 generations = {QuaternionEngine().generations} (Frobenius)")
     sig = obs.signature()
@@ -3022,7 +3035,7 @@ def kernel_overdetermination_table():
         dict(id="mN_3musq",
              observable="nucleon per-rotor lock vs lepton Brannen scale",
              kernel_link="brannen_scale_nucleon_third_convergence (R-134); a mechanism landing it gives m_N = 3 mu^2",
-             value="mu^2 = 313.84 vs m_N/3 = 312.97 MeV, 0.28% zero-parameter (E-channel-conditional; I4 route BLOCKED N12)",
+             value="mu^2 = 313.85 vs m_N/3 = 312.97 MeV, 0.28% zero-parameter (E-channel-conditional; I4 route BLOCKED N12)",
              frequency_window="cell-scale per-rotor lock (a static mass ratio, no spectral axis)",
              frequency_justification="N/A",
              independence="isolated cross-sector coincidence; value GATED (P2-1/P2-5-class)",
@@ -4443,7 +4456,7 @@ def w_state_located_gap():
 # ======================================================================
 
 # empirical charged-lepton masses (MeV) — INPUTS used only to TEST the relations
-M_E, M_MU, M_TAU = 0.51099895, 105.6583755, 1776.86
+M_E, M_MU, M_TAU = 0.51099895, 105.6583755, 1776.93
 
 # the ONE generation INPUT: the Koide relation, stated directly as the Brannen coefficient.
 # K=2/3 (empirical lepton Koide, exact to 1e-5) <=> c=sqrt(2), the e4-distinguished 45deg value.
@@ -7174,7 +7187,12 @@ def over_determination_scan(V_us: float = 0.2243, f_pi: float = 129.0,
 def skyrmion_mass_MeV(f_pi: float = 129.0, e: float = 5.45) -> float:
     """[DERIVED, dressed-level] §16.3: M_0 = 36.47 f_π/e. 36.47 = BVP eigenvalue at the
     optimal profile (independent of f_π,e). At e_phys=5.45: 863 MeV (standard ANW;
-    8% below proton 938 — the known ANW deficit). Honest scope: relation among DRESSED
+    8% below the proton 938) — but this is the STATIC soliton mass and NOT, as the corpus
+    previously said, "the known ANW deficit": ANW 1983 (Nucl. Phys. B228, 552) FIT (e, F_pi) =
+    (5.45, 129 MeV) so that their eq. (9) M_N = M + (1/2*lambda)(3/4) closes N and Delta EXACTLY
+    (their table 1 lists both as input). The 8% is the missing ROTATIONAL-BAND term, supplied at
+    R-133 skyrmion_rotational_band_nucleon_delta. ANW publish the same coefficient to three
+    figures, "M = 36.5 F_pi/e" (their p. 556) — source-verified 2026-07-28. Honest scope: relation among DRESSED
     (EFT-layer) couplings, conditional on the §10.3 branch-(c) dressed-sector closure."""
     return 36.47 * f_pi / e
 
@@ -9987,6 +10005,15 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                           "'natural coefficient unity' means c = 1, NOT eta4 = 1"),
         "naive_eta4_at_c_equals_1": ((1.0 / lam_hi) ** 2, (1.0 / lam_lo) ** 2),
         "naive_eta4_status": "NOT a prediction — excluded by published n=4 limits by 3-9 orders; sizes the exposure",
+        # The SURVIVAL requirement expressed in the substrate's OWN normalization. Banked as a returned
+        # field so downstream text can cite this primitive rather than quoting a floating number
+        # (canon §2 bank-before-you-cite). c = eta4*(Lambda/M_Pl)^2, so the ceiling scales with BOTH the
+        # species bound and the Lambda-bracket corner — it is a bracket, never a single figure.
+        "implied_substrate_c_ceiling": {
+            "matter_eta4_1e-6": (1e-6 * lam_lo ** 2, 1e-6 * lam_hi ** 2),
+            "photon_eta4_1e-8": (1e-8 * lam_lo ** 2, 1e-8 * lam_hi ** 2),
+            "note": "survival needs |c| below these; across {species, Lambda-corner} the ceiling spans "
+                    "2.6e-10 .. 5.2e-7, i.e. a 6-to-10-order suppression of an O(1) substrate coefficient"},
         "published_n4_bounds_INPUT": {"photon_xi4": (-1e-7, 1e-8), "electron_eta4": (-1e-7, 1e-6),
                                       "proton_eta4": (-1e-3, 1e-6), "delta_pi_p_Stecker": 4.5e-23},
         "form_factor_insufficient": "(f_pi/m_p)^2 ~ 1e-2 for the proton; NONE for the photon (bulk mode, B.5.4)",
@@ -10025,8 +10052,20 @@ def eom_constraint_class():
     the variant gate holds. The path to a banked NUMBER is §4's invariant test (a value constant across the
     whole class ⇒ DERIVED-by-class-invariance, the s=3 pattern), NOT this aggregator.
 
-    self-check: every engine-backed HARD constraint resolves; the class-variant value-gates + the Layer-3
-    structural gate all RAISE."""
+    THE BOUNDARY NOW HAS TWO KINDS OF ENTRY (2026-07-27, R-165):
+      • H1-H11 — SUBSTRATE-FORCED structural constraints. Unconditional; the original boundary.
+      • E1     — the class's FIRST EMPIRICAL constraint: published dim-6 LV limits require the kernel's
+                 isotropic quartic dispersion coefficient to sit far below its natural size. It is kept
+                 in a SEPARATE bucket, never renumbered "H12", for two reasons that must not be blurred:
+                 (i) it is IMPORTED DATA (I-19), not a substrate theorem; (ii) its bindingness is
+                 CONDITIONAL on the un-built outside<->inside projection (I-19 premise (e)) — these are
+                 inside-frame inferences about an outside-frame object. Excising I-19 fires against E1
+                 alone. E1 is a CEILING: it can REFUTE a candidate kernel but supplies no equation, so it
+                 adds ZERO anchor rank to the over-determination programme. Exposure ≠ value ≠ rank.
+
+    self-check: every engine-backed HARD constraint resolves; H4's isotropy ORDERS are computed (not a
+    flag) via R-165; the class-variant value-gates — now including the strain-mode dispersion that E1
+    constrains — plus the Layer-3 structural gate all RAISE."""
     # --- H1-H11: the engine-primitive-backed HARD constraints (CALLED => must resolve) ---
     engine_backed = {
         "H1_field_unit_rotor_Spin4": matter_stability_outside_frame,   # compact unit-rotor carrier
@@ -10043,11 +10082,46 @@ def eom_constraint_class():
     for name, fn in engine_backed.items():
         fn()                 # raises if the cited banked fact is not live -> boundary check fails
         resolved.append(name)
-    # H2 (linear free limit), H4 (dim-4 isotropy), H8 (drive/dissipation fork): inline engine facts
+    # H2 (linear free limit), H4 (isotropy ORDERS), H8 (drive/dissipation fork): inline engine facts
     assert "m = k4" in Cl41Wave().klein_gordon()                         # H2
-    assert Substrate().dim4_isotropy is True                            # H4 (one stiffness, WP-LV1)
+    # H4 — RESCOPED 2026-07-27 (R-165). Was a bare `Substrate().dim4_isotropy is True`, i.e. a
+    # hard-coded dataclass FLAG certifying a paraphrase, against this primitive's own "LIVE banked
+    # facts" standard. Now CALLS the primitive that computes it, and separates the two orders the old
+    # name conflated: (a) 2nd moment 12*delta ⇒ one stiffness, g1=g2 (dimension-FOUR operator);
+    # (b) degree-4 point-group invariant space is 1-dimensional ⇒ NO anisotropic quartic, so
+    # rotational anisotropy is reached only at dimension EIGHT (a statement about the dimension-SIX
+    # operator). H4 does NOT deliver "emergent Lorentz" full stop — see E1.
+    _lv = d4_lattice_lorentz_violation_orders()
+    assert Substrate().dim4_isotropy is True                            # H4a one stiffness (g1=g2)
+    assert _lv["D4_second_moment_12_delta"] is True
+    assert _lv["D4_fourth_moment_isotropy_residual"] == 0               # H4b no anisotropic quartic
+    assert abs(_lv["invariant_poly_dims_deg_2_4_6"][4] - 1.0) < 1e-6    #     ...by symmetry, model-free
     assert isinstance(Substrate().memory_kernel, MemoryKernel)         # H8 (the e₄-driven fork)
     n_engine = len(resolved) + 3
+    # --- E1: the class's FIRST EMPIRICAL constraint (2026-07-27, R-165/N52/VG-6) -------------------
+    # Deliberately NOT numbered "H12". H1-H11 are substrate-FORCED; E1 is IMPORTED DATA (I-19) and its
+    # bindingness is conditional on the un-built outside<->inside projection (I-19 premise (e)). Kept in
+    # its own bucket so an I-19 excision fires against exactly this entry and nothing else, and so no
+    # reader mistakes a conditional empirical ceiling for a structural theorem. It is a CEILING, not a
+    # target: it can REFUTE a candidate kernel but supplies no equation (rank contribution zero — the
+    # over-determination anchor count is unchanged; see kernel_overdetermination_table).
+    empirical_E1 = {
+        "id": "E1_dim6_isotropic_LV_ceiling",
+        "requirement": "the kernel's isotropic quartic dispersion coefficient must satisfy "
+                       "|eta4| <~ 1e-6 (matter) and <~ 1e-8 (photon), i.e. |c| below "
+                       "implied_substrate_c_ceiling in the substrate's own normalization",
+        "source": "IMPORT I-19 (published n=4 LV-EFT limits: Liberati 2013 eqs 77-78; Stecker 2009 eq 18)",
+        "naive_value_status": "a coefficient of order unity (c = 1) gives eta4 = (M_Pl/Lambda)^2 in "
+                              "[1.9, 39] — the NAIVE value, excluded by 3-9 orders. NOT a TWT prediction: "
+                              "c is #1-gap GATED (Cl41Wave().wave_speed_c() raises)",
+        "bindingness_HEDGE": "CONDITIONAL — these are INSIDE-frame inferences bounding an OUTSIDE-frame "
+                             "object; the transfer rides the un-built outside<->inside projection "
+                             "(I-19 premise (e); same hedge as E.3.1 rows 7-8). Excising I-19 fires "
+                             "against E1 alone and leaves H1-H11 untouched",
+        "kind": "CEILING (can refute a candidate; supplies no equation ⇒ zero anchor rank)",
+        "engine": "d4_lattice_lorentz_violation_orders (moments + invariant dims + c-ceiling)",
+        "recorded_at": "E.3.3 VG-6, E.3.5(4), negatives ledger N52",
+    }
     # H9: passive + low-ω super-Ohmic s=3 — banked in the PAPER (item 18/WP-DC2/IX4), no standalone
     #     primitive; cited honestly, NOT asserted via a phantom call.
     paper_backed = {"H9_passive_super_ohmic_s3": "item 18 / WP-DC2/IX4 (s=3 via Goldstone/Adler-zero); §9.6"}
@@ -10058,14 +10132,24 @@ def eom_constraint_class():
         except (GatedError, UnderivedError):
             return True
         raise AssertionError(f"gate {fn.__name__} did NOT raise — the gap is not intact")
-    value_gates_1stgap = [alpha_em_value, qcd_collider_phenomenology]    # #1-gap VALUE variants
+    # NOTE the parenless form below is REQUIRED: _must_raise needs the CALLABLE, not its return value.
+    # (In prose/docstrings always write Cl41Wave().wave_speed_c() WITH parens — the attribute alone is a
+    # bound method and does not raise, so a parenless prose cite sends a reviewer looking for nothing.)
+    value_gates_1stgap = [alpha_em_value, qcd_collider_phenomenology,
+                          Cl41Wave().wave_speed_c]          # #1-gap VALUE variants — the third is E1's gate
     structural_gate_L3 = [texture_tetrad]                               # Layer-3 (STRONG-EP/full metric)
     assert all(_must_raise(g) for g in value_gates_1stgap + structural_gate_L3)
     return {
         "object": "the #1 gap = a constraint-satisfaction class (driven-dissipative rotor EOM); map = TWT_EOM_MAP.md",
         "HARD_boundary_engine_backed": resolved,            # live banked primitives, called + resolved
-        "HARD_boundary_inline_engine": ["H2_klein_gordon", "H4_dim4_isotropy", "H8_drive_dissipation_fork"],
+        "HARD_boundary_inline_engine": ["H2_klein_gordon",
+                                        "H4_isotropy_orders(a: 2nd-moment one-stiffness g1=g2 | "
+                                        "b: deg-4 invariant space 1-dim ⇒ no anisotropic quartic ⇒ "
+                                        "anisotropy only at dim-8) [R-165; does NOT reach the isotropic "
+                                        "dim-6 term — that is E1]",
+                                        "H8_drive_dissipation_fork"],
         "HARD_boundary_paper_backed": paper_backed,         # banked in the paper, no standalone primitive
+        "EMPIRICAL_boundary_conditional": empirical_E1,     # NOT an Hn — imported, conditionally binding
         "n_engine_checks": n_engine,                        # = 12 (9 called + 3 inline)
         "class_invariant_DERIVABLE": [                      # constant across the class ⇒ s=3-style wins
             "s=3 super-Ohmic exponent (Goldstone symmetry)", "sin²θ_W=3/8 (static)",
@@ -10073,8 +10157,12 @@ def eom_constraint_class():
             "Θ_rel Z3-isotropy dichotomy (Schur)", "WEAK-EP frame-universality"],
         "class_variant_GATED": [                            # depend on §3 free data ⇒ provably ansatz-dependent
             "α, g, g_s magnitudes", "σ_QCD", "absolute/relative mass scales", "v (EW VEV)",
-            "τ_mem", "Θ_rel VALUE", "β₃ running magnitude"],
-        "residual_free_data_4axes": ["Skyrme coupling e (ℓ_S)", "reactive Im χ at ω_d (barrier S / fork)",
+            "τ_mem", "Θ_rel VALUE", "β₃ running magnitude",
+            "isotropic dim-6 dispersion coefficient c (⇒ η⁽⁴⁾) — the ONLY class-variant carrying an "
+            "EMPIRICAL bound; see E1"],
+        "residual_free_data_4axes": ["Skyrme coupling e (ℓ_S)",
+            "reactive Im χ at ω_d (barrier S / fork) — NOTE the kernel's k-dependence / strain-mode "
+            "dispersion is a DISTINCT face of this axis, and it is the face E1 constrains",
             "f_π & Λ scales (separately cutoff-gated)", "drive amplitude/profile"],
         "gates_intact": {"value_#1gap": [g.__name__ for g in value_gates_1stgap],
                          "structural_Layer3": [g.__name__ for g in structural_gate_L3]},
@@ -10508,7 +10596,7 @@ def generation_subharmonic_ladder():
     (8% off, NOT a 3rd over-determination leg); up 1-2 exponent ≈ 2× down 1-2; Koide K=2/3."""
     import math
     # LOAD-BEARING: lepton masses (physical, MeV) + measured CKM
-    m_e, m_mu, m_tau = 0.5109989, 105.6584, 1776.86
+    m_e, m_mu, m_tau = 0.5109989, 105.6584, 1776.93
     Vus = 0.2243
     lam = 0.225
     # quark masses: INDICATOR-level in the GST leg (m_d,m_s carry |V_us|²=m_d/m_s); the heavy ones are
@@ -10722,8 +10810,8 @@ def generation_cost_step_structure():
     self-check: down rises, up+lepton fall (bare); up FLIPS to rising in constituent, lepton unchanged; Cost=4·ln(r-gap)."""
     import math
     def steps(m): c12 = math.log(m[1] / m[0]); c23 = math.log(m[2] / m[1]); return c12, c23, c23 - c12
-    bare = {"down": [4.67, 93.4, 4180.0], "up": [2.16, 1270.0, 172500.0], "lepton": [0.5109989, 105.6584, 1776.86]}
-    con = {"down": [336., 540., 4730.], "up": [336., 1550., 172500.], "lepton": [0.5109989, 105.6584, 1776.86]}  # INDICATOR
+    bare = {"down": [4.67, 93.4, 4180.0], "up": [2.16, 1270.0, 172500.0], "lepton": [0.5109989, 105.6584, 1776.93]}
+    con = {"down": [336., 540., 4730.], "up": [336., 1550., 172500.], "lepton": [0.5109989, 105.6584, 1776.93]}  # INDICATOR
     bsteps = {t: steps(m) for t, m in bare.items()}
     csteps = {t: steps(m) for t, m in con.items()}
     # Q1: down rises, up & lepton fall (bare)
@@ -10783,7 +10871,7 @@ def generation_gen2_chirality_mirror():
     import math
     def frac_light(m): return math.log(m[1] / m[0]) / math.log(m[2] / m[0])   # gen-2 from the light end
     def frac_heavy(m): return math.log(m[2] / m[1]) / math.log(m[2] / m[0])   # gen-2 from the heavy end
-    down = [4.67, 93.4, 4180.0]; up = [2.16, 1270.0, 172500.0]; lep = [0.5109989, 105.6584, 1776.86]
+    down = [4.67, 93.4, 4180.0]; up = [2.16, 1270.0, 172500.0]; lep = [0.5109989, 105.6584, 1776.93]
     fd = frac_light(down)        # down gen-2 from light = 0.441
     fu = frac_heavy(up)          # up gen-2 from heavy = 0.435
     fl = frac_heavy(lep)         # lepton gen-2 from heavy = 0.346
@@ -11610,7 +11698,8 @@ def gluon_octet_symmetric_space_split():
     imag_antisym = [a for a in range(1, 9) if np.allclose(l[a].real, 0) and np.allclose(l[a], -l[a].T)]
     assert imag_antisym == so3
     # EMPIRICAL: the structure gives the SU(3) colour Casimirs C_F=4/3, C_A=3, C_A/C_F=9/4 (=measured LEP colour
-    # factors C_A/C_F=2.27±0.06) — the gluon-identification verdict "the DYNAMICS needs the full su(3)" agrees with data.
+    # factors C_A/C_F=2.277±0.02±0.05, DELPHI/Uvarov 2002 preliminary + model-dependent, so CORROBORATION not an
+    # independent test) — the gluon-identification verdict "the DYNAMICS needs the full su(3)" agrees with data.
     Tg = [l[a] / 2 for a in range(1, 9)]                                  # fundamental generators
     CF = float(sum(Tg[a] @ Tg[a] for a in range(8))[0, 0].real)          # C_F · I
     fabc = np.array([[[(-2j * np.trace((Tg[a] @ Tg[b] - Tg[b] @ Tg[a]) @ Tg[d])).real for d in range(8)] for b in range(8)] for a in range(8)])
@@ -11658,7 +11747,8 @@ def gluon_octet_symmetric_space_split():
                            "gated question is PURELY DYNAMICAL: does the §9.6 kernel REALIZE the full-su(3) running at the right MAGNITUDE (a-rich=−a-bare for U(3)/octet/(9/4); "
                            "β₃<0 for AF; σ_QCD)? A #1-gap §9.6 EOM computation — the VALUE, not the structure (the structure is now derived)",
         "tested": {"empirical_coherence": "structure gives the SU(3) colour Casimirs C_F=4/3, C_A=3, C_A/C_F=9/4 (=2.25) — matches the measured LEP colour factors "
-                                          "(C_A/C_F=2.27±0.06) ⇒ 'the dynamics needs the full su(3)' AGREES WITH DATA; a sub-su(3) force is falsified",
+                                          "(C_A/C_F=2.277±0.02±0.05, DELPHI/Uvarov 2002 preliminary/model-dependent — corroboration, not an independent "
+                                          "test) ⇒ 'the dynamics needs the full su(3)' AGREES WITH DATA; a sub-su(3) force is falsified",
                    "adversarial": "C_A=3 splits 1.5 (geometric 3) + 1.5 (dynamical 5) — both source the colour charge ⇒ the geometric 3 cannot be dropped, confirming the running needs the FULL su(3)",
                    "robustness": "the Cl-native so(3) is FORCED — the unique imaginary-antisymmetric Gell-Mann set is exactly {λ2,λ5,λ7} (the real-Cl-bivector image), so the 3⊕5 split is not an arbitrary embedding",
                    "static_f_abc": "the coset-5 GENERATES su(3) (Lie closure dim 8) ⇒ the static algebra IS forced to su(3); no sub-su(3) force exists (DERIVED-but-generic group theory)"},
@@ -13022,7 +13112,7 @@ def updown_mirror_value_three_handles():
       - all three handles reduce to one Paper-2 coefficient (the synthesis claim)
     """
     import math
-    lep = (0.5109989, 105.6584, 1776.86)
+    lep = (0.5109989, 105.6584, 1776.93)
     down = (4.67, 93.4, 4180.0)
     up = (2.16, 1270.0, 172500.0)
     c_l_12 = math.log(lep[1] / lep[0])
@@ -15096,7 +15186,7 @@ def updown_mirror_multigen_avg_vs_lepton() -> dict:
     for c_common -> re-run this test against it; (c) the witness masses' scheme
     dependence is shown to exceed ~40% at 2->3 (not plausible for ln-ratios).
     """
-    lep = (0.511, 105.658, 1776.86)
+    lep = (0.511, 105.658, 1776.93)
     down = (4.67, 93.4, 4180.0)
     up = (2.16, 1270.0, 172500.0)
 
@@ -16986,7 +17076,7 @@ def brannen_scale_nucleon_third_convergence() -> dict:
     TWT readings below) + engine-checked arithmetic on INPUT constants (the
     numbers themselves)] -- the Brannen lepton mass scale and the nucleon's
     per-rotor frequency agree to 0.28% with NO tunable parameter on either side:
-        mu^2   = ((sqrt(m_e) + sqrt(m_mu) + sqrt(m_tau))/3)^2 = 313.84 MeV,
+        mu^2   = ((sqrt(m_e) + sqrt(m_mu) + sqrt(m_tau))/3)^2 = 313.85 MeV,
         m_N/3  = 312.97 MeV (PDG p/n average),   ratio = 1.0028.
     In AMPLITUDE form (TWT's own sqrt-m measure) -- the SAME single convergence,
     NOT a second one: the square root halves the relative deviation IDENTICALLY
@@ -17087,7 +17177,7 @@ def brannen_scale_nucleon_third_convergence() -> dict:
                     hits.add((nm, '%d/%d' % (fr.numerator, fr.denominator)))
     fit_tie_8_5 = abs(ratio_invTheta / 1.6 - 1.0) < 0.005
 
-    assert abs(mu2 - 313.84) < 0.05, "Brannen scale squared must be 313.84 MeV (banked lepton INPUTs)"
+    assert abs(mu2 - 313.85) < 0.05, "Brannen scale squared must be 313.85 MeV (banked lepton INPUTs, PDG 2024 m_tau = 1776.93)"
     assert abs(ratio_mass - 1.0) < 0.005, "mu^2 vs m_N/3 must converge to <0.5% (zero parameters)"
     assert abs(ratio_amp - 1.0) < 0.0025, "amplitude form sqrt(m_N/3) vs mu must converge to <0.25%"
     assert 1.05 < ratio_floor < 1.13, "the FLOOR reading must NOT converge (~9% off -- the named fork)"
