@@ -90,9 +90,10 @@ Open an issue or email the address above.
 
 ## Licensing
 
-- **Code** (`twt.py`, `twt_test.py`): **AGPL-3.0** — see `LICENSE`. Free to run, study, modify
-  and share; derivatives and network services must share source under the same terms. A
-  **commercial licence** is available for proprietary use — contact hfyaer@gmail.com.
+- **Code** (`twt.py`, `twt_test.py`): **AGPL-3.0** — verbatim licence text in `LICENSE`,
+  copyright and terms summary in `NOTICE`. Free to run, study, modify and share; derivatives
+  and network services must share source under the same terms. A **commercial licence** is
+  available for proprietary use — contact hfyaer@gmail.com.
 - **Documents** (paper, companion): © 2026 Yaer Aharon Haddad Fennech, all rights reserved,
   readable for review, citation and discussion — see `LICENSE-DOCS`. Deliberately conservative
   pending formal publication.

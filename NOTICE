@@ -1,0 +1,39 @@
+                    TWT VERIFICATION ENGINE — COPYRIGHT AND TERMS
+
+Copyright (C) 2026 Yaer Aharon Haddad Fennech <hfyaer@gmail.com>
+
+--------------------------------------------------------------------------------
+SOFTWARE
+
+The software in this repository (twt.py, twt_test.py and associated code) is
+licensed under the GNU Affero General Public License, version 3, the verbatim
+text of which is in the file LICENSE.
+
+In brief: you may run, study, modify and share it freely; if you distribute it,
+or run a modified version as a network service, you must make your corresponding
+source available under the same terms.
+
+--------------------------------------------------------------------------------
+COMMERCIAL LICENSING
+
+If the AGPL terms do not suit your use — for example, if you wish to build a
+proprietary product on this engine — a separate commercial license is available
+from the copyright holder. Contact hfyaer@gmail.com.
+
+The copyright holder retains all rights in this work and is not bound by the
+AGPL in his own products.
+
+--------------------------------------------------------------------------------
+DOCUMENTS
+
+The accompanying documents — TWT_foundational_paper.md,
+TWT_foundational_paper_companion.md, COVER_NOTE.md and any PDF renderings of
+them — are NOT covered by the AGPL. See LICENSE-DOCS for their terms.
+
+--------------------------------------------------------------------------------
+SCOPE
+
+These terms cover this expression of the work. They do not and cannot cover the
+underlying mathematics or physical theory, which are not subject to copyright.
+Independent reimplementation, criticism, refutation and extension of the physics
+require no permission from anyone, and are expressly welcome.
