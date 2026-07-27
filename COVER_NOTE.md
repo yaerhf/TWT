@@ -61,6 +61,13 @@ error unless the paper claimed otherwise — it does not. Three qualifications, 
   neutrinoless double-beta decay. §E.3 lists 18 named near-term falsifiers with current bounds;
   one (Lorentz violation at ultra-high-energy cosmic rays) sits *at* current experimental limits.
 - One quantity is derived and non-trivial: `sin²θ_W = 3/8` at unification, with no GUT embedding.
+- **The contribution is ontological, and it subtracts rather than adds.** The framework needs no
+  irreducible chance: it is configuration-realist, and the Born rule is *derived* (as of this
+  revision, a theorem given four named premises plus Gleason) rather than postulated. A theory
+  that removes a primitive from the world's furniture is doing explanatory work even when its
+  predictions coincide with the theory it replaces — that is the ordinary standard by which
+  statistical mechanics improved on thermodynamics. See §2 for the ontological-cost comparison
+  against Copenhagen, many-worlds and Bohm.
 - The framework names its own biggest gap (§D.5) rather than papering over it: coupling
   magnitudes, absolute mass scales, and CKM are explicitly **not** derived.
 
@@ -127,6 +134,37 @@ revision, a theorem given four named premises plus Gleason's theorem; Pauli excl
 half-angle's signature on the joint configuration; and Tsirelson's `2√2` comes out exactly.
 Honest scope: that bound is inherited by isomorphism with quantum mechanics, not an independent
 prediction — what is new is the substrate *reason* for it.
+
+**The ontological economy: no fundamental randomness.** This is the framework's least advertised
+and arguably strongest claim, and it deserves stating explicitly because it is a *reduction* in
+ontology rather than an addition. Standard quantum mechanics must posit irreducible chance: the
+Born rule is an axiom, and collapse is a primitive stochastic event with no mechanism underneath
+it. Nothing in the formalism explains why probability is there — it is built into the furniture
+of the world, and one is asked to accept that as a brute fact.
+
+TWT does not need it. The substrate is **configuration-realist**: at every moment the field has a
+definite configuration, and probability is not a primitive of the theory but a *derived measure*
+over that configuration space — as of this revision the Born exponent is a theorem given four
+named premises plus Gleason's theorem, rather than an axiom (§B.3.3). **What quantum mechanics
+postulates, this framework computes.**
+
+The comparison on ontological cost is worth making explicitly, because this is where the
+framework is cheapest rather than most expensive. Copenhagen buys the Born rule with primitive
+stochastic collapse. Many-worlds avoids collapse but must recover the Born measure from
+branch-counting — famously contested — and pays for it in world-proliferation. Bohmian mechanics
+recovers determinism but carries a *dual* ontology, particle plus guiding wave, with explicit
+non-locality bolted on. TWT carries **one field**: what looks like a particle and what looks like
+its wave are the same defect in the same substrate, read along orthogonal axes; and the
+non-locality Bell's theorem genuinely forces sits somewhere the framework can point at — in the
+joint configuration that the selection law takes as its argument — with nothing travelling and no
+signal sendable (§B.4.3–§B.4.6).
+
+**The honest limit of this claim.** The *measure* is derived; the *mechanism* realising
+single-outcome selection is the framework's named open object (§D.5, Role 3). So this is a
+structural commitment with an open mechanism, not a finished account of measurement — and the
+paper says so. But the commitment has already been partly cashed: the Born rule moved from
+axiom to theorem in this revision, which is the direction the commitment predicts. A framework
+that required irreducible chance could not have made that move at all.
 
 **Several Standard-Model postulates become consequences.** Three generations from the
 quaternionic structure via Frobenius (conditional on one named identification); the up/down

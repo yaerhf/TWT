@@ -30,12 +30,16 @@ discreteness across the 15-state generation spectrum, with the proton–electron
 topologically protected; a three-generation count from the
 quaternionic structure (conditional on one named identification); the electroweak mixing angle
 `sin²θ_W = 3/8` at unification with no GUT embedding; and a matter-stability triad — no proton
-decay, Dirac neutrinos, no neutrinoless double-beta decay — from one conservation law. The
+decay, Dirac neutrinos, no neutrinoless double-beta decay — from one conservation law. A
+structural consequence worth stating separately: the framework carries **no irreducible chance**
+as a primitive — it is configuration-realist, and probability enters as a derived measure over
+definite configurations rather than as an axiom, so what standard quantum mechanics postulates
+is here computed (the mechanism of single-outcome selection remains open). The
 framework's principal open object, the driven-dissipative substrate dynamics that gates all
 coupling magnitudes and absolute scales, is named explicitly, with a candidate kernel class
 and pre-registered falsifiers. Every numbered result carries an auditable status tier
 (derived / input / fit / candidate) in a companion result index, and the algebraic content is
-backed by an executable verification suite (412 checks at this revision).
+backed by an executable verification suite (438 checks at this revision).
 
 ---
 
@@ -4600,11 +4604,11 @@ force reformulation at the axiom layer rather than the derivation layer.
 The framework's content distilled to its synthesized headlines, situated in the intellectual
 landscape, and pointed forward to Paper 2.
 
-### E.4.1 Six synthesized headlines
+### E.4.1 Seven synthesized headlines
 
 The framework's primary contribution is **geometric reinterpretation**: turning an SM postulate
 or unexplained feature into a structural consequence of the substrate, with the numerical value
-typically unchanged. Six representative items:
+typically unchanged. Seven representative items:
 
 - **Three generations are Frobenius**, not a free count. The three imaginary units of `ℍ` on the
   `V_4⊥` generation circle, identified with the anti-self-dual bivector triple. Frobenius
@@ -4624,6 +4628,22 @@ typically unchanged. Six representative items:
 - **The Tsirelson bound `S = 2√2` is the dimensional fingerprint of `S³ → S²` projection** — the
   half-angle `cos²(θ/2)` is the one-sided rotor action on a `Cl(4,0)` spinor, a substrate-level
   geometric fact (§B.4.1). QM gets the same value by axiom; TWT supplies the substrate reason.
+
+- **Probability is not a primitive of the world.** The framework's cheapest claim, in the
+  ontological sense: it needs no irreducible chance. The substrate is configuration-realist —
+  at every moment the field has a definite configuration — and probability enters as a *derived
+  measure* over that configuration space rather than as an axiom, with the Born exponent now a
+  theorem given four named premises plus Gleason's theorem (§B.3.3). Standard quantum mechanics
+  must postulate the Born rule and a primitive stochastic collapse; many-worlds avoids the
+  collapse but owes the measure to contested branch-counting and pays in world-proliferation;
+  Bohmian mechanics recovers determinism at the price of a dual particle-plus-wave ontology.
+  Here there is **one field**: what reads as a particle and what reads as its wave are the same
+  defect seen along orthogonal axes (§A.3), and the non-locality Bell's theorem forces is
+  located — in the joint configuration the selection law takes as its argument — with nothing
+  travelling and no signal sendable (§B.4.6). What remains open is the *mechanism* of
+  single-outcome selection (§D.5, Role 3), so this is a structural commitment with a named open
+  mechanism rather than a completed account of measurement; the measure itself is no longer
+  assumed.
 
 - **Parity violation and β-decay share one substrate parameter.** The same `D` that produces the
   Cabibbo angle, the generation phase, the Skyrme stabilizer, *and* parity violation also
