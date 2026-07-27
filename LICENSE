@@ -1,0 +1,55 @@
+                    TWT VERIFICATION ENGINE — LICENSE
+
+Copyright (C) 2026 Yaer Aharon Haddad Fennech <hfyaer@gmail.com>
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along
+with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+--------------------------------------------------------------------------------
+COMMERCIAL LICENSING
+
+The AGPL-3.0 terms above require that anyone who distributes this software, or
+runs a modified version of it as a network service, makes their corresponding
+source available under the same terms.
+
+If those terms do not suit your use — for example, if you wish to build a
+proprietary product on this engine — a separate commercial license is available
+from the copyright holder. Contact hfyaer@gmail.com.
+
+The copyright holder retains all rights in this work and is not bound by the
+AGPL in his own products.
+
+--------------------------------------------------------------------------------
+SCOPE NOTE
+
+This license covers the SOFTWARE in this repository (twt.py, twt_test.py and
+associated code). It does not and cannot cover the underlying mathematics or
+physical theory, which are not subject to copyright.
+
+The accompanying documents — TWT_foundational_paper.md and
+TWT_foundational_paper_companion.md — are NOT covered by this license. See
+LICENSE-DOCS for their terms.
+
+--------------------------------------------------------------------------------
+!! SETUP STEP REQUIRED BEFORE PUBLISHING !!
+
+The full, verbatim text of the GNU Affero General Public License v3.0 must be
+appended below this line for this license to be complete and valid. Fetch it
+with:
+
+    curl -o agpl.txt https://www.gnu.org/licenses/agpl-3.0.txt
+    cat agpl.txt >> LICENSE && rm agpl.txt
+
+(or download https://www.gnu.org/licenses/agpl-3.0.txt in a browser and paste
+its contents below). Then delete this notice block.
+
+--------------------------------------------------------------------------------
