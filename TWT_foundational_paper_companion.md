@@ -6,6 +6,11 @@ Registry), the geometric-reinterpretation catalog, the methodology principles, t
 log, the stable-spectrum enumeration, the wave-phase stability ladder, and the bibliography.
 Unconventional but practical: everything a reader might want beyond the main narrative is here.*
 
+*Yaer Aharon Haddad Fennech · Independent Researcher · hfyaer@gmail.com*
+*Engine, verification suite, and both documents: https://github.com/yaerhf/TWT —*
+*every engine cite in the Result Index and the Engine ↔ Paper Map below resolves to a primitive*
+*in `twt.py` there, and `python twt_test.py` runs the checks those cites refer to.*
+
 ---
 
 # Contents
@@ -240,7 +245,7 @@ derived; they are listed in the *Axioms* table at the top.
 | R-070 | δ_L from chiral-ℤ_3 potential FORM (coefficient identification A=J, B=D is ASSERTED ANSATZ) | DERIVED (form) + ASSERTED (coefficient identification) | delta_L_from_DoverJ | C.3 | A-1c | — | Honest scope. |
 | R-071 | Three generations from Frobenius + ASD-triple + ℍ-unit identification | DERIVED-STRUCTURAL-LOCATED | why_three_generation_triple + generations_dynamical_count_structural + phase_to_h_unit_map_located_residual | C.3 | R-009, A-1a | R-061 | LOCATED-conditional on the orbit-phase → ℍ-unit map (`why_three_generation_triple`). |
 | R-072 | `G` is the colour ℤ_3 (not the generation ℤ_3) per the §C.3.9 reidentification (V2 §17.4) | DERIVED | G_generator + G_cycles_generations + generation_z3_is_metatime_phase | C.3 | R-009 | — | Spatial generator G is colour cycle; generation ℤ_3 is meta-time phase. |
-| R-073 | Cabibbo as frequency ratio `\|V_us\|² = m_d/m_s ≈ 0.05`, 0.6% match | CANDIDATE | quark_brannen_table + quark_mass_reconstruction + cabibbo_transition_probability | C.3 | R-057, R-068 | — | TWT-untestable on `m_t` ratio (no top hadrons). Engine numbers: `\\|V_us\\|² = 0.0503` vs `m_d/m_s = 0.0500` (PDG 4.67/93.4), 0.62% off (`cabibbo_transition_probability`, inline assert < 1%). Cite `cabibbo_angle_rad` removed 2026-07-02 — that primitive is formally DEPRECATED (returns the lepton phase δ_L, not a Cabibbo angle; V1 identification refuted 2026-06-29). |
+| R-073 | Cabibbo as frequency ratio `\|V_us\|² = m_d/m_s ≈ 0.05`, 0.6% match | CANDIDATE | quark_brannen_table + quark_mass_reconstruction + cabibbo_transition_probability | C.3 | R-057, R-068 | — | TWT-untestable on `m_t` ratio (no top hadrons). Engine numbers: `\|V_us\|² = 0.0503` vs `m_d/m_s = 0.0500` (PDG 4.67/93.4), 0.62% off (`cabibbo_transition_probability`, inline assert < 1%). Cite `cabibbo_angle_rad` removed 2026-07-02 — that primitive is formally DEPRECATED (returns the lepton phase δ_L, not a Cabibbo angle; V1 identification refuted 2026-06-29). |
 | R-074 | Cross-sector D/J over-determination: lepton 0.787 ↔ baryon 0.778, ~1.1% | DERIVED-CALIBRATED | DoverJ_from_lepton_masses + DoverJ_from_skyrme + over_determination_scan + dressed_coupling | C.3 | R-068, R-051 | — | Genuine over-determination signal. |
 | R-075 | Neutrino forced left-handed from `+e_4` wave direction | DERIVED | forced_handedness | C.3 | A-3, R-007 | R-079, R-060 | Substrate-derived chirality. |
 | R-076 | Neutrino lightness from single Weyl ideal | DERIVED | neutrino_lightness | C.3 | R-012, R-075 | R-089, R-121 | Structural consequence of single ideal. |
