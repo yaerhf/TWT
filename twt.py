@@ -8636,7 +8636,10 @@ def im_chi_falsifier_budget_KSS_GW_macromolecule():
                     POSITS (default ansatz, consistent with KSS) that the substrate sits
                     near this floor.
       GW170817 ceiling: η ≲ 10^9 – 10^10 Pa·s — substrate viscosity must not over-damp GW
-                    over the ~130 Mly observed propagation. Hawking Γ ~ 16πGη/c² scaling
+                    over the ~130 Mly observed propagation. The standard viscous GW damping
+                    scaling Γ ~ 16πGη/c² (attribution dropped 2026-07-28: the commonly-cited
+                    Hawking 1966 source could not be obtained, so the relation is used as the
+                    textbook result it is rather than credited to an unverified paper)
                     gives an order-of-magnitude ceiling at the cell-level layer.
       Macromolecule-interferometry floor: a viscous substrate implies an intrinsic
                     decoherence rate for matter superpositions; current macromolecule-
@@ -8670,7 +8673,7 @@ def im_chi_falsifier_budget_KSS_GW_macromolecule():
             "GW170817_ceiling": {
                 "bound": "η ≲ 1e9-1e10 Pa·s (at cell-level layer)",
                 "type": "empirical ceiling from GW170817 propagation over ~130 Mly",
-                "scaling": "Hawking Γ ~ 16πGη/c²",
+                "scaling": "standard viscous GW damping Γ ~ 16πGη/c² (no personal attribution — source unverified)",
             },
             "macromolecule_interferometry_floor": {
                 "bound": "current bounds set a floor on predicted intrinsic decoherence rate",

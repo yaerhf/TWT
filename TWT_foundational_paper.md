@@ -2,6 +2,8 @@
 
 *Version 3 · 2026-07-01 · revised 2026-07-27.*
 *Yaer Aharon Haddad Fennech · Independent Researcher · hfyaer@gmail.com*
+*Engine, verification suite, and both documents: **https://github.com/yaerhf/TWT** —*
+*`pip install -r requirements.txt && python twt_test.py` reproduces every algebraic claim below.*
 *Ships with a **companion file** — `TWT_foundational_paper_companion.md` — that consolidates
 all annexes, the back-of-book bookkeeping (Result Index, Dependency Graph, Engine ↔ Paper Map,
 Pending-Values Registry), the geometric reinterpretation catalog, the methodology principles,
@@ -43,7 +45,8 @@ the isotropic dimension-six Lorentz-violation coefficient, whose natural value e
 cosmic-ray and gamma-ray limits exclude by several orders. The framework records this as its
 sharpest live empirical tension rather than omitting it. Every numbered result carries an auditable status tier
 (derived / input / fit / candidate) in a companion result index, and the algebraic content is
-backed by an executable verification suite (448 checks at this revision).
+backed by an executable verification suite (451 checks at this revision) that is public and
+runnable at https://github.com/yaerhf/TWT.
 
 ---
 
@@ -156,7 +159,10 @@ Lorentzian signature itself — is a consequence of these premises and inputs, d
 
 This paper is the product of a structured workflow combining a developer (Claude) with an
 adversarial reviewer dispatched in a fresh context, plus an automated suite (`twt_test.py`) that
-checks all engine-banked algebraic results on every revision. No load-bearing claim is banked on
+checks all engine-banked algebraic results on every revision. **The engine and suite are public**
+(https://github.com/yaerhf/TWT): the reader is not asked to take any algebraic claim on trust, and
+the primitives that gate underived magnitudes raise rather than return, so the framework's own
+limits are executable too. No load-bearing claim is banked on
 the developer's say-so alone: each is attacked by an independent reviewer, verified on the
 substrate engine where applicable, and only graduated when developer and reviewer agree on its
 tier and scope. This iterate-to-consensus discipline (companion Section 6) has caught — in V3 alone — three
@@ -4650,7 +4656,7 @@ Each records the operational shape of an open commitment.
 
 | # | Falsifier handle | Gated on | Operational form | Origin |
 |---|---|---|---|---|
-| VG-1 | `Im χ` budget (one dial, three pillars) | `Im χ` (#1 gap) | KSS floor `η/s ≥ ℏ/4π`; GW170817 ceiling `η ≲ 10⁹-10¹⁰ Pa·s` derived via Hawking `Γ ~ 16πGη/c²` from the multimessenger arrival-time bound; macromolecule decoherence floor. Bracket position (near KSS) is the framework's commitment. Same `Im χ` governs Bell decoherence (§B.4.5 Bell-memory bridge) | §B.4.5 + §D.5.4 |
+| VG-1 | `Im χ` budget (one dial, three pillars) | `Im χ` (#1 gap) | KSS floor `η/s ≥ ℏ/4π`; GW170817 ceiling `η ≲ 10⁹-10¹⁰ Pa·s` derived via the standard viscous gravitational-wave damping rate `Γ ~ 16πGη/c²` from the multimessenger arrival-time bound; macromolecule decoherence floor. Bracket position (near KSS) is the framework's commitment. Same `Im χ` governs Bell decoherence (§B.4.5 Bell-memory bridge) | §B.4.5 + §D.5.4 |
 | VG-2 | `Λ ~ H²` cosmological-constant residual | `Im χ` (Volovik equilibrium is zero; residual is the drive signature) | A measured value inconsistent with the driven-dissipative deviation from Volovik equilibrium falsifies the identification | §E.1.1 |
 | VG-3 | `1/T_2` substrate-decoherence rate | `Im χ` / WP-IX4 | A measured `1/T_2` above the symmetry-protected boundary would falsify the symmetry-protection result | §D.5.5 |
 | VG-4 | Dark-matter signatures (DM-V2-1) | (Mostly) outside V3 derivational scope; sterile-RH 3-prediction is structural | The 3 sterile RH neutrinos are structural; relic ~2% Ω_DM (47× shortfall); remaining ~98% out of scope. Laboratory detection of heavy sterile RH at Dodelson–Widrow `keV` window would falsify the `m_sterile = m_active ≲ 0.12 eV` Dirac-character prediction | §E.1.3 |
@@ -4918,7 +4924,8 @@ Pending-Values Registry), the geometric-reinterpretation catalog, the methodolog
 the development log, the stable-spectrum enumeration, the wave-phase stability ladder, and the
 bibliography — are consolidated in the companion file:*
 
-**`TWT_foundational_paper_companion.md`**
+**`TWT_foundational_paper_companion.md`** — distributed with this paper and at
+https://github.com/yaerhf/TWT
 
 The companion file contains thirteen sections:
 
