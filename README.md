@@ -10,6 +10,13 @@ This repository holds the framework's **falsification surface**, not its prose. 
 claim the paper makes is encoded here as an executable assertion, so a reviewer can check the
 mathematics without taking anything on trust.
 
+> **Note on repository history.** This repository was rebuilt in July 2026. Its earlier contents —
+> the April 2026 simulation suite (`TWT7.pdf`, the Pauli/Bell/covalent demonstrations, the
+> `clifford.g4` and PyTorch algebra cores) — are preserved unchanged on the
+> [`archive/pre-v3`](../../tree/archive/pre-v3) branch. That work is superseded, not retracted: the
+> premise is the same, but the derivations, tiering and verification suite here replace it
+> entirely. Nothing from the old tree is a current claim of the framework.
+
 ## Run it
 
 ```bash
