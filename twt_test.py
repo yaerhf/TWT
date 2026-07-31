@@ -1137,6 +1137,49 @@ def check_twt_spectra():
         and all(wi["ASD_I4_eigenvalue_minus1"].values())
         and "SECOND" in wi["N4_U1_resolved"])
     print("        => L-orbit EXCLUDED by parity (DERIVED+INPUT); SD = weak isospin SU(2)_L (FRAMING); N4 U1 LOCATED.")
+    sa = self_adjointness_from_one_B_projection()
+    _ck("§B.3.2 SELF-ADJOINTNESS REPAIRED -- 'requiring reality' of <phi~ M psi>_0 is VACUOUS (every "
+        "grade-0 coefficient of a REAL Clifford algebra is already real; and <psi~ M psi>_0 = "
+        "<psi~ M~ psi>_0 identically, so the scalar part is BLIND to the anti-self-adjoint part). The "
+        "working condition is the {1,B} one the Born rule already uses: <psi~ M psi>_B = 0 for all psi. "
+        "Its solution space over left-multiplication operators is EXACTLY the reversion-fixed subspace "
+        "-- dim 2 = span{1,I4} on Cl+(4,0), dim 6 = span{1,e1,e2,e3,e4,I4} on Cl(4,0), for ALL THREE "
+        "L-orbit winding choices B_a (R-020 scope; nothing depends on the phase-blade convention). "
+        "R-022's conclusion M~ = M SURVIVES; only its derivation is replaced. The {1,B} pairing is "
+        "exactly the Hermitian form of C^4: g = <phi~ psi>_0 symmetric unimodular, b = <phi~ psi>_B "
+        "antisymmetric nondegenerate (symplectic), J = right-mult by B a compatible complex structure. "
+        "DERIVED-A. PREMISES NAMED: expectations are real (the QM postulate, not derived) and "
+        "observables are C-linear (28 solution dims without it, 16 with it -- both computed).",
+        sa["grade0_blind_to_anti_self_adjoint_part"]
+        and sa["B_a_independent"] and sorted(sa["per_B_a"]) == ["e12", "e13", "e23"]
+        and sa["pairing_g_symmetric_unimodular"]
+        and sa["pairing_b_antisymmetric_symplectic"] and sa["pairing_b_rank"] == 8
+        and sa["J_squares_to_minus1"] and sa["J_preserves_g_and_b"]
+        and sa["dim_solution_even_subalgebra"] == 2
+        and sa["basis_solution_even_subalgebra"] == sa["reversion_fixed_even"]
+        and sa["dim_solution_full_algebra"] == 6
+        and sa["basis_solution_full_algebra"] == sa["reversion_fixed_full"]
+        and sa["dim_phase_sector_states_even_ops"] == 7
+        and sa["dim_phase_sector_states_phase_ops"] == 1
+        and sa["dim_all_real_linear_solution"] == 28
+        and sa["dim_c_linear_operator_space"] == 32
+        and sa["dim_c_linear_solution"] == 16
+        and sa["left_mult_is_c_linear"]
+        and "DERIVED-A" in sa["tier"] and "NAMED PREMISES" in sa["tier"])
+    _ck("§B.3.2 SPECTRAL-STRUCTURE gloss WITHDRAWN -- the four grade-3 blades ARE orthonormal "
+        "(<T_a T_b~>_0 = delta_ab, exact), but they are reversion-ODD (T~ = -T) hence ANTI-self-adjoint "
+        "by the criterion just derived, they square to -1 (no real eigenvalues) and they do NOT commute "
+        "pairwise (no simultaneous eigenbasis) => 'each blade an eigenvector of the corresponding "
+        "observable' names NO observable and is withdrawn; the four also split 3+1 by e4-content "
+        "(colour slots e124/e134/e234 vs the spatial pseudoscalar e123), so they are not a uniform "
+        "quadruplet. The trivector->fermion-spectrum map is NOT established in §B.3.2.",
+        sa["grade3_orthonormal"] and all(sa["grade3_anti_self_adjoint"].values())
+        and all(sa["grade3_square_minus_one"].values())
+        and all(sa["grade3_pairwise_noncommuting"].values())
+        and sum(1 for v in sa["grade3_orbit_split_3plus1"].values()
+                if v == "L-orbit (no e4)") == 1
+        and "WITHDRAWN" in sa["tier"])
+    print("        => self-adjointness now forced by the {1,B} projection (dim 2 / dim 6 = reversion-fixed, all three B_a); grade-3 'eigenvector' gloss withdrawn.")
     bs = born_subspace_one_B_forced()
     _ck("§14.4 DEEPER {1,B} -- V2 §3.2 derivation eliminates the §14.4-via-§14.2 circularity: "
         "(L-orbit) AND (centralizer of B_a) within Cl+(4,0) = exactly {1, B_a} for each L-orbit "
@@ -1150,6 +1193,43 @@ def check_twt_spectra():
         and all(bs["Q_orbit_anticommute_e4"].values())
         and "DERIVED-A" in bs["tier"])
     print("        => {1,B} subalgebra forced by V2 §3.2 (engine-exact); §14.4 circularity reduced to sector choice (lepton vs baryon, independently derived).")
+    bwq = bell_wing_needs_the_e4_commutant_qubit()
+    _ck("★ R-167 — the BELL WING is the e4-COMMUTANT qubit, NOT the phase sector: Z_{Cl⁺(4,0)}(e4) = {1,e12,e13,e23} ≅ ℍ = dim_ℂ 2, "
+        "while span{1,B_a} is dim_ℂ 1 and CANNOT host a wing (in ℂ¹ every B_a-rotor state is the SAME ray — Hermitian modulus 1 at every "
+        "pair of angles — and Λ²(ℂ¹)=0 so NO singlet exists there). The half-angle SURVIVES as an honest ℂ² Hermitian overlap "
+        f"|⟨ψ_a|ψ_b⟩| = |cos(Δθ/2)| (max dev {bwq['max_dev_half_angle_C2_hermitian']:.1e}, no grade projection) once the measurement rotor "
+        "leaves the phase plane; the PHASE-plane rotor is DIAGONAL in the ℂ-basis {1,e13} (off-diag 0.0) and fixes ψ₀=1 up to phase, "
+        "generating no second state — which is exactly why §B.4's own measurement plane produced no wing. NO NEW INNER PRODUCT IS NEEDED: "
+        f"§B.3.3's own z(ψ,D) (grade-0 part AND B_a part, as born_exponent_gleason_closure defines it) applied UNCHANGED on Z(e4) IS that ℂ² "
+        f"Hermitian form (max dev {bwq['max_dev_B33_z_overlap_vs_C2_hermitian']:.1e} over 500 random pairs) — the repair widens the MODULE, "
+        "not the inner product. DERIVED-A for the wing algebra; the Z(e4) module restriction remains a named CHOICE, not a derivation.",
+        bwq["W_commutant"] == ["1", "e12", "e13", "e23"] and bwq["fails_W"] == ["I4", "e14", "e24", "e34"]
+        and bwq["dim_C_phase_sector"] == 1 and bwq["dim_C_e4_commutant"] == 2
+        and bwq["dim_R_e4_commutant"] == 4 and bwq["qubit_C_basis"] == ["1", "e13"]
+        and bwq["phase_sector_hosts_a_qubit"] is False and bwq["e4_commutant_hosts_a_qubit"] is True
+        and bwq["max_dev_half_angle_C2_hermitian"] < 1e-12
+        and bwq["max_dev_B33_z_overlap_vs_C2_hermitian"] < 1e-12
+        and bwq["su2_offdiagonal_by_rotor_plane"]["e12"] == 0.0
+        and min(bwq["su2_offdiagonal_by_rotor_plane"][k] for k in ("e13", "e23")) > 0.3
+        and "DERIVED-A" in bwq["tier"])
+    _ck("★ R-167 (cont) — the SINGLET PAIRING is a substrate object on the two units the phase-sector cut discarded, and R-020's uniqueness "
+        "is NOT spent: ε(u,v) = ⟨u·j, v⟩ with j ∈ {e13,e23} (RIGHT multiplication — the quaternionic/antilinear structure) is antisymmetric "
+        "AND ℂ-bilinear AND SU(2)-invariant, while RIGHT-mult by the PHASE blade B_a and LEFT-mult by the same e13 both FAIL, and ε vanishes "
+        "identically on span{1,B_a}. span{1,B_a} is exactly the ℂ-linear SCHUR commutant of the one-sided SU(2) action on Z(e4) (dim_ℝ 2 "
+        "inside the full commutant dim_ℝ 4 = ℍ) ⇒ enlarging the MODULE to ℂ² leaves R-020's OPERATOR statement verbatim. U(1)_{B_a} adjoint "
+        "grading of the eight even blades: charge-0 {1,e12,e34,I4} / charged {e13,e14,e23,e24}; the four that FAIL (W) are {e14,e24,e34,I4} "
+        "= R-128's quark-lock family. NOT CLAIMED: the two-wing TENSOR PRODUCT (N53) and the SINGLET SELECTION (dynamics, #1 gap) remain "
+        "IMPORTS — bell_correlation stays FRAMING.",
+        bwq["pairing_antisym_Cbilinear_SU2invariant"]["e13_right"] == (True, True, True)
+        and bwq["pairing_antisym_Cbilinear_SU2invariant"]["e23_right"] == (True, True, True)
+        and bwq["pairing_antisym_Cbilinear_SU2invariant"]["e12_right"][0] is False
+        and bwq["pairing_antisym_Cbilinear_SU2invariant"]["e13_left"][0] is False
+        and bwq["pairing_antisym_Cbilinear_SU2invariant"]["e13_left"][2] is False
+        and bwq["schur_commutant_dim_R"] == 4 and bwq["schur_C_linear_commutant_dim_R"] == 2
+        and sorted(n for n, q in bwq["U1_Ba_adjoint_charges"].items() if q == 0) == ["1", "I4", "e12", "e34"]
+        and sorted(n for n, q in bwq["U1_Ba_adjoint_charges"].items() if q == 1) == ["e13", "e14", "e23", "e24"]
+        and "IMPORTS" in bwq["tier"])
+    print("        ⇒ R-167: the ℂ¹/ℂ² contradiction between §B.3.1 and §B.4 is CLOSED on the e4-commutant qubit; the two-wing tensor product (N53) is NOT.")
     pm = protection_mechanism_located()
     _bb = pm["clean_negative_linear_cannot_make_geometric"]["backbone_costs"]
     _ck("★ CLEAN NEGATIVE (decisive) — LINEAR backbones cannot make the GEOMETRIC cost ladder, and fail on the TREND not just scale: every "
@@ -1696,7 +1776,8 @@ def check_twt_em():
     print("       the four laws (one statement, four grade-components):")
     for k, v in maxwell_four_laws().items():
         print(f"          {k:22s}: {v}")
-    print("       no magnetic monopoles: F is a pure bivector ⇒ no grade-0/4 source.")
+    print("       no magnetic monopoles: the grade-3 SOURCE slot (4 components) exists but J is")
+    print("       grade-1 only — empty by the winding-as-source identification, not by algebra.")
 
     print("§21.3 Coulomb potential:")
     _ck("F_static = Σ/(4πr) is harmonic away from source: ∇²(1/r)=0 for r>0", coulomb_is_harmonic())
@@ -2258,6 +2339,23 @@ def check_twt_cosmo():
         lr["rho_grav at equilibrium (P=0)"] == 0.0 and not lr["huge zero-point energy gravitates"])
     print("        ⇒ the huge QFT zero-point energy does NOT gravitate; Λ>0 is the off-equilibrium remnant [value OPEN].")
 
+    lh = lambda_H2_dynamical_reading_excluded()
+    _ck("N54 / §E.1.1: the DYNAMICAL reading ρ_vac ∝ H(t)² at ALL epochs is EXCLUDED — Ω_vac(z) ≡ ν forces "
+        f"Ω_e = 0.685 ({lh['excess_over_Planck2015XIV_earlyDE_0p02']:.0f}× the Planck 2015 XIV ≈2% early-DE bound), "
+        f"equivalent ΔN_eff = {lh['equivalent_Delta_Neff_at_BBN']:.1f} at the BBN epoch "
+        f"({lh['excess_over_BBN_Delta_Neff_95up']:.0f}× the −0.14±0.21 light-element 95% ceiling; the "
+        f"post-annihilation convention would give {lh['equivalent_Delta_Neff_post_annihilation_convention']:.1f}), "
+        f"{lh['excess_over_RVM_nu_95up']:.0f}× the RVM ν fit ceiling, and a CONSTANT q ⇒ NO deceleration→acceleration "
+        f"transition (flat ΛCDM on the same params: z_t = {lh['LCDM_transition_redshift_same_params']:.2f}). Only the "
+        "PRESENT-EPOCH reading survives, and it is near-definitional ⇒ NO dark-energy prediction at V3",
+        lh["excess_over_Planck2015XIV_earlyDE_0p02"] > 30
+        and lh["excess_over_BBN_Delta_Neff_95up"] > 25
+        and lh["equivalent_Delta_Neff_at_BBN"] < lh["equivalent_Delta_Neff_post_annihilation_convention"]
+        and lh["excess_over_RVM_nu_95up"] > 100
+        and lh["q_depends_on_z"] is False
+        and 0.60 < lh["LCDM_transition_redshift_same_params"] < 0.70
+        and "EXCLUDED" in lh["verdict"] and "NO dark-energy prediction" in lh["verdict"])
+
     print("§24.5 induced-G MAGNITUDE — the knowability determination (item 10, ECC two-build, Editor-calibrated):")
     qd = induced_G_quadratic_divergence_from_4D()
     _ck("Λ² scaling DERIVED from substrate DIMENSIONALITY only (UV power d−2 = 2 at d=4); the heat-kernel "
@@ -2272,9 +2370,11 @@ def check_twt_cosmo():
         "~1e38 -> clean (b), not partial-knowability",
         abs(om["ell_S_fm"] - 0.281) < 0.005 and float(om["G_mismatch_if_cell_cutoff"]) > 1e38)
     bk = induced_G_bracket_mode_count()
-    _ck("Λ is a FREE residual: back-fit Λ/M_Pl=√(6π/N_eff) maps [0.16,0.72]M_Pl to N_eff∈[~36,~736] (mode count); "
-        "CAVEAT a1 is a SIGNED TYPE-sum not a count -> true bracket may be WIDER",
-        bk["N_eff_bracket_mode_count"] == (36, 736) and "WIDER" in bk["caveat"])
+    _ck("Λ_S is a FREE residual: back-fit Λ/M_Pl=√(6π/N_eff) mapped the RETIRED [0.13,2.5]M_Pl bracket to "
+        "N_eff∈[~3,~1115] (HISTORICAL record; which-Λ ruled 2026-07-30, bracket_status = RETIRED); "
+        "CAVEAT a1 is a SIGNED TYPE-sum not a count -> a mode-count bracket would be WIDER still",
+        bk["N_eff_bracket_mode_count"] == (3, 1115) and "WIDER" in bk["caveat"]
+        and "RETIRED" in bk["bracket_status"] and "HISTORICAL" in bk["NOT_a_mode_count_claim"])
     sg = induced_G_sign_cross_check()
     _ck("sign + (attractive) via C_T>0 (item 5, cross-checked not re-opened); OPEN subsidiary: Euclidean->Lorentzian "
         "prefactor/sign may carry i/2π subtleties (Λ² scaling survives)",
@@ -2309,9 +2409,13 @@ def check_twt_cosmo():
     _ck("D4 bond set 2nd moment EXACTLY 12·δ_ij (no dim-4 anisotropy) — DERIVED-A",
         lv["D4_second_moment_12_delta"] is True)
     _ck("D4 bond set 4th moment EXACTLY isotropic, residual = 0 with A = 4 (M_1111 = 12 = 3·M_1122) ⇒ leading "
-        "rotational anisotropy pushed to DIMENSION EIGHT, (E/Λ)⁴ ≈ 6.9e-30 — STRENGTHENS the old dim-6 claim",
+        "rotational anisotropy pushed to DIMENSION EIGHT, (E/Λ)⁴ ≈ 2.0e-31 at the loose Λ_L corner — STRENGTHENS "
+        "the old dim-6 claim. (Which-Λ ruling 2026-07-30: the corner is now the 1/a band floor 0.386 M_Pl; was "
+        "≈ 1.6e-29 at the retired bracket's 0.13 M_Pl floor, ≈ 6.9e-30 at the pre-widening 0.16 M_Pl. "
+        "Utterly negligible under every convention — the STRUCTURAL content, dim-8 leading, is Λ-independent)",
         lv["D4_fourth_moment_isotropy_residual"] == 0 and lv["D4_fourth_moment_A"] == 4
-        and "EIGHT" in lv["anisotropy_leading_order"] and lv["anisotropy_magnitude_(E/Lambda)^4"] < 1e-29)
+        and "EIGHT" in lv["anisotropy_leading_order"]
+        and 2.0e-31 < lv["anisotropy_magnitude_(E/Lambda)^4"] < 2.1e-31)
     _ck("THE REAL REASON is representation-theoretic, not a kernel model (canon §3): |Aut(D4 root system)| = "
         "1152 = |W(F4)| and its degree-4 invariant space is ONE-dimensional (only (k²)²) ⇒ symmetry forces the "
         "quartic isotropic for ANY point-group-symmetric analytic kernel — matches F4's known invariant "
@@ -2344,11 +2448,26 @@ def check_twt_cosmo():
     _ck("the ROTATIONALLY INVARIANT dim-6 residual η⁽⁴⁾ is NOT protected by either face and is #1-gap GATED — "
         "the engine returns NO prediction for it (Cl41Wave().wave_speed_c raises)",
         "GATED" in lv["dim6_isotropic_eta4"] and "NOT a prediction" in lv["naive_eta4_status"])
-    _ck("HONEST EXPOSURE recorded, not hidden: naive coefficient-1 value η⁽⁴⁾ = (M_Pl/Λ)² ∈ [1.9, 39] is EXCLUDED "
+    _ck("HONEST EXPOSURE recorded, not hidden: naive coefficient-1 value η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7] is EXCLUDED "
         "by published n=4 limits by 3-9 orders; form factor gives only (f_π/m_p)² ~ 1e-2 and NOTHING for the photon "
-        "(bulk mode) ⇒ logged as E.3.3 VG-6 / E.3.5(4) + N52, NOT as a falsifier row and NOT as a passed test",
-        1.9 < lv["naive_eta4_at_c_equals_1"][0] < 2.0 and 39 < lv["naive_eta4_at_c_equals_1"][1] < 40
-        and "NOT a falsifier row" in lv["recorded_as"] and "NONE for the photon" in lv["form_factor_insufficient"])
+        "(bulk mode) ⇒ logged as E.3.3 VG-6 / E.3.5(4) + N52, NOT as a falsifier row and NOT as a passed test. "
+        "(which-Λ ruling 2026-07-30: dispersion consumers take Λ_L = 1/a, band [0.386, 0.734] M_Pl; the 2026-07-28 "
+        "wide bracket [0.13, 2.5] / η⁽⁴⁾ [0.16, 59] / 2-10 orders is RETIRED — the exposure NARROWED and SHARPENED)",
+        1.8 < lv["naive_eta4_at_c_equals_1"][0] < 1.9 and 6.6 < lv["naive_eta4_at_c_equals_1"][1] < 6.8
+        and "NOT a falsifier row" in lv["recorded_as"] and "NONE for the photon" in lv["form_factor_insufficient"]
+        and lv["Lambda_bracket_used"]["bracket_M_Pl_nonreduced"] == (0.3865, 0.7345)
+        and "RULED" in lv["Lambda_bracket_used"]["status"])
+    _crg_tie = c_reg_from_substrate_mode_content()
+    _m_tie = __import__("re").search(r"c_lat = ([0-9.]+) \+ ([0-9.]+)\*kappa",
+                                     _crg_tie["OA_LF_ii_sensitivity"]["c_lat(kappa) affine"])
+    _mt_math = __import__("math")
+    _band_tie = tuple(sorted(_mt_math.sqrt(2 * _mt_math.pi / (float(_m_tie.group(1)) + float(_m_tie.group(2)) * _k))
+                             for _k in (2.0, 0.5)))
+    _ck("CROSS-TIE (2026-07-30): the LV primitive's Λ_L band literals agree with the band recomputed LIVE from "
+        "c_reg_from_substrate_mode_content's own affine c_lat(κ) at κ ∈ {1/2, 2} to 1e-3 — the ruled band is "
+        "tied to the computing primitive, not a free-floating constant (the vacuous-check tell, canon §8a)",
+        abs(_band_tie[0] - lv["Lambda_bracket_used"]["bracket_M_Pl_nonreduced"][0]) < 1e-3
+        and abs(_band_tie[1] - lv["Lambda_bracket_used"]["bracket_M_Pl_nonreduced"][1]) < 1e-3)
     print("        ⇒ R-165: dim-4 boost CLOSED (R-016); anisotropy CLOSED HARDER than claimed (dim-8, D4-specific); "
           "the isotropic dim-6 term is the framework's sharpest standing empirical tension (N52).")
 
@@ -2656,8 +2775,19 @@ def check_twt_cosmo():
         "QFT INPUT" in sg["tier"] and "scaling FORM" in sg["tier"])
     _ck("RESULT: M_Pl^2 = Lambda^2/(16*pi^2) (from N_eff=6 + QFT INPUT)",
         abs(sg["MPl_sq_coeff"] - 1/(16*_math2.pi**2)) < 1e-14)
-    _ck("Lambda = 4*pi * M_Pl ~ 12.566 M_Pl (exact arithmetic)",
-        abs(sg["Lambda_over_MPl"] - 4*_math2.pi) < 1e-10)
+    _ck("Lambda = 4*pi * M_REDUCED ~ 12.566 M_red (exact arithmetic) == sqrt(2*pi) ~ 2.507 in the paper's "
+        "NON-REDUCED M_Pl. UNIT CONVENTION now explicit (2026-07-28): the legacy key 'Lambda_over_MPl' is "
+        "stated against M_red = M_Pl/sqrt(8*pi) and its name never said 'reduced' — that omission is what made "
+        "this artifact and the paper's Lambda-bracket look ~12x apart (real convention gap sqrt(8*pi) ~ 5.01). "
+        "Plus: the c_reg story CLOSED — RESOLVED 2026-07-29 (one coefficient c_reg = 1/12, three "
+        "Lambda-variables) + which-Λ RULED 2026-07-30 (Λ_S scheme / Λ_L = 1/a for dispersion consumers) — "
+        "no tier moves",
+        abs(sg["Lambda_over_MPl"] - 4*_math2.pi) < 1e-10
+        and abs(sg["Lambda_over_M_REDUCED"] - 4*_math2.pi) < 1e-10
+        and abs(sg["Lambda_over_MPl_nonreduced"] - _math2.sqrt(2*_math2.pi)) < 1e-12
+        and "REDUCED Planck mass" in sg["unit_convention"]
+        and sg["c_reg_reconciliation"]["status"].startswith("RESOLVED")
+        and "induced_G_from_linear_face_band" in sg["c_reg_reconciliation"]["the three values"]["~1.8"])
     _ck("SD/ASD split: N_eff = 3 (SD) + 3 (ASD); generic-dim=4 qualifier present",
         "3 + 3" in sg["SD_ASD_split"] and "generic" in sg["SD_ASD_split"].lower())
     _ck("NEGATIVE: [SD1,ASD1] = 0 (engine) => L_Skyrme(TT graviton) = 0 => EH != Skyrme quartic",
@@ -2693,6 +2823,98 @@ def check_twt_cosmo():
         "matter_stability_outside_frame" in xi["coherence"] and "equivalence_principle_protection" in xi["coherence"])
     print("        => N27 gate (2) NARROWED by a SYMMETRY SHORTCUT (canon §4a, s=3/Adler-zero class): xi=1/6 "
           "catastrophic branch EXCLUDED (removed falsifier), xi=0 leading-order. Only gate (1) (#1-gap coefficient) remains.")
+
+    print("§21.6.1 c_reg FOR TWT'S ACTUAL MODE CONTENT — the three-way c_reg 'disagreement' is a")
+    print("     Lambda-VARIABLE artifact, and the OA-LF-ii exposure sits entirely in c_lat (2026-07-29):")
+    crg = c_reg_from_substrate_mode_content()
+    _ck("TIER honest: DERIVED-A only for the exact arithmetic (parametrization identity + S^4 a_1 "
+        "type-sum, pure math), DERIVED-given-(R-112 linear face AND R-041 xi=0/E=0) for the physics, "
+        "INHERITING R-041's FRAMING+CONDITIONAL cap. NOT a derivation of G; N_eff unchanged "
+        "(GENERIC-given-dim-4); OA-LF-i/ii NOT retired",
+        "DERIVED-A" in crg["tier"] and "R-112" in crg["tier"] and "R-041" in crg["tier"]
+        and "FRAMING+CONDITIONAL" in crg["tier"] and "NOT a derivation of G" in crg["tier"]
+        and "GENERIC-given-dim-4" in crg["tier"] and "NOT retired" in crg["tier"])
+    _ck("THE TYPE-SUM (exact S^4 spectra, Richardson in s): a_1 = R/6 for one minimal scalar, "
+        "a_1 = R for TWT's SIX grade-2 channels, and the excluded readings computed not assumed — "
+        "conformal xi=1/6 gives a_1 = 0 (NO induced gravity) and the Lambda^2 HODGE operator gives "
+        "a_1 = -R (c_reg = -1/12, REPULSIVE G < 0), with Lambda^1 Hodge a_1 = -R/3 as cross-check. "
+        "So the mode-TYPE question was capable of ZEROING or REVERSING induced gravity",
+        abs(crg["a1_type_sum_S4"]["1 minimal scalar"] - 2.0) < 1e-4
+        and abs(crg["a1_type_sum_S4"]["6 minimal scalars (TWT)"] - 12.0) < 1e-3
+        and abs(crg["a1_type_sum_S4"]["Lambda^2 HODGE (Weitzenbock)"] + 12.0) < 1e-3
+        and abs(crg["a1_type_sum_S4"]["Lambda^1 HODGE (cross-check)"] + 4.0) < 1e-3
+        and crg["excluded_readings_would_have"]["conformal xi=1/6"]["c_reg"] == 0.0
+        and crg["excluded_readings_would_have"]["Hodge / 2-form"]["c_reg"] < 0
+        and crg["excluded_readings_would_have"]["TWT (6 minimal / Bochner)"]["c_reg"] > 0)
+    _ck("RESULT: TWT's mode content is 6 real bosonic massless channels with E = 0 (BOCHNER, "
+        "sigma-model kinetic) — NO fermionic channel on the linear face (matter = defect = soliton) "
+        "and NO separate gauge sector (the photon is one of the 6 grade-2 strain modes, B.5.4). "
+        "E = 0 is forced by the SAME left-Spin(4) shift symmetry R-041 uses for xi = 0: a generic AND "
+        "a Weitzenbock-shaped endomorphism are both shift-NON-invariant (engine). => c_reg = 1/12 "
+        "EXACTLY, in the SAKHAROV PROPER-TIME-CUTOFF variable — the textbook value IS the substrate's "
+        "own mode-content value. This answers induced_G_bracket_mode_count's standing 'mode content "
+        "was not specified' caveat: it is the all-minimal-scalar corner",
+        abs(crg["c_reg"] - 1/12) < 1e-12
+        and crg["mode_content"]["channels"] == 6
+        and "BOCHNER" in crg["mode_content"]["type"]
+        and crg["mode_content"]["fermionic channels"].startswith("NONE")
+        and crg["mode_content"]["gauge sector"].startswith("NONE")
+        and all(crg["mode_content"]["endomorphism_shift_breaks"].values())
+        and "PROPER-TIME CUTOFF" in crg["c_reg_variable"])
+    _ck("THE RECONCILIATION, SCOPED (second pass 2026-07-29): 1/(16 pi G) = N_eff c_lat/"
+        "(192 pi^2 a^2) reads c_reg = c_lat/12 at Lambda := 1/a and c_reg = 1/12 at Lambda := "
+        "Lambda_eff = sqrt(c_lat)/a, so the two BANKED values are NOT rivals. Their ratio is c_lat "
+        "EXACTLY — but BY DEFINITION of Lambda_eff: c_reg multiplies Lambda^2, so the ratio is "
+        "(L2/L1)^2 for any two Lambda-variables, independent of the assembly, of a_1 and of N_eff. "
+        "The in-primitive assert WAS a TAUTOLOGY (B := A*c_lat, check B/A = c_lat) and has been "
+        "DELETED 2026-07-29 — it was not evidence, it read neither banked primitive, and its "
+        "absolute tolerance made it FAIL at c_lat = 1e5 while claiming ARBITRARY c_lat; "
+        "R-163 had already stated the reconciliation itself. There are TWO Lambda-"
+        "variables, not three: the '~1' placeholder sits at Lambda := 1/a alongside 1.82 and is "
+        "consistent with it at O(1), and it is SUPERSEDED as never-computed. What remains OPEN is "
+        "NOT c_reg but c_lat",
+        "TAUTOLOGY" in crg["three_way_resolution"]["~1.82"]
+        and "SUPERSEDED" in crg["three_way_resolution"]["~1"]
+        and "TWO Lambda-variables, not " in crg["three_way_resolution"]["verdict"]
+        and "c_lat" in crg["three_way_resolution"]["what is actually OPEN"])
+
+
+    # --- REAL cross-primitive consistency check (added 2026-07-29, replaces the deleted
+    # in-primitive tautology). This one READS THREE BANKED PRIMITIVES and FAILS if any of
+    # them drifts relative to the others — which is exactly what the deleted assert could
+    # not do, since it recomputed local literals and never touched a banked value.
+    _sg_x = sakharov_induced_gravity()
+    _bd_x = induced_G_from_linear_face_band()
+    _creg_x = crg["c_reg"] if isinstance(crg.get("c_reg"), float) else 1.0 / 12.0
+    _chain = math.sqrt(math.pi / (_creg_x * _sg_x["N_eff"]))
+    _ck("CROSS-PRIMITIVE: c_reg (mode-content primitive) + N_eff (sakharov) reproduce sakharov's "
+        "OWN Lambda/M_Pl(non-reduced) = sqrt(2 pi) = %.6f, and c_lat (linear-face-band primitive) "
+        "is positive and at its banked 21.83. Unlike the deleted tautology this reads all three "
+        "and FAILS on drift in any one of them" % math.sqrt(2 * math.pi),
+        abs(_chain - _sg_x["Lambda_over_MPl_nonreduced"]) / _sg_x["Lambda_over_MPl_nonreduced"] < 1e-5
+        and _bd_x["c_lat"] > 0 and abs(_bd_x["c_lat"] - 21.8285) / 21.8285 < 1e-3)
+    _ck("THE SENSITIVITY (the same quantity, both faces): deforming the monad-scale curvature weight "
+        "to kappa for s < a^2 makes c_lat(kappa) EXACTLY AFFINE with slope = R-163's own ~93% "
+        "proper-time support fraction, so OA-LF-ii's own 'up to O(1)' tolerance (kappa in [1/2,2]) "
+        "moves c_lat by a factor ~3.6 — R-163's quoted -5%..-25% window is the GAP/state "
+        "(OA-LF-i-class) question and UNDERSTATES the OPERATOR exposure by > an order of magnitude. "
+        "But Lambda_eff = sqrt(c_lat)/a = sqrt(2 pi) M_Pl EXACTLY for every c_lat, so c_reg = 1/12 "
+        "carries ZERO OA-LF-ii sensitivity while 'c_reg ~ 1.82' carries ~93%-LINEAR sensitivity. "
+        "R-163's branch is WEAKER as a c_reg determination than its window suggests; its real content "
+        "is the monad spacing a. FENCE + SWEEP both stated, revert clause named",
+        0.90 <= crg["OA_LF_ii_sensitivity"]["slope fraction (= R-163's s<a^2 support)"] <= 0.95
+        and "factor 3.6" in crg["OA_LF_ii_sensitivity"]["O(1) tolerance kappa in [1/2,2]"]
+        and "UNDERSTATES" in crg["OA_LF_ii_sensitivity"]["R-163's quoted window"]
+        and "ZERO OA-LF-ii sensitivity" in crg["OA_LF_ii_sensitivity"]["what does NOT move"]
+        and "Does NOT derive G" in crg["scope_fence"]
+        and "RETIRED" in crg["scope_fence"]
+        and "Revert clause" in crg["would_change_if"]
+        and "ADDITIVE" in crg["pending_sweep"])
+    print("        => c_reg = 1/12 for TWT's OWN mode content (6 minimal/Bochner channels; E=0 from "
+          "R-112's sigma-model kinetic term for the Hodge corner and from R-041's shift symmetry for "
+          "the conformal corner); the '21.6 disagreement' was a Lambda-VARIABLE bookkeeping defect, "
+          "reconciled by definition of Lambda_eff, not by computation; the OA-LF-ii exposure lives "
+          "entirely in c_lat/a, NOT in the induced-G coefficient.")
 
     print("§21.6.1 MATTER-GRAVITY COUPLING (open_4) — structural resolution (2026-06-28):")
     mg = texture_matter_gravity_coupling()
@@ -2751,9 +2973,10 @@ def check_twt_cosmo():
         and "zero anchor rank" in ec["EMPIRICAL_boundary_conditional"]["kind"]
         and "NAIVE" in ec["EMPIRICAL_boundary_conditional"]["naive_value_status"])
     _ck("the substrate-normalization CEILING is a BANKED RETURNED FIELD, not a floating number: "
-        "implied_substrate_c_ceiling spans 2.6e-10 … 5.2e-7 across {species, Λ-corner}, so downstream text cites the "
-        "primitive rather than quoting an unbacked bracket (canon §2)",
-        (lambda d: abs(d["photon_eta4_1e-8"][0] - 2.56e-10) < 1e-12 and abs(d["matter_eta4_1e-6"][1] - 5.184e-7) < 1e-9)(
+        "implied_substrate_c_ceiling spans 1.5e-9 … 5.4e-7 across {species, Λ-corner}, so downstream text cites the "
+        "primitive rather than quoting an unbacked bracket (canon §2). (Re-cut 2026-07-30 by the which-Λ ruling to "
+        "the Λ_L = 1/a band [0.386, 0.734] M_Pl; was 1.7e-10 … 6.3e-6 under the retired [0.13, 2.5] bracket)",
+        (lambda d: abs(d["photon_eta4_1e-8"][0] - 1.49e-9) < 1e-11 and abs(d["matter_eta4_1e-6"][1] - 5.39e-7) < 1e-9)(
             lv["implied_substrate_c_ceiling"]))
     _ck("INVARIANT/VARIANT partition + epistemics recorded: invariants (s=3, sin²θ_W=3/8, π₃, Z3-dichotomy, WEAK-EP) = "
         "DERIVABLE-by-class-invariance; variants (α,g,g_s,σ_QCD,masses,v,τ_mem,Θ_rel-value) = provably gated; "
@@ -2978,11 +3201,18 @@ def check_twt_cosmo():
         "anisotropy shifts c_lat by < 0.01%). THREE-WAY normalization spread noted (paper 16 pi^2 / "
         "bracket 96 pi^2 / sakharov 192 pi^2): the paper B.6.2 table IS self-consistent under its "
         "OWN formula (c_reg = c_lat/12 = 1.82, inside 'c_reg ~ 1') so a convention note is needed, "
-        "not an arithmetic fix; the CONVENTION-INVARIANT statement 'a = 1.86 ell_Planck, Planckian "
+        "not an arithmetic fix -- SCOPED (2026-07-28) to the pi-CONVENTION spread ONLY; the VALUE "
+        "question RESOLVED 2026-07-29 (one c_reg = 1/12 in the proper-time variable; 1.82 = c_lat/12 "
+        "is the same computation in Lambda := 1/a) and which-Lambda RULED 2026-07-30; "
+        "the CONVENTION-INVARIANT statement 'a = 1.86 ell_Planck, Planckian "
         "within O(1)' SUPPORTS B.6.2. The engine cross-tie sqrt(96 pi^2/6) = 4 pi reproduces "
         "sakharov_induced_gravity exactly and is c_lat-INDEPENDENT, so nothing banked moves. "
-        "JURISDICTION: 'a' is ALWAYS CONDITIONAL -- never 'TWT derives the monad spacing'; the "
-        "[0.16,0.72] M_Pl bracket stays CANDIDATE/conditional and does not move",
+        "JURISDICTION: 'a' is ALWAYS CONDITIONAL -- never 'TWT derives the monad spacing'; Lambda "
+        "values stay CANDIDATE/conditional and do NOT move to chase agreement with measurement "
+        "(both historical re-cuts were fence case (a) -- the 2026-07-28 widening spanned the apparent "
+        "c_reg disagreement; the 2026-07-29 resolution + 2026-07-30 which-Lambda ruling SPLIT the "
+        "symbol, Lambda_S scheme / Lambda_L = 1/a = [0.386, 0.734] M_Pl for dispersion consumers, and "
+        "RETIRED the wide bracket. 'It agrees better with the data' is NEVER a reason)",
         "[1.61, 1.86]" in iglf["gapless_idealization"]["=> a range"]
         and "UN-BANKED" in iglf["gapless_idealization"]["canted vacuum"]
         and "16 pi^2" in iglf["normalization_spread"]["three conventions"]["paper SSB.6.2"]
@@ -2993,7 +3223,12 @@ def check_twt_cosmo():
                 - iglf["engine_cross_tie"]["sakharov_induced_gravity Lambda_over_MPl"]) < 1e-12
         and "ALWAYS CONDITIONAL" in iglf["a_monad_spacing"]["JURISDICTION"]
         and "NEVER write" in iglf["a_monad_spacing"]["JURISDICTION"]
-        and "does NOT move" in iglf["fence"])
+        and "do NOT move" in iglf["fence"]
+        and "NEVER a reason" in iglf["fence"]
+        and iglf["c_reg_vs_sakharov"]["status"].startswith("RESOLVED")
+        and "1/12" in iglf["c_reg_vs_sakharov"]["sakharov_induced_gravity"]
+        and "VALUE question RESOLVED"
+            in iglf["normalization_spread"]["paper table self-consistency"])
 
     print("W6 (2026-07-27) — THE ELASTIC-EH NEGATIVE (ledger N51): the Skyrme quartic contains NO")
     print("     tree-level Einstein-Hilbert term -- 'gravity as elasticity' dead in the banked class:")

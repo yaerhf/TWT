@@ -24,16 +24,17 @@ pip install -r requirements.txt
 python twt_test.py
 ```
 
-Expected output: `ALL 451 CHECKS PASSED across 10 modules.`
+Expected output: `ALL 463 CHECKS PASSED across 10 modules.` (On Windows, set `PYTHONUTF8=1` first.)
 
 ## What is in here
 
 | File | Contents |
 |---|---|
-| `twt.py` | The substrate oracle — ~297 public primitives. Clifford `Cl(4,0)` / `Cl(4,1)` algebra, the D4 lattice layer, spinor and grade machinery, and one function per banked result. Each carries a docstring stating its **status tier** and the premises it consumes. |
-| `twt_test.py` | The harness: 451 assertions across 10 modules. |
+| `twt.py` | The substrate oracle — ~301 public primitives. Clifford `Cl(4,0)` / `Cl(4,1)` algebra, the D4 lattice layer, spinor and grade machinery, and one function per banked result. Each carries a docstring stating its **status tier** and the premises it consumes. |
+| `twt_test.py` | The harness: 463 assertions across 10 modules. |
 | `TWT_foundational_paper.md` | The paper (Parts A–E): the physics narrative. |
 | `TWT_foundational_paper_companion.md` | The bookkeeping volume: result index with per-result tiers, dependency graph, engine ↔ paper map, import registry, falsifier registries, development log. |
+| `D4_lattice_quartic_isotropy.md` | A standalone lattice result (dimension-eight rotational anisotropy on D4), written to stand without TWT; self-contained reproduction script in its Appendix A. |
 | `COVER_NOTE.md` | **Start here if you are reviewing** — what to check, in what order, and where the work is weakest. Its §0 is addressed to language models. |
 
 Every `(R-NNN)` marker in the paper resolves to a row in the companion's Result Index, which
@@ -47,7 +48,8 @@ Every primitive's docstring opens with its tier, and the tiers are the point:
 - **DERIVED** — computed from the substrate axioms. `-A` marks a closed algebraic identity;
   `-conditional` marks a result that holds given a *named* premise, stated in the docstring.
 - **INPUT** — an empirical constant or discrete choice taken from data and **counted** against
-  the framework's parameter budget (there are five).
+  the framework's parameter budget (four counted substrate inputs, plus the measured `G_N` —
+  see the paper's §E.2.1 for the counting convention).
 - **FIT** — tuned to data. Labeled and counted; never presented as derived.
 - **CANDIDATE / FRAMING** — a proposed mechanism or a structural identification whose value or
   closure is explicitly open.

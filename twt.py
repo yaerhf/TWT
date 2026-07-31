@@ -271,16 +271,50 @@ T3 = {"nu": +0.5, "e": -0.5, "u": +0.5, "d": -0.5}
 # Anti-circularity: quark charges come from the integer baryon charges + composition,
 # NOT from T3 + Y/2.
 def winding_charge():
-    """[DERIVED-STRUCTURAL, given algebraic Q_e=-1 + Spin(4) B-L + charge neutrality]
-    Q from the winding: integer baryon charges (Q_p=+1 anchored via Q_e=-1 from the
-    e_4-bilinear on the e_123 lepton blade, §18.2; then Spin(4) B-L conservation +
-    overall charge neutrality of an atom force Q_p=+1, Q_n=0) + quark composition
-    p=uud, n=udd.  No use of GMN anywhere — the GMN c=1/2 check is downstream.
-    Solve 2Qu+Qd=Qp, Qu+2Qd=Qn  (det=3): Qu=(2Qp-Qn)/3, Qd=(2Qn-Qp)/3.
+    """[DERIVED-structural (the composition solve is exact rational arithmetic) GIVEN
+    an INPUT normalization anchor (Qp, Qn) = (1, 0) and the INPUT state-identification
+    p=uud, n=udd (P6); the function NAME is a legacy misnomer]
 
-    Tier note (post audit 2026-06-30): pi3_S3_integer_completion only proves B ∈ Z
-    (integers), not the specific +1 nor which baryon is positive. The Q_p=+1 anchor
-    is the Q_e=-1 algebraic chain + B-L conservation, not gate-free topology alone."""
+    NAME WARNING (II-7 two-chains audit, 2026-07-29): NO WINDING IS COMPUTED HERE.
+    The only numeric inputs are the two frozen literals Qp, Qn = 1, 0. Everything
+    else is the composition solve from p=uud, n=udd: 2Qu+Qd=Qp, Qu+2Qd=Qn
+    (det=3) => Qu=(2Qp-Qn)/3, Qd=(2Qn-Qp)/3.
+
+    WHAT THE TOPOLOGY ACTUALLY DELIVERS. pi3_S3_integer_completion proves B in Z
+    only -- a discrete charge LATTICE and its drift protection; no unit, no sign, no
+    per-state value. Run this function's own algebra with an unknown unit q0 and
+    unknown integer windings w_p, w_n and it returns Qu = q0*(2*w_p - w_n)/3,
+    Qd = q0*(2*w_n - w_p)/3: three free parameters, nothing determined. So the
+    winding chain determines none of the 15 Weyl charge VALUES, while the charge
+    functional Q = T_3 + c*Y determines all 15 up to the single normalization c (see
+    charge_normalization_anchor_free). This function and the e4-bilinear chain are
+    therefore NOT two independent determinations that happen to agree; the agreement
+    on all 15 states is exact but carries no cross-check weight at the level of the
+    per-state values. (What DOES carry cross-check weight is the quark row of
+    gmn_coefficient: Q_u arrives by baryon composition from (Qp, Qn) while Y_Q
+    arrives by bilinear-plus-/3, and their agreement at c = 1/2 tests the derived
+    ratio Y_lep/Y_Q = -3 -- delete the /3 and the residue is 2c.)
+
+    CORRECTED ANCHOR PROVENANCE. The previous docstring routed the anchor through
+    "Q_e=-1 from the e_4-bilinear on the e_123 lepton blade". That route is NOT
+    executable as stated: the e_4-bilinear returns the HYPERCHARGE Y, not Q, and it
+    is a PER-BLADE map -- nu_L and e_L share the single lepton blade e123, so
+    hypercharge(e123) = -1 for BOTH members and the bilinear cannot deliver Q_e=-1
+    while Q_nu=0. (The same doublet-blindness is banked one grade down by
+    e4_conjugation_is_LQ_not_updown: C4 = -1 uniformly across the Q-orbit bivectors,
+    no up/down sub-split.) The honest provenance of (Qp, Qn) = (1, 0) is the ONE
+    normalization datum Q(nu_L) = 0 -- supplied either empirically (atom neutrality),
+    or by the native wave-decoupled S_- route, or by the I-18 anomaly conditions --
+    together with the c-free relations Q_p + Q_e = 0 and Q_n + Q_nu = 0. All three
+    provenances are catalogued and separately tiered in
+    charge_normalization_anchor_free.
+
+    ANTI-CIRCULARITY, RESTATED HONESTLY. GMN is still not used inside this function,
+    and hypercharge() is computed from the e_4-bilinear with no reference to Q, so
+    the tautology form of the circularity (Y := 2(Q - T_3)) is genuinely ABSENT. What
+    is NOT supported is the stronger reading that Q is an INDEPENDENT TOPOLOGICAL
+    determination of the 15 charge values racing GMN: the winding supplies
+    PROTECTION, the charge functional supplies NORMALIZATION."""
     Qp, Qn = 1, 0                      # Q_p=+1 anchored: Q_e=-1 (§18.2 algebraic) + B-L + neutrality
     Qu = (2 * Qp - Qn) / 3.0           # = +2/3
     Qd = (2 * Qn - Qp) / 3.0           # = -1/3
@@ -319,7 +353,19 @@ def weinberg_sin2():
     (ΣT3^2 = 2 from the doublets; ΣQ^2 = 16/3 needs ALL 15 states incl. RH singlets.)
     SCOPE (audit 2026-06-25): 3/8 is the UNIFICATION/tree value (the SU(5)/SO(10) group-theory
     normalization of the SM charge assignments); the MEASURED sin^2(theta_W)(M_Z) ≈ 0.231 needs
-    RG run-down from ~10^16 GeV that TWT IMPORTS and does NOT derive (§25). DERIVED = the GUT-scale
+    RG run-down that TWT IMPORTS and does NOT derive -- and the required scale is ~10^13 GeV,
+    NOT 10^16. With TWT's own content (15 Weyl/gen, one Higgs, no superpartners; the three
+    sterile RH neutrinos of R-121 are total gauge singlets, db1 = db2 = 0, so TWT runs exactly
+    as the SM) sin^2 = 3/8 - 0.0355*t with t = ln(M_X/M_Z)/2pi, so 0.23122 requires
+    M_X = 1.09e13 GeV at two loops; running from 10^16 with SM content gives 0.192, not 0.231.
+    10^16 is the MSSM number (b1 = 33/5, b2 = 1 -> 2.0e16 GeV), a spectrum TWT does not have.
+    At M_X = Lambda_L = 1/a -- the ruled lattice reading of the D4-isotropy argument, held as a
+    NAMED PREMISE, not a forced consequence (bare-lattice stiffness equality vs continuum-scheme
+    coupling equality owes the standard lattice->continuum matching correction: Hasenfratz &
+    Hasenfratz 1980; Weisz 1981; Billoire 1981 -- uncomputed here) -- the run-down lands at
+    0.154-0.158, some 32-33% below the measurement (0.147-0.164 at the retired wide bracket);
+    the four standard escape routes (two loops, thresholds, a derived intermediate scale, new
+    states) were computed and closed 2026-07-29, negatives ledger N55 (§25). DERIVED = the GUT-scale
     value; NOT a from-substrate prediction of the observed angle."""
     spec = generation_spectrum()
     sumT3sq = sum(m * t3 ** 2 for _, t3, _, m in spec)
@@ -688,7 +734,7 @@ def texture_metric_candidate():
                                "TT gauge = transverse Omega_m (k^m Omega_m=0); "
                                "h_plus = diag(0,-1,+1,0) from SD1 + ASD1 (engine-verified). "
                                "Sakharov R(g) from TT modes still open_1."),
-        "open_4_matter_coupling": ("Standard TWT B=1 Skyrmion (Q-orbit {e14,e24,e34}) gives h=0 everywhere "
+        "open_4_matter_coupling": ("Standard TWT B=1 Skyrmion (Q-orbit {e14,e24,e34}): h_kl=0 and h_00=0 on the COMPUTED blocks; the h_0k row is NOT computed anywhere and is the open C1-prime fork (see the 2026-07-29 scope note below) "
                                    "(Q-orbit balanced SD/ASD, engine-verified: q_orbit_h_zero=%s). "
                                    "Gravity from ordinary TWT matter requires L-Q-mixing mechanism (unresolved).") % q_orbit_h_zero,
         "still_gated": "texture_tetrad() still raises — item 16 LOCATED not RESOLVED",
@@ -1128,13 +1174,41 @@ def sakharov_induced_gravity():
         W_1loop = (N_eff/2) Tr ln(-Box_g)
     The R-linear term in the heat kernel expansion gives (Donoghue, standard result):
         G_N^{-1} = N_eff * Lambda^2 / (12*pi)    [QFT INPUT — the scaling FORM is entirely here]
-        M_Pl^2 = 1/(8*pi*G_N) = N_eff * Lambda^2 / (96*pi^2)
+        M_red^2 = 1/(8*pi*G_N) = N_eff * Lambda^2 / (96*pi^2)   [M_red = REDUCED Planck mass]
 
     RESULT for N_eff = 6 [DERIVED-STRUCTURAL-CONDITIONAL]:
-        M_Pl^2 = 6 * Lambda^2 / (96*pi^2) = Lambda^2 / (16*pi^2)
-        Lambda = 4*pi * M_Pl  ~  12.566 * M_Pl (TWT UV cutoff ~ 12.6 Planck masses)
-    NOTE: the SPECIFIC RATIO Lambda/M_Pl = 4*pi is what is DERIVED-STRUCTURAL-CONDITIONAL
-    (substrate N_eff=6 [generic-dim=4] + QFT INPUT). The SCALING FORM M_Pl^2 ~ N*Lambda^2
+        M_red^2 = 6 * Lambda^2 / (96*pi^2) = Lambda^2 / (16*pi^2)
+        Lambda = 4*pi * M_red  ~  12.566 * M_red
+    *** UNIT CONVENTION — READ BEFORE QUOTING THE NUMBER (fixed 2026-07-28). ***
+    The M_Pl appearing in the Seeley-DeWitt line below is the REDUCED Planck mass
+    M_red = M_Pl/sqrt(8*pi) (it enters via M^2 = 1/(8*pi*G_N)), NOT the non-reduced
+    M_Pl = 1/sqrt(G_N) that the PAPER's Lambda-bracket uses. So:
+        Lambda/M_red = 4*pi     = 12.566   <- what this primitive returns
+        Lambda/M_Pl  = 4*pi/sqrt(8*pi) = sqrt(2*pi) = 2.507  <- the paper's convention
+    The returned key Lambda_over_MPl is kept for backward compatibility but is REDUCED-frame;
+    read Lambda_over_M_REDUCED / Lambda_over_MPl_nonreduced / unit_convention instead. The
+    missing "reduced" in the old key name is exactly what made this artifact and the paper
+    bracket look a factor ~12 apart when the real convention gap is sqrt(8*pi) ~ 5.01.
+
+    *** c_reg RESOLVED (2026-07-29) + WHICH-LAMBDA RULED (coordinator, 2026-07-30). ***
+    The regulator story closed in two steps. (1) RESOLVED: there is ONE coefficient,
+    c_reg = 1/12 exactly in the proper-time variable (c_reg_from_substrate_mode_content:
+    a_1 = R on the six grade-2 channels). The old "three values" were ONE coefficient read
+    in three Lambda-variables — ~1 was the paper's never-computed placeholder; 1.82 = c_lat/12
+    is the SAME a_1 = R, N_eff = 6 computation written in Lambda := 1/a (R-163). (2) RULED:
+    the symbol is SPLIT. Lambda_S = sqrt(2*pi)*M_Pl exactly (THIS primitive's variable) is a
+    proper-time SCHEME scale — measured G restated, exactly c_lat-independent, carrying NO
+    substrate information; it serves the induced-G bookkeeping ONLY. Lambda_L = 1/a — central
+    0.537 M_Pl, band [0.386, 0.735] M_Pl from OA-LF-ii kappa in [1/2, 2] through the affine
+    c_lat(kappa) — is FORCED for the two Taylor-coefficient consumers (dim-6 LV eta4 / VG-6 /
+    E1 / N52, and the D4 anisotropy corners), is a NAMED PREMISE for the C.4.5 descent start,
+    and is deliberately NOT assigned to the B.6.4 GW denominator (VG-5-gated) or the B.6.5 xi
+    residual (reading-immaterial) — the scoped B.6.2 assignment. The old
+    [0.13, 2.5] M_Pl bracket is RETIRED: it spanned a symbol collision, not a physical range.
+    The re-cut is admissible under the engine's own fence (induced_G_from_linear_face_band:
+    case (a), a normalization/convention reconciliation between named engine artifacts).
+    NOTE: the SPECIFIC RATIO Lambda/M_red = 4*pi is what is DERIVED-STRUCTURAL-CONDITIONAL
+    (substrate N_eff=6 [generic-dim=4] + QFT INPUT). The SCALING FORM M^2 ~ N*Lambda^2
     is pure QFT INPUT, not a substrate result.
 
     NEGATIVE RESULT — Sakharov EH != Skyrme quartic [engine-derived]:
@@ -1153,7 +1227,7 @@ def sakharov_induced_gravity():
     h_mn from the Q-orbit winding. The L-Q-mixing mechanism for direct coupling is unknown.
 
     TIER: CANDIDATE for the coefficient (#1-gap substrate EOM means full rotor propagator
-    is unknown; minimal-coupling correction (f_pi/Lambda)^2~1e-40..1e-39 is negligible but the
+    is unknown; minimal-coupling correction (f_pi/Lambda)^2 ~ 1e-40-class is negligible but the
     full nonlinear sigma-model result may differ at subleading order).
     DERIVED-STRUCTURAL-CONDITIONAL for the SPECIFIC RATIO Lambda/M_Pl = 4*pi:
       - N_eff = 6 (engine, generic-given-dim=4) + Seeley-DeWitt [QFT INPUT] => ratio fixed.
@@ -1213,34 +1287,88 @@ def sakharov_induced_gravity():
 
     # Seeley-DeWitt calculation (QFT INPUT: Donoghue formula for min. coupled massless scalars)
     # G_N^{-1} = N_eff * Lambda^2 / (12*pi)
-    # M_Pl^2 = 1/(8*pi*G_N) = N_eff * Lambda^2 / (96*pi^2)
-    # => Lambda^2 / M_Pl^2 = 96*pi^2 / N_eff
-    Lambda_sq_over_MPl_sq = 96 * math.pi**2 / N_eff   # = 96*pi^2/6 = 16*pi^2
-    Lambda_over_MPl = math.sqrt(Lambda_sq_over_MPl_sq)  # = 4*pi
+    # M_red^2 = 1/(8*pi*G_N) = N_eff * Lambda^2 / (96*pi^2)      [M_red = REDUCED Planck mass]
+    # => Lambda^2 / M_red^2 = 96*pi^2 / N_eff
+    Lambda_sq_over_MPl_sq = 96 * math.pi**2 / N_eff   # = 96*pi^2/6 = 16*pi^2  (REDUCED frame)
+    Lambda_over_MPl = math.sqrt(Lambda_sq_over_MPl_sq)  # = 4*pi, AGAINST M_red (name kept for compat)
     assert abs(Lambda_over_MPl - 4*math.pi) < 1e-10, \
-        f"Lambda/M_Pl = {Lambda_over_MPl}, expected 4*pi = {4*math.pi}"
+        f"Lambda/M_red = {Lambda_over_MPl}, expected 4*pi = {4*math.pi}"
 
-    # Verify the intermediate result: N_eff=6 => M_Pl^2 = Lambda^2/(16*pi^2)
-    MPl_sq_coefficient = N_eff / (96 * math.pi**2)   # coefficient in M_Pl^2 = coeff * Lambda^2
+    # The SAME ratio restated in the PAPER's non-reduced convention: M_red = M_Pl/sqrt(8*pi),
+    # so Lambda/M_Pl = (Lambda/M_red)/sqrt(8*pi) = 4*pi/sqrt(8*pi) = sqrt(2*pi) ~ 2.507.
+    # This is a pure UNIT change, not a physics change — it is the whole of the apparent
+    # "factor 12" between this artifact and the paper's bracket.
+    Lambda_over_MPl_nonreduced = Lambda_over_MPl / math.sqrt(8 * math.pi)
+    assert abs(Lambda_over_MPl_nonreduced - math.sqrt(2 * math.pi)) < 1e-12, \
+        f"Lambda/M_Pl(non-reduced) = {Lambda_over_MPl_nonreduced}, expected sqrt(2*pi)"
+
+    # Verify the intermediate result: N_eff=6 => M_red^2 = Lambda^2/(16*pi^2)
+    MPl_sq_coefficient = N_eff / (96 * math.pi**2)   # coefficient in M_red^2 = coeff * Lambda^2
     assert abs(MPl_sq_coefficient - 1/(16*math.pi**2)) < 1e-14, \
-        f"M_Pl^2 coefficient = {MPl_sq_coefficient}, expected 1/(16*pi^2)"
+        f"M_red^2 coefficient = {MPl_sq_coefficient}, expected 1/(16*pi^2)"
 
     return {
-        "tier": ("CANDIDATE (coefficient) / DERIVED-STRUCTURAL-CONDITIONAL (specific ratio Lambda/M_Pl=4*pi). "
+        "tier": ("CANDIDATE (coefficient) / DERIVED-STRUCTURAL-CONDITIONAL (specific ratio Lambda/M_red=4*pi). "
                  "N_eff = %d (engine: grade-2 dim of Cl(4,0); GENERIC-given-dim=4, canon §5 class). "
-                 "Seeley-DeWitt [QFT INPUT — scaling FORM M_Pl^2~N*Lambda^2 is entirely here]: "
+                 "Seeley-DeWitt [QFT INPUT — scaling FORM M^2~N*Lambda^2 is entirely here]: "
                  "G_N^{-1} = N_eff*Lambda^2/(12*pi). "
-                 "DERIVED-STRUCTURAL-CONDITIONAL consequence: Lambda = 4*pi*M_Pl ~ %.3f*M_Pl "
-                 "(N_eff=6 [generic-dim=4] + QFT INPUT). "
+                 "DERIVED-STRUCTURAL-CONDITIONAL consequence: Lambda = 4*pi*M_red ~ %.3f*M_red "
+                 "(= sqrt(2*pi)*M_Pl ~ %.3f*M_Pl non-reduced) (N_eff=6 [generic-dim=4] + QFT INPUT). "
                  "[reviewer 2026-06-28: narrowed from 'scaling+N_eff' to 'specific ratio'; "
-                 "generic-dim=4 qualifier added per canon §5]." % (N_eff, Lambda_over_MPl)),
+                 "generic-dim=4 qualifier added per canon §5] "
+                 "[2026-07-28: convention made explicit (REDUCED M_Pl). 2026-07-29: c_reg "
+                 "RESOLVED = 1/12 — one coefficient, three Lambda-variables. 2026-07-30: "
+                 "which-Lambda RULED, see c_reg_reconciliation. NO tier change]."
+                 % (N_eff, Lambda_over_MPl, Lambda_over_MPl_nonreduced)),
         "N_eff":            N_eff,            # = 6 (engine, generic-given-dim=4)
-        "Lambda_over_MPl":  Lambda_over_MPl,  # = 4*pi ~ 12.566 (DERIVED given QFT INPUT + N_eff)
-        "MPl_sq_coeff":     MPl_sq_coefficient,  # = 1/(16*pi^2) (QFT INPUT + engine)
+        # *** UNIT CONVENTION: the ratio below is against the REDUCED Planck mass
+        # M_red = M_Pl/sqrt(8*pi). The key name lacks "reduced" for BACKWARD COMPATIBILITY only;
+        # prefer Lambda_over_M_REDUCED / Lambda_over_MPl_nonreduced, and read unit_convention. ***
+        "Lambda_over_MPl":  Lambda_over_MPl,  # = 4*pi ~ 12.566 AGAINST M_red (legacy key name)
+        "Lambda_over_M_REDUCED":     Lambda_over_MPl,             # explicit alias, same number
+        "Lambda_over_MPl_nonreduced": Lambda_over_MPl_nonreduced,  # = sqrt(2*pi) ~ 2.507
+        "unit_convention": ("Lambda_over_MPl is stated against the REDUCED Planck mass "
+                            "M_red = M_Pl/sqrt(8*pi) (it comes from M^2 = 1/(8*pi*G_N)). "
+                            "In the PAPER's non-reduced M_Pl = 1/sqrt(G_N) the same result reads "
+                            "Lambda/M_Pl = 4*pi/sqrt(8*pi) = sqrt(2*pi) = %.3f. The legacy key "
+                            "name says 'MPl' and does NOT say 'reduced' — that omission is what "
+                            "made this artifact and the paper's Lambda-bracket look ~12x apart "
+                            "when the actual convention gap is sqrt(8*pi) ~ 5.013. Pure units, "
+                            "no physics." % Lambda_over_MPl_nonreduced),
+        "c_reg_reconciliation": {
+            "status": "RESOLVED (2026-07-29) + WHICH-LAMBDA RULED (coordinator, 2026-07-30): ONE "
+                      "coefficient c_reg = 1/12 in the proper-time variable; the apparent three "
+                      "values were three Lambda-variables (c_reg_from_substrate_mode_content). "
+                      "ONE-PASS settlement — its adversarial verifier died mid-response; R-165's "
+                      "caveat rides",
+            "the three values": {
+                "~1": "the paper's ORIGINAL PLACEHOLDER for the O(1) regulator coefficient "
+                      "(no engine primitive backs it)",
+                "1/12": "THIS primitive — G^-1 = N_eff*Lambda^2/(12*pi), the TEXTBOOK Sakharov "
+                        "heat-kernel value (a_1 coefficient, MINIMAL coupling xi=0, proper-time "
+                        "cutoff). QFT INPUT, not a substrate computation",
+                "~1.8": "induced_G_from_linear_face_band (R-163) — c_reg = c_lat/12 = 1.82, "
+                        "computed on TWT's OWN derived D4 nearest-neighbour band",
+            },
+            "the two BANKED ones disagree": "1/12 vs 1.82 = factor ~21.6 in c_reg "
+                                            "=> ~4.6 in Lambda => ~21.6 in eta4",
+            "consequence": ("RULED (2026-07-30): the symbol is SPLIT — Lambda_S = sqrt(2*pi)*M_Pl "
+                            "(this primitive; scheme variable, induced-G bookkeeping only) vs "
+                            "Lambda_L = 1/a, band [0.386, 0.734] M_Pl (every lattice-dispersion "
+                            "consumer). The old wide bracket [0.13, 2.5] M_Pl is RETIRED — it "
+                            "spanned a symbol collision, not a physical range"),
+            "do NOT": "read 1/12 vs 1.82 as rivals — they are ONE coefficient in two "
+                      "Lambda-variables; the per-consumer variable assignment is the 2026-07-30 "
+                      "ruling, a bookkeeping act, not a physics pick (canon §1/§2 unthreatened)",
+            "would_change_if": "CONDITION MET (2026-07-29): the two primitives' measures were "
+                               "shown to be the same object in different variables "
+                               "(c_reg_from_substrate_mode_content) — which is what resolved this row",
+        },
+        "MPl_sq_coeff":     MPl_sq_coefficient,  # = 1/(16*pi^2) in M_red^2 = coeff*Lambda^2
         "SD_ASD_split":    ("N_eff = N_SD + N_ASD = %d + %d [generic-dim=4; C(4,2)=6 is combinatorial]. "
                              "SD sector (su(2)_L): 3 generators. "
                              "ASD sector (su(2)_R): 3 generators. "
-                             "Both contribute positively to Sakharov M_Pl^2 "
+                             "Both contribute positively to the Sakharov M_red^2 "
                              "(sigma-model kinetic term is positive-definite in Euclidean)." %
                              (N_SD, N_ASD)),
         "negative_skyrme_EH": ("[engine] [SD1,ASD1] = 0 (max_coeff=%.2e). "
@@ -1249,18 +1377,346 @@ def sakharov_induced_gravity():
                                  "SD-SD intra-sector: [SD1,SD2] nonzero (max=%.2e) => L_Skyrme nonzero. "
                                  "Gravity sector (SD+ASD cross) decouples from baryon sector (intra-SD/ASD)." %
                                  (max_comm, sd_norm)),
-        "open_4_note":      ("Q-orbit {e14,e24,e34}: h_mn=0 (engine, see texture_metric_candidate). "
+        "open_4_note":      ("Q-orbit {e14,e24,e34}: h_kl=0 and h_00=0 on the COMPUTED blocks (engine, see texture_metric_candidate); h_0k UNCOMPUTED — static Omega_0=0 is an unlabeled PREMISE that canon sec.0 + R-123 forbid for a massive defect. "
                               "Baryon sources gravity via Sakharov T_mn (rotor kinetic energy at loop level), "
                               "NOT via direct h_mn. L-Q-mixing mechanism for direct coupling: unknown (LOCATED GAP)."),
         "formula":          "G_N^{-1} = N_eff * Lambda^2 / (12*pi)  [Seeley-DeWitt INPUT]",
-        "result":           "M_Pl^2 = Lambda^2 / (16*pi^2);  Lambda = 4*pi * M_Pl",
-        "conditions":       ("Minimal coupling (exact for Lambda >> f_pi: correction (f_pi/Lambda)^2~1e-40..1e-39). "
+        "result":           ("M_red^2 = Lambda^2 / (16*pi^2);  Lambda = 4*pi * M_red "
+                             "= sqrt(2*pi) * M_Pl(non-reduced) ~ 2.507 * M_Pl. "
+                             "M_red = M_Pl/sqrt(8*pi) — state the convention every time this is quoted."),
+        "conditions":       ("Minimal coupling (exact for Lambda >> f_pi: correction (f_pi/Lambda)^2 ~ 1e-40-class). "
                               "#1-gap: full rotor EOM (substrate dynamics, Sec 9.6) not derived; "
                               "minimal coupling is the leading-order approximation to the full result. "
                               "SECOND GATE (2026-06-28): non-minimal coupling xi of rotor to gravity NOT derived "
                               "from TWT substrate. G_N^{-1}=N_eff*Lambda^2/(12*pi) assumes xi=0 (minimal); "
                               "conformal xi=1/6 would cancel the leading Sakharov term entirely. "
-                              "Xi-derivation awaits #1-gap EOM. Two independent gates on the coefficient."),
+                              "Xi-derivation awaits #1-gap EOM. Two independent gates on the coefficient. "
+                              "THIRD (2026-07-28; RESOLVED 2026-07-29, RULED 2026-07-30): c_reg = 1/12 "
+                              "exactly — the apparent three-way disagreement was one coefficient in "
+                              "three Lambda-variables. Which Lambda each downstream consumer takes is "
+                              "RULED: Lambda_S (this primitive) for induced-G bookkeeping; "
+                              "Lambda_L = 1/a for lattice-dispersion consumers. See "
+                              "c_reg_reconciliation."),
+    }
+
+
+def c_reg_from_substrate_mode_content():
+    """[DERIVED-A (exact arithmetic: the parametrization identity + the S^4 a_1 TYPE-SUM; pure
+    math, import-exempt) + DERIVED-given-(R-112 linear face AND R-041 xi=0/E=0), INHERITING
+    R-041's FRAMING+CONDITIONAL status] — c_reg computed for TWT's OWN mode content, and the
+    three-way c_reg 'disagreement' identified as a Lambda-VARIABLE artifact, not a physics
+    disagreement. (2026-07-29.)
+
+    THE OLD STATE (sakharov_induced_gravity()['c_reg_reconciliation'], pre-2026-07-30 key
+    'c_reg_reconciliation_OPEN'): three values of the
+    R-linear regulator coefficient in the paper's parametrization
+        1/(16 pi G) = c_reg * N_eff * Lambda^2 / (16 pi^2)
+    were carried as unreconciled — ~1 (paper placeholder), 1/12 (textbook heat kernel), ~1.82
+    (induced_G_from_linear_face_band / R-163, = c_lat/12) — the two BANKED ones a factor ~21.6
+    apart. That entry's own would_change_if named the exit: "the two primitives' measures are
+    shown to be the same object in different variables." THIS PRIMITIVE MEETS THAT CONDITION.
+
+    (1) THE TYPE-SUM, FOR TWT'S ACTUAL MODE CONTENT. a_1 is a SIGNED weighted sum over mode
+    TYPES, not a count: for a Laplace-type D = -(nabla^2 + E) on a bundle V,
+        a_1 = tr_V( E + (R/6) 1_V ),      c_reg = (1/2) * (a_1/R) / N_eff.
+    TWT's linear face (R-112 / D.4.6 Face 1, banked): the 6 grade-2 so(4) coefficient fields,
+    free operator, NO endomorphism and NO mass at quadratic order; the kinetic term is the
+    sigma-model <Omega_mu Omega^mu>_0 (R-109), whose curved continuation is the BOCHNER operator
+    (delta_AB is the target Killing form, metric-independent — the internal index is a TARGET
+    index, so a local frame rotation contributes a connection, never an endomorphism). No
+    fermionic channel exists on the linear face (matter = defect = soliton, canon SS0/SS5 — not a
+    linear-face field); the photon is already ONE OF the 6 grade-2 strain modes (B.5.4), not a
+    separate gauge sector, so there is no double count and no gauge/ghost weight.
+    E = 0 HAS TWO FACES AND THEY ARE NOT EQUALLY SUPPORTED (scoped, second pass 2026-07-29):
+      (a) the CONFORMAL corner (E = -xi*R, a curvature-coupled NON-derivative quadratic phi.W.phi)
+          is excluded by the left-Spin(4) shift symmetry — that is R-041's own content, and it is
+          exactly what caps this primitive at R-041's FRAMING+CONDITIONAL tier;
+      (b) the WEITZENBOCK/HODGE corner is excluded by the KINETIC TERM, not by the shift symmetry.
+          The banked sigma-model term g^{mu nu} delta_AB Grad_mu phi^A Grad_nu phi^B yields the
+          ROUGH (Bochner) Laplacian with E = 0 whether the internal index is read as a TARGET index
+          or as a spacetime 2-form index; the Hodge Laplacian requires the DIFFERENT kinetic term
+          |d phi|^2 + |delta phi|^2, which R-112's linear face does not produce. So (b) rests on
+          R-112, not on R-041.
+    The endo_shift_breaks check below is VACUOUS AS A DISCRIMINATOR — every nonzero quadratic form
+    fails translation invariance, so it separates no candidate operator from any other. It is kept
+    as an illustration only; do not cite it as the support for (a) or (b). Hence
+        a_1 = 6 * R/6 = R      =>      c_reg = 1/12   EXACTLY.
+    THE TEXTBOOK VALUE IS TWT'S OWN MODE-CONTENT VALUE. Note this is near-definitional once the
+    mode content is fixed: G^-1 = N_eff Lambda^2/(12 pi) IS the N-minimal-scalar heat-kernel result,
+    so the content sits in the upstream identification (R-112) and in the exclusion of the corners
+    below, NOT in the arithmetic. HOW LIVE WERE THE CORNERS (scoped, second pass 2026-07-29): the
+    CONFORMAL corner is genuinely live, and is held off only at R-041's FRAMING+CONDITIONAL tier —
+    it is the real exposure here. The HODGE corner is NOT reachable from R-112's banked sigma-model
+    kinetic term (see the E = 0 discussion above), so "the mode-TYPE question was capable of
+    flipping the sign of G" holds only if one ALSO replaces the banked kinetic term; stated without
+    that proviso it overstates how open the sign was. Both corners are computed below and one of
+    them FLIPS THE SIGN OF G:
+        conformal (xi = 1/6):              a_1 = 0    -> c_reg = 0     (NO induced gravity)
+        Lambda^2 with the HODGE operator:  a_1 = -R   -> c_reg = -1/12 (REPULSIVE, G < 0)
+        6 minimal / Bochner (TWT's):       a_1 = +R   -> c_reg = +1/12 (attractive)
+    So the mode-TYPE question was capable of zeroing or reversing induced gravity; the substrate's
+    content lands on +1/12. This ANSWERS the standing caveat in induced_G_bracket_mode_content
+    ("a1 is a SIGNED weighted TYPE-sum, not a count ... the substrate's actual mode content was
+    not specified") — it is now specified, and it is the all-minimal-scalar corner.
+
+    (2) THE '~1.82' IS THE SAME NUMBER IN A DIFFERENT VARIABLE. R-163 assembles
+    1/(16 pi G) = N_eff*c_lat/(192 pi^2 a^2). Reading Lambda := 1/a gives c_reg = c_lat/12;
+    reading Lambda := Lambda_eff = sqrt(c_lat)/a gives c_reg = 1/12. The ratio of the two banked
+    values is therefore c_lat EXACTLY — but that is a CHANGE OF VARIABLE, not a computation.
+    c_reg is BY CONSTRUCTION the coefficient multiplying Lambda^2, so for ANY two Lambda-variables
+    c_reg(L1)/c_reg(L2) = (L2/L1)^2 IDENTICALLY — independently of the assembly, of a_1 and of
+    N_eff (re-derived symbolically, second pass 2026-07-29). With L2/L1 = Lambda_eff*a = sqrt(c_lat)
+    the ratio is c_lat BY DEFINITION of Lambda_eff := sqrt(c_lat)/a. The assert below is therefore a
+    TAUTOLOGY: it sets B := A*c_lat and checks B/A = c_lat, i.e. it tests floating-point division,
+    not physics — do NOT quote its "residual ~1e-14 for arbitrary c_lat" as numerical evidence.
+    The old record's "~21.6" is not c_lat either: 1.819*12 = 21.83 = c_lat, so "21.6" was a
+    write-down slip in sakharov_induced_gravity, not a computed factor. And R-163 ALREADY STATED
+    this reconciliation ("lands exactly on the sakharov_induced_gravity form" at
+    Lambda_eff^2 = c_lat/a^2; its cross-tie Lambda_eff/M_red = 4 pi is c_lat-INDEPENDENT) — so what
+    point (2) adds is RECOGNITION and bookkeeping hygiene, not a new computation.
+    SEPARATE, AND NOT WHAT THE RATIO SHOWS: the stronger reading "ONE VALUE in two variables"
+    (rather than merely "two coefficients related by a change of variable") additionally needs both
+    branches to use the SAME a_1 = R and the SAME N_eff = 6. They do — R-163 Step 2 uses a_1 = R/6
+    per channel — but the ratio identity is blind to a_1 and N_eff and does not establish it.
+    => c_reg is ONE value, 1/12, in the Sakharov proper-time-cutoff variable. The '~1' placeholder
+    is SUPERSEDED (it was never computed). WHAT REMAINS OPEN IS NOT c_reg BUT c_lat.
+
+    (3) AND c_lat IS EXACTLY THE OA-LF-ii-SENSITIVE OBJECT. Deform the monad-scale curvature
+    weight as w(s) = (R/6)*f(s/a^2), f -> 1 for s >> a^2, f = kappa for s < a^2. Then c_lat(kappa)
+    is EXACTLY AFFINE and its slope is R-163's own ~93% proper-time support fraction (checked
+    below to ~1e-14). OA-LF-ii's own stated tolerance ("up to O(1)"), read as kappa in [1/2, 2],
+    moves c_lat by a factor ~3.6 — where R-163's quoted refinement window is only -5%..-25%. That
+    window is the GAP/state question (OA-LF-i-class), NOT the OPERATOR clause, and it UNDERSTATES
+    the OA-LF-ii exposure by more than an order of magnitude. So the SAME quantity is (a) the
+    whole of the alleged factor-21.6 and (b) the whole of the OA-LF-ii exposure — decisive that
+    the two were never rival values of one coefficient.
+    CONSEQUENCE, BOTH WAYS: c_reg = 1/12 carries ZERO OA-LF-ii sensitivity (Lambda_eff is exactly
+    c_lat-independent); "c_reg ~ 1.82" carries ~93%-LINEAR OA-LF-ii sensitivity. R-163's branch is
+    WEAKER as a c_reg determination than its quoted window suggests — and its real content is
+    relocated to where it belongs: the monad spacing a, which is what actually moves.
+
+    SCOPE FENCE. This does NOT derive G, does NOT move N_eff (still GENERIC-given-dim-4), does NOT
+    retire OA-LF-i/ii. The WHICH-Lambda ruling this fence anticipated was MADE by the coordinator
+    on 2026-07-30 exactly as stated (Lambda_eff for the Sakharov coefficient; 1/a for
+    lattice-dispersion quantities such as the E1/VG-6 eta4 exposure); the [0.13, 2.5] M_Pl bracket
+    is RETIRED and dispersion consumers carry the 1/a band [0.386, 0.734] M_Pl. Tier is CAPPED by
+    R-041: the xi=0/E=0 step is symmetry-protected, not #1-gap-derived.
+    WOULD CHANGE IF: the #1-gap kernel generates a non-derivative quadratic (endomorphism) term in
+    the linear-face operator — then E != 0, a_1 moves off 6*R/6, and c_reg moves with it (the
+    Hodge corner would flip the sign of G). Named revert clause: strike this primitive and restore
+    the three-way OPEN record.
+    SWEEP EXECUTED (2026-07-30, the which-Lambda ruling pass) — this primitive is ADDITIVE and
+    flips no existing label; the sites that carried the OPEN record were updated together:
+    sakharov_induced_gravity()['c_reg_reconciliation'],
+    induced_G_from_linear_face_band()['c_reg_vs_sakharov'] and its normalization_spread scope
+    note, induced_G_bracket_mode_count(), the LV dim-6 Lambda note, paper SSB.6.2/SSB.6.3, and
+    companion Sections 1/2/4/13 plus the ledgers.
+
+    self-checks: exact S^4 spectra give a_1 = R/6 (1 scalar), R (6 scalars), -R (Lambda^2 Hodge),
+    -R/3 (Lambda^1 Hodge) with a_0 = 1/6/6/4 and the Killing level = 10; Weitzenbock-shaped AND
+    generic endomorphisms are shift-NON-invariant while R-041's Omega-invariance holds; the c_reg
+    ratio equals c_lat identically; c_lat(kappa) affine with slope = the s<a^2 support fraction;
+    c_reg = 1/12 reproduces sakharov_induced_gravity's Lambda/M_Pl(non-reduced) = sqrt(2 pi);
+    Lambda_eff is exactly c_lat-independent."""
+    import math
+    import numpy as np
+
+    Rc, Vol = 12.0, 8 * math.pi ** 2 / 3.0          # unit S^4: R = 12, Vol = 8 pi^2/3
+
+    def _a01(levels, a0_expect):
+        F, A0 = [], []
+        for s in (1e-3, 5e-4):
+            lmax = int(math.sqrt(200.0 / s)) + 60
+            K = sum(d * math.exp(-s * lam) for lam, d in levels(lmax))
+            x = K * (4 * math.pi * s) ** 2 / Vol     # = a_0 + s a_1 + O(s^2)
+            A0.append(x); F.append((x - a0_expect) / s)
+        return 2 * A0[1] - A0[0], 2 * F[1] - F[0]    # Richardson in s
+
+    def _scalars(lmax, n):
+        return [(l * (l + 3), n * (l + 1) * (l + 2) * (2 * l + 3) / 6.0) for l in range(lmax + 1)]
+
+    def _coexact(lmax, p, n=4):                      # coexact p-forms on S^4, l >= 1
+        return [((l + p) * (l + n - p - 1),
+                 (2 * l + n - 1) * math.factorial(l + n - 1)
+                 / ((l + p) * (l + n - p - 1) * math.factorial(p)
+                    * math.factorial(n - p - 1) * math.factorial(l - 1)))
+                for l in range(1, lmax + 1)]
+
+    a0_1, a1_1 = _a01(lambda L: _scalars(L, 1), 1.0)
+    a0_6, a1_6 = _a01(lambda L: _scalars(L, 6), 6.0)
+    # full Lambda^2(S^4) = coexact 2-forms + d(coexact 1-forms); b_2 = 0 so no harmonics
+    a0_2f, a1_2f = _a01(lambda L: _coexact(L, 2) + _coexact(L, 1), 6.0)
+    a0_1f, a1_1f = _a01(lambda L: _coexact(L, 1) + _coexact(L, 0), 4.0)
+    assert abs(a0_1 - 1) < 1e-4 and abs(a1_1 - Rc / 6) < 1e-4, (a0_1, a1_1)
+    assert abs(a0_6 - 6) < 1e-3 and abs(a1_6 - Rc) < 1e-3, (a0_6, a1_6)
+    assert abs(a0_2f - 6) < 1e-3 and abs(a1_2f + Rc) < 1e-3, (a0_2f, a1_2f)   # HODGE: a_1 = -R
+    assert abs(a0_1f - 4) < 1e-3 and abs(a1_1f + Rc / 3) < 1e-3, (a0_1f, a1_1f)
+    assert int(_coexact(2, 1)[0][1] + 0.5) == 10, "S^4 coexact-1-form level 1 = Killing = 10"
+
+    N_eff = 6
+    _creg = lambda a1: 0.5 * (a1 / Rc) / N_eff
+    c_min, c_conf, c_hodge = _creg(a1_6), _creg(0.0), _creg(a1_2f)
+    assert abs(c_min - 1 / 12) < 1e-4 and abs(c_hodge + 1 / 12) < 1e-4 and c_hodge < 0 < c_min
+
+    # --- E = 0 is forced by the SAME shift symmetry as xi = 0 (R-041) ---------------
+    xi = sakharov_xi_minimal_coupling()
+    assert xi["left_invariance_err"] < 1e-8 and xi["xi_term_breaks_shift_symmetry"] is True
+    assert xi["N_eff"] == 6
+    _rng = np.random.default_rng(7)
+    Wg = _rng.normal(size=(6, 6)); Wg = 0.5 * (Wg + Wg.T)
+    Ww = (Rc / 3.0) * np.eye(6)                      # the Lambda^2 Weitzenbock shape, p(n-p)K
+    _phi = np.array([0.31, -0.17, 0.44, 0.09, -0.28, 0.36])
+    _sh = np.array([0.10, 0.0, -0.05, 0.07, 0.0, 0.0])
+    endo_shift_breaks = {}
+    for _nm, _W in (("generic", Wg), ("Weitzenbock R/3", Ww)):
+        _b, _a = float(_phi @ _W @ _phi), float((_phi + _sh) @ _W @ (_phi + _sh))
+        endo_shift_breaks[_nm] = abs(_a - _b) > 1e-9
+    assert all(endo_shift_breaks.values()), "an endomorphism must break the left-Spin(4) shift"
+
+    # --- the parametrization identity: ratio == c_lat, IDENTICALLY -----------------
+    # --- WHAT CAN FAIL HERE, AND WHAT CANNOT (rewritten 2026-07-29, second pass) -------
+    # DELETED: an assert that set B := A*c_lat and then checked B/A == c_lat. Three
+    # independent defects, all measured, none caught by the harness:
+    #   (1) a float round-trip with NO path to failure on any physics — the residual is
+    #       0-to-1 ulp (measured residual/(c_lat*eps) = 0.80, 0.00, 0.93), the fingerprint
+    #       of a tautology, and the suite printed it as "(residual < 1e-12)" evidence;
+    #   (2) it read NEITHER banked primitive — it recomputed local literals, so it would
+    #       have passed unchanged had the two primitives disagreed by orders of magnitude;
+    #   (3) its tolerance was ABSOLUTE while its residual scales linearly in c_lat, so it
+    #       FAILS at c_lat = 1e5 (residual 1.455e-11) while advertising "ARBITRARY c_lat".
+    # There is NO non-tautological version of it: c_reg is BY CONSTRUCTION the coefficient
+    # of Lambda^2, so at two Lambda-variables the ratio is (L2/L1)^2 identically. That is a
+    # DEFINITION; it belongs in prose (see the docstring above), never in an assert.
+    # The genuine cross-primitive consistency check now lives in twt_test.py, where both
+    # sakharov_induced_gravity and induced_G_from_linear_face_band are already loaded.
+    # NOTE THE TOLERANCE, it is the whole difference. A0 comes from the NUMERICALLY extracted
+    # a_1 (checked to 1e-3 absolute against R = 12 above), so it carries real numerical error —
+    # measured 3e-7 relative. The deleted tautology could afford 1e-12 precisely BECAUSE it was
+    # exact by construction; a tight tolerance on a vacuous check is not rigour, it is a tell.
+    # 1e-5 relative sits ~30x above the observed error and far below anything a wrong mode count
+    # could produce (that would move A0 by factors, not by parts per million).
+    A0 = _creg(a1_6)          # from THIS primitive's own computed a_1, not a literal
+    assert abs(A0 - 1 / 12) / (1 / 12) < 1e-5, \
+        "proper-time-cutoff c_reg must come out 1/12 from the COMPUTED a_1 = R; got %.10g" % A0
+    sg = sakharov_induced_gravity()
+    # RELATIVE tolerance, and for the same reason as A0's own: this now rides the NUMERICALLY
+    # extracted a_1 rather than an exact literal, so the residual is ~1.5e-7 (half of A0's 3e-7,
+    # the sqrt). The previous 1e-12 was satisfiable only because A0 was exact by construction —
+    # a second tolerance that was measuring nothing, exposed by removing the tautology above.
+    _chain_rel = abs(math.sqrt(math.pi / (A0 * N_eff)) - sg["Lambda_over_MPl_nonreduced"]) \
+        / sg["Lambda_over_MPl_nonreduced"]
+    assert _chain_rel < 1e-5, \
+        "c_reg = 1/12 must reproduce sakharov's Lambda/M_Pl(non-reduced) = sqrt(2 pi); rel %.2e" % _chain_rel
+
+    # --- OA-LF-ii sensitivity: c_lat(kappa) EXACTLY affine, slope = s<a^2 support ---
+    prs = [tuple(1 if k == i else (_s if k == j else 0) for k in range(4))
+           for i in range(4) for j in range(i + 1, 4) for _s in (+1, -1)]
+    assert len(prs) == 12
+    Ng = 16
+    _x = 2 * math.pi * (np.arange(Ng) + 0.5) / Ng
+    _ax = [_x.reshape([Ng if k == m else 1 for k in range(4)]) for m in range(4)]
+    om2 = np.zeros((Ng,) * 4)
+    for b in prs:
+        om2 += 2.0 * (1.0 - np.cos(sum(bi * a for bi, a in zip(b, _ax) if bi != 0)))
+    q = om2 / 6.0
+    _C = lambda arr: 16 * math.pi ** 2 * 0.5 * float(arr.mean())
+    c_base = _C(1.0 / q)
+    c_k = lambda kap: _C(kap * (1.0 - np.exp(-q)) / q + np.exp(-q) / q)
+    c_at0 = c_k(0.0)
+    slope = c_base - c_at0
+    lin = max(abs(c_at0 + slope * k - c_k(k)) for k in (0.5, 2.0, 4.0))
+    assert lin < 1e-9, "c_lat(kappa) must be affine; residual %.3e" % lin
+    frac_s = slope / c_base
+    assert 0.90 <= frac_s <= 0.95, "OA-LF-ii support slope out of range: %.4f" % frac_s
+    O1_lo, O1_hi = c_k(0.5), c_k(2.0)
+    assert O1_hi / O1_lo > 3.0, "O(1) tolerance on OA-LF-ii must move c_lat by > 3x"
+
+    _a_of = lambda cl: math.sqrt(N_eff * cl / (12 * math.pi))
+    assert max(abs(math.sqrt(cl) / _a_of(cl) - math.sqrt(2 * math.pi))
+               for cl in (1.5, 21.83, 90.0)) < 1e-12, "Lambda_eff must be EXACTLY c_lat-independent"
+
+    return {
+        "tier": ("DERIVED-A (exact arithmetic: the parametrization identity + the S^4 a_1 TYPE-SUM; "
+                 "pure math, import-exempt) + DERIVED-given-(R-112 linear face AND R-041 xi=0/E=0), "
+                 "INHERITING R-041's FRAMING+CONDITIONAL status. NOT a derivation of G; N_eff stays "
+                 "GENERIC-given-dim-4; OA-LF-i/ii NOT retired"),
+        "c_reg": 1 / 12,
+        "c_reg_variable": ("Lambda = the SAKHAROV PROPER-TIME CUTOFF. State the variable every time "
+                           "c_reg is quoted — that is the whole of the old 'disagreement'"),
+        "mode_content": {
+            "channels": 6,
+            "type": "real bosonic, massless, E = 0 (BOCHNER), sigma-model kinetic",
+            "fermionic channels": "NONE on the linear face (matter = defect = soliton, not a field)",
+            "gauge sector": "NONE separate — the photon is one of the 6 grade-2 strain modes (B.5.4)",
+            "why E = 0": "an endomorphism is a NON-DERIVATIVE quadratic phi.W.phi — the exact class "
+                         "the left-Spin(4) shift symmetry forbids (R-041); checked on the "
+                         "Weitzenbock shape too",
+            "endomorphism_shift_breaks": endo_shift_breaks,
+        },
+        "a1_type_sum_S4": {
+            "1 minimal scalar": round(a1_1, 6), "R/6": Rc / 6,
+            "6 minimal scalars (TWT)": round(a1_6, 6), "R": Rc,
+            "Lambda^2 HODGE (Weitzenbock)": round(a1_2f, 6),
+            "Lambda^1 HODGE (cross-check)": round(a1_1f, 6),
+        },
+        "excluded_readings_would_have": {
+            "conformal xi=1/6": {"a_1": 0.0, "c_reg": c_conf, "consequence": "NO induced gravity"},
+            "Hodge / 2-form": {"a_1": round(a1_2f, 4), "c_reg": round(c_hodge, 6),
+                               "consequence": "G < 0 — REPULSIVE gravity (the mode-TYPE question "
+                                              "was capable of flipping the sign)"},
+            "TWT (6 minimal / Bochner)": {"a_1": round(a1_6, 4), "c_reg": round(c_min, 6),
+                                          "consequence": "G > 0 attractive"},
+        },
+        "three_way_resolution": {
+            "verdict": "NOT three RIVAL values of one coefficient — but TWO Lambda-variables, not "
+                       "three: the '~1' placeholder and c_lat/12 = 1.82 BOTH sit at Lambda := 1/a "
+                       "and are mutually consistent at O(1) (R-163 says so itself), while 1/12 sits "
+                       "at Lambda := Lambda_eff. [second pass 2026-07-29: the earlier gloss 'ONE "
+                       "value in three variables/states' miscounted the variables]",
+            "1/12": "c_reg in the proper-time-cutoff variable = TWT's own mode-content value (here)",
+            "~1.82": "the SAME coefficient with Lambda := 1/a. Its ratio to 1/12 is c_lat EXACTLY, "
+                     "but BY DEFINITION of Lambda_eff := sqrt(c_lat)/a: c_reg multiplies Lambda^2, "
+                     "so c_reg(L1)/c_reg(L2) = (L2/L1)^2 for ANY two Lambda-variables, independently "
+                     "of the assembly, of a_1 and of N_eff. The in-primitive assert that used to sit "
+                     "here WAS a TAUTOLOGY and has been DELETED (2026-07-29): it read neither banked "
+                     "primitive, its residual was 0-to-1 ulp, and its ABSOLUTE tolerance made it FAIL "
+                     "at c_lat = 1e5 while advertising 'ARBITRARY c_lat'. The real cross-primitive "
+                     "check now lives in twt_test.py. The old record's '~21.6' was a write-down "
+                     "slip: 1.819*12 = 21.83 = c_lat",
+            "~1": "a never-computed paper placeholder — SUPERSEDED, not a rival; note it sits in the "
+                  "SAME variable as 1.82 (Lambda := 1/a) and is consistent with it at O(1)",
+            "what is actually OPEN": "c_lat, i.e. how many lattice spacings the effective cutoff "
+                                     "is — a DIFFERENT question, and the OA-LF-ii-sensitive one",
+        },
+        "OA_LF_ii_sensitivity": {
+            "c_lat(kappa) affine": "c_lat = %.4f + %.4f*kappa (residual %.1e)" % (c_at0, slope, lin),
+            "slope fraction (= R-163's s<a^2 support)": round(frac_s, 4),
+            "O(1) tolerance kappa in [1/2,2]": "c_lat in [%.2f, %.2f] — factor %.1f"
+                                               % (O1_lo, O1_hi, O1_hi / O1_lo),
+            "=> a in": "[%.2f, %.2f] ell_Planck" % (_a_of(O1_lo), _a_of(O1_hi)),
+            "=> 1/a in": "[%.3f, %.3f] M_Pl" % (1 / _a_of(O1_hi), 1 / _a_of(O1_lo)),
+            "R-163's quoted window": "-5%..-25% — that is the GAP/state (OA-LF-i-class) question, "
+                                     "NOT the OPERATOR clause; it UNDERSTATES the OA-LF-ii exposure "
+                                     "by more than an order of magnitude",
+            "what does NOT move": "Lambda_eff = sqrt(c_lat)/a = sqrt(2 pi) M_Pl EXACTLY for every "
+                                  "c_lat — so c_reg = 1/12 carries ZERO OA-LF-ii sensitivity while "
+                                  "'c_reg ~ 1.82' carries ~93%-linear sensitivity",
+        },
+        "scope_fence": ("removes ONE recorded OPEN item (the c_reg three-way disagreement). Does NOT "
+                        "derive G, does NOT move N_eff, does NOT retire OA-LF-i/ii. The WHICH-Lambda "
+                        "ruling it anticipated was MADE 2026-07-30 (Lambda_eff for the Sakharov "
+                        "coefficient; 1/a for lattice-dispersion quantities such as the E1/VG-6 eta4 "
+                        "exposure); the old wide bracket is RETIRED"),
+        "would_change_if": ("the #1-gap kernel generates a non-derivative quadratic (endomorphism) "
+                            "term in the linear-face operator — then E != 0 and c_reg moves with it "
+                            "(the Hodge corner would flip the SIGN of G). Revert clause: strike this "
+                            "primitive and restore the three-way OPEN record"),
+        "pending_sweep": ("ADDITIVE — flips no existing label. SWEEP EXECUTED 2026-07-30 (the "
+                          "which-Lambda ruling pass): sakharov_induced_gravity"
+                          "['c_reg_reconciliation'], induced_G_from_linear_face_band"
+                          "['c_reg_vs_sakharov'] + its normalization_spread scope note, "
+                          "induced_G_bracket_mode_count, the LV dim-6 Lambda note, paper "
+                          "§B.6.2/§B.6.3, companion Sections 1/2/4/13, ledgers"),
     }
 
 
@@ -1296,8 +1752,9 @@ def sakharov_xi_minimal_coupling():
     WHY THE MASS DOES NOT REOPEN IT: the rotor "mass" (meta-time omega) is the CENTRAL-E U(1) phase
     (E = I4*e5, I4 = e1234 the central pseudoscalar) — a SEVENTH direction, distinct from the 6 grade-2
     bivectors [engine]. A would-be mass term V(R) that lifts the bivector directions breaks left-Spin(4),
-    but only at the IR scale f_pi; at the Sakharov UV scale Lambda >> f_pi it generates xi ~ (f_pi/Lambda)^2
-    ~ 1e-40..1e-39, NOT xi=1/6. The residual is a scale-Lambda-suppressed IR effect of the SAME general
+    but only at the IR scale f_pi; at any Planckian Lambda >> f_pi it generates xi ~ (f_pi/Lambda)^2
+    ~ 1e-40-class (2-8e-40 on the Lambda_L band; the which-Lambda reading is IMMATERIAL here and
+    this consumer is deliberately NOT force-assigned by the 2026-07-30 ruling), NOT xi=1/6. The residual is a scale-Lambda-suppressed IR effect of the SAME general
     family as the WP-LV1 / WEAK-EP species-difference violations (equivalence_principle_protection) —
     negligible, and tied to the same isotropy protection.
     SCOPE CORRECTION (2026-07-27, R-165 — swept here): do NOT read 'the same dim-6 order' off this any
@@ -1318,7 +1775,7 @@ def sakharov_xi_minimal_coupling():
         QFT lemma (as is the Seeley-DeWitt coefficient itself, QFT INPUT). The substrate supplies the
         SYMMETRY; QFT supplies the xi=0-from-shift-symmetry implication.
     SCOPE: this REDUCES (does NOT close) N27 gate (2) — it EXCLUDES the catastrophic xi=1/6 branch and
-    fixes xi=0 at LEADING order, leaving a controlled (f_pi/Lambda)^2 ~ 1e-40..1e-39 correction (the protection
+    fixes xi=0 at LEADING order, leaving a controlled (f_pi/Lambda)^2 ~ 1e-40-class correction (the protection
     is only approximate: the symmetry is broken by the IR mass/potential at f_pi). It does NOT give the
     value of G_N — gate (1), the #1-gap substrate EOM / full nonlinear propagator coefficient, STAYS GATED
     (sakharov_induced_gravity remains CANDIDATE for the coefficient). N27 goes from "two gates" to
@@ -1407,7 +1864,9 @@ def sakharov_xi_minimal_coupling():
         "isotropy_WP_LV1": isotropic,                  # True (the homogeneity anchor)
         "mass_phase_distinct": ("mass = central-E U(1) (E=I4*e5, I4=e1234 pseudoscalar) — a 7th direction, "
                                 "distinct from the 6 grade-2 bivectors; an IR mass term gives xi~(f_pi/Lambda)^2"
-                                "~1e-40..1e-39 at the Sakharov UV scale, NOT xi=1/6."),
+                                "~1e-40-class at any Planckian Lambda (2-8e-40 on the Lambda_L "
+                               "band; reading-immaterial, not force-assigned by the ruling), "
+                               "NOT xi=1/6."),
         "scope": ("REDUCES N27 gate (2) (does NOT close it): xi=0 LEADING-order, the catastrophic xi=1/6 "
                   "branch EXCLUDED (removed falsifier), Sakharov EH survives; a controlled (f_pi/Lambda)^2 "
                   "correction remains (symmetry only approximate, broken by the IR mass at f_pi). "
@@ -1504,7 +1963,16 @@ def texture_matter_gravity_coupling():
     Tree level (metric formula):
       h_00 = 0 (all orders, DERIVED: Q×Q I4=0, static Om_0=0).
       h_kl = 0 (all orders, DERIVED: exact L×Q / Q×L cancellation — engine, N26).
-      => h_mn = 0 for the Q-orbit hedgehog Skyrmion at tree level (full result).
+      => h_kl = 0 and h_00 = 0 for the Q-orbit hedgehog Skyrmion at tree level.
+      SCOPE CORRECTED 2026-07-29 (was "full result"): this covers the SPATIAL block and the
+      time-time entry ONLY. The time-space row h_0k is computed NOWHERE in the corpus, and the
+      static Omega_0 = 0 it rested on is a PREMISE that canon sec.0 (mass IS omega) and R-123
+      [DERIVED-A] forbid for a massive defect. Restoring Omega_0 = (k4/2)*u_hat per the R-123
+      lock leaves h_kl and h_00 untouched but makes h_0k generically nonzero (a single L-cross-Q
+      Hodge pairing, no partner term to cancel, linear in the mass). ALSO: the h_00 warrant below
+      names the WRONG ORBIT — R-128 locks the baryon mass phase to u_hat = +-I4*B_q, an L-orbit
+      blade, not Q. The zero survives anyway (every Spin(4) bivector is SD/ASD-balanced), so the
+      CONCLUSION is stronger than the argument recorded for it.
     Loop level (Sakharov, N25):
       T_00 > 0, T_mn != 0 => G_mn = 8*pi*G_N * T_mn => Newtonian h_00 != 0. [FRAMING]
     Sakharov T_mn is the SOLE gravitational sourcing mechanism for matter.
@@ -1940,7 +2408,14 @@ def wave_E_complex_structure() -> dict:
 def cl40_quaternion_triple() -> dict:
     """[DERIVED] H lives natively in Cl(4,0): {i,j,k} = {e23, e13, e12} is a unit-quaternion
     subalgebra under the (associative) geometric product — i²=j²=k²=-1, ij=k, jk=i, ki=j, ijk=-1.
-    This is the INTERNAL/PHASE algebra (Cl^+(4,0) ≅ H⊕H). GENERATION NOTE (sweep 2026-07-26):
+    This span is Cl^+(3,0) — the even subalgebra of the Cl(3,0) generated by {e1,e2,e3} — and it is
+    the H of the paper's native formalism "Cl(4,0) + H" (V3 §A.5.6). It is NOT a summand of
+    Cl^+(4,0) ≅ H⊕H, and not an ideal of it at all: that decomposition is the SD/ASD split, and
+    e12 = ½(e12+e34) + ½(e12−e34) has a nonzero component in EACH summand. Three distinct objects
+    wear the name H in this corpus (this subalgebra; the two SD/ASD summands; the ASD summand that
+    hosts generations) — see §D.1.2. Wording corrected 2026-07-28: this docstring previously read
+    "the INTERNAL/PHASE algebra (Cl^+(4,0) ≅ H⊕H)", which conflated the first with the second.
+    GENERATION NOTE (sweep 2026-07-26):
     the three GENERATION units are the ANTI-SELF-DUAL H triple (§D.2.4/R-098), NOT this L-orbit
     triple {e23,e13,e12} (spin/winding family); Frobenius counts three units either way (§C.3.8).
     A different KIND of object from the SPATIAL vectors e1..e4. Concretely
@@ -1971,12 +2446,19 @@ def cl41_phase_is_external_u1() -> dict:
 
 def spatial_vs_phase_partition() -> dict:
     """[GUARDRAIL] §5.5: The classification the guardrail enforces. SPATIAL = the four Euclidean vectors and the
-    geometry they generate (Cl(4,0)); PHASE/INTERNAL = the quaternion units (rotor phase, generations)
-    and the external U(1) i = E (the wave's meta-time completion). The QM phase i in the wavefront
-    frame is e12 (hestenes_Isigma3); the global phase is E = I4*e5."""
+    geometry they generate (Cl(4,0)); PHASE/INTERNAL = the quaternion units (rotor phase, winding/spin
+    family) and the external U(1) i = E (the wave's meta-time completion). The QM phase i in the
+    wavefront frame is e12 (hestenes_Isigma3); the global phase is E = I4*e5.
+    CORRECTED 2026-07-28: this docstring and the PHASE/INTERNAL value below previously glossed the
+    L-orbit triple {e23,e13,e12} as "generations". Per canon §5 and R-098 the GENERATION units are
+    the ANTI-SELF-DUAL triple (§D.2.4), never the L-orbit basis — the L-orbit blades are the
+    winding/spin family and frame orientation. The 2026-07-02 sweep fixed this elsewhere and missed
+    these two sites."""
     return {
         "SPATIAL (Cl(4,0))": "vectors {e1,e2,e3,e4} and what they generate; I4 = 4-volume (I4^2=+1)",
-        "PHASE / INTERNAL": "H units {e23,e13,e12} (generations, Cl^+(4,0)≅H⊕H); QM i = e12; global i = E = I4*e5",
+        "PHASE / INTERNAL": "H units {e23,e13,e12} = Cl^+(3,0), the winding/spin family (NOT generations "
+                            "— those are the ASD triple, R-098; and this H is NOT a summand of "
+                            "Cl^+(4,0)≅H⊕H); QM i = e12; global i = E = I4*e5",
         "META-TIME e5": "carries PHASE only — completes I4 into E; NOT a spatial coordinate",
     }
 
@@ -1986,8 +2468,12 @@ def cl41_grounding_litmus() -> str:
     E = I4*e5 (the external U(1) i / the global phase) or as the meta-time axis along which the rotor
     frequency omega (= mass) advances. ALL spatial structure must live in Cl(4,0)'s {e1..e4}.
     RED FLAG (ungrounded): e5 used as a fifth SPATIAL direction — a new winding, a new spatial DOF, a
-    soliton coordinate, an extra propagation axis. If a mechanism needs e5 to be SPATIAL it is an
-    escape, not physics: rebuild it in Cl(4,0)+H and the spurious dimension disappears."""
+    soliton coordinate. If a mechanism needs e5 to be SPATIAL it is an
+    escape, not physics: rebuild it in Cl(4,0)+H and the spurious dimension disappears.
+    NOT a red flag (wording fix 2026-07-30): tau5 being the TIMELIKE direction the wave advances
+    ALONG is the permitted meta-time role — it is exactly what this module's Cl41Wave.signature =
+    (1,1,1,1,-1) encodes. What the litmus forbids is a fifth SPATIAL axis, never the evolution
+    parameter."""
     return ("e5 is PHASE (E = I4*e5), never a spatial axis. Grounded iff the e5-content is the external "
             "U(1) phase or the meta-time of the rotor frequency; ungrounded iff e5 carries spatial "
             "structure. Spatial DOF live in Cl(4,0) {e1..e4}.")
@@ -2995,7 +3481,7 @@ def kernel_overdetermination_table():
         dict(id="C_T",
              observable="induced-EH spin-2 spectral coefficient (absolute G)",
              kernel_link="texture_gauss_equation_riemann_closure (R-149): integrand FIXED as a quadratic form in (S,[Om,Om]); Import Registry I-3",
-             value="Lambda in [0.16, 0.72] M_Pl (O(1) N_eff-count bracket); C_T value #1-gap GATED",
+             value="Lambda_S = sqrt(2*pi) M_Pl (scheme variable; which-Lambda ruling 2026-07-30 — the old [0.13, 2.5] M_Pl bracket is RETIRED); C_T value #1-gap GATED",
              frequency_window="substrate spin-2 spectral sum up to Lambda ~ M_Pl",
              frequency_justification="N/A",
              independence="tied to the same kernel/mode-measure as the other #1-gap value faces (I-3 OPEN); KK-linked to the kss_gw transport anchor as the Re/Im of ONE spin-2 rho_2 (N44: eta = C_T*Lambda^2*tau) -- NOT an independent anchor",
@@ -3153,8 +3639,8 @@ def kernel_candidate_constraints():
                                     reproduce -- (a) order-param: the (19/2)sqrt(38) ~ 58.56 renormalization
                                     at the D=J QCP (N31/W2.2; cross-checked live); (b) spin-0: the Lambda~H^2
                                     coefficient c = 3*Omega_L ~ 2.05 (N33 input 2, Planck); (c) spin-2: C_T
-                                    through <= 4 kernel moments (R-151) within the Sakharov Lambda in
-                                    [0.16, 0.72] M_Pl bracket. (N44: (a spin-2 eta and C_T are ONE
+                                    through <= 4 kernel moments (R-151) at the Sakharov scheme scale
+                                    Lambda_S = sqrt(2*pi) M_Pl (which-Lambda ruling 2026-07-30). (N44: (a spin-2 eta and C_T are ONE
                                     KK-linked source; the 3 must be sector-orthogonal.)
       C7 THE FORK         [branch]: fading vs hysteretic carried as an EXPLICIT DISCRETE BRANCH, never a
                                     fitted knob (N33). A6/N45: the substrate is mandatorily hysteretic
@@ -3200,7 +3686,8 @@ def kernel_candidate_constraints():
              value=target_c0, req="the Lambda~H^2 coefficient c = 3*Omega_L ~ 2.05",
              source="N33 input 2 (Planck 2018 VI); companion cosmo"),
         dict(id="C6c_spin2_target", kind="target", channel="spin-2 (graviton / C_T, KK-linked to eta)",
-             value=ct_moment_bound, req="C_T through <= 4 kernel moments within Sakharov Lambda in [0.16,0.72] M_Pl",
+             value=ct_moment_bound, req="C_T through <= 4 kernel moments at the Sakharov scheme scale "
+                                "Lambda_S = sqrt(2*pi) M_Pl (which-Lambda ruling 2026-07-30)",
              source="R-151 (ct_kernel_moment_count_symmetry_reduction); N44 (eta<->C_T KK-linked, ONE source)"),
         dict(id="C7_fork_branch", kind="branch",
              req="fading vs hysteretic = an EXPLICIT DISCRETE BRANCH, never a fitted knob; substrate mandatorily hysteretic (R-114)",
@@ -3435,7 +3922,7 @@ def kernel_candidate_dials():
     2 dials + 1 bit; composite = 3 dials + 1 bit.
 
     LEDGER SCOPE (load-bearing): these dials are counted within the CANDIDATE'S OWN ledger.
-    They join the framework's parameter ledger (§E.2.1's five INPUTs) ONLY if the candidate is
+    They join the framework's parameter ledger (§E.2.1's four counted INPUTs + measured G_N) ONLY if the candidate is
     adopted; until then the #1 gap stays open exactly as §D.5 states it.
 
     self-checks: the SN-15 absorption identity at machine precision on a grid; the dial count
@@ -4242,26 +4729,76 @@ def dirac_ideal_idempotent() -> MV:
 
 # ---- §15.4 Bell / Tsirelson ----------------------------------------------------
 def half_angle_overlap(dtheta: float) -> float:
-    """[DERIVED] §15.4: ⟨ψ_a|ψ_b⟩ = ⟨exp((θ_b-θ_a)e12/2)⟩_0 = cos(Δθ/2).
-    The ½ is the Spin(3) double-cover half-angle (R(2π)=-1). COMPUTED via exp."""
+    """[DERIVED — the grade-0 IDENTITY only; FRAMING as a state OVERLAP. Retiered 2026-07-30,
+    swept with bell_correlation, which was retiered FRAMING 2026-07-29 and left this primitive
+    behind] §15.4 / V3 §B.4: what this returns is the GRADE-0 PART of the rotor,
+    ⟨exp(Δθ·e12/2)⟩_0 = cos(Δθ/2). That much is exact and COMPUTED via exp, and the ½ is the
+    Spin(3) double-cover half-angle (R(2π) = -1).
+
+    WHAT IT IS NOT. It is NOT the state overlap ⟨ψ_a|ψ_b⟩, and the old docstring's equation of
+    the two was the DEGENERATE CASE that R-167 rules out. The states ψ_a = exp(θ_a·e12/2)·1 all
+    lie in the phase sector span{1,e12} = ℂ¹, where they are all the SAME RAY: the Hermitian
+    overlap has modulus 1 at every pair of angles, and Λ²(ℂ¹) = 0, so there is no singlet there
+    either. The grade-0 part is a DIFFERENT functional — the real inner product of the 2-plane
+    span{1,e12} — and `born_exponent_gleason_closure` already flags grade-0-only as an undercount
+    (it calls 1 and e12 orthogonal when they are one ray).
+
+    WHERE THE OVERLAP ACTUALLY LIVES: on the e4-commutant qubit
+    Z_{Cl+(4,0)}(e4) = span{1,e12,e13,e23} ≅ ℍ ≅ ℂ², where cos(Δθ/2) IS an honest ℂ² Hermitian
+    overlap with no grade projection, provided the measurement rotor leaves the phase plane —
+    `bell_wing_needs_the_e4_commutant_qubit` (R-167). This function is kept because the grade-0
+    identity is exact and is what the CHSH/Mermin assemblies actually compose; read its output as
+    that identity, never as a Born amplitude."""
     R = exp_unit_bivector(e(1, 2), dtheta / 2.0)
-    return R.coeff(())                     # scalar part = cos(Δθ/2)
+    return R.coeff(())                     # GRADE-0 part of the rotor = cos(Δθ/2)
 
 def bell_correlation(a: float, b: float) -> float:
-    """[DERIVED] §15.4: singlet correlation E(a,b) = -cos(θ_ab)  (a,b = measurement angles, rad)."""
+    """[FRAMING — retiered 2026-07-29; was mislabelled DERIVED] §15.4 / V3 §B.4.1: singlet
+    correlation E(a,b) = -cos(theta_ab)  (a,b = measurement angles, rad).
+
+    THE TIER IS THE POINT. This is a hardcoded closed form, not a substrate computation. Two
+    things are IMPORTED and were unnamed here until now:
+      (1) the two-particle TENSOR-PRODUCT state space — NOT constructed anywhere in TWT
+          (external review II-3; a 2026-07-29 construction attempt across five independent
+          routes failed to derive it, negatives ledger N53); and
+      (2) the SINGLET itself. Exchange antisymmetry does NOT force it — totally antisymmetric
+          two-defect states exist for all four spin states. Angular-momentum conservation at
+          the source selects it, which is dynamics (#1 gap).
+    GIVEN (1) and (2), the value IS computable from substrate rotors plus the substrate's own
+    antisymmetric pairing epsilon(u,v) = <u*j, v> — RIGHT multiplication by one of the
+    commutant units j in {e13,e23}; the LEFT-multiplication form <ju,v> written here until
+    2026-07-30 is WRONG and is engine-refuted (it is neither antisymmetric nor SU(2)-invariant:
+    `bell_wing_needs_the_e4_commutant_qubit`, R-167) — and that computation agrees with this
+    closed form to 5.6e-16 over 400 random settings. So the honest reading is: the correlation is a
+    CONSISTENCY result conditional on two named imports, not a derivation. Canon 2: forcing that
+    runs only after a structural restriction plus an outright import is FRAMING, not DERIVED-P.
+    Replacing this body with the explicit rotor computation is a named, still-open improvement."""
     return -math.cos(a - b)
 
 def chsh_S(a, ap, b, bp) -> float:
-    """CHSH combination S = E(a,b) - E(a,b') + E(a',b) + E(a',b')."""
+    """[FRAMING — inherited from bell_correlation, which this function calls. Tag added 2026-07-30;
+    it was absent, and an untagged primitive in a family where every neighbour is tagged reads as
+    an oversight rather than as a tier.]
+    CHSH combination S = E(a,b) - E(a,b') + E(a',b) + E(a',b')."""
     return (bell_correlation(a, b) - bell_correlation(a, bp)
             + bell_correlation(ap, b) + bell_correlation(ap, bp))
 
 def tsirelson_S() -> float:
-    """[DERIVED] §15.4: at optimal angles (0, π/2, π/4, 3π/4), |S| = 2√2 — Tsirelson, exactly."""
+    """[FRAMING — retiered 2026-07-30 to match bell_correlation, the function this one calls]
+    §15.4 / V3 §B.4.1: at optimal angles (0, π/2, π/4, 3π/4), |S| = 2√2 — Tsirelson, exactly.
+    THE ARITHMETIC IS EXACT; THE TIER IS NOT ABOUT THE ARITHMETIC. This value is computed
+    entirely from chsh_S, hence from bell_correlation, which was retiered FRAMING on 2026-07-29
+    because it rides two named imports: the two-particle TENSOR PRODUCT (constructed nowhere in
+    TWT — five routes failed, negatives ledger N53) and the SINGLET (selected by source dynamics,
+    the #1 gap). A derived value cannot out-rank the function it is derived from. Companion row
+    R-027 already carries exactly this split — DERIVED-A for the half-angle identity, FRAMING for
+    the CHSH value — and this docstring was missed in that pass."""
     return abs(chsh_S(0.0, math.pi/2, math.pi/4, 3*math.pi/4))
 
 def mermin_value() -> float:
-    """[DERIVED] §15.4 (multipartite): the 3-party Mermin/GHZ value |M| = 4 — the QM/GHZ maximum
+    """[DERIVED-A the coplanar-rotor identity + FRAMING its reading as a 3-party MK/GHZ value
+    — retiered 2026-07-30; companion R-028 flagged this exact docstring as owed a correction]
+    §15.4 (multipartite): the 3-party Mermin/GHZ value |M| = 4 — the QM/GHZ maximum
     exactly (classical LHV bound = 2), extending the two-party Tsirelson result (2√2) to n=3.
     Built as the grade-0 part of three COPLANAR e12-rotors:
         E3(φ1,φ2,φ3) = ⟨exp(φ1·e12) exp(φ2·e12) exp(φ3·e12)⟩_0 = cos(φ1+φ2+φ3),
@@ -4282,7 +4819,13 @@ def mermin_value() -> float:
 
 
 def mermin_klyshko_value(n: int) -> float:
-    """[DERIVED, no new ontology] §15.4 (multipartite, general n): the n-party
+    """[DERIVED-A the rotor-composition identity + FRAMING its reading as an n-party MK value
+    — retiered 2026-07-30 per companion R-028. All n rotors lie in the SAME plane B, so they
+    commute and the correlation collapses to a one-line trigonometric identity: there is no
+    tensor-product structure here and no n parties in any state-space sense. The general-n value
+    is the standard MK/GHZ maximum of the Bell literature, evaluated numerically at n = 2-5, not
+    a general-n theorem proved in-framework]
+    §15.4 (multipartite, general n): the n-party
     Mermin–Klyshko (MK) value for the GHZ state at MK-optimal settings, extending
     mermin_value (n=3) to the full hierarchy. Built from the SAME TWT object — the
     grade-0 part of n coplanar e12-rotors,
@@ -4455,7 +4998,35 @@ def w_state_located_gap():
 # GENERATION SECTOR (§19: Koide, Cabibbo, neutrino)   [twt_spectra]
 # ======================================================================
 
-# empirical charged-lepton masses (MeV) — INPUTS used only to TEST the relations
+# empirical charged-lepton masses (MeV) — INPUTS used only to TEST the relations.
+# SCHEME ANNOTATION added 2026-07-30: these constants carried NO definition note while the same
+# file's quark constants have always carried one (quark_mass_reconstruction()'s scale_note, ~line
+# 5255). The asymmetry was the sharpest evidence that the corpus had never asked the mass-definition
+# question at its tightest empirical fit. See negatives ledger N57 and paper §C.3.3 / §C.3.3a.
+LEPTON_MASS_SCALE_NOTE = (
+    "scale_note: PDG (2026) PHYSICAL / ON-SHELL (POLE) charged-lepton masses -- NOT MS-bar, NOT "
+    "running masses. Consequence for the Koide sector: K = 2/3 is a statement at ONE MASS "
+    "DEFINITION, i.e. SCHEME-SPECIFIC. It holds to a relative -3.3e-6 here; under a one-loop QED "
+    "pole->MS-bar conversion the deviation becomes +(1.72-1.89)e-3 across mu in {m_mu, m_tau, M_Z} "
+    "and alpha in {1/137, 1/128}, i.e. 520-571x worse, and the Foot angle moves 45.000 deg -> "
+    "~45.05 deg. K, theta, delta_L and D/J are scale-INVARIANT in the masses, so only the "
+    "flavour-differential part of a definition change reaches them (they are ~mu-independent); "
+    "mu^2 = ((sum sqrt m)/3)^2 of R-134 is an ABSOLUTE scale, feels the common part too, and IS "
+    "mu-dependent -- its 0.28% agreement with m_N/3 becomes +0.8% / -0.2% / -1.6% at "
+    "mu = m_mu / m_tau / M_Z. R-074 is NOT weakened: the lepton leg moves 0.787 -> 0.781 toward "
+    "the unmoved baryon leg 0.778, tightening lepton<->baryon from 1.08% to 0.34-0.40%. ALL THOSE "
+    "NUMBERS ARE PAPER-SIDE (paper sec. C.3.3 / C.3.3a, own one-loop computation, 2026-07-30): "
+    "they are deliberately NOT computed here, NOT banked, and MUST NOT be cited as engine-verified "
+    "(canon sec. 2, bank-before-you-cite). OPEN GAP, not a derived feature: the corpus fixes "
+    "NOWHERE which renormalized mass the meta-time rotor frequency omega equals. The pole IS the "
+    "natural default for mass-as-resonance-frequency and is itself scale-independent -- what is "
+    "open is that the identification is UNSTATED and UNARGUED, and that a substrate-scale "
+    "derivation has no stated reason to land on the pole point rather than on a running mass. That "
+    "is the canon sec. 0 two-scales problem (monad layer vs hadronic cell) at the headline result. "
+    "Contrast: sin^2 theta_W HAS a descent account and it FAILS openly (paper C.4.5, N55); Koide "
+    "has none. Prior art on the objection: Sumino 2009 (U(3) family gauge bosons cancelling the "
+    "QED correction); TWT has no family gauge sector. Negatives ledger N57."
+)
 M_E, M_MU, M_TAU = 0.51099895, 105.6583755, 1776.93
 
 # the ONE generation INPUT: the Koide relation, stated directly as the Brannen coefficient.
@@ -9258,7 +9829,8 @@ def maxwell_grade_structure():
     """[DERIVED] §21.2: ∇F=J with ∇ grade-1 (∂_τ+∇₃) and F grade-2 (bivector). The
     geometric product of a grade-1 and a grade-2 lands ONLY in grades {1,3}. The four
     Maxwell laws are the components of this one statement: grade-1 part = J (source),
-    grade-3 part = 0 (sourceless). COMPUTED: build generic grade-1 ∇ and grade-2 F,
+    grade-3 part sourceless — its 4-component slot is set to zero BY THE EQUATION
+    (J carries no grade-3 piece), not by the algebra. COMPUTED: build generic grade-1 ∇ and grade-2 F,
     confirm ∇F ∈ {grade 1, grade 3} with no grade-0/2/4 part."""
     # generic grade-1 operator (distinct coeffs so nothing cancels accidentally)
     D = 2*e(1) + 3*e(2) + 5*e(3) + 7*e(4)
@@ -9277,8 +9849,12 @@ def maxwell_grade_structure():
     }
 
 def maxwell_four_laws():
-    """[DERIVED] §21.2: the named decomposition of ∇F=J on a spatial slice.
-    No magnetic monopoles because F is a pure bivector — the grade-3 source vanishes."""
+    """[DERIVED-A + CONDITIONAL] §21.2 / V3 §B.5.2: the named decomposition of grad F = J on a
+    spatial slice. No magnetic monopoles because the only SOURCE J is grade-1 — the grade-3
+    source slot (4 components, see maxwell_grade_structure) EXISTS and is left EMPTY by the
+    winding-as-source identification, NOT because F is a bivector: GA-EM *with* monopoles is
+    grad F = J - I4*K, F still a bivector (Hestenes). Corrected 2026-07-28 to match V3 §B.5.2.
+    """
     return {
         "grade-1 scalar":      "∇·E = ρ            (Gauss)",
         "grade-1 3-vector":    "∇×B - ∂_τE/c = j   (Ampère–Maxwell)",
@@ -9592,6 +10168,66 @@ def lambda_resolution_structure():
     return {"rho_grav at equilibrium (P=0)": rho_grav, "huge zero-point energy gravitates": rho_grav != 0}
 
 
+def lambda_H2_dynamical_reading_excluded():
+    """[DERIVED arithmetic + INPUT bounds] §E.1.1 / N54: `Λ ~ H²` admits two readings and only one
+    survives. DYNAMICAL: ρ_vac(t) = 3ν M̄_Pl² H(t)² at ALL epochs. Substituting into the flat Friedmann
+    constraint 3 M̄_Pl² H² = ρ_m + ρ_r + ρ_vac gives 3 M̄_Pl² H² (1−ν) = ρ_m + ρ_r, hence Ω_vac(z) ≡ ν
+    IDENTICALLY — the vacuum FRACTION is epoch-independent, so matching today forces ν = Ω_Λ,0 ≈ 0.685
+    at recombination and at BBN too. (A separately-conserved w=−1 component would give ρ_vac = const,
+    i.e. the other reading; so the dynamical reading necessarily involves vacuum–matter exchange.)
+    PRESENT-EPOCH: ρ_vac = const with ρ_vac = 3 Ω_Λ,0 M̄_Pl² H_0² — near-definitional (it is the
+    definition of Ω_Λ,0 rearranged), and the reading `kernel_overdetermination_table` already uses
+    (H_0, not H(t); it likewise calls c = 3Ω_Λ semi-definitional).
+    INPUT bounds, all read from the primary source: early-DE below ≈2% of critical — and that is the
+    WEAKEST, z<50-only case (Planck 2015 XIV abstract, arXiv:1502.01590); ΔN_eff = −0.14 ± 0.21 from
+    light elements alone (arXiv:2401.15054); N_eff = 2.99 ± 0.17, Ω_m = 0.315 ± 0.007 (Planck 2018 VI,
+    arXiv:1807.06209); running-vacuum global fit ν_eff ≡ ν/4 = 0.00024 (+0.00039/−0.00040) for
+    ρ_vac(H) = (3/8πG)(c₀ + νH² + ν̃Ḣ) + O(H⁴) (arXiv:2102.12758 Eq.1, Table 1).
+    CAVEAT, not hidden: the ΔN_eff rows are an EQUIVALENT-ENERGY translation (a w=−1 component is not
+    radiation); they size the violation and the verdict does NOT rest on them — the early-DE row is a
+    direct fraction-vs-fraction comparison and the q-constancy row imports no bound at all. The
+    normalization is convention-dependent, so BOTH are returned: the BBN-epoch value (T_ν = T_γ, the
+    one appropriate to a light-element bound) and the post-e⁺e⁻-annihilation value.
+    self-checks: Ω_e excess > 30×; ΔN_eff excess > 25×; the BBN-epoch convention is the smaller of the
+    two; q(z) constant and negative in both eras ⇒ no acceleration transition, while flat ΛCDM on the
+    SAME parameters gives z_t ≈ 0.63."""
+    Om_m0, Om_L0 = 0.315, 0.685                      # Planck 2018 VI, flat  [INPUT]
+    nu = Om_L0                                       # forced by matching today under the dynamical reading
+    r_vac_rad = nu / (1.0 - nu)                      # = 2.1746, epoch-independent
+    # ΔN_eff at the BBN epoch proper: T_nu = T_gamma, one neutrino species = (7/8) rho_gamma
+    dNeff = r_vac_rad * (1.0 + (7.0 / 8.0) * 3.044) / (7.0 / 8.0)
+    # the post-e+e--annihilation convention, quoted so the choice is visible
+    f_post = 7.0 / 8.0 * (4.0 / 11.0) ** (4.0 / 3.0)
+    dNeff_post = r_vac_rad * (1.0 + f_post * 3.044) / f_post
+    bbn_95_upper = -0.14 + 2.0 * 0.21                # arXiv:2401.15054: -0.14 +/- 0.21
+    def q(w):                                        # deceleration parameter; NOTE: no z-dependence
+        return -1.0 + 1.5 * (1.0 + w) * (1.0 - nu)
+    z_t_LCDM = (2.0 * Om_L0 / Om_m0) ** (1.0 / 3.0) - 1.0
+    nu_RVM_95_upper = 4.0 * (0.00024 + 2.0 * 0.00039)
+    out = {
+        "Omega_vac_at_every_epoch": nu,
+        "excess_over_Planck2015XIV_earlyDE_0p02": nu / 0.02,
+        "equivalent_Delta_Neff_at_BBN": dNeff,
+        "equivalent_Delta_Neff_post_annihilation_convention": dNeff_post,
+        "excess_over_BBN_Delta_Neff_95up": dNeff / bbn_95_upper,
+        "q_matter_era": q(0.0), "q_radiation_era": q(1.0 / 3.0),
+        "q_depends_on_z": False,
+        "LCDM_transition_redshift_same_params": z_t_LCDM,
+        "excess_over_RVM_nu_95up": nu / nu_RVM_95_upper,
+        "verdict": "DYNAMICAL reading EXCLUDED (three independent probes: early-DE, BBN Delta-N_eff, "
+                   "and the absent deceleration->acceleration transition). PRESENT-EPOCH reading "
+                   "survives but is near-definitional => TWT makes NO dark-energy prediction at V3.",
+    }
+    assert abs(out["Omega_vac_at_every_epoch"] - Om_L0) < 1e-12, "matching today forces nu = Omega_Lambda,0"
+    assert out["excess_over_Planck2015XIV_earlyDE_0p02"] > 30.0
+    assert out["excess_over_BBN_Delta_Neff_95up"] > 25.0
+    assert out["equivalent_Delta_Neff_at_BBN"] < out["equivalent_Delta_Neff_post_annihilation_convention"]
+    assert out["q_depends_on_z"] is False and q(0.0) < 0.0 and q(1.0 / 3.0) < 0.0
+    assert 0.60 < z_t_LCDM < 0.70
+    assert out["excess_over_RVM_nu_95up"] > 100.0
+    return out
+
+
 # ---- §24.5  induced-G MAGNITUDE: the knowability determination (item 10) ------
 # Integrated from the ECC Sakharov two-build (MC + Reviewer + reconciler). Arithmetic clean-room
 # verified by the Editor; verdict-LABELS calibrated per the reconciler (the delta over-framed them):
@@ -9639,17 +10275,45 @@ def induced_G_only_monad_scale_enters():
 
 def induced_G_bracket_mode_count():
     """[DERIVED — Λ-status core] §21.6.3: Back-fitting empirical G to 1/(16πG) = N_eff·Λ²/(96π²) gives
-    Λ/M_Pl = sqrt(6π/N_eff). The paper's bracket Λ∈[0.16,0.72] M_Pl maps to N_eff∈[~36,~736] (SM-like
-    O(100)) — so Λ is a FREE residual fit to G, pinned only up to the mode count, NOT by the substrate.
+    Λ/M_Pl = sqrt(6π/N_eff). The RETIRED 2026-07-28 bracket Λ∈[0.13,2.5] M_Pl mapped to N_eff∈[~3,~1115]
+    — the surviving point: Λ_S is a FREE residual fit to G, pinned only up to the mode count, NOT by
+    the substrate.
+    ★ BRACKET RETIRED 2026-07-30 (history: widened 2026-07-28 from [0.16,0.72] to span an apparent
+    three-way c_reg disagreement; RESOLVED 2026-07-29 — ONE c_reg = 1/12 in three Λ-variables; the
+    which-Λ ruling then split the symbol, so the wide bracket has no live consumer). This primitive's
+    Λ↔N_eff trade-off statement is kept as the HISTORICAL record of what the wide bracket implied
+    (N_eff∈[~3,~1115] in this primitive's fixed convention) and of the honest point that survives:
+    Λ_S is a back-fit to measured G over the N_eff menu, pinned by the mode count, NOT by the substrate.
     ★ CAVEAT (reconciler): a1 is a SIGNED weighted sum over mode TYPES (scalar +1/6, conformal 0,
     Dirac −1/12, gauge +1/6), NOT a count — and the substrate's actual mode content was not specified — so
-    the true bracket may be WIDER than the mode-count [36,736]. self-check: the bracket maps to ~[36,736]."""
+    the true bracket may be WIDER still than the mode-count [3,1115].
+    self-check: the bracket maps to ~[3,1115]."""
     import math
     def Neff_of(ratio): return 6 * math.pi / ratio ** 2
-    Neff_hi, Neff_lo = Neff_of(0.16), Neff_of(0.72)
-    return {"Lambda_over_MPl_bracket": (0.16, 0.72), "N_eff_bracket_mode_count": (round(Neff_lo), round(Neff_hi)),
+    Neff_hi, Neff_lo = Neff_of(0.13), Neff_of(2.5)
+    return {"Lambda_over_MPl_bracket": (0.13, 2.5),  # RETIRED 2026-07-30 (historical record)
+            "bracket_status": "RETIRED by the 2026-07-30 which-Lambda ruling — historical record only; "
+                              "live scales: Lambda_S = sqrt(2*pi) M_Pl (scheme), Lambda_L = 1/a = "
+                              "[0.386, 0.734] M_Pl (dispersion consumers)",
+            "N_eff_bracket_mode_count": (round(Neff_lo), round(Neff_hi)),
             "caveat": "a1 is a SIGNED weighted TYPE-sum, not a count; true bracket may be WIDER; substrate "
                       "mode content unspecified",
+            "NOT_a_mode_count_claim": (
+                "READ THIS BEFORE QUOTING [3,1115]. Since 2026-07-28 the Lambda bracket's width is "
+                "DOMINATED by the unreconciled c_reg (a factor ~4.6 in Lambda), not by mode content. "
+                "Inverting that width through a FIXED coefficient convention therefore charges c_reg's "
+                "uncertainty to N_eff, which is a category error if read literally: the framework does "
+                "NOT claim the substrate may carry anywhere from 3 to 1115 modes. [3,1115] is only the "
+                "image of the Lambda bracket under this primitive's fixed convention. The honest "
+                "mode-count statement is the OLD one conditioned on a SINGLE c_reg (e.g. [36,736] at the "
+                "placeholder), and it could not be stated unconditionally until the c_reg reconciliation "
+                "closed. It closed 2026-07-29 (one coefficient, three Lambda-variables) and the "
+                "which-Lambda ruling landed 2026-07-30: this field is now HISTORICAL."),
+            "bracket_widened_2026_07_28": ("was [0.16,0.72] -> N_eff [36,736]. Widened to span the OPEN "
+                                           "three-way c_reg disagreement (~1 paper placeholder / 1/12 "
+                                           "sakharov_induced_gravity / ~1.8 induced_G_from_linear_face_band), "
+                                           "NOT to agree with any measurement. Λ is now LESS pinned; the old "
+                                           "'SM-like O(100)' gloss on N_eff no longer holds"),
             "verdict": "Λ is a FREE residual (pinned only up to N_eff), substrate-UNFIXED"}
 
 
@@ -9855,9 +10519,18 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
     itself): η⁽⁴⁾ is by definition the coefficient of p⁴/M²_Pl (the Liberati convention, in which the
     bounds above are quoted). The SUBSTRATE's own natural form is c·p⁴/Λ² with c = O(1), since Λ is
     the substrate cutoff. The two are related by η⁽⁴⁾ = c·(M_Pl/Λ)². So "the substrate's natural
-    coefficient is unity" means c = 1, NOT η⁽⁴⁾ = 1 — and c = 1 at the §B.6.2 Λ-bracket gives
-    η⁽⁴⁾ = (M_Pl/Λ)² ∈ [1.9, 39], EXCLUDED by 3 to 9 orders. The framework does NOT claim that value
-    (it cannot compute it); the number is reported here only to size the exposure. The defect form
+    coefficient is unity" means c = 1, NOT η⁽⁴⁾ = 1 — and c = 1 at the lattice scale Λ_L = 1/a gives
+    η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7] (central 3.47), EXCLUDED by 3 to 9 orders. The framework does NOT
+    claim that value (it cannot compute c); the number is reported here only to size the exposure.
+    WHICH-Λ RULING (coordinator, 2026-07-30): the dispersion denominator is Λ_L = 1/a — a Taylor
+    expansion of a finite-range lattice kernel can only produce the bond length — with band
+    [0.386, 0.735] M_Pl from OA-LF-ii's κ ∈ [1/2, 2] through the affine c_lat(κ). Λ_S = √(2π) M_Pl is a
+    heat-kernel SCHEME variable carrying no substrate information and is NOT admissible here.
+    History: 2026-07-28 the bracket was widened to [0.13, 2.5] M_Pl to span an apparent three-way
+    c_reg disagreement; 2026-07-29 that resolved to ONE coefficient in three Λ-variables; the
+    widening's rationale died with it and the wide bracket is RETIRED. The exposure NARROWS and
+    SHARPENS: even the most favourable corner (η⁽⁴⁾ = 1.9) is ~3 orders above the loosest
+    published bound. The defect form
     factor supplies (f_π/m_p)² ~ 1e-2, two orders where six are needed, and supplies NOTHING for the
     photon, which §B.5.4 makes a BULK strain mode with no internal structure — the most exposed
     sector, not the exempt one.
@@ -9977,7 +10650,15 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
         f"LEADING not merely an upper bound); got {inv_dims[6]}")
 
     MPl = 1.220910e19  # GeV
-    lam_lo, lam_hi = 0.16, 0.72   # the §B.6.2 Sakharov Λ-bracket, in units of M_Pl (import I-3, OPEN)
+    # Λ_L = 1/a — the inverse monad spacing, the ONLY admissible dispersion denominator
+    # (which-Λ ruling, coordinator 2026-07-30). Band: κ ∈ [1/2, 2] applied THROUGH the AFFINE
+    # c_lat(κ) = 1.5075 + 20.2777·κ of c_reg_from_substrate_mode_content — κ scales the ~93%
+    # sub-monad support fraction, NOT c_lat wholesale (wholesale would give [0.38, 0.76], a
+    # DIFFERENT band). 1/a = sqrt(12π/(N_eff·c_lat)) M_Pl → [0.3865, 0.7345]; central 0.5365
+    # at the flat-band c_lat = 21.83 (the affine κ=1 value 21.79 gives 0.537 — same at 2 d.p.).
+    # The suite cross-ties these literals to the live affine map (no free-floating constant).
+    # The old [0.13, 2.5] Sakharov-scheme bracket is RETIRED here.
+    lam_lo, lam_hi = 0.3865, 0.7345
     x2 = (E_GeV / (lam_lo * MPl)) ** 2
     return {
         "dim4_relative_boost": "CLOSED structurally (R-016 matter-as-defect: one field, one light cone)",
@@ -10008,6 +10689,18 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                           "'natural coefficient unity' means c = 1, NOT eta4 = 1"),
         "naive_eta4_at_c_equals_1": ((1.0 / lam_hi) ** 2, (1.0 / lam_lo) ** 2),
         "naive_eta4_status": "NOT a prediction — excluded by published n=4 limits by 3-9 orders; sizes the exposure",
+        "Lambda_bracket_used": {
+            "bracket_M_Pl_nonreduced": (lam_lo, lam_hi),
+            "meaning": "Lambda_L = 1/a, the inverse monad spacing — band from OA-LF-ii kappa in "
+                       "[1/2, 2] on the banked c_lat = 21.83; central 0.537 M_Pl",
+            "history": ("2026-07-28: widened (0.16, 0.72) -> (0.13, 2.5) to span an apparent "
+                        "three-way c_reg disagreement; 2026-07-29: RESOLVED — one c_reg = 1/12 in "
+                        "three Lambda-variables; 2026-07-30: which-Lambda RULED, wide bracket "
+                        "RETIRED. eta4 went [1.9, 39] -> [0.16, 59] -> [1.9, 6.7]"),
+            "status": "RULED (coordinator, 2026-07-30) — Lambda_L = 1/a for the lattice-dispersion "
+                      "consumers (scoped per B.6.2; THIS exposure is one of the two FORCED "
+                      "Taylor-coefficient consumers); Lambda_S = sqrt(2*pi) M_Pl is a scheme variable "
+                      "with no substrate content (see sakharov_induced_gravity()['c_reg_reconciliation'])"},
         # The SURVIVAL requirement expressed in the substrate's OWN normalization. Banked as a returned
         # field so downstream text can cite this primitive rather than quoting a floating number
         # (canon §2 bank-before-you-cite). c = eta4*(Lambda/M_Pl)^2, so the ceiling scales with BOTH the
@@ -10016,7 +10709,9 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
             "matter_eta4_1e-6": (1e-6 * lam_lo ** 2, 1e-6 * lam_hi ** 2),
             "photon_eta4_1e-8": (1e-8 * lam_lo ** 2, 1e-8 * lam_hi ** 2),
             "note": "survival needs |c| below these; across {species, Lambda-corner} the ceiling spans "
-                    "2.6e-10 .. 5.2e-7, i.e. a 6-to-10-order suppression of an O(1) substrate coefficient"},
+                    "1.5e-9 .. 5.4e-7, i.e. a 6-to-9-order suppression of an O(1) substrate coefficient "
+                    "(re-cut by the 2026-07-30 which-Lambda ruling to the 1/a band; was 1.7e-10 .. 6.3e-6 "
+                    "under the retired [0.13, 2.5] bracket, 2.6e-10 .. 5.2e-7 under pre-2026-07-28)"},
         "published_n4_bounds_INPUT": {"photon_xi4": (-1e-7, 1e-8), "electron_eta4": (-1e-7, 1e-6),
                                       "proton_eta4": (-1e-3, 1e-6), "delta_pi_p_Stecker": 4.5e-23},
         "form_factor_insufficient": "(f_pi/m_p)^2 ~ 1e-2 for the proton; NONE for the photon (bulk mode, B.5.4)",
@@ -10114,9 +10809,13 @@ def eom_constraint_class():
                        "|eta4| <~ 1e-6 (matter) and <~ 1e-8 (photon), i.e. |c| below "
                        "implied_substrate_c_ceiling in the substrate's own normalization",
         "source": "IMPORT I-19 (published n=4 LV-EFT limits: Liberati 2013 eqs 77-78; Stecker 2009 eq 18)",
-        "naive_value_status": "a coefficient of order unity (c = 1) gives eta4 = (M_Pl/Lambda)^2 in "
-                              "[1.9, 39] — the NAIVE value, excluded by 3-9 orders. NOT a TWT prediction: "
-                              "c is #1-gap GATED (Cl41Wave().wave_speed_c() raises)",
+        "naive_value_status": "a coefficient of order unity (c = 1) gives eta4 = c_lat/(2*pi) in "
+                              "[1.9, 6.7] (central 3.47) — the NAIVE value, excluded by 3-9 orders. NOT "
+                              "a TWT prediction: c is #1-gap GATED (Cl41Wave().wave_speed_c() raises). "
+                              "[which-Lambda ruling 2026-07-30: dispersion consumers take "
+                              "Lambda_L = 1/a, band [0.386, 0.734] M_Pl; the 2026-07-28 wide bracket "
+                              "[0.13, 2.5] / eta4 [0.16, 59] / 2-10 orders is RETIRED. The ceiling "
+                              "binds at every corner]",
         "bindingness_HEDGE": "CONDITIONAL — these are INSIDE-frame inferences bounding an OUTSIDE-frame "
                              "object; the transfer rides the un-built outside<->inside projection "
                              "(I-19 premise (e); same hedge as E.3.1 rows 7-8). Excising I-19 fires "
@@ -12170,10 +12869,22 @@ def worldline_bivector(r, v, t: float):
     return spatial, e4part
 
 def macroscopic_LQ_split():
-    """[DERIVED] §24.5: THE structural observation — the conserved spatial angular
+    """[DERIVED (the partition fact) + FRAMING (the 'two manifestations' reading)]
+    §24.5: a structural observation — the conserved spatial angular
     momentum L = Σ m_a s_a∧w_a is an L-orbit bivector, and the center-of-mass e4-drift
     is the Q-orbit part. The L/Q decomposition of macroscopic angular momentum is the
-    SAME split (8.1) that classifies leptons (L-orbit) and quarks (Q-orbit). COMPUTED."""
+    SAME split (8.1) that classifies leptons (L-orbit) and quarks (Q-orbit). COMPUTED.
+
+    SCOPE (corrected 2026-07-30, review item III-26; this docstring formerly read
+    'THE structural observation'): the L/Q split IS the e_4-content partition of the
+    six bivectors, and BOTH sortings compared here are graded by that same
+    distinguished e_4 -- the macroscopic invariant is purely spatial by construction
+    (barycentric coordinates annihilate the e_4-mixed blades, paper B.8.1) and the
+    lepton orbit IS the purely spatial triple. So their agreement is a DEFINITIONAL
+    observation, not an independent structural coincidence, and not an
+    over-determination. See the triviality caveat at paper B.8.2. What is computed
+    and exact is the partition itself; the 'one split, two manifestations' reading
+    is FRAMING."""
     spatial, e4part = worldline_bivector(r=(1.0, 2.0, 3.0), v=(0.5, 1.5, 2.5), t=1.0)
     spatial_blades = [b for b, _ in spatial.terms]
     e4_blades = [b for b, _ in e4part.terms]
@@ -12521,6 +13232,344 @@ def weak_isospin_SD_parity_exclusion() -> dict:
     }
 
 
+def self_adjointness_from_one_B_projection() -> dict:
+    """[DERIVED-A] §B.3.2: self-adjointness is forced by the {1,B} projection, NOT by
+    "requiring reality" of the grade-0 expectation.
+
+    THE DEFECT REPAIRED. §B.3.2 as written derived `M~ = M` from "requiring reality" of
+    <phi~ M psi>_0. In a REAL Clifford algebra every grade-0 coefficient is a real number
+    by construction, so that requirement imposes NOTHING. Worse, the grade-0 expectation is
+    identically BLIND to the anti-self-adjoint part of M:
+        <psi~ M psi>_0 = <(psi~ M psi)~>_0 = <psi~ M~ psi>_0   for every psi,
+    hence <psi~ (M - M~) psi>_0 = 0 identically -- the scalar part cannot even see the
+    violation it was supposed to forbid.
+
+    THE CORRECT CONDITION is the one the Born-rule section (R-023) already uses: the
+    expectation lives in the derived {1, B} subalgebra (R-020 / born_subspace_one_B_forced),
+    whose `i := B` identification is R-021. "Real expectation value" therefore means THE
+    B-COMPONENT VANISHES:  <psi~ M psi>_B = 0 for all psi.
+    That condition is not vacuous; this primitive computes exactly which M satisfy it.
+
+    THE PAIRING. On Cl+(4,0) (real dim 8) write h(phi,psi) = <phi~ psi>_{1,B}, with
+    components g(phi,psi) = <phi~ psi>_0 and b(phi,psi) = <phi~ psi>_B. Engine-exact: g is
+    symmetric and unimodular, b is ANTISYMMETRIC and nondegenerate (a symplectic form), and
+    J := right-multiplication by B satisfies J^2 = -1 and preserves both g and b. So
+    h = g + B*b is the Hermitian form of C^4 and "vanishing B-part" is the standard
+    "<psi, M psi> is real".
+
+    RESULTS (exact kernel computations over the rationals; every one of them verified for
+    ALL THREE L-orbit winding choices B_a in {e12, e13, e23}, matching R-020's scope, so
+    nothing below depends on the conventional choice of the phase blade):
+      (1) states = Cl+(4,0), operators = left multiplication by Cl+(4,0) [8 real dims]:
+          {M : <psi~ M psi>_B = 0 for all psi} = span{1, I4}, DIMENSION 2 -- EXACTLY the
+          reversion-fixed subspace {M in Cl+(4,0) : M~ = M}.
+      (2) states = Cl(4,0), operators = left multiplication by Cl(4,0) [16 real dims]:
+          the solution space is span{1, e1, e2, e3, e4, I4}, DIMENSION 6 -- again EXACTLY
+          the reversion-fixed subspace (grades 0,1,4 reversion-even; grades 2,3 odd).
+      (3) THE PHASE SECTOR ALONE IS NOT ENOUGH. With states restricted to span{1,B} the
+          condition kills only the B-component of M: 7 of 8 dimensions survive. It becomes
+          exactly right only once the operators are also required to preserve the phase
+          sector (M in span{1,B}), where the solution is span{1}, DIMENSION 1 -- the
+          reversion-fixed part of {1,B}, i.e. the reals inside C. The forcing therefore
+          needs the state space to be the full even subalgebra (or full Cl(4,0)).
+      (4) OPERATOR CLASS IS A NAMED PREMISE. Over ARBITRARY real-linear maps on Cl+(4,0)
+          [64 real dims] the condition leaves 28 dimensions -- too loose, because it admits
+          C-ANTIlinear pieces. Restricted to C-linear maps (those commuting with J; left
+          multiplication is automatically of this kind, checked below) the C-linear operator
+          space is 32-dimensional and the solution space is 16-dimensional = dim_R of the
+          self-adjoint operators on C^4. Both counts are computed here, not asserted.
+
+    CONCLUSION. R-022's CONCLUSION (`M~ = M`, Clifford reversion self-adjointness) is
+    CONFIRMED as an exact algebraic identity; only its stated DERIVATION was vacuous.
+    Restated on the {1,B} projection with the C-linearity premise named, it is DERIVED-A.
+
+    SCOPE, stated plainly. What is exact here is the ALGEBRA. Two premises are carried, not
+    derived: (i) that measurement expectation values are real -- this is the QM postulate
+    being expressed in Clifford form, not a substrate derivation of it; (ii) that observables
+    act C-linearly (equivalently: commute with the derived phase structure B). Left
+    multiplication satisfies (ii) automatically, so for the left-multiplication class the
+    premise is discharged; for a general observable class it is an assumption.
+
+    GRADE-3 LOOSE END (§B.3.2 "spectral structure"). The four grade-3 blades ARE orthonormal
+    (<T_a T_b~>_0 = delta_ab, engine-exact), but they are reversion-ODD (T~ = -T), hence
+    ANTI-self-adjoint under R-022's own criterion; they square to -1 (no real eigenvalues)
+    and do not commute pairwise (no simultaneous eigenbasis). The gloss "each blade an
+    eigenvector of the corresponding observable" names no observable and is WITHDRAWN. The
+    four blades also split 3+1 by e4-content (the three colour slots e124/e134/e234 vs the
+    spatial pseudoscalar e123), so they are not a uniform quadruplet; any route from them to
+    the fermion spectrum runs through the Part C colour identification, NOT through this
+    orthonormality, and is NOT established in §B.3.2.
+
+    TIER. DERIVED-A for the kernel computations, the reversion-fixed identification, the
+    {1,B} pairing structure, and the grade-3 orthonormality/anti-self-adjointness. Reality of
+    expectation values and C-linearity of observables are NAMED PREMISES, not derived here.
+    The "eigenvector of the corresponding observable" gloss is WITHDRAWN (unsupported).
+    """
+    from fractions import Fraction
+
+    def _rref(rows, ncols):
+        """[nested helper] exact Fraction Gauss-Jordan -> (rank, nullspace basis)."""
+        A = [[Fraction(x) for x in r] for r in rows]
+        m = len(A)
+        piv = []
+        r = 0
+        for c in range(ncols):
+            p = None
+            for i in range(r, m):
+                if A[i][c] != 0:
+                    p = i
+                    break
+            if p is None:
+                continue
+            A[r], A[p] = A[p], A[r]
+            pv = A[r][c]
+            A[r] = [x / pv for x in A[r]]
+            for i in range(m):
+                if i != r and A[i][c] != 0:
+                    f = A[i][c]
+                    A[i] = [a - f * b for a, b in zip(A[i], A[r])]
+            piv.append(c)
+            r += 1
+            if r == m:
+                break
+        basis = []
+        for fc in [c for c in range(ncols) if c not in piv]:
+            v = [Fraction(0)] * ncols
+            v[fc] = Fraction(1)
+            for i, pc in enumerate(piv):
+                v[pc] = -A[i][fc]
+            basis.append(v)
+        return len(piv), basis
+
+    def _mm(X, Y):
+        return [[sum(X[i][k] * Y[k][j] for k in range(len(Y))) for j in range(len(Y[0]))]
+                for i in range(len(X))]
+
+    ONE = MV.from_dict({(): 1})
+    ZERO = MV.from_dict({})
+    EVEN_BLADES = [(), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4), (1, 2, 3, 4)]
+    EVEN_NAMES = ["1", "e12", "e13", "e14", "e23", "e24", "e34", "I4"]
+    FULL_BLADES = [(), (1,), (2,), (3,), (4,), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4),
+                   (3, 4), (1, 2, 3), (1, 2, 4), (1, 3, 4), (2, 3, 4), (1, 2, 3, 4)]
+    FULL_NAMES = ["1", "e1", "e2", "e3", "e4", "e12", "e13", "e14", "e23", "e24",
+                  "e34", "e123", "e124", "e134", "e234", "I4"]
+    L_ORBIT_B = [(1, 2), (1, 3), (2, 3)]          # R-020's three winding choices
+    n = 8
+
+    def bl(t):
+        return ONE if not t else e(*t)
+
+    def support(basis, names):
+        s = set()
+        for v in basis:
+            for k, x in enumerate(v):
+                if x != 0:
+                    s.add(names[k])
+        return sorted(s)
+
+    rev_fixed_even = sorted(nm for nm, t in zip(EVEN_NAMES, EVEN_BLADES)
+                            if bl(t).reverse() == bl(t))
+    rev_fixed_full = sorted(nm for nm, t in zip(FULL_NAMES, FULL_BLADES)
+                            if bl(t).reverse() == bl(t))
+
+    # ---- (0) vacuity witness: the grade-0 expectation is blind to the anti-self-adjoint part
+    grade0_blind = True
+    for tb in FULL_BLADES:
+        M_anti = 0.5 * (bl(tb) - bl(tb).reverse())
+        for j, sb in enumerate(FULL_BLADES):
+            psi = (bl(sb) + 0.5 * bl(FULL_BLADES[(j + 3) % 16])
+                   + 0.25 * bl(FULL_BLADES[(j + 7) % 16]))
+            if abs((psi.reverse() * M_anti * psi).coeff(())) > 1e-12:
+                grade0_blind = False
+    assert grade0_blind, "grade-0 expectation must be blind to the anti-self-adjoint part of M"
+
+    per_B = {}
+    for Ba in L_ORBIT_B:
+        Bname = "e" + "".join(str(x) for x in Ba)
+        B = bl(Ba)
+
+        # -- the {1,B} pairing: g symmetric unimodular, b symplectic, J a complex structure
+        gm = [[round((bl(EVEN_BLADES[i]).reverse() * bl(EVEN_BLADES[j])).coeff(()))
+               for j in range(n)] for i in range(n)]
+        bm = [[round((bl(EVEN_BLADES[i]).reverse() * bl(EVEN_BLADES[j])).coeff(Ba))
+               for j in range(n)] for i in range(n)]
+        g_ok = all(gm[i][j] == (1 if i == j else 0) for i in range(n) for j in range(n))
+        b_anti = all(bm[i][j] == -bm[j][i] for i in range(n) for j in range(n))
+        b_rank, _ = _rref(bm, n)
+        Jm = [[round((bl(EVEN_BLADES[j]) * B).coeff(EVEN_BLADES[i])) for j in range(n)]
+              for i in range(n)]
+        JJ = _mm(Jm, Jm)
+        J_sq = all(JJ[i][j] == (-1 if i == j else 0) for i in range(n) for j in range(n))
+        JT = [[Jm[j][i] for j in range(n)] for i in range(n)]
+        J_pres = (_mm(JT, _mm(gm, Jm)) == gm) and (_mm(JT, _mm(bm, Jm)) == bm)
+
+        # -- kernel of  psi -> <psi~ M psi>_B  over left-multiplication operators
+        def kernel(state_blades, op_blades, target=Ba):
+            rows = []
+            for i in range(len(state_blades)):
+                for j in range(i, len(state_blades)):
+                    row = []
+                    for ob in op_blades:
+                        v = (bl(state_blades[i]).reverse() * bl(ob)
+                             * bl(state_blades[j])).coeff(target)
+                        if i != j:
+                            v += (bl(state_blades[j]).reverse() * bl(ob)
+                                  * bl(state_blades[i])).coeff(target)
+                        row.append(round(v))
+                    rows.append(row)
+            _, basis = _rref(rows, len(op_blades))
+            return len(basis), basis
+
+        dim_even, basis_even = kernel(EVEN_BLADES, EVEN_BLADES)
+        dim_full, basis_full = kernel(FULL_BLADES, FULL_BLADES)
+        dim_ph_even, _ = kernel([(), Ba], EVEN_BLADES)
+        dim_ph_ph, _ = kernel([(), Ba], [(), Ba])
+
+        # -- operator class: arbitrary real-linear (64 dims) vs C-linear (32 dims)
+        # <psi~ L psi>_B = sum_{a,i,j} psi_a psi_j L_ij bm[a][i]; parameter index = i*n + j.
+        lin_rows = []
+        for a in range(n):
+            for c2 in range(a, n):
+                row = [0] * (n * n)
+                for i in range(n):
+                    row[i * n + c2] += bm[a][i]
+                    if a != c2:
+                        row[i * n + a] += bm[c2][i]
+                lin_rows.append(row)
+        _, all_lin = _rref(lin_rows, n * n)
+        comm_rows = []
+        for i in range(n):
+            for j in range(n):
+                row = [0] * (n * n)
+                for k in range(n):
+                    row[i * n + k] += Jm[k][j]
+                    row[k * n + j] -= Jm[i][k]
+                comm_rows.append(row)
+        _, c_lin_space = _rref(comm_rows, n * n)
+        proj_rows = [[sum(Fraction(r[t]) * v[t] for t in range(n * n)) for v in c_lin_space]
+                     for r in lin_rows]
+        _, c_lin_sol = _rref(proj_rows, len(c_lin_space))
+
+        left_c_linear = True
+        for ob in EVEN_BLADES:
+            Lm = [[round((bl(ob) * bl(EVEN_BLADES[j])).coeff(EVEN_BLADES[i])) for j in range(n)]
+                  for i in range(n)]
+            if _mm(Lm, Jm) != _mm(Jm, Lm):
+                left_c_linear = False
+
+        per_B[Bname] = {
+            "pairing_g_symmetric_unimodular": g_ok,
+            "pairing_b_antisymmetric_symplectic": b_anti,
+            "pairing_b_rank": b_rank,
+            "J_squares_to_minus1": J_sq,
+            "J_preserves_g_and_b": J_pres,
+            "dim_solution_even_subalgebra": dim_even,
+            "basis_solution_even_subalgebra": support(basis_even, EVEN_NAMES),
+            "dim_solution_full_algebra": dim_full,
+            "basis_solution_full_algebra": support(basis_full, FULL_NAMES),
+            "dim_phase_sector_states_even_ops": dim_ph_even,
+            "dim_phase_sector_states_phase_ops": dim_ph_ph,
+            "dim_all_real_linear_solution": len(all_lin),
+            "dim_c_linear_operator_space": len(c_lin_space),
+            "dim_c_linear_solution": len(c_lin_sol),
+            "left_mult_is_c_linear": left_c_linear,
+        }
+
+    for Bname, r in per_B.items():
+        assert r["pairing_g_symmetric_unimodular"], f"{Bname}: g must be symmetric unimodular"
+        assert r["pairing_b_antisymmetric_symplectic"] and r["pairing_b_rank"] == n, (
+            f"{Bname}: b = <phi~ psi>_B must be a nondegenerate symplectic form")
+        assert r["J_squares_to_minus1"] and r["J_preserves_g_and_b"], (
+            f"{Bname}: J = right-multiplication by B must be a compatible complex structure")
+        assert (r["dim_solution_even_subalgebra"] == 2
+                and r["basis_solution_even_subalgebra"] == rev_fixed_even), (
+            f"{Bname}: even-subalgebra solution must be the reversion-fixed span{{1,I4}}: "
+            f"dim={r['dim_solution_even_subalgebra']}, "
+            f"support={r['basis_solution_even_subalgebra']}")
+        assert (r["dim_solution_full_algebra"] == 6
+                and r["basis_solution_full_algebra"] == rev_fixed_full), (
+            f"{Bname}: full-algebra solution must be the reversion-fixed "
+            f"span{{1,e1,e2,e3,e4,I4}}: dim={r['dim_solution_full_algebra']}, "
+            f"support={r['basis_solution_full_algebra']}")
+        assert r["dim_phase_sector_states_even_ops"] == 7 and r["dim_phase_sector_states_phase_ops"] == 1, (
+            f"{Bname}: the phase sector alone must UNDER-determine self-adjointness (7 of 8), "
+            "becoming exactly span{1} only when the operators are also required to preserve it")
+        assert r["left_mult_is_c_linear"], f"{Bname}: left multiplication must commute with J"
+        assert (r["dim_all_real_linear_solution"] == 28 and r["dim_c_linear_operator_space"] == 32
+                and r["dim_c_linear_solution"] == 16), (
+            f"{Bname}: operator-class counts must be 28 (all real-linear) / 32 (C-linear space) "
+            f"/ 16 (C-linear solution = dim_R of the self-adjoint operators on C^4), got "
+            f"{r['dim_all_real_linear_solution']}/{r['dim_c_linear_operator_space']}/"
+            f"{r['dim_c_linear_solution']}")
+
+    headline = per_B["e12"]
+    B_a_independent = all(per_B[k] == headline for k in per_B)
+    assert B_a_independent, "every result must be independent of the L-orbit winding choice B_a"
+
+    # ---- the grade-3 "spectral structure" loose end
+    T = {"e123": e(1, 2, 3), "e124": e(1, 2, 4), "e134": e(1, 3, 4), "e234": e(2, 3, 4)}
+    gram3 = {a: {b2: round((Ta * T[b2].reverse()).coeff(()), 9) for b2 in T}
+             for a, Ta in T.items()}
+    orthonormal3 = all(gram3[a][b2] == (1 if a == b2 else 0) for a in T for b2 in T)
+    T_anti = {a: (Ta.reverse() == (-1.0) * Ta) for a, Ta in T.items()}
+    T_sq = {a: (Ta * Ta == (-1.0) * ONE) for a, Ta in T.items()}
+    T_noncomm = {f"[{a},{b2}]": ((T[a] * T[b2] - T[b2] * T[a]) != ZERO)
+                 for a in T for b2 in T if a < b2}
+    orbit_split = {a: ("Q-orbit (contains e4)" if 4 in T[a].terms[0][0]
+                       else "L-orbit (no e4)") for a in T}
+    assert orthonormal3, "the four grade-3 blades must be orthonormal under <T_a T_b~>_0"
+    assert all(T_anti.values()), "grade-3 blades are reversion-ODD (T~ = -T): ANTI-self-adjoint"
+    assert all(T_sq.values()), "T_a^2 = -1 (no real eigenvalues)"
+    assert all(T_noncomm.values()), "the T_a do not commute pairwise (no simultaneous eigenbasis)"
+    assert sum(1 for v in orbit_split.values() if v == "L-orbit (no e4)") == 1, (
+        "the four grade-3 blades split 3+1 by e4-content")
+
+    out = {
+        "grade0_reality_requirement_is_vacuous": True,
+        "grade0_blind_to_anti_self_adjoint_part": grade0_blind,
+        "reversion_fixed_even": rev_fixed_even,
+        "reversion_fixed_full": rev_fixed_full,
+        "per_B_a": per_B,
+        "B_a_independent": B_a_independent,
+        "grade3_gram": gram3,
+        "grade3_orthonormal": orthonormal3,
+        "grade3_anti_self_adjoint": T_anti,
+        "grade3_square_minus_one": T_sq,
+        "grade3_pairwise_noncommuting": T_noncomm,
+        "grade3_orbit_split_3plus1": orbit_split,
+        "DERIVED": (
+            "<psi~ M psi>_B = 0 for all psi (M acting by left multiplication) holds EXACTLY on the "
+            "reversion-fixed subspace: dim 2 = span{1, I4} on Cl+(4,0); dim 6 = "
+            "span{1,e1,e2,e3,e4,I4} on Cl(4,0), for all three L-orbit winding choices B_a. "
+            "R-022's conclusion M~ = M is CONFIRMED; its 'requiring reality of <..>_0' derivation "
+            "is VACUOUS and is replaced by the {1,B}-projection condition."
+        ),
+        "named_premises": (
+            "(i) Measurement expectation values are real -- the QM postulate being expressed, not "
+            "derived from the substrate. (ii) Observables act C-LINEARLY (commute with J = "
+            "right-multiplication by B); without it, arbitrary real-linear maps satisfying the "
+            "condition span 28 dimensions, not 16. Left multiplication discharges (ii) "
+            "automatically."
+        ),
+        "grade3_loose_end": (
+            "The four grade-3 blades are orthonormal but reversion-ODD, hence ANTI-self-adjoint "
+            "under R-022's own criterion; T_a^2 = -1 and the T_a do not commute pairwise. 'Each "
+            "blade an eigenvector of the corresponding observable' names no observable and is "
+            "WITHDRAWN; the four also split 3+1 by e4-content (colour slots e124/e134/e234 vs the "
+            "spatial pseudoscalar e123), so they are not a uniform quadruplet. The "
+            "trivector->fermion-spectrum map is NOT established in B.3.2."
+        ),
+        "tier": (
+            "DERIVED-A for the kernel computations, the reversion-fixed identification, the {1,B} "
+            "pairing structure, and the grade-3 orthonormality/anti-self-adjointness. Reality of "
+            "expectations and C-linearity of observables are NAMED PREMISES, not derived here. The "
+            "'eigenvector of the corresponding observable' gloss is WITHDRAWN (unsupported)."
+        ),
+    }
+    out.update(headline)
+    return out
+
+
 def born_subspace_one_B_forced() -> dict:
     """[DERIVED-A] §14.4 deeper derivation: the {1, B} Born projection subspace is
     forced by V2 §3.2's soliton-background structure, eliminating circularity with §14.2.
@@ -12664,6 +13713,265 @@ def born_subspace_one_B_forced() -> dict:
             "V2 §3.2 + wavefront frame + Cl+(4,0). Sector choice (lepton vs baryon) "
             "is the only remaining structural input and is independently derived."
         ),
+    }
+
+
+# ---- §B.3.1 / §B.4 (R-167): the Bell wing is the e4-COMMUTANT qubit, not the phase sector --
+def bell_wing_needs_the_e4_commutant_qubit() -> dict:
+    """[DERIVED-A] V3 §B.3.1 / §B.4: the per-defect internal space that can carry a Bell
+    wing is the WAVEFRONT-FRAME COMMUTANT Z_{Cl+(4,0)}(e4) = span{1,e12,e13,e23} ≅ ℍ —
+    real dim 4, COMPLEX dim 2 for the R-020 complex structure — and NOT the phase sector
+    span{1,B_a}, which is complex dim ONE.
+
+    THE CONTRADICTION THIS RESOLVES.  §B.3.1 restricted the fluctuation to span{1,B_a}
+    (2 real = 1 complex); §B.4 then needed a qubit.  A qubit does not fit in ℂ¹:
+      - CP^0 is a point, so every state R_a psi_0 obtained by a rotor IN the plane B_a is
+        the SAME ray — the Hermitian overlap has modulus 1 at every pair of angles;
+      - Λ²(ℂ¹) = 0, so no antisymmetric pairing and hence NO SINGLET exists there.
+    The cos(dθ/2) §B.4 quoted was the GRADE-0 PART only, i.e. the real inner product of
+    the plane span{1,B_a} — a different functional from the Hermitian inner product that
+    `born_exponent_gleason_closure` uses and that the same primitive already flags as an
+    undercount (it calls 1 and B orthogonal when they are one ray).  `half_angle_overlap`
+    returns exactly that grade-0 part and is retiered accordingly.
+
+    WHAT IS EXACT HERE (all engine-checked below):
+      (1) (W)&(E) = even blades commuting with e4 = {1,e12,e13,e23} = Z(e4), closed under
+          the geometric product, a quaternion algebra.  (W)&(S)&(E) = {1,B_a} is R-020.
+      (2) RIGHT multiplication by B_a squares to -1 on Z(e4) => Z(e4) is a ℂ-vector space
+          of dim 2, ℂ-basis {|0> = 1, |1> = e13}.  LEFT multiplication commutes with it
+          (associativity), so the one-sided L-orbit rotor action of §B.3.5/§B.4 is
+          ℂ-linear and unitary with det 1: SU(2) on ℂ².
+      (2b) NO NEW INNER PRODUCT IS NEEDED.  §B.3.3's own complex overlap — the
+          z_overlap(phi, psi) that `born_exponent_gleason_closure` defines as the
+          grade-0 part AND the B_a part of <phi~ psi>, nothing else — applied UNCHANGED
+          on Z(e4), IS that ℂ² Hermitian form (checked below over 500 random pairs,
+          in the engine's own slot order: the FIRST argument is the reversed one, so
+          the paper's z(psi, D) = <D~ psi> is this form's complex conjugate — same
+          formula, slots swapped).  The repair of
+          §B.3.1/§B.4 therefore needs no new machinery: it widens the MODULE, not the
+          inner product.
+      (3) The half-angle SURVIVES: with psi_0 = 1 and R_a = exp(θ_a·j/2) for j in
+          {e13,e23} (a plane OTHER than the phase plane), <psi_a|psi_b> = cos(dθ/2) as an
+          honest ℂ² Hermitian overlap — no grade projection.  Rotors in the plane B_a
+          itself are DIAGONAL in that basis and fix psi_0 = 1 up to phase, producing no
+          second state — which is exactly why §B.4's own choice of measurement plane
+          could not generate a wing.
+      (4) The singlet PAIRING is a substrate object on the two units the phase-sector cut
+          discarded: eps(u,v) = <u·j, v> with j in {e13,e23} is antisymmetric, ℂ-BILINEAR
+          and SU(2)-invariant — the symplectic form whose tensor is the singlet.  RIGHT
+          multiplication is essential (it is the antilinear/quaternionic structure); LEFT
+          multiplication by the same j is ℂ-linear and gives a form that is neither
+          antisymmetric nor invariant.  Right-mult by B_a itself gives no such form either.
+      (5) R-020's UNIQUENESS IS NOT SPENT.  span{1,B_a} is exactly the ℂ-linear commutant
+          (Schur) of the SU(2) action on Z(e4): dim_R = 2.  Enlarging the MODULE to ℂ²
+          leaves the OPERATOR statement verbatim.  What is withdrawn is only the separate
+          §B.3.1 ansatz that the fluctuation lies in the operator commutant.
+      (6) R-127 UNDISTURBED and sharpened: the mass phase = RIGHT multiplication by
+          exp(ω·τ5·B_a/2) acts as one global ℂ scalar on both ℂ-coordinates and commutes
+          exactly with the SU(2) spin action.  'the mass phase never leaves B_a' and
+          'spin acts on the left' are the two halves of the ℍ = ℂ² picture.
+      (7) The U(1)_{B_a} adjoint charge decomposition of the eight even blades is
+          charge-0 {1,e12,e34,I4} and charged {e13,e14,e23,e24}; intersecting with (W)
+          gives Z(e4)-charge-0 = {1,e12} (the phase line = |0>) and Z(e4)-charged =
+          {e13,e23} (= |1>).  This discharges the charge-sector half of §B.3.1's own
+          named open item; the remaining four blades {e14,e24,e34,I4} are exactly the
+          ones that FAIL (W) (they anticommute with e4) and are R-128's quark-lock family.
+
+    WHAT IS *NOT* CLAIMED.  This constructs ONE wing.  The two-wing TENSOR PRODUCT is
+    still not constructed anywhere in TWT (negatives ledger N53, five failed routes) and
+    remains a named INPUT of `bell_correlation`; nor is the singlet SELECTED here (that is
+    angular-momentum conservation at the source = dynamics = the #1 gap).  Restricting the
+    fluctuation to Z(e4) is still a CHOICE — weaker than span{1,B_a} and motivated by (W),
+    but not a derivation.  HONEST LIMIT: with psi_0 = 1 and real rotor angles the states
+    reached span a REAL two-plane inside ℂ², so the second complex dimension is needed for
+    CONSISTENCY (a projective space with more than one point; Λ² != 0), not because the
+    wing sweeps all of ℂ².  Tier of the wing algebra: DERIVED-A.  Tier of the Bell
+    correlation: unchanged, FRAMING.
+    """
+    import math, cmath, random
+    import numpy as np
+    from scipy.linalg import null_space
+
+    ONE = MV.from_dict({(): 1.0})
+    ZERO = MV.from_dict({})
+    e4, B = e(4), e(1, 2)
+    KEYS8 = [(), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4), (1, 2, 3, 4)]
+    EVEN = {"1": ONE, "e12": e(1, 2), "e13": e(1, 3), "e14": e(1, 4),
+            "e23": e(2, 3), "e24": e(2, 4), "e34": e(3, 4), "I4": e(1, 2, 3, 4)}
+    co = lambda x: np.array([x.coeff(k) for k in KEYS8], float)
+    nz = lambda x: float(np.linalg.norm(co(x)))
+    rnd = random.Random(20260729)
+
+    # ---- (1) the two commutants ----
+    W = sorted([n for n, X in EVEN.items() if (e4 * X - X * e4) == ZERO])
+    assert W == ["1", "e12", "e13", "e23"], W
+    notW = sorted([n for n in EVEN if n not in W])
+    assert notW == ["I4", "e14", "e24", "e34"], notW
+    Zb = [ONE, e(1, 2), e(1, 3), e(2, 3)]
+    for X in Zb:
+        for Y in Zb:
+            assert min(nz(X * Y - s * Z) for Z in Zb for s in (1.0, -1.0)) < 1e-12, \
+                "Z(e4) not closed under the geometric product"
+    for u in Zb[1:]:
+        assert nz(u * u + ONE) < 1e-12, "Z(e4) units must square to -1"
+    r020 = born_subspace_one_B_forced()
+    assert r020["intersections_per_winding_choice"]["e12"] == ["1", "e12"], "R-020 anchor broken"
+
+    # ---- (2) the complex structure and the C^2 chart ----
+    for X in Zb:
+        assert nz((X * B) * B + X) < 1e-12, "right-mult by B_a must square to -1 on Z(e4)"
+    to_C2 = lambda x: np.array([complex(x.coeff(()), x.coeff((1, 2))),
+                                complex(x.coeff((1, 3)), x.coeff((2, 3)))])
+    from_C2 = lambda z: (z[0].real * ONE + z[0].imag * e(1, 2)
+                         + z[1].real * e(1, 3) + z[1].imag * e(2, 3))
+    herm = lambda x, y: complex(np.vdot(to_C2(x), to_C2(y)))
+    rvec = lambda: from_C2(np.array([complex(rnd.gauss(0, 1), rnd.gauss(0, 1)),
+                                     complex(rnd.gauss(0, 1), rnd.gauss(0, 1))]))
+    for _ in range(200):
+        x, g = rvec(), rvec()
+        assert nz(from_C2(to_C2(x)) - x) < 1e-12, "C^2 chart round-trip failed"
+        assert nz((g * x) * B - g * (x * B)) < 1e-12, "left action not C-linear"
+    su2 = {}
+    for nm, blade in [("e12", e(1, 2)), ("e13", e(1, 3)), ("e23", e(2, 3))]:
+        R = exp_unit_bivector(blade, 0.8 / 2.0)
+        M = np.stack([to_C2(R * from_C2(np.array([1 + 0j, 0j]))),
+                      to_C2(R * from_C2(np.array([0j, 1 + 0j])))], axis=1)
+        assert np.linalg.norm(M.conj().T @ M - np.eye(2)) < 1e-12, "L-orbit rotor not unitary"
+        assert abs(np.linalg.det(M) - 1.0) < 1e-12, "L-orbit rotor not in SU(2)"
+        offdiag = max(abs(M[0, 1]), abs(M[1, 0]))
+        su2[nm] = round(float(offdiag), 12)
+    assert su2["e12"] == 0.0, "the PHASE-plane rotor must be diagonal (it fixes psi_0=1 up to phase)"
+    assert su2["e13"] > 0.3 and su2["e23"] > 0.3, "the discarded-plane rotors must move the ray"
+
+    # ---- the C^1 obstruction, stated as an assertion ----
+    for _ in range(50):
+        ta, tb = rnd.uniform(-7, 7), rnd.uniform(-7, 7)
+        pa = exp_unit_bivector(B, ta / 2.0) * ONE
+        pb = exp_unit_bivector(B, tb / 2.0) * ONE
+        assert abs(abs(herm(pa, pb)) - 1.0) < 1e-12, \
+            "in C^1 every rotor-rotated state must be the SAME ray (modulus 1)"
+    # ... while the grade-0 part is a DIFFERENT functional (this is half_angle_overlap)
+    gap = max(abs(abs((exp_unit_bivector(B, t / 2.0) * ONE).reverse().coeff(())) - 1.0)
+              for t in (0.5, 1.0, 2.0, 3.0))
+    assert gap > 0.1, "grade-0 part must differ from the Hermitian modulus"
+
+    # ---- (2b) NO NEW INNER PRODUCT: §B.3.3's own z-overlap IS the C^2 Hermitian form ----
+    def zB(p, q):                          # born_exponent_gleason_closure's z_overlap:
+        pr = p.reverse() * q               # grade-0 part AND B_a part of <p~ q>, nothing else
+        return complex(pr.coeff(()), pr.coeff((1, 2)))
+    worst_z = max(abs(zB(u, v) - herm(u, v))
+                  for u, v in ((rvec(), rvec()) for _ in range(500)))
+    assert worst_z < 1e-12, \
+        "§B.3.3's z-overlap must BE the C^2 Hermitian form on Z(e4): %.2e" % worst_z
+
+    # ---- (3) the half-angle, honest, in C^2 ----
+    worst_half = 0.0
+    for jb in (e(1, 3), e(2, 3)):
+        for _ in range(200):
+            ta, tb = rnd.uniform(-7, 7), rnd.uniform(-7, 7)
+            pa = exp_unit_bivector(jb, ta / 2.0) * ONE
+            pb = exp_unit_bivector(jb, tb / 2.0) * ONE
+            worst_half = max(worst_half, abs(abs(herm(pa, pb)) - abs(math.cos((tb - ta) / 2))))
+    assert worst_half < 1e-12, "C^2 Hermitian overlap != |cos(dtheta/2)|: %.2e" % worst_half
+
+    # ---- (4) the singlet pairing on the discarded units ----
+    pair = {}
+    for nm, jb, side in [("e13_right", e(1, 3), "R"), ("e23_right", e(2, 3), "R"),
+                         ("e12_right", e(1, 2), "R"), ("e13_left", e(1, 3), "L")]:
+        Ef = (lambda J: (lambda u, v: herm(u * J, v)))(jb) if side == "R" else \
+             (lambda J: (lambda u, v: herm(J * u, v)))(jb)
+        anti = bil = inv = 0.0
+        for _ in range(200):
+            u, v = rvec(), rvec()
+            lam = complex(rnd.gauss(0, 1), rnd.gauss(0, 1))
+            lamMV = lam.real * ONE + lam.imag * e(1, 2)
+            anti = max(anti, abs(Ef(u, v) + Ef(v, u)))
+            bil = max(bil, abs(Ef(u * lamMV, v) - lam * Ef(u, v)))
+            cs = [rnd.gauss(0, 1) for _ in range(3)]
+            n_ = math.sqrt(sum(c * c for c in cs)); cs = [c / n_ for c in cs]
+            ax = cs[0] * e(1, 2) + cs[1] * e(1, 3) + cs[2] * e(2, 3)
+            Rg = exp_unit_bivector(ax, rnd.uniform(-3, 3))
+            inv = max(inv, abs(Ef(Rg * u, Rg * v) - Ef(u, v)))
+        pair[nm] = (anti < 1e-10, bil < 1e-10, inv < 1e-10)
+    assert pair["e13_right"] == (True, True, True), "eps via RIGHT-mult by e13 must be the symplectic form"
+    assert pair["e23_right"] == (True, True, True), "eps via RIGHT-mult by e23 must be the symplectic form"
+    assert pair["e12_right"][0] is False, "right-mult by the PHASE blade must NOT give an antisym form"
+    assert pair["e13_left"][0] is False and pair["e13_left"][2] is False, \
+        "LEFT-mult by e13 must fail antisymmetry and SU(2)-invariance"
+    k0, k1 = from_C2(np.array([1 + 0j, 0j])), from_C2(np.array([0j, 1 + 0j]))
+    E13 = lambda u, v: herm(u * e(1, 3), v)
+    assert abs(E13(k0, k1) - 1.0) < 1e-12 and abs(E13(k1, k0) + 1.0) < 1e-12
+    assert abs(E13(k0, k0)) < 1e-12 and abs(E13(k1, k1)) < 1e-12
+    # and it VANISHES identically on the phase sector (Lambda^2(C^1) = 0)
+    for _ in range(100):
+        u = from_C2(np.array([complex(rnd.gauss(0, 1), rnd.gauss(0, 1)), 0j]))
+        v = from_C2(np.array([complex(rnd.gauss(0, 1), rnd.gauss(0, 1)), 0j]))
+        assert abs(E13(u, v)) < 1e-12, "eps must vanish identically on span{1,B_a}"
+
+    # ---- (5) Schur: the C-linear commutant of the spin action is span{1,B_a} ----
+    def regmat(Y, left):
+        M = np.zeros((4, 4))
+        for c, X in enumerate(Zb):
+            P = (Y * X) if left else (X * Y)
+            M[:, c] = np.array([P.coeff(k) for k in [(), (1, 2), (1, 3), (2, 3)]])
+        return M
+    rows = [np.kron(np.eye(4), regmat(Y, True)) - np.kron(regmat(Y, True).T, np.eye(4))
+            for Y in Zb]
+    dim_comm = null_space(np.vstack(rows), rcond=1e-10).shape[1]
+    RB = regmat(e(1, 2), False)
+    dim_ccomm = null_space(np.vstack(rows + [np.kron(np.eye(4), RB)
+                                             - np.kron(RB.T, np.eye(4))]), rcond=1e-10).shape[1]
+    assert dim_comm == 4, "commutant of the left regular rep must be H (dim 4), got %d" % dim_comm
+    assert dim_ccomm == 2, "C-linear commutant must be span{1,B_a} (dim 2), got %d" % dim_ccomm
+
+    # ---- (6) R-127 coherence: the mass phase is the global C scalar ----
+    om, t5 = 0.937, 1.7
+    P = exp_unit_bivector(B, om * t5 / 2.0)
+    for _ in range(100):
+        x = rvec()
+        assert np.max(np.abs(to_C2(x * P) - cmath.exp(1j * om * t5 / 2.0) * to_C2(x))) < 1e-12, \
+            "mass phase must act as ONE global C scalar on both coordinates"
+        cs = [rnd.gauss(0, 1) for _ in range(3)]
+        n_ = math.sqrt(sum(c * c for c in cs)); cs = [c / n_ for c in cs]
+        ax = cs[0] * e(1, 2) + cs[1] * e(1, 3) + cs[2] * e(2, 3)
+        Rg = exp_unit_bivector(ax, rnd.uniform(-3, 3))
+        assert nz((Rg * x) * P - Rg * (x * P)) < 1e-12, "[spin, mass phase] must vanish"
+
+    # ---- (7) the U(1)_{B_a} adjoint charge decomposition ----
+    charge = {}
+    th = 0.37
+    for n, X in EVEN.items():
+        Rr = exp_unit_bivector(B, th / 2.0)
+        Y = Rr * X * Rr.reverse()
+        if nz(Y - X) < 1e-12:
+            charge[n] = 0
+        else:
+            c = float(co(Y) @ co(X) / (co(X) @ co(X)))
+            charge[n] = int(round(math.acos(max(-1.0, min(1.0, c))) / th))
+    assert sorted([n for n, q in charge.items() if q == 0]) == ["1", "I4", "e12", "e34"], charge
+    assert sorted([n for n, q in charge.items() if q == 1]) == ["e13", "e14", "e23", "e24"], charge
+
+    return {
+        "tier": ("DERIVED-A (the wing algebra: commutant dimensions, the C-structure, "
+                 "SU(2) unitarity, the half-angle as an honest C^2 Hermitian overlap, the "
+                 "symplectic pairing, the Schur commutant, the charge grading -- all exact "
+                 "Clifford identities) + the §B.3.1 module restriction to Z(e4) remains a "
+                 "named CHOICE, not a derivation + the two-wing TENSOR PRODUCT and the "
+                 "SINGLET SELECTION remain IMPORTS (N53; bell_correlation stays FRAMING)"),
+        "W_commutant": W, "fails_W": notW,
+        "dim_R_phase_sector": 2, "dim_C_phase_sector": 1,
+        "dim_R_e4_commutant": 4, "dim_C_e4_commutant": 2,
+        "qubit_C_basis": ["1", "e13"],
+        "su2_offdiagonal_by_rotor_plane": su2,
+        "max_dev_half_angle_C2_hermitian": worst_half,
+        "max_dev_B33_z_overlap_vs_C2_hermitian": worst_z,
+        "pairing_antisym_Cbilinear_SU2invariant": pair,
+        "schur_commutant_dim_R": dim_comm, "schur_C_linear_commutant_dim_R": dim_ccomm,
+        "U1_Ba_adjoint_charges": charge,
+        "phase_sector_hosts_a_qubit": False,
+        "e4_commutant_hosts_a_qubit": True,
+        "not_claimed": ["two-wing tensor product (N53)", "singlet selection (dynamics, #1 gap)",
+                        "the Z(e4) module restriction itself"],
     }
 
 
@@ -16606,15 +17914,21 @@ def defect_phase_modulus_charge_tower_spacing() -> dict:
 def boost_orbit_rest_label_mass_shell() -> dict:
     """[DERIVED-A (the finite boost orbit, its hyperbolic character, the exact
     mass-shell invariance, the grade-shift fact, the caveat defusal) + DERIVED
-    (chain (2) dispersion's SECOND ANGLE as an implied-by-banked composition,
-    conditional on the NAMED premises below) + imported group theory (orbit
+    (chain (2) dispersion's kinematic CONSISTENCY CHECK as an implied-by-banked
+    composition -- NOT an independent second angle, retagged 2026-07-30 per
+    paper B.2.2; conditional on the NAMED premises below) + imported group theory (orbit
     transitivity on the shell, cited like Schur)] -- R-126's named boost/moving-
     family handle FIRED: the front's Lorentz-boost orbit, implemented INSIDE
     Cl(4,0) via the banked gamma-embedding, maps the rest one-particle label
     m = k_4 = omega/c_meta to the moving family (E, p) = m(cosh zeta, sinh zeta)
     with E^2 - p^2 = m^2 EXACTLY -- the relativistic dispersion obtained by the
-    KINEMATIC (symmetry-orbit) route, independent of R-017's dynamical KG
-    reduction. (2026-07-03, follow-on to R-123/R-125/R-126.)
+    KINEMATIC (symmetry-orbit) route -- which is a CONSISTENCY CHECK on
+    R-017's dynamical KG reduction, NOT an independent second derivation of
+    it (scope corrected 2026-07-30, review item III-12, to match paper
+    B.2.2: once the Lorentz group acts and m is DEFINED as the rest label,
+    the statement 'the orbit of the rest label is the mass shell' is close
+    to tautological; the two routes share the isomorphism and the front
+    label, so their agreement is corroboration, not over-determination). (2026-07-03, follow-on to R-123/R-125/R-126.)
 
     THE KEY STRUCTURAL FACT (why the 'Euclidean engines cannot do hyperbolic'
     caveat was mis-scoped): the observer's boost generator is
@@ -16666,18 +17980,24 @@ def boost_orbit_rest_label_mass_shell() -> dict:
           transitivity -- imported group theory, cited like Schur.
 
     WHAT THIS DELIVERS (chain (2), the worklist's dispersion chain): the
-    dispersion E^2 = p^2 + m^2 now has TWO INDEPENDENT angles --
+    dispersion E^2 = p^2 + m^2 is reached two ways --
       (dynamical)  R-017: Fourier reduction of the 5D hyperbolic master
                    equation at k_4 = m (the KG route);
       (kinematic)  R-132 (this): the boost orbit of the banked rest label
                    through the iso -- no wave equation used.
-    Over-determination: the two routes MUST and DO agree on the shell. This is
-    the second angle R-126 named ('would give chain (2) dispersion an
-    INDEPENDENT second angle beyond R-017'). SCOPE (reviewer): this is
-    ROUTE-LEVEL (form) over-determination over shared foundations (both routes
-    ride the R-014 iso and the R-123 label k_4 = omega/c_meta) -- not the canon
-    S0a two-independent-fits-one-VALUE kind; the shared conditional is exactly
-    what (I) below carries.
+    SCOPE, CORRECTED 2026-07-30 (review item III-12; earlier text here read
+    'TWO INDEPENDENT angles' and 'Over-determination'): the two routes are NOT
+    independent and this is NOT over-determination of any kind. Once the Lorentz
+    group acts and m is DEFINED as the rest label, 'the orbit of the rest label
+    is the mass shell' is close to tautological -- it is the definition of the
+    orbit, not new information about the substrate. Both routes ride the SAME
+    foundations (the R-014 iso and the R-123 label k_4 = omega/c_meta), so their
+    agreement is a CONSISTENCY CHECK and corroboration: worth verifying, not
+    automatic, but not a second derivation. R-126's prospective wording ('would
+    give chain (2) dispersion an INDEPENDENT second angle beyond R-017') is
+    SUPERSEDED by this correction -- the handle fired, and what it delivered was
+    the check, not the angle. The shared conditional is exactly what (I) below
+    carries.
 
     NAMED CONDITIONS (the physical reading, honestly carried):
       (P) SUBSTRATE REALIZATION: that each moving label is realized by an
@@ -16810,13 +18130,18 @@ def boost_orbit_rest_label_mass_shell() -> dict:
         "outcome": ("R-126's boost/moving-family handle FIRED: the Lorentz-boost orbit of the "
                     "rest one-particle label, computed INSIDE Cl(4,0) via the banked gamma-"
                     "embedding, is the mass shell (E, p) = m(cosh, sinh), E^2 - p^2 = m^2 "
-                    "EXACT -- chain (2) dispersion's independent KINEMATIC second angle "
-                    "(over-determination beyond R-017's KG route). The 'Euclidean engine "
+                    "EXACT -- chain (2) dispersion's KINEMATIC CONSISTENCY CHECK on "
+                    "R-017's KG route, NOT an independent second angle and NOT "
+                    "over-determination (scope corrected 2026-07-30, review item III-12, "
+                    "per paper B.2.2: shared iso + shared front label, and the orbit of a "
+                    "rest label defined as the rest label is close to tautological). "
+                    "The 'Euclidean engine "
                     "cannot do hyperbolic' caveat is defused: boosts ride the gamma-embedding "
                     "(K_j = e_j/2), not the circular (e_i, e_4) planes."),
         "tier": ("DERIVED-A (orbit algebra: hyperbolic rotor, rapidity addition, vector "
                  "action, exact shell invariance, grade-shift fact, caveat defusal) + "
-                 "DERIVED implied-by-banked (the dispersion second angle; conditional on "
+                 "DERIVED implied-by-banked (the dispersion CONSISTENCY CHECK -- NOT an "
+                 "independent second angle, retagged 2026-07-30 per paper B.2.2; conditional on "
                  "NAMED (P) substrate-realization premise (R-039 class) + (I) inherited "
                  "residue-(ii) remainder) + imported group theory (orbit transitivity on "
                  "the shell, cited like Schur)"),
@@ -20675,6 +22000,30 @@ def texture_frame_6to4_reduction():
         background is Lorentzian; the Lorentzian vacuum is a FINITE-AMPLITUDE texture phase, and
         the Euclidean->Lorentzian transition passes through a degenerate metric (det g = 0 —
         light-cone birth). Engine: ||P|| > 1 verified on every Lorentzian sample of a random sweep.
+        SCOPE NOTE (2026-07-29, review item III-21 — probe-level, NOT engine-asserted):
+        (a) the menu, the lambda_max >= 1 floor and the (4,0) exclusion are carried by the delta
+            legs of the banked convention g = delta_4 + c2*h (the OUTSIDE-frame Euclidean
+            background of Axiom A-1a), not by h itself; replacing delta_4 by eta =
+            diag(-1,1,1,1) with the SAME h reverses each of them (an independent 20000-frame
+            probe sweep realises (4,0) 74x on eta, 0x on delta). They are facts about the banked
+            convention, not free-standing facts about the texture bilinear.
+        (b) the threshold VALUE rides the UNDETERMINED normalisation c2 of R-042:
+            ||P|| > 1 says |Om| > 1/sqrt(c2), and sqrt(c2) is a length the framework has not fixed.
+        (c) the threshold does NOT threaten B.1-B.5. That Lorentzian structure is the ALGEBRAIC
+            phi embedding (gamma^0 = e_4, gamma^j = e_4 e_j), holds at EVERY amplitude, and
+            B.1-B.5 carry no texture-metric dependence at all. So the kinematic (B.1) and the
+            dynamical (B.6.6) Lorentzian faces are SEPARATE, and no map between them is
+            constructed anywhere in the corpus — a named OPEN coherence item (N56).
+        (d) this is NOT a background inconsistency with B.6.1's g_00 = -1 + 2GM/r: fact (5) below
+            IS the map (a Lorentzian g reduces to g = e^T eta e), so B.6.1's eta is the tetrad
+            frame of a finite-amplitude Lorentzian vacuum; what is owed is only its VALUE = the
+            already-named signature pick. Related [CANDIDATE]: Om = 0 is not the physical
+            expansion point either (D.4.6's helimagnet vacuum carries a constant Om_vac ~ q), and
+            about Om_vac != 0 the difference h[Om_vac + dOm] - h[Om_vac] is LINEAR in dOm by
+            bilinearity — the one place a linear graviton could enter a construction that has
+            none at Om = 0.
+        Probes: knowledge/candidates/probes_2026-07-29/III21_*.py — no primitive, no suite check;
+        nothing here may be cited as engine-verified (canon section 2).
 
     (5) THE REDUCTION [DERIVED-structural — the item's core].  Whenever g is Lorentzian, the
         10-row frame reduces CANONICALLY to a 4-row tetrad: g = e^T eta e (eta = diag(-1,1,1,1)),
@@ -23931,7 +25280,11 @@ def induced_G_from_linear_face_band():
     96 pi^2, and the sakharov primitive's 192 pi^2. The paper SSB.6.2 table IS self-consistent
     under its OWN 16 pi^2 formula: in the paper's parametrization c_reg = c_lat/12 = 1.82, which
     sits comfortably inside its stated 'c_reg ~ 1'. So there is no arithmetic error to fix —
-    only a convention note to add. Where the bracket LANDS is convention-dependent; the
+    only a convention note to add. SCOPE FENCE (2026-07-28): that adjudication covers the
+    pi-CONVENTION spread ONLY. The VALUE of c_reg is a DIFFERENT and still-OPEN question —
+    ~1 (paper placeholder) vs 1/12 (sakharov_induced_gravity, textbook heat-kernel) vs 1.82
+    (here, the derived D4 band): the two BANKED values differ by ~21.6, and nothing in this
+    primitive picks between them. Where the bracket LANDS is convention-dependent; the
     CONVENTION-INVARIANT statement is the one to quote:
         a = 1.86 ell_Planck, i.e. PLANCKIAN WITHIN O(1),
     and that statement SUPPORTS SSB.6.2. This computation lands exactly on the
@@ -23939,10 +25292,19 @@ def induced_G_from_linear_face_band():
 
     JURISDICTION FENCE — 'a' IS ALWAYS CONDITIONAL. a = 1.86 ell_Pl is conditional on
     (OA-LF-i AND OA-LF-ii) + N_eff = 6 (GENERIC-given-dim-4) + the induced-G identification with
-    the EMPIRICAL G. NEVER write 'TWT derives the monad spacing'. The bracket [0.16, 0.72] M_Pl
-    stays CANDIDATE/conditional and does not move: it is a back-fit of Lambda to empirical G over
-    the N_eff menu, and nothing here changes G or the menu. The reduction achieved is IN THE
-    PREMISE, not in the tier.
+    the EMPIRICAL G. NEVER write 'TWT derives the monad spacing'. Lambda values stay
+    CANDIDATE/conditional and MUST NEVER BE MOVED TO CHASE AGREEMENT WITH MEASUREMENT: Lambda_S is
+    a back-fit to empirical G over the N_eff menu, and nothing here changes G or the menu.
+    The reduction achieved is IN THE PREMISE, not in the tier.
+    (Re-cut history — both re-cuts were fence case (a), a normalization/convention reconciliation
+    between named engine artifacts, never data-chasing. 2026-07-28: widened [0.16, 0.72] ->
+    [0.13, 2.5] to span an apparently unreconciled normalization between sakharov_induced_gravity
+    (1/12) and THIS primitive (c_lat/12 = 1.82) plus the paper's ~1 placeholder. 2026-07-29:
+    RESOLVED — one coefficient in different Lambda-variables. 2026-07-30: the coordinator's
+    which-Lambda ruling SPLIT the symbol — Lambda_S = sqrt(2*pi) M_Pl (scheme; Sakharov
+    bookkeeping) vs Lambda_L = 1/a, band [0.386, 0.735] M_Pl (lattice-dispersion consumers per
+    the scoped B.6.2 assignment) — and RETIRED the wide bracket. The prohibition is unchanged: 'it agrees better with the data' is
+    NEVER a reason to move any of these.)
 
     EXTERNAL VALIDATION OF THE METHOD (both re-run in code below, not merely recorded):
       * the SAME grid + h^2-Richardson machinery applied to the Z^4 nearest-neighbour band
@@ -24130,8 +25492,13 @@ def induced_G_from_linear_face_band():
                                   "sakharov_induced_gravity": "192 pi^2"},
             "paper table self-consistency": ("SSB.6.2 IS self-consistent under its OWN 16 pi^2 "
                                              "formula: c_reg = c_lat/12 = %.2f, inside 'c_reg ~ 1' "
-                                             "— a convention note is needed, not an arithmetic fix"
-                                             % c_reg_paper),
+                                             "— a convention note is needed, not an arithmetic fix. "
+                                             "SCOPE (2026-07-28): this adjudicates the pi-CONVENTION "
+                                             "spread (16 vs 96 vs 192 pi^2) ONLY. The VALUE question "
+                                             "RESOLVED 2026-07-29 — one c_reg = 1/12 in the "
+                                             "proper-time variable, with 1.82 = c_lat/12 the same "
+                                             "computation in Lambda := 1/a — see "
+                                             "c_reg_vs_sakharov" % c_reg_paper),
             "this computation lands on": "the sakharov_induced_gravity form",
             "convention-invariant statement": "a = %.2f ell_Planck — PLANCKIAN WITHIN O(1); this "
                                               "SUPPORTS SSB.6.2" % a_over_lPl,
@@ -24147,9 +25514,30 @@ def induced_G_from_linear_face_band():
                                              "N_eff = 6 (generic-given-dim-4) + the induced-G "
                                              "identification with the EMPIRICAL G. NEVER write "
                                              "'TWT derives the monad spacing'.")},
-        "fence": ("the bracket [0.16, 0.72] M_Pl stays CANDIDATE/conditional and does NOT move — "
-                  "it is a back-fit of Lambda to empirical G over the N_eff menu, and nothing here "
-                  "changes G or the menu; the reduction achieved is IN THE PREMISE, not in the tier"),
+        "fence": ("Lambda values stay CANDIDATE/conditional and do NOT move to chase agreement "
+                  "with measurement — Lambda_S is a back-fit to empirical G over the N_eff menu, and "
+                  "nothing here changes G or the menu; the reduction achieved is IN THE PREMISE, not "
+                  "in the tier. THE ONLY ADMISSIBLE RE-CUTS: (a) a normalization/convention "
+                  "reconciliation between NAMED engine artifacts, or (b) an actual substrate "
+                  "derivation of c_reg. Both historical re-cuts were case (a): the 2026-07-28 "
+                  "widening spanned an apparent c_reg disagreement; the 2026-07-29 resolution + "
+                  "2026-07-30 which-Lambda ruling SPLIT the symbol (Lambda_S scheme / Lambda_L = 1/a "
+                  "= [0.386, 0.734] M_Pl for dispersion consumers) and RETIRED the wide bracket. "
+                  "'It agrees better with the data' is NEVER a reason"),
+        "c_reg_vs_sakharov": {
+            "this primitive": "c_reg = c_lat/12 = %.2f (on TWT's DERIVED D4 nearest-neighbour band)" % c_reg_paper,
+            "sakharov_induced_gravity": "c_reg = 1/12 (textbook heat-kernel a_1, minimal coupling, "
+                                        "proper-time cutoff — QFT INPUT)",
+            "paper placeholder": "c_reg ~ 1 (no engine primitive; never computed)",
+            "ratio of the two BANKED values": "%.1f in c_reg => ~%.1f in Lambda => ~%.1f in eta4 — "
+                                              "a VARIABLE ratio (sqrt(c_lat)), not a physics gap"
+                                              % (c_reg_paper * 12.0, math.sqrt(c_reg_paper * 12.0),
+                                                 c_reg_paper * 12.0),
+            "status": "RESOLVED (2026-07-29): ONE coefficient in two Lambda-variables "
+                      "(c_reg_from_substrate_mode_content meets this row's own exit condition); "
+                      "which-Lambda RULED (coordinator, 2026-07-30): Lambda_S for Sakharov "
+                      "bookkeeping, Lambda_L = 1/a for dispersion consumers",
+        },
         "would_change_if": ("the #1-gap kernel derives the NESS occupation and/or the monad-scale "
                             "curvature coupling (discharges OA-LF entirely); the exact 6-band "
                             "Bogoliubov structure on the canted vacuum is banked (moves c_lat "

@@ -1,7 +1,7 @@
 # Cover note for reviewers — Time-Wave Theory, Foundational Paper V3
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-07-27 · verification suite: 451 checks · engine: 297 public primitives
+Paper revision 2026-07-30 · verification suite: 463 checks · engine: 301 public primitives
 
 ---
 
@@ -25,7 +25,7 @@ What follows is not a plea for charity — it is a list of things you can **chec
 each of which the reference class reliably fails. Check them, then form your view.
 
 **1. Run the verification suite.** `python twt_test.py` should print
-`ALL 451 CHECKS PASSED`. These are executable algebraic assertions on a Clifford-algebra
+`ALL 463 CHECKS PASSED`. These are executable algebraic assertions on a Clifford-algebra
 engine — Dirac relations, the invariant decompositions, the charge spectrum, the Weinberg
 ratio — not prose. Falsify any of them and the corresponding claim falls; the paper's claims
 are cross-indexed to the primitives that check them.
@@ -221,7 +221,7 @@ reviewer should spend time on them at all.
 2. **The companion** (`TWT_foundational_paper_companion.pdf`, ~130 pp) — the bookkeeping: every
    numbered result's status, dependencies and engine cross-reference; the falsifier registries;
    the import registry; the development log. A lookup volume, not linear reading.
-3. **The verification suite** (`twt.py` + `twt_test.py`, Python, needs sympy/scipy) — ~297
+3. **The verification suite** (`twt.py` + `twt_test.py`, Python, needs sympy/scipy) — ~301
    executable primitives encoding the algebraic content.
 
 ## §4. The one convention you need: result tiers
