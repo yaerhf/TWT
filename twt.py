@@ -1720,6 +1720,120 @@ def c_reg_from_substrate_mode_content():
     }
 
 
+def mass_weight_empirical_chain() -> dict:
+    """[EMPIRICAL-JURISDICTION LEDGER / FRAMING] Sec.B.6: what the laboratory actually pins
+    between a particle's clock and its gravitational effect — and where the extrapolation sits.
+    (The framework identifies mass with the meta-time rotor frequency omega, Sec.A.4; the lab
+    facts here stand independently of that identification — mass METROLOGY is frequency
+    metrology, but the omega-identification is TWT's own, not the laboratory's.)
+    Deliberately OUTSIDE eom_constraint_class's E-namespace: E1 there is an empirical CEILING
+    that can refute a candidate kernel; this ledger constrains nothing — it states where
+    measurement stops. The E-series remains E1-only. Nothing here is derived; every number is a
+    published experimental value, primary-source-verified (companion Section 13, I-23; Section
+    10 bibliography carries the full records).
+
+    THE FOUR LINKS (very unequal strength):
+      1. clock <-> INERTIAL mass: single-particle, direct, definitional. Penning traps read
+         masses as frequency ratios — electron 2.8e-11 (Sturm et al., Nature 506, 467 (2014);
+         Larmor/cyclotron ratio + bound-state QED), proton 3.2e-11 (Heisse et al., PRL 119,
+         033001 (2017); cyclotron-frequency ratio). Photon-recoil h/m ~1.4e-10 (Morel et al.,
+         Nature 588, 61 (2020)). A Cs interferometer has run as a clock at a subharmonic of the
+         atom's Compton frequency, 4e-9 (Lan et al., Science 339, 554 (2013)). Since 2019 the
+         kilogram is DEFINED via fixed h (CGPM 2018 Res. 1).
+      2. inertial <-> PASSIVE gravitational (what has inertia falls universally): bulk 1e-15
+         (MICROSCOPE final, eta(Ti,Pt) = [-1.5 +- 2.3 +- 1.5]e-15, Touboul et al., PRL 129,
+         121102 (2022); lab torsion balances ~1.5e-13 on Be-Ti/Be-Al, Wagner et al., CQG 29,
+         184002 (2012)); whole atoms 7e-9 vs a falling corner cube (Peters-Chung-Chu, Nature
+         400, 849 (1999)) and [1.6 +- 1.8 +- 3.4]e-12 on 85Rb/87Rb (Asenbaum et al., PRL 125,
+         191101 (2020)). FREE ELEMENTARY PARTICLES ONLY COARSELY: neutron interferometry agreed
+         at ~10 PERCENT in 1975 (Colella-Overhauser-Werner, PRL 34, 1472 — the often-recalled
+         "1%" is wrong for 1975), and the refined two-wavelength version leaves an UNEXPLAINED
+         ~0.6-0.8% discrepancy (Littrell-Allman-Werner, PRA 56, 1767 (1997)); free electrons
+         ~10% via a low-temperature shielding effect never reproduced (Witteborn-Fairbank, PRL
+         19, 1049 (1967); the positron version was never performed); antihydrogen's DIRECTION of
+         fall first measured 2023 at ~25% (ALPHA, a = [0.75 +- 0.13 +- 0.16] g, Anderson et al.,
+         Nature 621, 716 (2023)). Since ~99% of nucleon mass is confined field energy, the bulk
+         tests DO establish that field energy falls like rest mass — but always in AGGREGATE.
+      3. PASSIVE <-> ACTIVE (what falls also pulls): macroscopic bodies only — material-
+         independence of the active/passive ratio: 5e-5 laboratory (Kreuzer, Phys. Rev. 169,
+         1007 (1968)), 3.9e-14 lunar laser ranging (Singh et al., PRL 131, 021401 (2023),
+         sharpening Bartlett-Van Buren, PRL 57, 21 (1986), 4e-12).
+      4. ACTIVE gravity of a SINGLE particle: NEVER MEASURED, at any precision. The smallest
+         body whose gravitational pull has been detected is a 92.1 mg gold sphere of radius
+         1.07 mm (Westphal et al., Nature 591, 225 (2021)) = 5.5e22 proton MASSES (the sphere's
+         actual proton count, Z = 79, is 2.2e22) / 1.0e26 electron masses; the 2024
+         "milligram" result (Fuchs et al., Sci. Adv. 10, eadk2949) used a
+         0.43 mg TEST mass against kg-scale SOURCES, so the source record stands. Whether a
+         superposed mass sources a superposed field is untested (BMV entanglement-witness
+         PROPOSALS: Bose et al., PRL 119, 240401 (2017); Marletto-Vedral, PRL 119, 240402
+         (2017) — no experiment performed).
+
+    THE FENCES (they bind the INSIDE-FRAME effective description Sec.B.6 is written in — the
+    frame the data live in; no outside-frame substrate object is bounded, so no outside<->inside
+    projection premise is invoked):
+      - passive-fall universality at 1e-15 (link 2) and active/passive material-independence at
+        3.9e-14 (link 3) — different materials mean different binding-energy, Z/A and
+        electron-mass fractions, so composition cuts across the aggregate;
+      - spin-direction blindness: an electron's gravitational mass differs by < ~1 part in 1e21
+        between opposite spin orientations (Heckel et al., PRD 78, 092006 (2008) — the 1e-21 is
+        the SOURCE'S OWN abstract statement, not a conversion made here; the per-electron
+        reading itself rides linearity across the pendulum's ~1e23 polarized spins).
+
+    JURISDICTION STATEMENT (the paper's Sec.B.6 block cites this primitive): single-defect
+    sourcing is an extrapolation across a factor ~5.5e22 in mass (22+ orders; ~1e26 for the
+    electron), EMPIRICALLY underwritten by the linearity of the aggregate theory and by nothing
+    else. The framework's banked route SATISFIES the fences and COMMITS to per-particle
+    sourcing: matter couples through the conserved T_mn alone, m_i = m_g forced by single-field
+    monism (equivalence_principle_protection, R-016/R-039), the two-defect potential additive
+    (R-038); the tree-level texture channel vanishes on every COMPUTED block (R-042 — the h_0k
+    time-space row is an open fork, Sec.B.6.6). That commitment is untested below 92.1 mg:
+    NOTHING BANKED PREDICTS ANY DEVIATION in the unmeasured range — this ledger is
+    jurisdictional, not a prediction, and deliberately not an exposure row.
+    """
+    m_p = 1.67262192595e-27       # kg, CODATA 2022
+    m_e = 9.1093837139e-31        # kg, CODATA 2022
+    smallest_source_kg = 92.1e-6  # Westphal et al. 2021, gold sphere, r = 1.07 mm
+    return {
+        "identity": ("mass->weight empirical-jurisdiction ledger — deliberately OUTSIDE "
+                     "eom_constraint_class's E-namespace (that series remains E1-only; this "
+                     "ledger can refute no kernel); never an Hn and never an R-NNN "
+                     "(nothing is derived here)"),
+        "link_1_clock_inertia": {
+            "single_particle": True,
+            "status": "measured; definitional since SI-2019 (kilogram via fixed h)",
+            "electron_rel_unc": 2.8e-11, "proton_rel_unc": 3.2e-11,
+            "h_over_m_rel_unc": 1.4e-10, "compton_clock_rel_unc": 4e-9},
+        "link_2_inertia_passive": {
+            "bulk_eta_1sigma": 2.7e-15,      # MICROSCOPE stat+syst in quadrature
+            "atoms_eta_1sigma": 3.8e-12,     # Asenbaum 2020 combined
+            "neutron_1975": 0.10, "neutron_refined_unexplained": 0.008,
+            "free_electron": 0.10, "antihydrogen": 0.25,
+            "single_particle": "coarse only (1e-1 .. 1e-2); aggregate exquisite"},
+        "link_3_passive_active": {
+            "lab_material_independence": 5e-5,
+            "llr_material_independence": 3.9e-14,
+            "single_particle": False},
+        "link_4_active_single_particle": {
+            "measured": False,
+            "smallest_source_kg": smallest_source_kg,
+            "gap_factor_proton": smallest_source_kg / m_p,
+            "gap_factor_electron": smallest_source_kg / m_e,
+            "superposed_source": "untested (BMV proposals only, no experiment)"},
+        "fences": {
+            "aggregate_additivity_floor_kg": smallest_source_kg,
+            "material_independence_passive": 2.7e-15,
+            "material_independence_active_passive": 3.9e-14,
+            "electron_spin_direction_gravitational_asymmetry": 1e-21},
+        "jurisdiction": ("single-defect sourcing = extrapolation across ~5.5e22 in mass, "
+                         "empirically underwritten by aggregate linearity and nothing else; "
+                         "the banked route COMMITS to per-particle additivity (T_mn coupling, "
+                         "m_i = m_g forced, R-038 additive) and that commitment is untested "
+                         "below 92.1 mg; this ledger predicts nothing and exposes nothing"),
+        "tier": ("EMPIRICAL-JURISDICTION LEDGER / FRAMING — published values, "
+                 "primary-source-verified; nothing derived, nothing predicted"),
+    }
+
+
 def sakharov_xi_minimal_coupling():
     """[FRAMING + removed-falsifier, CONDITIONAL] N27 gate (2) NARROWED by a SYMMETRY SHORTCUT: the
     rotor fluctuations that induce gravity are MINIMALLY coupled (xi = 0) at leading order, so the

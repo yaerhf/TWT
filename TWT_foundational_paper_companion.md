@@ -160,7 +160,7 @@ derived; they are listed in the *Axioms* table at the top.
 | R-035c | Length-ladder relations `r_e = α λ̄_C`, `a_0 = λ̄_C / α` ⇒ `r_e · a_0 = λ̄_C²` — **definitional arithmetic on the standard-QM length definitions**; the surviving TWT content is the ontological reading of `λ̄_C` (L-orbit soliton core scale) and `a_0` (resonant-cavity scale) as two configurations of one field | FRAMING (definitional; standard-QM arithmetic, not a TWT derivation; no parameter cost) | — (no engine primitive asserts the ladder) | B.5b | R-035a, R-055 | — | Demoted 2026-07-28 to match §B.5b.1. Withdrawn: "DERIVED-A", "from one geometric overlap", and "one geometric overlap underlies three independently measured lengths". `r_e ≡ α² a_0` and `λ̄_C ≡ α a_0` hold by the definitions of those lengths, so `α` cancels and the three lengths are three parametrizations of one scale, not independent measurements; the identity carries no substrate content. It is also **not** a value over-determination of `α`. Ontological reading: Section 5 catalog item 3. |
 | R-036 | Rotor field as local Lorentz frame; substrate carries 4D frame with local Spin(4) symmetry | DERIVED-STRUCTURAL | — | B.6 | R-002, A-1c | R-037, R-039, R-042 | Spin(4) → Spin(3,1) after wavefront iso. |
 | R-037 | Sakharov induced EH: `G_N⁻¹ ~ N_eff Λ²/(12π)`; `Λ_S = √(2π) M_Pl` (scheme) · `Λ_L = 1/a ∈ [0.39, 0.73] M_Pl` (which-Λ ruled 2026-07-30) | DERIVED-generic-given-4D | sakharov_induced_gravity + induced_G_bracket_mode_count + induced_G_only_monad_scale_enters + induced_G_leading_coefficient_mass_independent + induced_G_quadratic_divergence_from_4D | B.6 | R-036, A-1a | R-038, R-041 | The Λ² scaling is generic-given-4D, not a dynamical derivation. Absolute magnitude #1-gap-gated. **RESOLVED (2026-07-29) + WHICH-Λ RULED (coordinator, 2026-07-30).** History: the 2026-07-28 pass widened the bracket to `[0.13, 2.5] M_Pl` over (i) a determinate unit-convention fix — the engine's `Lambda_over_MPl = 4π` is against the REDUCED `M_red = M_Pl/√(8π)`, i.e. `2.51 M_Pl` non-reduced — and (ii) an apparently UNRECONCILED three-way `c_reg` disagreement. The 2026-07-29 pass RESOLVED (ii): ONE coefficient, `c_reg = 1/12` exactly in the proper-time variable; `≈1.8 = c_lat/12` is the SAME computation written in `Λ := 1/a` (R-163), and `~1` was a never-computed placeholder. The which-Λ ruling then SPLIT the symbol — `Λ_S = √(2π) M_Pl` (scheme; Sakharov/`G` bookkeeping only, no substrate information) vs `Λ_L = 1/a ∈ [0.39, 0.73] M_Pl` (every lattice-dispersion consumer; band from OA-LF-ii `κ ∈ [½, 2]` on `c_lat = 21.83`) — and RETIRED the wide bracket. Naive `η⁽⁴⁾` re-cut to `[1.9, 6.7]`, excluded 3–9 orders (VG-6). |
-| R-038 | Newton 1/r law from Sakharov slow-motion limit; `T^{μν} = ρ u^μ u^ν` worldline stress | DERIVED | — | B.6 | R-037 | R-124 | Universal attraction from spin-2 sourcing by positive T^00. |
+| R-038 | Newton 1/r law from Sakharov slow-motion limit; `T^{μν} = ρ u^μ u^ν` worldline stress | DERIVED | — | B.6 | R-037 | R-124 | Universal attraction from spin-2 sourcing by positive T^00. **Engine-tier mismatch flagged 2026-08-02 (keeper, I-23 round):** this row's DERIVED has no engine column while the content sits in the engine at FRAMING/CANDIDATE (`texture_matter_gravity_coupling`: "Newtonian sourcing FRAMING"; suite: "Explicit Phi(r)=-G_N*M/r remains CANDIDATE (N25)") — the companion-outranks-engine drift class. Reconciliation OWED (worklist): either back the row with the primitive and reconcile the tier down, or state why the engine tag does not govern. §B.6.1 now carries the linearized-point-defect-idealization clause; the §B.6 intro jurisdiction block (I-23) locates the empirical backing. |
 | R-039 | `γ = 1` from matter-as-defect Lorentz protection | FRAMING + removed-falsifier + structural identification (**cooled 2026-07-27** to match the engine self-tag on `equivalence_principle_protection`, its sole engine backing) | equivalence_principle_protection | B.6 | R-016, R-037 | R-124, R-165 | One substrate, one light-cone. Inherits R-016's named scope: the protection is dimension-four relative-boost only. |
 | R-040 | Induced G sign positive: spin-2 spectral positivity (`C_T > 0` by unitarity) ≡ substrate stability | DERIVED-sign-only | induced_G_sign_cross_check | B.6 | R-037 | — | Two-pillar unification — same physics in different language. Removes RF-1 falsifier. |
 | R-041 | `ξ = 0` at leading order via Maurer–Cartan shift symmetry; catastrophic `ξ = 1/6` cancellation excluded | FRAMING + CONDITIONAL (engine self-tag: shift-symmetry lemma — substrate supplies the symmetry, QFT the implication) | sakharov_xi_minimal_coupling | B.6 | R-037 | — | Goldstone-protected. Residual ξ ~ (f_π/Λ)² ~ 10⁻⁴⁰-class (2–8 × 10⁻⁴⁰ on the `Λ_L` band; reading-immaterial, not force-assigned by the 2026-07-30 ruling). Removes RF-2 falsifier. |
@@ -715,8 +715,9 @@ View A. No phantom cites (CLAUDE.md §2).
 
 ## View A — engine-keyed (primitive → V3 §, R-NNN, test)
 
-*Total primitives in `twt.py`: 323 as of 2026-07-27 (297 public + 26 helpers prefixed `_`; verified by direct count, `grep -c "^def " twt.py`. The previous figure of 323 was over-counted by one — adding `d4_lattice_lorentz_violation_orders` made the stated number true rather than incrementing it. Refresh this count+date at each banking pass, and count rather than increment). The table below lists the
-~150 load-bearing primitives that V3 R-NNNs cite directly. Helpers and not-cited primitives are
+*Total primitives in `twt.py`: 328 as of 2026-08-02 (302 public + 26 helpers prefixed `_`; verified by direct count, `grep -c "^def " twt.py`. The 2026-07-27 figure of 323/297 had drifted 4 low against the pre-pass count of 327/301; this pass adds one primitive → 328/302. The drift was caught by re-counting, which is the point: refresh this count+date at each banking pass, and count rather than increment). The table below lists the
+~150 load-bearing primitives that V3 R-NNNs cite directly, plus body-cited ledger primitives
+carrying an I-series row instead of an R-NNN. Helpers and not-cited primitives are
 listed in §View A.Δ at the bottom for completeness.*
 
 | Primitive | V3 § | R-NNN | Test |
@@ -870,6 +871,7 @@ listed in §View A.Δ at the bottom for completeness.*
 | lepton_number_topological_conservation | C.1, C.5 | R-054, R-089, R-090 | twt_test.py |
 | macroscopic_LQ_split | B.8 | R-048, R-049 | twt_test.py |
 | mass_measure_from_omega | C.3 | R-068 (Brannen δ_L chain; CANDIDATE-strong) | twt_test.py |
+| mass_weight_empirical_chain | B.6 (intro block) | — (jurisdiction ledger; import I-23 — never an R-NNN) | twt_test.py |
 | massless_H_squared | D.5 | R-117 | twt_test.py |
 | matter_stability_outside_frame | A.2, A.3, B.1 | R-003, R-004, R-016 | twt_test.py |
 | maxwell_four_laws | B.5 | R-032 | twt_test.py |
@@ -2114,6 +2116,57 @@ closing note pointing at this companion and the suite.
 - "historical" where it refers to the *literature's* history (ANW's fitted `f_π, e`; the SU(5)
   translation at §C.4.7; the GUT-era leptoquark labels), not this paper's.
 
+### G.10 The mass→weight empirical-jurisdiction block (I-23, added 2026-08-02)
+
+**Coordinator-directed** (opening move of the gravity/inter-front arc): before the paper links
+mass with weight, the reader is told which parts of that link are measured and which are
+extrapolated — *"this 22-orders-of-magnitude extrapolation has quietly been forgotten by some
+people... a lot of intermediate scale mechanisms can emerge in those 22 orders... It's not a
+sure thing and we could end up discovering perfect additivity... But it's far from obvious."*
+
+**What was added, in bank-before-cite order:** the engine ledger `mass_weight_empirical_chain`
+(a jurisdiction ledger — deliberately OUTSIDE `eom_constraint_class`'s E-namespace, which stays
+E1-only; never an Hn/R-NNN) + one suite check in the cosmo module (a duplicate-literal drift
+guard + wording-guard: the 5.5×10²² proton-mass / 1.0×10²⁶ electron-mass gap factors recomputed
+from the 92.1 mg Westphal source and CODATA-2022 masses; suite 463 → 464); the §B.6 intro block
+"What the laboratory pins before mass is linked to weight" (two paragraphs, four links + three
+link-attributed fences, placed before **Mathematical setting** so no heading/TOC surgery); the
+Section 10 bibliography subsection (21 records); Import Registry row I-23 (Section 13.2 —
+no-forward-exposure class, ontology status N/A).
+
+**Cross-class review round (canon §8a; change-set Fable-authored, both checkers Opus):**
+reviewer NOT-SAFE (7 blocking) + keeper COLLISION (2 hard, 2 structural) — all fixed same day.
+The catches, so the lesson survives: (1) the block's first draft licensed a non-additivity
+escape hatch ("collective sourcing has room to differ") that §B.6.6 itself denies — the banked
+route COMMITS to per-particle additive `T_μν` sourcing (`m_i = m_g` forced, R-016/R-039; R-038
+additive), and the honest statement is that this *commitment* is untested below 92.1 mg;
+(2) "tree-level texture coupling vanishing **identically**" contradicted §B.6.6's own scope
+correction (computed blocks only; `h₀ₖ` an open fork) and mis-cited R-146 — the same quantifier
+the corpus had already withdrawn, plus the §B.6.1 frame note carried the same unscoped wording
+pre-existing and was scoped in the same pass; (3) "5.5×10²² protons" was proton *masses*
+(gold's actual proton count is 2.2×10²² — a 2.475× referent error at the headline number);
+(4) `ħ` vs `h` twice (CGPM fixes `h`); (5) the "E2" identity was a category error against the
+eom E-namespace (E1 = a ceiling that can refute a kernel; this ledger refutes nothing) —
+label dropped; (6) I-23 sat in 13.1 asserting no forward exposure — moved to 13.2, status N/A,
+with the frame-jurisdiction statement made explicit (fences bind the inside-frame effective
+description; no outside-frame object bounded; I-19 premise-(e) not invoked); (7) the keeper
+found the render script's suite-count drift guard DEAD (f-string print + de-historicization
+killed both greps) — fixed in the same pass; and the R-038 companion-DERIVED vs
+engine-FRAMING/CANDIDATE tier mismatch was surfaced and flagged on the row (reconciliation
+owed, worklist). The keeper's open taxonomy question was RULED by the coordinator the same day:
+the per-particle commitment **stays as bookkeeping** — no §E.3.1 falsifier row; I-23 is the
+record. Programme posture set with the ruling: mass-mechanism (lab) and gravity-mechanism
+(cosmos) are held to *compatibility, not perfection* across the 22-order gap.
+
+**Verification provenance:** every number read from the primary record (journal/arXiv/INSPIRE/
+BIPM/NIST) by two web agents on 2026-08-02. Two recall errors were caught and corrected before
+anything was written: COW 1975 agreed at ~10% (54.3(2.0) vs 59.8(1) rad), not the often-quoted
+1% (that belongs to 1980s refinements), and the spin-pendulum PRL is 97, 021603 (2006), not
+PRL 100, 041101 (the Schlamminger Be/Ti EP test). Upgrades taken: Singh et al. 2023 (3.9×10⁻¹⁴
+active/passive, 100× beyond Bartlett–Van Buren); Westphal source mass stated exactly (92.1 mg);
+the Fuchs 2024 "milligram" result classified correctly (test mass, not source — the record
+stands).
+
 ---
 
 # Section 8 — Stable-spectrum enumeration (the over-production test)
@@ -2393,6 +2446,101 @@ specific delta belongs in the body where the corresponding claim is made.*
 - **Collins, J., Perez, A., Sudarsky, D., Urrutia, L., & Vucetich, H.** (2004). *Lorentz
   invariance and quantum gravity: an additional fine-tuning problem?* Phys. Rev. Lett. **93**,
   191301; arXiv:gr-qc/0403053. — The radiative-naturalness obstacle defused at §B.1.5.
+
+## The mass→weight empirical chain (§B.6 intro block; import I-23, added 2026-08-02)
+
+*Every entry below was primary-source-verified 2026-08-02 (journal/arXiv/INSPIRE/NIST records
+read directly; two web agents, reports archived in the session record). These carry the §B.6
+"what the laboratory pins" block and the engine's `mass_weight_empirical_chain` ledger.
+Link 1 — clock ↔ inertial mass:*
+
+- **Sturm, S., Köhler, F., Zatorski, J., Wagner, A., Harman, Z., Werth, G., Quint, W., Keitel,
+  C. H., & Blaum, K.** (2014). *High-precision measurement of the atomic mass of the electron*.
+  Nature **506**, 467. — Electron mass at 2.8×10⁻¹¹ via the Larmor-to-cyclotron frequency ratio
+  of one bound electron in ¹²C⁵⁺ plus bound-state QED (a frequency measurement, but not a
+  two-particle cyclotron ratio — that distinction is recorded here; the paper states only the
+  frequency-ratio fact, which holds for both).
+- **Heiße, F., et al.** (2017). *High-precision measurement of the proton's atomic mass*. Phys.
+  Rev. Lett. **119**, 033001. — Proton mass at 32 ppt as a proton-vs-¹²C⁶⁺ cyclotron-frequency
+  ratio. Dating trap: the 2017 value was later shifted by reanalysis; cited only for the
+  precision class, no value imported.
+- **Morel, L., Yao, Z., Cladé, P., & Guellati-Khélifa, S.** (2020). *Determination of the
+  fine-structure constant with an accuracy of 81 parts per trillion*. Nature **588**, 61. —
+  `h/m(⁸⁷Rb)` by photon recoil at ~1.4×10⁻¹⁰.
+- **Lan, S.-Y., Kuan, P.-C., Estey, B., English, D., Brown, J. M., Hohensee, M. A., & Müller,
+  H.** (2013). *A clock directly linking time to a particle's mass*. Science **339**, 554. —
+  A Cs interferometer operated as a clock at a subharmonic of the atom's Compton frequency;
+  microscopic mass at 4×10⁻⁹.
+- **CGPM** (2018). *Resolution 1 of the 26th CGPM: On the revision of the International System
+  of Units (SI)*. BIPM. — The kilogram defined via fixed `h`, effective 20 May 2019.
+
+*Link 2 — inertia ↔ passive weight:*
+
+- **Touboul, P., Métris, G., Rodrigues, M., et al. (MICROSCOPE collaboration)** (2022).
+  *MICROSCOPE mission: final results of the test of the equivalence principle*. Phys. Rev. Lett.
+  **129**, 121102. — `η(Ti,Pt) = [−1.5 ± 2.3 (stat) ± 1.5 (syst)] × 10⁻¹⁵`. (Not the 2017
+  first-results paper.)
+- **Wagner, T. A., Schlamminger, S., Gundlach, J. H., & Adelberger, E. G.** (2012).
+  *Torsion-balance tests of the weak equivalence principle*. Class. Quantum Grav. **29**,
+  184002. — `η(Be,Ti) = (0.3 ± 1.8)×10⁻¹³`, `η(Be,Al) = (−0.7 ± 1.3)×10⁻¹³`.
+- **Peters, A., Chung, K. Y., & Chu, S.** (1999). *Measurement of gravitational acceleration by
+  dropping atoms*. Nature **400**, 849. — A falling corner cube and a Cs atom agree to 7×10⁻⁹.
+- **Asenbaum, P., Overstreet, C., Kim, M., Curti, J., & Kasevich, M. A.** (2020).
+  *Atom-interferometric test of the equivalence principle at the 10⁻¹² level*. Phys. Rev. Lett.
+  **125**, 191101. — `η(⁸⁵Rb,⁸⁷Rb) = [1.6 ± 1.8 ± 3.4] × 10⁻¹²`.
+- **Colella, R., Overhauser, A. W., & Werner, S. A.** (1975). *Observation of gravitationally
+  induced quantum interference*. Phys. Rev. Lett. **34**, 1472. — First observation, neutrons;
+  measured 54.3(2.0) rad vs 59.8(1) rad predicted — agreement at the ~10% level (the
+  often-recalled "1%" belongs to 1980s refinements).
+- **Littrell, K. C., Allman, B. E., & Werner, S. A.** (1997). *Two-wavelength-difference
+  measurement of gravitationally induced quantum interference phases*. Phys. Rev. A **56**,
+  1767. — Statistical precision ~10⁻³ with a ~0.6–0.8% discrepancy from theory, reported as
+  statistically significant and unexplained at publication.
+- **Witteborn, F. C., & Fairbank, W. M.** (1967). *Experimental comparison of the gravitational
+  force on freely falling electrons and metallic electrons*. Phys. Rev. Lett. **19**, 1049. —
+  Net vertical force on free-falling electrons < 0.09 mg (~10% level); depends on a
+  low-temperature patch-potential shielding never reproduced elsewhere. The positron version
+  (announced in Witteborn & Fairbank, Nature **220**, 436 (1968)) was never performed.
+- **Anderson, E. K., et al. (ALPHA collaboration)** (2023). *Observation of the effect of
+  gravity on the motion of antimatter*. Nature **621**, 716. — Antihydrogen falls down:
+  `a_g̅ = [0.75 ± 0.13 (stat+syst) ± 0.16 (sim)] g`.
+
+*Link 3 — passive ↔ active:*
+
+- **Kreuzer, L. B.** (1968). *Experimental measurement of the equivalence of active and passive
+  gravitational mass*. Phys. Rev. **169**, 1007. — Density-matched Teflon/liquid Cavendish-type
+  test; active/passive material-independence to ~5×10⁻⁵.
+- **Bartlett, D. F., & Van Buren, D.** (1986). *Equivalence of active and passive gravitational
+  mass using the moon*. Phys. Rev. Lett. **57**, 21. — Fe vs Al via the lunar
+  center-of-figure/center-of-mass offset: 4×10⁻¹².
+- **Singh, V. V., Müller, J., Biskupek, L., Hackmann, E., & Lämmerzahl, C.** (2023).
+  *Equivalence of active and passive gravitational mass tested with lunar laser ranging*. Phys.
+  Rev. Lett. **131**, 021401. — The current record: 3.9×10⁻¹⁴ (Al vs Fe).
+
+*Link 4 — active gravity of small sources, and the two sharpest fences:*
+
+- **Westphal, T., Hepach, H., Pfaff, J., & Aspelmeyer, M.** (2021). *Measurement of
+  gravitational coupling between millimetre-sized masses*. Nature **591**, 225. — The smallest
+  measured gravitational SOURCE: a 92.1 ± 0.1 mg gold sphere of radius 1.07 mm. Anchors the
+  gap arithmetic: 5.5×10²² proton *masses* / 1.0×10²⁶ electron masses (CODATA 2022; the
+  sphere's actual proton count, Z = 79, is 2.2×10²² — the gap quantity is a mass ratio).
+- **Fuchs, T. M., et al.** (2024). *Measuring gravity with milligram levitated masses*. Sci.
+  Adv. **10**, eadk2949. — The 0.43 mg levitated particle is the TEST mass; the sources are
+  2.45 kg brass masses — press summaries notwithstanding, this does not lower the
+  smallest-source record.
+- **Bose, S., et al.** (2017). *Spin entanglement witness for quantum gravity*. Phys. Rev. Lett.
+  **119**, 240401; **Marletto, C., & Vedral, V.** (2017). *Gravitationally induced entanglement
+  between two massive particles is sufficient evidence of quantum effects in gravity*. Phys.
+  Rev. Lett. **119**, 240402. — The BMV proposals; as of the verification date no experiment has
+  demonstrated gravity-mediated entanglement or the field of a superposed mass.
+- **Heckel, B. R., et al.** (2008). *Preferred-frame and CP-violation tests with polarized
+  electrons*. Phys. Rev. D **78**, 092006. — Spin-polarized torsion pendulum (~10²³ polarized
+  electrons): the gravitational mass of an electron differs by less than ~1 part in 10²¹
+  between opposite spin orientations — **the abstract's own statement**, not a conversion made
+  here (the underlying published quantity is preferred-frame `|A_X,Y| ≤ 1.5×10⁻²² eV`); the
+  per-electron reading rides linearity across the pendulum's spins, and the paper says so. (The
+  companion PRL is **97**, 021603 (2006) — not PRL 100, 041101, which is the Schlamminger Be/Ti
+  EP test.)
 
 ## Foundational geometric algebra & Clifford
 
@@ -2857,6 +3005,7 @@ defensive, definitional, or inherited-by-isomorphism uses with no forward exposu
 | I-11 | **Bell's theorem / Gleason** | §B.4 — inherited-by-isomorphism; Gleason explicitly NOT claimed | None: any theory isomorphic to QM inherits Bell; the paper says so plainly |
 | I-12 | **FDT (fluctuation–dissipation theorem)** | §D.5.6 — Θ_rel is DEFINED as its violation residual | Definitional, not an import that must hold: Θ_rel measures exactly how far the substrate sits from the regime where equilibrium imports are exact. Registered because it is the QUANTIFIER of the I-4-class crack |
 | I-21 | **Atiyah–Hitchin 1985/1988** — moduli-space (geodesic-approximation) dynamics of slowly-moving solitons; `90°` monopole scattering as the canonical case | (i) §B.8.4 — **illustrative precedent only** for "solitons in a smooth field have no collision singularity; only the *particle* description breaks". The section's own argument is self-contained (`R_a` is a smooth functional of a smooth field, and what fails is individuation, not evolution), so no banked result's tier rides the theorem. Registered because the bibliography asserted the connection while the body cited nothing. (ii) **N53 route (a)** — moduli-space quantization `L²(M_N)` as a candidate multi-defect state space: a NEGATIVE use, nothing banked | **Level applied:** inside-frame / effective (collective-coordinate dynamics), same jurisdiction as I-5. **Premises:** BPS or near-BPS solitons, so that relative positions are flat (zero-mode) directions of the energy. **Ontology status: N/A for (i)** — no forward exposure; **PREMISE-FAILS-ON-SUBSTRATE for (ii)** — TWT's defects are non-BPS on the framework's own banked coefficients: per-baryon energy in units of the Bogomolny–Faddeev bound is `≈ 1.231` at `B = 1` and `≈ 1.208` at `B = 2`, i.e. roughly **23 %** and **21 %** above the bound (N53's figures, recomputed 2026-07-29 from `multi_skyrmion_b2_classical_binding`'s banked `36.46` and `71.54`; the `B = 2` ratio is the engine's own `per_baryon_12pi2`, and an independent re-solve by a different algorithm — direct discretized-functional minimization rather than the engine's shooting method — reproduces both to ± 0.02 percentage points; both agree with the standard Skyrme values 1.232 / 1.208). Non-BPS ⇒ the `3(N−1)` relative positions are *massive* modes, so `dim M_N ≤ 9` for every N (N-independent) against the `6N` a tensor product needs (N53). **Retirement handle:** a BPS or near-BPS sector, or an index theorem supplying exact zero modes beyond the symmetry-guaranteed nine (N53 would-change-if (1) and (2)) — either would move this row into 13.1 with real forward exposure |
+| I-23 | **The measured mass→weight chain** (published values only: single-particle inertial-mass-as-frequency ~10⁻¹¹; passive-fall universality 10⁻¹⁵ bulk / 10⁻¹² atoms / only 10⁻¹–10⁻² free elementary particles; active/passive material-independence 5×10⁻⁵ lab, 3.9×10⁻¹⁴ LLR; smallest measured gravitational SOURCE 92.1 mg = 5.5×10²² proton masses; electron spin-direction asymmetry < ~10⁻²¹ — the source's own abstract statement; superposed-source gravity untested, BMV proposals only) | §B.6 intro block ("What the laboratory pins before mass is linked to weight"); engine `mass_weight_empirical_chain` (jurisdiction ledger — deliberately OUTSIDE the eom E-namespace, which stays E1-only) + one cosmo-module suite check (duplicate-literal drift guard + wording-guard); Section 10 bibliography subsection "The mass→weight empirical chain" | **None forward — jurisdictional data import** (inside-frame data bridge, kin of I-6/I-19 but transferring no bound): the fences bind the inside-frame effective description §B.6 is written in, which the banked route SATISFIES and to which it COMMITS per-particle (`T_μν` coupling; `m_i = m_g` forced, R-016/R-039; R-038 additive) — no outside-frame substrate object is bounded, so I-19's premise-(e) projection is NOT invoked. Ontology status **N/A** (definitional/inventory; no forward exposure). Premises: each experiment's systematics taken at face value from the primary record (all read directly 2026-08-02; two recall errors caught at import: COW-1975 agreed at ~10% not 1%; the spin-pendulum PRL is 97, 021603); the four-link decomposition is an operational classification, not a theorem. Retirement: each entry names its record holder — a superseding measurement (a sub-92.1 mg source; a BMV-class experiment; a precise free-particle UFF test) is a row edit, not an excision. **REVERT:** strike this row and the §B.6 block + the primitive + its suite check fall together; nothing else moves — no banked result cites the ledger as support |
 
 ## 13.3 Prospective imports (named leads, not yet used — pre-registered exposure)
 

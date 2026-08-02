@@ -3314,6 +3314,36 @@ def check_twt_cosmo():
         and len(sqe["menu_coverage"]) == 4
         and "N51" in sqe["ledger"])
 
+    mwc = mass_weight_empirical_chain()
+    _mp_codata, _me_codata = 1.67262192595e-27, 9.1093837139e-31
+    _gp = mwc["link_4_active_single_particle"]["gap_factor_proton"]
+    _ge = mwc["link_4_active_single_particle"]["gap_factor_electron"]
+    _ck("mass->weight jurisdiction ledger (mass_weight_empirical_chain, B.6 intro block). What "
+        "this check IS: a duplicate-literal drift guard (the 92.1e-6 kg source mass and "
+        "CODATA-2022 m_p/m_e are re-declared here and the primitive's gap quotients must match "
+        "them — 5.5e22 proton masses / 1.0e26 electron masses, 22+ orders with no direct data) "
+        "plus a wording-guard on the ledger's flags: link 4 (active single-particle) UNMEASURED, "
+        "link 3 macroscopic-only, link 1 (clock<->inertia) single-particle at 1e-11, the three "
+        "fences (2.7e-15 passive / 3.9e-14 active-passive / 1e-21 spin-direction) present, the "
+        "identity OUTSIDE the eom E-namespace, jurisdiction non-predictive. What it is NOT: a "
+        "verification of any literature value — the VALUES are imports (companion I-23), "
+        "primary-source-verified at import time, and no suite check can re-verify them.",
+        abs(_gp - 92.1e-6 / _mp_codata) / _gp < 1e-12
+        and abs(_ge - 92.1e-6 / _me_codata) / _ge < 1e-12
+        and 5.4e22 < _gp < 5.6e22 and 1.0e26 < _ge < 1.02e26
+        and mwc["link_4_active_single_particle"]["measured"] is False
+        and mwc["link_3_passive_active"]["single_particle"] is False
+        and mwc["link_1_clock_inertia"]["single_particle"] is True
+        and mwc["link_1_clock_inertia"]["electron_rel_unc"] < 1e-10
+        and mwc["link_2_inertia_passive"]["neutron_1975"] == 0.10
+        and mwc["fences"]["material_independence_passive"] == 2.7e-15
+        and mwc["fences"]["material_independence_active_passive"] == 3.9e-14
+        and mwc["fences"]["electron_spin_direction_gravitational_asymmetry"] == 1e-21
+        and "OUTSIDE" in mwc["identity"] and "E1-only" in mwc["identity"]
+        and "never an R-NNN" in mwc["identity"]
+        and "COMMITS" in mwc["jurisdiction"]
+        and "predicts nothing" in mwc["jurisdiction"])
+
     print("\nAll §24.4/§24.6 cosmology/macroscopic checks passed.")
 
 

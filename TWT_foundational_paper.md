@@ -2318,6 +2318,61 @@ precisely the standard input for *induced gravity* (Sakharov 1967), and that the
 particular ingredients make this route unusually clean. We claim the sign, the form, and the
 magnitude bracket. We do not claim the theory.
 
+**What the laboratory pins before mass is linked to weight.** This section connects the defect's
+rotor frequency to gravitational sourcing. The framework identifies mass with that frequency
+(§A.4); modern mass metrology is, as it happens, frequency metrology — which makes the first
+link below unusually direct — but the identification is the framework's own, and the laboratory
+facts below stand independently of it. Honesty requires stating which parts of the mass→weight
+connection are measured and which are extrapolated. The measured chain has four links of very
+unequal strength.
+*(i) Clock ↔ inertia* is single-particle, direct, and now definitional: Penning traps read the
+electron and proton masses as frequency ratios at parts in `10¹¹` (Sturm et al. 2014; Heiße et
+al. 2017), photon-recoil interferometry reads `h/m` at `~10⁻¹⁰` (Morel et al. 2020), a cesium
+interferometer has been operated as a clock at a subharmonic of the atom's Compton frequency
+(Lan et al. 2013), and since 2019 the kilogram itself is defined through a fixed `h` (CGPM
+2018). *(ii) Inertia ↔ passive weight* — what has inertia falls universally — is tested at
+`10⁻¹⁵` for bulk matter (MICROSCOPE: Touboul et al. 2022; laboratory torsion balances at
+`~10⁻¹³`: Wagner et al. 2012) and at `10⁻⁹–10⁻¹²` for whole atoms (Peters, Chung & Chu 1999;
+Asenbaum et al. 2020) — but only coarsely for free elementary particles: neutron interferometry
+agreed with gravity at the `~10%` level at first observation (Colella, Overhauser & Werner
+1975), and its refined two-wavelength version still carries an unexplained `~0.6–0.8%`
+discrepancy (Littrell, Allman & Werner 1997); free electrons are tested at the `~10%` level by
+an experiment whose critical low-temperature shielding effect was never reproduced
+(Witteborn & Fairbank 1967; the positron version was never performed); the *direction* of
+antihydrogen's fall was first measured in 2023, at `~25%` (ALPHA: Anderson et al. 2023). Since
+`~99%` of nucleon mass is confined field energy, the bulk tests do establish that field energy
+falls like rest mass — but always in aggregate. *(iii) Passive ↔ active* — what falls also
+pulls — is tested only on macroscopic bodies, as material-independence of the active/passive
+ratio: `5×10⁻⁵` in the laboratory (Kreuzer 1968), `3.9×10⁻¹⁴` from lunar laser ranging (Singh et
+al. 2023, sharpening Bartlett & Van Buren 1986). *(iv) The active weight of a single particle* —
+that one defect sources the field this section derives — has never been measured, at any
+precision. The smallest body whose gravitational pull has been detected is a `92.1 mg` gold
+sphere (Westphal et al. 2021): `5.5×10²²` proton masses. Between it and one particle lie
+twenty-two-plus orders of magnitude in mass — `~10²⁶` for the electron — with no direct data
+anywhere in between; whether a quantum-superposed mass sources a superposed field is likewise
+untested (the proposed entanglement witnesses: Bose et al. 2017; Marletto & Vedral 2017).
+
+Single-defect sourcing is therefore an extrapolation across a factor `5.5×10²²` in mass,
+empirically underwritten by the linearity of the aggregate theory and by nothing else. The
+measured record fences the inside-frame effective description this section is written in, link
+by link: universality of passive fall at `10⁻¹⁵` (link ii); material-independence of the
+active/passive ratio at `~10⁻¹⁴` (link iii — different materials mean different binding-energy,
+`Z/A` and electron-mass fractions, so composition cuts across the aggregate); and, sharpest of
+all, spin-direction blindness — the gravitational mass of an electron differs by less than `~1`
+part in `10²¹` between opposite spin orientations (the source's own statement: Heckel et al.
+2008; the per-electron reading itself rides linearity across the pendulum's `~10²³` polarized
+spins). This framework's banked route satisfies all three and *commits* to per-particle
+sourcing: matter couples to gravity through the conserved `T_{μν}` alone, with `m_i = m_g`
+forced by single-field monism rather than assumed (§B.6.3; engine:
+`equivalence_principle_protection`) — so MICROSCOPE and its kin are passes for the framework,
+not merely fences — and the two-defect potential of §B.6.1 is additive down to single defects.
+That commitment is exactly what has never been tested below the `92.1 mg` scale: twenty-two
+orders of magnitude in which this framework, like general relativity, predicts perfect
+additivity while measurement is silent. The point is jurisdictional, in both directions: the
+reader should know that per-particle weight is an inference riding aggregate linearity, not a
+measured fact — and that nothing banked here predicts any deviation in the unmeasured range.
+(Engine: `mass_weight_empirical_chain`; records at companion Section 10.)
+
 **Mathematical setting.** The substrate's monad is a unit rotor at each D4 site; the continuum
 field `U(x) ∈ SU(2)` provides the spatial Spin(3) part of a local Lorentz frame, and combined
 with the canting orientation and `e_4` it supplies a 4D local Lorentz frame with local `Spin(4)`
@@ -2344,7 +2399,9 @@ mass is
 > `g_{00} = −1 + 2GM/r`, `g_{ij} = (1 + 2GM/r) δ_{ij}`,
 
 both components carrying the same `2GM/r` — the structural origin of `γ = 1`, deferred to §B.6.3
-(R-039). The slow-motion limit gives Newton's law `V_{12} = −G M_1 M_2 / R`, attractive (R-038),
+(R-039). The slow-motion limit gives Newton's law `V_{12} = −G M_1 M_2 / R`, attractive (R-038) —
+the linearized point-defect idealization, additive by construction; the section opening locates
+how far measurement tests that —
 with the force `F = −∇V ∝ M_1 M_2 / R²` — the potential falls as `1/R`, the force as `1/R²`, the
 same distinction §B.5.3 draws on the electrostatic side.
 
@@ -2355,7 +2412,8 @@ inside-frame **observed** source, not a positive-substance reading of matter. Gr
 local lag of the wavefront — a geometric effect — and matter stays a defect; what is positive
 frame-independently is the σ-model gradient energy `∝ |∇φ|²`, a sum of squares, which the
 wavefront-locked observer reads as the gravitating mass. Consistent with that, the texture metric's
-tree-level value on ordinary matter is zero and gravity is induced only at one loop (§B.6.6).
+tree-level value on ordinary matter vanishes on every *computed* block — the time–space row `h_{0k}`
+is an open fork (§B.6.6) — and gravity is induced only at one loop.
 Newton's constant
 itself, `G ~ 1/(N_eff Λ²)`, is *derived* (within an `O(1)` factor) from the Sakharov mechanism,
 not put in by hand — we develop that next.
