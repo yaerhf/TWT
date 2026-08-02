@@ -206,7 +206,7 @@ def check_twt_algebra():
     _ck("★ Phase B / B1 — the KERNEL-CANDIDATE CONSTRAINT INVENTORY [FRAMING tooling; channel targets "
         "cross-validated live]: encodes as checkable DATA the full acceptance test any driven-dissipative "
         "kernel candidate (P2-1) must pass — 5 HARD constraints (C1 causality/KK + FDT-forbidden per I-12; "
-        "C2 monostability τ_mem>0 per R-114; C3 linear-face + s=3 Adler-zero; C4 positivity ρ_2≥0 per R-040; "
+        "C2 memory-requirement τ_mem>0 per R-114 (FRAMING); C3 linear-face + s=3 Adler-zero; C4 positivity ρ_2≥0 per R-040; "
         "C5 KSS bracket η/s≥ℏ/4π) + 3 CHANNEL TARGETS (order-param (19/2)√38≈58.56 [N31]; spin-0 c=3Ω_Λ≈2.05 "
         "[N33]; spin-2 C_T ≤4 moments [R-151]) + 1 discrete FORK BRANCH (fading vs hysteretic, never a knob) "
         "+ SOC disfavored. The B4 memo reports candidates against this; 'no member passes' is a first-class "
@@ -481,12 +481,13 @@ def check_twt_observer_qm():
         and zm["label_table"]["right_dim6"] == ["+omega"]
         and zm["label_table"]["r125_phase_mode_consistency"] == "+omega")
     _ck("R-126 tier honesty: per-class premises NAMED (P1 banked / P2 scalar-sector engine-exact "
-        "with DM right-status OPEN / P3 homogeneity continuum-limit); −ω antiparticle reading and "
-        "boost/moving family carried as FRAMING (boost family named NOT banked — the chain-(2) "
-        "second-angle handle); multiplet = the (H2) SKELETON, not (H2)",
+        "with DM right-status OPEN / P3 homogeneity continuum-limit); −ω antiparticle reading FRAMING; "
+        "boost/moving family FIRED as R-132 — a consistency check, NOT an independent second angle "
+        "(D-8 sweep 2026-07-31); multiplet = the (H2) SKELETON, not (H2)",
         "(P1)" in zm["named_conditions"] and "OPEN" in zm["named_conditions"]
         and "continuum limit" in zm["named_conditions"]
-        and "NOT banked" in zm["framing_pieces"]
+        and "FIRED as R-132" in zm["framing_pieces"]
+        and "NOT an independent second angle" in zm["framing_pieces"]
         and "not (H2) itself" in zm["framing_pieces"])
 
     # R-127 (2026-07-02) — residue (iii) resolved-as-selection: the front mass phase
@@ -1322,8 +1323,9 @@ def check_twt_spectra():
     _ck("★ Θ_rel curvature — the ROTATING-WAVE ESCAPE LOCATED (extends the spine; classifies its one hand-waved 'τ_mem-gated Z3 rotating-wave escape'): in the MARKOVIAN strictly-2D limit the escape does NOT "
         "exist — the colour Cartan {λ3,λ8} is exactly 2D, so above the |α|≳ω threshold the planar flow rests at ONE of 3 Z3-related off-G fixed points (spontaneous Z3 breaking; engine-verified: below ⇒ one circulating "
         "constant-|z| orbit |mean z|≈0 = Z3-symmetric/isotropic, above ⇒ 3 fixed points 120° apart |mean z|>0 = Z3-broken/anisotropic). The escape is NON-MARKOVIAN (needs finite-memory delay-dimensions) — but §9.6 "
-        "FORBIDS the Markovian limit (mandatory hysteretic kernel), so that limit is a REFERENCE BASELINE, not the physical verdict",
-        "MARKOVIAN" in tw["escape_classified_DERIVED"] and "MANDATORILY non-Markovian" in tw["escape_is_nonMarkovian"]
+        "FORBIDS the Markovian limit for the selection/memory roles (settled hysteretic kernel — originator pick; R-114 FRAMING since 2026-07-31), so that limit is a REFERENCE BASELINE, not the physical verdict",
+        "MARKOVIAN" in tw["escape_classified_DERIVED"] and "selection/memory roles" in tw["escape_is_nonMarkovian"]
+        and "WITHDRAWN" in tw["escape_is_nonMarkovian"]
         and "REFERENCE BASELINE" in tw["escape_is_nonMarkovian"] and "ISOTROPIC" in tw["markovian_dichotomy"] and "ANISOTROPIC" in tw["markovian_dichotomy"])
     _ck("★ Θ_rel curvature — threshold = SNIC/Adler phase-locking (refines the spine's bare-ω reading): α*≈C·|ω+β_i R²|/R, R²=−μ/β_r, C=O(1) — rises with ω, FALLS with μ (engine-confirmed); EXPLAINS the spine's "
         "'O(1)≈2ω' as C·ω·√(−β_r/μ). ★ CORRECTION (Yaer 2026-06-28c): the prior 'near-falsifier tightened' is WITHDRAWN — §9.6 forbids the Markovian limit, so the converse stays OPEN, gated on whether the HYSTERETIC "
@@ -2249,8 +2251,11 @@ def check_twt_hadrons():
     _ck("1B [DERIVED]: spatial G_generator is MASS-BLIND (preserves |B_spatial| AND |B_e4| to 1e-16) -> it is the COLOUR ℤ₃, NOT the generation operator; the generation ℤ₃ is the meta-time phase (distinct sampled masses). The prior (iii) used the colour ℤ₃ for the generation index = the fake-negative",
         r1b["spatial_G_dmass"]["d|B_spatial|"] < 1e-12 and r1b["spatial_G_dmass"]["d|B_e4|"] < 1e-12)
     r1c = why_three_generation_triple()
-    _ck("1C [LOCATED]: why-three = the 3 ANTI-self-dual bivectors {e12+e34,e13−e24,e14+e23} (I₄·u=−u verified) = 3 ℍ units (Frobenius), each with 1 spatial + 1 e₄ blade (e₄-dip intrinsic); residual = the orbit-phase→ℍ-unit map (property Q)",
-        r1c["count"] == 3 and r1c["duality_verified"] == "I4·u = -u for all three")
+    _ck("1C [LOCATED]: why-three = the 3 ANTI-self-dual bivectors (I₄·u=−u verified); COUNT now COMPUTED as "
+        "dim(ASD eigenspace of I₄· on Λ²) = trace(P₋) = 3 — GENERIC-GIVEN-4D, not Frobenius (C-1 2026-07-31; "
+        "replaces the len()-of-a-literal cert); residual = the orbit-phase→ℍ-unit map (property Q)",
+        r1c["count"] == 3 and "generic-given-4D" in r1c["count_source"]
+        and r1c["duality_verified"] == "I4·u = -u for all three")
     rRes = epicycle_reading_resolved()
     _ck("RESOLUTION: epicycle_reading_dependent UNRESOLVED -> RESOLVED (ii); reproduces modified-Brannen; downstream — R_G reidentified as COLOUR (F3/Cl-i math stands, interpretation under revision; explains F3's non-G-axis gap)",
         rRes["resolved_status"] == "RESOLVED" and rRes["reproduces_modified_brannen"] is True)

@@ -3625,9 +3625,12 @@ def kernel_candidate_constraints():
       C1 CAUSALITY / KK   [hard]  : K(t) causal; Kramers-Kronig holds (ANY causal response). FDT is NOT
                                     assumed -- its violation residual IS Theta_rel (Import Registry I-12,
                                     definitional). A candidate that invokes FDT has assumed away the hunt.
-      C2 MONOSTABILITY    [hard]  : memoryless kernel EXCLUDED (R-114 -- a memoryless medium has no stable
-                                    Skyrmion => 'matter does not exist'); tau_mem > 0, mandatorily
-                                    non-Markovian.
+      C2 MEMORY-REQUIRED  [hard]  : memoryless kernel EXCLUDED for the SELECTION/MEMORY roles
+                                    (R-114 re-tiered FRAMING 2026-07-31, C/D/E audit D-3: the old
+                                    'no stable Skyrmion' premise contradicted §A.3's topological
+                                    stability and is WITHDRAWN; the survivable claim is that a
+                                    memoryless kernel cannot supply tau_mem >> tau_wave, which
+                                    Role-3 selection and §D.5.4's roles require); tau_mem > 0.
       C3 LINEAR-FACE      [hard]  : reduces to the conservative master equation at the linear face
                                     (WP-IX3/IX4/DC2 intact); the low-omega spectral exponent respects the
                                     s = 3 Goldstone/Adler-zero protection (the decoherence floor).
@@ -3643,8 +3646,9 @@ def kernel_candidate_constraints():
                                     Lambda_S = sqrt(2*pi) M_Pl (which-Lambda ruling 2026-07-30). (N44: (a spin-2 eta and C_T are ONE
                                     KK-linked source; the 3 must be sector-orthogonal.)
       C7 THE FORK         [branch]: fading vs hysteretic carried as an EXPLICIT DISCRETE BRANCH, never a
-                                    fitted knob (N33). A6/N45: the substrate is mandatorily hysteretic
-                                    (R-114/monostability); N46: the fork outcome for the Z3 escape is set by
+                                    fitted knob (N33). A6/N45: hysteretic is the SETTLED WORKING BRANCH
+                                    (originator pick; R-114/FRAMING excludes only the memoryless
+                                    limit for the selection roles); N46: the fork outcome for the Z3 escape is set by
                                     kernel NUMBERS (alpha/alpha*, tau*om, barrier), not the branch label.
       C8 SOC              [disfavored]: SOC universality stays structurally disfavored (Floquet limit-cycle
                                     lean, companion Section 12) -- do not resurrect without new grounds.
@@ -3668,8 +3672,9 @@ def kernel_candidate_constraints():
              req="K(t) causal; Kramers-Kronig holds; FDT NOT assumed (its violation IS Theta_rel, I-12)",
              source="I-12 (FDT definitional); companion Section 6 principle 7 (KK)"),
         dict(id="C2_monostability", kind="hard",
-             req="memoryless EXCLUDED; tau_mem > 0 (mandatorily non-Markovian)",
-             source="R-114 (monostability theorem); N9"),
+             req="memoryless EXCLUDED for the selection/memory roles; tau_mem > 0 "
+                 "(cannot supply tau_mem >> tau_wave otherwise)",
+             source="R-114 (FRAMING since 2026-07-31 — memory requirement, NOT a stability theorem); N9"),
         dict(id="C3_linear_face", kind="hard",
              req="conservative master eq at the linear face (WP-IX3/IX4/DC2); low-omega exponent respects s=3 Adler-zero",
              source="WP-DC2; the s=3 Goldstone/Adler-zero protection"),
@@ -3690,7 +3695,7 @@ def kernel_candidate_constraints():
                                 "Lambda_S = sqrt(2*pi) M_Pl (which-Lambda ruling 2026-07-30)",
              source="R-151 (ct_kernel_moment_count_symmetry_reduction); N44 (eta<->C_T KK-linked, ONE source)"),
         dict(id="C7_fork_branch", kind="branch",
-             req="fading vs hysteretic = an EXPLICIT DISCRETE BRANCH, never a fitted knob; substrate mandatorily hysteretic (R-114)",
+             req="fading vs hysteretic = an EXPLICIT DISCRETE BRANCH, never a fitted knob; hysteretic = the settled working branch (originator pick; R-114 FRAMING excludes only the memoryless limit)",
              source="N33; A6/N45 (fixed-charge/hysteretic); N46 (escape set by kernel numbers, not the branch label)"),
         dict(id="C8_SOC_disfavored", kind="disfavored",
              req="SOC universality structurally disfavored (Floquet limit-cycle lean); do not resurrect without new grounds",
@@ -4030,7 +4035,9 @@ def kernel_candidate_falsifiers():
         "R-158: the externally-evaluable-now set must contain P1 and P6"
     assert "kstar" in structural_falsifier and "two-sided" in structural_falsifier
     no_misses = all("MISS" not in v["outcome_now"].upper() for v in register.values())
-    assert no_misses, "R-158: no misses on the evaluable-now set (a miss is a finding)"
+    # E-14 (2026-07-31): the assert that used to sit here tested a literal authored in this same
+    # function — it could only fail if an author typed "MISS". Removed as vacuous; no_misses stays
+    # as a REPORTED field with its scope stated honestly below.
 
     return {
         "tier": "CANDIDATE (the pre-registered falsifier register + outcomes; R-158, paper §E.5)",
@@ -4038,6 +4045,10 @@ def kernel_candidate_falsifiers():
         "structural_falsifier": structural_falsifier,
         "evaluable_now": sorted(evaluable_now),
         "no_misses": no_misses,
+        "no_misses_scope": ("a register-consistency statement over outcomes authored in this "
+                            "function (all evaluable-now entries are themselves scale/numeric "
+                            "GATED) — structural compatibility, NOT an external numeric test; "
+                            "the vacuous assert was removed 2026-07-31 (E-14)"),
         "near_kss_commitment": "STANDS (P6 — compatibility, not confirmation)",
         "frame_hedge": "the SC-persistence ceiling (P1) and the superallowed-flatness datum "
                        "(R-157) are INSIDE-frame data: they bind the outside-frame kernel only "
@@ -6848,8 +6859,9 @@ def generation_z3_is_metatime_phase():
 
 def why_three_generation_triple():
     """[e4 PART A, 1C — LOCATED residual] §17.4: The 3 ANTI-self-dual bivectors {e12+e34, e13−e24,
-    e14+e23} (I₄·u = −u, verified below) span an su(2) = the 3 ℍ imaginary units (Frobenius: ℍ
-    is the unique structure with exactly 3) = the 3 generations. Each carries ONE spatial + ONE
+    e14+e23} (I₄·u = −u, verified below) span an su(2) = the 3 ℍ imaginary units = the 3
+    generations. COUNT: computed below as dim Λ²₋(ℝ⁴) = 3 — GENERIC-GIVEN-4D (C-1, 2026-07-31);
+    Frobenius is a structural remark, NOT the operative exclusion. Each carries ONE spatial + ONE
     e4 blade, so the e4-dip (the epicycle's source) is INTRINSIC to the generation triple; the
     ℤ₃-about-(1,1,1) permutes the three. This connects 'three generations at 120° on the orbit'
     to the triple; the FULL identification — a map orbit-phase(φ_n) → ℍ-unit(u_n) — is the
@@ -6864,9 +6876,26 @@ def why_three_generation_triple():
         assert len(sp) == 1 and len(ep) == 1, "each generator must have 1 spatial + 1 e4 part"
         assert I4 * triples[nm] == (-1.0) * triples[nm], f"{nm} must be ANTI-self-dual (I4·u = -u)"
         report[nm] = {"spatial": sp[0], "e4": ep[0]}
-    assert len(sd) == 3, "exactly three anti-self-dual generators (Frobenius / su(2) is 3-dimensional)"
-    return {"anti_self_dual_triple": report, "count": 3, "duality_verified": "I4·u = -u for all three",
-            "meaning": "3 ℍ units (Frobenius) = 3 generations; e4-dip intrinsic to each; ℤ₃ permutes them",
+    # THE COUNT, COMPUTED (C-1, 2026-07-31 — replaces a len() of a hand-written list, which the
+    # C/D/E audit showed certified nothing). The generation count is the DIMENSION of the
+    # anti-self-dual eigenspace of the I4-action on Lambda^2(R^4). Since (I4·)^2 = +1 on grade-2
+    # (verified below), P_- = (1 - I4·)/2 is a projector and trace(P_-) = dim(ASD). dim = 3 is
+    # GENERIC-GIVEN-4D (canon §5 class: dim Lambda^2_-(R^n) = n(n-1)/4 only balances SD/ASD at
+    # n = 4, giving 3). Frobenius is NOT the operative exclusion — a 4th anticommuting imaginary
+    # unit needs no division algebra; what is unavailable is a 4th ASD direction.
+    _blades6 = [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+    _asd_dim = 0.0
+    for _b in _blades6:
+        _img = I4 * e(*_b)
+        assert I4 * _img == e(*_b), f"(I4·)^2 must be +1 on grade-2 (projector premise); failed at {_b}"
+        _asd_dim += 0.5 * (1.0 - _img.coeff(_b))
+    assert abs(_asd_dim - 3.0) < 1e-12,         f"dim of the ASD eigenspace of I4· on Lambda^2 must be 3 (generic-given-4D); got {_asd_dim}"
+    return {"anti_self_dual_triple": report, "count": int(round(_asd_dim)),
+            "count_source": ("COMPUTED: trace of P_- = (1 - I4·)/2 on Lambda^2 = dim(ASD) = 3 — "
+                             "generic-given-4D, NOT Frobenius (C-1, 2026-07-31)"),
+            "duality_verified": "I4·u = -u for all three",
+            "meaning": ("3 ASD directions = 3 generations (count generic-given-4D; the ℍ-unit "
+                        "identification stays the located conditional); Frobenius = structural remark only"),
             "located_step": "a map orbit-phase(φ_n) -> ℍ-unit(u_n) is owed (property Q: each u_n carries the "
                             "offset+dip reproducing √m_n at φ_n); until built, exactly-three is Frobenius-suggestive",
             "verdict": "why-three structurally connected; full derivation = the located step (ii)"}
@@ -7233,8 +7262,10 @@ def sterile_rh_relic_check():
 
     A) THERMAL upper bound (sterile thermalizes alongside active).
        Each helicity Dirac mode at thermal decoupling contributes equally. Even with BOTH
-       active and sterile thermalized at the upper Sigma m_nu bound, the total relic is
-       2 * 0.12/94 = 0.00255 — about 2.1% of Omega_DM. Shortfall ~47x.
+       active and sterile thermalized at the upper Sigma m_nu bound, the ACTIVE+STERILE TOTAL is
+       2 * 0.12/94 = 0.00255 — about 2.1% of Omega_DM (shortfall ~47x). The standard relation
+       Omega_nu h^2 = Sigma m_nu/94 already counts the active species, so the STERILE SHARE is
+       exactly half: 0.00128 — 1.06% of Omega_DM, shortfall ~94x (E-6 relabel, 2026-07-31).
        (This SHOULD NOT happen in TWT — sterile is wave-decoupled — but it bounds the case.)
 
     B) DODELSON-WIDROW oscillation production (the realistic scenario).
@@ -7251,7 +7282,8 @@ def sterile_rh_relic_check():
        independently of the relic-abundance computation.
 
     Verdict. 3 sterile RH neutrinos at TWT-implied parameters CANNOT account for Omega_DM:
-      - quantitative shortfall ~47x at the most optimistic thermal upper bound;
+      - quantitative shortfall ~94x for the sterile share (~47x for the active+sterile total)
+        at the most optimistic thermal upper bound;
       - structural exclusion: sub-eV mass ⇒ hot DM ⇒ free-streaming excluded;
       - DW window mismatch: m_s ~ keV needed; TWT predicts <~ 0.1 eV (~4 orders too light).
 
@@ -7304,6 +7336,11 @@ def sterile_rh_relic_check():
         "Omega_sterile_h2_thermal_upper_bound": Omega_sterile_doubled,
         "ratio_thermal_upper_to_Omega_DM": ratio_thermal_upper,
         "thermal_shortfall_factor": round(1.0 / ratio_thermal_upper, 1),
+        "NOTE_total_vs_sterile": ("the two fields above are the ACTIVE+STERILE TOTAL (the key name "
+                                  "predates the E-6 relabel, 2026-07-31); the sterile-only share is half"),
+        "sterile_only_share_h2": Omega_sterile_doubled / 2.0,
+        "sterile_only_ratio_to_Omega_DM": ratio_thermal_upper / 2.0,
+        "sterile_only_shortfall_factor": round(2.0 / ratio_thermal_upper, 1),
         # Scenario B: DW mass-window mismatch
         "DW_required_m_s_eV": m_s_DW_required_eV,
         "TWT_m_s_max_eV": m_s_TWT_eV_max,
@@ -12598,9 +12635,10 @@ def theta_rel_rotating_wave_escape_located():
          "2". The smooth rotating wave (below) and the locked off-G triple (above) are the TWO SIDES of this ONE bifurcation.
 
     ── (C) [the converse is OPEN — NOT a tightened near-falsifier. CORRECTION 2026-06-28c, Yaer: §9.6 FORBIDS the
-         Markovian limit] The Markovian limit of (A) is the framework's FORBIDDEN case, NOT the physical one: §9.6 +
-         the monostability theorem make the substrate **mandatorily non-Markovian** (a memoryless medium has no stable
-         Skyrmion ⇒ "matter does not exist"), and the originator settled the kernel as specifically **HYSTERETIC** (the
+         Markovian limit] The Markovian limit of (A) is the framework's FORBIDDEN case, NOT the physical one: §9.6's
+         selection/memory roles need tau_mem >> tau_wave, excluding the memoryless limit (R-114 — re-tiered FRAMING
+         2026-07-31; the old 'no stable Skyrmion' premise contradicted §A.3 and is withdrawn), and the originator
+         settled the kernel as specifically **HYSTERETIC** (the
          reactive-barrier branch; `MemoryKernel.HYSTERETIC`, `TWT_DEFECT_CKM_GLUON.md §5`). So the substrate lives
          ENTIRELY in the regime (A) calls "the escape regime" — the rotating-wave escape is therefore NOT a remote/exotic
          loophole, and there is NO clean Markovian binary to physically realize. (A)'s Markovian result is a REFERENCE
@@ -12664,8 +12702,8 @@ def theta_rel_rotating_wave_escape_located():
                                      "the colour Cartan {λ3,λ8} is exactly 2D, and above the |α|≳ω threshold the planar flow rests at ONE of 3 Z3-related off-G fixed points "
                                      "(spontaneous Z3 breaking, init-dependent); a robust Z3-symmetric attractor is non-generic in the plane (β|z|² spirals inward, no enclosing cycle)",
         "escape_is_nonMarkovian": "the rotating-wave escape REQUIRES the extra delay-coordinate dimensions of a finite memory τ_mem (the system is no longer planar) — "
-                                   "it is a NON-MARKOVIAN effect, living in the τ_mem sector. ★ but this is NOT exotic: §9.6 + the monostability theorem make the substrate "
-                                   "MANDATORILY non-Markovian (memoryless ⇒ no stable Skyrmion ⇒ no matter; FORBIDDEN), and the kernel is settled HYSTERETIC — so the substrate "
+                                   "it is a NON-MARKOVIAN effect, living in the τ_mem sector. ★ but this is NOT exotic: §9.6 + the R-114 memory requirement (ex-'monostability theorem', FRAMING 2026-07-31) make the substrate "
+                                   "non-Markovian for the selection/memory roles (memoryless cannot supply tau_mem >> tau_wave; the old no-stable-Skyrmion premise WITHDRAWN, R-114 FRAMING 2026-07-31), and the kernel is settled HYSTERETIC (originator pick) — so the substrate "
                                    "lives ENTIRELY in the escape regime; the Markovian decisiveness is a REFERENCE BASELINE (breaking is the memoryless default), not the physical verdict",
         "markovian_dichotomy": "below threshold ⇒ one CIRCULATING constant-|z| orbit, |time-mean z|≈0 = Z3-symmetric ⇒ ISOTROPIC Θ_rel; "
                                "above threshold ⇒ 3 DISTINCT fixed points 120° apart, |time-mean z|>0 = Z3-broken ⇒ ANISOTROPIC Θ_rel (engine-verified)",
@@ -16268,8 +16306,10 @@ def defect_zero_mode_multiplet_labels() -> dict:
     label set is the mass shell in the observer's Lorentzian reading. The engine
     checks nothing Lorentzian here (the Euclidean engine's e_{i4} rotations do not
     reproduce hyperbolic orbit geometry); deriving the moving family's labels
-    through the iso explicitly is the named next handle -- it would give chain (2)
-    dispersion an INDEPENDENT second angle (over-determination) beyond R-017.
+    through the iso explicitly is the named next handle. [SUPERSEDED 2026-07-30, swept
+    2026-07-31 (D-8): the handle FIRED as R-132 and delivered a CONSISTENCY CHECK, not an
+    independent second angle — see R-132's correction; the prospective over-determination
+    wording is withdrawn.]
 
     WOULD CHANGE IF: (a) quantizing the moduli multiplet (collective-coordinate
     quantization) closes (H2) -> residue (ii) closes with R-125; (b) the DM sector
@@ -16430,12 +16470,13 @@ def defect_zero_mode_multiplet_labels() -> dict:
                              "ansatz inherited from R-125"),
         "framing_pieces": ("(-omega branch = antiparticle-label reading -- algebra exact, "
                            "interpretation FRAMING; boost/moving family = R-014 Lorentz-orbit "
-                           "handle, named NOT banked -- would give chain (2) an independent second "
-                           "angle; multiplet = the (H2) skeleton, not (H2) itself)"),
+                           "handle, FIRED as R-132 -- delivered a consistency check, NOT an "
+                           "independent second angle (D-8 sweep 2026-07-31); multiplet = the (H2) "
+                           "skeleton, not (H2) itself)"),
         "would_change_if": ("(a) collective-coordinate quantization of the moduli closes (H2); "
                             "(b) DM shown to break right-Spin(4) => right sextet lifts (predicted "
-                            "fine structure / falsifier face); (c) boost-family labels derived "
-                            "through R-014 => dispersion second angle"),
+                            "fine structure / falsifier face); (c) SUPERSEDED — fired as R-132, "
+                            "consistency check only (D-8)"),
     }
 
 
@@ -20756,7 +20797,9 @@ def one_particle_pole_moduli_identification() -> dict:
 
     # ---------- (I2) the tower step (cite-and-check the banked skeleton) ----------
     tower = defect_phase_modulus_charge_tower_spacing()
-    assert "dE/dN = " in tower["outcome"] or "dE/dN" in tower["outcome"], \
+    # D-12 (2026-07-31): the old disjunction's second arm subsumed the first (tautologically
+    # redundant). Single substring witness kept — the identity itself is proved in R-142's own asserts.
+    assert "dE/dN" in tower["outcome"], \
         "R-131's tower spacing must be banked and live"
 
     # ---------- (S)-static: the l = 0 Hessian certificate ----------

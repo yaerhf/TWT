@@ -35,7 +35,7 @@ are cross-indexed to the primitives that check them.
 return numbers, by design, because those magnitudes are not derived. A framework that fabricates
 results does not build guardrails against its own author.
 
-**3. Read the negatives ledger** (`TWT_NEGATIVES_LEDGER.md`): 45 entries recording what was
+**3. Read the negatives ledger** (`TWT_NEGATIVES_LEDGER.md`): sixty-plus entries (N0–N57 with primed variants) recording what was
 tried and **failed**, in `tried → failed because → would change if` form, including a negative
 banked the same week as this revision that killed one of the author's own favoured ideas.
 Pseudoscience does not maintain a failure archive.
@@ -62,8 +62,12 @@ error unless the paper claimed otherwise — it does not. Three qualifications, 
   **none currently sits at experimental limits**. The framework's sharpest *empirical* exposure is
   not a falsifier row at all but a standing tension: its dimension-six Lorentz-violation coefficient
   is gated on the open substrate dynamics, and the natural value is excluded by existing cosmic-ray
-  and gamma-ray limits by several orders (§E.3.5(4)). We name it rather than omit it.
-- One quantity is derived and non-trivial: `sin²θ_W = 3/8` at unification, with no GUT embedding.
+  and gamma-ray limits by several orders (§E.3.5(4)); a second already-measured exposure — not
+  gated, simply underived — is the electroweak crossing scale (§E.3.5(5), §C.4.5). We name both
+  rather than omit them.
+- `sin²θ_W = 3/8` is a derived normalization identity at unification (no GUT *group*; a
+  crossing-scale identity, not a prediction of the measured angle — §E.2.3's honest magnitude
+  count is 0 of 19).
 - **The contribution is ontological, and it subtracts rather than adds.** The framework needs no
   irreducible chance: it is configuration-realist, and the Born rule is *derived* (as of this
   revision, a theorem given four named premises plus Gleason) rather than postulated. A theory
@@ -203,7 +207,7 @@ coefficient is gated on the open substrate dynamics, and at the natural size it 
 by existing cosmic-ray and gamma-ray limits by several orders. That is the tension named earlier in
 this note, and it is the honest boundary of the advantage claimed above (§B.6.3, §E.3.5(4)).
 
-**Parameter economy.** Five counted empirical inputs, against the Standard Model's nineteen. The
+**Parameter economy.** Four counted substrate inputs plus the measured Newton constant, with one hadron-sector determination counted provisionally (paper §E.2.1), against the Standard Model's nineteen. The
 framework is explicit that most of those nineteen are not thereby derived — they are gated on a
 single named open object — so the honest claim is a large reduction on the *structural* axis
 (postulates converted into consequences) and a modest one on the *magnitude* axis. Both counts
@@ -249,12 +253,12 @@ the feedback I want.
   derived; the values are not — §C.3.5 says so).
 - `K = 2/3` (equivalently `c = √2`) is an **input**; six attempts to force it failed and are
   recorded as negatives.
-- `sin²θ_W = 3/8` is the *unification* value; the run-down to 0.231 uses imported RG.
+- `sin²θ_W = 3/8` is the *unification* value; the framework does NOT reach 0.231 — its own lattice-scale run-down lands 0.154–0.158 against the measured 0.2312 (§C.4.5, N55; earlier to-0.231 wording is withdrawn).
 - All coupling magnitudes, absolute mass scales and the CKM hierarchy are gated on the open
   dynamics (§D.5) — the framework claims structure, not magnitudes.
-- Six results rest on **named structural premises** rather than closed derivations; they are
+- Seven premise rows (thirteen-plus named structural premises) condition otherwise-derived results rather than closed derivations; they are
   tabulated together at §E.2.2, with what would discharge each.
-- §E.3.5 is the framework's own pre-mortem: the three places it expects it could fail.
+- §E.3.5 is the framework's own pre-mortem: the five places it expects it could fail.
 
 ## §7. Feedback that would help most
 
