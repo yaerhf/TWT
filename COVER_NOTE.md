@@ -1,7 +1,7 @@
 # Cover note for reviewers — Time-Wave Theory, Foundational Paper V3
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-08-02 · verification suite: 501 checks (414 main + 87 companion) · engine: 316 public primitives (252 main + 64 companion)
+Paper revision 2026-08-13 · verification suite: 501 checks (414 main + 87 companion) · engine: 316 public primitives (252 main + 64 companion)
 
 ---
 
