@@ -1,7 +1,7 @@
 # Cover note for reviewers — Time-Wave Theory, Foundational Paper V3
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-08-02 · verification suite: 464 checks · engine: 302 public primitives
+Paper revision 2026-08-02 · verification suite: 501 checks (414 main + 87 companion) · engine: 316 public primitives (252 main + 64 companion)
 
 ---
 
@@ -25,7 +25,8 @@ What follows is not a plea for charity — it is a list of things you can **chec
 each of which the reference class reliably fails. Check them, then form your view.
 
 **1. Run the verification suite.** `python twt_test.py` should print
-`ALL 464 CHECKS PASSED`. These are executable algebraic assertions on a Clifford-algebra
+`ALL 414 CHECKS PASSED across 10 modules.` and `python twt_companion_test.py` should print
+`ALL 87 COMPANION CHECKS PASSED across 7 modules.` These are executable algebraic assertions on a Clifford-algebra
 engine — Dirac relations, the invariant decompositions, the charge spectrum, the Weinberg
 ratio — not prose. Falsify any of them and the corresponding claim falls; the paper's claims
 are cross-indexed to the primitives that check them.
@@ -225,8 +226,8 @@ reviewer should spend time on them at all.
 2. **The companion** (`TWT_foundational_paper_companion.pdf`, ~130 pp) — the bookkeeping: every
    numbered result's status, dependencies and engine cross-reference; the falsifier registries;
    the import registry; the development log. A lookup volume, not linear reading.
-3. **The verification suite** (`twt.py` + `twt_test.py`, Python, needs sympy/scipy) — ~302
-   executable primitives encoding the algebraic content.
+3. **The verification suite** (`twt.py` + `twt_companion.py` + the two harnesses, Python, needs
+   sympy/scipy) — ~316 executable primitives (252 main + 64 companion) encoding the algebraic content.
 
 ## §4. The one convention you need: result tiers
 

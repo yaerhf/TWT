@@ -503,6 +503,15 @@ windows (count-3 = #bound modes? SD/ASD rotation = up/down? mode freqs = the cos
   SD/ASD drive-handedness produces the up/down cost-doubling + edge-flip. Until then: the **MECHANISM**
   (Skyrme-quartic-driven sub-harmonic mode-locking → finite-width discrete windows) is **FORCED/FRAMING**; the
   **count-3, the cost values, and the chirality law** are **#1-gap GATED** (the EOM is unsolved).
+- **CONFIRMED NUMERICALLY on the ROTATIONAL-BAND route; that route's re-attack RETIRED (2026-08-12
+  consolidation; probe-4 P4-C via ADJUDICATION2_2026-08-03, all-Opus §8a):** any two-parameter band
+  `E₀ + cQ` on **m** anchored on (e, μ) needs rung ratio `(Q₃−Q₁)/(Q₂−Q₁) = 16.894`; every small-quantum
+  ladder gives 2–4; centrifugal stretching worsens it; the J(J+1) fit needs `M₀ = −25.8 MeV` (unphysical);
+  and the quantum-number kill — all three charged leptons are `J = ½`, so they cannot be ANY `I = J`
+  rotational band. No closure evades `J = ½` ⇒ generations-as-rotational-band is dead as a re-attack
+  (the driven mode-locking WOULD-CHANGE-IF above is a DIFFERENT mechanism and stands untouched). Scope
+  fences: on-m only (√m-ladders bracket the Koide value: 1.41–1.90); the free closure needs rungs
+  (1, 2, 7.189); n = 7 lands −5.3% with a look-elsewhere caveat (the integer menu spans −84%..+58%).
 - NET: Route C **refutes the literal "3 bound modes of the static Skyrme well"** (vibrational = continuum;
   rotational = the wrong/infinite spin tower; radial-node = wrong scale) but **relocates** the generation tower
   onto the **driven** meta-time rotor, where the Skyrme quartic forces universal sub-harmonic mode-locking with
@@ -607,6 +616,11 @@ Skyrme-bound-modes (N17) / outside-frame-hole (N18) — + developer verification
   rotor — is it EXPONENTIAL in A?** An exponential backbone converts the shrinking arithmetic ladder k·ln((n+1)/n)
   into a RISING GEOMETRIC one ([2.8,6.4]); that ONE curve is the hinge between the clean negatives and the cost
   table. (Same #1-gap EOM that gates Θ_rel/τ_mem/the couplings; now sharpened to the driven-Skyrme-rotor backbone shape.)
+  [ANNOTATION 2026-08-13, per ADJUDICATION2 2026-08-03: the hadron-frequency route (probe-5 registered
+  ladders, generation steps at fixed hadron environment) falls BELOW this hinge band — its rungs are
+  ln(m_D/m_K) ≈ 1.3 and ln(m_B/m_D) ≈ 1.0 vs the [2.8, 6.4] band (quark-level ln-steps 3.0/3.8: most of
+  the quark-mass ladder's rise lives in the environment/binding axes the hadron route subtracts). No
+  change to N19's negatives or its hinge.]
 - `protection_mechanism_located`, `chirality_is_a_reflection`, `skyrme_BVP_audit`, `self_dual`/`anti_self_dual`, N9/N11/N13/N16/N17/N18.
 
 ---
@@ -838,6 +852,13 @@ suite 209→211; reviewer pending. Resolves part of the N21 fork; builds on N20/
 - CONSEQUENCE (SCOPE CORRECTED 2026-07-29 — was "h_mn = 0 … for ALL Q-orbit hedgehog configurations"): h_kl = 0 and h_00 = 0 at tree level on the COMPUTED blocks. **The time-space row h_0k was never computed**, and the static `Ω_0 = 0` it rested on is an unlabeled PREMISE that canon §0 (mass IS ω) and R-123 [DERIVED-A] forbid for a massive defect. Restoring `Ω_0 = (k₄/2)û` per the R-123 lock leaves h_kl and h_00 untouched but makes h_0k generically nonzero (one L×Q Hodge pairing, no partner to cancel, linear in the mass); whether it is pure gauge, a genuine stationary cross term, or exactly zero depends on the UNBANKED field-extension of R-128's single-blade lock — a LOCATED GAP, adjudicated cross-class 2026-07-29. Also: the h_00 warrant named the WRONG ORBIT (R-128 locks the baryon mass phase to an L-orbit blade, not Q); the zero survives every admissible axis by SD/ASD balance, so the conclusion is STRONGER than its recorded argument. The downstream "Sakharov T_mn is the ONLY gravitational coupling for matter" reading is therefore CONDITIONAL on that fork — though no branch yields a 1/r Newtonian tail, so the Sakharov route is not displaced in any of them. The I₄-bilinear metric formula yields zero for the Q-orbit Skyrmion at all orders. Sakharov T_mn loop mechanism (N25) is the ONLY gravitational coupling for matter.
 - WOULD CHANGE IF: (a) a different metric bilinear is used (e.g. ⟨Ω_k†Ω_l⟩₀ sigma-model metric, which is positive-definite and nonzero); (b) a dynamical mechanism breaks the Lk_Ql = -Qk_Ll cancellation (would require a non-hedgehog configuration or a substrate-specific correction beyond the tree-level texture formula); (c) the texture tetrad is rederived with a different bilinear structure (Layer-3, deep gate).
 - `texture_matter_gravity_coupling` (suite 259→270, 11 new checks; N26 incorporated into check 9).
+- **REPRODUCTION NOTE (2026-08-12 consolidation, per ADJUDICATION_2026-08-03 item 7):** the co-rotating
+  h₀ₖ row is confirmed an EXACT GRADIENT (removable — row-scoped pure gauge) by an INDEPENDENT
+  implementation: synthetic-gauge calibration, a known-curvature analytic check (R_0101 = −1), 16× step
+  convergence, and an FD-free sympy closed form for h₄ₖ^CR reproducing curl = 0.643229. Row-scoped only:
+  the full co-rotating field's oscillating h_kl is NOT gauge. (Probes at
+  `knowledge/candidates/probes_2026-08-02/`; CANDIDATE-batch provenance, computation validated by the
+  cross-class round.)
 
 ---
 
@@ -1287,7 +1308,74 @@ in the ledger/worklist as cited. Recorded here so the adjudication is not mistak
 - SECOND-ORDER LEADS (**CANDIDATE**, not banked): `Ω = 0` is not the physical expansion point — per §D.4.6 the ground state is a helimagnet whose twist-gauge MC form carries a *constant* `Ω_vac ∝ q` (`q ≈ 10.5°`). (i) A single-blade (planar) helix has exactly balanced SD/ASD content, so `texture_metric_candidate`'s P6 fact gives `h = 0` on it identically, however large `q` — only a chirally *imbalanced* `Ω_vac` can move the signature, and the D4 ground state's blade content is established nowhere. (P6 alone suffices here; the baryon `h = 0` of §B.6.6 needs the strictly stronger L×Q cancellation as well — do not conflate the two.) (ii) About a nonzero `Ω_vac`, `h[Ω_vac + δΩ] − h[Ω_vac]` is **linear** in `δΩ` rather than quadratic — immediately, since `h` is bilinear — i.e. the missing linear graviton of `texture_metric_candidate` honest-tier (b) is missing only because the expansion is taken at `Ω = 0`.
 - NOTATION (the III-21 sub-item, as posed, was a misreading): the menu `{(0,4),(1,3),(2,2),(3,1)}` and the prose "(4,0) is structurally impossible" are already consistent — `_sig` returns `(n_neg, n_pos)`, so all-timelike = 4 negative = `(4,0)`. The real hazard is only that `(1,3)` means `η = diag(−1,1,1,1)` in §B.6.6 and `Cl(1,3)`/`η = diag(+1,−1,−1,−1)` in §B.1, where §B.1.2 makes algebra type (`M₂(ℍ)` vs `M₄(ℝ)`) convention-sensitive. Fixed by a glossary row, not by renaming a convention.
 - WOULD CHANGE IF Z: (1) the vacuum EOM (#1 gap) fixes `Ω_vac` and its SD/ASD balance — that decides whether the outside-frame vacuum texture metric is Euclidean or Lorentzian and closes the coherence item; (2) `c₂` is pinned — a normalization the induced-EH sector would have to fix in any case — converting `‖P‖ > 1` from a convention-relative statement into a physical amplitude; (3) a construction relates §B.1's `φ` embedding (which lives on the mixed-grade 4-space `span{e₄, e₄e₁, e₄e₂, e₄e₃}`) to the texture index `μ` (which runs over substrate coordinates) — that is the concrete handle on the located gap.
-- Probes: `knowledge/candidates/probes_2026-07-29/III21_perturbative_texture_signature.py`, `III21_background_dependence.py`, `III21_vacuum_texture.py` (the last has a self-flagged swapped SD/ASD print label; its `h` values and conclusions are unaffected, and the reviewer's independent re-run confirms them). **Nothing banked**: no primitive, no suite check; `texture_tetrad()` untouched and still raises. Per canon §2 none of this may be cited as "engine-verified".
+- **THIRD SURFACING — the ENERGETIC face (2026-08-12; ADJUDICATION3 §2b + rulings R2/R3; supplements the
+  two faces above):** the moving-defect cost laws agree at O(v²) and split at O(v⁴): shear/pattern **0**
+  (`1 + v²/2` exact, terminating — banked `pattern_shear_sector_identities`), tilt **−1/8**
+  (`E = E₀√(1+v²)` fixed-slice — banked `tilt_family_fixed_slice_cost_law`), inside-frame γ **+3/8**.
+  The RELATIVE SIGN at O(v⁴) is the energetic content of the same unbuilt map (tan θ vs tanh ζ; circle
+  vs lock). The banked `m = E₀` premise (`mass_equals_elastic_cost_premise`, INPUT, counted) states the
+  v = 0 bridge; the O(v⁴) sign is what remains open. HONESTY NOTE (keeper O2): the identification of
+  this energetic gap with wci (3)'s index-map gap is a structural reading, not shown.
+  **FOURTH SURFACING / ROUTE OUTCOME (2026-08-13; τ₅ probe-1 round, governing record
+  `knowledge/candidates/probes_2026-08-13/TAU5_ADJUDICATION_2026-08-13.md`; → N61):** the docketed
+  τ₅-hyperbolic route RAN and is **DISCRIMINATION-NULL** — the energetic face LOSES ITS NAMED ROUTE
+  and KEEPS ITS GAP. The earlier clause "the only outside structure that could yield `√(1−v²)`" is
+  retired: the route delivers `√(1−v²)` only as a change-of-variables identity (any profile, no wall
+  — L(v) → 0 as v → 1, not ∞), and its v is dx₁/dτ₅, a DIFFERENT variable from this bullet's O(v⁴)
+  table (dx₁/dx₄) — no τ₅-route coefficient enters this table without the lock-bridge stated. The
+  corrected would-change-if fork for the energetic face: {one-sidedness of the mass rotor (§A.4) /
+  any positive-definite pairing / the subtraction-level map (N61 O1)}.
+  **TWO-INERTIAS LATENT (keeper L1, recorded):** the round's rest excess W defines a mass-phase
+  modulus Θ_W = 2W/ω² ≈ 34.4 (probe units) alongside R-133's banked spin/isospin Θ₀; no passage
+  relates them; the latent FIRES if any which-E₀ ruling admits W into the rest energy (R-133's
+  0.1–0.3% N/Δ chain would then gain an ω-dependent term at the ~10% scale).
+- **K-O1 SUB-ITEM (booked per ruling R5, 2026-08-12 — the ruled-package viability address):** the RULED
+  E-carrier vs R-127's density-node exclusion. Banked, present tense (paper §A.4 block + the R-127
+  docstring): an E-carried FRONT phase would present as DENSITY NODES along x₄ and is excluded because
+  interferometry sees phases, not node patterns (R-127 C2). The ruled axis package puts an E-phase on x₄
+  IN THE VACUUM. No passage relates the two; probe 3b's "raw reading passes on empty vacuum" is the same
+  observation arriving from the other side, unjoined; the carrier SCALE is unnamed (monad vs cell vs
+  drive cadence). OWED: a passage stating why the vacuum carrier's node pattern is not seen by the
+  locked observer (candidate: §3.3's zero-registration of the homogeneous background — which must be
+  SHOWN compatible with R-127's C2 criterion, not asserted). Until then every carrier-reading
+  construction carries this as a named caveat (see N59).
+  **THIRD FACE FILED (2026-08-13, τ₅ round keeper O3):** T★ = 0 exactly — the rest defect's
+  kinetic density, subtracted against its own carrier, vanishes identically (companion
+  `one_sided_rotor_uniform_density_identity`; N61) — joins N59 (m_read carries no
+  defect-specific mass information) and this K-O1 item as a THIRD face of one statement:
+  *the mass-phase sector, subtracted against its own carrier, carries no defect-specific
+  content.* Any resolution of one face constrains the other two.
+  **SUB-ITEM CLOSED WITH AN ADDRESS (2026-08-13, K-O1 round; governing record
+  `knowledge/candidates/probes_2026-08-13/KO1_ADJUDICATION_2026-08-13.md`; certificates
+  banked in companion `ecarrier_common_mode_certificates`, 4 checks):**
+  - **(γ), the located gap in its corrected scope (referenced/relative readings ONLY):**
+    no admissible DEFECT configuration stages a RELATIVE E-phase collision with the §A.4
+    exclusion under the ruled carrier, WITHIN the treated/costed classes AND within the
+    one-sided rotation class fixed by **RUL-031** (the finite-cost two-frequency objects
+    standard in the literature — Q-balls, Friedberg–Lee–Sirlin 1976, Coleman 1985 — live
+    in the two-sided/conjugating class, closed by ruling, not computation): dk ≠ 0 is
+    outside R-130's C2 (named, untreated) and unbounded in N58's TESTED class; dk = 0 is
+    the scalar reduction. Would-change-if: N58's non-stationary beat/slip handle
+    (dark-head docket) — the named route that would stage the collision. (γ) is NOT
+    H-independent: under REJECT-H the witness is the carrier vacuum itself.
+  - **The reading question SPLIT and mostly ANSWERED:** every t-paired/referenced object
+    is exactly carrier-transparent (E central + t(q_E) = q_E⁻¹ — the certificate ground),
+    and R-127's exclusion TRANSFERS to any background applied to the DETUNING (companion
+    R-127 row instrument-scope note). The residue — whether the raw UN-referenced ideal
+    shadow is observable on a carrier background — is the HINGE H, filed as the
+    renormalization-dictionary item's FIFTH FACE (worklist; class-(2) under RUL-030;
+    ratification owed to the human coordinator).
+  - **The B4 gloss contest RESOLVED (keeper C2, class-(1)):** the old "E leaves the
+    ideal, as energetics" gloss was STALE under RUL-018 — the sign it read as exclusion
+    is the sign the corpus ruled away with pairing (iv); both gloss sites re-worded to
+    R-168's content (reverse indefinite on e₅-content ⇒ its grade-0 is not a density
+    there) and added to RUL-018's class-B revert list. The §A.4 exclusion loses nothing
+    (its instrument is the pairing-independent e₅-content fact).
+  - **R-023's carrier-background reference RULED (RUL-035, class-(1)):** the ruled
+    adjoint t, rest-frame-scoped; ratios were already carrier-invariant (common-mode);
+    ΣP breathing/comb degeneracy removed; t ≡ reverse on trivial backgrounds — nothing
+    recomputes (companion R-023 row note; R-160/R-027 inherit-notes).
+- Probes: `knowledge/candidates/probes_2026-07-29/III21_perturbative_texture_signature.py`, `III21_background_dependence.py`, `III21_vacuum_texture.py` (the last has a self-flagged swapped SD/ASD print label; its `h` values and conclusions are unaffected, and the reviewer's independent re-run confirms them). **Nothing banked**: no primitive, no suite check; `texture_tetrad()` untouched and still raises. Per canon §2 none of this may be cited as "engine-verified". (The 2026-08-12 third-surfacing bullet above cites three primitives banked THAT day — those ARE engine-verified; this fence covers the 2026-07-29 probe material only.)
 
 ---
 
@@ -1342,3 +1430,151 @@ in the ledger/worklist as cited. Recorded here so the adjudication is not mistak
 - WHAT THIS PASS DOES **NOT** DO: it does not fix the objection, weaken it, or answer it. It converts an **unlabelled blind spot into a labelled open gap** — a definition annotation on the inputs, a stated scope on the claim, this entry, and a companion registry row. The `10⁻⁵` headline is retained, now scoped: it is a pole-point statement.
 - WOULD CHANGE IF Z: (1) the substrate → inside-frame descent is computed for a rotor frequency, fixing which renormalized mass `ω` equals — that turns "at which definition?" from open into derived **in either direction**, and it may land on a definition where `K ≠ 2/3`, which would be a real problem and is the honest exposure here; (2) a TWT-native mechanism produces a flavour-differential correction that *cancels* the QED one (Sumino's move without Sumino's family gauge bosons — the substrate's own `Z_3` structure is the only obvious candidate handle, and nothing in the corpus computes it); (3) a resummed / multi-loop pole → `MS-bar` treatment replaces the one-loop estimate above (would move the `1.8 × 10⁻³`, not the conclusion that it is `~10⁻³` and not `~10⁻⁶`); (4) the coordinator rules that `ω` is *defined* to be the pole mass — in which case the gap becomes a stated INPUT convention (one more counted bit) rather than an open derivation, and must be labelled as a bookkeeping decision, not a derivation.
 - Engine: `LEPTON_MASS_SCALE_NOTE` added beside `M_E, M_MU, M_TAU`, matching `quark_mass_reconstruction()`'s `scale_note` habit. **No numerical value in the engine changed; no suite check added** — the one-loop estimate is paper-side and deliberately not banked. Paper: §C.3.3 scope paragraphs, new §C.3.3a, §C.3.4 inheritance note. Companion: Section 4 registry row (`Gated on absolute ω scale`), Section 10 bibliography (Sumino ×2, Koide 2017), Section 4 INPUTs row scoped. **NOT swept in this pass** (open follow-up): the R-134 quotations of `0.28%` / `313.85` in paper §C.3.11 (lines ~3868–3869), companion lines 188 / 2290–2291, `twt.py` lines ~3504 / ~18018–18020 / ~18120, and `twt_test.py` line ~1857 all still read as definition-free.
+
+---
+
+**N58 — can a defect DETUNE from the carrier (uniform or smooth-local detuning) at finite cost — the lock-or-slip dark-matter reading's energetic teeth? → NOT IN THE TESTED CLASS. (Probes 2/3 2026-08-03 via ADJUDICATION_2026-08-03; ledger-bound at the 2026-08-12 consolidation.)**
+
+- TRIED X: DET-U (uniform detuning of a defect's x₄-frequency against the carrier vacuum) and DET-L
+  (smooth local detuning), costed on the banked functional.
+- FAILED BECAUSE Y: DET-U pays a VOLUME-SCALING cost (exact) and DET-L a SECULAR T² cost (exact) —
+  both unbounded; the unlocked side has NO inhabitant in the tested class. "Energetic teeth for
+  visible/dark = locked/unlocked" was an over-claim: EM decoupling was never computed, and the
+  AC-JOSEPHSON expectation is that the unlocked branch RADIATES — the named test any dark reading
+  must pass before it is a reading.
+- THE DICHOTOMY ITSELF (lock-or-slip) is DERIVED-generic-given-a-carrier — textbook synchronization
+  (Adler 1946; Josephson 1962; Pikovsky–Rosenblum–Kurths 2001; all verified) — and internally it
+  CORROBORATES banked R-130's same-frequency-subtraction dichotomy (a genuine second angle, credited).
+- CONVENTION NOTE (2026-08-12, ruling R1): under the superseded (iii)-projection DET-L's secular cost
+  sat in E-content and was projected out ("the moving-matter paradox dissolves" — that corollary is
+  now INOPERATIVE); under the RULED pairing (iv) E-content costs and the negative stands as computed.
+  A moving defect is Doppler-detuned, so the MOVING-DEFECT CONSTRUCTION is mandatory before any dark
+  reading (the batch's undeclared F1).
+- WHAT SURVIVES (CANDIDATE, unclaimed before this round): an unlocked π₃ winding would thread
+  R-146/R-147's negatives — gravitates via Sakharov T_μν (the h-source is the WINDING, not the
+  x₄-activity — keeper K-L3), protected by π₃ not π₁, EM-dark by detuning.
+- WOULD CHANGE IF Z: (1) a non-stationary beat/slip class is constructed (dark-head docket item); or
+  (2) the AC-Josephson radiating-branch test is run and the unlocked branch's radiation quantified —
+  survival there would give the dark reading its first tooth.
+- Probes: carrier_probe2.py / carrier_probe3.py records via ADJUDICATION_2026-08-03. Nothing banked
+  as a result.
+
+---
+
+**N59 — does the carrier-relative reading give defects their observed masses (m_read on the ruled carrier)? → REFUTED AT FACE VALUE in both tested conventions; the carrier branch OBSTRUCTS R-123's residue (ii) rather than filling it. (Probe 3b 2026-08-03 via ADJUDICATION_2026-08-03; ledger-bound at the 2026-08-12 consolidation.)**
+
+- TRIED X: read defect masses through the carrier-relative subtraction (probe 3b): m_read(CR) and
+  m_read(B2) on the matched defect.
+- FAILED BECAUSE Y: both read 0 — protons are not massless. Sharper than the memo knew: the
+  carrier-relative subtraction is ALREADY BANKED (§A.4: observer time = rate of change registered
+  against the homogeneous vacuum), and §A.4's photon-masslessness discriminator returns the SAME
+  value for photon and proton in BOTH reading conventions on a carrier. High information content: a
+  reading exists but carries NO defect-specific mass information (probe 1's tension RELOCATED, not
+  resolved); the raw line projection "passes" on empty vacuum.
+- Applied literally, R-017/R-123 give m = ω_c for EVERYTHING on a carrier — the reading bridge partly
+  OVERRIDES rather than extends them; it carries an N33-1-style CANDIDATE-for-applicability hedge,
+  and the condensate chemical-potential prior art (global phase unobservable; only relative phases
+  measurable — textbook) must be cited before any "dictionary sharpening" is claimed as a TWT delta.
+- RELATED: the density-node viability question for the ruled E-carrier is booked as the N56 K-O1
+  sub-item (ruling R5) — the same carrier, the observability face; any resolution there constrains
+  the reading conventions here.
+- WOULD CHANGE IF Z: (1) a reading convention is NAMED and shown non-obstructed (ADJUDICATION_1's
+  prerequisite for any inside-frame endpoint — keeper C2); (2) the τ₅-hyperbolic route (ruling R3(b))
+  supplies the defect's dispersion independently of the carrier reading; or (3) the N56 K-O1
+  sub-item is resolved, which would also fix what the locked observer reads on the vacuum.
+- Probes: carrier_probe3b_reading.py via ADJUDICATION_2026-08-03. Nothing banked as a result.
+
+---
+
+**N60 — can the banked Brannen triples be realized inside the √m = r² offset-circle orbit that backs the 2ψ-form (mass_measure_from_omega's derivation geometry)? → NO: r² ≥ 0 caps the orbit-invariant amplitude at A ≤ 1; the banked amplitudes exceed it. (ψ-repair §8a round 2026-08-13, reviewer P3; engine-checked in `brannen_z3_harmonic_collapse_invariant`; nothing else falls.)**
+
+- TRIED X: realize the banked Brannen triples (lepton A = √2; down A_d = 1.546) inside the
+  √m = r² offset-circle orbit r²(φ) = (d + cosτ·cos(φ−ψ))² + sin²(φ−ψ) — the geometry whose
+  harmonic expansion backs the 2ψ-form convention (mass_measure_from_omega).
+- FAILED BECAUSE Y: r² ≥ 0 caps the ℤ3-orbit resultant (DFT) amplitude at A ≤ 1 — the maximum
+  is exactly 1.0, attained at the r² ≥ 0 saturation (d → 0, τ → π/2; engine scan over d, τ, ψ
+  in the primitive) — while the banked amplitudes are A_lepton = √2 ≈ 1.414 and
+  A_d ≈ 1.546. NO r²-orbit of this class realizes the banked triples. The 2ψ-form's PHASE
+  STRUCTURE survives as the derivation-backed FORM; the orbit's coefficient budget does not
+  reach the banked coefficients.
+- SCOPE: `brannen_amplitude`'s c is a projection RATIO (unbounded) — R-064's projection
+  geometry can host c = √2 where the r²-orbit cannot; the two are different geometric
+  pictures of one functional form, now explicitly split by this entry.
+- WOULD CHANGE IF Z: the mass measure is not the squared radius of a positive-definite orbit —
+  e.g. a vacuum-subtracted/signed measure (r² measured against a nonzero floor), or a
+  different projection whose amplitude enters as a ratio rather than an absolute harmonic
+  coefficient; any such construction that reproduces A = √2 with the shared-ψ phase structure
+  would close the gap and promote the 2ψ-form derivation from FORM-only to coefficient-level.
+- `brannen_z3_harmonic_collapse_invariant` (cap check + banked-amplitude exceedance asserts),
+  `mass_measure_from_omega` (convention paragraph cross-ref), `brannen_amplitude`/R-064.
+
+---
+
+**N61 — can the τ₅-hyperbolic route (the 5D master equation's hyperbolicity, v = dx/dτ₅) deliver the outside `√(1−v²)` cost law WITH a speed limit for the corpus's own defect? → NO: the route is DISCRIMINATION-NULL on every one of its cost objects, for a single reason — any background that makes a cost finite is the one that installs the v-law. (τ₅ probe-1 round 2026-08-13; governing record `knowledge/candidates/probes_2026-08-13/TAU5_ADJUDICATION_2026-08-13.md`; engine-checked in `one_sided_rotor_uniform_density_identity` + `tau5_unique_v_inert_combination` (companion); RUL-020(b) discharged.)**
+
+- TRIED X: the RUL-020(b) probe generation — a τ₅-hyperbolic completion P-A(λ) of the banked
+  SO(4) elastic functional under ruled pairing (iv) (calibrated bc-1/bc-2; λ a MENU,
+  convention-pinned only, hyperbolicity-bounded λ ∈ (−0.124, +2.903)), the coordinate-transport
+  family T-coord (a NAMED modeling choice) with v = dx₁/dτ₅ on a solver-produced hedgehog
+  profile, and the τ₅-Noether / action / banked-3-slice cost objects (I-B/I-C/I-A) under the
+  admissible (v-independent) subtraction branches S1 (carrier-only) and S2 (carrier +
+  rest-asymptote).
+- FAILED BECAUSE Y — SPLIT form (the rest half is the strong form):
+  - **REST HALF (profile-, pairing-, transport-, λ-independent):** the banked one-sided mass
+    rotor does not tend to the vacuum at infinity — the rotation acts on the vacuum — so its
+    kinetic density is EXACTLY uniform, (ω/2)²|û|² everywhere, for the LEFT and the RIGHT
+    one-sided forms alike (`one_sided_rotor_uniform_density_identity`; the fact is
+    ONE-SIDEDNESS, never the left shift), and the raw 3-slice τ₅-Noether cost diverges AT
+    v = 0 under carrier-only subtraction for ANY positive-definite pairing. This is the
+    standard vacuum-stabilizer obstruction to treating a broken-symmetry direction as a
+    collective coordinate (Adkins–Nappi–Witten 1983; Coleman 1985 — credit via I-5); the
+    TWT-specific content is the COLLISION: the corpus's ruled mass-rotation class is the class
+    the literature excludes, while the banked SPIN rotation (R-133's Θ₀, conjugation class)
+    is the class it admits.
+  - **BOOST-CONSISTENCY HALF (rides T-coord, lightly):** no v-INDEPENDENT background renders
+    the moving cost finite at any v ≠ 0 (residual ∝ (ωγv/2)² — a general argument over all
+    fixed backgrounds, not a two-witness generalization), and among far-field combinations
+    a·d₅ + b·d₁ the v-inert one is UNIQUE: b = −a, the η/action combination I-C
+    (`tau5_unique_v_inert_combination`) — which is a pure change-of-variables identity
+    (√(1−v²) for ANY profile; Schroers: "merely a complicated way of deriving something
+    trivial"). So every route to a finite moving cost either picks the v-inert tautology or a
+    v-dependent background that hand-installs γ: discrimination-null. The O(v⁴) sign the
+    route was docketed to chase is unreachable from inside the completion (and its v is
+    dx₁/dτ₅, NOT R-169's dx₁/dx₄ — the N56 O(v⁴) table is in the latter variable; no
+    τ₅-route coefficient may enter it without the lock-bridge stated).
+- OBSTRUCTION TRIPLE (the corrected root): {mass acts ONE-SIDEDLY (§A.4 sidedness
+  distinction; R-125/R-127)} + {any positive-definite pairing} + {fixed-background
+  subtraction}. DEAD HANDLE, recorded as dead with its reason: "a kinetic-sector pairing
+  other than (iv)" cannot rescue finiteness — positivity + the nonzero boundary value alone
+  force the divergence (and R-168 independently bounds that fork: any positive pairing
+  selects e₅).
+- THE R-130 SUB-QUESTION — ~~UNDECIDABLE-WITHOUT-COORDINATOR~~ **recorded as a
+  #1-gap-adjacent DICTIONARY FACE per RUL-030/D5 (2026-08-13) — UNRULED BY DESIGN,
+  CANDIDATE by definition** (the ruling's second sentence: assembly-recorded, not ruled;
+  pieces held at the worklist renormalization-dictionary item's FOURTH FACE): banked R-130
+  DERIVES the forced ω_c = ω subtraction (field level, dichotomy exact) WITHIN its named
+  (C2) separable-rest-ansatz condition; whether it extends to the boosted
+  (two-frequency-class) family — which would admit the transported background S2′ and make
+  E₅(v) = γE₅(0) tautological under it — is banked by neither side. Either branch leaves this
+  entry's discrimination-null statement correct; the branches differ only in R-130's scope.
+- THE ONE GENUINELY NEW STRUCTURAL GAP (O1, the would-change-if address): R-130 subtracts at
+  the FIELD/NORM level (finite excess ½‖R₀−1‖); the ruled cost subtracts at the DENSITY level
+  (T★ = 0 exactly); the conjugation class is the field-level subtraction re-described
+  (Ω₅(conj) = A(Ω₅(left) − ŵ)Ã, exact — same companion primitive). NO passage relates the two
+  subtraction levels (the §B.1-vs-§B.6.6 shape).
+- WOULD CHANGE IF Z (single live handle + the map): (1) the ROTATION CLASS — a coordinator
+  ruling moving the mass rotation to the vacuum-fixing conjugation class would dissolve the
+  boundary-condition obstruction, at its TRUE cost: §A.4's one-sidedness distinction,
+  R-127/R-128, R-131, R-142, and R-133's Θ₀ already pricing that class as SPIN (adjudication
+  RULINGS-OWED (ii) — canon-adjacent, never an R-125-local fix); (2) the O1 subtraction-level
+  map is built, relating R-130's field-level rule to the density-level cost (then the moving
+  background has a derived rule and ruling (i) becomes computable); (3) R-130's dichotomy is
+  extended past (C2) by derivation (branch YES of ruling (i)).
+- Positive by-products of the same round (CANDIDATE, adjudication §5): T★ = 0 exactly (third
+  face of the N59/K-O1 statement — see N56); W = 11.836 localized, ∝ ω² exact, û-independent
+  (= ½Iω², the standard Skyrme moment-of-inertia structure; Θ_W = 2W/ω² ≈ 34.4 probe units);
+  R-131's dE/dN = ω reproduced on a solver profile ⇒ V★ = tower bottom, E★ = tower level (the
+  E★-vs-E₀ question routes to R-142's absolute anchoring, not to the m = E₀ premise).
+- Probes: `knowledge/candidates/probes_2026-08-13/` (prereg v3 + run logs v1/v2 + five
+  persisted checker verdicts + the adjudication). Banked from the round: the two companion
+  primitives + 2 suite checks named in the header; NOTHING else.

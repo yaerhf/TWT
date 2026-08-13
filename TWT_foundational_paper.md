@@ -1,5 +1,7 @@
 # Time-Wave Theory — Foundational Paper (V3)
 
+### Standard-Model structure from a single wave medium
+
 *Yaer Aharon Haddad Fennech · Independent Researcher · hfyaer@gmail.com*
 *Engine, verification suite, and both documents: **https://github.com/yaerhf/TWT** —*
 *`pip install -r requirements.txt && python twt_test.py` reproduces every algebraic claim below.*
@@ -81,11 +83,9 @@ undone. The tier system, the executable suite, and the import registry exist to 
 imperfectly.
 
 **Our own strongest objection, stated first.** The framework's natural value for the isotropic
-dimension-six Lorentz-violation coefficient is excluded by existing cosmic-ray and gamma-ray limits
-by three to nine orders of magnitude (§E.3.5(4), §E.3.3 VG-6). We cannot presently compute the
-suppression that would be required, because it is gated on the same open dynamics. In our judgement
-this is the most likely route by which the framework is wrong, and we would rather it were tested
-than overlooked.
+dimension-six Lorentz-violation coefficient is excluded by existing limits by three to nine orders
+of magnitude, and we cannot presently compute the suppression that would be required. It heads the
+table below, with the second already-measured exposure beside it.
 
 **Four checks, five minutes each.**
 
@@ -117,10 +117,42 @@ Trayling–Baylis; Lasenby–Doran–Gull; Plebanski/Urbantke/Krasnov; Furey; Ch
 Boyle–Farnsworth — developed independently, with the specific deltas at §C.4.5 and §C.3.8 and
 primary-verified records in companion Section 10.
 
-**What would settle it.** §E.3 lists sixteen falsifier rows (current bounds where they exist;
-rows 4, 5, 7 and 8 are consistency-class or floor-gated and marked so at the rows); §E.3.5 lists
-five internal exposures where the framework could be right about its premises and still fail. We
-would rather be shown wrong on a specific claim than credited on a general one.
+**What would kill this — and what it does not predict.** The framework is at present **more
+falsifiable than predictive**, and the distinction matters. It makes no unconditional novel
+prediction of a coupling magnitude or an absolute scale: those are where novel numbers would
+come from, and every one of them is downstream of a single named unbuilt object — the
+driven-dissipative substrate dynamics of §D.5 and the `Θ_rel` residual. That is a stated debt
+with a named source, not an oversight, and no restatement of the structural results discharges
+it. What the framework stakes instead is a set of prohibitions, and two places where the
+measurement already exists and the framework is behind.
+
+| The exposure | What it kills | Where it stands |
+|---|---|---|
+| **Already measured** — the isotropic dimension-six Lorentz-violation coefficient | any completed §D.5 dynamics that fails to deliver a suppression of three to nine orders — dead on arrival, not evolved | The coefficient is gated on the open dynamics, so the framework asserts no value for it; what existing cosmic-ray and gamma-ray limits exclude is its *naive* value at the substrate's own lattice scale, and they bind every future completion (§E.3.5(4), §E.3.3 VG-6) |
+| **Already measured** — `sin²θ_W(M_Z) = 0.2312` | the framework's own lattice-scale descent | Its one computable reading lands `0.154–0.158`, a third below the measured value; the four standard escape routes are computed and closed (§E.3.5(5), §C.4.5, N55) |
+| Proton decay, at any lifetime | topological protection of baryon number (`B ∈ π₃(S³) = ℤ`) | Super-K, Hyper-K, DUNE. The framework's one distinctive forward bet: grand unification expects decay at *some* level, and this framework forbids it outright — non-perturbative violation respects `ΔB = ΔL = 3` (§C.1.5, §C.5.6) |
+| Neutrinoless double beta decay | exact `B − L` conservation, and with it the Dirac neutrino character that conservation forces | KamLAND-Zen, LEGEND, nEXO, CUPID (§C.3.12, §C.5.6). What does *not* die with it: anomaly cancellation is a trace identity on the charge assignment, untouched by a broken conservation law (§C.5.4) |
+| A sterile neutrino at any mass far above the active scale | the Dirac-partner mass tie `m_sterile = m_active ≲ 0.12 eV` | KATRIN's kink search, extended into the keV range by the TRISTAN detector upgrade (§E.1.3, §E.3.3 VG-4) |
+| Sector- or epoch-differential `c_meta` | the wavefront-locking axiom `A-3` itself — the ontological premise, not a derivation downstream of it | Precision multimessenger astronomy. The framework's one existential exposure, and §E.3's disclaimer carves it out as exactly that: every other row here would force the next paper, this one would force reformulation at the axiom layer (§E.3.5(3)) |
+
+Rows three and four are independent experiments but a single underlying derivation: in this
+framework proton stability, Dirac character and the absence of `0νββ` are one structural fact
+(R-089), and the two rows probe it through different mechanisms — topological winding versus the
+conservation law. §E.3 carries the full sixteen-row falsifier table, including the
+consistency-class and floor-gated rows deliberately kept out of this one.
+
+**What it costs to buy this.** The Standard Model carries 19 free parameters (26–28 with
+neutrinos). This framework carries four counted substrate inputs plus the measured Newton
+constant, one further piece counted provisionally, and pins **zero of the 19 unconditionally**
+(up to three conditionally). Its output is on the structural axis, not the magnitude axis
+(§E.2.1, §E.2.3) — it converts Standard-Model postulates into substrate consequences, and does
+not pretend to have bought magnitudes.
+
+Structure has been proposed before its dynamics before: Minkowski's spacetime geometry preceded
+general relativity by seven years, and Einstein dismissed it as superfluous learnedness before it
+became indispensable. That is a statement about stage, not about merit. We would rather be shown
+wrong on a specific claim than credited on a general one — and the place to start is the two rows
+above where the framework is already losing.
 
 ---
 
@@ -533,6 +565,22 @@ the mass:
 A photon has no meta-time rotor (it is a propagating bivector strain, not a defect; §B.5); its mass
 is zero. An electron has rotor frequency `ω = m_e c² / ℏ`.
 
+The same defect has an **outside-frame face**: the elastic cost `E₀` of its shape — the
+vacuum-subtracted 3-slice value of the substrate functional at rest. The identification
+
+> `m = E₀` (in lock units)
+
+is a **named, counted premise** of the mass sector — the standard soliton-mass identification of
+the Skyrme literature, stated here rather than silently assumed: every comparison of an elastic
+value with a measured mass crosses it (§C.1.2). It presupposes, and does not supply, the
+one-particle spectral identification (§D.4.6 residue); it picks no renormalization scheme
+(§C.3.3a); and its velocity extension is open in a sharp form — the outside cost of the
+tilted-worldtube family obeys `E(v) = E₀·√(1+v²)` (a slice-measure identity), agreeing with the
+observer's `γ` law at `O(v²)` and departing at `O(v⁴)`, where the candidate laws split as
+`(0, −1/8, +3/8)` for the sheared pattern, the tilted tube, and `γ` respectively (R-169). That
+relative sign at `O(v⁴)` is the energetic face of the same unbuilt observer↔substrate map named
+at §B.1 and §B.6.6.
+
 The half-angle convention `q_h = exp(m τ_5 û / 2)` is forced by spinor inheritance: under
 `τ_5 → τ_5 + 4π/m` the rotor returns to itself, with sign flip at `τ_5 + 2π/m` — the `SU(2)`
 double cover. Here `û` is a simple unit element with `û² = −1` — the meta-time rotor axis in the
@@ -618,9 +666,9 @@ prediction and an SM quark current mass is an indicator-level signal, not a fals
 Three consequences worth flagging here:
 - The baryon mass formula (§C.1) acts on hadron-level mass eigenvalues, not quark masses.
 - The up-sector eccentricity ratio `ε_u/ε_d = 2^{3/2}` (§C.3.10 — a candidate rule of the
-  quark-sector epicycle parametrization) matches the *ratio* of two
-  hadron-indicated quark masses (u, c) but is structurally untestable against `m_t` because no
-  top hadrons exist.
+  quark-sector epicycle parametrization): `ε_u` is *set by* the rule from the fitted `ε_d`, so
+  the ratio is realized by construction rather than tested, and the rule is structurally
+  untestable against `m_t` because no top hadrons exist.
 - The top quark exclusion `Γ_t · Θ_0 ≈ 7.2 ≫ 1` (§C.5) — the top facet unwinds before the baryon's
   circular winding can complete. The top has no hadrons, by the framework's own prediction;
   consequently the top mass is a Standard-Model bookkeeping number, not a TWT verifier.
@@ -783,6 +831,19 @@ three generations are the imaginary units of the **ASD summand** — that `ℍ` 
 `ℍ ⊕ ℍ`, not this subalgebra. `Cl(4,1)` is the same content with
 `e_5` written explicitly, useful when meta-time dependencies need to be tracked through a
 calculation.
+
+Costing `Cl(4,1)` content requires a pairing, and the algebra constrains the menu sharply: **no
+`spin(4,1)`-invariant positive-definite pairing exists** (non-compactness), while
+`t = α₅ ∘ reverse` — reversion composed with `e_5 → −e_5` — *is* positive-definite on all 32
+blades, invariant under `Spin(4)` and under the `E`-phase, and non-invariant under the boosts:
+positivity is bought by selecting the `e_5` axis, exactly as the Dirac adjoint selects `γ⁰`
+(R-168). The framework's cost convention adopts this pairing — a **named, counted pick** (the
+reversion pairing is indefinite on `e_5`-content with no commutator-quartic backstop, since `E`
+is central; the conjugation pairing leaves the boosts negative; a `Spin(4)`-projected cost makes
+the carrier phase dispersionless). Restricted to `Cl(4,0)` the adopted pairing coincides with
+the reversion pairing already used throughout the hadron sector, so nothing banked moves; its
+one substantive consequence is that the vacuum carrier's own advance is **costed** — the drive
+of the substrate's steady state (§D.5) has an object to sustain.
 
 Why two complex structures coexist. `E` is **central** (it commutes with everything) and **global**
 — it gives a single `U(1)` phase that any configuration can carry. `i = e_{12}` is a specific
@@ -1509,6 +1570,11 @@ subalgebra (§B.3.1). Defining the complex overlap
 complex amplitude information — the probability is
 
 > `P(D_n) = z · z̃ = |⟨D_n | ψ⟩|²`. (R-023)
+
+On the trivial background the tilde is the reverse; on the costed carrier vacuum (§A.4's rotating
+reference) the reference operation is the ruled adjoint `t = α₅∘reverse` — at rest, with the boost
+extension deferred to the outside↔inside dictionary — which reduces to the reverse on all `Cl(4,0)`
+content, so every trivial-background statement here is unchanged.
 
 The grade-0-only formula `|∫ ⟨D̃_n ψ⟩_0 d³r|²` undercounts: for `D = 1` and `ψ = e_{12}` (the
 same physical state, phase-rotated by 90°), `⟨e_{12}⟩_0 = 0`, so a grade-0-only formula predicts
@@ -2952,7 +3018,9 @@ R-123 makes that an explicit `x_4`-dependence on the wavefront lock. Restoring i
 single L×Q Hodge pairing with no partner term to cancel, `h_{0k} ∝ ω f′(r)`, linear in the mass. Whether
 that row is pure gauge, a genuine stationary cross term, or exactly zero depends on how R-128's
 single-blade lock extends over the hedgehog *field*, which this framework does not fix: the
-co-rotating extension gives an exact 1-form (removable by a time shift, linearized Riemann zero); the
+co-rotating extension gives an exact 1-form `h_{0k}` *row* (curl-free, removable by a time shift —
+the row's linearized Riemann vanishes; the same extension's slice-conditional oscillating `h_{kl}`
+is a separate matter and is not gauge); the
 rigid extension gives a non-removable gravitomagnetic-type term; the conjugating extension
 `R = A(τ_5) R_h A^{-1}` gives `h ≡ 0`. **This is a located gap, not a result**, and nothing downstream
 may assume a branch. Note what does *not* change under any branch: there is no `1/r` Newtonian tail
@@ -3424,6 +3492,11 @@ homotopy class is its degree: an integer in `π_3(S³) = ℤ`.
 The minimum of the Skyrme functional gives a baryon mass at the dressed-coupling level
 
 > `M_0 = 36.47 · f_π / e`  (R-051),
+
+and comparing this elastic value with measured baryon masses crosses the `m = E₀` premise of
+§A.4 (elastic cost ↔ rest frequency — the counted identification, not a derived step). The
+comparison here is additionally a **calibration**: `f_π` and `e` were historically fitted to the
+N/Δ masses, so it exercises the premise without independently testing it.
 
 with `f_π ≈ 129 MeV` the cell-scale mass and `e ≈ 5.45` the **empirical** (ANW) Skyrme
 stabilizer. The dressed-coupling relation `e ≈ √18 / (D/J)` (§D.4) *reproduces* this value at
@@ -4140,6 +4213,13 @@ two fixed:** there is no passage, and no engine primitive, that says which mass 
 equal — the pole mass, an `MS-bar` mass at some scale, or a substrate-scale quantity that descends to
 one of these under a running the framework has not computed.
 
+One leg of that bridge is now stated as a premise: `m = E₀` (§A.4) identifies `ω` with the
+defect's classical elastic cost — the tree-level, substrate-scale member of the menu above. That
+NAMES the classical branch; it does not answer this section's question, because the premise picks
+no scheme — which renormalized mass the pole-point relation rides remains open, now sharpened: a
+scheme label is owed wherever an `E₀`-derived number meets scheme-dependent data (the third face
+of the missing renormalization dictionary, §E.2.1).
+
 **Two things this objection is not.** It is not the claim that pole masses are the wrong masses: a
 pole is a resonance position, and for an ontology in which mass *is* a rotor frequency the pole is
 the natural default identification. Nor is it an ambiguity in the inputs: the pole mass is itself
@@ -4299,7 +4379,8 @@ for the substrate.
 
 The reading is the
 quark sector's Brannen-with-epicycle reading: the deviation from the lepton-sector circular
-projection is encoded as an eccentricity `ε ≠ 0` on a generalized Brannen ellipse, and the
+projection is encoded as an eccentricity `ε ≠ 0` on a generalized Brannen ellipse — a
+parametrization-dependent encoding (see below) — and the
 Cabibbo angle reads as the frequency ratio between the two leading mass eigenvalues. The
 relation is structurally testable for `|V_us|² = m_d/m_s` (the d–s ratio); the analogous
 prediction for `m_t` is structurally untestable because no top hadrons exist (R-091a; §C.5). The
@@ -4307,7 +4388,21 @@ identification stands as a CANDIDATE pending the Θ_rel closure.
 
 The up-sector eccentricity itself carries a candidate rule inherited from the quark-sector
 epicycle parametrization: `ε_u/ε_d = 2^{3/2} ≈ 2.828`, heuristically motivated as the spinor
-half-angle structure times the up-vs-down chirality flip. In that parametrization `ε_u` is *set
+half-angle structure times the up-vs-down chirality flip. The `ε` values are parameters of the
+two-harmonic epicycle parametrization, not orbit observables: at three sample points the second
+harmonic aliases into the first, so `ε` is defined only jointly with the parametrization's phase
+*and amplitude* conventions (the corpus's variants differ in both the phase reference of the
+second harmonic and its amplitude coefficient), which the three masses do not fix — the
+reparametrization-invariant content of a mass triple is a single resultant amplitude and phase;
+parameter values inter-convert between variants only under a re-fit, never by carrying the same
+`(b, ε)` across forms. The invariant content of the down triple is the resultant amplitude
+`A_d ≈ 1.546`, against the lepton triple's `√2` — equivalently, the down-sector Koide value
+`K ≈ 0.73` differs from the leptons' `2/3`: the quark/lepton asymmetry lives in the invariant
+amplitude, not in any single parametrization's `ε`. For the lepton triple the second harmonic
+vanishes (`ε = 0`), the aliasing degeneracy is absent, and the resultant phase *is* `δ_L` — so
+the `δ_L` of §C.3.5 remains an observable of the three lepton masses. The ratio rule is
+accordingly a statement
+about the fitted parametrization. In that parametrization `ε_u` is *set
 by* the rule (`ε_u = ε_d · 2^{3/2} = 0.973` from the fitted `ε_d = 0.344`), so the ratio
 realizes the rule by construction rather than testing it; and the rule is untestable on the
 framework's own terms: only `u, c` are hadron-indicated, and `m_t` is a Standard-Model
@@ -5417,8 +5512,12 @@ Lagrangian with coefficients fixed at the dressed level, conditional on branch (
 with `𝓛_top(D)` the DM-induced topological boundary term (R-110) of the form
 `µ · Ψ_0 · ρ_L`, sourcing L-pair creation in the wave-riding sector (the substrate channel for
 β-decay, §C.5.7). The kinetic coefficient is fixed by `f_π² = 8J/a` (R-106), the quartic
-stabilizer by `e ≈ √18 / (D/J)` (R-107); only the DM-topological coefficient `µ` is open (gated
-on the substrate dynamics).
+stabilizer by `e ≈ √18 / (D/J)` (R-107); the DM-topological coefficient `µ` is open (gated
+on the substrate dynamics), and any τ₅-hyperbolic completion of this Lagrangian carries one
+further undetermined coefficient — the weight `λ` of the mixed quartic sector
+`⟨[Ω_5, Ω_i][Ω^5, Ω^i]⟩_0` — a menu whose covariant value is pinned only by the convention
+that a single metric raises every index above, a convention that itself holds only within
+§D.4.6's isotropic idealization.
 
 **Branch (c).** The
 bare exchange quartic is `κ_F = J/24`, giving `e_bare ≈ 0.87` — wrong by ~6× and
@@ -5971,6 +6070,15 @@ conditions, both ways: if the sharpened legs (massive-pion/beyond-rigid-rotor on
 branch-(c) closure and the `√18` referent on the prediction side) **converge**, `e` retires from
 the ledger and the count drops back to four; if they **split**, the `√18` bridge dies and the
 convergence claim with it.
+
+One structural **premise** is also counted — an identification rather than a numeric input, but
+information the framework consumes without deriving: **`m = E₀`** (§A.4), the defect's rest
+frequency equals its vacuum-subtracted outside elastic cost in lock units. It is the standard
+soliton-mass identification, and every comparison of an elastic value with a measured mass
+crosses it (§C.1.2); stating and counting it replaces its previous silent use. It presupposes
+the one-particle spectral identification (§D.4.6 residue) and carries **no scheme label** — the
+third named face of the missing renormalization dictionary, beside N57's mass-definition face
+and the `e`-scheme face above.
 
 ### E.2.2 Pending-values registry — what each gap unlocks
 
