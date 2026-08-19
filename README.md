@@ -33,7 +33,7 @@ has its own:
 python twt_companion_test.py
 ```
 
-Expected output: `ALL 87 COMPANION CHECKS PASSED across 7 modules.` — 501 checks in total.
+Expected output: `ALL 87 COMPANION CHECKS PASSED across 7 modules.` — 503 checks in total.
 
 ## What is in here
 
