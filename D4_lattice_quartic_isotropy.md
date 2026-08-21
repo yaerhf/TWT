@@ -42,11 +42,17 @@ closed, and the surviving channel is the one that carries the strongest publishe
 
 Finally, on attribution: the *physical* content — that the $D_4$/$F_4$ lattice has an isotropic
 quartic while the hypercubic lattice does not — is **known in the lattice field theory literature**
-and dates to Neuberger (1987); it was restated for lattice QCD as recently as December 2025. What
-this note adds is the kernel-independent invariant-theoretic proof (a statement about the group, not
-about one action), the two-sided sharpness argument, the explicit triality premise, and the transfer
-of the statement into the effective-field-theory language used in quantum-gravity phenomenology,
-where it does not appear to have been noted. See §9.
+and dates to Neuberger (1987); it was restated for lattice QCD as recently as December 2025. The
+group-level form of the statement, with triality named as the protecting mechanism, is due to Chow
+(1999), and the two-sided sharpness (degree-4 isotropy "well known", the anisotropic sixth moment
+computed) is established in the lattice-kinetic-theory literature (Chen–Goldhirsch–Orszag 2008).
+What this note adds is a generality-and-rigour upgrade of those statements — one-dimensionality of
+the invariant quartic space for *every* analytic point-group-symmetric kernel, via the $W(F_4)$
+invariant degrees — and one narrow transfer: the dimension-four point-group protection argument is
+already standard in Lorentz-violation effective field theory (Mattingly 2005;
+Jacobson–Liberati–Mattingly 2006, who credit it to the lattice literature); what does not appear
+there is that the same argument *fails* at dimension six for $\mathbb{Z}^4$ and *holds* for $D_4$.
+See §9.
 
 ---
 
@@ -142,9 +148,15 @@ fields precisely because the dimension-six Lorentz-breaking operator that afflic
 lattice is absent; the free $F_4$ dispersion $g(p) = p^2 - \tfrac{1}{12}(p^2)^2 + O(p^6)$ has been in
 the literature since then; and Katz and Nogradi (2025) state for the same lattice that "at order
 $O(a^2)$ the correction is still Lorentz invariant, the first order where this does not hold is
-$O(a^4)$". What is offered here is a *proof of the right generality* — a statement about the
-invariant ring of the point group rather than a computation for one action — together with the
-sharpness argument, the explicit premises, and the translation into LIV-EFT terms.
+$O(a^4)$". The group-level statement and its mechanism are also known: Chow (1999) states that $D_4$
+"is the only unexceptional root lattice" that is exactly isotropic at order $a^2$ and names the
+accidental threefold Dynkin-diagram symmetry — triality — as what protects it, and
+Chen–Goldhirsch–Orszag (2008) treat the degree-4 isotropy as well known and compute the anisotropic
+sixth moment. What is offered here is a proof at a still higher level of generality — valid for
+every analytic point-group-symmetric kernel, via the invariant degrees of $W(F_4)$ — together with
+the explicit premises, and the one transfer that does appear to be absent from the literature: the
+dimension-six form of a protection argument that Lorentz-violation EFT already uses at dimension
+four.
 
 ---
 
@@ -315,7 +327,13 @@ element of that space, $P_4 \in \mathbb{R}\,(k\cdot k)^2$. $\square$
 **Corollary (no anisotropic dimension-six operator).** A dispersion relation derived from such a
 kernel has an $O(p^4)$ term of the form $c\,(p^2)^2$ with $c$ a single constant. There is no
 direction-dependent $p^4$ contribution, hence no anisotropic dimension-six LIV operator, for any
-choice of couplings compatible with the full point group.
+choice of **scalar** couplings compatible with the full point group. The scalar restriction is
+load-bearing, not decorative: the theorem's quantifier is $K:\mathbb{R}^4 \to \mathbb{R}$, and it
+does not extend to internal-index-carrying (matrix-valued) kernels, which obey equivariance
+$M(Ak) = A\,M(k)\,A^{\mathsf T}$ rather than invariance and live in a larger invariant-theory
+object the proof never touches. The point group cannot close that sector: the unique fully
+$W(F_4)$-invariant symmetric-traceless bond coupling (the pseudo-dipolar direction) already
+carries a direction-dependent four-derivative polarization splitting.
 
 Three remarks.
 
@@ -527,12 +545,27 @@ $O(a^2)$ the correction is still Lorentz invariant, the first order where this d
 $O(a^4)$", against cubic lattices where "already at order $O(a^2)$ we encounter Lorentz breaking
 terms".
 
-**We therefore do not claim the physical result as new.** What §5 adds is a proof at the right level
-of generality — a one-line consequence of $F_4$ having no degree-4 basic invariant, valid for every
-analytic point-group-symmetric kernel rather than for a particular free action — together with the
-sharpness argument of §6, the explicit triality premise of §8.2, and the scoping of §8.3. To our
-knowledge the invariant-theoretic formulation, the two-sided sharpness, and the triality-weighting
-caveat have not been assembled in one place.
+The closest prior work is Chow (1999), who enumerates order by order which derivative operators the
+lattice symmetry permits, states as a displayed result that "the checkerboard lattice in four
+dimensions $D_4$ is exactly isotropic at order $a^2$. It is the only unexceptional root lattice with
+this property", and gives the mechanism: "the $D_4$ lattice has an accidental threefold discrete
+symmetry (which is also a symmetry of its Dynkin diagram) which mixes $\mathcal{B}_4$ and
+$\mathcal{B}_{22}$. The only combination which is invariant under this threefold symmetry is
+$\partial^4$." That is the group-level statement of §5 and the triality mechanism of §8.2, in a
+different vocabulary. The two-sided sharpness is likewise on record: Chen, Goldhirsch and Orszag
+(2008), working with the same lattice as the 4D FCHC velocity set, describe its fourth-order
+isotropy as "well known", compute the anisotropic sixth moment explicitly
+($M^{(6)}_{iiiiii} = 12 \neq 15$), and construct higher-order-isotropic velocity sets as *weighted*
+unions of exactly the second-shell sub-orbits of §8.2 — so the dependence of isotropy on the
+relative weighting of triality-related orbits is also worked out there, from the constructive
+direction.
+
+**We therefore do not claim the physical result, the group-level formulation, the triality
+mechanism, or the two-sided sharpness as new.** What §5 adds over Chow is generality and rigour: his
+counting is set up for one-shell nearest-neighbour Laplacians, whereas the invariant-degree argument
+covers every analytic point-group-symmetric kernel at once, with the sharpness quantified (§6) and
+the premises isolated (§8). The residual novelty claim of this note is the single narrowed item in
+(iii) below.
 
 **(ii) Discrete geometry.** That the $24$-cell is a spherical 5-design is classical
 [Delsarte–Goethals–Seidel 1977]; it cannot be a 6-design because a 6-design in $S^3$ requires at
@@ -542,14 +575,25 @@ optimal. The design property is a corollary of the group statement (§5c) rather
 round. The invariant-degree facts are standard reflection-group theory (Chevalley–Shephard–Todd;
 Coxeter); $F_4$'s degrees $\{2,6,8,12\}$ and exponents $1,5,7,11$ are textbook.
 
-**(iii) Lorentz-violation phenomenology — where, as far as we can tell, the result has not been
-carried.** The EFT framework for modified dispersion relations is that of Myers and Pospelov (2003);
-the constraint compilations are Mattingly (2005), Kostelecký and Russell (SME data tables), and
-Liberati (2013), from which the numbers in §1.1 are taken. Searches of this literature turned up no
-use of the $D_4$/$F_4$ point-group argument. That is the gap this note is aimed at: the lattice-QCD
-community has long known that the $F_4$ lattice is kinder to rotational invariance, and the
-quantum-gravity-phenomenology community has long known that anisotropic dimension-six operators are
-tightly bounded, and the two facts appear not to have been put side by side.
+**(iii) Lorentz-violation phenomenology — where the *move* is standard and the *dimension-six form*
+of it appears to be absent.** The EFT framework for modified dispersion relations is that of Myers
+and Pospelov (2003); the constraint compilations are Mattingly (2005), Kostelecký and Russell (SME
+data tables), and Liberati (2013), from which the numbers in §1.1 are taken. The acknowledged
+precursor of this note's argument sits inside two of those references: Mattingly (2005) notes that
+"hypercubic symmetry on a lattice is enough to forbid dimension four rotation breaking operators for
+scalars" (the only hypercubically-invariant tensor $M^{ab}$ is $\delta^{ab}$), and Jacobson,
+Liberati and Mattingly (2006) make the same argument — "a discrete subgroup of the Euclidean
+rotation group suffices to protect the operators of dimension four and less" — crediting it to the
+lattice field theory literature. So *"take the invariant theory of the substrate's point group and
+conclude that a class of Lorentz-violating operators is forbidden"* is a known move in this
+literature, executed at degree 2 / dimension four. What our searches did not find — including
+full-text searches of the HEP literature and the complete citation graphs of Neuberger (1987) and
+Chow (1999), all of whose citers are lattice field theory — is the dimension-six continuation:
+that the hypercubic protection *fails* at degree 4 (where $\sum_i k_i^4$ survives), and that the
+$D_4$/$F_4$ point group *succeeds* there. That single narrowed item is the gap this note is aimed
+at. (Absence claims are only as good as their coverage; the search coverage and its stated
+weaknesses are on record, and pre-1991 lattice-gas originals — where Chen–Goldhirsch–Orszag locate
+the "well known" degree-4 result — were not read in the original.)
 
 **A different protection mechanism, for contrast.** In the analogue-gravity programme, Volovik and
 collaborators derive emergent Lorentz invariance in fermionic condensates from a *topological*
@@ -917,46 +961,55 @@ All entries below were checked against arXiv, Crossref or the publisher record. 
 6. S. D. Katz and D. Nogradi, *QCD on the 16-cell honeycomb*, arXiv:2512.10604 [hep-lat] (2025).
 7. M. Klomfass, *Semi-analytical solution of the $\varphi^4$ theory on an $F_4$ lattice*,
    Nucl. Phys. B **412**, 621–656 (1994); arXiv:hep-lat/9307013.
+8. C.-K. Chow, *Discretization errors and rotational symmetry: The Laplacian operator on
+   nonhypercubical lattices*, Nucl. Phys. B **547**, 281–302 (1999);
+   DOI: 10.1016/S0550-3213(99)00109-1; arXiv:hep-lat/9810051. *(quotations in §9(i) read directly
+   from the author's LaTeX source.)*
+9. H. Chen, I. Goldhirsch and S. A. Orszag, *Discrete rotational symmetry, moment isotropy, and
+   higher order lattice Boltzmann models*, J. Sci. Comput. **34**, 87–112 (2008);
+   DOI: 10.1007/s10915-007-9159-3; arXiv:0709.1464.
 
 **Lorentz-violation effective field theory and constraints**
 
-8. R. C. Myers and M. Pospelov, *Ultraviolet modifications of dispersion relations in effective field
-   theory*, Phys. Rev. Lett. **90**, 211601 (2003); arXiv:hep-ph/0301124.
-9. D. Mattingly, *Modern tests of Lorentz invariance*, Living Rev. Rel. **8**, 5 (2005);
-   arXiv:gr-qc/0502097.
-10. V. A. Kostelecký and N. Russell, *Data tables for Lorentz and CPT violation*, Rev. Mod. Phys.
+10. R. C. Myers and M. Pospelov, *Ultraviolet modifications of dispersion relations in effective field
+    theory*, Phys. Rev. Lett. **90**, 211601 (2003); arXiv:hep-ph/0301124.
+11. D. Mattingly, *Modern tests of Lorentz invariance*, Living Rev. Rel. **8**, 5 (2005);
+    arXiv:gr-qc/0502097.
+12. T. Jacobson, S. Liberati and D. Mattingly, *Lorentz violation at high energy: concepts, phenomena
+    and astrophysical constraints*, Annals Phys. **321**, 150–196 (2006); arXiv:astro-ph/0505267.
+13. V. A. Kostelecký and N. Russell, *Data tables for Lorentz and CPT violation*, Rev. Mod. Phys.
     **83**, 11 (2011); arXiv:0801.0287.
-11. S. Liberati, *Tests of Lorentz invariance: a 2013 update*, Class. Quantum Grav. **30**, 133001
+14. S. Liberati, *Tests of Lorentz invariance: a 2013 update*, Class. Quantum Grav. **30**, 133001
     (2013); arXiv:1304.5795. DOI: 10.1088/0264-9381/30/13/133001. *(numerical bounds in §1.1 read
     directly from eqs. 75–76 and Table 2 of the arXiv v3 text.)*
-12. J. Collins, A. Perez, D. Sudarsky, L. Urrutia and H. Vucetich, *Lorentz invariance and quantum
+15. J. Collins, A. Perez, D. Sudarsky, L. Urrutia and H. Vucetich, *Lorentz invariance and quantum
     gravity: an additional fine-tuning problem?*, Phys. Rev. Lett. **93**, 191301 (2004);
     arXiv:gr-qc/0403053.
-13. F. W. Stecker, *Gamma-ray and cosmic-ray tests of Lorentz invariance violation and quantum
+16. F. W. Stecker, *Gamma-ray and cosmic-ray tests of Lorentz invariance violation and quantum
     gravity models and their implications*, AIP Conf. Proc. **1223**, 192–206 (2010);
     arXiv:0912.0500.
 
 **Alternative protection mechanisms**
 
-14. G. E. Volovik, *The Universe in a Helium Droplet*, Oxford University Press (2003)
+17. G. E. Volovik, *The Universe in a Helium Droplet*, Oxford University Press (2003)
     *(book; publisher record not independently verified)*; *Momentum-Space Topology of Standard
     Model*, J. Low Temp. Phys. **119**, 241–247 (2000), arXiv:hep-ph/9907456; and *Reentrant
     violation of special relativity in the low-energy corner*, JETP Lett. **73**, 162–165 (2001),
     arXiv:hep-ph/0101286.
-15. N. H. Christ, R. Friedberg and T. D. Lee, *Random lattice field theory: general formulation*,
+18. N. H. Christ, R. Friedberg and T. D. Lee, *Random lattice field theory: general formulation*,
     Nucl. Phys. B **202**, 89–125 (1982).
-16. L. Bombelli, J. Henson and R. D. Sorkin, *Discreteness without symmetry breaking: a theorem*,
+19. L. Bombelli, J. Henson and R. D. Sorkin, *Discreteness without symmetry breaking: a theorem*,
     Mod. Phys. Lett. A **24**, 2579–2587 (2009); arXiv:gr-qc/0605006.
 
 **Lattices, reflection groups, invariant theory, spherical designs**
 
-17. J. H. Conway and N. J. A. Sloane, *Sphere Packings, Lattices and Groups*, Grundlehren der
+20. J. H. Conway and N. J. A. Sloane, *Sphere Packings, Lattices and Groups*, Grundlehren der
     mathematischen Wissenschaften **290**, 3rd ed., Springer (1999).
-18. J. E. Humphreys, *Reflection Groups and Coxeter Groups*, Cambridge University Press (1990) — for
+21. J. E. Humphreys, *Reflection Groups and Coxeter Groups*, Cambridge University Press (1990) — for
     the Chevalley–Shephard–Todd theorem and the table of invariant degrees. *(standard reference;
     the $F_4$ degrees $\{2,6,8,12\}$ were additionally confirmed numerically, see Appendix A.)*
-19. P. Delsarte, J. M. Goethals and J. J. Seidel, *Spherical codes and designs*, Geom. Dedicata **6**,
+22. P. Delsarte, J. M. Goethals and J. J. Seidel, *Spherical codes and designs*, Geom. Dedicata **6**,
     363–388 (1977). *(unverified against the primary source; the 5-design property of the $D_4$ root
     system is however re-derived here as a corollary in §5c.)*
-20. H. Cohn, J. H. Conway, N. D. Elkies and A. Kumar, *The $D_4$ root system is not universally
+23. H. Cohn, J. H. Conway, N. D. Elkies and A. Kumar, *The $D_4$ root system is not universally
     optimal*, Experimental Mathematics **16**, 313–320 (2007); arXiv:math/0607447.

@@ -24,6 +24,15 @@ from the outset — the driven-dissipative substrate dynamics (§D.5) — and it
 magnitude and absolute scale in the framework. The claims are about *structure*: which
 Standard-Model facts follow from which premises, at which explicitly audited status.
 
+**What the object is.** Not one theory but a **family and its first candidate**. **TWT-Core** is
+the family — seven axioms and one refusal, stated in full at §A.6 — and what this paper develops
+is **V3**, the first candidate instance built all the way down to numbers. The lattice
+arrangement, the bond truncation, the calibrated ratios, the gravity route and the hadron toolbox
+are **instance-level** picks, each with a recorded menu and a recorded revert condition; so are
+both of the already-measured exposures named below. The programme's deliverable at family level is
+the list of surviving candidates, and V3 is its first entry. The Core is not vindicated by
+carrying neither wound: it carries neither because it makes no numerical claim at either place.
+
 **What is derived, at its strongest.** From four counted substrate inputs plus the measured Newton
 constant (an amplitude input cancels in ratios; one hadron-sector determination is counted
 provisionally — §E.2.1): the Lorentzian signature of observed spacetime as posit plus forced
@@ -69,6 +78,19 @@ programme with one explicitly named unbuilt object — the driven-dissipative su
 magnitude or absolute scale here is independent of that gap. The claims are about structure: which structural facts
 follow from which premises, and at what status.
 
+**The architecture — a family, and the first candidate that realizes it.** Read §A.6 before
+Part B. The programme is **TWT-Core**, a family fixed by seven axioms and one refusal, together
+with a list of candidate members; this paper develops **V3**, the family's **first candidate
+instance** and the first one built down to numbers. Three consequences for a reviewer. (i) The
+picks are visible and reversible: eleven of them, each recorded with the menu it came from and
+what un-picks it (§A.6.4) — the D4 arrangement and the `{J, D}` bond truncation among them, so
+two of the Opening's own premises are instance-level rather than axioms. (ii) Both already-measured
+exposures in the table below belong to V3, not to the family: they ride pinned choices, and the
+Core carries neither. (iii) That is not a defence. The Core carries neither wound because it makes
+no numerical claim at either place — a family that has not yet said a number cannot be wrong about
+one — and V3's wounds are the price of being the only member that says numbers at all. What the
+family *does* carry is a single total kill condition (§A.6.2), deliberately taken.
+
 **Read the tiers, not the register.** Every numbered result carries an `(R-NNN)` marker whose tier —
 DERIVED, INPUT, FIT, CANDIDATE, FRAMING — is recorded in the companion's Result Index, together with
 its dependencies and its engine primitive. Where the text reads CANDIDATE it is a proposal, not a
@@ -96,7 +118,7 @@ table below, with the second already-measured exposure beside it.
    invariant degrees `{2, 6, 8, 12}` — the triality premise P-pg) has a one-dimensional degree-four
    invariant space, so the quartic dispersion term is forced isotropic. Checkable against any
    reference on F4 invariant theory; self-contained and independent of the rest of the framework
-   (prior art credited in place — Neuberger 1987; Katz & Nogradi 2025).
+   (prior art credited in place — Neuberger 1987; Chow 1999; Katz & Nogradi 2025).
 3. Pick any `(R-NNN)` at random and trace it: Result Index → Dependency Graph → engine primitive →
    test. The bookkeeping is meant to survive spot-checking.
 4. Confirm that the gated primitives raise rather than return: `alpha_em_value()`,
@@ -126,6 +148,13 @@ with a named source, not an oversight, and no restatement of the structural resu
 it. What the framework stakes instead is a set of prohibitions, and two places where the
 measurement already exists and the framework is behind.
 
+Read the table at two levels. The two **already-measured** rows are **instance-level**: each rides
+choices V3 pins (a regular lattice at a back-fit size, one induced-gravity chain, the instance's
+calibrations), and a family member that goes another way at those nodes inherits neither. The four
+prohibition rows are **family-level**: they follow from the axioms, or from the axioms plus a
+stated preferred direction, and a positive detection on any of them reaches every candidate.
+§E.3 carries the level for all sixteen falsifier rows; §A.6 gives the architecture.
+
 | The exposure | What it kills | Where it stands |
 |---|---|---|
 | **Already measured** — the isotropic dimension-six Lorentz-violation coefficient | any completed §D.5 dynamics that fails to deliver a suppression of three to nine orders — dead on arrival, not evolved | The coefficient is gated on the open dynamics, so the framework asserts no value for it; what existing cosmic-ray and gamma-ray limits exclude is its *naive* value at the substrate's own lattice scale, and they bind every future completion (§E.3.5(4), §E.3.3 VG-6) |
@@ -133,7 +162,7 @@ measurement already exists and the framework is behind.
 | Proton decay, at any lifetime | topological protection of baryon number (`B ∈ π₃(S³) = ℤ`) | Super-K, Hyper-K, DUNE. The framework's one distinctive forward bet: grand unification expects decay at *some* level, and this framework forbids it outright — non-perturbative violation respects `ΔB = ΔL = 3` (§C.1.5, §C.5.6) |
 | Neutrinoless double beta decay | exact `B − L` conservation, and with it the Dirac neutrino character that conservation forces | KamLAND-Zen, LEGEND, nEXO, CUPID (§C.3.12, §C.5.6). What does *not* die with it: anomaly cancellation is a trace identity on the charge assignment, untouched by a broken conservation law (§C.5.4) |
 | A sterile neutrino at any mass far above the active scale | the Dirac-partner mass tie `m_sterile = m_active ≲ 0.12 eV` | KATRIN's kink search, extended into the keV range by the TRISTAN detector upgrade (§E.1.3, §E.3.3 VG-4) |
-| Sector- or epoch-differential `c_meta` | the wavefront-locking axiom `A-3` itself — the ontological premise, not a derivation downstream of it | Precision multimessenger astronomy. The framework's one existential exposure, and §E.3's disclaimer carves it out as exactly that: every other row here would force the next paper, this one would force reformulation at the axiom layer (§E.3.5(3)) |
+| A sector- or epoch-dependence of the observed propagation speed `c` against the lock rate `c_meta` | this candidate's identification of the observed `c` with the average lock rate (the `A-3`-downstream chain) — the axioms state no rate and no uniformity, so on a positive detection it is `c`, the emergent observer-side speed, that carries the non-uniform label, and the axioms stand | Precision multimessenger astronomy. An instance-level exposure: a candidate that pins the `c ↔ c_meta` identification differently re-derives or loses it, and the family's only total kill condition remains the foliation axiom (§E.3.5(3)) |
 
 Rows three and four are independent experiments but a single underlying derivation: in this
 framework proton stability, Dirac character and the absence of `0νββ` are one structural fact
@@ -162,15 +191,18 @@ above where the framework is already losing.
 
 The traditional foundational-paper shape — premises, derivations, corollaries, open problems — is
 honest, but it forces the reader to wade through machinery before meeting the result it serves.
-This paper inverts that. Part A states the ontology in plain language and gives just enough
-algebra to read on. Part B uses it: emergent Lorentzian signature, special relativity, quantum
+This paper inverts that. Part A states the ontology in plain language, gives just enough algebra
+to read on, and closes at §A.6 with the architecture: which of the paper's commitments are
+**family-defining**, which are **preferred directions**, and which are **picks belonging to V3,
+the first candidate instance** — the level a claim sits at is not recoverable from the derivation
+alone, so it is stated once, in one place, before the derivations start. Part B uses it: emergent Lorentzian signature, special relativity, quantum
 mechanics, Bell, electromagnetism, the fine-structure constant, gravity, the cosmic frame,
 the macroscopic limit. These are the framework's most solidly derived results, and they are what
 the rest of the paper exists to support.
 
 Parts C and D then do the engineering. Part C derives Standard-Model structure (charges, three
 generations, the gauge group). Part D opens the substrate: the Clifford algebras in full, the D4
-monad layer, the wave equation, and the open driven-dissipative dynamics — the framework's #1
+grain layer, the wave equation, and the open driven-dissipative dynamics — the framework's #1
 gap. Part E addresses cosmology, falsifiers, and the open frontier.
 
 The reader meets the framework's spine first, then sees what it is built on, then sees what is
@@ -188,8 +220,10 @@ Engine ↔ Paper Map (Section 3), the Pending-Values Registry (Section 4), a ful
 reinterpretation catalog (Section 5), methodology principles (Section 6), the development log
 (Section 7), the stable-spectrum enumeration and wave-phase stability ladder (Sections 8–9), a
 bibliography (Section 10), the Paper-2 agenda (Section 11), the closability classification
-(Section 12), and the Import Registry (Section 13). **Load the companion alongside
-this paper for the full picture.**
+(Section 12), the Import Registry (Section 13), and the **Core / Instance bookkeeping**
+(Section 14) — which result belongs to the family and which to the first candidate, the
+falsifier levels, and the dated history of the split that §A.6 states without dates. **Load the
+companion alongside this paper for the full picture.**
 
 ---
 
@@ -209,8 +243,14 @@ belong — derivations in Parts B and C, falsifiers in §E.3.
 
 **Premises** (axiom IDs in the Dependency Graph — companion Section 2), ordered by structural
 depth — most foundational first. The starred IDs `A-1*` and `A-2*` are the two ontology / method
-premises promoted to first-class status in this version; the unstarred IDs `A-1a/b/c, A-2, A-3`
-are the original Opening premises, preserved verbatim.
+premises; the unstarred IDs `A-1a/b/c, A-2, A-3` are the Opening's structural premises. **They are
+not all at the same level**, and §A.6 states which is which: `A-1a`, `A-3`, `A-1*` and `A-2` are
+family-defining, while **`A-1b` and `A-1c` are picks belonging to the first candidate instance**
+— an arrangement chosen from a menu of arrangements, and a two-constant truncation of a
+ten-constant menu. Three further family-defining commitments do not appear as Opening premises
+because they are developed later: the signature placement `e_5² = −1` (§A.5.6, §D.1.3), the local
+state at a site (six real parameters, §D.3.2), and the identification of the preferred foliation
+with the cosmic rest frame (§B.4.5, §B.7).
 
 - **(A-1a) — 4D Euclidean substrate.** `(ℝ⁴, g)` with positive-definite metric. The ontological
   ground.
@@ -229,23 +269,51 @@ are the original Opening premises, preserved verbatim.
 - **(A-1b) — D4 cell lattice.** The substrate's coherence-cell structure is the D4 lattice.
   Empirically motivated (D4 is the densest 4D **lattice** packing, with kissing number 24 — among
   all packings the question is the open 24-cell conjecture), not derived inside the framework.
-  A structural premise at the cell layer (§D.3).
+  A structural premise at the cell layer (§D.3) — and an **instance-level pick**, chosen from a
+  menu that also contains irregular-discrete arrangements and a continuum medium with a cell
+  scale (§A.6.4, node V3-1).
 - **(A-1c) — Two bond couplings.** Symmetric exchange `J` on all 24 NN bonds; Dzyaloshinskii–Moriya
   `D` on the 12 `e_4`-bonds. The ratio `D/J ≈ 0.79` is INPUT, calibrated to the lepton sector.
+  Also **instance-level**: the pair is a two-constant truncation of the ten-constant menu the
+  driven point group allows, and the `e_4`-only support of `D` is a second pick inside the first
+  (§D.3.3; §A.6.4, nodes V3-2 and V3-2a).
 
 **Empirical inputs** (the framework's parameter ledger), ordered by structural weight:
 
-- `weak = SD` — one bit: the gauged Spin(4) factor is the chiral one (neutrino-forced). The
-  most economical input — a single binary choice fixing V−A, generation-blindness, the doublet,
-  and `up = SD`.
+- `weak = SD` — one bit, but **not a free one, and not a choice**. The menu of three-dimensional
+  subalgebras that could host weak isospin is computed and closed at three entries, two of which
+  are refuted: one is the same assignment under a mirrored orientation, the other charges the
+  right-handed fermions, which are observed to be weak-isospin singlets (§C.4.2, R-171). What the
+  sector actually costs is a **named structural premise** — that weak isospin lives in a
+  three-dimensional `su(2)` inside the substrate's own rotation algebra at all, which this paper
+  does not derive — plus **one empirical bit the framework reads rather than tunes**. Given those,
+  V−A, generation-blindness, the doublet and `up = SD` follow. It is not an axiom and it is no
+  longer a preferred direction either; a candidate diverges here only by rejecting the structural
+  premise, not by assigning the weak factor elsewhere within the substrate's rotation algebra.
 - `G_N` — the measured Newton constant, the gravitational anchor. Both cutoff scales
-  (`Λ_S = √(2π) M_Pl`, the Sakharov scheme variable; `Λ_L = 1/a`, the monad spacing) are
+  (`Λ_S = √(2π) M_Pl`, the Sakharov scheme variable; `Λ_L = 1/a`, the grain spacing) are
   **back-fits of measured `G`** through the induced-gravity form, not independent inputs.
   Planckian within a factor of a few.
-- `f_π ≈ 129 MeV` — the cell-scale mass scale.
-- `D/J ≈ 0.79` — chirality ratio (calibrated to leptons; cross-checked by baryon sector).
-- `c = √2` ⇔ Koide `K = 2/3` — Brannen phase coefficient (exact-but-unforced).
+- `f_π ≈ 129 MeV` — the cell-scale mass scale. **This is the ANW *fitted* coupling, not a
+  measured constant**, and `f_π` denotes it throughout this paper: it is the value Adkins, Nappi
+  and Witten obtained by fitting the Skyrme model to the nucleon and `Δ` masses, and in their own
+  normalization the physical pion decay constant is `F_π ≈ 186 MeV` — so the number carried here
+  sits about 30 % *below* the measured one. Its proximity to the measured `f_π⁺ = 130.2(1.7) MeV`
+  is a collision of two normalization conventions, not an agreement, and the two must not be read
+  as the same number. Where the fitted value feeds a *physical* estimate rather than an internal
+  Skyrme relation, the use-site says so.
+- `D/J ≈ 0.79` — chirality ratio (calibrated to leptons; cross-checked by baryon sector). An
+  instance-level calibration whose referent rides the `A-1c` truncation: if the discarded channel
+  is non-zero the number re-reads as a measurement of a combination (§D.3.3; §A.6.4, node V3-4).
+- `c = √2` ⇔ Koide `K = 2/3` — Brannen phase coefficient (exact-but-unforced). A **preferred
+  direction**, not an axiom (§A.6.3).
 - `A` — lepton amplitude scale (free Koide calibration; cancels in ratios).
+
+The scale inputs are instance-level in the same sense: `f_π` and the Skyrme stabilizer are this
+candidate's anchoring choices (§A.6.4, nodes V3-3 and V3-5), and the measured-`G` anchor
+*practice* — anchoring on a measured constant and back-fitting the substrate scale from it — is a
+preferred direction of the family, while the particular induced-gravity chain that converts it
+into a Planckian cutoff is a pick (node V3-6).
 
 (Counting convention: **four counted substrate inputs plus measured `G_N`** — `Λ` is not counted
 separately since both `Λ` scales are back-fits of `G`, and `A` cancels in
@@ -326,11 +394,11 @@ introduces it.
 | `s_0 = (1 + e_4)/2` | Primitive idempotent of `𝒮` | §A.5.4 |
 | `q_h(τ_5) = exp(m τ_5 û/2)` | Meta-time rotor of frequency `m = ω` (= mass); `û` simple unit element with `û² = −1` | §A.4 |
 | `J`, `D`, `D/J` | Symmetric exchange / Dzyaloshinskii–Moriya couplings on D4 bonds; `D/J ≈ 0.79` calibrated to leptons | §D.3.3 |
-| `f_π ≈ 129 MeV` | Cell-scale mass; substrate condensate identification | §D.4.1 |
+| `f_π ≈ 129 MeV` | Cell-scale mass; substrate condensate identification. The **ANW fitted** coupling (~30 % below the physical `F_π ≈ 186 MeV` in ANW's normalization), not the measured pion decay constant | §D.4.1, Opening inputs |
 | `Λ` | Substrate cutoff; Planckian within O(1) | §D.3.5 |
 | **ANW** | Adkins–Nappi–Witten Skyrme-model phenomenology | §C.1.2 |
 | **BVP** | Boundary value problem (the Skyrme variational equations) | §C.1.1 |
-| **QCP** | Quantum critical point — the L-orbit critical balance `D = J` underlying the electron mass scaling | §C.1.6 |
+| **QCP** | Quantum critical point — the L-orbit critical balance `D = J` underlying the L-orbit stiffness scaling | §C.1.6 |
 | **`δ_L`** | Brannen lepton phase; `δ_L = (1/3) arctan(D/J) = 12.73°` at the lepton-calibrated `D/J ≈ 0.787` | §C.3.5 |
 | **`Θ_rel`** | FDT-violation residual on the coset-Cartan channel; the framework's highest-value target | §D.5.6 |
 | **`Im χ`** | Substrate transport function; the #1 gap's master dial | §D.5.4 |
@@ -400,11 +468,19 @@ exposure**, not a passed test (§B.6.3, §E.3.5(4)).
 A wavefront — the locus of constant phase of the wave — is a three-dimensional hypersurface within
 the 4D bulk. Topologically it is the three-sphere `S³` — the *domain* of the
 defect map, not a group: the spatial slice compactifies to `S³` under the asymptotic boundary
-condition `R(∞) = 𝟙` that defines matter (§C.1), allowing topological winding numbers
-`π_3(Spin(4)) = ℤ × ℤ` to classify matter (R-002). The group-theoretic structure sits on the map's
-*target*, which is the lepton subgroup `exp(𝓛) = Spin(3)` in one sector and the baryon coset
-`Spin(4)/Spin(3)` in the other — two topologically distinct map types, kept apart at §C.1.1 and
-§C.1.3.
+condition `R(∞) = 𝟙` that defines matter (§C.1), allowing topological winding numbers to classify
+matter (R-002). The group-theoretic structure sits on the map's *target*, and that target is the
+medium's local state space: the **4D-orientation class**, six real parameters (§D.3.2), whose
+`π_3` is `ℤ × ℤ` — two independent windings. The count is insensitive to whether the `ℤ₂` sign
+belongs to the local state or to the emergent covering sector, since a double cover is an
+isomorphism on `π_n` for `n ≥ 2` (engine: `pi3_orientation_class_two_windings`).
+
+*Inside* that one target sit the two **sector winding targets** the framework actually maps into:
+the lepton subgroup `exp(𝓛) = Spin(3)` and the baryon coset `Spin(4)/Spin(3)`. These are
+three-dimensional winding targets *within* the six-parameter state space — two topologically
+distinct map types, kept apart at §C.1.1 and §C.1.3 — and not competing declarations of what the
+state space is. Reading a *general* configuration in that sector basis requires a choice of
+splitting that the framework has not made; §C.1.3 states that residue in full.
 
 The "two ℤ" come most directly from the **chiral factorization**
 `Spin(4) = SU(2)_+ × SU(2)_−`, where the two factors are the Hodge-eigenvalue (self-dual / anti-self-dual)
@@ -474,7 +550,7 @@ Luttinger–Tisza spiral pitch — sit at §D.3 / §D.4.)
 
 **Matter is a defect** in the wavefront's rotor field — a configuration that fails to match the
 homogeneous vacuum (R-004). Geometrically: the rotor orientation is deflected from the surrounding
-canted ground state, and the deflections compose around the defect into a topological winding that
+canted vacuum, and the deflections compose around the defect into a topological winding that
 cannot be continuously undone to uniformity. The framework names the deflection a **lack of spin** — spin
 orientation missing relative to the vacuum's homogeneity. The winding is an integer in `π_3(S³)`
 for baryons (the L/Q split of §D.2 routes the winding to the Q-orbit) or the Hopf invariant `H = 1`
@@ -486,6 +562,16 @@ The wave-level ansatz for an isolated defect:
 
 with `F(χ)` the spatial profile (the localized winding pattern), `B_a` a grade-3 blade specifying
 particle type (§C.2), and `q_h(τ_5)` a meta-time rotor of frequency `m = ω` (§A.4).
+
+**Which part of this is family-defining.** *Matter is a defect* is an axiom (§A.6.1, S4), and so
+is the medium being driven, which is what the carrier picture above rests on. The **class** of
+defect is not: reading the defect as a topological knot of Skyrmion type — the volume-twist class
+— is a **preferred direction**, highly plausible and taken throughout this paper, but a family
+member that stabilizes its defects another way, or that chooses a different compass space, is
+still a family member. Likewise the **carrier** — vacuum structure along the advance direction
+that a defect matches at infinity — is endorsed rather than axiomatic (§A.6.3). The distinction
+matters downstream: results that consume the ansatz stand or fall with it, and the paper's
+Result Index records which ones do.
 
 ### Two faces, one defect
 
@@ -572,7 +658,9 @@ vacuum-subtracted 3-slice value of the substrate functional at rest. The identif
 
 is a **named, counted premise** of the mass sector — the standard soliton-mass identification of
 the Skyrme literature, stated here rather than silently assumed: every comparison of an elastic
-value with a measured mass crosses it (§C.1.2). It presupposes, and does not supply, the
+value with a measured mass crosses it (§C.1.2). It sits at the **preferred-direction** level
+(§A.6.3), not the axiom level: `m = ω` is family ontology, while reading `ω` as the shape's
+vacuum-subtracted rest cost is an endorsement this instance takes and a family member may decline. It presupposes, and does not supply, the
 one-particle spectral identification (§D.4.6 residue); it picks no renormalization scheme
 (§C.3.3a); and its velocity extension is open in a sharp form — the outside cost of the
 tilted-worldtube family obeys `E(v) = E₀·√(1+v²)` (a slice-measure identity), agreeing with the
@@ -837,7 +925,9 @@ Costing `Cl(4,1)` content requires a pairing, and the algebra constrains the men
 `t = α₅ ∘ reverse` — reversion composed with `e_5 → −e_5` — *is* positive-definite on all 32
 blades, invariant under `Spin(4)` and under the `E`-phase, and non-invariant under the boosts:
 positivity is bought by selecting the `e_5` axis, exactly as the Dirac adjoint selects `γ⁰`
-(R-168). The framework's cost convention adopts this pairing — a **named, counted pick** (the
+(R-168). This instance's cost convention adopts this pairing — a **named, counted pick** at the
+instance level (§A.6.4, node V3-7), together with the decision to cost the carrier's own advance
+(node V3-8); what survives any re-pick is the theorem, not the choice (the
 reversion pairing is indefinite on `e_5`-content with no commutator-quartic backstop, since `E`
 is central; the conjugation pairing leaves the boosts negative; a `Spin(4)`-projected cost makes
 the carrier phase dispersionless). Restricted to `Cl(4,0)` the adopted pairing coincides with
@@ -873,6 +963,227 @@ dimension disappears. That `τ_5` is the timelike direction the 5D master equati
 
 That is the algebra. The next part of the paper uses it; the observer's gamma matrices
 `γ⁰ := e_4`, `γʲ := e_4 e_j` are introduced and verified in §B.1.
+
+---
+
+## §A.6 — The architecture: a family and its first candidate
+
+Read this before Part B, because it fixes what everything after it is a claim *about*.
+
+Time-Wave Theory is not one theory. It is a **family** — **TWT-Core**, defined by seven axioms
+and one refusal — together with a list of candidate members that realize it. Everything from
+Part B onward develops **V3**, the family's **first candidate instance**: the first member built
+all the way down to numbers. That V3 exists is an existence result, and that is all it is. V3
+can be dismantled entirely without a line of this section changing.
+
+The distinction is load-bearing in one direction in particular. The framework's two
+already-measured exposures — the dimension-six Lorentz-violation ceiling (§B.6.3, §E.3.3 VG-6,
+§E.3.5(4)) and the electroweak crossing-scale miss (§C.4.5, §E.3.5(5)) — are **instance-level**:
+they ride choices V3 makes, not axioms the family holds. So does every calibrated number in
+Parts C and D.
+
+The honesty rider belongs in the same breath, or the architecture becomes a shield: **the Core
+is not vindicated by carrying neither wound.** It carries neither because it makes no numerical
+claim at either place, and a family that has not yet said a number cannot be wrong about one.
+The wounds are the price of being the only member that says numbers at all.
+
+### A.6.1 TWT-Core — the family definition
+
+Seven axioms and one refusal. A theory that has all seven is a member of the family. A theory
+that drops any one of them is a different theory, however much else it shares.
+
+- **S1a — The substrate.** Reality is a four-dimensional Euclidean material substrate;
+  everything else the theory talks about is a property or a pattern of that substrate.
+- **S2 — Meta-time.** There is a second time, `τ_5`, whose direction squares to `−1`, and the
+  state of the substrate advances in it.
+- **S3 — The lock and the slice.** The substrate carries an advancing wavefront; an observer is
+  mechanically locked to it and can only ever see a slice, so a preferred foliation exists
+  whether or not anything inside the slice can see it.
+- **S4 — Matter is a defect.** A particle is not a piece of stuff sitting in the medium; it is a
+  protected pattern of the medium itself — a defect.
+- **S5 — The medium is driven.** The advance is one-way and constitutive: the medium is not
+  resting and not merely relaxing toward rest, it is driven.
+- **LS — The local state.** The medium's local state at each site is a 4D orientation — six real
+  parameters; whether its `ℤ₂` sign lives in the state itself or enters only at the emergent
+  covering sector is a deliberately open branch (§D.3.2). The continuum field inherits this
+  target unchanged, and the wave's advance direction splits its generators into wave-parallel
+  and wave-transverse.
+- **B-6 — The preferred foliation is the cosmic rest frame.** The foliation of S3 is not left
+  free: it is the frame in which the cosmic microwave background is isotropic — the comoving
+  frame. This is the strongest option available at family level, and taking it is why the family
+  has a kill condition at all (§A.6.2).
+
+**The refusal — the substrate is a material medium, not a field.** The consequence binds every
+reader of this paper: the **rotor field** that runs through the body and the engine is
+**instance-level description** of the medium — a way of writing down what the medium is doing —
+and is **not the ontology**. An argument that needs the field to *be* the world is not a Core
+argument. Note what the refusal does not say: it is about what the substrate *is*, not about
+whether it is grainy — graininess is a preferred direction, not an axiom (§A.6.3). And the
+refusal is scoped: a field is refused only as a *fundamental description of what the world is
+made of*, never as a mathematical description of an **emergent property** of the medium, the way
+temperature is a field-description of molecular motion — which is why the field formalism works
+as well as it does. Two things ride that reading as Core commitments rather than conveniences:
+the **grain → cell map is a real physical relation**, plausibly driven by the wave, not a
+bookkeeping device between two levels of description (§D.3.5); and the cell's initial description
+is "an emergent pattern."
+
+Against the Opening's premise list, the correspondence is one-to-one where it exists:
+
+| Core axiom | Opening premise / paper object | Developed at |
+|---|---|---|
+| S1a | `A-1a` — 4D Euclidean substrate | §A.1 |
+| S2 | the signature placement `e_5² = −1` | §A.5.6, §D.1.3 |
+| S3 | `A-3` — wavefront / signature locking (with `A-2*`, the outside-frame method) | §A.2, §B.1 |
+| S4 | `A-1*` — matter is defect | §A.3 |
+| S5 | `A-2` — driven dynamics | §D.5 |
+| LS | the local state at a site, six real parameters — stated witness-free, for any grain structure; this candidate's D4-sited construction (R-102, §D.3.2) is V3's witness of it | §D.3.2 |
+| B-6 | the `τ_5`-foliation ↔ comoving-frame identification (R-031) | §B.4.5, §B.7 |
+
+The Opening's two remaining premises are **not** Core. `A-1b` (the D4 arrangement) and `A-1c`
+(the `J`, `D` bond couplings) are V3's first two picks, and they appear as such in §A.6.4.
+
+### A.6.2 The kill condition
+
+**If the ordering that Bell-correlation selections follow is measured and found to be a foliation
+measurably distinct from the cosmic rest frame, the family is finished** — not one version of
+it, all of it. That is what it means for B-6 to sit in the definition rather than in a branch.
+
+The safe option was available and was declined: leave the foliation unnamed. A theory with an
+unnamed preferred foliation cannot be caught, because "there is a frame, somewhere" survives
+every measurement. Naming it as the comoving frame turns a metaphysical posture into a target.
+
+Two riders belong with it, and neither is optional. First, the asymmetry: the measurement that
+would fire this is one that standard quantum mechanics *also* forbids, so in this channel
+agreement confirms nothing — it is a consistency check, and the family inherits quantum
+mechanics' verdict either way — while disagreement kills. Maximum downside, no matching upside;
+that is the price of naming the frame. Second, this is the family's only *total* kill condition:
+of the sixteen falsifier rows at §E.3.1, fifteen stand at family level and one is instance-level
+(§E.3 carries the reading row by row). Said at its truest: this is a research programme with one
+inherited kill condition, and empirical exposure otherwise lives in instances.
+
+Because this channel fires only where quantum mechanics also breaks, the family has no
+*independent* empirical exposure **in it**. Two qualifications keep that from being read as
+safety. One other row reaches deeper than most picks, through a channel the shared quantum
+formalism does not itself close: a sector- or epoch-dependence of the observed `c` against the
+lock rate `c_meta`, which lands on this candidate's identification of the two (the
+`A-3`-downstream chain) — the axioms state no rate and no uniformity, so a detection would label
+the emergent `c` non-uniform while the axioms stand; it is flagged at §E.3.5(3) as the sharpest
+instance-level exposure. The contrast with the Bell channel is structural, not a claim to sole exposure — the
+incumbent forbids a sector-differential limiting speed too, so a positive detection there would
+also be a Lorentz-invariance violation and would cost the incumbent a symmetry. The difference is
+*how* each forbids: in the Bell channel the prohibition is a theorem of the very formalism this
+framework is isomorphic to (§B.4), so agreement is guaranteed if quantum mechanics holds and
+confirms nothing; in the `c_meta` channel the incumbent's zero is an imposed symmetry, and a
+completed candidate could in principle differ from it. A positive result there does not end the
+family: it forces reformulation inside it — the failing object is the candidate's `c ↔ c_meta`
+identification, and the axioms, which state no rate, stand while the emergent `c` takes the
+non-uniform label. And the family's
+one identified route to building an exposure of its own is the finite-grain /
+higher-order-interference channel, where the Born rule's finite-grain deviation law would be a
+structure-derived number the incumbent inputs as exactly zero and the triple-slit programme
+already supplies a bound. That deviation law is not derived in this paper; it is named here as a
+route, not a result.
+
+### A.6.3 The preferred directions
+
+Eight further commitments are endorsed as highly plausible and are **not** part of the
+definition. A candidate that goes the other way on any of them is still a member of the family:
+
+grain discreteness (§D.3.2) · Skyrmion-class defects (§A.3, §C.1) · carrier structure (§A.3) ·
+the measured-`G` anchor practice (§B.6.2) · Koide `c = √2` (§C.3.2) ·
+`m = E₀` (§A.4) · generations as the anti-self-dual triple with the associativity premise
+(§C.3.8, §D.2.4).
+
+`weak = SD` is **not** on that list. It sits one level up, and differently: its menu is closed
+by computation and both alternatives are refuted (§C.4.2), so it is not a preference a family
+member may simply reverse. It is forced given one named structural premise — that weak isospin
+is hosted inside the substrate's grade-2 rotation algebra at all — together with the observed
+weak-isospin-singlet character of the right-handed fermions. Divergence at that node means
+rejecting the structural premise, which is a larger move than going the other way on an
+endorsement, and it is the only door left open there.
+
+This is the reader's most consequential fork after the axioms themselves. A large block of
+Parts B and C is derived *given* one of the endorsements above, and those results are family
+property only in that conditional sense: they stand or fall with the endorsement they consume,
+and an endorsement is a preference, not an axiom.
+
+### A.6.4 Instance V3 — the picks
+
+V3 buys its numbers with eleven pinned choices — twelve rows below, because one of them turned
+out to contain a second choice inside it. Each is a branch point: what the choice was picked
+*from* is recorded, and so is what un-picks it.
+
+| # | The pick | The menu it came from | What un-picks it, and what moves |
+|---|---|---|---|
+| V3-1 | Substrate arrangement = a **regular D4 lattice**, at the `G`-back-fit (Planckian) size (`A-1b`) | regular lattices (D4 and others) / irregular-discrete arrangements (causal-set-adjacent) / a continuum medium with a cell scale | Re-arrange or re-size: the dimension-six and dimension-eight numerics recompute and the `Λ_L` band's provenance goes with them; Layer-1 structure is untouched |
+| V3-2 | Bond structure = the `{J, D}` **truncation** (`A-1c`) | the ten-constant bilinear menu allowed on D4 under the driven point group — `J`: 2, `D`: 2, `Γ`: 6 | Turn on the surviving `Γ` direction or the second `D` dial (§D.3.3): the numerical spine re-reads; the quadratic spine is conditionally protected, the amplitude identification is not |
+| V3-2a | DM support = the 12 `e_4`-bonds only | the two-dimensional allowed DM space — the `e_4`-bond coupling and a spatial-bond coupling of the same symmetry type, which no substrate argument separates | A non-zero second `D`: the amplitude identification behind `D/J` moves; the canting — and with it the chiral symmetry breaking — can switch off entirely on a cancellation line; and the `Γ` survivor's vanishing, a property of the vacuum's high-symmetry direction, is exposed with it |
+| V3-3 | `f_π` = the ANW **fitted** value | any cell-scale anchoring | Re-anchor: the hadron chain recalibrates |
+| V3-4 | `D/J ≈ 0.79`, lepton-calibrated | any calibration channel | `Γ ≠ 0` established: `0.79` re-reads as a measurement of a combination and both legs re-fit |
+| V3-5 | `e_ANW = 5.45` | the Skyrme-stabilizer determinations (the massless-pion scheme picked partly on the `√18/(D/J)` agreement) | The two legs converge → the pick retires; the legs split → the `√18` bridge dies (§E.2.1, both ways) |
+| V3-6 | Gravity route = **Sakharov induced gravity**, in one banked action class | thermodynamic / entropic / gauge-gravity / a thermodynamic reading of the same medium — every route on the menu taxed by the analog-gravity caution | Re-route: the `Λ` anchor moves or dissolves, and the dimension-six coefficient's denomination goes with it; the class-scoped uniqueness result stays true of its class |
+| V3-7 | Cost pairing = `t = α_5 ∘ reverse` (§A.5.6) | the four-option pairing menu; the no-invariant-pairing theorem survives any re-pick | The pairing's own class revert list; the hadron sector, which uses the coinciding restriction, does not move |
+| V3-8 | The vacuum carrier is **costed**, at `(k_c/2)²` | costed / costless / other densities | Rides the pairing re-pick |
+| V3-9 | Kernel branch = the **driven-hysteretic** class (§D.5.3) | the full kernel-class menu — this is the #1 gap itself | Free re-pick: no banked physics falls with it |
+| V3-10 | Hadron machinery = the **ANW/Skyrme semiclassical toolbox** | soliton-quantization toolboxes | The import's own excision row (companion Section 13) |
+| V3-11 | Fermionic quantization = the **Finkelstein–Rubinstein** scheme (§B.3.5) | fermionic-quantization schemes for solitons; induced-term routes are the named alternative | The import's own excision row; a substrate-induced Wess–Zumino-class term would force the odd sector from the dynamics and retire the pick altogether |
+
+The full table — each node with the named result that required it, what rides it, and its complete
+revert clause — is the programme's **family tree** (`TWT_FAMILY_TREE.md`), the standing register
+in which a branch point is recorded at the moment it presents itself. The table above is its
+compressed form, and **the tree is authoritative where the two differ**; companion Section 14
+carries the pointer and the result-by-result sort.
+
+These are where the wounds live. The dimension-six ceiling rides three pinned choices in series,
+carried by two nodes: a **regular** arrangement at a **back-fit** size (V3-1), and **one**
+induced-gravity chain to denominate that size in Planck units at all (V3-6). The crossing-scale
+miss rides the same arrangement's gauge sector together with the instance's calibrations (V3-1
+with V3-3 and V3-4). Neither wound touches an axiom — and, per the opening of this section,
+neither is thereby answered.
+
+### A.6.5 What the Core has, what it does not claim, and what the programme delivers
+
+Sorting every numbered result against the definition (the companion's Result Index carries the
+sort per row): roughly a third consume nothing but the axioms; a comparable block consumes
+the axioms plus one or more preferred directions, each row standing or falling with the
+endorsement it consumes; the remainder need a choice that belongs to V3. The two blocks are
+never to be merged into one headline.
+
+**What the Core keeps — each block at its own level, the conditional ones conditionally.**
+Unconditionally, on the axioms alone: most of the Part-A picture, the wavefront-isomorphism and
+Lorentzian-appearance arc, the full quantum-postulate and Bell sector, the texture scaffold, and
+the algebra reference block. Conditionally, on the axioms **plus a named preferred direction**:
+the Maxwell/Coulomb/charge arc and the topology/stability/`B − L` arc (both riding the
+defect-class endorsement), and the
+generation-and-Koide structure (riding the ℍ-triple with associativity, and `c = √2`). The second
+group is family property only in the sense §A.6.3 gives that phrase: each row stands or falls with
+the endorsement it consumes. A further rider binds the phrase, by the Core's own standard: **Core-clean is a
+*consumption* classification — it says a result uses no instance pick — not a claim of
+derivation-completeness.** The quantum package in particular buys
+its structure with imported, registered mathematics (the tensor-product composition rule, the
+singlet form, Gleason's theorem among them), so it is a **relocation with a gain, not a
+derivation**, exactly as the signature is (§B.1), and it must be quoted that way.
+
+**What the Core does not claim.** No scales: the family has **zero earned dimensionful scales**,
+and the two the corpus uses are a back-fit of measured gravity and a fitted hadronic scale, with
+the ratio between them neither derived nor protected (§D.3.5, §E.2.1). No gravity results today:
+every gravity result in this paper rides an instance pick, and structural gravity — one medium
+so one light cone, the equivalence principle, the Newtonian limit with the right sign,
+compatibility with general relativity — is owed as a re-grounding on the axioms rather than
+inherited from §B.6. No magnitudes: couplings, running, absolute masses and decoherence rates all
+wait on the one unbuilt object of §D.5; the family owns the kernel *programme* and owns no
+kernel. And one standing debt the refusal creates rather than discharges: fields won historically
+by doing work a medium could not be shown to do — retardation, radiation reaction, local
+conservation in transit, gauge structure — and every item on that list is now work the *medium*
+must be shown to do instead. If gauge structure proves to be on the un-reclaimed list, that is
+Core-relevant knowledge, not an instance detail.
+
+**The deliverable is a list.** At family level the programme delivers the **list of surviving
+candidates** — self-coherent, empirically plausible members — not one maximally pinned instance;
+V3 is the list's first entry, and a second candidate would be a new table beside §A.6.4's rather
+than a rewrite of this paper. One consequence for reading: questions that cannot be decided from
+inside the lock, by the theory's own structure, are **family freedom**. They are recorded and not
+expanded on, because candidates differing only there are one member with several descriptions.
 
 ---
 
@@ -1091,13 +1402,20 @@ dispersion form of the theorem directly — the first order at which Lorentz inv
 (Delsarte, Goethals & Seidel 1977). The result is **not** new: any claim of novelty for it does
 not survive contact with the lattice literature.
 
-What this section adds is narrower and is claimed as such: the **kernel-independent
-invariant-theoretic form** of the statement — a fact about the invariant ring of the point group,
-which covers improved actions and radiative corrections in one step rather than one chosen action —
-together with the two-sided sharpness (dimension eight is *reached*, not merely bounded), the
-explicit triality premise **(P-pg)**, and the transfer into Lorentz-violation EFT language, where
-the result appears not to have been noted. A standalone treatment with full reproduction code is at
-`knowledge/corpus/D4_lattice_quartic_isotropy.md`.
+What this section adds is narrower and is claimed as such. The group-level form of the statement,
+with triality named as the protecting mechanism, is also prior art: Chow (1999) states that D4 is
+exactly isotropic at order `a²` and *"the only unexceptional root lattice with this property"*,
+protected by the accidental threefold Dynkin-diagram symmetry; and the two-sided sharpness
+(dimension eight *reached*, not merely bounded) is established in the lattice-kinetic-theory
+literature (Chen, Goldhirsch & Orszag 2008, who compute the anisotropic sixth moment and treat the
+degree-four isotropy as well known). What remains claimed here is the **generality of the proof** —
+one-dimensionality of the degree-four invariant space for *every* analytic point-group-symmetric
+kernel at once, via the `W(F4)` invariant degrees, with the explicit triality premise **(P-pg)** —
+and one narrow transfer: Lorentz-violation EFT already uses the point-group protection argument at
+dimension four (Mattingly 2005; Jacobson, Liberati & Mattingly 2006, crediting the lattice
+literature), and what appears not to have been carried there is that the argument *fails* at
+dimension six for the hypercubic lattice and *holds* for D4. A standalone treatment with full
+reproduction code is at `knowledge/corpus/D4_lattice_quartic_isotropy.md`.
 
 With that said: the complementary rotational-anisotropy bound is closed by the D4 point group
 (R-165), and the reason is representation-theoretic rather than a property of any particular kernel.
@@ -1107,19 +1425,31 @@ are `{2, 6, 8, 12}` — and its space of **degree-four** invariant polynomials i
 lattice point group and analytic in `k`, there is no anisotropic quartic at all: the quartic term
 is forced isotropic by symmetry, whatever the dynamics turn out to be. The degree-six invariant
 space is two-dimensional, so an anisotropic sextic does exist, and the leading rotational
-anisotropy therefore sits at **dimension eight** — reached, not merely bounded —
+anisotropy of the polarization-averaged dispersion therefore sits at **dimension eight** — reached,
+not merely bounded —
 `(E/Λ_L)⁴ ≈ 2 × 10⁻³¹` at the highest observed cosmic-ray energies (ruled band's loose corner,
 §B.6.2): structurally out of any observational range. The concrete face of the same fact is the bond-moment tower: second moment
 `Σ v_i v_j = 12 δ_ij`, fourth moment exactly `4(δδ + δδ + δδ)` (`M_1111 = 12 = 3 M_1122`), sixth
 moment anisotropic. This is **not** generic to lattices: simple-cubic `Z⁴` has `N_1111 = 2` while
 `N_1122 = 0`, and its point group admits a two-dimensional degree-four invariant space containing
-`Σ k_i⁴`. Two premises carry the inference and are stated rather than buried: that a derivative
+`Σ k_i⁴`. Three premises carry the inference and are stated rather than buried: that a derivative
 expansion exists (a non-analytic driven-dissipative memory kernel — the #1 gap itself — is not
-covered by a polynomial-invariant argument), and that the *full* point group including triality
+covered by a polynomial-invariant argument); that the *full* point group including triality
 acts (the reflection subgroup `W(D4)` alone has a three-dimensional degree-four space, and the
 second shell's two sub-orbits are each anisotropic, cancelling only at equal weight — so a
 substrate coupling weighting triality-related orbits unequally would restore dimension-six
-anisotropy).
+anisotropy); and a third, implicit in "invariant polynomials" and stated here: **the kernel is a
+scalar in the internal index** — the theorem governs the polarization-averaged dispersion. It does
+not cover internal-index-carrying (matrix-valued) kernels, and the point group cannot close that
+sector: the unique fully `W(F4)`-invariant symmetric-traceless bond coupling (the pseudo-dipolar
+direction) already carries a direction-dependent four-derivative polarization splitting (exact
+spectra: eigenvalues `(−6, 2, 2, 2)` on an axis vs `(−12, 4, 4, 4)` on a face diagonal). The
+scalar sector is nonetheless closed against that entire channel at every order — every
+symmetric-traceless coupling is traceless bond-by-bond, so `Tr Σ_b f(k·b)K_b ≡ 0` — and what the
+channel can source at dimension six, if its dressed coefficient is nonzero (the §D.5.7 assembly
+record; tree-level zero on both computed vacuum branches, #1-gap-routed), is a
+polarization-splitting (birefringence-class) anisotropy, bounded by SME-type anisotropic/sidereal
+limits rather than the isotropic ones.
 
 What these protections do **not** reach is the *rotationally invariant* dimension-six residual,
 conventionally `η⁽⁴⁾ p⁴/M²_Pl` — it is not a relative-boost observable (so R-016 does not apply)
@@ -1378,7 +1708,8 @@ The per-defect internal space that (W) alone leaves standing is a **qubit**, and
 `ℂ`-coordinates are exactly the charge-0 and charge-`±1` parts of the `U(1)` generated by `B_a` —
 the decomposition the next paragraph asks for. Nothing about §B.3.3's Born amplitude has to change
 to use it: the complex overlap `z(ψ, D) = ∫ ⟨D̃ ψ⟩_{{1, B_a}} d³r` defined there, applied unchanged
-on this four-blade commutant, *is* the ordinary Hermitian inner product of the resulting `ℂ²`.
+on this four-blade commutant, *is* the ordinary Hermitian inner product of the resulting `ℂ²`
+(R-167).
 
 Read against this section's own open item, that **discharges the charge-sector half and shrinks the
 residue from six modes to four**. The eight even blades split under `U(1)_{B_a}` into charge-0
@@ -1581,6 +1912,20 @@ same physical state, phase-rotated by 90°), `⟨e_{12}⟩_0 = 0`, so a grade-0-
 zero probability for an identical-up-to-phase state. The correct formula projects onto `{1, B}`
 and squares the full complex magnitude.
 
+*Prior art at this claim site, and what the operation is for.* Reading a quaternion-valued overlap
+through a chosen complex line inside `ℍ` is not new: it is the complex-linearity restriction —
+the "complex geometry" of the quaternionic-quantum-mechanics literature — constructed by Horwitz
+and Biedenharn (*Ann. Phys.* **157** (1984) 432), whose quaternionic Hilbert module carries a
+hierarchy of scalar products and operators graded by real, complex or quaternion linearity, and
+whose working layer is the complex-linear one. Its established function is precisely the object
+this framework separately lacks: it is the condition under which **tensor products of quaternion
+modules can be constructed preserving complex linearity**, and with them creation and annihilation
+operators for the second-quantized theory. What is this framework's own here is the *argument* for
+the projection — the grade-0 undercount above — and the *selection* of the unit `B` by the defect
+background (§B.3.1) rather than by hand. Naming the known function matters for scope: the
+multi-defect state space §B.4.1 records as unbuilt is not an open-ended absence but a specific,
+already-studied construction, and importing it would import its premises with it.
+
 **Squaring is forced** (up to parity of the exponent) by chirality-reversal symmetry. A linear
 (odd-power) coupling would break `Ψ → −Ψ` symmetry, producing directional drift with no source —
 a contradiction. The drag overlap must therefore be even in `ψ`.
@@ -1716,6 +2061,13 @@ a space this framework has **not** constructed (five independent construction ro
 ledger N53). What the import delivers is a two-element menu — a single-valued wavefunction is a `±1`
 character of `π₁(Q_N) = ℤ₂` — and never the pick. Refusing it leaves the one-defect `Spin(4)` half-angle
 above untouched and returns the fermionic option to a bare INPUT bit carrying its two empirical anchors.
+The pick itself belongs to this instance (§A.6.4, node V3-11): it is contingent in the mathematics
+— a non-simply-connected configuration space admits both quantization sectors and each is
+internally coherent — and over-determined in the data, since the bosonic sector has no exclusion
+principle and hence no shell structure and no stable bulk matter. It is excluded by the world, not
+by the topology, and it costs the instance one bit. It is also blind to the family's open branch
+over where the local state's `ℤ₂` sign lives (§D.3.2): both branches deliver the same `π₃` and
+`π₄`, so neither can pay for this pick and this pick cannot pay for that branch.
 
 A note on honest scope. The `Spin(4)` half-angle argument *consistently selects* fermionic
 statistics for spinor configurations, but in pure SU(2) Skyrme it does not *force* the fermionic
@@ -1846,7 +2198,12 @@ honest-scope note records as assumed rather than constructed, so what this secti
 compatibility, not derivation. The calculation of CHSH reaches `S = 2√2` exactly. The multipartite
 Mermin–Klyshko hierarchy follows from the same commuting-rotor identity, checked at finite `n`. And the identity `ρ_A = (1/2) 𝟙`
 behind no-signaling turns out to be the *same fact* as Bell-violation — locally each side is pure
-noise, jointly they are perfectly ordered.
+noise, jointly they are perfectly ordered. Since the ingredients invite the comparison, the scope
+is worth stating at the outset: nothing here evades a premise of Bell's theorem — §B.4.3 names the
+premise this framework violates as **factorizability**, outcome independence at `λ = Ψ_joint`,
+which is the leg orthodox quantum mechanics violates too — so this is not a construction of the
+kind that claims a local, deterministic, Clifford-algebra-valued disproof of the theorem
+(Christian, arXiv quant-ph/0703179).
 
 **Mathematical setting.** One wing's internal space is the wavefront-frame commutant
 `Z_{Cl⁺(4,0)}(e_4) = span{1, e_{12}, e_{13}, e_{23}} ≅ ℍ` of §B.3.1: real dimension four, and
@@ -1858,6 +2215,21 @@ L-orbit rotors is `ℂ`-linear and unitary with unit determinant, so the **one-s
 global phase, so states are rays. No new inner product is introduced: §B.3.3's complex overlap
 `z(ψ, D) = ∫ ⟨D̃ ψ⟩_{{1, B_a}} d³r`, applied unchanged on this commutant, is exactly the Hermitian
 inner product of that `ℂ²`.
+
+*Prior art at this claim site.* That a single qubit's state space is the three-sphere `S³`, with
+the Bloch sphere the base of a suitably oriented Hopf fibration and the circular fibre the overall
+phase, is established literature and is not claimed here as a result. It is the standard
+single-qubit picture reviewed by Mosseri and Dandoloff (*J. Phys. A* **34** (2001) 10243; arXiv
+quant-ph/0108137 — whose own new content is the two-qubit `S⁷` fibration, not this), and the
+two-level-system geometry of states, phases and their evolution on the two- and three-sphere
+developed by Urbantke (*Am. J. Phys.* **59** (1991) 503; see also his survey of the Hopf
+fibration's appearances in physics, *J. Geom. Phys.* **46** (2003) 125). The delta is the
+selection and the referent, not the geometry: *which* bivector plays the complex unit is fixed
+here by the defect background — the `(W) ∩ (S) ∩ (E)` centralizer of §B.3.1, with R-127 locking
+the observer-visible mass phase to the same blade — rather than taken as a frame convention; and
+the `S³` is offered as a *physical* target of the rotor field rather than an ideal state space, a
+reading that earns its keep only once the multi-defect state space recorded as unbuilt below
+exists.
 
 **The wing does not fit in the phase sector.** Writing the wing as `ψ = a + b B` in
 `span{1, B_a}` and reading the overlap off the grade-0 part does **not** work, on two grounds
@@ -1934,6 +2306,20 @@ The correlation function is then
 and at optimal angles `S = 2√2` (R-027). **TWT reproduces the Tsirelson bound exactly.** The
 `cos(θ/2)` of the one-sided rotor action's half-angle is the dimensional fingerprint of
 `S³ → S²` projection.
+
+*Prior art at this claim site.* The geometric-algebra machinery this calculation runs on is
+established work of Doran, Lasenby and Gull: spinors replaced by multivectors acted on one-sidedly
+by rotors, the unit imaginary of quantum mechanics played by a fixed bivector rather than an
+external scalar `i`, and the extension to several particles carried out with a separate copy of
+the algebra for each particle, in which — as they state — the standard unit imaginary induces
+correlations between the particle spaces (*Found. Phys.* **23** (1993) 1239, developed at length
+in the review chapter with Somaroo and Challinor, *Adv. Imaging Electron Phys.* **95** (1996) 271;
+arXiv quant-ph/0509178). This paper cites the same authors elsewhere under their gauge-theory-gravity
+work; the debt at *this* site is the multiparticle-algebra one, and it is theirs. Two things are
+not taken from them. Which bivector is the complex unit is fixed here by the defect background
+(§B.3.1) rather than chosen; and their multiparticle construction does not discharge what the
+scope note below records as missing — it *takes* a separate algebra copy per particle, where what
+this framework owes is a two-defect state space built out of its own one-defect ontology.
 
 **Honest scope — the two-particle state space is assumed, not constructed.** The singlet above is
 written in Dirac notation, and nothing in §A.5 or §B.3 builds a tensor product of two defect state
@@ -2384,6 +2770,20 @@ precisely the standard input for *induced gravity* (Sakharov 1967), and that the
 particular ingredients make this route unusually clean. We claim the sign, the form, and the
 magnitude bracket. We do not claim the theory.
 
+**Whose gravity this is.** The induced route is a **pick of this candidate instance** (§A.6.4,
+node V3-6), not a commitment of the family, and the menu it was chosen from is live: a
+thermodynamic derivation, an entropic one, a tree-level gauge-gravity construction, and a
+thermodynamic reading of this same medium all remain family-available — every one of them, this
+route included, taxed by the same caution, that emergent metrics have been produced in many media
+and emergent Einstein *dynamics* in none. Two consequences the reader should carry through §B.6.
+First, no uniqueness claim here is unconditional: what is established is uniqueness *within the
+banked action class under its stated premise*, and the exits are named in the same place.
+Second, the family as such currently derives **nothing** about gravity — every result in this
+section consumes a pinned choice, and structural gravity (one medium so one light cone, the
+equivalence principle, the Newtonian limit with the right sign, compatibility with general
+relativity) is owed to the family as a re-grounding on the axioms rather than inherited from
+what follows.
+
 **What the laboratory pins before mass is linked to weight.** This section connects the defect's
 rotor frequency to gravitational sourcing. The framework identifies mass with that frequency
 (§A.4); modern mass metrology is, as it happens, frequency metrology — which makes the first
@@ -2439,10 +2839,13 @@ reader should know that per-particle weight is an inference riding aggregate lin
 measured fact — and that nothing banked here predicts any deviation in the unmeasured range.
 (Engine: `mass_weight_empirical_chain`; records at companion Section 10.)
 
-**Mathematical setting.** The substrate's monad is a unit rotor at each D4 site; the continuum
-field `U(x) ∈ SU(2)` provides the spatial Spin(3) part of a local Lorentz frame, and combined
-with the canting orientation and `e_4` it supplies a 4D local Lorentz frame with local `Spin(4)`
-symmetry (R-036). A frame field carries a connection; the spin connection `ω(R)` emerges from
+**Mathematical setting.** The substrate's grain is a unit rotor at each D4 site — a 4D
+orientation, six real parameters (§D.3.2) — and the continuum field `R(x)` inherits that target
+unchanged. A local Lorentz frame then **follows from** the orientation field rather than being
+assembled from a smaller object plus a canting direction and `e_4`: the orientation's six
+generators are already the generators of `so(4)`, so the field supplies a 4D local Lorentz frame
+with local `Spin(4)` symmetry directly, by acting on a fixed reference tetrad (R-036). A frame
+field carries a connection; the spin connection `ω(R)` emerges from
 the rotor exactly as the spin connection of GR emerges from the vielbein, with curvature
 `𝓡(ω) = dω + ω ∧ ω`. The bare rotor action is of σ-model form `∫ (∂R)² ~ ∫ ω²` — connection
 squared, not Einstein–Hilbert. Integrating out matter and substrate fluctuations in a curved frame
@@ -2556,19 +2959,19 @@ where `a_1 = 0` and there is no induced gravity at all) is held off only at R-04
 and that is the real exposure in this number. One caveat is recorded with it: this settlement has
 **not been independently reproduced**.
 
-*What is open is `c_lat`, not `c_reg`.* OA-LF-ii — that curvature couples covariantly at monad scale —
+*What is open is `c_lat`, not `c_reg`.* OA-LF-ii — that curvature couples covariantly at grain scale —
 moves the derived band integral `c_lat ≈ 21.8` by a factor of a few across its own stated `O(1)`
 tolerance. In the proper-time variable that costs nothing: `c_reg = 1/12` is exactly
 `c_lat`-independent, and the `Λ_eff = √(2π) M_Pl` it delivers is measured `G` restated in that scheme
 rather than a prediction of it. Read instead in `Λ := 1/a`, the coefficient inherits roughly 93% of
 the integral's support linearly. R-163's real content is therefore relocated to where it actually
-lives — the monad spacing `a`, which is what moves.
+lives — the grain spacing `a`, which is what moves.
 
 *The which-`Λ` assignment.* The symbol is **split**, because the two things it
 names are different physical quantities. `Λ_S` is the Sakharov
 proper-time **scheme** scale — measured `G` restated, exactly `c_lat`-independent, carrying no
 substrate information — and serves the induced-`G` bookkeeping only. `Λ_L ≡ 1/a` is the **inverse
-monad spacing**. The assignment is scoped by what the argument actually reaches. For the two
+grain spacing**. The assignment is scoped by what the argument actually reaches. For the two
 consumers that are Taylor coefficients of the finite-range lattice difference kernel — the
 §B.6.3/§E.3.3 dimension-six exposure and the D4 anisotropy corners — the only available length is
 the lattice spacing, so `Λ_L` is **forced** (the bond geometry's `O(1)` factors, e.g. the D4
@@ -2591,7 +2994,7 @@ three `c_reg` numbers as rival determinations, which they are not. The scales ar
 > central `c_lat = 21.83`).
 
 Provenance fences on the `Λ_L` band, so it cannot be over-read: `κ` scales OA-LF-ii's ~93%
-sub-monad support fraction, *not* `c_lat` wholesale (wholesale would give `[0.38, 0.76]`, a
+sub-grain support fraction, *not* `c_lat` wholesale (wholesale would give `[0.38, 0.76]`, a
 different band); the band is conditional on **(OA-LF-i ∧ OA-LF-ii) + `N_eff = 6` + the induced-`G`
 identification with measured `G`** (companion Section 4), and OA-LF-i's independent `−5…−25%`
 `c_lat` refinement window is *not* spanned by these corners and would widen them further. The
@@ -2640,7 +3043,7 @@ than assumed: the proper-time integral over the derived D4 nearest-neighbour ban
 its own, with no regularization choice entering the flat-band measure. Two named assumptions
 replace the import's original triple: **(OA-LF-i)**, that the driven steady state's occupation
 of those modes is the ground-state one, a statement about the *state*; and **(OA-LF-ii)**, that
-the curvature couples covariantly at monad scale, a statement about the *operator*. The second
+the curvature couples covariantly at grain scale, a statement about the *operator*. The second
 is where the old regulator freedom now lives — it carries the bulk of the integral's support —
 so the `O(1)` uncertainty is *relocated and localized*, not removed, and the bracket keeps its
 conditional status. Read with `Λ := 1/a` the result sits at `c_reg ≈ 1.8`; read in the proper-time
@@ -2650,8 +3053,9 @@ variable `Λ_eff` the same computation is `1/12`, and the two branches are ident
 twice over: it mis-stated the number (the derived band integral is `c_lat ≈ 21.8`) and it described a
 change of `Λ`-variable as a disagreement. What OA-LF-ii moves is `c_lat`, hence this branch's
 normalization, not the coefficient. The
-convention-independent statement that survives either way is that the monad spacing is Planckian
-within a factor of a few — which is the bracket's actual content. The value is an idealization of a
+convention-independent statement that survives either way is that the grain spacing is Planckian
+within a factor of a few **given the `G` match** (the inversion I-3 effects; the identification is
+never derived from the substrate side) — which is the bracket's actual content. The value is an idealization of a
 gapless shared band; the canted vacuum's two Goldstone modes and four gapped ones would soften it by
 some tens of percent.
 
@@ -2675,7 +3079,8 @@ Three scalar candidates are protected: (i) the rotor-norm direction, frozen by `
 (§B.6.4). None survives as a light propagating scalar — `γ = 1` is uncontaminated.
 
 The complementary rotational-anisotropy bound is closed by the D4 point group, which drives
-anisotropy to dimension eight (R-165) — at the *monad* scale; the separate cell-scale question,
+polarization-averaged anisotropy to dimension eight (R-165, given §B.1.5's three premises,
+including the scalar-kernel premise) — at the *grain* scale; the separate cell-scale question,
 whether the emergent cell pattern carries long-range space-fixed orientational order, remains open
 as §E.3.4 SC-2. The dimension-four boost bound is closed by matter-as-defect. What survives is the
 **rotationally invariant dimension-six residual**, conventionally written
@@ -2695,8 +3100,8 @@ Sakharov coefficient is written in the heat-kernel proper-time truncation variab
 `N_eff = 6` and `c_reg = 1/12` is the pure number `√(2π) M_Pl` and is *exactly* independent of the
 lattice — it is measured `G` restated in a scheme, and carries no substrate information. The
 dispersion relation above is something else: it is a Taylor expansion of a finite-range difference
-kernel on the monad lattice, and the only length such an expansion can produce is the bond length,
-`E² = p² + c·a²p⁴ + O(a⁴p⁶)`. Its denominator is therefore `Λ_L ≡ 1/a`, the inverse monad spacing.
+kernel on the grain lattice, and the only length such an expansion can produce is the bond length,
+`E² = p² + c·a²p⁴ + O(a⁴p⁶)`. Its denominator is therefore `Λ_L ≡ 1/a`, the inverse grain spacing.
 The two are related exactly by `Λ_S = √(c_lat)·Λ_L`, with `c_lat ≈ 21.8` the derived band integral
 of §B.6.2's linear-face computation — they are not one quantity in two schemes, since under a change
 of kernel `c_lat` and the quartic Taylor coefficient move by different factors. **The lattice-dispersion consumers take `Λ_L`
@@ -2721,13 +3126,47 @@ fixed by the substrate strain-mode dispersion, which is the #1 gap (§D.5; the e
 Survival requires `|η⁽⁴⁾| ≲ 10⁻⁶` in the photon and superluminal-matter channels. The one
 suppression the framework can point to — the defect form factor — scales as `(f_π/M_defect)² ~ 10⁻²`
 for the proton and does not apply to the photon at all, since §B.5.4 makes the photon a *bulk*
-strain mode with no internal structure. **This is recorded as an open exposure (§E.3.5(4), §E.3.3
+strain mode with no internal structure. (This is one of the places where the ANW *fitted* `f_π`
+of the Opening's input list feeds a *physical* estimate rather than an internal Skyrme relation.
+Substituting the physical decay constant in ANW's own normalization, `F_π ≈ 186 MeV`, moves the
+estimate by about a factor of two — immaterial against an exposure of three to nine orders, but
+the substitution is the honest one to make here, and the estimate should not be read as though
+`129 MeV` were a measured input.) **This is recorded as an open exposure (§E.3.5(4), §E.3.3
 VG-6), not as a passed test.** Coefficients are defined in the substrate rest frame, which the
 framework identifies with the cosmological comoving (CMB) frame (§B.4.5) — the same frame the cited
 bounds use.
 
+**Whose exposure this is, stated exactly.** It belongs to **this candidate instance**, not to the
+family (§A.6). Every link that turns the ontology into a number here is a pinned choice, and there
+are three in series: a **regular** arrangement supplies the Taylor expansion of a finite-range
+kernel (node V3-1); the **back-fit** size fixes the only length that expansion can produce, `a`
+(node V3-1 again, through the gravity anchor); and **one** induced-gravity chain is what denominates
+that length in Planck units at all (node V3-6). Change any of the three and the arithmetic above is
+not merely re-run — it loses its input. What the family retains if this instance falls is
+everything the exposure does not touch: the axioms, the structural results that consume no pinned
+choice, and the dimension-four protection, which is matter-as-defect and survives any arrangement.
+What it emphatically does **not** retain is a defence. A family member with an irregular
+arrangement or a continuum medium does not inherit this number because it has not yet computed
+one — and, on present knowledge, a discrete arrangement that keeps finite bond valency and claims
+Lorentz invariance is excluded outright (companion Section 13, row I-26), so a member proposed at
+that branch owes a statement of which of the three it gives up. The exposure is instance-level;
+the *problem* is the family's.
+
+**The magnitude channel is also where the known radiative loophole lives.** Collins, Perez,
+Sudarsky, Urrutia and Vucetich showed that in an interacting theory regulated by a
+Lorentz-violating cutoff, violations generically percolate into low-dimension operators with
+unsuppressed coefficients. The D4 fourth-moment isotropy that removes the *anisotropic* channel is
+robust to this in tensor structure — a counterterm generated by a point-group-preserving regulator
+is itself point-group-invariant, so its analytic quartic part is again isotropic — but it is no
+answer to the percolation problem itself, which concerns the **magnitude of the isotropic
+coefficient**: exactly the open-exposure channel of the table below (import I-28). Nor does the
+framework possess an argument in either direction about what the outside↔inside projection does to
+that magnitude — whether the substrate coefficient reaches the observed dispersion at full strength
+or suppressed — because the projection is unbuilt (I-19 premise (e)). The ceiling is therefore a
+constraint on the analytic, unsuppressed reading; no wash-out is claimed, and none is excluded.
+
 *Import notice:* two registered imports meet in the paragraph above. The `Λ_L` band that converts a
-coefficient of unity into the number `[1.9, 6.7]` rides **I-3** (the monad spacing `a` is fixed by
+coefficient of unity into the number `[1.9, 6.7]` rides **I-3** (the grain spacing `a` is fixed by
 inverting measured `G` through the Sakharov one-loop form), which
 is OPEN — strike it and the *size* of the naive value becomes unstated, though the exposure itself
 does not go away, since the framework would then owe both `Λ` and `η⁽⁴⁾`. The published limits are
@@ -2738,9 +3177,9 @@ result — a pure lattice identity — is unaffected. Both retirement handles ar
 
 | Face | Order | Magnitude at `E = 10¹¹ GeV`, `Λ_L` across the ruled band (§B.6.2) | Status |
 |---|---|---|---|
-| dim-4 relative-boost LV between species | — | 0 (R-016, structural) | closed |
+| dim-4 relative-boost LV between species | — | 0 (R-016, structural) | closed (tree-level, structural) / open (radiative, I-22) |
 | dim-4 rotational anisotropy | — | 0 on the point-group-symmetric bond set; the §D.4.3 spiral vacuum breaks the point group (premise P-gs), leaving a species-universal `O(q²)` splitting absorbable by the I-22 rescaling class | closed-conditional (P-gs ∧ I-22) |
-| dim-6 **anisotropy** | `(E/Λ)⁴` | `2.0 × 10⁻³¹` (loose corner `Λ_L = 0.39 M_Pl`) … `1.6 × 10⁻³²` (tight corner `Λ_L = 0.73 M_Pl`); pushed to dim-8 by D4 fourth-moment isotropy | structurally out of range |
+| dim-6 **anisotropy** | `(E/Λ)⁴` | `2.0 × 10⁻³¹` (loose corner `Λ_L = 0.39 M_Pl`) … `1.6 × 10⁻³²` (tight corner `Λ_L = 0.73 M_Pl`); pushed to dim-8 by D4 fourth-moment isotropy | structurally out of range for the polarization-averaged dispersion; a nonzero dressed Γ survivor (§D.5.7 assembly record, #1-gap-routed) would open a dim-6 polarization-splitting anisotropy facing SME-type sidereal bounds — coupled to the second-D exposure (family-tree V3-2a) |
 | dim-6 **isotropic** `c · p⁴/Λ²` (≡ `η⁽⁴⁾ p⁴/M²_Pl`) | `c (E/Λ)²` | `c` **uncomputed**; `c = 1` ⇒ `η⁽⁴⁾ ∈ [1.9, 6.7]`, excluded by 3–9 orders | **open exposure** |
 
 ### B.6.4 Sign positive — substrate stability ≡ spin-2 spectral positivity
@@ -3136,8 +3575,10 @@ faces of the single fact of the wave's propagation direction `+e_4`; the thermod
 correlated with it only partially, and the paragraphs below say exactly how far. The causal arrow is `+e_4`
 directly. Weak handedness traces to `+e_4` because chirality is defined by orientation relative to
 the propagation axis: the parity-odd condensate `⟨I_4⟩ ≠ 0` rides the wave's chiral DM
-contribution (§C.5.3), while *which* chiral factor the weak force gauges remains the one counted
-weak-sector bit (`weak = SD`, §C.4.2). The thermodynamic arrow is the medium's irreversible
+contribution (§C.5.3), while *which* chiral factor the weak force gauges is settled without a
+further choice: the two chiral factors are exchanged by an orientation relabelling, so naming one
+of them "the weak one" costs nothing, and the alternative host that is *not* a relabelling is
+excluded by the right-handed fermions' weak-singlet character (§C.4.2). The thermodynamic arrow is the medium's irreversible
 response to its own drive — the retarded boundary condition plus observer-relative coarse-graining
 giving entropy increase; **but the low-entropy past is a separate cosmological input, and the
 framework reduces rather than fully derives the second law**.
@@ -3156,10 +3597,11 @@ partially-correlated origin**.
 
 This is a unification claim, and the count it supports is smaller than an unqualified reading
 suggests. The SM treats parity violation as an empirical fact added by hand (`V−A`); the framework
-ties it to the same `+e_4` that picks the arrow of time, given the weak = SD bit (§C.4.2). The
+ties it to the same `+e_4` that picks the arrow of time, given the weak assignment of §C.4.2. The
 honest ledger is therefore **two** asymmetries from the one initial condition — the causal arrow
-and weak handedness — plus **one** counted INPUT bit (`weak = SD`, §C.4.2) standing between `+e_4`
-and the handedness, plus **one separate cosmological input** (the low-entropy past) that the
+and weak handedness — plus, standing between `+e_4` and the handedness, the two named supports of
+that assignment (a structural premise the paper does not derive, and the right-handed fermions'
+weak-singlet character), plus **one separate cosmological input** (the low-entropy past) that the
 thermodynamic arrow still requires. Two from the IC, not three; and the second law is *reduced*
 here, not derived.
 
@@ -3291,7 +3733,8 @@ The conserved bivector `L` lands in the **L-orbit** — the same algebraic space
 (§C.1) — and the spent integrals `(P, R_cm)` live in the orthogonal **Q-orbit** that hosts baryons
 (§C.1). The decomposition is orthogonal under the bivector inner product.
 
-> **One algebraic split, two manifestations.** (R-049)
+> **One algebraic split, two manifestations — a definitional observation, not an independent
+> coincidence.** (R-049)
 
 At microscale the split sorts matter content: leptons in `𝓛`, baryons in `𝓠`. At macroscale the
 same split sorts conserved invariants: angular momentum in `𝓛`, spent integrals in `𝓠`. The
@@ -3421,6 +3864,8 @@ inside-frame exposure, in the dimension-six Lorentz-violation coefficient of §E
 deviation from Newton here. The measurement that would decide the question is the *two-body* far
 field: a departure from conservative Newton/Kepler at PPN precision would test §B.6's induction
 derivation before it touched anything in this section.
+
+(*Honest scope.* The multi-defect `Cl(4,1)` wave equation with `N` back-reacting topological sources
 is not constructed in this paper; its construction is a structural target. What we claim here is
 the **ontology** — bodies are defect-features of one wavefront — and the **reframing** that
 follows from it. The dynamics-coherent version of the reframing depends on the
@@ -3498,7 +3943,19 @@ and comparing this elastic value with measured baryon masses crosses the `m = E�
 comparison here is additionally a **calibration**: `f_π` and `e` were historically fitted to the
 N/Δ masses, so it exercises the premise without independently testing it.
 
-with `f_π ≈ 129 MeV` the cell-scale mass and `e ≈ 5.45` the **empirical** (ANW) Skyrme
+**This whole sector is instance-level.** Four pinned choices of the first candidate meet here and
+none of them is an axiom (§A.6.4): the semiclassical soliton-quantization toolbox this section
+runs on (node V3-10), the fitted cell scale `f_π` (V3-3), the stabilizer value `e` (V3-5), and —
+one level up — the arrangement whose bond couplings the dressed relation `e ≈ √18/(D/J)` reaches
+back to (V3-1, V3-2). What survives at family level here is the ontology — matter as defect, which
+is an axiom — together with the topological reading and the stabilization class, both of which are
+**preferred directions rather than family property**: the family endorses the volume-twist class,
+it does not hold it, and the compass space and the dynamical-stabilization alternative stay open
+(§A.3, §A.6.3). What the family holds in no sense at all is a baryon mass, and it would not
+inherit one from a re-anchored candidate.
+
+with `f_π ≈ 129 MeV` the cell-scale mass — the ANW **fitted** value, per the Opening's input list,
+not the measured decay constant — and `e ≈ 5.45` the **empirical** (ANW) Skyrme
 stabilizer. The dressed-coupling relation `e ≈ √18 / (D/J)` (§D.4) *reproduces* this value at
 the ~1% level from the lepton-calibrated `D/J ≈ 0.787` (predicted `e ≈ 5.37–5.39`; the `√18`
 identification is itself flagged as possibly coincidence-riding, §C.3.11). Quoting `≈ 5.45` as
@@ -3694,7 +4151,10 @@ flow-level face of R-143's lattice-`π₃` caveat).
 
 ### C.1.3 Exactly two conserved windings — chiral counting, orbit relabeling
 
-The substrate's rotor field takes values in `Spin(4)`, and `π_3(Spin(4)) = ℤ × ℤ` (R-002). The
+The substrate's rotor field takes values in the 4D-orientation class — the six-parameter local
+state space of §D.3.2 — and `π_3` of that class is `ℤ × ℤ` (R-002); the count is the same whether
+the class is written as `Spin(4)` or as `SO(4)`, since a double cover is an isomorphism on `π_n`
+for `n ≥ 2`. Writing it as `Spin(4)` below is a convenience of notation, not a commitment. The
 **two `ℤ` factors come most directly from the chiral factorization**
 `Spin(4) = SU(2)_+ × SU(2)_−`. There is exactly one winding integer per chiral factor; that is
 the cleanest source of the "exactly two windings (B, L)" result.
@@ -3784,9 +4244,8 @@ static minimum of an energy functional under spatial rescaling, and its counting
 the field maps into: in `d = 3` a two-derivative term scales as `λ¹` and a quartic as `λ⁻¹`, so a
 *static* L-orbit defect needs the Skyrme quartic exactly as the baryon does — which is what §C.1.1
 already says. (*Which* quartic is not fixed anywhere in this framework — the `SU(2)`-valued Skyrme
-term for an `S³` field, or the Faddeev `F²` term for an `S²` director, or neither; see the
-functional note below, where the consequences for the coefficient are set out. On any branch, `e_L` as used below is
-*not* the eigenvalue of the problem.) What differs for the
+term for an `S³` field, or the Faddeev `F²` term for an `S²` director, or neither; the
+consequences for the coefficient are set out in **the functional note** below.) What differs for the
 electron is the register, not the target: by §A.4 mass is the meta-time rotor frequency, so the
 rest electron is an oscillator at `ω_0 = m_e c²/ℏ` with no static limit (R-007). The stability
 functional for an internally rotating defect at conserved charge is then the fixed-charge one the
@@ -3798,60 +4257,52 @@ sufficient one — and R-142's own `E_static = E_2 λ + E_4/λ` keeps the quarti
 drive-zero register of §A.3 the §C.1.1 quartic is what holds the size; the driven-attractor
 functional that would replace it lives at the §D.5 gap.
 
-The electron's mass comes out of QCP (quantum critical point) scaling near the chirality balance
-`D = J`. At leading order
+The L-orbit **stiffness** scale comes out of QCP (quantum critical point) scaling near the
+chirality balance `D = J`. At leading order
 
 > `f_L = f_π · (1 − D/J)^{9/2}`  (R-055).
 
-At the empirical `D/J ≈ 0.79` this gives `f_L ≈ 0.115 MeV`. Turning that stiffness into a mass
-needs a second number, and that step — not the scaling — is this section's weakest link.
-Setting `m_e = f_L · e_L` with
-`e_L = √36.47 ≈ 6.04` gives `m_e/e_L ≈ 0.0846 MeV`: a ~36% match in `f_L`, equivalently
-`ν_emp ≈ 4.696` (from `log(0.0846/129) / log(1 − 0.79)`) against the predicted `9/2 = 4.5`, a
-`4.4%` exponent mismatch. Two defects in that conversion factor are named below, and the
-`4.4%` figure does not survive either of them.
+At the empirical `D/J ≈ 0.79` this gives `f_L ≈ 0.115 MeV`.
 
-*(i) `e_L` is not an eigenvalue.* `36.47` **is** the eigenvalue, of
-the ANW hedgehog BVP, and it enters the baryon formula as `M_0 = 36.47 · f_π/e` — coefficient
-**divided** by the Skyrme **coupling** `e` (5.45 in §C.1.2). Writing `m_e = f_L · e_L` reproduces
-that form only if the L-sector coupling is *placed at the self-consistent fixed point* of
-`coefficient/e = e`, which is what `e_L = √36.47 = 6.04` is: at that value, and only at that
-value, `f_L · e_L` and `36.47 · f_L/e_L` coincide. That is a convention, not a derivation — an
-undeclared and uncounted INPUT/FIT, differing from the baryon sector's `e = 5.45` by 11% for no
-stated reason, with no engine primitive behind it (`electron_f_L_MeV` computes `f_L` alone) and no
-derivation anywhere in this framework.
+**What this section delivers, and what it does not.** `f_L` is a stiffness, not a mass. Converting
+a stiffness into a mass requires an L-sector coupling, and **the framework has no *derived* one**:
+no substrate argument fixes an L-sector coupling, no engine primitive computes one, and this
+section states no conversion. Borrowing the baryon sector's `e` would not repair this — it would be
+a further uncounted cross-sector import, and §C.3.6 shows it could not work in any case, since the
+lepton parametrization makes `m_e` vanish as `(1 − D/J)²` near the chirality balance while `f_L`
+carries the exponent `9/2`; **no constant bridges two different exponents.** **The electron mass is
+therefore not derived here.** What is derived — conditionally,
+on the ingredients set out below — is how the L-orbit stiffness scales with the distance from the
+chirality balance, and that is the whole of the section's quantitative content. No accuracy figure
+for `m_e` is quoted anywhere in it, because none would be a prediction: any residual would be
+reporting the coupling that was chosen to produce it.
 
-*(ii) which functional supplies the coefficient is OPEN, so no coefficient is derivable yet.*
-`36.47` is the dimensionless minimum of the `SU(2)`-valued Skyrme hedgehog and of nothing else.
-Write both candidate models in one normalisation,
-`E = c₂ ∫ Σ_i |∂_i n|² + c₄ ∫ Σ_{i<j} |∂_i n ∧ ∂_j n|²`; for the Skyrme case `c₂ = f_π²/8` and
-`c₄ = 1/(2e²)`, so `√(c₂c₄) = f_π/(4e)`, and substituting the hedgehog reproduces §C.1.2's radial
-density term for term. The dimensionless minimum `Ẽ = E/√(c₂c₄)` is therefore model-intrinsic, and
-the coefficient in any `M = coeff · f/e` formula is `Ẽ/4`. Solving the BVP at `c₂ = c₄ = 1` gives
-`Ẽ = 145.85 = 4 × 36.46` (Derrick virial `E₄/E₂ = 1.0001`), confirming `36.47` — *for that
-functional*. But the L-orbit functional is not fixed, and the framework's own artifacts say so: `ring_core.py`
-records that the L-orbit defect "is not literally Faddeev-stabilized — the true profile is
-genuinely open", while the simulator's GF-5 identifies the stabiliser as a fixed-charge `S¹`
-meta-time winding (`E(μ) = aμ + b/μ³`) that is not a quartic at all. Three branches, three
-answers. If the defect is the `S³`-valued degree-1 Skyrmion that `π_3(SU(2)_L)` literally names,
-`36.47` is right. If it is the `S²`-director Hopf soliton — the object this section's title
-suggests and `ring_core.py` records as toroidal — the governing functional is Faddeev–Skyrme and
-`36.47` is not merely wrong but **excluded**: the rigorous Vakulenko–Kapitanski bound reads
-`Ẽ ≥ 32π²√2 · (3/16)^{3/8} · |H|^{3/4} = 238.4 · |H|^{3/4}` in these units, a coefficient floor of
-`59.6`, strictly above `36.46`; the literature `H = 1` minimum (`E₁ = 1.236` in units of
-`32π²√2`, Foster arXiv:1012.2595, massless) is `Ẽ = 552.1`, coefficient **`138.0`**, larger by
-`3.79`. If it is GF-5's fixed-charge balance, neither static coefficient applies.
-
-Propagating the section's own `e_L = √(coefficient)` convention with `138.0` gives `e_L = 11.75`,
-`m_e/e_L ≈ 0.0435 MeV`, a factor `2.64` in `f_L` and `ν_emp ≈ 5.123` — a **`13.8%`** exponent
-mismatch. Since `e_L` is a free coupling and the functional is unfixed, neither residual is a
-prediction: the honest reading is that the `4.4%` above is an artefact of an undeclared convention
-applied to an unsettled functional, and **is not evidence for the Hopf identification**.
-Sublinearity compounds this — Skyrme energies grow linearly in `B` while Faddeev energies are
-bounded below by `∝ |H|^{3/4}` — so agreement at one charge could not license the identification
-in any case. What survives untouched is the `f_L` scaling law itself (R-055), which never used
-`e_L`; what does not survive is the `f_L → m_e` conversion factor — an **OPEN, uncounted input** —
-together with every accuracy claim that would ride on it.
+The obstruction sits upstream of the coupling, and naming it is what says how the gap would be
+closed. **Which functional stabilises the L-orbit defect is open, so within the static-functional
+class no dimensionless coefficient is fixed for the L-sector.** Write the candidate models in one normalisation,
+`E = c₂ ∫ Σ_i |∂_i n|² + c₄ ∫ Σ_{i<j} |∂_i n ∧ ∂_j n|²`. The dimensionless minimum
+`Ẽ = E/√(c₂c₄)` is model-intrinsic, and the coefficient in any `M = coeff · f/e` formula is `Ẽ/4`.
+For the `SU(2)`-valued Skyrme case `c₂ = f_π²/8` and `c₄ = 1/(2e²)`, so `√(c₂c₄) = f_π/(4e)`, and
+substituting the hedgehog reproduces §C.1.2's radial density term for term; solving that BVP at
+`c₂ = c₄ = 1` gives `Ẽ = 145.85 = 4 × 36.46` (Derrick virial `E₄/E₂ = 1.0001`). That coefficient
+is the **baryon** sector's, and it belongs to that functional and to no other. The framework's own
+artifacts say the L-orbit functional is a different question: `ring_core.py` records that the
+L-orbit defect "is not literally Faddeev-stabilized — the true profile is genuinely open", while
+the simulator's GF-5 identifies the stabiliser as a fixed-charge `S¹` meta-time winding
+(`E(μ) = aμ + b/μ³`) that is not a quartic at all. Three branches, three answers. If the defect is
+the `S³`-valued degree-1 Skyrmion that `π_3(SU(2)_L)` literally names, the Skyrme coefficient is
+the one that would apply — borrowed from the baryon sector, and uncounted if used. If it is the `S²`-director Hopf soliton — the object this section's title suggests
+and `ring_core.py` records as toroidal — the governing functional is Faddeev–Skyrme and the Skyrme
+coefficient is not merely inapplicable but **excluded**: the rigorous Vakulenko–Kapitanski bound
+reads `Ẽ ≥ 32π²√2 · (3/16)^{3/8} · |H|^{3/4} = 238.4 · |H|^{3/4}` in these units, a coefficient
+floor of `59.6`, strictly above `36.46`; the literature `H = 1` minimum (`E₁ = 1.236` in units of
+`32π²√2`, Foster arXiv:1012.2595, massless) sits at `Ẽ = 552.1`, coefficient `138.0`. If it is
+GF-5's fixed-charge balance, neither static coefficient applies. Sublinearity underlines that
+these are genuinely different physics rather than a choice of units — Skyrme energies grow
+linearly in `B` while Faddeev energies are bounded below by `∝ |H|^{3/4}`, so numerical agreement
+at one charge could not identify the functional in any case. **Within this static-functional class,
+settling the functional is the prerequisite for an L-sector coefficient, and a coefficient is a
+prerequisite for a mass** — and by §C.3.6's exponent, not a sufficient one.
 
 *The exponent `9/2` is itself derived* from D4 deconfined-quantum-critical-point (DQCP)
 universality. The breakdown:
@@ -3869,13 +4320,14 @@ and `ν_corr = 1` is generic at the Gaussian fixed point. The other substrate in
 itself is an imported many-body framework (companion Section 13). So **the 9/2 is a structural
 counting within an imported universality class, not a fit to the empirical exponent** — but it
 is conditional on the `K_c` ingredient and carries the normalization convention as a counted
-choice. A separate empirical fit,
-`ν = 3π/2 = 4.712`, matches the measured exponent to 0.34%, but no mechanism for that value is
-identified — a candidate coincidence, not a derivation.
+choice. An alternative value `ν = 3π/2 = 4.712` is carried as an L2 candidate, but it has neither
+a mechanism nor a live empirical target: extracting an exponent from the electron mass would
+require exactly the stiffness-to-mass conversion this framework does not have, and the exponent so
+extracted moves with the choice of coupling. There is no accuracy figure attached to it.
 The L-orbit electron is one of the framework's mixed-tier results: structural ontology derived,
-leading-order scaling derived at leading order (conditional on the `K_c` ingredient), and the
-`f_L → m_e` conversion an **open, uncounted input** — so no accuracy figure quoted in this
-section is a prediction, and the `ν = 3π/2` match has no identified mechanism.
+the stiffness scaling derived at leading order (conditional on the `K_c` ingredient), and **no
+route from that stiffness to the electron mass** — so the section's output stops at `f_L`, and
+`ν = 3π/2` remains an unmotivated candidate value rather than a measured one.
 
 **The rest-frame extent.** The electron-at-rest is the L-orbit defect oscillating at meta-time
 frequency `ω_0` while carrying its winding (`H = 1`, equivalently `π_3 = 1` and `π_1 = 1`). The
@@ -3888,12 +4340,10 @@ radius `r_e = α · λ̄_C` of §B.5b; the engine's `electron_two_windings` docs
 quantity `r_e`.) Two scope notes. It is **not a quantum-mechanical uncertainty-principle radius**
 — the framework does not take the uncertainty principle as primitive, it is emergent from the
 rotor structure of §B.3 — so no QM postulate is imported here. And it is **not an independent
-size determination**: under this section's own `m_e = f_L · e_L`, `ℓ_e = ℏc/(f_L · e_L)` is
-*numerically the same scale* as the BVP size, so the two agree by construction and differ
-only by the residual reported above — ~36% on this section's own `e_L = √36.47`, but a factor ~2.6
-if the coefficient is instead taken from the Faddeev–Skyrme hopfion. The
-residual is therefore conditional on the open conversion factor, and is not itself a test. The identification is dimensional — a consistency
-statement, not a second measurement of the size.
+size determination**: `ω_0` is read off the *measured* electron mass, so `ℓ_e = λ̄_C` restates that
+measurement in the framework's register rather than predicting it. Since the section derives no
+`m_e`, it derives no `ℓ_e` either. The identification is dimensional — a consistency statement,
+not a measurement of the size.
 
 ---
 
@@ -3902,7 +4352,8 @@ statement, not a second measurement of the size.
 The framework's cleanest spine result lives here. Charge quantization is not assumed; it
 is an algebraic identity in the substrate, with `|Q_p| = |Q_e|` tested to `< 10⁻²¹` empirically
 (R-063). The whole construction — hypercharge, fractional quark charges, weak isospin, V−A, GMN
-— follows from the Clifford spectrum plus one input bit (weak = SD), though not uniformly by
+— follows from the Clifford spectrum plus the weak assignment of §C.4.2 (itself forced, on a
+closed menu, given one named structural premise and one measurement), though not uniformly by
 derivation: the right-handed singlet values below are GMN-consistent **assignments**, fixed by the
 blade spectrum plus the charge chain rather than independently derived (see the normalization note
 at the end of §C.2.1), and the `< 10⁻²¹` figure is an empirical test of the proton–electron charge
@@ -3950,7 +4401,7 @@ this is canonical falsifier §E.3 row 11.
 
 A massive defect's meta-time rotor `q_h(τ_5) = exp(m τ_5 û/2)` (§A.4; `m = ω`) splits into two
 half-amplitude components — `sin(ω τ_5/2)` and `cos(ω τ_5/2)` — the pair the weak sector reads
-as the isospin doublet (R-058 — FRAMING/INPUT-given-weak=SD: under
+as the isospin doublet (R-058 — FRAMING, given the §C.4.2 weak assignment: under
 rotations of the rotor axis the pair transforms as `1 ⊕ 3`, scalar plus vector, NOT as a
 doublet; the doublet reading requires *left* multiplication on `ℍ ≅ ℂ²`, a different action,
 posited rather than derived).
@@ -3974,14 +4425,14 @@ This is a theorem, not a coincidence requiring tuning.
 Weak isospin is the chiral Spin(4) factor SD = `su(2)_+` (R-079, established at §C.4). On the
 4-component spinor module SD has a **half-module kernel**: it acts non-trivially on exactly one
 Weyl chirality, trivially on the other. So a `W` boson can only couple to one chirality (R-060) —
-the **V−A** structure. Given the weak=SD input, V−A is derived, not stipulated.
+the **V−A** structure. Given the §C.4.2 assignment, V−A is derived, not stipulated.
 
 ### C.2.6 Generation-blindness and no tree-level FCNC
 
 SD is the unique centralizer of the ASD generation triple. Acting on a generation-eigenstate
 basis, SD treats all three generations identically: the weak vertex carries no off-diagonal
 generation matrix element (R-061). This is the **no tree-level FCNC** result. It is also a
-consequence of the weak=SD input bit, and is canonical falsifier §E.3 row 15.
+consequence of the §C.4.2 weak assignment, and is canonical falsifier §E.3 row 15.
 
 ### C.2.7 GMN as algebraic identity (non-circular by construction)
 
@@ -4049,7 +4500,7 @@ Then
 
 **identically in `c`.** Both brackets vanish separately, and each is already derived: the `T_3`
 bracket because `uud + e` is one complete quark doublet plus an up-versus-down-opposed pair
-(R-058, given the counted weak = SD bit); the hypercharge bracket because `3Y_Q + Y_lep = 0` is
+(R-058, given the weak assignment of §C.4.2); the hypercharge bracket because `3Y_Q + Y_lep = 0` is
 exactly the `3 × 1/3 = 1` arithmetic of §C.5.4 — the `e_4`-bilinear's sign opposition between
 the orbits (R-056) combined with the trivector triple-product `/3` (R-057). The same
 computation returns `Q_n + Q_ν = 0` identically, and singles `uud` out uniquely: of the four
@@ -4142,6 +4593,15 @@ for `k ∈ {0, 1, 2}`, with `δ` the Brannen phase (the `δ_L` of §C.3.5) and `
 projection-geometry coefficient. The form follows from the
 projection geometry; the `c` value remains an input.
 
+**Attribution.** "Brannen amplitude" and "Brannen phase" are this text's internal labels, not a
+priority claim. The cyclic-permutation-invariant (`Z_3` circulant) parametrization is **Koide's**
+(arXiv:hep-ph/0005137, 2000); Brannen's 2006 note independently re-notices the charged-lepton case
+and pins the modulation amplitude at `√2` and the phase numerically, reaching the refereed
+literature through Koide's own 2007 paper. What this framework takes from Brannen is the numerical
+pinning; the form is Koide's, and the form *by itself* carries no content — three parameters fit
+any three-particle spectrum, so the empirical claim lives in the amplitude *value* alone
+(the parameter-counting statement is §C.3.10's, following Żenczykowski).
+
 ### C.3.2 The √2 factor
 
 The projection geometry of the 3D Euclidean meta-time circle onto a 2D `V_4⊥` slice carries a
@@ -4162,6 +4622,13 @@ propagates that result to `c = √2` and to the
 `Σ T_3·Y = 0` cross-term value, neither of which is independently forced.)
 
 The Brannen amplitude is therefore `A_k = 1 + √2 · cos(...)`.
+
+*Level.* `c = √2` — equivalently `K = 2/3` — is a **preferred direction** of the family, not an
+axiom and not a pick of this instance alone (§A.6.3). What is family-structural in this sector is
+the `ℤ_3` triplet organization and the *type* of hierarchy it produces; the value is endorsed as
+highly plausible and remains unforced, which is exactly what the six negative forcing routes
+record. A candidate that organizes the lepton triple with a different phase coefficient is still a
+member of the family.
 
 ### C.3.3 Koide K = 2/3 ⇔ c = √2 — the Brannen-Koide equivalence
 
@@ -4207,7 +4674,7 @@ is the *form* `K = 2/3` carries
 ### C.3.3a At which mass definition? — the `ω` ↔ renormalized-mass identification is not fixed (OPEN)
 
 The framework's mass ontology is `mass = the meta-time rotor frequency ω` (§A.4). That is a
-substrate-level, **monad-layer** statement. `K = 2/3` is a relation among the **inside-frame measured,
+substrate-level, **grain-layer** statement. `K = 2/3` is a relation among the **inside-frame measured,
 physical (on-shell / pole)** charged-lepton masses. **Nowhere in the corpus is the bridge between the
 two fixed:** there is no passage, and no engine primitive, that says which mass `ω` is supposed to
 equal — the pole mass, an `MS-bar` mass at some scale, or a substrate-scale quantity that descends to
@@ -4236,7 +4703,7 @@ So
 > *why does the relation hold at* that *mass definition?*
 
 is an **OPEN QUESTION, not a derived feature** of the construction. It is the canon §0 two-scales
-problem — Planckian monad layer versus emergent hadronic cell — landing squarely on the framework's
+problem — Planckian grain layer versus emergent hadronic cell — landing squarely on the framework's
 most quantitatively impressive result, and it is recorded here rather than left unstated.
 
 **Downstream inheritance — sized, not merely asserted.** All figures below come from the same
@@ -4312,14 +4779,33 @@ tier, not derived-forward. It is a fruitful, sub-percent fit cross-validated by 
 not a derivation. The structural result (Koide form, Foot 45°) survives; the magnitude triple
 is a fit until the substrate forward derivation lands.
 
-### C.3.6 The D = J ⇔ δ_L = π/12 ⇔ m_e = 0 identity
+### C.3.6 The B = A ⇔ δ_L = π/12 ⇔ m_e = 0 identity
 
-At the chirality balance `D = J`, `δ_L = π/12 = 15°` and the electron mass goes to zero at
-leading order (R-069). This is a substrate-side structural identity: at the critical chirality
-ratio the lightest lepton is massless. The empirical `D/J ≈ 0.79` (vs the critical `D/J = 1`)
-puts the framework near, but not at, the critical balance — which is what generates the
-hierarchy `m_e ≪ m_μ < m_τ`. The hierarchy is structural; its magnitude scaling is the QCP
-result of §C.1.6.
+The identity is a statement about the two **amplitudes** of the chiral `ℤ_3` potential of
+§C.3.7, and it is exact there: when the parity-odd amplitude equals the parity-even one,
+
+> `B = A ⇔ δ_L = π/12 = 15° ⇔ m_e = 0` at leading order  (R-069),
+
+since `tan 3δ_L = B/A` and `√m_e` vanishes linearly in `δ_L − π/12` in the fitted Brannen form.
+Equal amplitudes are the balance point; the lightest lepton is massless there.
+
+**The `D = J` form is a corollary, not the theorem.** Reading `B = A` as `D = J` requires the
+coefficient identification `A = J`, `B = D` — §C.3.7's asserted ansatz, at the dressed-coupling
+level. Given that ansatz, `D = J` is the balance point and the empirical `D/J ≈ 0.79` sits at
+79% of it; without it, what the lepton fit measures is the amplitude ratio `B/A` and nothing
+finer. So the narrative that "the substrate's chirality nearly balances, and the electron is
+light because of how near" is **conditional on the ansatz** — it is the ansatz, not the
+identity, that converts an amplitude ratio into a statement about the bond couplings. What is
+unconditional is the structure: the hierarchy `m_e ≪ m_μ < m_τ` is generated by proximity to a
+balance point of the two amplitudes, and that proximity is what the one-parameter fit measures.
+
+§C.1.6 expands a *different* quantity
+about this same parameter point — the L-orbit stiffness `f_L` — and the two vanishings are **not
+known to correspond**: in the fitted Brannen form above `√m_e` vanishes linearly in `δ_L − π/12`,
+so `m_e ∝ (1 − D/J)²` near the balance, while §C.1.6's stiffness carries the exponent `9/2`.
+Two vanishings at one point, with different exponents and **no passage relating them** — which is
+exactly why §C.1.6 delivers no mass. Both exponents are read off inside the *same* banked
+parametrization, so the amplitude restatement above does not touch that comparison.
 
 ### C.3.7 δ_L from the chiral Z_3 potential
 
@@ -4329,6 +4815,20 @@ identification `A = J, B = D` (which fixes the absolute calibration) is an asser
 the dressed-coupling level, not a substrate forward derivation. Honest scope flagged in the
 result row.
 
+**Two amplitudes, however many channels.** Given the potential's two premises — one angle with
+`ℤ_3` periodicity, truncated to the lowest `ℤ_3` harmonic — the admissible potentials span the
+two-dimensional space `{cos 3ψ, sin 3ψ}`, and that dimension is a fact about functions on a
+circle, not about the Hamiltonian. Additional bond channels (§D.3.3's `Γ` directions, a
+spatial-bond `D`) therefore cannot create a third amplitude; they **repopulate** the two that
+exist, `A = J + Σᵢ αᵢΓᵢ` on the parity-even side and `B = D + β·D_spatial` on the parity-odd
+side. So the *form* `δ_L = ⅓·arctan(B/A)` is robust to the truncation pick, and what the pick
+buys is the *identification* `B/A = D/J` — which holds exactly when every entry coefficient
+`αᵢ`, `β` vanishes. Those coefficients are dressed-level objects: at tree level every `ℤ_3`
+harmonic of the substrate's own orientation potential vanishes, `J`'s included, so the ratio
+that would decide them is `0/0` and no static computation reaches it. The question is held at
+§D.5 as a named piece of the kernel problem, and any claim that `Γ` does or does not enter `A`
+is a claim about that kernel.
+
 ### C.3.8 Three generations from Frobenius
 
 Why exactly three generations? The generation circle is identified with the three imaginary
@@ -4336,7 +4836,7 @@ units of `ℍ` on `V_4⊥`. **The count's operative theorem is sharper than this
 title suggests:** what forbids a fourth generation is
 `dim Λ²₋(ℝ⁴) = 3` — four-dimensional space carries exactly three anti-self-dual planes, a
 dimension count now *computed* in the engine (the trace of the `(1 − I₄·)/2` projector on
-grade-2) rather than asserted over a hand-written list. Frobenius's theorem (ℝ, ℂ, ℍ the only
+grade-2) rather than asserted over a hand-written list (R-071). Frobenius's theorem (ℝ, ℂ, ℍ the only
 finite-dimensional associative real division algebras) enters as a structural remark, and only
 through an **associativity premise** the framework must own: drop associativity and the
 octonions offer seven imaginary units — cf. Furey's division-algebraic programme, which builds
@@ -4350,6 +4850,13 @@ The result is LOCATED-conditional: the orbit-phase → ℍ-unit identification i
 mapping that is asserted rather than derived from substrate dynamics. So "exactly three" is a
 generic-given-4D count **given** the identification and the associativity restriction named
 above; those conditionals are the residual gap, flagged in the result's companion row.
+
+*Level.* The dimension count is family property — it is a fact about four-dimensional space and
+consumes no pick. The two conditionals are not: reading the three anti-self-dual planes as
+**generation seats**, with associativity, is a **preferred direction** (§A.6.3), and the octonion
+route is the named family alternative rather than an outside objection. So the family makes
+exactly three seats *available* by its own geometry; which seat nature occupies, and why, is not
+derived at either level.
 
 ### C.3.9 G is the colour Z_3, not the generation Z_3
 
@@ -4414,7 +4921,7 @@ forward reference resolves here.
 
 The lepton sector calibrates `D/J ≈ 0.787` via Brannen `δ_L = 12.73°`. Independently, the baryon
 sector reads `D/J = √18 / e ≈ 0.779` from the Skyrme stabilizer with the ANW-historical
-`e ≈ 5.45` (matching `f_π = 129 MeV`) (R-074). The two values agree to
+`e ≈ 5.45` (matching the ANW fitted `f_π = 129 MeV`) (R-074). The two values agree to
 ~1.1%. This is the framework's **genuine cross-sector over-determination signal** — two
 independently-calibrated sector fits convergent on the same value to within 1%, with no
 adjustable parameter between them. The structural meaning is that the same chirality ratio
@@ -4450,12 +4957,13 @@ post-hoc/look-elsewhere caveat carried.
 
 ### C.3.12 Neutrino forced left-handed; single Weyl; lightness
 
-The neutrino's handedness is fixed by the framework's one weak-sector input bit — the same
-linked binary choice as `weak = SD`, counted once (§C.4.2's honest-scope note: the substrate
-chiral coupling structure that selects the handedness *is* the SD-vs-ASD selection). Given that
-bit, the `+e_4` propagation direction (R-043) forces the neutrino into a single Weyl ideal of
-the spinor module: only the left-handed Weyl is wave-coupled (R-075). The right-handed partner
-sits in the `S_-` mode that is wave-decoupled — sterile.
+The arrow runs from the substrate to the neutrino, not the other way. The `+e_4` propagation
+direction (R-043) forces wave-coupled matter into a single Weyl ideal of the spinor module
+unconditionally — `forced_handedness` and the lightness argument both compute without consuming
+any weak-sector assignment — so it is the substrate that fixes the neutrino's handedness (R-075,
+R-076). *Which* half gets the name "left" rides the same orientation convention that names the
+two chiral factors (§C.4.2), which is a relabelling and not a further commitment. The
+right-handed partner sits in the `S_-` mode that is wave-decoupled — sterile.
 
 Neutrino lightness then follows from the single-Weyl structure (R-076). A two-Weyl Dirac
 fermion's mass term mixes the two chiral halves; a single Weyl with a sterile partner has only
@@ -4540,7 +5048,7 @@ The D4 orbit structure carries four substrate-distinct sectors matching the SM's
 The total D4 generator count is `12 + 12 = 24` (the D4 kissing number); see R-083 for the
 historical SU(5) translation.
 
-### C.4.2 Weak = SD chiral Spin(4) factor (the one INPUT bit)
+### C.4.2 Weak = SD chiral Spin(4) factor — a closed menu, not a pick
 
 The **weak isospin gauge group is the self-dual bivector algebra**
 
@@ -4549,23 +5057,64 @@ The **weak isospin gauge group is the self-dual bivector algebra**
 one of the two factors of `Spin(4) = SU(2)_+ × SU(2)_−` — the `I_4 = +1` (self-dual / chiral)
 one.
 
-*Why not the L-orbit?* The L-orbit `𝓛` *is* the spin algebra (§A.5.2). A weak interaction built
-on it would be **parity-even** (vector) — it would couple both chiralities and require a
-right-handed neutrino to interact. SD has a **half-module kernel** (acts on one Weyl factor only);
-the L-orbit has **zero kernel** (acts on both). So a left-handed, single-Weyl neutrino is
-compatible with weak = SD but excludes weak = L-orbit.
+**The menu is complete, and it is computed** (R-171). Ask which three-dimensional Lie subalgebras
+of the substrate's grade-2 rotation algebra `so(4)` exist at all. The answer is exactly three, up
+to conjugacy:
 
-**An honest scope note on what's input and what's derived.** The pair
-**{weak gauge = SD}** and **{neutrino is left-handed}** is **one linked binary choice**: given the
-chiral-factor structure of Spin(4), the framework's single-Weyl neutrino must be coupled to the
-chiral factor that hosts the weak gauge force, and *which* chiral factor (SD vs ASD) is "the
-weak one" is identical to *which* chirality (LH vs RH) the neutrino lives in. The pair is one
-binary bit, counted once: the chiral coupling structure of the substrate that
-forces the neutrino's handedness (R-075) *is* the SD-vs-ASD selection, so the two are not
-independent and the accounting books them as one. The framework picks the SD branch of this linked binary
-as the INPUT (equivalently, picks LH as the neutrino handedness); everything else in the weak
-sector (V−A, generation-blindness, doublet structure, up = SD) is DERIVED-given-it (R-060,
-R-061, R-077).
+> **SD** · **ASD** · **the diagonal `so(3)` class** `{Stab(v) : v a unit vector}`, of which the
+> L-orbit `𝓛 = Stab(e_4)` is one member.
+
+This is a classification, not a survey. On an orthonormal basis of either chiral factor the
+structure tensor is exactly `c·ε_{ijk}`, and total antisymmetry alone forces three facts about
+that factor: it has no two-dimensional subalgebra, it is simple, and all of its automorphisms are
+inner. Goursat's lemma then reduces the classification of three-dimensional subalgebras of a sum
+of two such factors to a finite sweep over the possible projection and kernel dimensions, which
+returns those three cases and no others. Two candidates the geometry might seem to offer are not
+on the list because they are not subalgebras at all: the parity-odd Q-orbit `{e_{14}, e_{24},
+e_{34}}` and every proper "handed" mixture `cos t·SD + sin t·ASD` fail to close, the mixtures
+because the two factors carry *opposite* structure-constant signs.
+
+**ASD is not a rival — it is the same assignment mirrored.** The two chiral factors are
+distinguished only by the sign of `I_4`, and an orientation-reversing frame reflection exchanges
+them exactly while fixing the diagonal class and flipping that sign. Counted up to the
+automorphisms of `so(4)`, the menu has *two* entries, not three. A candidate that "assigns weak
+isospin to ASD" is this candidate with the opposite orientation convention on `{e_1, e_2, e_3}` —
+one assignment with two descriptions. Nothing in the substrate's driven bond action distinguishes
+them either: the driven point group contains a reflection that exchanges the two halves, and the
+allowed chirally polarised bond coupling has dimension zero (§D.2.5, §D.4). If some independent
+object ever pins the substrate's orientation, this paragraph reverts and ASD becomes a real branch.
+
+**The diagonal class is excluded by data — but not by the datum one would expect.** Every grade-2
+element commutes with `I_4`, so *every* candidate on the menu preserves the two Weyl halves of the
+spinor module. Restricted to the half the neutrino occupies, the L-orbit and SD span the **same**
+three-dimensional algebra. A left-handed single-Weyl neutrino therefore cannot tell them apart,
+and any argument that it can is mistaken. The discriminator is the *other* half: SD annihilates it
+outright — that half is a weak **singlet** sector — while the diagonal class charges it exactly as
+strongly as the first. Under a diagonal host the right-handed fermions would form a second weak
+doublet sector at full strength. They do not: the right-handed fermions are weak-isospin singlets
+and there are no right-handed charged currents. The framework supplies the occupancy this argument
+needs from its own structure — the charged lepton occupies *both* Weyl ideals, and that two-ideal
+occupancy is its Dirac-mass channel (§C.3.12, R-076) — so the other half is not empty and the
+datum bites.
+
+**What this leaves standing, stated exactly.** With both alternatives closed, the assignment is
+not a choice the framework makes; it is what the substrate leaves once the classification is
+computed and one measurement is read. Two things are consumed and both are named. The first is a
+**structural premise**: that weak isospin is hosted by a three-dimensional `su(2)` *inside the
+substrate's own grade-2 rotation algebra at all*. That premise is not derived anywhere in this
+paper, and a candidate that hosts weak isospin somewhere else is not on this menu and is untouched
+by anything above. The second is the **datum**: right-handed fermions carry no weak isospin.
+Given those two, `SD` is forced, and V−A, generation-blindness, the doublet structure and
+`up = SD` follow from it (R-060, R-061, R-077) — not as a family-level derivation free of
+measurement, but as consequences of a forced assignment whose two supports are on the table.
+
+**On the accounting.** This sector's cost was formerly booked as one free input bit, "the choice
+of SD". That reading does not survive the classification: SD-versus-ASD is not a bit at all, since
+the two are related by a relabelling; and chiral-versus-diagonal is not a free choice either,
+since it is settled by measurement rather than selected. What the sector actually costs is the
+named structural premise above plus one empirical bit, and the empirical bit is one the framework
+reads rather than tunes. The parameter economy is unchanged in *number* and changed in *kind*, and
+the honest statement of it is the two-line one just given, not "the framework picks SD."
 
 ### C.4.3 U(1)_Y from I_4 + bivector compactness
 
@@ -4685,7 +5234,7 @@ direct shape-precedent: Trayling (hep-th/9912231, 1999, unpublished preprint) al
 further in Trayling & Baylis, *J. Phys. A* **34** (2001) 3309. The delta: that construction lives
 in `Cl(7)` with an algebraic-spinor generation and four extra spacelike dimensions supplying the
 Higgs isodoublet; TWT's lives in the 4D `Cl(4,0)`/D4 substrate with defect matter, `ℤ₃`-discrete
-colour, and the weak chirality entering as one counted input bit. Developed independently; the
+colour, and the weak chirality forced on a closed menu (§C.4.2). Developed independently; the
 convergence of the *number* across such different constructions underlines that `3/8` is
 normalization content, not dynamical content — consistent with this section's own scope.
 
@@ -4717,6 +5266,18 @@ both stiffnesses equal. It is **not** a prediction of the observed mixing angle,
 currently has no derivation of the crossing scale that would turn it into one. This is a genuine
 open exposure of the electroweak sector, of the same kind as (and independent from) the §B.6.3
 dimension-six exposure, and it is recorded as such rather than as a passed test.
+
+**And, like that one, it is an exposure of this candidate instance rather than of the family**
+(§A.6). The `3/8` identity itself is family property **in the conditional sense of §A.6.3** — it
+is a normalization statement about the charge assignments and consumes the arrangement nowhere,
+but it does consume the weak assignment of §C.4.2, so it stands or falls with that assignment's
+own two supports — a named structural premise and one measurement — rather than with an axiom. What consumes the arrangement is the
+*placement* of the crossing — the middle row of the table above is a lattice-scale statement, and
+both the lattice and its back-fit size are pinned choices (§A.6.4, nodes V3-1, V3-3, V3-4). A
+family member without a regular arrangement inherits the identity and does not inherit the
+descent. That is not a rescue: it means the miss is evidence against this instance's arrangement
+and its calibrations specifically, and the family has bought nothing by not yet having a rival
+placement to offer.
 
 **The escape routes, computed rather than waved at.** A referee will reach for four
 standard ways to rescue a gap of this size. All four were computed; none of them closes it. The
@@ -4785,7 +5346,7 @@ in fact meet at all, their `1/α` spread bottoming out at `3.2` near `10¹⁴ Ge
 The exposure is therefore not an artifact of working at leading order, and it is not something a
 plausible threshold absorbs. What is missing is a **derivation of the crossing scale**. The one
 handle the framework has is the two-scale structure of §D.3.5: the D4-isotropy argument for
-`g_1 = g_2` is a *monad-layer* statement, and if the two bivector stiffnesses were instead set
+`g_1 = g_2` is a *grain-layer* statement, and if the two bivector stiffnesses were instead set
 equal at some emergent layer, the crossing would move. That mechanism is not built, and until it
 is, R-082's `3/8` is a normalization identity and not a measurement of `θ_W`. Negatives ledger
 **N55**.
@@ -4824,8 +5385,9 @@ R-140 computation adds a constraint carried honestly: the plaquette drives **bot
 sectors with identical strength (`W = W₊P₊ + W₋P₋` with equal angles — the DM plaquette is
 chirally blind), so the *substrate lattice* delivers `Spin(4) = SU(2)₊ × SU(2)₋` curvature
 symmetrically, and the **SU(2)₊ restriction comes from the matter/SD coupling — the
-"weak = SD" INPUT bit (§C.4.2) — not from the plaquette** (the menu-vs-pick pattern: the plaquette is
-the symmetric menu; SD is the counted pick). The `Im χ`-mediated dynamics delivering the
+"weak = SD" assignment (§C.4.2) — not from the plaquette** (the plaquette is chirally symmetric;
+what breaks the symmetry is the matter coupling, and §C.4.2 shows the breaking is forced rather
+than picked). The `Im χ`-mediated dynamics delivering the
 Yang-Mills sector at the dressed-coupling level and the full Yang-Mills construction remain
 Paper-2 work; the explicit finite-action instanton is established at the structural level
 (R-143, (iv) below; R-088 covers the index-theorem ΔB = ΔL = N_gen part, whose rate face
@@ -4882,8 +5444,8 @@ constructive family (neutral background + unit-winding fluctuation), not by a lo
 now has its substrate carrier structurally in place; the *rate* stays gated.
 
 This is the **structural justification that weak SU(2)₊ can be gauged**. Without it, §C.4.2's
-"weak = SD" INPUT bit would be picking a gauge group that the substrate might not actually
-admit. With it, the bit is honest.
+"weak = SD" assignment would name a gauge group that the substrate might not actually
+admit. With it, the assignment is honest.
 
 ### C.4.7 The 24-bond count; SU(5) as historical translation
 
@@ -4983,7 +5545,10 @@ the symmetry-breaking *structure* (which gauge subgroup is broken to which) from
 identification on the spinor ideal, but does not derive the absolute scale `v ≈ 246 GeV` or the
 Higgs mass. These are #1-gap-gated absolute magnitudes (§E.2.2), comparable in tier to α_em.
 The two-scale conjecture `v / f_π ≈ m_p / m_e` is a numerical near-coincidence with
-no mechanism — an intriguing lead, not derived.
+no mechanism — an intriguing lead, not derived. It is also a place where the ANW *fitted* `f_π`
+enters a *physical* comparison: the ratio is quoted at `129 MeV`, and it is sensitive at the
+tens-of-percent level to which normalization of the decay constant is read into it — a further
+reason to treat it as a lead rather than a result.
 
 ### C.5.4 B − L anomaly cancellation from 3 × 1/3 = 1
 
@@ -5086,7 +5651,7 @@ matching the D4 kissing number 24 exactly. The numerical structure:
   confining-string diameter.
 
 The 25-cell structure ties directly to A-1b D4 kissing — it is the geometric expression at the
-hadronic-cell scale of the lattice's coordination structure at the monad scale.
+hadronic-cell scale of the lattice's coordination structure at the grain scale.
 
 The 25-cell Skyrmion gives the inter-nucleon force hierarchy (R-091b):
 
@@ -5353,7 +5918,7 @@ into the framework (cf. §A.5.2, §D.2.4).
 
 ---
 
-## §D.3 — The D4 monad layer
+## §D.3 — The D4 grain layer
 
 The substrate beneath the wave.
 
@@ -5372,19 +5937,52 @@ Two motivating gates support the D4 identification:
   self-selection from a disordered phase is open.
 
 The D4 identification is therefore **empirically motivated, not derived inside the framework**.
-It is the axiom A-1b of the Opening.
+It is the premise `A-1b` of the Opening — and, at the architecture level, the **first pick of the
+first candidate instance** (§A.6.4, node V3-1), not a commitment of the family. The family holds
+that the substrate is a material medium and endorses its being grainy; it does not hold that the
+grains are *regularly arranged*, and it does not fix their size. The menu this pick came from is
+open and populated: other regular lattices; an irregular-discrete arrangement, which is the
+causal-set-adjacent branch and the one an external theorem constrains sharply (companion
+Section 13, row I-26); and a continuum medium carrying a cell scale, which is the least explored
+region of the family and costs the D4 results outright. Everything in §D.3–§D.4 that is sited on
+the lattice inherits this pick, including — through the size — the dimension-six exposure of
+§B.6.3.
 
-### D.3.2 The monad as unit Clifford rotor
+### D.3.2 The grain as unit Clifford rotor
 
-At each D4 site sits a unit Clifford rotor `R_i ∈ S³ ≅ SU(2) ≅ Spin(3)`, acting one-sidedly on
-the spinor module (R-102). The continuum field `R(x)` is the rotor field whose dynamics §D.4
-develops.
+At each D4 site sits a **4D orientation** — a unit even element of `Cl⁺(4,0) ≅ ℍ ⊕ ℍ`, that is a
+unit Clifford rotor `R_i`, carrying **six real parameters** — acting one-sidedly on the spinor
+module (R-102). Six is the dimension of the grade-2 sector, `dim so(4) = C(4,2) = 6`, and the
+chiral factorization of that sector into two commuting, oppositely-oriented `su(2)` triples is
+what carries the two windings of §A.2 (R-002; engine: `pi3_orientation_class_two_windings`).
 
-**Note on naming.** "Monad" names the Planckian-layer atom of the substrate. When discussing
-cell-layer phenomenology (hadrons, the chirality balance, the canted ground state), "monad" is
-avoided in favor of "substrate site" or "rotor", since the cell layer's constituents are not
-the Planckian monads themselves but their cell-scale collective configurations. The "monad as
-unit Clifford rotor" identification is a Planckian-layer statement.
+The one-sided action is what would make the sign `±1` part of the local state. Whether it does —
+whether the `ℤ₂` lives in the state itself or enters only at the emergent covering sector, where
+`π₁(Q_N) = ℤ₂` (§B.3.5) — is left open. Every winding statement the framework uses is insensitive
+to the choice, because a double cover is an isomorphism on `π_n` for `n ≥ 2`, so `π₃` and `π₄`
+are the same either way.
+
+The continuum field `R(x)` inherits this target **unchanged**; it is the rotor field whose
+dynamics §D.4 develops.
+
+**Levels, at the one place they are easiest to confuse.** Three different statuses meet in this
+subsection. That the local state is a **4D orientation with six real parameters**, inherited
+unchanged by the continuum field, is a **family axiom** (§A.6.1, LS) — it is what carries the
+generations, the weak sector, and the second winding, and two- or three-parameter readings survive
+only as explicitly stated reductions to the L-orbit sector. Where the `ℤ₂` lives is a **family
+branch left deliberately open**, exactly as the paragraph above says. That the medium is **grainy
+at all** is a **preferred direction**, not an axiom: a continuous-medium candidate would still be
+a member. And that the grains sit at **D4 sites** is the instance's arrangement pick (§D.3.1). One
+further consequence of the family's refusal belongs here: the rotor **field** is a *description*
+of the medium, not the ontology — the medium is material, and the field is how this paper writes
+down what it does (§A.6.1).
+
+**Note on naming.** "Grain" names the Planckian-layer atom of the substrate — elsewhere also
+called the monad, the term two engine primitive names retain. When discussing cell-layer
+phenomenology (hadrons, the chirality balance, the canted vacuum), "grain" is avoided in
+favor of "substrate site" or "rotor", since the cell layer's constituents are not the Planckian
+grains themselves but their cell-scale collective configurations. The "grain as unit Clifford
+rotor" identification is a Planckian-layer statement.
 
 ### D.3.3 The two couplings J and D — calibration to leptons
 
@@ -5393,9 +5991,52 @@ Each D4 nearest-neighbour bond carries:
 - a **Dzyaloshinskii–Moriya `D`** on the 12 `e_4`-bonds only (R-103).
 
 The DM coupling is parity-odd (the wave's chiral contribution; the substrate alone is achiral).
-Its parity assignment is **structural** — the unique pair allowed by parity on D4. The ratio
-`D/J ≈ 0.79` is the framework's chirality calibration, INPUT to the lepton sector via Brannen
-`δ_L = 12.73°` (§C.3.5, §C.3.11).
+The ratio `D/J ≈ 0.79` is the framework's chirality calibration, INPUT to the lepton sector via
+Brannen `δ_L = 12.73°` (§C.3.5, §C.3.11).
+
+**`{J, D}` is a truncation pick, not a forced pair.** The bilinear bond couplings allowed on D4
+under the driven point group `Stab(+e_4)` form a **ten-constant menu** — `J`: 2, `D`: 2, and a
+symmetric-traceless channel `Γ`: 6, in the frame-bilinear reading of the site variable (the
+pseudoscalar channel `χ` has allowed dimension zero there). Keeping `J` and `D` and setting the
+rest to zero is a **pick**, and it is counted as one. Three consequences are stated plainly:
+
+- **Parity does not do the excluding.** `Γ` is parity-**even**, so no parity argument reaches it;
+  exactly one `Γ` direction survives the leading-order isotropy requirement, and it is dropped by
+  choice. That survivor is quadratically inert on the aligned state and vanishes identically on
+  the canted configurations of §D.4.3, which is why it was never visible — not why it is absent.
+- **The `e_4`-only DM support is also a pick.** The two-dimensional allowed `D` space at the
+  driven group is spanned by the `e_4`-bond coupling used here **and** a spatial-bond coupling of
+  the same symmetry type; no point-group, chirality, or spatial-parity argument separates them,
+  and every larger group kills both at once. Turning the second dial on is not a perturbation of
+  the canted vacuum but a switch on it: the two couple to the *same* unique reflection-even
+  chiral invariant `Σ_a k_a B_{a4}` with a fixed coefficient ratio, so a cancellation line exists
+  in the `(D, D₂)` plane at which the canting — and with it the chiral symmetry breaking — goes
+  away entirely. The candidate reason to exclude the spatial-bond coupling is the origin story
+  already stated above (the DM coupling as the *wave's* chiral contribution, hence supported on
+  the `e_4` bonds the drive singles out); that is a physical candidate routed through the open
+  substrate dynamics (§D.5), not a symmetry exclusion.
+- **The `cos`/`sin` parity assignment is an assertion.** That `J` (and `Γ`) feed only the
+  parity-even amplitude of the chiral `ℤ_3` potential while `D` feeds only the parity-odd one —
+  the step that turns §C.3.7's two-amplitude form into a `D/J` reading — is asserted, not
+  measured; nothing computed here pins it (negatives ledger N62).
+
+The pick's blast radius is bounded and named: the quadratic spine (`f_π² = 8J/a`, the pitch) does
+not move under the `Γ` survivor, while the amplitude identification behind `D/J ≈ 0.79` and the
+canted vacuum itself are exposed to the second `D`.
+
+**Whose pick, and what survives if it falls.** Both of the picks named above belong to the
+**first candidate instance** — the truncation itself and the `e_4`-only support of `D` (§A.6.4,
+nodes V3-2 and V3-2a) — and so does the calibrated ratio that reads off them (node V3-4). None of
+the three is an axiom, and the family does not hold that the medium's bonds carry exactly two
+constants. What survives if any of them falls is the whole of the structural layer — charge
+quantization, the `sin²θ_W = 3/8` identity, the generation count, the weak-sector assignment —
+**each at the level it already carries**, not promoted to axiom by surviving this pick: the
+assignment is a preferred direction and the identity and the generation count ride preferred
+directions of their own (§A.6.3). What moves is the numerical spine of Parts C and D — the cell-scale relation, the pitch,
+and the meaning of `D/J ≈ 0.79`, which under a non-zero discarded channel stops being a
+measurement of a ratio of two couplings and becomes a measurement of a combination. That is why
+the ratio is quoted throughout this paper as a calibrated input with a named referent condition,
+and not as a pinned single-parameter measurement.
 
 Cross-sector consistency: independently, the baryon Skyrme stabilizer gives `D/J ≈ 0.779`
 (§C.3.11). The ~1.1% cross-sector agreement is a **hedged cross-check** (the engine's own tag):
@@ -5405,8 +6046,8 @@ carries no scheme label (see §E.2.1's provisional-`e` entry and §C.3.11's full
 
 A layer note, made explicit: `J`, `D`, and the spacing `a` are defined on the D4 bond
 structure, but every load-bearing use in this paper consumes them as **cell-layer effective
-couplings** — `f_π² = 8J/a` with `f_π ≈ 129 MeV` fixes the working layer as the hadronic cell
-(a Planckian-layer reading would misplace `f_π` by ~38 orders of magnitude). The monad-layer
+couplings** — `f_π² = 8J/a` with the ANW fitted `f_π ≈ 129 MeV` fixes the working layer as the hadronic cell
+(a Planckian-layer reading would misplace `f_π` by ~38 orders of magnitude). The grain-layer
 couplings of the same form are related to these by the open cell-formation map (§D.3.5); the
 two layers' couplings are not interchangeable.
 
@@ -5424,7 +6065,9 @@ L ↔ Q transition channels — historically labeled SU(5) X, Y leptoquarks in t
 ### D.3.5 The two-scale framework
 
 The substrate is two-layered:
-- A **Planckian monad layer** (the D4 lattice, fundamental rotor medium; sets the cutoff `Λ`).
+- A **grain layer at the `G`-back-fit Planckian scale** (the D4 lattice, fundamental rotor medium;
+  sets the cutoff `Λ` — the two-layer architecture is the structural claim; the Planckian *value* is
+  measured `G` restated, three lines below).
 - An **emergent hadronic cell layer** (where solitons, hadrons, and their masses live; the `f_π`
   scale at `ℓ_S ≈ 0.281 fm`).
 
@@ -5435,7 +6078,7 @@ single-scale substrate cannot host two numbers ~20 orders apart. The two-layer *
 with its open cell-formation map is adopted as the resolution, not derived. The two-scale
 framework is what makes the framework internally consistent at the gravity/hadron interface.
 
-The **cell-formation mechanism** — how the cell layer emerges from the monad layer — is open
+The **cell-formation mechanism** — how the cell layer emerges from the grain layer — is open
 (a Layer-3 deep gate, §E.2). The two-scale structure is forced by self-consistency; its
 realization is a Paper-2 target.
 
@@ -5482,25 +6125,109 @@ match* only, a prediction-vs-empirical comparison rather than an output of `5.45
 nucleon mass derived from the BVP via `M_0 = 36.47 · f_π/e` remains ~8% below empirical at the
 leading-order BVP level (§C.1.2).
 
-### D.4.3 The Luttinger–Tisza canted-helix ground state
+### D.4.3 The canted-helix vacuum and its branch structure
 
-The substrate's ground state under combined `J + D` couplings is a **canted ferromagnet**, not
-fully aligned. The canting angle `q ≈ 10.5°` is the Luttinger–Tisza spiral pitch at
-`D/J ≈ 0.79` (R-108): minimizing the per-site single-`q` spiral bond energy
-`E(q) = −12J cos q − 12J − 2√2·D sin q` (the four `±e_1±e_4`-class bonds project the DM vector
-with weight `1/√2`, giving the `2√2`) yields
-`tan q = D√2/(6J)`, `cos q ≈ 0.983`. The canted ground state breaks chiral symmetry; the
-breaking pattern is what the lepton-sector Brannen amplitude form parametrizes.
+*What this section is a statement about.* Everything below is downstream of the arrangement and
+the bond truncation — the first candidate instance's first two picks (§A.6.4, nodes V3-1, V3-2,
+V3-2a). It is the vacuum of *this* candidate, not of the family, and the chiral symmetry breaking
+it supplies can be switched off entirely by turning on a second coupling the truncation discards
+(§D.3.3). Read the branch analysis that follows with that scope in force.
+
+Under combined `J + D` couplings the aligned state is unstable to canting: the DM term buys a
+twist that the exchange term pays for, and the balance fixes a pitch. The configuration whose
+bond energy is minimised below is a **single-`q` spatial helix**, and naming it is part of the
+result:
+
+> `k = q·e_1` — the wavevector, along a **spatial** axis — and `B = E_14` — the rotation plane.
+
+Neither feature is presentational. The helix is spatial because **the DM energy vanishes
+identically on an `e_4`-axis helix**: the drive axis supports no DM gain at all. The rotation
+plane is the bond plane of the `±e_1±e_4` bonds, which is what puts the DM projection weight
+`1/√2` on the four `±e_1±e_4`-class bonds and produces the `2√2`. On that configuration the
+per-site bond energy is
+
+> `E(q) = −12J cos q − 12J − 2√2·D sin q`,
+
+minimised at `tan q = D√2/(6J)`, giving the canting angle `q ≈ 10.5°` and `cos q ≈ 0.983` at
+`D/J ≈ 0.79` (R-108). The canted state breaks chiral symmetry; the breaking pattern is what the
+lepton-sector Brannen amplitude form parametrizes.
+
+**What is minimised, and what is not.** The wavevector direction `k̂` is *fixed by hand* in the
+expression above rather than scanned: the four twisting bonds are named in advance and the
+minimisation then runs in the single variable `q`. That is a Luttinger–Tisza **ansatz**, not a
+Luttinger–Tisza **minimisation**, and the difference is load-bearing.
+
+**Branch structure of the single-`q` family.** Scanning `k̂` over the full four-dimensional
+wavevector and the rotation plane over all simple bivectors gives three facts:
+
+- The configuration above **is** a genuine stationary point of the full `(k, B)` problem — every
+  component of the gradient vanishes there at the closed-form pitch.
+- It is nevertheless an **index-2 saddle for every `D/J > 0`**. The second variation transverse
+  to the helix axis has the closed form
+  `∂²E/∂k_2² = ∂²E/∂k_3² = 4J(cos q + 3)(cos q − 1)/cos q`, strictly negative for all
+  `0 < cos q < 1`, vanishing only in the ferromagnetic limit `D → 0`.
+- The lowest state **within the single-`q` simple-bivector helical family** sits on the
+  **body-diagonal orbit** `k̂ ∝ (1, ±1, ±1, 0)`-class, where all twelve `e_4`-bonds twist by one
+  common angle instead of the axis branch's 4 + 8 split. It lies below the axis branch by
+  `ΔE = −(1/243)(D/J)⁴·J` at leading order — `1.5×10⁻³ J` per site at the calibrated ratio, which
+  is `6.4×10⁻⁵` of `E(q)`'s own printed total (`3.2×10⁻⁵` of the full frame-bilinear bond total;
+  the normalization travels with the figure). Both stationary points are screw states
+  `B = k̂ ∧ e_4`, and the sign pattern of the diagonal is a symmetry orbit, not a distinguished
+  direction.
+
+The splitting has a closed-form mechanism. The two families are **degenerate through `O(q²)`** —
+the exchange cost is isotropic and the DM gain is direction-blind at leading order — and the
+degeneracy is lifted at cubic order by the DM term's own `Σ_a k_a⁴` anisotropy, minimal on the
+body diagonal and maximal on a coordinate axis. The axis branch is therefore **not** a
+leading-order error.
+
+**What survives the branch question.** `D√2/(6J)` is a **leading-order invariant of the whole
+helical problem**, not a property of one branch: it appears as `tan q` on the axis branch and as
+the total helical rate `|k|·λ` (with `λ` the rotation plane's eigen-angle) on the body-diagonal
+branch. R-108's closed form therefore stands on both, with a re-interpreted referent — while
+"the canting angle `q`" names a *different geometric object* on each: four bonds at `q` on one,
+twelve bonds at a smaller common angle on the other.
+
+**Status, scope, and what is open.** Stationarity and the transverse second variation are exact
+identities; the body-diagonal branch's lower energy is a numerical result carrying the
+closed-form mechanism above, with an exact-arithmetic minimisation still owed; and every
+minimality claim here is made **within the single-`q` simple-bivector helical family** —
+multi-`q`, conical and non-simple-`B` states are unscanned. **Which branch the driven dynamics
+selects is open.** These are static energetics, and a driven steady state is not obliged to sit
+at the static minimum; the question is held at §D.5 as a named piece of the kernel problem.
+
+**Prior art.** Selection between a coordinate axis and a body diagonal, split by a tiny residual
+anisotropy, is the standard phenomenology of cubic Dzyaloshinskii–Moriya helimagnets (Bak &
+Jensen, *J. Phys. C* **13** (1980) 10.1088/0022-3719/13/31/002); and Luttinger–Tisza certifies a
+*global* minimum only when its strong constraint is satisfied (Lyons & Kaplan, *Phys. Rev.* **120**
+(1960) 1580), which is not verified here. What is the framework's own is the substrate bond
+structure being minimised, not the helimagnet phenomenon.
+
+**Scope of this minimisation — a stated sector reduction.** `E(q)` is Heisenberg-plus-DM
+arithmetic on a unit 3-vector: it is written in the **L-orbit sector** of the site variable, not
+over the full six-parameter 4D orientation that §D.3.2 declares. The 4D-bivector restatement —
+the same problem carried over all six grade-2 directions — reproduces `E(q)` exactly on the
+configuration named above, and is what yields the branch structure just described; the sector
+reduction is therefore legitimate and is stated rather than left silent. What it does **not**
+settle is the coupling menu: the D4/driven bilinear budget is larger than `{J, D}` alone
+(§D.3.3), so `q`, the `D/J` calibration that rides it, and everything downstream remain
+**truncation-conditional**, and `D/J` may be measuring a combination rather than a single bond
+invariant.
 
 **What this state is not.** A direct
 stability scan finds the matched spiral **locally stable** from `D/J ≈ 0.75` through `~7.35` —
 including the calibrated point and `D = J` — with *no static criticality anywhere in that range*
-(the genuine instability is a cone transition near `D/J ≈ 8 ± 1`). The `D = J` point that
-§C.1.6's electron-mass scaling calls "the QCP" is a zero of the **lepton-mass parametrization**
-(`D = J ⇔ δ_L = π/12 ⇔ m_e = 0`, §C.3.6 — exact in the fitted Brannen form, itself conditional
-on the `A = J, B = D` ansatz), **not** a phase transition of the helimagnet: `q(D/J)` is smooth
-through `D = J`. Nothing "becomes critical" there; R-108 is
-DERIVED-A (the pitch closed form) + LOCATED-GAP (`K_c`, and any genuine substrate criticality).
+(the genuine instability is a cone transition near `D/J ≈ 8 ± 1`). That scan varies the **pitch**
+at fixed `k̂`; it is blind to the transverse wavevector directions in which the axis branch is
+unstable, so it does not conflict with the index-2 result above and does not survive as a
+statement about the full `(k, B)` problem. The `D = J` point that
+§C.1.6's L-orbit stiffness scaling calls "the QCP" is a zero of the **lepton-mass parametrization**
+(`B = A ⇔ δ_L = π/12 ⇔ m_e = 0`, §C.3.6 — exact in the fitted Brannen form; the `D = J` form of
+it is the corollary given the `A = J, B = D` ansatz), **not** a phase transition of the
+helimagnet: `q(D/J)` is smooth through `D = J`. Nothing "becomes critical" there; R-108 is
+DERIVED-A (the closed form as leading-order helical-rate invariant, and the stationarity of the
+axis configuration) + DERIVED-numeric (the branch ordering, exact-arithmetic proof owed) +
+LOCATED-GAP (`K_c`, branch selection, and any genuine substrate criticality).
 
 ### D.4.4 The full medium Lagrangian
 
@@ -5535,9 +6262,10 @@ of the soliton) at the dressed-coupling level is
 > `Θ_0 = 106.76 / (e³ · f_π)`,
 
 with `106.76` the exact-BVP inertia coefficient (`Λ = 50.98`; R-133 — an earlier `97.27`,
-provenance suspect, is consistent with a truncated-grid artifact, §C.1.2). At `e ≈ 5.45`,
-`f_π = 129 MeV`, this gives `1/Θ_0 ≈ 196 MeV` — used in three places downstream: as the
-candidate identification with `Λ_QCD` (R-111 below), as the timescale in the top-quark
+provenance suspect, is consistent with a truncated-grid artifact, §C.1.2). At the ANW fitted pair
+`e ≈ 5.45`, `f_π = 129 MeV` — a pair fitted together, so the value below is quoted inside the ANW
+scheme and is not a scheme-free number — this gives `1/Θ_0 ≈ 196 MeV`, used in three places
+downstream: as the candidate identification with `Λ_QCD` (R-111 below), as the timescale in the top-quark
 exclusion `Γ_t · Θ_0 ≈ 7.2 ≫ 1` (§C.5.9), and as the band scale in §C.1.2's `M(J)` equation
 (R-133). The heavy-baryon anchor predictions carry a tracked residual (R-133/R-138):
 `Σ_c − Λ_c = 151.9 MeV` (−9.0%; candidate resolutions — a Callan–Klebanov-class bound-state
@@ -5566,8 +6294,11 @@ Face 1 is what Part B builds on.
 **Face 1 — Linear regime around the vacuum: the free wave operator.** Expand around the
 substrate's **canted vacuum** `R = R_vac · (1 + δR)` (§D.4.3).
 
-*A note on what "vacuum" means here.* The DM-coupled D4 ground state is generically a
-**helimagnet** with a Luttinger–Tisza spiral wavevector `q ≈ 10.5°` per cell (§D.4.3). For the
+*A note on what "vacuum" means here.* The DM-coupled D4 vacuum is generically a **helimagnet**
+with a spiral wavevector — `q ≈ 10.5°` per cell on the axis branch of §D.4.3, whose branch
+structure and open branch selection that section states. The twist-gauge construction below needs
+only that the reference is a helix of a single `q`; where a *numerical* stiffness is quoted, it is
+computed on the axis branch and carries that label. For the
 linearization, we work in the standard **twist-gauge** (rotating frame): the position-dependent
 spiral rotation is absorbed by a field redefinition, so the rotor field in the twisted frame has
 an `x`-independent (homogeneous) reference value `R_vac`. The Maurer–Cartan form in the twisted
@@ -5797,12 +6528,18 @@ So the fading-vs-hysteretic fork is **gated on the substrate dynamics**, not clo
 branch is the framework's working hypothesis, and the alternative is not refuted. **The fork is the framework's #1 gap.** (A concrete
 candidate *class* for this kernel is proposed in §E.5.)
 
+*Level.* The branch is the **first candidate instance's** exploration choice (§A.6.4, node V3-9),
+and it is the cheapest of the eleven to revert: nothing banked in this paper rides it, so a
+different family member may take the fading branch at no cost to anything above. What the family
+owns is the kernel **programme** — that a memory kernel exists and does the three jobs of §D.5.4;
+it owns no kernel.
+
 ### D.5.4 Three roles of memory
 
 The memory kernel sources three physical roles (R-116):
 
 - **Cell formation** at the substrate's cell-layer emergence — the mechanism by which the
-  Planckian monad layer self-organizes into the cell layer (§D.3.5). Open.
+  Planckian grain layer self-organizes into the cell layer (§D.3.5). Open.
 - **Selection** (the Role-3 Born selection of §B.3 / §B.4) — the substrate-level mechanism by
   which a measurement outcome settles into a definite eigenstate. The linear-face safety chain
   protects QM and Bell from kernel uncertainty here.
@@ -5855,7 +6592,36 @@ in the pending-values registry (α_em, α_s, α_W, individual mass scales, the c
 constant residual, CKM hierarchy, decoherence rate, memory timescale — full inventory at
 companion Section 4) routes through Θ_rel.
 
-### D.5.7 Status summary
+### D.5.7 Named pieces held at this gap
+
+Some questions are not open because nobody has worked on them; they are open because their
+answers live *inside* the unbuilt kernel. Those are recorded here as named pieces rather than
+ruled, so that a future assembly finds them all in one place. Two belong to the bond sector.
+
+**The entry coefficients of the extra bond channels into the `ℤ_3` amplitudes.** §C.3.7's
+potential has exactly two amplitudes, `A` (parity-even) and `B` (parity-odd), and §D.3.3's menu
+has more channels than `{J, D}` to fill them: `A = J + Σᵢ αᵢΓᵢ`, `B = D + β·D_spatial`. Whether
+the `αᵢ` and `β` vanish is precisely what decides whether the lepton calibration measures `D/J`
+or a combination. It cannot be settled statically: **at tree level every `ℤ_3` harmonic of the
+substrate's orientation potential vanishes — `J`'s included — so the ratio is `0/0`.** The
+coefficients are dressed-level quantities, sourced by the same kernel this section opens. Any
+statement that `Γ` does, or does not, enter `A` is therefore a claim *about the kernel*, and
+must be labelled as one. (Pointers: §C.3.7 and R-070 forward here; §D.3.3 states the menu.)
+
+**Which single-`q` branch the driven dynamics selects.** §D.4.3's canted vacuum has two
+stationary branches — the coordinate-axis helix whose closed form the calibration rides, and a
+body-diagonal helix lying lower in *static* energy. The static ordering is not automatically the
+physical one: the substrate is a driven steady state, and a steady state under drive is not
+obliged to sit at the minimum of a static energy functional. The selection is therefore a kernel
+question, and until it is answered the branch-dependent content of §D.4.3 — the identity of the
+canting plane, the geometric referent of "the canting angle `q`", and the exposure of the `Γ`
+survivor, which vanishes on both high-symmetry branches but not on a generic wavevector — stays
+conditional. (Pointers: §D.4.3 forward here; negatives ledger N62.)
+
+Both pieces are candidates by construction: nothing routed through this gap may harden past
+candidate status before the gap closes.
+
+### D.5.8 Status summary
 
 - **Structural geometry: closed conditional.** The shared Z_3-breaking direction is derived;
   the symmetric-pair structure and the fibration bridge are derived; the matter-as-defect
@@ -6049,11 +6815,18 @@ authoritative.
 ### E.2.1 The parameter ledger
 
 **Four counted substrate INPUTs plus measured `G_N`** (see the Opening, ordered by structural
-weight): `weak = SD` (one bit), `f_π` (cell mass scale), `D/J` (chirality), `c = √2 ⇔ K = 2/3`
-(Brannen phase), and the measured Newton constant `G_N` as the gravitational anchor — both `Λ`
+weight): the weak sector's one empirical bit — the right-handed fermions' weak-singlet character,
+which closes §C.4.2's computed menu and is read rather than tuned, carried together with that
+section's named structural premise — `f_π` (cell mass scale), `D/J` (chirality), `c = √2 ⇔ K = 2/3`
+(the circulant-parametrization amplitude), and the measured Newton constant `G_N` as the
+gravitational anchor — both `Λ`
 scales are back-fits of `G` through the induced-gravity form and are not counted separately
 Plus `A` (lepton
-amplitude scale — cancels in ratios; not counted). `Λ` is not a separate empirical quantity here:
+amplitude scale — cancels in ratios; not counted). **`c = √2` and `K = 2/3` are ONE counted bit,
+not two:** in the circulant parametrization the Koide relation *is* the statement that the
+modulation amplitude squared equals `1/2`, independently of the phase `δ` (§C.3.2, §C.3.3), so
+counting them separately would double-count a single piece of empirical information.
+`Λ` is not a separate empirical quantity here:
 the framework posits no independent cutoff scale, and counting one would overstate the ledger.
 
 One further piece of information is counted **provisionally**:
@@ -6080,6 +6853,17 @@ the one-particle spectral identification (§D.4.6 residue) and carries **no sche
 third named face of the missing renormalization dictionary, beside N57's mass-definition face
 and the `e`-scheme face above.
 
+**The ledger is the candidate's, not the family's.** Every item counted above is consumed by
+**Instance V3** (§A.6): `f_π`, `D/J` and `e` are its calibration picks; the measured-`G` anchor is
+a family-endorsed *practice* whose conversion into a cutoff runs through its gravity pick;
+`c = √2` and `m = E₀` are preferred directions this candidate takes, while the weak assignment is
+not a preference at all but a forced consequence of §C.4.2's closed menu and its two named supports. The family's own
+ledger is shorter and emptier in a way that must not be mistaken for economy: **the family has
+zero earned dimensionful scales.** Everything it genuinely earns is dimensionless or structural,
+the two scales in use here are a back-fit and a fit, and the ratio between them is neither derived
+nor protected (§D.3.5). A candidate that declines these picks does not thereby carry a smaller
+parameter count — it carries no numbers at all, which is a different thing and a worse one.
+
 ### E.2.2 Pending-values registry — what each gap unlocks
 
 The framework's open numerical values cluster on a small number of deep objects:
@@ -6093,16 +6877,18 @@ The framework's open numerical values cluster on a small number of deep objects:
   hierarchy + Jarlskog, asymptotic-freedom DGLAP structure + magnitude (the *sign* face is
   decided-conditional — the AF-signed branch `β_3 ≤ 0`, R-148 §C.5.2, conditional on the
   registered dispersive import I-13), coupling-universality (a candidate route via SOC).
-- **Gated on absolute ω scale:** `f_π` absolute MeV, `M_0` baryon mass, `1/Θ_0`, `m_e` via
-  L-orbit QCP, same-composition mass split magnitudes, vector meson absolute masses — all read
+- **Gated on absolute ω scale:** `f_π` absolute MeV, `M_0` baryon mass, `1/Θ_0`, `f_L` via
+  L-orbit QCP scaling, same-composition mass split magnitudes, vector meson absolute masses — all read
   through the `ω` ↔ renormalized-mass identification, itself unfixed (N57; one face of the
   missing renormalization dictionary, with the `e`-scheme label §E.2.1 names as the second).
 - **Already measured against, second instance:** the `g_1 = g_2` crossing
   scale — the framework's lattice-scale reading misses `sin²θ_W(M_Z)` by 33% (N55, §C.4.5;
   exposure §E.3.5(5)). Like the dim-6 ceiling, a number the framework owes, not lacks.
 - **Gated on `S` (rich-branch barrier action):** `τ_mem`, tunneling rates, Born selection rate.
-- **Gated on L2 mechanism:** anomalous-dim `ν = 3π/2` for L-orbit QCP, active-sterile overlap
-  for `m_ν`.
+- **Gated on L2 mechanism:** active-sterile overlap for `m_ν`. (The L-orbit `ν = 3π/2` is **not**
+  listed here as a pending value: it is a candidate *value* with no mechanism and no empirical
+  target, and closing an L2 mechanism would not by itself unlock a mass — the stabilising
+  functional would have to be settled first.)
 - **Located-gap items with named re-attack handles:** the critical canting/magnon stiffness
   `K_c`; the sterile-RH dark-matter lead (Z1/Z2/Z3).
 - **Gated on the strain-mode dispersion — and, uniquely, already measured against:** the
@@ -6123,11 +6909,11 @@ honest distance between the current text and a fully forward-derived spine:
 |---|---|---|
 | **F2** — statistical noncontextuality of the Role-3 selection functional | the Born exponent's theorem status (§B.3.3, R-160) | a Role-3 construction carrying the channel-pairwise drag structure |
 | **P1b-DYN** — the mode determinant generates the induced term | fermionic Skyrmion quantization as *induced* rather than selected (§B.3.5, R-161) | the substrate computation of the induced term (#1-gap adjacent) |
-| **OA-LF-i / OA-LF-ii** — ground-state occupation; monad-scale covariant curvature coupling | the induced-gravity magnitude bracket (§B.6.2, R-163) | the kernel, or a curved-lattice band construction |
+| **OA-LF-i / OA-LF-ii** — ground-state occupation; grain-scale covariant curvature coupling | the induced-gravity magnitude bracket (§B.6.2, R-163) | the kernel, or a curved-lattice band construction |
 | **cross-block rigidity** (+ an open cross-block weight) | folding `α_s` into the single-dial economy (§B.5b.3, R-162) | a kernel with the named universality across inequivalent Schur blocks |
 | **P4 / P5 / P6 / P7** — one universal charge functional; per-defect chirality-independence; proton = `uud` state identification; cross-sector weak-isospin alignment `T_3(e) = T_3(d) = −T_3(u)` | the proton–electron equality as theorem rather than anchor (§C.2.7, R-159) | an EM-sector construction fixing the functional's universality, plus a derivation of the doublet slot assignment |
 | **the ℍ-unit identification (+ the associativity premise)** | the three-generation count (§C.3.8; count itself generic-given-4D) | a substrate-dynamical selection of the generation triple, and a substrate reason for associativity (vs the octonionic route) |
-| **P-an / P-pg / P-gs** — analyticity of the dispersion kernel in `k`; the *full* point group including triality; the ground state preserving the point group (the §D.4.3 spiral breaks it; the residual is SC-2's sidereal question) | the dimension-eight anisotropy result (§B.1.5, R-165) | a kernel shown analytic at monad scale (a non-analytic memory kernel — the #1 gap itself — escapes any polynomial-invariant argument), a substrate coupling shown to weight triality-related orbits equally (unequal weighting restores dimension-six anisotropy), and either a point-group-symmetric vacuum or the sidereal residual computed (SC-2) |
+| **P-an / P-pg / P-gs** — analyticity of the dispersion kernel in `k`; the *full* point group including triality; the ground state preserving the point group (the §D.4.3 spiral breaks it; the residual is SC-2's sidereal question) | the dimension-eight anisotropy result (§B.1.5, R-165) | a kernel shown analytic at grain scale (a non-analytic memory kernel — the #1 gap itself — escapes any polynomial-invariant argument), a substrate coupling shown to weight triality-related orbits equally (unequal weighting restores dimension-six anisotropy), and either a point-group-symmetric vacuum or the sidereal residual computed (SC-2) |
 
 Five of the seven route into the same place the value gates do — the driven-dissipative dynamics
 of §D.5 — which is the framework's central structural claim about its own incompleteness: not
@@ -6175,7 +6961,7 @@ the three-generation count (§C.3.8, generic-given-4D, conditional on the ℍ-un
 + the associativity premise); `B − L` conservation +
 anomaly cancellation + Dirac neutrino character as one fact (§C.5.4–§C.5.6); no proton decay +
 no `0νββ` (§C.5.6); the up/down mirror (§C.3.13); V−A + generation-blindness + doublet (all from
-weak = SD); the Lorentzian signature flip (§B.1 — posit plus derived implication, per §E.4.1);
+the §C.4.2 weak assignment); the Lorentzian signature flip (§B.1 — posit plus derived implication, per §E.4.1);
 the no-monopole result (§B.5.2, conditional on the
 winding-as-source identification); the Tsirelson bound (§B.4, conditional on the assumed
 tensor-product state space).
@@ -6190,14 +6976,45 @@ framework's contribution is the conversion of SM postulates into substrate conse
 
 ### Disclaimer — the scope of falsifiability in a framework under construction
 
-This theory is under active construction. The falsifiers listed below concern its **current
-formulation** — the specific derivations, identifications, and structural claims this paper makes.
-Most of them, if triggered, would falsify the current formulation and *force an evolution of the
-framework*: a reformulation of the substrate, a different identification of a symmetry, a
-modified derivation chain. **Very few can kill the theory *itself*** — the underlying
-ontological premise of a wave-based Euclidean substrate with matter-as-defect — because that
-premise is compatible with a wide range of specific realizations and would evolve to accommodate
-any observed fact that contradicts the current formulation.
+**Two levels, and the reader must keep them apart.** The architecture of §A.6 is what makes this
+section readable: there is a **family** — TWT-Core, seven axioms and one refusal — and there is
+**V3, the first candidate instance**, which is what this paper builds. A falsifier can therefore
+land at either level, and the difference is not rhetorical. A row that reaches only an instance
+pick kills *this candidate* and leaves the family intact with a named menu to re-pick from. A row
+that reaches an axiom kills *every* candidate at once.
+
+This theory is under active construction. The falsifiers listed below concern, in the main, the
+**current formulation** — the specific derivations, identifications, and structural claims this
+paper makes. Most of them, if triggered, would falsify the current formulation and *force an
+evolution of the framework*: a reformulation of the substrate, a different identification of a
+symmetry, a modified derivation chain.
+
+**The exception is the family's kill condition, and it is deliberate.** The preferred foliation is
+not left free — it is identified with the cosmic rest frame (§A.6.1, B-6), which is a
+family-defining axiom rather than a pick. **If the ordering that Bell-correlation selections
+follow is measured and found to be a foliation measurably distinct from the comoving frame, the
+family is finished** — not one version of it, all of it (rows 4 and 5 below). The safe option was
+available and declined: an unnamed preferred foliation cannot be caught, because "there is a
+frame, somewhere" survives every measurement. Two riders travel with the choice and neither is
+optional. The measurement that would fire it is one standard quantum mechanics *also* forbids, so
+in this channel agreement confirms nothing and disagreement kills — maximum downside, no matching
+upside. And it is the family's *only* total kill condition: of the sixteen rows in §E.3.1, fifteen
+stand at family level and one is instance-level (row 12, whose kill number rides a pinned hadronic
+calibration). Because the channel fires only where quantum mechanics also breaks, the family
+carries **no independent empirical exposure in it**, and §A.6.2 names the one identified route to
+building an exposure of its own. That is not the same as saying the family is untouchable by
+experiment: row 6 below reaches this candidate's identification of the observed `c` with the
+average lock rate — the axioms themselves state no rate and no uniformity, so the exposure is
+instance-level and a positive detection would put the non-uniform label on `c`, the emergent
+observer-side speed, not on the axioms — and "How to read the tables" states exactly what is and
+is not settled about it.
+
+Outside that channel, the underlying ontological premise — a wave-based Euclidean substrate with
+matter-as-defect — is compatible with a wide range of specific realizations and would evolve to
+accommodate an observed fact that contradicts the current formulation. That robustness is a fact
+about the family's generality, not a credit to it: **generality is what makes a family hard to
+kill and a candidate worth having**, and the two already-measured exposures below are the price
+this candidate pays for saying numbers at all.
 
 Given TWT's **extensive overlap with the Standard Model on observable predictions** (exact
 wherever the framework's derived structure reaches — the QCD dynamical sector is underived;
@@ -6235,16 +7052,37 @@ discriminators are a smaller subset.
 
 A fifth exposure sits outside all four categories: the dimension-six LV coefficient (§E.3.5(4))
 is not a pending detection but a **standing tension with existing data**, awaiting a substrate
-computation rather than an experiment.
+computation rather than an experiment. It is also, with the crossing-scale miss, one of the two
+exposures that belong to **this candidate instance** rather than to the family (§B.6.3, §C.4.5).
 
-**How to read the tables.** A single-positive-detection kill for a specific row triggers the
-next paper, not a framework obituary. The ontological premise (wave + substrate + matter-as-defect)
-is more robust than any specific derivation. The framework's honest exposure is *what would
-trigger the next paper*, not *what could kill the framework outright*. The one class that could
-genuinely kill the underlying premise is fundamental incompatibility between a robust
-`c_meta ≠ c` differential detection (row 6) and the wavefront-locking premise (A-3) — which is
-why §E.3.5's internal pre-mortem (3) also flags this as the framework's tightest existential
-exposure.
+**The same rows, sorted by level.** Fifteen of the sixteen are **family-level**: rows 1, 2, 3, 6,
+9, 10, 11, 13, 15 and 16 follow from the axioms or from the axioms plus one stated preferred
+direction; rows 4 and 5 are the family's kill condition itself; rows 7, 8 and 14 are family-level
+but value-gated or weak. One row is **instance-level**: row 12 (no top-quark baryon), because its
+kill number is built on this candidate's fitted hadronic calibration and its semiclassical
+inertia — a different anchoring re-derives the timescale or loses it.
+
+**How to read the tables.** For most rows a single positive detection triggers the next
+candidate, not a framework obituary: the ontological core is more robust than any specific
+derivation, and the family's honest exposure there is *what would force a re-pick*.
+
+**Two rows are different, because they reach an axiom rather than a derivation — and they reach
+different axioms through different channels.** Rows 4 and 5 reach B-6, the identification of the
+preferred foliation with the comoving frame: that is the family's total kill condition, and it
+fires only in a channel where standard quantum mechanics is also wrong, so it carries maximum
+downside and no matching upside. Row 6 reaches this candidate's `c ↔ c_meta` identification (the
+`A-3`-downstream chain), through a channel the shared quantum formalism does not itself close —
+the axioms state no rate and no uniformity, so a robust detection would label `c`, the emergent
+observer-side speed, non-uniform while the axioms stand, and the row is the sharpest
+*instance-level* exposure with an independent experimental route. The row is not this
+framework's alone: exact Lorentz invariance forbids a sector-differential limiting speed as well,
+so a positive detection costs the incumbent a symmetry at the same time. What separates it from
+rows 4–5 is the *kind* of prohibition — there, a theorem of the formalism this framework
+reproduces, so agreement is guaranteed in advance; here, an imposed symmetry a completed
+candidate could in principle depart from. What is settled about row 6 is that
+it lands at the axiom layer rather than the derivation layer; whether a positive result there ends
+the family outright, as rows 4–5 would, or forces reformulation inside it, is not settled here and
+is not asserted either way.
 
 The four operational categories: named near-term (single-detection-away), removed
 (achievements), value-gated (await #1-gap closure), structural-coherence (would break internal
@@ -6263,17 +7101,17 @@ table**: its dimension-six residual coefficient is gated on the #1 gap and is re
 | 2 | Proton decay (`p → e⁺π⁰` etc.) | Super-K, Hyper-K, DUNE | `τ/B > 2.4 × 10³⁴` yr, 90% CL (Super-K, 2020) | absolutely stable (`B ∈ π_3 = ℤ`; non-perturbative violation only as `ΔB = ΔL = 3`) | topological protection of `B` | §C.1.5, §C.5.6 |
 | 3 | `0νββ` detected | KamLAND-Zen, LEGEND, nEXO, CUPID | `T_{1/2}(¹³⁶Xe) > 3.8 × 10²⁶` yr, 90% CL (KamLAND-Zen, complete 800 dataset) | forbidden (Dirac neutrino forced by `B − L` conservation; Majorana requires `Δ(B−L) = −2`) | Dirac character of the neutrino | §C.3.12, §C.5.6 |
 | 4 | Finite Geneva-class influence speed found (Salart et al. 2008; Yin et al. 2013) | Bell-correlation timing in candidate preferred frames | `v_inf > 10⁴ c` | no finite influence speed — operationally, signaling does not exist | non-separability without signaling (`τ_5`-foliation = cosmological comoving) — **consistency check, not a discriminating falsifier**: a finite influence speed *would also be inconsistent with quantum mechanics' exact predictions*, so the experiment tests QM at least as much as it tests TWT — the framework is isomorphic to QM in this channel (§B.4, import I-11) and inherits the verdict either way | §B.4.5 |
-| 5 | Bell-selection foliation ≠ cosmological comoving frame | precision Bell + cosmology cross-comparison | n/a (corollary of row 4) | identical | the `τ_5`-foliation = comoving identification — **consistency check, not a discriminating falsifier**: being row 4's own corollary it inherits row 4's QM-shared character, so what a mismatch would kill is the *identification*, and only via a measurement QM already forbids | §B.4.5 |
-| 6 | Time-varying differential `c_meta` between sectors / epochs | precision multimessenger astronomy | `c_meta = c` on average | structural identity globally | §A.4, §B.7 average-`c` identification | §A.4 |
+| 5 | Bell-selection foliation ≠ cosmological comoving frame | precision Bell + cosmology cross-comparison | n/a (corollary of row 4) | identical | the `τ_5`-foliation = comoving identification — **the family's kill condition** (§A.6.2): the identification is a family-defining axiom, not a pick, so what a mismatch kills is every candidate at once, not this formulation. It remains a **consistency check rather than a discriminating falsifier** in the empirical sense — being row 4's own corollary it inherits row 4's QM-shared character, so the channel fires only where quantum mechanics also breaks, and agreement in it confirms nothing. Maximum downside, no matching upside; that is the price of naming the frame | §B.4.5 |
+| 6 | A sector- or epoch-dependence of the observed `c` against the lock rate `c_meta` | precision multimessenger astronomy | `c_meta = c` on average | structural identity globally | §A.4, §B.7 average-`c` identification — this candidate's `A-3`-downstream chain, an **instance-level** exposure: the axioms state no rate and no uniformity, so a detection labels the emergent `c` non-uniform while the axioms stand; what that does and does not settle is stated at "How to read the tables" above | §A.4 |
 | 7 | Optical-clock decoherence below Goldstone-symmetry floor | atom-interferometry, optical clocks | **no computed floor exists** (#1-gap gated; `Im χ` uncomputed) — this row is VG-3's operational face, kept here as a null-result check, **not** single-detection-away | rate bounded below by the Goldstone floor (Adler-zero protection) — floor value gated | symmetry-protected decoherence safety | §D.5.5, VG-3 |
 | 8 | Macromolecule-interferometry decoherence below `Im χ` floor | macromolecule interferometry | **no computed floor exists** (#1-gap gated) — VG-1's operational face, kept as a null-result check, **not** single-detection-away | substrate sits near KSS `η/s ≥ ℏ/4π` floor; bracketed KSS-to-GW170817 — floor value gated | the `Im χ` master dial (one dial, two windows) | §B.4.5 Bell-memory bridge, VG-1 |
 | 9 | CHSH violation `> 2√2` | quantum optics | bounded by Tsirelson | bounded by `2√2` | one-sided rotor half-angle structure | §B.4.1 |
 | 10 | Magnetic monopole detected | various | none observed | absent — the grade-3 slot exists (4 components) but the winding-as-source identification supplies nothing to fill it | the winding-as-source identification (**not** a pure algebraic forbiddance) | §B.5.2 |
-| 11 | Fractional charge outside `±1/3, ±2/3, ±1` | direct searches | none observed | forbidden (algebraic identity from D4 trivector content) | charge-spectrum algebraic identity | §C.2.2 |
-| 12 | Baryon containing a top quark | LHC | none observed | forbidden (`Γ_t · Θ_0 ≈ 7.2 ≫ 1`) | timescale-exclusion structural argument | §C.5.9 |
+| 11 | Fractional charge outside `±1/3, ±2/3, ±1` | direct searches | none observed | forbidden (algebraic identity from the Clifford algebra's trivector content — the spectrum does not ride the lattice arrangement) | charge-spectrum algebraic identity | §C.2.2 |
+| 12 | Baryon containing a top quark | LHC | none observed | forbidden (`Γ_t · Θ_0 ≈ 7.2 ≫ 1`) | timescale-exclusion structural argument — **the one instance-level row in this table**: the kill number rides this candidate's fitted hadronic scale and its semiclassical inertia, so a re-anchored family member re-derives the timescale or loses it | §C.5.9 |
 | 13 | Fourth fermion generation | LHC + neutrino-oscillation precision | none observed | forbidden (`dim Λ²₋(ℝ⁴) = 3` — exactly three anti-self-dual planes in four dimensions, computed in-engine; Frobenius a structural remark via the associativity premise) | generic-given-4D count + `ℍ`-unit identification + associativity premise (conditional) | §C.3.8 |
 | 14 | Hierarchical CKM `θ_C` shown demonstrably independent of the `m_d, m_s` relation at sub-percent precision | high-precision CKM data | `\|V_us\|² ≈ 0.0503`; `m_d/m_s ≈ 0.0500` (~0.6% agreement) | frequency-ratio reading of the **Gatto–Sartori–Tonin** relation `\|V_us\|² = m_d/m_s` (GST 1968 — the relation is not TWT's; only the reading is) | the frequency-ratio reading of Cabibbo | §C.3.10 |
-| 15 | Tree-level FCNC observed | precision flavour physics | tight upper bounds | forbidden at tree level (weak = SD couples generation-blindly) | the `weak = SD` INPUT bit | §C.4.2 |
+| 15 | Tree-level FCNC observed | precision flavour physics | tight upper bounds | forbidden at tree level (weak = SD couples generation-blindly) | the §C.4.2 weak assignment, i.e. its structural premise or its empirical leg | §C.4.2 |
 | 16 | Proton–electron charge sum non-zero | neutrality-of-matter / bulk-matter charge tests | `\|Q_p + Q_e\|/e ≲ 10⁻²¹` | exactly zero, identically in the charge normalization `c` | the (P4–P7) premise set — the framework reverts to an empirical charge anchor | §C.2.7, §C.2.8 |
 
 Each row is a single positive detection away from falsification, or a null result still consistent
@@ -6316,7 +7154,7 @@ Each records the operational shape of an open commitment.
 | VG-3 | `1/T_2` substrate-decoherence rate | `Im χ` / WP-IX4 | A measured `1/T_2` above the symmetry-protected boundary would falsify the symmetry-protection result | §D.5.5 |
 | VG-4 | Dark-matter signatures | (Mostly) outside this paper's derivational scope; sterile-RH 3-prediction is structural | The 3 sterile RH neutrinos are structural; relic (sterile share) ~1.1% Ω_DM — 94× shortfall (active+sterile total ~2.1%/47×); remaining ~98% out of scope — the inter-front programme's target, not a standing scope fence. Laboratory detection of heavy sterile RH at Dodelson–Widrow `keV` window would falsify the `m_sterile = m_active ≲ 0.12 eV` Dirac-character prediction | §E.1.3 |
 | VG-5 | Gravitational-wave dispersion at high `E` | dim-6 dispersion correction once GW propagation scale identified | Concrete prediction once the induced-EH propagator's effective `Λ` for the GW sector is computed (Paper-2). The which-`Λ` split deliberately does **not** assign this sector — the graviton is an induced composite, so its effective scale is a property of the generating loop; §B.6.4's margin uses `Λ_L` illustratively only. **Not independent of VG-6:** per §B.6.4 the graviton's preferred-frame remnant is the same dimension-six coefficient in the tensor sector — one gated number, two sectors | §B.6.3, VG-6 |
-| VG-6 | Dimension-six isotropic LV coefficient `η⁽⁴⁾` | substrate strain-mode dispersion (#1 gap; `Cl41Wave().wave_speed_c()` raises) | Published n = 4 limits: photon `\|ξ⁽⁴⁾\| ≲ 10⁻⁸`, electron `≲ 10⁻⁶`, proton `−10⁻³ … +10⁻⁶`. **At the substrate's natural coefficient `c = 1` this reads `η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7]` (ruled `Λ_L = 1/a` band, §B.6.2) — excluded by 3–9 orders.** Survival requires either a substrate suppression to `\|η⁽⁴⁾\| ≲ 10⁻⁶` (the defect form factor supplies only `(f_π/m)² ~ 10⁻²`, and none for the photon), or `Λ_LV ≳ 10³ M_Pl` decoupled from the Sakharov cutoff, or a substrate symmetry forcing the isotropic quartic dispersion coefficient to vanish. Riding the OPEN import I-3 for the `Λ_L` band and the inside-frame data import I-19 (whose premise (e) hedges the outside↔inside transfer). Sibling of VG-5: same coefficient, tensor sector | §B.6.3, §D.5 |
+| VG-6 | Dimension-six isotropic LV coefficient `η⁽⁴⁾` | substrate strain-mode dispersion (#1 gap; `Cl41Wave().wave_speed_c()` raises) | Published n = 4 limits: photon `\|ξ⁽⁴⁾\| ≲ 10⁻⁸`, electron `≲ 10⁻⁶`, proton `−10⁻³ … +10⁻⁶`. **At the substrate's natural coefficient `c = 1` this reads `η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7]` (ruled `Λ_L = 1/a` band, §B.6.2) — excluded by 3–9 orders.** Survival requires either a substrate suppression to `\|η⁽⁴⁾\| ≲ 10⁻⁶` (the defect form factor supplies only `(f_π/m)² ~ 10⁻²` — quoted at the ANW fitted `f_π`, factor-of-two immaterial here, §B.6.3 — and none for the photon), or `Λ_LV ≳ 10³ M_Pl` for the matter rows (`≳ 10⁴ M_Pl` for the photon row, which has no form factor) decoupled from the Sakharov cutoff, or a substrate symmetry forcing the isotropic quartic dispersion coefficient to vanish. Riding the OPEN import I-3 for the `Λ_L` band and the inside-frame data import I-19 (whose premise (e) hedges the outside↔inside transfer). Sibling of VG-5: same coefficient, tensor sector | §B.6.3, §D.5 |
 
 ### E.3.4 Structural-coherence falsifiers
 
@@ -6356,12 +7194,14 @@ resolving computation is an explicit phason-coupled effective-action calculation
 **(3) `c_meta = c` on average — global identity vs differential breakdown.** §A.4 commits
 `c_meta = c` averaged across the wavefront. Local variations near mass concentrations are
 predicted (§B.6, §B.7), but the GW170817 multimessenger constraint `|c_GW − c_γ| < 10⁻¹⁵` is
-already tight. Sector-dependent or time-varying `c_meta` falsifies; the induced-gravity story
-rides on the average identity, so any robust differential-`c` detection would break the
-unified-frame picture rather than just trim a coefficient. Per the disclaimer above, this is the
-one internal exposure that could plausibly reach the ontological premise itself: `c_meta = c` is
-downstream of A-3 (wavefront / signature locking), and a robust differential-`c` finding would
-force reformulation at the axiom layer rather than the derivation layer.
+already tight. A robust sector-dependent or time-varying difference between the observed `c` and the lock rate
+falsifies **this candidate's identification of the two**; the induced-gravity story rides on the
+average identity, so such a detection would break this candidate's unified-frame picture rather
+than just trim a coefficient. The axioms themselves state no rate and no uniformity, so the
+failing object is the `A-3`-downstream identification chain, not `A-3`: on a positive detection
+it is `c`, the emergent observer-side speed, that carries the non-uniform label, the axioms
+stand, and the family reformulates at the instance layer — the sharpest instance-level exposure
+in this list, distinct in kind from the foliation axiom's family-level kill condition.
 
 **(4) Lorentz violation at dimension six — the pillars are protected, the residual is not.**
 Dimension-four LV is closed structurally (one field, one light-cone — the canted vacuum's
@@ -6372,13 +7212,24 @@ question). What is not closed is the rotationally invariant dimension-six term, 
 the framework cannot yet compute and whose *naive* value at `c = 1` is excluded by three to nine orders. This
 is the framework's sharpest empirical exposure that is not merely a pending detection: **the number
 is already measured, and the framework owes a coefficient that fits under it.** If the substrate
-dynamics deliver `η⁽⁴⁾ ~ O(1)`, the current formulation is dead — not evolved.
+dynamics deliver `η⁽⁴⁾ ~ O(1)`, the current formulation is dead — not evolved. And "the current
+formulation" is exact rather than a hedge: what dies is **this candidate instance**, killed at
+three pinned choices in series — a regular arrangement, its back-fit size, and one induced-gravity
+chain to denominate it (§B.6.3, §A.6.4). The family would survive holding the *problem*, not an
+answer to it, and a member proposed at the irregular-discrete branch inherits a different
+constraint rather than a lighter one (companion Section 13, row I-26).
 
 **(5) The electroweak crossing scale — the second already-measured exposure; §C.4.5's own text
 calls it the twin of (4).** `sin²θ_W = 3/8` is a normalization identity
 at the `g_1 = g_2` crossing; the framework does not derive the crossing scale, and its own
 lattice-scale reading lands `0.154–0.158` against the measured `0.2312` — a 33% miss of a
-five-digit number, with the four standard escape routes computed and closed (N55, §C.4.5).
+five-digit number, with the four standard escape routes computed and closed (N55, §C.4.5). Its
+level is the same as (4)'s: the `3/8` identity is family property in §A.6.3's conditional sense —
+riding the weak assignment of §C.4.2 and its two named supports, not an axiom — while the
+*placement* of the crossing is
+instance-level, and what the miss indicts is this candidate's arrangement and calibrations. Neither
+exposure is inherited by a family member that has not made those picks — and neither is answered
+by one either.
 
 ---
 
@@ -6453,9 +7304,10 @@ typically unchanged. Seven representative items:
   substrate rotor field; stability is topological, mass is meta-time rotor frequency, and Lorentz
   invariance is *protected* against the radiative species-splitting that plagues generic
   emergent-LI programs — one fundamental field, not `N` independent ones. The protection is
-  **dimension-four**; the lattice point group independently pushes rotational anisotropy to
-  dimension eight; and the rotationally invariant dimension-six residual escapes both and is
-  the framework's named open exposure (§B.1.5, §E.3.5(4)).
+  **dimension-four**; the lattice point group independently pushes rotational anisotropy of the
+  polarization-averaged dispersion to dimension eight (scalar-kernel premise, §B.1.5); and the
+  rotationally invariant dimension-six residual escapes both and is the framework's named open
+  exposure (§B.1.5, §E.3.5(4)).
 
 **The pattern.** Each turns an SM postulate or unexplained feature into a substrate consequence.
 The numerical value is typically unchanged; the *ontological status* shifts. What TWT does that
@@ -6472,8 +7324,15 @@ The framework's foundational tools rest on several traditions:
   in one decisive choice: Hestenes formulates physics in Lorentzian `Cl(1,3)` with time
   foundational; TWT formulates in Euclidean `Cl(4,0)` and recovers Minkowski signature as an
   emergent observer feature.
-- **Koide** and the empirical lepton mass relation.
-- **Brannen** and the `Z_3` parametrization of the Koide formula.
+- **Koide** and the empirical lepton mass relation — and, separately, the
+  cyclic-permutation-invariant (`Z_3` circulant) parametrization of it, whose priority is
+  Koide's own (*Quark and Lepton Mass Matrices with a Cyclic Permutation Invariant Form*,
+  arXiv:hep-ph/0005137, 2000).
+- **Brannen** for the independent 2006 re-noticing of that form's charged-lepton case, which
+  pinned the modulation amplitude at `√2` (η² = 1/2) and fitted the lepton phase numerically;
+  it reached the refereed literature through Koide's own 2007 paper. The corpus's "Brannen
+  amplitude" and "Brannen phase" are internal labels for the objects that re-noticing pinned,
+  not a priority claim on the parametrization (§C.3.1).
 - **Skyrme** and topological solitons as particles.
 - The geometric-algebra school, the lattice spin-system tradition, the Dzyaloshinskii–Moriya
   literature in condensed matter, and Sakharov's induced-gravity program.
@@ -6524,8 +7383,9 @@ positive summation is an exact algebraic fact (R-154).
 
 **The counted economy (R-155).** The genuine dials are the IR exponent `p`, the edge width, the
 UV plateau width `W`, and the memory time `τ_mem`; a redundant edge scale is exactly absorbable
-and is not a dial. One binary INPUT bit fixes the memory branch as **hysteretic** — the
-`weak = SD` pattern: the geometry offers the menu {hysteretic, fading}; the candidate picks
+and is not a dial. One binary INPUT bit fixes the memory branch as **hysteretic** — a genuine
+menu-and-pick, of the kind §C.4.2 turns out *not* to be: here the menu {hysteretic, fading} is
+offered and nothing closes it, so the candidate picks
 hysteretic, consistent with the working branch §D.5.3 already adopts on defect-persistence
 motivation (a pick, not a derivation; the hysteresis and driven-response modeling ride
 registered imports — companion Section 13, I-14/I-15). A minimal member is **two dials + one

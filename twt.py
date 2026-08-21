@@ -1168,9 +1168,17 @@ def texture_metric_vierbein():
 
 
 def sakharov_induced_gravity():
-    """[CANDIDATE / QFT INPUT] Sakharov induced gravity from the Spin(4) rotor field.
+    """[CANDIDATE / QFT INPUT] Sakharov induced gravity from the substrate's rotor field
+    (the six-parameter 4D-orientation field; the Spin(4) writing below is cover-agnostic —
+    only dim = 6 enters).
 
     SETUP:
+    R(x) takes values in the 4D-ORIENTATION CLASS — the medium's local state space,
+    six real parameters, inherited unchanged by the continuum field (§D.3.2;
+    `pi3_orientation_class_two_windings`). WHERE the Z_2 sign lives — in the state
+    (Spin(4), one-sided) or in the emergent covering sector (SO(4) + odd character) —
+    is a recorded OPEN BRANCH in the family tree, and nothing below depends on it:
+    N_eff = 6 is the DIMENSION of the class, which both branches share.
     R(x) in Spin(4) = SU(2)_L x SU(2)_R; target manifold Spin(4) ~ S^3 x S^3, dim_R = 6.
     The 6 real DOF are the grade-2 generators {SD_1,SD_2,SD_3, ASD_1,ASD_2,ASD_3}
     of Cl(4,0) — the basis of the Lie algebra so(4) ~ su(2)_L + su(2)_R.
@@ -1490,7 +1498,7 @@ def c_reg_from_substrate_mode_content():
     => c_reg is ONE value, 1/12, in the Sakharov proper-time-cutoff variable. The '~1' placeholder
     is SUPERSEDED (it was never computed). WHAT REMAINS OPEN IS NOT c_reg BUT c_lat.
 
-    (3) AND c_lat IS EXACTLY THE OA-LF-ii-SENSITIVE OBJECT. Deform the monad-scale curvature
+    (3) AND c_lat IS EXACTLY THE OA-LF-ii-SENSITIVE OBJECT. Deform the grain-scale curvature
     weight as w(s) = (R/6)*f(s/a^2), f -> 1 for s >> a^2, f = kappa for s < a^2. Then c_lat(kappa)
     is EXACTLY AFFINE and its slope is R-163's own ~93% proper-time support fraction (checked
     below to ~1e-14). OA-LF-ii's own stated tolerance ("up to O(1)"), read as kappa in [1/2, 2],
@@ -1502,7 +1510,7 @@ def c_reg_from_substrate_mode_content():
     CONSEQUENCE, BOTH WAYS: c_reg = 1/12 carries ZERO OA-LF-ii sensitivity (Lambda_eff is exactly
     c_lat-independent); "c_reg ~ 1.82" carries ~93%-LINEAR OA-LF-ii sensitivity. R-163's branch is
     WEAKER as a c_reg determination than its quoted window suggests — and its real content is
-    relocated to where it belongs: the monad spacing a, which is what actually moves.
+    relocated to where it belongs: the grain spacing a, which is what actually moves.
 
     SCOPE FENCE. This does NOT derive G, does NOT move N_eff (still GENERIC-given-dim-4), does NOT
     retire OA-LF-i/ii. The WHICH-Lambda ruling this fence anticipated was MADE by the coordinator
@@ -3085,7 +3093,7 @@ def colour_arich_kernel_dependent() -> dict:
     DIRECTLY (non-derivative) -> K-dependent; (2) FDT is broken (SOC NESS). The bath DOES couple the
     coset-Cartan channel (isotropic Gilbert damping — DERIVED; isotropy flagged CANDIDATE), so a-rich is NOT
     structure-forced flat either. => a-rich = a-rich(Theta_rel).
-    THE NAMED K-PROPERTY (minimal #1-gap input): Theta_rel = the monad-bath kernel's coset-Cartan (l3,l8)
+    THE NAMED K-PROPERTY (minimal #1-gap input): Theta_rel = the grain-bath kernel's coset-Cartan (l3,l8)
     channel FDT-VIOLATION (Sigma^K_phi vs Sigma^R_phi / the distribution F_phi) at the SOC drive frequency
     omega_d — ONE channel-and-frequency-resolved property, not the whole EOM. (Honest deflation: a substantive
     NESS Keldysh self-energy in a channel at a frequency, not a number read off.)
@@ -3917,7 +3925,9 @@ def kernel_candidate_form():
     reference (kstar) is EXCLUDED — the two-sided D3 cull (an edge-less kernel is structurally
     disqualified from sustaining identity transfer; plateau width 0.31 < 0.5 decades) plus the
     F-strong flatness failure (77% dispersion).  Memory branch = HYSTERETIC by the counted F4
-    INPUT bit (R-155; the weak=SD menu-vs-pick pattern — a pick, NOT a derivation).
+    INPUT bit (R-155; the Koide c=sqrt2 menu-vs-pick pattern — a pick, NOT a derivation. The
+    old exemplar here was weak=SD, which no longer illustrates an OPEN menu: that menu was COMPUTED
+    and CLOSED under C-32, R-171/RUL-082. F4's menu {hysteretic, fading} is not closed).
 
     WHAT THIS PRIMITIVE IS NOT: it does NOT select within the class (R-157 — the executable
     constraints are reading-conditionally rank-deficient) and does NOT supply any magnitude
@@ -3977,7 +3987,8 @@ def kernel_candidate_form():
         "families": families,
         "excluded": excluded,
         "branch": "hysteretic",
-        "branch_is": "a counted F4 INPUT bit (menu {hysteretic, fading} -> PICK; consistent with "
+        "branch_is": "a counted F4 INPUT bit (menu {hysteretic, fading} -> PICK, and NOT closed -- "
+                     "contrast the weak menu, computed CLOSED at R-171; consistent with "
                      "§D.5.3's adopted working branch; NOT a derivation)",
         "selects_within_class": False,
         "magnitudes_supplied": None,
@@ -4053,8 +4064,8 @@ def kernel_candidate_dials():
     candidate class. Genuine dials: p (nodal IR exponent, >= 3; F1 fork), wT (s-wave edge width;
     SC-1b crossover-pinned), W (UV plateau width; a_e-invisible), tau_mem (memory time; F3-pinned
     economy-preferred, value gated), r (composite transfer weight; dissolves F2). Plus ONE
-    counted INPUT bit: F4 = HYSTERETIC (the menu {hysteretic, fading} -> PICK; the weak=SD
-    pattern; consistent with §D.5.3's adopted branch — NOT a derivation; the campaign's bathless
+    counted INPUT bit: F4 = HYSTERETIC (the menu {hysteretic, fading} -> PICK; the Koide c=sqrt2
+    pattern -- NOT the weak=SD pattern, whose menu closed under C-32 at R-171; consistent with §D.5.3's adopted branch — NOT a derivation; the campaign's bathless
     forcing attempt stays FRAMING/CANDIDATE). The SN-15 redundant edge scale Delta is EXACTLY
     absorbable (Delta, tau, W) -> (1, tau/Delta, W/Delta) and is NOT a dial. Minimal member =
     2 dials + 1 bit; composite = 3 dials + 1 bit.
@@ -4298,7 +4309,11 @@ def weak_isospin_centralizer_is_SD():
     Centralizer of the ASD generation algebra in so(4) is exactly 3-dim and = SD (the commutator
     map on grade-2 has nullspace dim 3, and SD centralizes ASD to machine zero). So "weak isospin is
     generation-blind (no tree FCNC)" UNIQUELY selects SD, GIVEN generations = ASD. Does NOT reach
-    DERIVED-P: weak=SD is the weak sector's single INPUT (one bit, neutrino-forced; §20.3, §25.1).
+    DERIVED-P: weak=SD is DERIVED-given-{A-P2 + the right-handed-singlet datum} (R-079 as raised
+    2026-08-21, RUL-082; the older reading "the weak sector's single INPUT, one bit, forced by the
+    neutrino" is WITHDRAWN -- see weak_su2_menu_exhaustion and weak_isospin_verdict's banner).
+    This centralizer route is the REDUNDANT one: it additionally rides generations = ASD, an
+    ENDORSEMENT, where the load-bearing route (the Weyl-half restriction) rides none. §20.3, §25.1.
     Stronger than weak_isospin_SD_parity_exclusion's last-man-standing elimination."""
     np_, e_, I4_ = _cl40()
     def biv(i, j): return e_[i] @ e_[j]
@@ -4317,14 +4332,23 @@ def weak_isospin_centralizer_is_SD():
 
 
 def vminusa_is_spin4_factor_chirality():
-    """[DERIVED-A conditional on weak=SU(2)+=SD (keystone INPUT)] V-A from the Spin(4)=SU(2)+ x SU(2)-
+    """[DERIVED-A conditional on weak=SU(2)+=SD -- R-079, DERIVED-given-{A-P2 + RH-singlet datum}
+    since RUL-082; the "keystone INPUT" reading is WITHDRAWN] V-A from the Spin(4)=SU(2)+ x SU(2)-
     factor structure.
     (1) [SD,ASD]=0; each closes as su(2) ([SD1,SD2]=4 SD3).
     (2) In the 4-dim Dirac spinor, SU(2)+ (SD) has a COMMON KERNEL of dim 2: it acts on ONE Weyl factor
         and is identically zero on the other; SU(2)- (ASD) annihilates the complementary half. => each
-        Spin(4) factor grips exactly one chirality. A single-Weyl (forced-left-handed) neutrino
-        (forced_handedness, neutrino_lightness) can couple ONLY to such a factor (kernel=half), NOT to
-        the zero-kernel L-orbit -- the engine witness that weak=SD, not L-orbit (§20.3).
+        Spin(4) factor grips exactly one chirality.
+        ★ CORRECTION (2026-08-21, weak_su2_menu_exhaustion (3b)): this primitive USED to conclude here
+        that "a single-Weyl neutrino can couple ONLY to a half-kernel factor, NOT to the zero-kernel
+        L-orbit". THAT INFERENCE IS FALSE and is withdrawn. Every grade-2 element commutes with I4, so
+        the L-orbit preserves the Weyl halves too, and RESTRICTED TO THE NEUTRINO'S OWN HALF the L-orbit
+        and SD span the SAME 3-dim algebra (ranks 3/3, union 3 -- engine-computed). The neutrino alone
+        cannot discriminate. What discriminates is the OTHER half: rank(SD|W-) = 0 (a weak SINGLET
+        sector) vs rank(L|W-) = 3, so a diagonal host would make the RIGHT-HANDED fermions a second
+        weak doublet sector -- excluded by their observed weak-isospin-singlet character. The kernel
+        numbers below are correct and remain the carrier of V-A; only the neutrino-excludes-L-orbit
+        reading of them was wrong. See weak_su2_menu_exhaustion for the closed menu.
     (3) I4 grades SD(+1)/ASD(-1), commutes with both => EM=I4 (grading) is VECTOR; weak=factor is CHIRAL.
     GIVEN weak=SD, (2) => V-A. Removes the coupling-parity import from the SD->V-A step; the
     over-prediction wall is gauge-structural (mass-irrelevant). NOT a claim that V-A is fully derived."""
@@ -4343,10 +4367,438 @@ def vminusa_is_spin4_factor_chirality():
     assert all(np_.allclose(I4_ @ B, +B) for B in SD)
     assert all(np_.allclose(I4_ @ B, -B) for B in ASD)
     assert all(np_.allclose(I4_ @ B, B @ I4_) for B in SD + ASD)
-    return {"tier": "DERIVED-A conditional on weak=SU(2)+ (keystone INPUT)",
+    return {"tier": "DERIVED-A conditional on weak=SU(2)+ (R-079: DERIVED-given-{A-P2 + "
+                    "RH-singlet datum}, RUL-082; the 'keystone INPUT' reading is withdrawn)",
             "factors_commute": True, "module_dim": dim,
             "SU(2)+_kernel": kSD, "SU(2)-_kernel": kASD,
-            "V-A": "weak=SD grips one Weyl chirality (half-module kernel); single-Weyl neutrino forbids L-orbit"}
+            "V-A": "weak=SD grips one Weyl chirality (half-module kernel); the L-orbit is excluded by "
+                   "the RIGHT-HANDED fermions' weak-singlet character, NOT by the neutrino (which cannot "
+                   "discriminate -- see weak_su2_menu_exhaustion (3b))"}
+
+
+def weak_su2_menu_exhaustion() -> dict:
+    """[DERIVED-A] THE WEAK-su(2) MENU IS CLOSED: exactly three conjugacy classes of 3-dim Lie
+    subalgebra exist in grade-2 so(4), and all but one are engine-refuted. This is the ENGINE
+    GROUND of the C-32 exhausted-menu promotion of `weak = SD` (a menu whose alternatives are
+    ALL engine-refuted no longer contains a pick; the survivor is derived).
+
+    WHAT IS COMPUTED, in four parts.
+
+    (1) THE CLASSIFICATION (the part the corpus previously asserted and never computed).
+        grade-2 Cl(4,0) = so(4) = SD (+) ASD, two commuting 3-dim ideals (verified: rank 6,
+        max|[SD,ASD]| = 0). On an orthonormal basis of each ideal the structure tensor
+        T_ijk = <[U_i,U_j],U_k> is EXACTLY c*epsilon_ijk (residual 0.0, c = +2*sqrt(2) on SD,
+        -2*sqrt(2) on ASD -- the OPPOSITE SIGN is why no "handed mixture" closes). Total
+        antisymmetry of T is the whole input, and it supplies three lemmas in two lines each:
+          L1 (no 2-dim subalgebra): <[X,Y],X> = c*det[X,Y,X] = 0 = <[X,Y],Y>, and [X,Y] != 0
+             for X,Y independent, so [X,Y] lies OUTSIDE span{X,Y}.  => subalgebra dims are 0,1,3.
+          L2 (simple): for X != 0 the image of ad_X is X-perp (2-dim), so any nonzero ideal
+             containing X contains span{X} + X-perp = the whole factor. => ideal dims are 0,3.
+          L3 (Aut = Inn): an automorphism preserves the Killing form (=> O(3)) and preserves
+             c*det (=> det = +1), so Aut(su(2)) = SO(3) = Inn.  => all graph subalgebras of an
+             isomorphism are conjugate to one another.
+        Goursat's lemma for a subalgebra h of g1 (+) g2 (projections p_i, kernels k_i normal in
+        p_i, dim h = dim k1 + dim p2 = dim k2 + dim p1, p1/k1 iso p2/k2) then reduces the
+        classification to a FINITE case sweep over (dim p1, dim k1, dim p2, dim k2), which this
+        primitive RUNS rather than asserts. It returns exactly three admissible tuples:
+            (3,3,0,0) -> h = SD        (the first ideal)
+            (0,0,3,3) -> h = ASD       (the second ideal)
+            (3,0,3,0) -> h = the graph of an isomorphism -> ONE class by L3 = the diagonal
+                         so(3) class = {Stab(v) : v a unit vector}; the L-orbit Stab(e_4)
+                         is verified to be a member (L cap SD = L cap ASD = 0, so both
+                         projections are injective and onto).
+        ** THE THREE CLASSES ARE NOT THREE OF A KIND (re-derivation delta D1, adopted). SD and ASD
+        are IDEALS, so the connected group fixes each pointwise-as-a-set: each is a conjugacy class
+        of SIZE ONE, a rigid point. The diagonal class is a genuine 3-parameter family -- an
+        SO(3)-worth of graphs, all conjugate to one another. Two rigid points and one moving class.
+        That asymmetry is exactly WHY part (2) works: an ideal cannot be moved off itself by
+        anything connected, so only an OUTER (orientation-reversing) automorphism can reach across.
+        ** WHERE THE EXCLUSION ACTUALLY COMES FROM (re-derivation delta D2, adopted). The whole
+        classification turns on L1. The rows `dim p1 = 1` and `dim p2 = 1` are the ONLY place a
+        genuinely exotic subalgebra could hide, and they die solely because they would require a
+        2-dimensional ideal, i.e. because rank su(2) = 1. **The `handed mixture` computation quoted
+        as a cross-check below is a SUB-CASE, not the proof**: it kills only the equal-index ansatz
+        `alpha*A_i + beta*C_i` (via alpha*beta*(alpha-beta) = 0). Do not cite the mixture residuals
+        as the general argument -- cite L1.
+        *Conditioning class (RUL-049):* "exactly three" is exact WITHIN grade-2 so(4) over the
+        reals -- i.e. conditional on premise A-P2 below. It is not a statement about hosts
+        outside the substrate's own rotation algebra.
+
+    (2) THE ASD MIRROR -- ASD is not a rival, it is the same member relabelled. Conjugation by
+        a frame reflection (induced vector map determinant -1, i.e. ORIENTATION-REVERSING)
+        maps SD onto ASD and ASD onto SD exactly (residuals ~2e-16), fixes the diagonal class
+        setwise, and flips the sign of I_4 -- so the I_4 sign that labels "self-dual" is
+        convention-mobile. **THREE INEQUIVALENT REFLECTION VECTORS ARE RUN, not one** (e_1, e_4,
+        and the non-basis (e_1+e_2+e_3+e_4)/2): the exchange and the I_4 flip are GENERIC to
+        orientation reversal, not an artefact of a basis axis (re-derivation delta D4, adopted --
+        a single-witness demonstration would look non-generic, which is the F1 failure mode).
+        ** AND RUNNING THREE CORRECTED THE STATEMENT. "Fixes the diagonal class" is a CLASS-level
+        fact, not a member-level one: the e_4-axis-preserving reflectors (e_1, e_4) fix the L-orbit
+        Stab(e_4) SETWISE, but a generic reflection carries it to Stab(v') -- a DIFFERENT member of
+        the same class (residual 0.707, asserted to be nonzero here so the distinction cannot be
+        lost again). What every reflector preserves is MEMBERSHIP of the diagonal class, tested as
+        "both projections still injective", and that is the only version used above. Counted up to Aut(so(4)) (which contains this outer element) the menu
+        has TWO classes, not three: {chiral factor, diagonal so(3)}. SD-vs-ASD is therefore a
+        NAMING of the spatial orientation, not a physical branch.
+        *Conditioning class (RUL-049):* a relabelling ONLY while no independent physical object
+        pins the substrate's orientation; if one is ever constructed, ASD becomes a real branch
+        and this clause reverts.
+
+    (3) THE DIAGONAL-CLASS KILL (Route A of the 2026-08-21 verification, recomputed here as a
+        statement about the WHOLE class, not about samples). On the 4-dim spinor module:
+            ker(SD) = ker(ASD) = 2  -- each chiral factor annihilates exactly the complementary
+                                       Weyl half, and nothing more;
+            ker(L-orbit) = ker(any graph subalgebra) = 0.
+        The class statement follows from the two kernel numbers alone: ker(SD) = 2 = dim of one
+        Weyl half means su(2) acts with NO common fixed vector on the other half, so a graph
+        subalgebra {(X, phi(X))}, which acts as X on one half and phi(X) on the other, has zero
+        common kernel on BOTH. Twelve random graph subalgebras are built and verified (closure
+        residual < 1e-15, ker = 0) as a witness of the argument, not as its support.
+
+    (3b) ★ WHAT THE DISCRIMINATOR IS NOT -- a correction this primitive COMPUTES, against the
+        wording the corpus carried at every use-site.
+        ** READ THE WORD "DIMENSION" EXACTLY (re-derivation delta D3, adopted). The numbers below
+        are IMAGE DIMENSIONS: dim of the image of the map h -> End(S), i.e. the dimension of the
+        span of the restricted operators -- a FAITHFULNESS statement about the subalgebra. They are
+        NOT the matrix rank of an individual operator: a single nonzero SD bivector acts on the
+        2-complex-dimensional half INVERTIBLY, so the per-operator matrix rank is FULL, and under
+        that reading the number would not be 3. Both readings give the same qualitative selection
+        (a chiral factor is trivial on one half), but only the image-dimension reading makes "3"
+        the right number. Every returned key below is named image_dim for that reason.
+        Restricted to the neutrino's OWN Weyl half, the L-orbit and SD span the SAME 3-dimensional
+        algebra:
+            image_dim(SD|W+) = 3,  image_dim(L|W+) = 3,  image_dim(SD|W+ union L|W+) = 3.
+        Every grade-2 element commutes with I_4, so EVERY candidate on the menu preserves the
+        Weyl halves; and on W+ the diagonal candidate acts exactly as the chiral one does. So a
+        single-Weyl neutrino CANNOT distinguish weak = SD from weak = L-orbit, and the sentence
+        "a left-handed single-Weyl neutrino excludes weak = L-orbit" is FALSE as an argument
+        about the neutrino alone. Replace it with the statement below wherever it appears.
+        THE DISCRIMINATOR IS THE ACTION ON THE OTHER HALF:
+            image_dim(SD|W-) = 0  -- the chiral factor annihilates W-: a weak-SINGLET sector
+                                     (here the two readings agree: EVERY operator is zero);
+            image_dim(L|W-)  = 3  -- the diagonal class charges W- exactly as strongly as W+.
+        EMPIRICAL LEG (named, not hidden): the right-handed fermions are weak-isospin SINGLETS
+        -- there are no right-handed charged currents. Under a diagonal host they would form a
+        second weak doublet sector at full strength. The framework's own structure supplies the
+        occupancy that datum needs to bite: the charged lepton occupies BOTH Weyl ideals, and
+        that two-ideal occupancy IS its Dirac-mass channel (R-076, neutrino_lightness), so W- is
+        not empty.
+        *Conditioning class (RUL-049):* the kill is decisive ONLY given that W- is occupied. A
+        family member placing all matter in a single Weyl ideal has no right-handed sector for a
+        diagonal host to charge and would need a different kill -- but it also has no
+        charged-lepton Dirac mass, so it is not a live member of this family.
+        The kill consumes: CORE LS (the local state is a 4D orientation, so the module is the
+        4-dim two-Weyl one), CORE S3 via forced_handedness (R-075), the two-ideal occupancy
+        (R-076), premise A-P2, and the singlet datum. It consumes NO endorsement and NO V3 pin
+        -- in particular not generations = ASD (that is the redundant centralizer route,
+        weak_isospin_centralizer_is_SD) and not the imported coupling-parity correspondence
+        (the weaker route, weak_isospin_SD_parity_exclusion).
+
+    (4) CONTROLS -- the enumeration must be able to return a DIFFERENT menu, or it is not
+        enumerating (the C-32 gate; FORMATION_CORE Ex.5 is the negative control this rule
+        exists for).
+        C1: drop the reality/compactness premise -- allow the factor the 2-dim Borel subalgebra
+            that sl(2,C) has and su(2) does not. Same sweep, same code: the count goes 3 -> 6
+            (three new tuples: (2,1,2,1), (1,1,2,2), (2,2,1,1)).
+        C2: run the same structure-tensor machinery on grade-2 Cl(3,0) = so(3): dimension 3,
+            centralizer inside itself 0, T = c*epsilon -- simple, no decomposition into two
+            commuting 3-dim ideals at all, and its only 3-dim subalgebra is itself. Count 3 -> 1.
+
+    THE SURVIVING CONDITIONING PREMISE, CARRIED EXPLICITLY (do not drop it when quoting this):
+        A-P2 -- "weak isospin is hosted by a 3-dimensional su(2) INSIDE grade-2 so(4)."
+        This is a structural identification, currently FRAMING in the engine
+        (weak_isospin_SD_parity_exclusion's own docstring says so verbatim) and stamped nowhere
+        in the Core charter. Everything above is conditional on it. A family member that hosts
+        weak isospin somewhere other than the substrate's own rotation algebra is not on this
+        menu and is untouched by any of these refutations -- that region is unexplored.
+
+    WHAT THIS DOES AND DOES NOT LICENSE. It licenses: weak = SD is Core-forced GIVEN
+    {A-P2 + the single-chirality weak-current data}; the menu is closed by computation; the
+    "pick" language retires. It does NOT license: weak = SD as an unconditional Core axiom
+    (A-P2 is unstamped); V-A as a family consequence free of data; any claim about hosts
+    outside grade-2 so(4).
+
+    Cross-refs: vminusa_is_spin4_factor_chirality (the kernel numbers, first banked there),
+    weak_isospin_centralizer_is_SD (Route B, rides generations = ASD), forced_handedness
+    (R-075), weak_isospin_SD_parity_exclusion (Route C, rides an imported QFT premise)."""
+    np_, e_, I4_ = _cl40()
+
+    def biv(i, j):
+        return e_[i] @ e_[j]
+
+    def comm(A, B):
+        return A @ B - B @ A
+
+    def ip(A, B):
+        return _ip(np_, A, B)
+
+    def unit(vs):
+        return [V / np_.sqrt(ip(V, V)) for V in vs]
+
+    SD = [biv(1, 2) - biv(3, 4), biv(1, 3) + biv(2, 4), biv(1, 4) - biv(2, 3)]
+    ASD = [biv(1, 2) + biv(3, 4), biv(1, 3) - biv(2, 4), biv(1, 4) + biv(2, 3)]
+    LORB = [biv(1, 2), biv(1, 3), biv(2, 3)]
+    GRADE2 = [biv(i, j) for i, j in [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]]
+
+    EPS = np_.zeros((3, 3, 3))
+    for i, j, k in [(0, 1, 2), (1, 2, 0), (2, 0, 1)]:
+        EPS[i, j, k] = 1.0
+        EPS[j, i, k] = -1.0
+
+    def struct_tensor(triple):
+        U = unit(triple)
+        T = np_.zeros((3, 3, 3))
+        for i in range(3):
+            for j in range(3):
+                X = comm(U[i], U[j])
+                for k in range(3):
+                    T[i, j, k] = ip(X, U[k])
+        return T
+
+    def eps_fit(triple):
+        T = struct_tensor(triple)
+        c = float(np_.sum(T * EPS) / np_.sum(EPS * EPS))
+        return c, float(np_.max(np_.abs(T - c * EPS)))
+
+    # ---- (1a) the two ideals: commuting, spanning, epsilon-structured -------------------
+    c_sd, r_sd = eps_fit(SD)
+    c_asd, r_asd = eps_fit(ASD)
+    max_cross = max(float(np_.linalg.norm(comm(a, b))) for a in SD for b in ASD)
+    rank_sum = int(np_.linalg.matrix_rank(np_.array([X.flatten() for X in SD + ASD]), tol=1e-9))
+    dim_g2 = int(np_.linalg.matrix_rank(np_.array([X.flatten() for X in GRADE2]), tol=1e-9))
+    assert r_sd < 1e-12 and r_asd < 1e-12, (r_sd, r_asd)      # T = c*eps EXACTLY
+    assert c_sd * c_asd < 0, (c_sd, c_asd)                    # opposite handedness
+    assert max_cross < 1e-12 and rank_sum == 6 and dim_g2 == 6
+
+    # ---- (1b) the Goursat sweep (finite, RUN not asserted) ------------------------------
+    def goursat_3dim(subalg_dims, ideals_of, target=3):
+        out = []
+        for d1 in subalg_dims:
+            for d2 in subalg_dims:
+                for k1 in ideals_of[d1]:
+                    for k2 in ideals_of[d2]:
+                        if k1 + d2 != target or k2 + d1 != target:
+                            continue
+                        if d1 - k1 != d2 - k2:       # p1/k1 iso p2/k2 (dimension face)
+                            continue
+                        out.append((d1, k1, d2, k2))
+        return sorted(out)
+
+    # su(2) over R: subalgebra dims {0,1,3} by L1; ideal dims {0} / {0,1} / {0,3} by L2.
+    COMPACT_DIMS, COMPACT_IDEALS = (0, 1, 3), {0: (0,), 1: (0, 1), 3: (0, 3)}
+    tuples_real = goursat_3dim(COMPACT_DIMS, COMPACT_IDEALS)
+    assert tuples_real == [(0, 0, 3, 3), (3, 0, 3, 0), (3, 3, 0, 0)], tuples_real
+
+    # ---- (2) the mirror -----------------------------------------------------------------
+    def conj_by(v):
+        """conjugation by a unit vector v: on EVEN elements X -> v X v (the two twisted-adjoint
+        sign flips cancel), which is the reflection in v-perp -- orientation-REVERSING."""
+        return lambda X: v @ X @ v
+
+    _v_half = (e_[1] + e_[2] + e_[3] + e_[4]) / 2.0    # a non-basis unit vector
+    REFLECTORS = [("e1", e_[1]), ("e4", e_[4]), ("(e1+e2+e3+e4)/2", _v_half)]
+    conj_e1 = conj_by(e_[1])
+
+    def span_residual(mats, basis):
+        B = np_.array([X.flatten() for X in basis])
+        r = 0.0
+        for X in mats:
+            v = X.flatten()
+            coef, *_ = np_.linalg.lstsq(B.T, v, rcond=None)
+            r = max(r, float(np_.linalg.norm(B.T @ coef - v) / max(np_.linalg.norm(v), 1e-30)))
+        return r
+
+    def _is_graph_subalgebra(mats):
+        """membership test for the DIAGONAL class: both projections injective, i.e. the span meets
+        neither ideal. Computed as dim(span + ideal) = 6 for both ideals."""
+        okSD = 6 - int(np_.linalg.matrix_rank(
+            np_.array([X.flatten() for X in list(mats) + SD]), tol=1e-9))
+        okASD = 6 - int(np_.linalg.matrix_rank(
+            np_.array([X.flatten() for X in list(mats) + ASD]), tol=1e-9))
+        return okSD == 0 and okASD == 0
+
+    mirror_witnesses = {}
+    for _name, _v in REFLECTORS:
+        _c = conj_by(_v)
+        _sd_asd = span_residual([_c(X) for X in SD], ASD)
+        _sd_sd = span_residual([_c(X) for X in SD], SD)
+        _L_L = span_residual([_c(X) for X in LORB], LORB)          # setwise fix of THIS member
+        _L_class = _is_graph_subalgebra([_c(X) for X in LORB])      # class-level statement
+        _Vm = np_.zeros((4, 4))
+        for j in range(1, 5):
+            _Y = _c(e_[j])
+            for i in range(1, 5):
+                _Vm[i - 1, j - 1] = (np_.trace(_Y @ e_[i]) / 4).real
+        _det = float(np_.linalg.det(_Vm))
+        _flip = float(np_.max(np_.abs(_c(I4_) + I4_)))
+        # EVERY orientation-reversing conjugation exchanges the ideals, preserves the diagonal
+        # CLASS, and flips I_4 -- generic, not an artefact of a basis axis (delta D4).
+        assert _sd_asd < 1e-12 and _sd_sd > 0.5, (_name, _sd_asd, _sd_sd)
+        assert _L_class, _name
+        assert _det < -0.5 and _flip < 1e-12, (_name, _det, _flip)
+        mirror_witnesses[_name] = {"SD->ASD_residual": _sd_asd, "SD->SD_residual": _sd_sd,
+                                   "diagonal_class_preserved": _L_class,
+                                   "L-orbit_fixed_setwise_residual": _L_L,
+                                   "reflection_det": _det, "I4_sign_flip_residual": _flip}
+    # the e_4-axis-preserving reflectors fix the L-orbit ITSELF; a generic one moves it to
+    # another member Stab(v') of the same class. Both facts are recorded; only the CLASS-level
+    # one is load-bearing.
+    assert mirror_witnesses["e1"]["L-orbit_fixed_setwise_residual"] < 1e-12
+    assert mirror_witnesses["e4"]["L-orbit_fixed_setwise_residual"] < 1e-12
+    assert mirror_witnesses["(e1+e2+e3+e4)/2"]["L-orbit_fixed_setwise_residual"] > 0.1
+    mir_sd_into_asd = max(w["SD->ASD_residual"] for w in mirror_witnesses.values())
+    mir_sd_into_sd = min(w["SD->SD_residual"] for w in mirror_witnesses.values())
+    mir_L_into_L = mirror_witnesses["e1"]["L-orbit_fixed_setwise_residual"]
+    mir_class_preserved = all(w["diagonal_class_preserved"] for w in mirror_witnesses.values())
+    det_reflection = max(w["reflection_det"] for w in mirror_witnesses.values())
+    I4_flip = max(w["I4_sign_flip_residual"] for w in mirror_witnesses.values())
+
+    # ---- (3) kernels on the 4-dim spinor module ----------------------------------------
+    def ker_dim(mats):
+        A = np_.vstack(mats)
+        s = np_.linalg.svd(A, compute_uv=False)
+        return A.shape[1] - int((s > 1e-9 * max(s)).sum())
+
+    dim_mod = int(e_[1].shape[0])
+    kSD, kASD, kL = ker_dim(SD), ker_dim(ASD), ker_dim(LORB)
+    assert dim_mod == 4 and kSD == 2 and kASD == 2 and kL == 0, (dim_mod, kSD, kASD, kL)
+
+    # L-orbit is a member of the graph (diagonal) class: both projections injective
+    lcapSD = 6 - int(np_.linalg.matrix_rank(np_.array([X.flatten() for X in LORB + SD]), tol=1e-9))
+    lcapASD = 6 - int(np_.linalg.matrix_rank(np_.array([X.flatten() for X in LORB + ASD]), tol=1e-9))
+    assert lcapSD == 0 and lcapASD == 0, (lcapSD, lcapASD)
+
+    # explicit graph subalgebras {U_i + Ad_R(W_i)}, W_i = -unit(ASD)_i (matching structure
+    # constants -- the sign flip is exactly why the "handed mixture" U_i + V_i fails to close)
+    U = unit(SD)
+    W = [-X for X in unit(ASD)]
+
+    def rotor(vec):
+        G = sum(v * A for v, A in zip(vec, ASD)) / 2.0
+        R = np_.eye(G.shape[0], dtype=complex)
+        term = np_.eye(G.shape[0], dtype=complex)
+        for n in range(1, 40):
+            term = term @ G / n
+            R = R + term
+        return R
+
+    rng = np_.random.default_rng(20260821)
+    graph_kers, graph_close = set(), 0.0
+    for _ in range(12):
+        R = rotor(rng.normal(size=3))
+        Rinv = np_.linalg.inv(R)
+        graph = [U[i] + Rinv @ W[i] @ R for i in range(3)]
+        Gm = np_.array([X.flatten() for X in graph])
+        for i in range(3):
+            for j in range(3):
+                C = comm(graph[i], graph[j]).flatten()
+                coef, *_ = np_.linalg.lstsq(Gm.T, C, rcond=None)
+                graph_close = max(graph_close, float(
+                    np_.linalg.norm(Gm.T @ coef - C) / max(np_.linalg.norm(C), 1e-30)))
+        graph_kers.add(ker_dim(graph))
+    assert graph_kers == {0} and graph_close < 1e-9, (graph_kers, graph_close)
+
+    # ---- (3b) the discriminator is the OTHER half, not the neutrino's own half ----------
+    Pp = (np_.eye(4, dtype=complex) + I4_) / 2.0     # I4 commutes with all of grade-2, so
+    Pm = (np_.eye(4, dtype=complex) - I4_) / 2.0     # every candidate preserves W+ and W-
+
+    def image_dim_on(mats, P):
+        """dim of the IMAGE of h -> End(S_P): the dimension of the SPAN of the restricted
+        operators. This is a faithfulness statement about the SUBALGEBRA and is NOT the matrix
+        rank of any single operator (delta D3)."""
+        return int(np_.linalg.matrix_rank(np_.array([(P @ X @ P).flatten() for X in mats]),
+                                          tol=1e-9))
+
+    rk_SD_p, rk_L_p = image_dim_on(SD, Pp), image_dim_on(LORB, Pp)
+    rk_union_p = image_dim_on(SD + LORB, Pp)
+    rk_SD_m, rk_L_m = image_dim_on(SD, Pm), image_dim_on(LORB, Pm)
+    # the per-operator reading, computed so the ambiguity cannot be re-introduced silently:
+    # on W- EVERY SD operator vanishes (both readings agree there), while on W+ a single SD
+    # bivector is INVERTIBLE -- which is why "3" is an image dimension, never an operator rank.
+    _op_ranks_SD_Wplus = sorted({int(np_.linalg.matrix_rank(Pp @ X @ Pp, tol=1e-9)) for X in SD})
+    _op_ranks_SD_Wminus = sorted({int(np_.linalg.matrix_rank(Pm @ X @ Pm, tol=1e-9)) for X in SD})
+    assert _op_ranks_SD_Wminus == [0], _op_ranks_SD_Wminus
+    assert 3 not in _op_ranks_SD_Wplus, _op_ranks_SD_Wplus
+    # on the neutrino's own half the two candidates are the SAME algebra -> not a discriminator
+    assert rk_SD_p == 3 and rk_L_p == 3 and rk_union_p == 3, (rk_SD_p, rk_L_p, rk_union_p)
+    # on the other half they could not differ more -> THIS is the discriminator
+    assert rk_SD_m == 0 and rk_L_m == 3, (rk_SD_m, rk_L_m)
+
+    # ---- (4) CONTROLS: the sweep must be able to return a different menu -----------------
+    # C1: drop reality/compactness -- allow the 2-dim Borel sl(2,C) has and su(2) does not.
+    BROKEN_DIMS, BROKEN_IDEALS = (0, 1, 2, 3), {0: (0,), 1: (0, 1), 2: (0, 1, 2), 3: (0, 3)}
+    tuples_broken = goursat_3dim(BROKEN_DIMS, BROKEN_IDEALS)
+    assert len(tuples_broken) == 6 and len(tuples_real) == 3, (tuples_broken, tuples_real)
+    assert set(tuples_broken) - set(tuples_real) == {(2, 1, 2, 1), (1, 1, 2, 2), (2, 2, 1, 1)}
+
+    # C2: so(3) = grade-2 Cl(3,0) -- simple, no two-ideal decomposition, count 1 not 3.
+    sx = np_.array([[0, 1], [1, 0]], complex)
+    sy = np_.array([[0, -1j], [1j, 0]])
+    sz = np_.array([[1, 0], [0, -1]], complex)
+    f3 = [None, sx, sy, sz]
+    g2_3 = [f3[1] @ f3[2], f3[1] @ f3[3], f3[2] @ f3[3]]
+    dim_so3 = int(np_.linalg.matrix_rank(np_.array([X.flatten() for X in g2_3]), tol=1e-9))
+    Mc = np_.zeros((3 * g2_3[0].size, 3), dtype=complex)
+    for a in range(3):
+        Mc[:, a] = np_.concatenate([comm(g2_3[a], Y).flatten() for Y in g2_3])
+    sv = np_.linalg.svd(Mc, compute_uv=False)
+    cent_so3 = 3 - int((sv > 1e-9 * max(sv)).sum())
+    c3, r3 = eps_fit(g2_3)
+    assert dim_so3 == 3 and cent_so3 == 0 and r3 < 1e-12, (dim_so3, cent_so3, r3)
+
+    return {
+        "tier": "DERIVED-A (classification + refutations) GIVEN premise A-P2 (FRAMING, unstamped)",
+        "headline": "the 3-dim su(2) menu inside grade-2 so(4) is CLOSED at three conjugacy "
+                    "classes; ASD is the same member mirrored; the diagonal class is refuted "
+                    "by the single-chirality weak-current data => weak = SD is not a pick",
+        "conditioning_premise": "A-P2: weak isospin is a 3-dim su(2) INSIDE grade-2 so(4) "
+                               "(structural, FRAMING, stamped nowhere)",
+        "empirical_leg": "the right-handed fermions are weak-isospin SINGLETS (no right-handed "
+                         "charged currents) -- NOT 'the neutrino is single-Weyl', which cannot "
+                         "discriminate (see weyl_half_restriction below)",
+        "weyl_half_restriction": {
+            "image_dim(SD|W+)": rk_SD_p, "image_dim(L|W+)": rk_L_p,
+            "image_dim(SD|W+ u L|W+)": rk_union_p,
+            "image_dim(SD|W-)": rk_SD_m, "image_dim(L|W-)": rk_L_m,
+            "per_operator_matrix_ranks_SD_on_W+": _op_ranks_SD_Wplus,
+            "per_operator_matrix_ranks_SD_on_W-": _op_ranks_SD_Wminus,
+            "reading": "IMAGE DIMENSIONS (dim of the span of the restricted operators = "
+                       "faithfulness of the subalgebra), NOT per-operator matrix ranks -- see the "
+                       "docstring's delta-D3 note. On the neutrino's own half SD and the L-orbit "
+                       "are the SAME algebra; the discriminator is the OTHER half, i.e. the "
+                       "right-handed singlet sector"},
+        "structure_constants": {"SD_c": c_sd, "ASD_c": c_asd,
+                                "max|T - c*eps|": max(r_sd, r_asd),
+                                "opposite_handedness": True},
+        "ideals": {"max|[SD,ASD]|": max_cross, "rank(SD+ASD)": rank_sum, "dim_grade2": dim_g2},
+        "goursat_tuples_(dim_p1,dim_k1,dim_p2,dim_k2)": tuples_real,
+        "menu_classes_up_to_SO(4)": 3,
+        "menu_classes_up_to_Aut(so(4))": 2,
+        "menu": ["SD (chiral factor) -- an IDEAL, hence a conjugacy class of size ONE",
+                 "ASD (chiral factor -- the SD mirror) -- likewise an ideal, a rigid point",
+                 "diagonal so(3) class = {Stab(v)}; L-orbit = Stab(e_4) is a member -- a GENUINE "
+                 "3-parameter family (an SO(3)-worth of graphs, all conjugate)"],
+        "class_kinds": "two rigid ideals + one moving class -- and that asymmetry is WHY only an "
+                       "outer (orientation-reversing) automorphism can reach across (delta D1)",
+        "exclusion_comes_from": "lemma L1 (su(2) has NO 2-dimensional subalgebra, because "
+                                "rank su(2) = 1). The handed-mixture residuals are a SUB-CASE "
+                                "cross-check, never the general argument (delta D2)",
+        "mirror": {"conj_e1(SD)->ASD_residual": mir_sd_into_asd,
+                   "conj_e1(SD)->SD_residual": mir_sd_into_sd,
+                   "conj_e1(L)->L_residual": mir_L_into_L,
+                   "reflection_det": det_reflection, "I4_sign_flip_residual": I4_flip,
+                   "diagonal_class_preserved_by_all_reflectors": mir_class_preserved,
+                   "witnesses (3 inequivalent reflection vectors, delta D4)": mirror_witnesses},
+        "kernels_on_4dim_spinor": {"SD": kSD, "ASD": kASD, "L-orbit": kL,
+                                   "graph_subalgebras": sorted(graph_kers),
+                                   "graph_closure_residual": graph_close},
+        "controls": {"C1_reality_dropped_count": len(tuples_broken),
+                     "C1_new_tuples": sorted(set(tuples_broken) - set(tuples_real)),
+                     "C2_so(3)_dim": dim_so3, "C2_so(3)_selfcentralizer": cent_so3,
+                     "C2_so(3)_3dim_subalgebra_count": 1},
+        "does_not_license": "weak = SD as an unconditional Core axiom (A-P2 unstamped); any "
+                            "claim about hosts outside grade-2 so(4)",
+    }
 
 
 def e4_content_confines_quarks_not_leptons():
@@ -4797,15 +5249,33 @@ def delta_L_from_DoverJ(D_over_J: float) -> float:
     return math.atan(D_over_J) / 3.0
 
 def canting_pitch_q_rad(D_over_J: float) -> float:
-    """[DERIVED] §10.3.1: 4D Luttinger-Tisza spiral pitch. The canted-helix minimization
-    on D4 with energy E(q) = -12 J cos q - 12 J - 2 D sqrt(2) sin q yields the optimum at
-    tan q = D sqrt(2)/(6 J). At D/J = 0.787 returns ~10.51deg (matches the engine's
-    canting_at_DJ via §10.3.1's standard formula)."""
+    """[DERIVED] §10.3.1 / §D.4.3: the single-q spiral pitch on the AXIS BRANCH. The
+    canted-helix minimization on D4 with energy E(q) = -12 J cos q - 12 J - 2 D sqrt(2) sin q
+    yields the stationary point at tan q = D sqrt(2)/(6 J). At D/J = 0.787 returns ~10.51deg
+    (matches the engine's canting_at_DJ via §10.3.1's standard formula).
+
+    *** SCOPE — READ BEFORE CALLING THIS 'THE LUTTINGER-TISZA MINIMUM'. ***
+    The configuration behind E(q) is k = q*e_1 (a SPATIAL helix), B = e_14, and its wavevector
+    DIRECTION was never scanned: the twisting bonds are named in advance and the minimisation
+    then runs in one variable. That is a Luttinger-Tisza ANSATZ, not a Luttinger-Tisza
+    MINIMISATION. Scanning k and the rotation plane (`canting_vacuum_branch_structure`) shows
+    the configuration IS a genuine stationary point but an INDEX-2 SADDLE for every D/J > 0
+    (transverse second variation 4J(cos q+3)(cos q-1)/cos q < 0), with a body-diagonal screw
+    state lying lower by -(1/243)(D/J)^4*J *within the single-q simple-bivector helical family*
+    (multi-q, conical and non-simple-B states unscanned; RUL-049).
+
+    WHAT SURVIVES, and is why this primitive is unchanged: D*sqrt(2)/(6J) is a LEADING-ORDER
+    INVARIANT of the whole helical problem — it appears here as tan q on the axis branch and as
+    the total helical rate |k|*lambda on the body-diagonal branch. Which branch the DRIVEN
+    dynamics selects is OPEN (#1 gap, §D.5.7 assembly record); negatives ledger N62."""
     return math.atan(D_over_J * math.sqrt(2.0) / 6.0)
 
 def canting_cos_q(D_over_J: float) -> float:
     """[DERIVED] §10.2.1 / §3.1: the local rotor alignment <R> = cos q (the canting order
-    parameter on the realized spiral ground state), where q is the §10.3.1 Luttinger-Tisza
+    parameter on the canted STATIONARY CONFIGURATION — the AXIS BRANCH of §D.4.3, not "the
+    realized ground state": that configuration is an index-2 saddle of the full (k, B) problem
+    and a body-diagonal branch lies lower, see `canting_vacuum_branch_structure` and
+    `canting_pitch_q_rad`'s SCOPE block), where q is the §10.3.1 axis-branch
     spiral pitch (canting_pitch_q_rad). NOT the global magnetization — this is the local
     / nearest-neighbour rotor alignment carrying the chiral-symmetry-breaking structure
     on which the pion-as-magnon picture rests (§10.2: f_pi = magnon kinetic stiffness).
@@ -5122,8 +5592,15 @@ def brannen_z3_harmonic_collapse_invariant():
         tan(delta_f) = sqrt(3)*(sqrt(m2)-sqrt(m1)) / (2*sqrt(m3)-sqrt(m2)-sqrt(m1))
     (verified below == the DFT phase); Zenczykowski, Phys. Rev. D 87 (2013) 077302
     (arXiv:1301.4143) makes the delta_D-vs-delta_L non-equality comparison itself; Koide,
-    J. Phys. G 34 (2007) 1653 + Brannen (2006, unpublished note) carry the single-harmonic Z3
-    form as the parameter-counting consequence; Rosen, Mod. Phys. Lett. A 22 (2007) 283 is
+    arXiv:hep-ph/0005137 (2000) 'Quark and Lepton Mass Matrices with a Cyclic Permutation
+    Invariant Form' is the PRIORITY for the circulant/single-harmonic Z3 parametrization
+    (priority correction 2026-08-18, prior-art pass RUL-050: Brannen's 2006 self-published
+    note is an INDEPENDENT RE-NOTICING of the charged-lepton case that pinned 2*eta = sqrt(2)
+    and the phase numerically, NOT the origin of the form; the split is stated in
+    Rivero & Gsponer arXiv:hep-ph/0505220 p. 8 and by Zenczykowski); Koide,
+    J. Phys. G 34 (2007) 1653 is the refereed entry point for Brannen's result and carries
+    the single-harmonic Z3 form as the parameter-counting consequence; Rosen,
+    Mod. Phys. Lett. A 22 (2007) 283 is
     the all-delta_f-equal hypothesis -- the class of claim struck here, already problematized
     by Zenczykowski 2012. Internal antecedents: koide_from_c / dft_K_from_r already encode
     amplitude-as-invariant.
@@ -5427,7 +5904,8 @@ def weak_isospin_zero_on_generations():
     assert alt > 1.0, alt
     return {"su2_plus_action_on_V_norms": [round(n, 15) for n in norms],
             "alt_identification_e14_action_on_V_norm": round(alt, 4),
-            "CONTINGENT": "holds GIVEN weak-isospin = su(2)+ — the counted INPUT bit (§C.4.2/N29; "
+            "CONTINGENT": "holds GIVEN weak-isospin = su(2)+ — R-079, DERIVED-given-{A-P2 + "
+                          "RH-singlet datum} since RUL-082 (§C.4.2; N29 superseded-in-part; "
                           "V−A etc. derived-given-it); a different identification overlapping V "
                           "(e14 ad-norm 1.41) would revive the thesis",
             "meaning": "GIVEN su(2)+, weak isospin cannot rotate the generation frame (Level-2 contingent)"}
@@ -5498,7 +5976,27 @@ def weak_isospin_rank_table():
     return table
 
 def weak_isospin_verdict():
-    """[RESOLVED 2026-06-29 — weak isospin = SD = SU(2)+ is the weak sector's SINGLE counted INPUT (1 bit;
+    """★★ SUPERSEDED IN PART 2026-08-21 (R-171, RUL-082 — the first C-32 exhausted-menu promotion;
+    reversal-ledger RV-6/RV-7). READ THIS BANNER BEFORE THE HISTORY BELOW. Three elements of the
+    2026-06-29 verdict are WITHDRAWN and must not be restated:
+      (1) the KIND -- weak = SD is no longer "the sector's single counted INPUT (1 bit)" picked from
+          a menu. R-079 is now DERIVED-given-{A-P2 + the right-handed-singlet datum}. The sector
+          still costs ONE empirical bit, but the bit is READ, not chosen, and it comes with a named
+          structural premise (A-P2: weak isospin is a 3-dim su(2) inside grade-2 so(4) AT ALL --
+          FRAMING, unstamped, escalated to the human coordinator).
+      (2) the MENU -- it is NOT {SD chiral, L-orbit parity-even}. The complete list of 3-dim Lie
+          subalgebras of grade-2 so(4) is THREE conjugacy classes {SD, ASD, the diagonal so(3) class
+          of which the L-orbit is ONE member}, computed by weak_su2_menu_exhaustion, and it is
+          CLOSED: ASD is the SD mirror under an orientation-reversing reflection, and the diagonal
+          class is refuted by the right-handed fermions' weak-isospin-singlet character.
+      (3) the GROUND -- "the neutrino picks SD" is FALSE. On the neutrino's own Weyl half the
+          L-orbit and SD span the SAME 3-dim algebra (image dimensions 3/3, union 3). The
+          discriminator is the RIGHT-HANDED half: SD annihilates it (image dimension 0) while the
+          diagonal class charges it (3).
+    What SURVIVES unchanged: the U1 embedding is SD and NOT the L-orbit; V-A, generation-blindness,
+    the doublet and up=SD are derived-given-R-079; the rank analysis and the CKM-arc history below.
+    HISTORY AS BANKED 2026-06-29, retained verbatim as the route to the conclusion (N29 pattern):
+    [RESOLVED 2026-06-29 — weak isospin = SD = SU(2)+ is the weak sector's SINGLE counted INPUT (1 bit;
     "weak is chiral / V-A" = "weak is generation-blind / no FCNC"; neutrino-forced via forced_handedness +
     neutrino_lightness; geometry offers the menu {SD chiral, L-orbit parity-even}, the neutrino picks SD).
     The U1 embedding is SD, NOT the L-orbit 𝔏 (which is the SPIN; §20.3) -- the §10.5/§20.3 L-orbit reading
@@ -5899,7 +6397,10 @@ def koide_modus_tollens_consistency():
       the substrate's exact spatial Z3 symmetry at face value, the Z3-symmetric Koide
       pattern would BREAK at O(tens of %) magnitude — a single-plane realized DM
       (∝ -e_{23}, the 'single-helix-domain' read of the spatial DM bivector on the
-      matched spiral ground state at D/J=0.79) leaves generation-1 decoupled
+      matched spiral configuration at D/J=0.79 — the AXIS BRANCH of §D.4.3; that
+      configuration is a stationary point, not the ground state, and the argument
+      below is a consistency band that does not depend on which branch is realized)
+      leaves generation-1 decoupled
       ([e_{23}, e_{14}] = 0) while the other two generations couple, distorting K
       by O(1) of the symmetry-breaking amplitude (~82%, the f_perp = sqrt(2/3) read).
       EMPIRICALLY Koide holds: K ≈ 0.666661 vs 2/3 = 0.666667, relative deviation
@@ -6120,7 +6621,7 @@ def sterile_rh_relic_check():
 
     Would change if (CLAUDE.md §4 negatives discipline):
       Z1: TWT predicts a SECOND mass scale for sterile RH decoupled from the Dirac eigenvalue
-          (e.g. a meta-time monad-scale contribution to the wave-decoupled mode that doesn't
+          (e.g. a meta-time grain-scale contribution to the wave-decoupled mode that doesn't
           couple back to the active sector). Not currently in §19.8.
       Z2: A non-thermal production mechanism dumps energy into the sterile sector early
           (e.g. inflaton decay into wave-decoupled modes). Not currently identified.
@@ -6348,7 +6849,9 @@ def skyrme_BVP_audit():
 def f_pi_squared(J: float = 1.0, a: float = 1.0) -> float:
     """[DERIVED] §10.2: the 12 spatial bonds projected onto 3 dimensions give the chiral
     kinetic term H_kin = (z_sp/d3)(J/a)|∂U|² = 4(J/a)|∂U|²; matching to (f_π²/2)|∂U|²
-    gives f_π² = 8J/a. The 8 = 2 × (z_sp/d3) = 2 × (12/3). [D4 coordination]"""
+    gives f_π² = 8J/a. The 8 = 2 × (z_sp/d3) = 2 × (12/3). [D4 coordination]
+    NOMENCLATURE: the absolute f_π = 129 MeV consumed downstream is the ANW FITTED value
+    (physical F_π ≈ 186 MeV in ANW's normalization), not the measured decay constant."""
     z_sp, d3 = 12, 3
     return 2 * (z_sp / d3) * (J / a)    # = 8 J/a
 
@@ -6499,7 +7002,15 @@ def beta3_sign_from_reflection_positivity() -> dict:
 
 
 def D_crit_over_J() -> float:
-    """[DERIVED] §10.3: D_crit/J = 6/√2 = 3√2 = √18 = 4.243 (pure D4 geometry, no fit)."""
+    """[DERIVED] §10.3: D_crit/J = 6/√2 = 3√2 = √18 = 4.243 (pure D4 geometry, no fit).
+
+    REFERENT NOTE (J,D/Γ rework). Do not confuse this geometric D_crit with the
+    "D = J" balance point of §C.3.6 / R-069. R-069's theorem is about the two
+    AMPLITUDES of the chiral ℤ₃ potential: `B = A ⇔ δ_L = π/12 ⇔ m_e = 0`. The
+    "D = J" form is the ANSATZ-MAPPED FACE of that identity — it holds given
+    R-070's asserted `A = J, B = D` coefficient identification, and is a corollary,
+    not the theorem. Everything narrated as "the substrate's chirality nearly
+    balances / 79% of critical" rides that ansatz."""
     return 6.0 / math.sqrt(2.0)
 
 def spiral_angle_deg(D_over_J: float = 0.787) -> float:
@@ -7157,7 +7668,12 @@ def pi3_S3_integer_completion():
     vacuum-connectable winding.
 
     NOTE: gluon-free — TWT has no gauged SU(3)_c; this is topology (formal consequence
-    of §16.5.2 ontology), not color force."""
+    of §16.5.2 ontology), not color force.
+
+    SCOPE NOTE: this primitive is about the LEPTON-sector winding target S³ = exp(𝓛) and
+    the baryon integer-completion argument. It does NOT compute π₃ of the medium's local
+    state space — for that (the ℤ×ℤ two-winding statement, R-002) see
+    pi3_orientation_class_two_windings()."""
     one_third = sp.Rational(1, 3)
     return {
         "pi_3(S^3)": "Z",
@@ -7166,10 +7682,114 @@ def pi3_S3_integer_completion():
     }
 
 
+# ---- §A.2 / §D.3.2  π₃ of the 4D-orientation class = ℤ×ℤ: the TWO windings (R-002) ---
+def pi3_orientation_class_two_windings():
+    """[DERIVED-A for the algebra; the homotopy identities are pure-math imports]
+    The medium's local state is a 4D ORIENTATION — SIX real parameters — and π₃ of that
+    orientation class is ℤ×ℤ: TWO independent windings. This is the genuine engine cite
+    for R-002 ("π₃ = ℤ×ℤ classifies matter").
+
+    WHAT IS COMPUTED HERE (DERIVED-A — this engine's own dimension census + commutators):
+      * Cl(4,0) has dim 16; its EVEN subalgebra Cl⁺(4,0) has dim 8, spanned by
+        {1, e12, e13, e14, e23, e24, e34, e1234} = 1 + 6 + 1, and is verified CLOSED
+        under the geometric product.
+      * the grade-2 sector carries SIX generators = dim so(4) = C(4,2).
+      * that sector CHIRALLY FACTORIZES: SD = {e12−e34, e13+e24, e14−e23} and
+        ASD = {e12+e34, e13−e24, e14+e23} EACH close as su(2) (computed: [T_i,T_j] = 4 T_k
+        cyclically) and MUTUALLY COMMUTE ([SD, ASD] = 0), so
+        so(4) ≅ su(2) ⊕ su(2), i.e. Cl⁺(4,0) ≅ ℍ ⊕ ℍ.
+
+    WHAT IS IMPORTED (pure mathematics — hypotheses checkable, so RUL-003's pure-math
+    exemption applies and no Import-Registry row is owed):
+      * the chiral factorization exponentiates: the simply-connected 4D-orientation group
+        is S³ × S³, so π₃ = π₃(S³) × π₃(S³) = ℤ × ℤ.
+      * a covering map is an isomorphism on πₙ for every n ≥ 2. The 4D-orientation class
+        has a two-fold covering pair, and π₃ (and π₄) agree across it.
+
+    ⇒ THE STATEMENT IS COVER-BLIND, and that is the point. The two windings belong to the
+    4D-orientation class AS SUCH; they do not depend on where the ℤ₂ sign lives. WHERE the
+    sign lives is a DELIBERATELY OPEN branch — family-tree Core node LS-ℤ₂ (RUL-057):
+    {sign-in-the-state (one-sided action on the spinor module) | sign-in-the-emergent
+    covering sector (the odd character of π₁ = ℤ₂ at §B.3.5)}. This primitive must
+    therefore NEVER be read as picking one branch over the other; it is deliberately
+    silent on the cover, and π₃ is the invariant that lets it be.
+
+    RELATION TO pi3_S3_integer_completion (which STAYS, unchanged): that primitive checks
+    π₃(S³) = ℤ and the 3×(1/3) integer-completion facts — the LEPTON-sector winding target
+    exp(𝓛) and the baryon B-integrality argument. It computes ONE ℤ and contains no
+    chiral factorization; citing it for ℤ×ℤ was a phantom cite. THIS primitive is what
+    R-002's ℤ×ℤ is booked on.
+
+    LAYER: a GRAIN-layer statement (the per-site state variable), inherited unchanged by
+    the continuum field through the §D.4.1 continuum map (Core node LS-6, RUL-057)."""
+    from itertools import combinations
+
+    # --- (1) dimension census: Cl(4,0) dim 16, Cl+(4,0) dim 8, six grade-2 generators ---
+    all_blades = [c for k in range(5) for c in combinations((1, 2, 3, 4), k)]
+    even_blades = [b for b in all_blades if len(b) % 2 == 0]
+    grade2 = [b for b in even_blades if len(b) == 2]
+    assert len(all_blades) == 16, "Cl(4,0) must have dim 16"
+    assert len(even_blades) == 8, "Cl+(4,0) must have dim 8 (1 + 6 + 1)"
+    assert len(grade2) == 6, "the grade-2 sector must carry 6 generators = dim so(4)"
+
+    # the even blades really do form a subALGEBRA (closed under the geometric product)
+    even_closed = all(all(len(bb) % 2 == 0 for bb, _ in (e(*a) * e(*b)).terms)
+                      for a in even_blades for b in even_blades)
+    assert even_closed, "Cl+(4,0) must be closed under the geometric product"
+
+    # --- (2) the chiral factorization so(4) = su(2)_SD (+) su(2)_ASD ------------------
+    SD = [e(1, 2) - e(3, 4), e(1, 3) + e(2, 4), e(1, 4) - e(2, 3)]
+    ASD = [e(1, 2) + e(3, 4), e(1, 3) - e(2, 4), e(1, 4) + e(2, 3)]
+
+    def _su2_structure_constant(T):
+        """return the common c with [T_i, T_j] = c·T_k cyclically, or None if it does
+        not close. The SIGN of c is the factor's CHIRALITY (SD and ASD get opposite
+        signs — the two su(2)s carry opposite orientations)."""
+        cs = []
+        for i in range(3):
+            j, k = (i + 1) % 3, (i + 2) % 3
+            for c in (+4.0, -4.0):
+                if (comm(T[i], T[j]) - c * T[k]).terms == ():
+                    cs.append(c)
+                    break
+            else:
+                return None
+        return cs[0] if len(cs) == 3 and len(set(cs)) == 1 else None
+
+    c_sd, c_asd = _su2_structure_constant(SD), _su2_structure_constant(ASD)
+    sd_closes, asd_closes = c_sd is not None, c_asd is not None
+    factors_commute = all(comm(a, b).terms == () for a in SD for b in ASD)
+    assert sd_closes and asd_closes, "SD and ASD must EACH close as su(2)"
+    assert c_sd == -c_asd, "the two su(2) factors must carry OPPOSITE chirality"
+    assert factors_commute, "[SD, ASD] = 0 — the two su(2) factors must commute"
+
+    return {
+        "tier": "DERIVED-A (algebra) + pure-math homotopy",
+        "dim_Cl_4_0": len(all_blades),                        # 16
+        "dim_Cl_even_4_0": len(even_blades),                  # 8
+        "n_grade2_generators": len(grade2),                   # 6
+        "even_subalgebra_closed": even_closed,
+        "SD_closes_as_su2": sd_closes,
+        "ASD_closes_as_su2": asd_closes,
+        "su2_structure_constants (SD, ASD)": (c_sd, c_asd),   # opposite signs = chirality
+        "chiral_factors_commute": factors_commute,
+        "Cl+(4,0)": "H (+) H",
+        "local_state_real_parameters": 6,
+        "pi_3(4D-orientation class)": "Z x Z",
+        "n_windings": 2,
+        "cover_blind": True,
+        "cover_status": ("OPEN BRANCH — family-tree Core node LS-Z2 (RUL-057); pi_3 and pi_4 "
+                         "are identical on both branches (covering maps are iso on pi_n, n>=2)"),
+        "layer": "monad layer; inherited unchanged by the continuum field (Core node LS-6)",
+        "supersedes_cite": ("R-002's Z x Z is booked HERE, not on pi3_S3_integer_completion "
+                            "(which computes pi_3(S^3) = Z, the lepton-sector winding target)"),
+    }
+
+
 # ---- §16.6  the electron as topological defect (QCP scaling) -------------------
 def electron_QCP_nu():
     """[DERIVED-CONDITIONAL on four named L1 ingredients — F-5 audit, 2026-06-29]
-    §16.6: the L-orbit mass scale obeys QCP scaling f_L = f_π·δ^ν, δ=1-D/J,
+    §16.6: the L-orbit STIFFNESS scale obeys QCP scaling f_L = f_π·δ^ν, δ=1-D/J,
     with critical exponent factorizing (DQCP universality) as
         ν = N_dir · Δ_v · (1/2) · ν_corr = 3 · 3 · (1/2) · 1 = 9/2.
     Per F-5 (worklist B1), each ingredient now has a dedicated engine primitive:
@@ -7184,13 +7804,33 @@ def electron_QCP_nu():
       * ν_corr = 1 ........... DERIVED-given-Gaussian-FP `DM_operator_gaussian_dim()`
                               ([O_DM] = 2[φ]+1 = 2 at d=3, η=0; ν_corr = 1/(d-[O_DM]) = 1)
     So ν = 9/2 is engine-verified MODULO the K_c=(2/19)J LOCATED-GAP — the audit's
-    honest tier is DERIVED-CONDITIONAL, promoting to DERIVED once K_c is closed."""
+    honest tier is DERIVED-CONDITIONAL, promoting to DERIVED once K_c is closed.
+
+    NAMED PREMISE (state-space scoping, inherited via Δ_v = 3 ← K_c ← N_Goldstone):
+    this chain is taken WITHIN THE L-ORBIT SUB-SECTOR of the medium's six-parameter
+    4D-orientation state space (§D.3.2; `pi3_orientation_class_two_windings`), not
+    over the full state space. The premise is named here rather than left silent; a
+    full-state-space treatment awaits the un-banked 6-band Bogoliubov structure."""
     N_dir, Delta_v, half, nu_corr = 3, 3, 0.5, 1
     return N_dir * Delta_v * half * nu_corr      # = 4.5 = 9/2
 
 def electron_f_L_MeV(f_pi: float = 129.0, D_over_J: float = 0.79) -> float:
     """[DERIVED-CONDITIONAL — cascade-inherits from electron_QCP_nu] §16.6:
     f_L = f_π·δ^ν, δ=1-D/J. At D/J=0.79 (δ=0.21, ν=9/2): ≈0.115 MeV.
+
+    SCOPE — f_L IS A STIFFNESS, NOT THE ELECTRON MASS. This framework has NO
+    stiffness->mass conversion for the L sector: no substrate argument fixes an
+    L-sector coupling, and no primitive here or in the companion computes one. Do
+    not compare this return value to m_e, and do not reintroduce the retired
+    `m_e = f_L * e_L` convention with `e_L = sqrt(36.47)` — that was an undeclared,
+    uncounted coupling placed at the self-consistent fixed point coeff/e = e, and it
+    was EXCISED from §C.1.6 (2026-08-20) together with all three residuals it
+    produced (~36% on f_L, 4.4% on the exponent, 0.34% on nu = 3pi/2). 36.47 is the
+    BARYON functional's coefficient (the ANW hedgehog BVP energy evaluated at its
+    solution; the BVP's selected parameter is F'(0) = -1.0038) and it is excluded
+    outright on the Faddeev-Skyrme branch by the Vakulenko-Kapitanski floor
+    (coefficient 59.6 > 36.46). Settling WHICH functional stabilises the L-orbit
+    defect is the prerequisite for any L-sector coefficient.
 
     Tier note (audit 2026-06-30 P9): inherits DERIVED-CONDITIONAL from electron_QCP_nu()
     which is conditional on four named L1 ingredients (F-5 audit 2026-06-29), one of
@@ -7831,7 +8471,9 @@ def D4_spatial_bond_isotropy():
 def sigma_model_kinetic_normalization():
     """[INPUT-convention] §16.6 / F-5: the 1/2 ingredient of the QCP exponent.
 
-    Writing the L-orbit field as a Spin(3) rotor U = exp(iφ^a T^a) sandwich,
+    Writing the L-orbit SECTOR of the field as a Spin(3) rotor U = exp(iφ^a T^a) sandwich
+    (a stated sector reduction of the six-parameter 4D-orientation state space — §D.3.2,
+    `pi3_orientation_class_two_windings`; NOT the field's full target),
     the chiral kinetic term is conventionally
         L_kin = -(f²/4) tr(∂_μ U^† ∂^μ U)  →  K_φ |∂φ|²  with  K_φ = f²/4.
     The QCP bookkeeping factor in ν^L1 is
@@ -7889,12 +8531,19 @@ def canting_critical_stiffness_at_DJ(J: float = 1.0):
     The 2 prefactor — three candidate static origins tested per canon §4:
 
       (A) GOLDSTONE COUNT (PRINCIPLED; traces 2 to substrate): on the canted FM
-          ground state, SU(2)_L breaks to U(1)_canting (paper §16.6: M_GS = 8×S¹
+          vacuum — the AXIS BRANCH of §D.4.3; see `n_goldstone_canted_FM`'s BRANCH
+          SCOPE block, this reconstruction inherits it —
+          SU(2)_L breaks to U(1)_canting (paper §16.6: M_GS = 8×S¹
           ⊂ Spin(3) = S³; the residual U(1) is the Hopf S¹ fiber). # broken
           Goldstones = dim(SU(2)_L) − dim(U(1)) = 3 − 1 = 2 = dim(S²) (Hopf base).
           Reconstruction: K_c = N_Goldstone · sin²(q) · J = 2 · (1/19) · J = 2J/19
           at D=J. The 2 is now TRACEABLE to a banked substrate fact (the residual
-          U(1) of the canted FM). BUT the KERNEL FORM (why K_c assembles as
+          U(1) of the canted FM). NAMED PREMISE (state-space scoping): N_Goldstone
+          = 2 holds WITHIN THE L-ORBIT SUB-SECTOR of the six-parameter 4D-orientation
+          state space (§D.3.2; see `n_goldstone_canted_FM`'s SCOPE block and the
+          un-banked 6-band structure at `induced_G_from_linear_face_band`). That
+          premise is part of this result's conditioning class and propagates to
+          `electron_QCP_nu`. BUT the KERNEL FORM (why K_c assembles as
           N_G · sin²(q) · J at the QCP) requires the §9.6 magnon-kernel convolved
           with the vortex-line worldsheet — i.e., the #1 gap remains for the
           assembly, not the prefactor.
@@ -8289,6 +8938,451 @@ def D4_DM_bond_bivectors_non_commuting():
     }
 
 
+# ======================================================================
+# THE CANTED-VACUUM BRANCH STRUCTURE + THE DM CHIRALITY LOCK
+# (§D.3.3, §D.4.3)   [twt_matter]
+# ----------------------------------------------------------------------
+# Governing record for both primitives: the J,D/Gamma rework round,
+#   knowledge/candidates/probes_2026-08-20/JD_REWORK_REPORT_2026-08-20.md
+# (read-outs (A)/(C) + its 2026-08-21 consensus addendum), together with
+#   REDERIVATION_HELIX_MINIMUM_2026-08-21.md  (blind re-derivation) and the
+# four verdict files persisted in the same directory.
+# ======================================================================
+
+def canting_vacuum_branch_structure(J: float = 1.0) -> dict:
+    """[DERIVED-numeric + closed-form mechanism | scope: the SINGLE-q SIMPLE-BIVECTOR
+    HELICAL FAMILY] §D.4.3 — the branch structure of the canted vacuum.
+
+    THE MODEL (frame-bilinear, 24 bonds, floats — no symbolic step):
+        E(k, B) = sum_b [ -(J/2) Tr(W_b) - (D/2) <Bhat_b, W_b>_F ],   W_b = exp((k.b) B)
+    with Bhat_b = (sigma_a/sqrt2) * e_{a4} on the 12 e_4-bearing bonds (sigma_a = the
+    sign of the bond's e_a component — the ODD convention of R-140 /
+    D4_DM_bond_bivectors_non_commuting; the EVEN convention kills the sin q term and is
+    excluded by §D.4.3's own printed E(q)), zero on the 12 spatial bonds, and
+    B = n_hat ^ e_4 a unit SIMPLE bivector (a screw state).
+
+    WHAT IS COMPUTED HERE:
+      (i)   AXIS BRANCH: k = q*e_1, B = e_14 reproduces §D.4.3's printed
+            E(q) = -12J cos q - 12J - 2 sqrt2 D sin q exactly, up to the physically
+            inert additive constant -24J (the bond-count term the section drops).
+            This IDENTIFIES the configuration §D.4.3 minimises — a SPATIAL helix, not
+            an e_4 one: the DM energy vanishes identically on an e_4-axis helix.
+      (ii)  That configuration is a genuine stationary point of the full (k, B) problem
+            and an INDEX-2 SADDLE for every D/J > 0. Closed form of the transverse
+            second variation, checked here against a central difference:
+                d2E/dk_2^2 = d2E/dk_3^2 = 4 (cos q + 3)(cos q - 1)/cos q  <  0
+            for all 0 < cos q < 1 (i.e. all D/J > 0), vanishing only in the
+            ferromagnetic limit D -> 0.
+      (iii) BODY-DIAGONAL BRANCH: k = t*(1,1,1,0) — all twelve e_4-bonds at ONE uniform
+            angle instead of the axis branch's 4+8 split — lies LOWER, by the
+            leading-order law  dE = -(1/243)*(D/J)^4 * J, equivalently Ref-1's
+            -(2 sqrt2/9)*D*r^3 at r = sqrt2 D/(6J) (two blind derivations, one law).
+            MECHANISM: the two families are degenerate through O(d^2); the DM cubic
+            term ~ sum_a k_a^4 is minimised on the body diagonal (r^4/3) and maximised
+            on the axis (r^4), so the axis branch loses at O(d^4), not at leading order.
+      (iv)  The leading-order HELICAL-RATE INVARIANT |k|*lambda = sqrt2 D/(6J) holds on
+            the diagonal branch as well (lambda = the unit bivector's eigen-angle = 1
+            here), where on the axis branch the same closed form appears as tan q. So
+            R-108's closed form SURVIVES on both branches, with a re-interpreted
+            referent; what does not survive is the word "ground state".
+
+    TIER, stated per component. (i), (ii) and (iv) are closed-form identities, verified
+    numerically here against the explicit bond sum. (iii) is DERIVED-numeric with a
+    closed-form mechanism; an exact-arithmetic minimisation is still owed. Global
+    minimality is asserted ONLY WITHIN THE SINGLE-q SIMPLE-BIVECTOR HELICAL FAMILY
+    (RUL-049): multi-q, conical and non-simple-B states are unscanned.
+
+    NORMALISATION, quoted with the figure (it is not normalisation-free): at
+    D/J = 0.787 the gap is 1.548e-3 J per site = 3.2e-5 of the frame-bilinear per-site
+    total (-48J) and 6.4e-5 of §D.4.3's own printed E(q) total (-24.2J).
+
+    WHAT IS OPEN. WHICH branch the DRIVEN dynamics selects is a kernel question (#1 gap,
+    §D.5) — static energetics need not govern a NESS vacuum. It is assembly-recorded at
+    §D.5 as a named puzzle piece (RUL-030 class 2), not ruled.
+
+    PRIOR ART, and it is not the framework's: axis-vs-body-diagonal helix direction
+    selection at ~1e-5 relative splitting is standard cubic-helimagnet physics
+    (Bak & Jensen 1980); Luttinger-Tisza certifies a global minimum only under the
+    strong constraint (Lyons & Kaplan 1960), which is NOT verified here.
+    """
+    import numpy as np
+    SQ2 = math.sqrt(2.0)
+    SQ3 = math.sqrt(3.0)
+    SQ6 = math.sqrt(6.0)
+
+    # ---- the 24 D4 nearest-neighbour bonds (directed: b and -b both present) ----
+    _B = []
+    for _i, _j in combinations(range(4), 2):
+        for _si in (+1, -1):
+            for _sj in (+1, -1):
+                _v = np.zeros(4); _v[_i] = float(_si); _v[_j] = float(_sj)
+                _B.append(_v)
+    BONDS = np.array(_B, float)
+    assert BONDS.shape == (24, 4), f"D4 bond set must be 24x4, got {BONDS.shape}"
+
+    def _Ea4(a):
+        M = np.zeros((4, 4)); M[a, 3] = 1.0; M[3, a] = -1.0
+        return M
+
+    def _biv(n):
+        n = np.asarray(n, float); n = n / float(np.linalg.norm(n))
+        return sum(n[a] * _Ea4(a) for a in range(3))
+
+    def _W(theta, B):
+        # Rodrigues for a UNIT SIMPLE bivector (B^3 = -B): exact, no matrix exponential.
+        return np.eye(4) + math.sin(theta) * B + (1.0 - math.cos(theta)) * (B @ B)
+
+    def E_bond_sum(k, B, D, even_convention=False):
+        """The explicit 24-bond frame-bilinear energy — the ground truth of this primitive."""
+        tot = 0.0
+        for b in BONDS:
+            W = _W(float(np.dot(k, b)), B)
+            tot += -(J / 2.0) * float(np.trace(W))
+            if b[3] != 0.0:
+                a = int(np.nonzero(b[:3])[0][0])
+                w = float(b[a]) * (float(b[3]) if even_convention else 1.0)
+                tot += -(D / 2.0) * (w / SQ2) * float(np.sum(_Ea4(a) * W))
+        return tot
+
+    def E_reduced(k, D):
+        """Closed form of the bond sum with B already optimised (v ∝ (s1,s2,s3), w = 0)."""
+        c = np.cos(k); s = np.sin(k)
+        pair = sum(c[i] * c[j] for i, j in combinations(range(4), 2))
+        return (-24.0 * J - 4.0 * J * float(pair)
+                - 2.0 * SQ2 * D * abs(float(c[3])) * float(np.linalg.norm(s[:3])))
+
+    # ---- (i) the AXIS branch reproduces §D.4.3's printed E(q) --------------------
+    axis_maxdiff = 0.0
+    for D in (0.2 * J, 0.787 * J, 2.0 * J):
+        for q in [0.1 * t for t in range(13)]:
+            got = E_bond_sum(np.array([q, 0.0, 0.0, 0.0]), _biv([1, 0, 0]), D)
+            want = -24.0 * J - 12.0 * J * math.cos(q) - 12.0 * J - 2.0 * SQ2 * D * math.sin(q)
+            axis_maxdiff = max(axis_maxdiff, abs(got - want))
+    assert axis_maxdiff < 1e-11, (
+        "the 24-bond sum must reproduce §D.4.3's E(q) up to the inert -24J constant; "
+        f"maxdiff {axis_maxdiff:.3e}")
+
+    # the DM energy is IDENTICALLY zero on an e_4-axis helix (why the vacuum helix is spatial)
+    e4_helix = max(abs(E_bond_sum(np.array([0.0, 0.0, 0.0, q]), _biv([1, 0, 0]), 0.787 * J)
+                       - E_bond_sum(np.array([0.0, 0.0, 0.0, q]), _biv([1, 0, 0]), 0.0))
+                   for q in (0.1, 0.5, 1.0))
+    assert e4_helix < 1e-12, f"DM must vanish on an e_4-axis helix; got {e4_helix:.3e}"
+
+    # the reduced form agrees with the bond sum at the optimal B (both branches)
+    red_maxdiff = 0.0
+    for k in (np.array([0.3, 0.0, 0.0, 0.0]), np.array([0.11, 0.11, 0.11, 0.0]),
+              np.array([0.4, -0.2, 0.7, 0.0])):
+        s = np.sin(k)[:3]
+        red_maxdiff = max(red_maxdiff,
+                          abs(E_bond_sum(k, _biv(s), 0.787 * J) - E_reduced(k, 0.787 * J)))
+    assert red_maxdiff < 1e-11, f"reduced form vs bond sum: maxdiff {red_maxdiff:.3e}"
+
+    # ---- (ii) the transverse second variation: index-2 saddle at every D/J > 0 ----
+    # SYMBOLIC leg first (tolerance-free): sympy differentiates the model's own reduced
+    # energy twice in the transverse component and the result is shown IDENTICAL to the
+    # closed form, for symbolic q, after substituting the stationarity relation
+    # D = 6 J tan q / sqrt2. This is what makes the closed form an identity rather than
+    # a fit to three sampled couplings.
+    _q, _Js = sp.symbols('q J_sym', positive=True)
+    _k1, _k2 = sp.symbols('k1 k2', real=True)
+    _c1, _c2 = sp.cos(_k1), sp.cos(_k2)
+    _pairsym = _c1 * _c2 + 2 * _c1 + 2 * _c2 + 1          # k3 = k4 = 0
+    _Dsym = 6 * _Js * sp.tan(_q) / sp.sqrt(2)
+    _Esym = (-24 * _Js - 4 * _Js * _pairsym
+             - 2 * sp.sqrt(2) * _Dsym * sp.sqrt(sp.sin(_k1) ** 2 + sp.sin(_k2) ** 2))
+    _d2 = sp.simplify(sp.diff(_Esym, _k2, 2).subs(_k2, 0).subs(_k1, _q))
+    # the pitch lies in (0, pi/2) for D/J > 0, so |sin q| = sin q on the physical branch
+    _d2 = sp.simplify(_d2.subs(sp.Abs(sp.sin(_q)), sp.sin(_q)))
+    _closed_sym = 4 * _Js * (sp.cos(_q) + 3) * (sp.cos(_q) - 1) / sp.cos(_q)
+    assert sp.simplify(_d2 - _closed_sym) == 0, (
+        "the transverse second variation must EQUAL 4J(cos q+3)(cos q-1)/cos q "
+        f"identically; sympy gives {_d2}")
+
+    saddle = {}
+    for d in (0.2, 0.787, 2.0):
+        D = d * J
+        q = math.atan(SQ2 * d / 6.0)
+        k0 = np.array([q, 0.0, 0.0, 0.0])
+        # Step scaled to the transverse curvature's own scale sin q — a fixed absolute h
+        # is a trap here, because the DM term's transverse expansion parameter is k2/sin q.
+        # The finite-difference leg is intrinsically ill-conditioned and that is itself
+        # informative: the saddle curvature is a ~1e-3 residual of two O(12J) pieces
+        # (+4J(cos q+2) from exchange, -12J/cos q from DM), so a relative error of 1e-4 in
+        # either piece is a percent-level error in the residual. The TOLERANCE-FREE leg is
+        # the symbolic identity above; this one is the independent numerical witness.
+        h = 1.0e-3 * math.sin(q)
+
+        def f(x2):
+            k = k0.copy(); k[1] = x2
+            return E_reduced(k, D)
+
+        num = (f(h) - 2.0 * f(0.0) + f(-h)) / (h * h)
+        closed = 4.0 * J * (math.cos(q) + 3.0) * (math.cos(q) - 1.0) / math.cos(q)
+        saddle[d] = {"q_rad": q, "d2E_dk2sq_closed_form": closed,
+                     "d2E_dk2sq_central_difference": num,
+                     "relative_diff": abs(num / closed - 1.0), "negative": closed < 0.0}
+        assert closed < 0.0, f"transverse second variation must be NEGATIVE at D/J={d}"
+        assert abs(num / closed - 1.0) < 1e-3, (
+            f"closed-form second variation vs central difference at D/J={d}: "
+            f"{closed:.10f} vs {num:.10f}")
+
+    # ---- (iii)/(iv) the body-diagonal branch, its gap law and its rate ------------
+    def E_diag(t, D):
+        return (-24.0 * J - 12.0 * J * math.cos(t) ** 2 - 12.0 * J * math.cos(t)
+                - 2.0 * SQ6 * D * math.sin(t))
+
+    def E_axis(D):
+        q = math.atan(SQ2 * (D / J) / 6.0)
+        return -24.0 * J - 12.0 * J * math.cos(q) - 12.0 * J - 2.0 * SQ2 * D * math.sin(q)
+
+    def _golden(fn, lo, hi, iters=200):
+        g = (math.sqrt(5.0) - 1.0) / 2.0
+        a, b = lo, hi
+        c, e_ = b - g * (b - a), a + g * (b - a)
+        for _ in range(iters):
+            if fn(c) < fn(e_):
+                b = e_
+            else:
+                a = c
+            c, e_ = b - g * (b - a), a + g * (b - a)
+        return 0.5 * (a + b)
+
+    branches = {}
+    for d in (0.1, 0.787):
+        D = d * J
+        t = _golden(lambda t: E_diag(t, D), 0.0, 1.0)
+        ed, ea = E_diag(t, D), E_axis(D)
+        # the diagonal branch's closed form must agree with the explicit bond sum
+        eb = E_bond_sum(t * np.array([1.0, 1.0, 1.0, 0.0]), _biv([1, 1, 1]), D)
+        assert abs(eb - ed) < 1e-11, f"diagonal-branch bond sum vs closed form: {abs(eb-ed):.3e}"
+        gap = ed - ea
+        pred = -(1.0 / 243.0) * d ** 4 * J
+        rate = SQ3 * t                      # |k| * lambda, lambda = 1 for a unit simple B
+        branches[d] = {
+            "t_per_bond_angle_rad": t, "E_diagonal": ed, "E_axis": ea,
+            "gap": gap, "gap_leading_order_law": pred,
+            "gap_relative_deviation_from_law": abs(gap / pred - 1.0),
+            "helical_rate": rate, "sqrt2_D_over_6J": SQ2 * d / 6.0,
+            "rate_abs_deviation": abs(rate - SQ2 * d / 6.0),
+        }
+        assert ed < ea, f"the body-diagonal branch must lie LOWER at D/J={d}"
+
+    assert branches[0.1]["gap_relative_deviation_from_law"] < 1.0e-3, (
+        "the -(1/243)(D/J)^4 splitting law must hold at small D/J (D/J = 0.1); got "
+        f"{branches[0.1]['gap_relative_deviation_from_law']:.3e}")
+    assert branches[0.1]["rate_abs_deviation"] < 1.0e-6, (
+        "the leading-order helical-rate invariant |k|*lambda = sqrt2 D/(6J) must hold on "
+        f"the diagonal branch at D/J = 0.1; got {branches[0.1]['rate_abs_deviation']:.3e}")
+
+    gap787 = branches[0.787]["gap"]
+    return {
+        "tier": ("DERIVED-numeric + closed-form mechanism; scope = the SINGLE-q "
+                 "SIMPLE-BIVECTOR HELICAL FAMILY (RUL-049 — multi-q, conical and "
+                 "non-simple-B states unscanned). Branch SELECTION by the driven "
+                 "dynamics is OPEN (#1 gap, §D.5, assembly-recorded)."),
+        "axis_branch_closed_form_maxdiff": axis_maxdiff,
+        "axis_branch_configuration": "k = q*e_1 (a SPATIAL helix), B = e_14; the four "
+                                     "±e_1±e_4-class bonds carry the DM weight 1/sqrt2",
+        "dm_energy_on_e4_axis_helix": e4_helix,
+        "reduced_vs_bond_sum_maxdiff": red_maxdiff,
+        "transverse_second_variation": saddle,
+        "saddle_index": 2,
+        "saddle_holds_for_all_DoverJ_gt_0": all(v["negative"] for v in saddle.values()),
+        "branches": branches,
+        "splitting_law": "dE = -(1/243)*(D/J)^4*J  ==  -(2 sqrt2/9)*D*r^3 at r = sqrt2 D/(6J)",
+        "gap_at_DoverJ_0787": gap787,
+        "gap_relative_to_full_bond_total_minus48J": abs(gap787) / (48.0 * J),
+        "gap_relative_to_paper_printed_total": abs(gap787) / 24.2047102383,
+        "open_branch_selection": ("which single-q branch the DRIVEN kernel selects — static "
+                                  "energetics need not govern a NESS vacuum (#1 gap, §D.5)"),
+        "prior_art": ("Bak & Jensen 1980 (cubic-helimagnet direction selection); "
+                      "Lyons & Kaplan 1960 (the Luttinger-Tisza strong constraint, "
+                      "unverified here)"),
+        "governing_record": ("knowledge/candidates/probes_2026-08-20/ — "
+                             "JD_REWORK_REPORT_2026-08-20.md §7 + §14 addendum (b1), "
+                             "REDERIVATION_HELIX_MINIMUM_2026-08-21.md, "
+                             "VERDICT_REF1_JD2B_2026-08-21.md"),
+    }
+
+
+def dm_chirality_polarisation_lock() -> dict:
+    """[DERIVED-A, generic-given-one-orientation-reversing-element] §D.3.3 — how much
+    CHIRAL freedom the driven point group grants the DM bond channel.
+
+    COMPUTED by explicit group closure + projector rank on the 24 D4 bonds:
+
+        group                         allowed D | SD-polarised | ASD-polarised | chi
+        Stab(+e_4)  [48]  (DRIVEN)        2     |      0       |      0        |  0
+        Stab+(+e_4) [24]  (proper)        4     |      2       |      2        |  2
+
+    READING. At the DRIVEN group there is NO chirally-polarised DM coupling at all:
+    every allowed D is forced exactly 50/50 SD:ASD. The menu theorem's jump D: 2 -> 4
+    IS the chiral doubling, and it is bought by exactly one thing — DROPPING THE
+    REFLECTIONS. The 24 orientation-reversing elements of Stab(+e_4) (spatial parity
+    diag(-1,-1,-1,+1) among them) exchange SD and ASD (§D.2.5, R-099), because
+    *(Lambda^2 g) = det(g) (Lambda^2 g) *, so the two chiral halves are LOCKED
+    TOGETHER at [48]. The same reflection-dropping is what opens the pseudoscalar
+    channel chi (0 -> 2).
+
+    CONDITIONING CLASS (RUL-049 — this is a necessity claim, so it carries one):
+    "no polarised DM coupling" holds WITHIN THE BILINEAR BOND-ACTION CLASS ON THE
+    ORIENTED DRIVEN GROUP Stab(+e_4). It becomes false at [24], i.e. only under
+    HAMILTONIAN-level spatial-reflection breaking — a source the drive axis +e_4 alone
+    does not supply, and which a spontaneously reflection-breaking ground state does
+    not supply either.
+
+    TIER NOTE (canon §5 derived-vs-generic). The zero count is
+    GENERIC-GIVEN-ONE-ORIENTATION-REVERSING-ELEMENT, not a D4-specific discovery: any
+    point group containing a single orientation-reversing element forbids a polarised
+    invariant by the same Hodge identity. What is D4-specific here is only the
+    dimension count 2 (resp. 4) of the allowed space itself.
+
+    SCOPE FENCE. This is BOND-COUPLING SD/ASD content. It licenses NOTHING about weak
+    isospin: weak = SD is settled at R-171/R-079 (the closed three-class menu, RUL-082) and NOT
+    here, and this computation
+    neither supports nor undermines it.
+    """
+    import numpy as np
+    import itertools as _it
+
+    PAIRS = list(combinations(range(1, 5), 2))
+
+    _B = []
+    for _i, _j in combinations(range(4), 2):
+        for _si in (+1, -1):
+            for _sj in (+1, -1):
+                _v = np.zeros(4); _v[_i] = float(_si); _v[_j] = float(_sj)
+                _B.append(_v)
+    BONDS = np.array(_B, float)
+
+    def _key(g):
+        return tuple(np.round(np.asarray(g, float).ravel(), 9) + 0.0)
+
+    # ---- explicit closure of Stab(+e_4): signed permutations of {e_1,e_2,e_3} ----
+    gens = []
+    for p in _it.permutations(range(3)):
+        P = np.eye(4); P[:3, :3] = 0.0
+        for i, pi in enumerate(p):
+            P[i, pi] = 1.0
+        gens.append(P)
+    for s in _it.product((+1.0, -1.0), repeat=3):
+        gens.append(np.diag(np.array(list(s) + [1.0], float)))
+    seen = {_key(np.eye(4)): np.eye(4)}
+    frontier = [np.eye(4)]
+    while frontier:
+        nxt = []
+        for a in frontier:
+            for g in gens:
+                p = g @ a
+                k = _key(p)
+                if k not in seen:
+                    seen[k] = p; nxt.append(p)
+        frontier = nxt
+    G48 = list(seen.values())
+    G24 = [g for g in G48 if np.linalg.det(g) > 0]
+    assert len(G48) == 48, f"|Stab(+e_4)| must be 48, got {len(G48)}"
+    assert len(G24) == 24, f"|Stab+(+e_4)| must be 24, got {len(G24)}"
+    # CONTROL: every element must permute the D4 root system, and fix +e_4.
+    rootset = set(_key(b) for b in BONDS)
+    assert all(set(_key(g @ b) for b in BONDS) == rootset for g in G48), \
+        "Stab(+e_4) elements must permute the 24 D4 roots"
+    e4 = np.array([0.0, 0.0, 0.0, 1.0])
+    assert all(np.allclose(g @ e4, e4) for g in G48), "Stab(+e_4) must fix +e_4"
+    n_reflections = len(G48) - len(G24)
+    assert any(np.allclose(g, np.diag([-1.0, -1.0, -1.0, 1.0])) for g in G48), \
+        "spatial parity must lie in the driven group (it is what locks SD to ASD)"
+
+    # ---- the Hodge/chirality split, taken from the engine's own I4 ----------------
+    S = np.zeros((6, 6))
+    for c, (i, j) in enumerate(PAIRS):
+        for k, v in (I4 * e(i, j)).terms:
+            if len(k) == 2:
+                S[PAIRS.index((k[0], k[1])), c] = v
+    assert np.abs(S @ S - np.eye(6)).max() < 1e-12, "the star operator must square to 1"
+    Pp, Pm = (np.eye(6) + S) / 2.0, (np.eye(6) - S) / 2.0
+    assert np.linalg.matrix_rank(Pp, tol=1e-9) == 3 and np.linalg.matrix_rank(Pm, tol=1e-9) == 3, \
+        "SD and ASD must each be 3-dimensional"
+
+    def _lam2(g):
+        M = np.zeros((6, 6))
+        for c, (i, j) in enumerate(PAIRS):
+            for r, (k, l) in enumerate(PAIRS):
+                M[r, c] = g[k-1, i-1] * g[l-1, j-1] - g[k-1, j-1] * g[l-1, i-1]
+        return M
+
+    idx = {_key(b): i for i, b in enumerate(BONDS)}
+
+    def _bond_perm(g):
+        P = np.zeros((24, 24))
+        for i, b in enumerate(BONDS):
+            P[i, idx[_key(g.T @ b)]] = 1.0
+        return P
+
+    def _invariant_space(G, rep, rev_sign):
+        dim = rep(np.eye(4)).shape[0]
+        R = np.zeros((24 * dim, 24 * dim))
+        for g in G:
+            R += np.kron(_bond_perm(g), rep(g))
+        R /= len(G)
+        Prev = np.zeros((24, 24))
+        for i, b in enumerate(BONDS):
+            Prev[i, idx[_key(-b)]] = 1.0
+        Q = np.kron(Prev, rev_sign * np.eye(dim))
+        M = R @ ((np.eye(24 * dim) + Q) / 2.0)
+        M = 0.5 * (M + M.T)
+        U, s, _ = np.linalg.svd(M)
+        d = int((s > 1e-8).sum())
+        return U[:, :d], d
+
+    out = {}
+    for label, G in (("Stab(+e4)[48]", G48), ("Stab+(+e4)[24]", G24)):
+        Bs, dD = _invariant_space(G, _lam2, -1.0)         # DM: bond-reversal ODD
+        _, dchi = _invariant_space(G, lambda g: np.array([[np.linalg.det(g)]]), +1.0)
+        fr = []
+        for c in range(dD):
+            V6 = Bs[:, c].reshape(24, 6)
+            sd = float(np.linalg.norm(V6 @ Pp.T)) ** 2
+            asd = float(np.linalg.norm(V6 @ Pm.T)) ** 2
+            fr.append(sd / (sd + asd))
+        Mm = np.array([(Bs[:, c].reshape(24, 6) @ Pm.T).ravel() for c in range(dD)]).T
+        Mp = np.array([(Bs[:, c].reshape(24, 6) @ Pp.T).ravel() for c in range(dD)]).T
+        rm = int((np.linalg.svd(Mm, compute_uv=False) > 1e-8).sum()) if dD else 0
+        rp = int((np.linalg.svd(Mp, compute_uv=False) > 1e-8).sum()) if dD else 0
+        out[label] = {"allowed_D_dim": dD, "SD_polarised_dim": dD - rm,
+                      "ASD_polarised_dim": dD - rp, "chi_dim": dchi,
+                      "per_basis_SD_fraction": fr}
+
+    a48, a24 = out["Stab(+e4)[48]"], out["Stab+(+e4)[24]"]
+    assert (a48["allowed_D_dim"], a48["SD_polarised_dim"], a48["ASD_polarised_dim"],
+            a48["chi_dim"]) == (2, 0, 0, 0), f"driven-group counts wrong: {a48}"
+    assert (a24["allowed_D_dim"], a24["SD_polarised_dim"], a24["ASD_polarised_dim"],
+            a24["chi_dim"]) == (4, 2, 2, 2), f"proper-subgroup counts wrong: {a24}"
+    assert all(abs(f - 0.5) < 1e-9 for f in a48["per_basis_SD_fraction"]), \
+        "every allowed D at the driven group must be exactly 50/50 SD:ASD"
+
+    return {
+        "tier": ("DERIVED-A, but GENERIC-GIVEN-ONE-ORIENTATION-REVERSING-ELEMENT for the "
+                 "ZERO count (canon §5); the dimensions 2 and 4 are D4-specific."),
+        "n_group_elements": {"Stab(+e4)": len(G48), "Stab+(+e4)": len(G24)},
+        "n_reflections_in_driven_group": n_reflections,
+        "counts": out,
+        "doubling_bought_by": ("dropping the reflections — and nothing else. Within the "
+                               "bilinear bond-action class on the oriented driven group "
+                               "Stab(+e_4) there is no such thing as turning one chiral dial "
+                               "and leaving the other (RUL-049 conditioning class)."),
+        "reopener": ("HAMILTONIAN-level spatial-reflection breaking to [24], where the "
+                     "polarised halves and chi both open. The drive axis +e_4 alone does not "
+                     "supply it, and a spontaneously reflection-breaking ground state does not."),
+        "weak_isospin_fence": ("BOND-COUPLING SD/ASD content only. This licenses NOTHING about "
+                               "weak isospin; weak = SD is settled at R-171 (the closed three-class "
+                               "menu) plus R-079, RUL-082 -- never by a bond-coupling result."),
+        "governing_record": ("knowledge/candidates/probes_2026-08-20/ — "
+                             "JD_REWORK_REPORT_2026-08-20.md §3 (JD-3, closed negatively), "
+                             "VERDICT_REF3_PARITY_SECONDD_2026-08-21.md Attack 2, "
+                             "VERDICT_META_OBSERVER_2026-08-21.md claim 7 (the genericity note)"),
+    }
+
+
 # ---- §23.7  the B-L anomaly: cancellation from 3×1/3 = 1 ------------------------
 def anomaly(X_per_quark: float, X_per_lepton: float) -> float:
     """A_X = sum over LH doublets of (multiplicity × X). Quark doublet: mult 3 (colors);
@@ -8410,7 +9504,10 @@ def coulomb_sign_rule():
 
 # numerical chain inputs (§17.3): dressed e (ANW phys), f_π
 E_PHYS = 5.45          # ANW massless-pion best-fit dressed coupling
-F_PI = 129.0           # MeV
+F_PI = 129.0           # MeV -- the ANW FITTED F_pi, not the measured pion decay constant:
+                       # in ANW's own normalization the physical value is F_pi ~ 186 MeV, so this
+                       # sits ~30% below it, and its resemblance to the measured f_pi+ = 130.2 MeV
+                       # of the sqrt(2) convention is a collision of conventions (paper Opening).
 # BVP eigenvalue coefficients (§16.3/§17.2): M_0 = 36.47 f_π/e, Θ_0 = 106.76/(e³ f_π)
 # CORRECTION 2026-07-03 (R-133, skyrmion_rotational_band_nucleon_delta): the long-banked
 # Θ-coefficient 97.27 was WRONG — it equals 36.47·8/3 = 97.25 (provenance suspect, not an
@@ -8556,9 +9653,9 @@ def induced_G_quadratic_divergence_from_4D():
     """[DERIVED — from substrate DIMENSIONALITY only] §21.6.3: The induced Einstein-Hilbert coefficient is
     quadratically UV-divergent, 1/(16πG) ∝ Λ², BECAUSE the substrate is 4D: the loop ∫d^dk/(2π)^d (1/k²)
     has UV power d−2 (= 2 for d=4, 0/log for d=2, 1 for d=3). The Λ² (not log, not finite) is fixed by the
-    4D mode density — and by NOTHING ELSE about the monad dynamics. So the substrate-derived content is
+    4D mode density — and by NOTHING ELSE about the grain dynamics. So the substrate-derived content is
     exactly the 4-dimensionality. IMPORTED (load-bearing, flagged): the numerical PREFACTOR (the a1
-    heat-kernel coefficient / N_eff / spin weights) is generic QFT, not re-derived from the monad action —
+    heat-kernel coefficient / N_eff / spin weights) is generic QFT, not re-derived from the grain action —
     it sets the N_eff VALUE (the bracket), not the verdict. self-check: UV power d−2 = 2 at d=4."""
     def uv_power(d): return d - 2
     return {"substrate_dimension": 4, "UV_power_of_Lambda_in_1_over_16piG": uv_power(4),
@@ -8582,8 +9679,9 @@ def induced_G_leading_coefficient_mass_independent():
 
 def induced_G_only_monad_scale_enters():
     """[DERIVED arithmetic] §21.6.3: If the cutoff were the CELL scale 1/ℓ_S = e·f_π (~0.70 GeV) instead of the
-    monad scale Λ~M_Pl, 1/G would miss M_Pl² by (Λ·ℓ_S)² = (M_Pl/(e f_π))² ~ 3e38 — the paper's two-scale
-    forcing. So ONLY Λ (monad) enters the leading coefficient; ℓ_S enters at ~1e-38. Clean (b), not
+    grain scale Λ~M_Pl (the grain — this primitive's name retains the older word 'monad'),
+    1/G would miss M_Pl² by (Λ·ℓ_S)² = (M_Pl/(e f_π))² ~ 3e38 — the paper's two-scale
+    forcing. So ONLY Λ (grain) enters the leading coefficient; ℓ_S enters at ~1e-38. Clean (b), not
     partial-knowability. self-check: ℓ_S ≈ 0.281 fm and the mismatch is ~1e38."""
     M_Pl, f_pi, e_sk, hbar_c = 1.22e19, 0.129, 5.45, 0.1973
     inv_lS = e_sk * f_pi; lS_fm = hbar_c / inv_lS; hier = M_Pl / inv_lS
@@ -8671,7 +9769,7 @@ def induced_G_knowability_verdict():
     (b) is the current status but does NOT confirm the knowability boundary, for two reasons — (1) the
     cutoff-gating is GENERIC (ANY 4D induced gravity is cutoff-gated; it is not a TWT-STRUCTURAL forcing of
     underivability); (2) the framework NAMES and PREDICTS-DERIVABLE a route to (a): derive the dimensionless
-    Λ·ℓ_S as a pure number (via the open cell-formation theory fixing the Skyrme e/ℓ_S from the monad
+    Λ·ℓ_S as a pure number (via the open cell-formation theory fixing the Skyrme e/ℓ_S from the grain
     scale), which would make G knowable. So the absolute is NOT structurally underivable, only currently
     underdetermined — and the boundary would be REFUTED by deriving Λ·ℓ_S. Honest: (b) currently; consistent
     with the boundary, not confirming it; refutable. self-check: outcome (b); knowability = consistent-not-confirmed."""
@@ -8969,10 +10067,10 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
         f"LEADING not merely an upper bound); got {inv_dims[6]}")
 
     MPl = 1.220910e19  # GeV
-    # Λ_L = 1/a — the inverse monad spacing, the ONLY admissible dispersion denominator
+    # Λ_L = 1/a — the inverse grain spacing, the ONLY admissible dispersion denominator
     # (which-Λ ruling, coordinator 2026-07-30). Band: κ ∈ [1/2, 2] applied THROUGH the AFFINE
     # c_lat(κ) = 1.5075 + 20.2777·κ of c_reg_from_substrate_mode_content — κ scales the ~93%
-    # sub-monad support fraction, NOT c_lat wholesale (wholesale would give [0.38, 0.76], a
+    # sub-grain support fraction, NOT c_lat wholesale (wholesale would give [0.38, 0.76], a
     # DIFFERENT band). 1/a = sqrt(12π/(N_eff·c_lat)) M_Pl → [0.3865, 0.7345]; central 0.5365
     # at the flat-band c_lat = 21.83 (the affine κ=1 value 21.79 gives 0.537 — same at 2 d.p.).
     # The suite cross-ties these literals to the live affine map (no free-floating constant).
@@ -11247,7 +12345,7 @@ def sterile_rh_z2_separate_mass_scale_check():
 # ======================================================================
 
 # ======================================================================
-# N_Goldstone on the canted FM ground state (§16.6)   [twt_matter]
+# N_Goldstone on the canted FM vacuum -- AXIS BRANCH (§16.6)   [twt_matter]
 # ----------------------------------------------------------------------
 # Promoted from docstring-only fact inside canting_critical_stiffness_at_DJ
 # to a stand-alone substrate primitive: a closed coset-dimension identity
@@ -11273,13 +12371,40 @@ def n_goldstone_canted_FM() -> dict:
     with N_Goldstone supplied by THIS primitive. The kernel FORM remains a
     #1-gap (§9.6) item; the COUNT 2 does not — it is closed here.
 
+    *** SCOPE — READ BEFORE QUOTING N_G = 2. ***
+    BRANCH SCOPE (added with the J,D/Γ rework): the vacuum manifold ℳ_GS used here is
+    computed on the AXIS BRANCH of §D.4.3 (k = q*e_1, B = e_14, four of the twelve
+    e_4-bonds twisting). That configuration is an index-2 saddle of the full (k, B)
+    problem, and on the body-diagonal branch the breaking geometry is different — all
+    twelve e_4-bonds at one common angle, no 4+8 split — so this coset count is a
+    statement about the axis branch, not a branch-independent one. Which branch the
+    DRIVEN dynamics selects is open (#1 gap, §D.5.7); see
+    `canting_vacuum_branch_structure` and negatives ledger N62.
+
+    This count is also taken WITHIN THE L-ORBIT SUB-SECTOR of the medium's local state
+    space, which is a six-parameter 4D orientation, not a three-parameter one
+    (§D.3.2; `pi3_orientation_class_two_windings`). The identity above is exact
+    and unrefuted AS A SECTOR STATEMENT — "SU(2)_L ≅ S³" names the L-orbit rotor
+    target, a 3-dimensional subgroup of the state space, never the state space —
+    but the broken group at the canted-FM vacuum of the FULL six-parameter state
+    space is not SU(2)_L, and the honest full-state-space number is supplied by
+    the exact 6-band Bogoliubov structure, which remains UN-BANKED (already
+    flagged as such at `induced_G_from_linear_face_band`: "N_G = 2 (2 gapless +
+    4 gapped) — exact 6-band Bogoliubov structure UN-BANKED"). Consumers of this
+    count (`canting_critical_stiffness_at_DJ` → `electron_QCP_nu`) therefore carry
+    the named premise "within the L-orbit sub-sector of the six-parameter state
+    space" in their conditioning class.
+
     Cross-references:
       * `canting_critical_stiffness_at_DJ` — uses N_G to source the 2 prefactor
         in K_c = N_G · sin²(q) · J (Lead A reconstruction).
+      * `induced_G_from_linear_face_band` — the un-banked 6-band structure that
+        the full-state-space count would come from.
       * paper §16.6 — ℳ_GS = 8 × S¹ ⊂ Spin(3) = S³ and the Hopf fibration
         S¹ → S³ → S² with H = (1/16π²) ∫ A ∧ dA the Hopf invariant.
 
-    tier — DERIVED-A (closed algebraic / dimensional identity given §16.6).
+    tier — DERIVED-A (closed algebraic / dimensional identity given §16.6),
+    SCOPED to the L-orbit sub-sector.
     """
     dim_SU2_L = 3                                  # dim(SU(2)) = dim(S³)
     dim_U1_canting = 1                             # dim(U(1)) = dim(S¹), Hopf fiber
@@ -11303,7 +12428,8 @@ def n_goldstone_canted_FM() -> dict:
 
 def Kc_magnon_stiffness_canted_FM_at_DJ(J: float = 1.0):
     """[LOCATED-GAP-REFINED] §16.6 — direct linear spin-wave (LSWT) calculation
-    on the canted-spiral ground state at the D=J QCP, attempting to derive
+    on the canted-spiral vacuum (the AXIS BRANCH of §D.4.3) at the D=J QCP,
+    attempting to derive
     K_c=(2/19)·J as the bare magnon gradient stiffness. RESULT: the LSWT magnon
     stiffness is NOT K_c. The static-LSWT closure route is eliminated.
 
@@ -11366,7 +12492,7 @@ def Kc_magnon_stiffness_canted_FM_at_DJ(J: float = 1.0):
         K_long/K_c = (19/2)√38 ≈ 58.6 (engine-verified); K_trans/K_c ≈ 56.49
         (erratum value; NEAR-not-equal 58.56 — non-coincidence flagged). The
         asserted kernel form K_c = N_Goldstone · sin²(q*) · J = 2 · (1/19) · J
-        is NOT a static linear-response identity on the spiral ground state.
+        is NOT a static linear-response identity on the spiral vacuum.
     would change if — (a) the §9.6 driven-dissipative kernel is closed AND its
         convolution with the vortex-worldsheet effective action renormalizes K_long
         DOWN to K_c by EXACTLY the factor (19/2)√38 ≈ 58.6 (the kernel-renormalization
@@ -13270,7 +14396,7 @@ def updown_mirror_multigen_avg_vs_lepton() -> dict:
     precedent): the drift ratio 1.69/0.56 = 3.04 ~ 3; not banked as meaningful.
 
     WOULD CHANGE IF: (a) a derived generation-dependence of mu Psi_0 (from the
-    kernel or the N22 monad endpoint) reproduces BOTH values -> the structure
+    kernel or the N22 grain endpoint) reproduces BOTH values -> the structure
     revives with a running dial and the 2->3 row becomes a constraint, not a
     refutation; (b) a different derived baseline (not the lepton) is identified
     for c_common -> re-run this test against it; (c) the witness masses' scheme
@@ -13676,7 +14802,7 @@ def qorbit_mass_phase_dual_lock_parity_odd() -> dict:
       (C3') the hand-off criterion and axis menu inherited from R-127 (C2/C3).
 
     NOT DERIVED HERE (honesty): which sigma is 'up' vs 'down' (needs the weak
-    sector's up = SD INPUT bit + the condensate sign); the split VALUE mu-Psi_0
+    sector's up = SD assignment (R-077, derived-given-R-079) + the condensate sign); the split VALUE mu-Psi_0
     (#1-gap; runs per N37); the neutrino side (separate structure); any hadron
     mass value (canon: quarks contribute properties-in-hadron only).
 
@@ -16850,7 +17976,7 @@ def d4_dm_plaquette_holonomy_explicit() -> dict:
     + HONEST NEW CONSTRAINT (the DM plaquette is CHIRALLY SYMMETRIC: both
     SU(2)_+ and SU(2)_- are driven with IDENTICAL rotation angles, so the
     weak sector's chirality is NOT sourced by the DM plaquette -- the
-    'weak = SD' pick remains the banked INPUT bit, and SC.4.6(iii)'s
+    'weak = SD' assignment stays settled at R-171/R-079, not by the plaquette, and SC.4.6(iii)'s
     'delivering the SU(2)_+ Yang-Mills sector' carries an SD-selection
     qualifier, annotated in the paper this pass)] -- P2-4 LEG 2 STRUCTURAL
     CORE: the explicit DM-twisted plaquette, computed. (2026-07-03.)
@@ -17113,7 +18239,7 @@ def d4_dm_plaquette_holonomy_explicit() -> dict:
                     "non-trivial): W = cos^2(th) + sin cos (B1+B2) + sin^2(th) e_ab exactly; "
                     "the pure-gauge lift is EXPLICIT; chiral factorization drives SU(2)_+ "
                     "and SU(2)_- with the IDENTICAL angle arccos(cos^2 th) -- the plaquette "
-                    "is chirally BLIND (weak = SD stays the banked INPUT bit); per-sector "
+                    "is chirally BLIND (weak = SD is settled at R-171/R-079, not here); per-sector "
                     "holonomy Lie closure = FULL su(2) => pi_3 = Z instanton sectors "
                     "structurally accessible. Dynamics (coupling, continuum, fluctuation "
                     "YM) stays kernel-gated as banked -- no value claimed."),
@@ -20698,7 +21824,8 @@ def marginal_skyrme_beta3_sign_dispersive():
 
 def charge_normalization_anchor_free():
     """[DERIVED-structural, CONDITIONAL on (P4, P5, P6) — each named and tiered below —
-    and INHERITING the counted weak=SD INPUT bit via R-058/R-079] + [DERIVED-A for the
+    and INHERITING the weak=SD assignment via R-058/R-079 (R-079 is DERIVED-given-{A-P2 +
+    RH-singlet datum} since RUL-082, not a counted free bit)] + [DERIVED-A for the
     c-free algebraic identities themselves] — the charge flagship Q_p = -Q_e restated as
     a THEOREM-GIVEN-(P4,P5,P6), holding for EVERY normalization c, so that the absolute
     normalization no longer has to consume the neutrality-of-atoms anchor (W1, 2026-07-27).
@@ -20729,7 +21856,7 @@ def charge_normalization_anchor_free():
            canon-legitimate: the same identification class as 'electron = e123-blade'].
            Mild, and its content is checked below: uud is the UNIQUE three-facet composite
            that neutralizes e, and that uniqueness is itself c-free.
-      (INHERITED) weak = SD, the weak sector's ONE counted INPUT bit (R-079), through
+      (INHERITED) weak = SD (R-079, DERIVED-given-{A-P2 + RH-singlet datum} since RUL-082), through
            R-058's T_3 = +-1/2 on doublets / 0 on singlets. The flagship does NOT add a
            new input bit; it inherits this one.
 
@@ -20908,7 +22035,7 @@ def charge_normalization_anchor_free():
                  "PRIMITIVE — never phrase as engine-checked], P5 per-defect chirality-"
                  "independence [derived-structural given matter=defect], P6 proton = uud "
                  "[INPUT — inside-frame state-identification, canon-legitimate]), INHERITING "
-                 "the counted weak=SD INPUT bit via R-058/R-079. NOT DERIVED-A as a physical "
+                 "the weak=SD assignment (R-079) via R-058/R-079. NOT DERIVED-A as a physical "
                  "claim: P4/P5/P6 are premise-class, not closed Clifford identities."),
         "headline": ("Q_p = -Q_e is a THEOREM-GIVEN-(P4,P5,P6) — an identity for EVERY "
                      "normalization c, inheriting weak=SD (R-058/R-079). The neutrality-of-"
@@ -21355,7 +22482,7 @@ def lock_channel_is_axial_chiral_channel_p1b_split():
         content stays there. What is imported here is only su(2)xsu(2) structure matching
         ('equal-and-opposite chiral-sector rotation = axial = the mass-form channel; equal-and-
         same = vector'), an exempt-class pure-math reading with checkable hypotheses.
-      * The weak = SD INPUT bit is NOT consumed by the channel identity; (Q) collective
+      * The weak = SD assignment (R-079) is NOT consumed by the channel identity; (Q) collective
         quantization enters only downstream, as before.
 
     would-change-if: (a) the substrate mode determinant is derived from the driven-dissipative
@@ -22058,13 +23185,13 @@ def induced_G_from_linear_face_band():
     OA-LF — 'linear-face vacuum measure', TWO ASSUMPTIONS, COUNTED AS TWO (one registry row,
     two counted clauses; the I-3 ledger goes 3 -> 2, not 3 -> 1):
       (OA-LF-i) OCCUPATION — a statement about the STATE: the NESS occupation of the linear-face
-        modes equals the Gaussian ground-state (1/2-per-mode) measure at monad-adjacent scales.
-      (OA-LF-ii) COVARIANT MONAD-SCALE CURVATURE WEIGHT — a statement about the OPERATOR: the
+        modes equals the Gaussian ground-state (1/2-per-mode) measure at grain-adjacent scales.
+      (OA-LF-ii) COVARIANT GRAIN-SCALE CURVATURE WEIGHT — a statement about the OPERATOR: the
         slow frame background enters the BAND-COMPLETED operator covariantly, i.e. the continuum
         a_1 = R/6 extends down to proper times s ~ a^2 up to O(1). The continuum result is exact
         only for s >> a^2, and ~93% of I_lat sits at s < a^2 — hence the 93%-of-support figure.
       Both are discharged by the SAME retirement handle (the #1-gap kernel, which would derive
-      the NESS occupation and the monad-scale curvature coupling) — the handle is unchanged
+      the NESS occupation and the grain-scale curvature coupling) — the handle is unchanged
       from the current I-3 row. Use OA-LF in the PLURAL everywhere ('the OA-LF assumptions').
       Support localization (computed below): ~95% of I_lat rides modes with ktil^2 > 1/a^2 and
       ~93% rides proper time s < a^2 — so OA-LF is needed essentially only at the top of the band.
@@ -22095,7 +23222,7 @@ def induced_G_from_linear_face_band():
 
     JURISDICTION FENCE — 'a' IS ALWAYS CONDITIONAL. a = 1.86 ell_Pl is conditional on
     (OA-LF-i AND OA-LF-ii) + N_eff = 6 (GENERIC-given-dim-4) + the induced-G identification with
-    the EMPIRICAL G. NEVER write 'TWT derives the monad spacing'. Lambda values stay
+    the EMPIRICAL G. NEVER write 'TWT derives the grain spacing'. Lambda values stay
     CANDIDATE/conditional and MUST NEVER BE MOVED TO CHASE AGREEMENT WITH MEASUREMENT: Lambda_S is
     a back-fit to empirical G over the N_eff menu, and nothing here changes G or the menu.
     The reduction achieved is IN THE PREMISE, not in the tier.

@@ -239,7 +239,7 @@ def static_susceptibility_sumrule_and_kss_channel_mismatch():
       - CHANNEL  : order-parameter (longitudinal/transverse magnon) static response.
       - LAYER    : CELL-layer QCP phenomenology (the LSWT is computed on D4 bonds, but the
                    chirality-balance / canted ground state is cell-scale collective, NOT a
-                   Planckian-monad excitation — §D.3.2 naming note, §D.4.3).
+                   Planckian-grain excitation — §D.3.2 naming note, §D.4.3).
       - FREQUENCY: ω -> 0 static (KK-safe; NOT a finite-drive reactive ratio).
 
     THE VERDICT — WRONG-OBJECT FOR THE ONE USABLE ANCHOR [the located gap, N43]. The registry's
@@ -281,7 +281,7 @@ def static_susceptibility_sumrule_and_kss_channel_mismatch():
     WOULD CHANGE IF: (i) a static moment in the STRESS-TENSOR / shear channel is computed from
     the substrate (that WOULD be channel-matched to kss_gw_bracket and could lift the count);
     (ii) the L-orbit magnon rotor inertia I is derived (enables the f-sum M_{+1} ⟹ a two-moment
-    constraint on the K_c renormalization); (iii) a monad↔cell transport bridge relates chi_θθ to
+    constraint on the K_c renormalization); (iii) a grain↔cell transport bridge relates chi_θθ to
     η (would make this an indirect anchor).
 
     self-checks: chi_long*J == 1/sqrt(38) and chi_trans*J == 1/K_trans (live vs N31); the renorm
@@ -428,7 +428,7 @@ def stress_tensor_shear_channel_static_moment():
     WOULD CHANGE IF: (i) a substrate momentum-current / Noether stress tensor is constructed whose static
     correlator is BOTH computable from statics AND distinct from the gated C_T*Lambda^2 (none is currently
     constructed -- the two shear moduli in hand are the order-parameter Frank one (computable, wrong-object)
-    and the graviton one (gated)); (ii) a monad<->cell transport bridge relates the Frank modulus to eta
+    and the graviton one (gated)); (ii) a grain<->cell transport bridge relates the Frank modulus to eta
     (that bridge is the #1-gap kernel, N43 wci (iii)).
     self-checks: G_shear = 2 q*^2 K_trans > 0 (order-parameter Frank modulus, live from N31 K_trans);
     the over-determination table's usable-anchor count is UNCHANGED at 1 (no KSS-matched anchor added,
@@ -1590,7 +1590,9 @@ def generations_are_defect_flows_on_spinor_S3() -> dict:
     FRAMING (the picture, circular-polarization mapping): Spin(4) = SU(2)xSU(2) = the two CIRCULAR
     handednesses (self-dual / anti-self-dual = left/right isoclinic). Generations live in ONE handedness
     (anti-self-dual S^3, the 3 flows above); the OTHER handedness (self-dual S^3) is weak isospin su(2)+
-    [SETTLED SINCE (2026-06-29, N29): weak = SD su(2)+ is the framework's counted INPUT bit
+    [SETTLED SINCE (2026-06-29, N29; RE-SETTLED 2026-08-21, R-171/RUL-082 — the menu is THREE
+    classes and it CLOSED, so weak = SD su(2)+ is DERIVED-given-{A-P2 + RH-singlet datum}, not a
+    counted free bit): weak = SD su(2)+ is the framework's weak-host assignment
     (§C.4.2) — one bit, with V−A/generation-blindness/up=SD derived-given-it; the historical
     N4-era hedge formerly here is superseded.]
     BASIS NOTE (wavefront, §12.5/§7): SPIN = the L-orbit {e12,e13,e23} (e4-FREE planes = the observer's
@@ -2270,7 +2272,7 @@ def compact_spin4_favors_limit_cycle() -> dict:
       DERIVED-generic-given-(compact + periodic-drive), NOT a TWT theorem.
 
     F3 — MULTIPLE INTRINSIC SCALES. The substrate has ≥3 banked scales:
-      Λ (UV cutoff = monad spacing), T_d=2π/ω_d (drive period), f_π (hadronic-
+      Λ (UV cutoff = grain spacing), T_d=2π/ω_d (drive period), f_π (hadronic-
       cell scale) — and additionally the Spin(4) group radius from F1. SOC
       requires SCALE INVARIANCE — a fine cancellation that no substrate
       symmetry enforces (contrast: s=3 decoherence is symmetry-pinned, not
@@ -2893,7 +2895,7 @@ def vacuum_relative_map_and_cp_commensurability():
 
     ── C1: the perceived↔absolute map = a MONOTONIC FRAME TRANSFORM (clean NEGATIVE on it being a structural key) ──
     Matter = a HOLE/beat below the carrier ω_vac (the radio/heterodyne picture Yaer used): perceived mass = the
-    deficit/beat = ω_vac − ω_abs, so ω_abs = ω_vac − m. The physical carrier scale is the monad cutoff Λ ~ M_Pl.
+    deficit/beat = ω_vac − ω_abs, so ω_abs = ω_vac − m. The physical carrier scale is the grain cutoff Λ ~ M_Pl.
     Then for EVERY SM defect m/Λ ≲ 1e-16 (top ~1.4e-17) down to ~1e-23 (electron) ⇒ **ω_abs ≈ Λ for all** (the
     absolute frequencies are all the carrier minus a part-in-1e17 deficit). The entire generation HIERARCHY (~1e5 in
     mass) lives ENTIRELY in the tiny DEFICIT (= the perceived mass), NOT in ω_abs. So the perceived↔absolute map is a
@@ -2959,7 +2961,7 @@ def generation_ladder_needs_inverse_square():
     ONE new DERIVED sub-result, and a strictly sharper hinge. NOTHING DERIVED for the cost table.
 
     NOTE (coordinate, N20–N22): the radial coordinate r/R of the −1/r² channel is the soliton-SIZE = breathing-mode
-    collective MODULUS (whose closed-orbit action is S(r); R→0 = its small-size = monad limit) — NOT the *static*
+    collective MODULUS (whose closed-orbit action is S(r); R→0 = its small-size = grain limit) — NOT the *static*
     soliton radius of the √m=r²⇒ω=r⁴ mass map (that enters only the cost=4·ln(r-gap) tautology), and NOT the phase θ.
 
     ── ★ THE RIGOROUS REDUCTION (FRAMING, the sharper WHERE) ───────────────────────────────────────────
@@ -3081,7 +3083,7 @@ def geometric_ladder_is_nonselfadjoint():
     Testing whether the geometric cost ladder is NECESSARILY non-Hermitian/dissipative (a 3-route workflow +
     independent developer verification + twt-reviewer, sympy/Weyl-exact). Outcome: the strong "necessarily DISSIPATIVE"
     claim is REFUTED; and (reviewer-corrected from an over-claimed clean-negative) the conservative-sector question
-    RELOCATES to the R→0 (monad-scale) endpoint — UNSETTLED, not a clean negative. NOT DERIVED for the cost table.
+    RELOCATES to the R→0 (grain-scale) endpoint — UNSETTLED, not a clean negative. NOT DERIVED for the cost table.
 
     ── ★ THE REFUTATION (do not over-claim "dissipative") ──────────────────────────────────────────────
     Efimov / Calogero physics is a CONSERVATIVE, HERMITIAN geometric ladder: H = −∂² − g/r² with g>1/4 is real and
@@ -3101,7 +3103,7 @@ def geometric_ladder_is_nonselfadjoint():
     (b) the LAPLACE-BELTRAMI (geometrically-natural) kinetic measure induces NO quantum potential (1D is flat), Q=0.
         So the bulk/large-R collective spectrum is arithmetic — the ladder is NOT a bulk phenomenon.
 
-    ── ★ THE RESULT IS A RELOCATION TO THE R→0 (small-defect = MONAD-scale) ENDPOINT, NOT a clean negative ─
+    ── ★ THE RESULT IS A RELOCATION TO THE R→0 (small-defect = GRAIN-scale) ENDPOINT, NOT a clean negative ─
     Whether the conservative collective sector CAN make the ladder is UNSETTLED and reduces entirely to the R→0
     endpoint, via two facts (both reviewer-forced, sympy/Weyl-verified — they CORRECT an earlier over-claim that the
     sector "cannot, class-wide"):
@@ -3115,16 +3117,16 @@ def geometric_ladder_is_nonselfadjoint():
         −n(3n+4)/(8(n+2)²) SUPER-critical (divergence/Zhu-Kroemer form, s<−1/8 for n≥2). So the measure CAN be
         supercritical — the sector's ladder question is genuinely open, fixed by (i) which ordering is physical and
         (ii) the self-adjoint-extension parameter at R→0.
-    Both (i) and (ii) are R→0 = small-defect = the Planckian MONAD-scale UV (where the coarse soliton description
-    fails) — so the whole cost-table question RELOCATES to the monad-scale endpoint.
+    Both (i) and (ii) are R→0 = small-defect = the Planckian GRAIN-scale UV (where the coarse soliton description
+    fails) — so the whole cost-table question RELOCATES to the grain-scale endpoint.
 
     ── THE FORK (the open resolution of "dissipative?") ────────────────────────────────────────────────
-    The R→0 self-adjoint-extension / net-coefficient is fixed EITHER (a) CONSERVATIVELY by monad-scale D4-lattice
+    The R→0 self-adjoint-extension / net-coefficient is fixed EITHER (a) CONSERVATIVELY by grain-scale D4-lattice
     contact / 3-body physics (Efimov-on-the-lattice — a conservative geometric ladder, the extension parameter = the
-    monad UV input), OR (b) by the DISSIPATIVE Im χ kernel (Fork A). Efimov shows (a) is logically available, so
+    grain UV input), OR (b) by the DISSIPATIVE Im χ kernel (Fork A). Efimov shows (a) is logically available, so
     "necessarily dissipative" is FALSE; discriminating (a) vs (b) is the open question. CONDITIONAL (the honest
     headline): *given the physical ordering+extension supply no supercritical −g/r² at R→0, the ladder must be
-    dissipative; otherwise it is a conservative monad-scale phenomenon.*
+    dissipative; otherwise it is a conservative grain-scale phenomenon.*
 
     ── TIE to Θ_rel (CANDIDATE) ────────────────────────────────────────────────────────────────────────
     What the R→0 anchor (conservative-UV or Im χ) must supply — the supercritical g_eff>1/4 AND a chirality-signed
@@ -3133,14 +3135,14 @@ def geometric_ladder_is_nonselfadjoint():
     Θ_rel merge (the shared DSI-breaking DIRECTION = chirality is derived; the single kernel value is gated).
 
     ── ★ THE SHARPER HINGE ─────────────────────────────────────────────────────────────────────────────
-    Compute the net R→0 (monad-scale) 1/r² coefficient for the PHYSICAL collective-coordinate ordering, and the
+    Compute the net R→0 (grain-scale) 1/r² coefficient for the PHYSICAL collective-coordinate ordering, and the
     self-adjoint-extension parameter — is it supercritical (g>1/4)? and is the extension fixed conservatively (D4
-    monad-scale contact) or by Im χ? This is now a SMALL-DEFECT/monad-scale endpoint computation, not a bulk one.
+    grain-scale contact) or by Im χ? This is now a SMALL-DEFECT/grain-scale endpoint computation, not a bulk one.
 
     Tier: REFUTATION ("necessarily dissipative" is FALSE — Efimov is a conservative ladder; correct word =
     non-self-adjoint) + DERIVED (the BULK is arithmetic: cranked-no-R⁻²; LB measure Q=0) + FRAMING (the non-self-
-    adjoint dichotomy; the RELOCATION to the R→0/monad endpoint) + located-gap N21 (the UNSETTLED R→0 coefficient +
-    extension parameter; the conservative-monad vs dissipative-Imχ fork). NOT a clean negative; NOT DERIVED.
+    adjoint dichotomy; the RELOCATION to the R→0/grain endpoint) + located-gap N21 (the UNSETTLED R→0 coefficient +
+    extension parameter; the conservative-grain vs dissipative-Imχ fork). NOT a clean negative; NOT DERIVED.
     self-check: cranked centrifugal has no R⁻² (bulk); the von Roos R→0 measure coefficient SPANS the BF threshold
     (repulsive symmetric > 0; divergence-form supercritical < −1/8 at n=3); the c₄/R wall is sub-threshold (soft)."""
     import sympy as sp
@@ -3193,6 +3195,7 @@ def generation_values_monad_forked():
     """[located-gap (N21 measure-fork RESOLVED) + DERIVED sub-results + FRAMING (the structure/value tiering) — N22;
     TWT_DEFECT_CKM_GLUON.md §19] A 3-route workflow + developer verification (sympy-exact) asking which quantization
     ordering the substrate dictates for the collective coordinate, and what TIER that makes the generation VALUES.
+    (The fork's small-size endpoint is the GRAIN — this primitive's name retains the older word 'monad'.)
 
     ── RESOLVES the N21 measure sub-fork: the physical ordering is COVARIANT (Laplace-Beltrami), Q=0 ───────
     The von Roos ordering ambiguity is PHYSICAL, so it must be fixed by the substrate. Collective-coordinate
@@ -3216,16 +3219,16 @@ def generation_values_monad_forked():
 
     ── ★ THE HONEST TIER OF THE GENERATION VALUES — a SHARPENED 2-WAY FORK (not a flat input) ───────────
     With the measure sub-route dead, the cost-table VALUES (the 6 numbers; the lepton masses + CKM magnitudes that
-    are physical per §5) are GATED-WITH-AN-OPEN-FORK at the R→0 monad endpoint:
-      (a) a monad-scale INPUT — same tier as Λ/f_π (canon §2), the knowability shape of `induced_G_only_monad_scale_enters`
+    are physical per §5) are GATED-WITH-AN-OPEN-FORK at the R→0 grain endpoint:
+      (a) a grain-scale INPUT — same tier as Λ/f_π (canon §2), the knowability shape of `induced_G_only_grain_scale_enters`
           (cutoff-gated, consistent-with-not-confirming underivability) — IF the resolution is the conservative
-          self-adjoint-extension parameter fixed by monad-scale D4-lattice 3-body CONTACT (Efimov-on-the-lattice); OR
+          self-adjoint-extension parameter fixed by grain-scale D4-lattice 3-body CONTACT (Efimov-on-the-lattice); OR
       (b) Im χ-GATED and dynamically DERIVABLE — IF the resolution is the DISSIPATIVE hysteretic kernel (Fork A,
           Θ_rel-kind coset-Cartan/FDT-violation); calling its output "input" would smuggle a gated quantity into the
           input tier.
     SHARPENING (tilts toward dynamical): a static boundary parameter alone gives at most ONE bound state, NOT a
     geometric TOWER — log-periodicity still needs a genuine attractive −1/4 1/s² channel, so even branch (a) needs
-    the dynamical 3-body contact to SOURCE the channel. Both live routes are monad-scale and essentially DYNAMICAL;
+    the dynamical 3-body contact to SOURCE the channel. Both live routes are grain-scale and essentially DYNAMICAL;
     the measure was a red herring for the values. Only the Im χ branch can supply the chirality-signed DSI-breaking
     RUNNING rate the data demands (a single Λ/f_π ratio gives ONE universal log-period, but the data is 6 numbers =
     3 distinct tower scales + within-tower drift of OPPOSITE signs, sign = the up↔down mirror).
@@ -3235,7 +3238,8 @@ def generation_values_monad_forked():
     are weaker and carry their true tier: (1) [DERIVED, sympy-exact] the 1-D-moduli covariant-Q=0 fact + the cyclic-θ
     soft-1/R defusal; (2) [DERIVED, sympy-exact] the bulk-arithmetic negative (cranked no R⁻²); (3) [STRUCTURAL,
     dynamical selection OPEN] the 3 windows (N13 topological, contingent on generation=ℍ-triple); (4) [DERIVED-in-KIND,
-    CONDITIONAL on up=SD/down=ASD — per V3 R-077 given the weak=SD INPUT bit R-079; label updated 2026-07-02 from the
+    CONDITIONAL on up=SD/down=ASD — per V3 R-077 given the weak=SD assignment R-079
+    (DERIVED-given-{A-P2 + RH-singlet datum} since RUL-082, not an INPUT bit); label updated 2026-07-02 from the
     stale 'N4-CANDIDATE' (N4 resolved (ii) LOCATED, see weak_isospin_verdict)] the up↔down MIRROR
     (`chirality_is_a_reflection`); (5) [FRAMING — the
     UNSETTLED channel] the NON-SELF-ADJOINT character (N21); (6) [TAUTOLOGY, not a prediction] the O(few) cost SCALE
@@ -3246,7 +3250,7 @@ def generation_values_monad_forked():
 
     ── COORDINATE DISAMBIGUATION (the −1/r² channel's r/R) — to keep the arc unambiguous ────────────────
     The radial coordinate r/R of the −1/r² channel is the **soliton-SIZE = breathing-mode collective MODULUS**
-    throughout N20–N22 (the dynamical coordinate whose closed-orbit action is S(r)); R→0 is its small-size = monad
+    throughout N20–N22 (the dynamical coordinate whose closed-orbit action is S(r)); R→0 is its small-size = grain
     limit. It is NOT the *static* soliton radius of the √m=r²⇒ω=r⁴ mass map (that enters only the cost=4·ln(r-gap)
     TAUTOLOGY), and NOT the phase θ (the central U(1)_E mass-phase, cyclic, → the soft 1/R, not the −1/r²).
 

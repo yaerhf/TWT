@@ -303,6 +303,56 @@ def check_twt_algebra():
         "single-Weyl neutrino forbids the zero-kernel L-orbit) "
         f"(kernel {vminusa_is_spin4_factor_chirality()['SU(2)+_kernel']} of {vminusa_is_spin4_factor_chirality()['module_dim']})",
         vminusa_is_spin4_factor_chirality()["SU(2)+_kernel"] == vminusa_is_spin4_factor_chirality()["module_dim"] // 2)
+
+    print("C-32 exhausted-menu closure — the weak-su(2) menu inside grade-2 so(4):")
+    _wx = weak_su2_menu_exhaustion()
+    _ck("menu CLOSED: the Goursat sweep over 3-dim subalgebras of su(2)⊕su(2) returns exactly "
+        "three admissible tuples = {SD, ASD, the diagonal so(3) class} — two rigid IDEALS plus one "
+        "genuine 3-parameter family, and the exclusion comes from lemma L1 (su(2) has no 2-dim "
+        "subalgebra, rank 1), NOT from the handed-mixture sub-case "
+        f"(got {_wx['goursat_tuples_(dim_p1,dim_k1,dim_p2,dim_k2)']}); structure tensor is c·ε "
+        f"exactly (residual {_wx['structure_constants']['max|T - c*eps|']})",
+        _wx["goursat_tuples_(dim_p1,dim_k1,dim_p2,dim_k2)"] == [(0, 0, 3, 3), (3, 0, 3, 0), (3, 3, 0, 0)]
+        and _wx["menu_classes_up_to_SO(4)"] == 3
+        and "L1" in _wx["exclusion_comes_from"]
+        and _wx["structure_constants"]["max|T - c*eps|"] < 1e-12)
+    _ck("ASD is the SD MIRROR, not a rival: conjugation by an orientation-reversing frame "
+        f"reflection (det {_wx['mirror']['reflection_det']}) maps SD onto ASD exactly — worst "
+        f"residual over THREE inequivalent reflectors {_wx['mirror']['conj_e1(SD)->ASD_residual']:.1e} "
+        "— preserves the diagonal CLASS (membership, not each member: a generic reflector carries "
+        "the L-orbit to Stab(v')), and flips the I4 sign ⇒ 2 classes up to Aut(so(4))",
+        _wx["mirror"]["conj_e1(SD)->ASD_residual"] < 1e-12
+        and _wx["mirror"]["reflection_det"] < -0.5
+        and _wx["mirror"]["I4_sign_flip_residual"] < 1e-12
+        and _wx["mirror"]["diagonal_class_preserved_by_all_reflectors"] is True
+        and len(_wx["mirror"]["witnesses (3 inequivalent reflection vectors, delta D4)"]) == 3
+        and _wx["menu_classes_up_to_Aut(so(4))"] == 2)
+    _ck("diagonal-class KILL (Route A): ker(SD)=ker(ASD)=2 (each grips exactly one Weyl half) "
+        "while ker(L-orbit)=0 and ker(every graph subalgebra)=0 ⇒ a diagonal host would give "
+        f"right-handed charged currents (got {_wx['kernels_on_4dim_spinor']})",
+        _wx["kernels_on_4dim_spinor"]["SD"] == 2 and _wx["kernels_on_4dim_spinor"]["ASD"] == 2
+        and _wx["kernels_on_4dim_spinor"]["L-orbit"] == 0
+        and _wx["kernels_on_4dim_spinor"]["graph_subalgebras"] == [0])
+    _ck("the discriminator is the RIGHT-HANDED half, NOT the neutrino's own: on W+ the L-orbit "
+        "and SD have the SAME IMAGE (image dims 3/3, union 3 — the same algebra, so a single-Weyl "
+        "neutrino cannot tell them apart), while on W− SD has image dim 0 (weak singlet) and the "
+        "L-orbit 3. IMAGE DIMENSION, never per-operator matrix rank: the per-operator ranks are "
+        f"{_wx['weyl_half_restriction']['per_operator_matrix_ranks_SD_on_W+']} on W+ and "
+        f"{_wx['weyl_half_restriction']['per_operator_matrix_ranks_SD_on_W-']} on W−, and 3 is not "
+        "among them",
+        _wx["weyl_half_restriction"]["image_dim(SD|W+)"] == 3
+        and _wx["weyl_half_restriction"]["image_dim(L|W+)"] == 3
+        and _wx["weyl_half_restriction"]["image_dim(SD|W+ u L|W+)"] == 3
+        and _wx["weyl_half_restriction"]["image_dim(SD|W-)"] == 0
+        and _wx["weyl_half_restriction"]["image_dim(L|W-)"] == 3
+        and 3 not in _wx["weyl_half_restriction"]["per_operator_matrix_ranks_SD_on_W+"]
+        and _wx["weyl_half_restriction"]["per_operator_matrix_ranks_SD_on_W-"] == [0])
+    _ck("C-32 gate CONTROLS — the sweep can return a DIFFERENT menu: dropping reality/compactness "
+        f"(2-dim Borel allowed) gives {_wx['controls']['C1_reality_dropped_count']} tuples not 3, "
+        f"and so(3) admits {_wx['controls']['C2_so(3)_3dim_subalgebra_count']} not 3",
+        _wx["controls"]["C1_reality_dropped_count"] == 6
+        and _wx["controls"]["C2_so(3)_3dim_subalgebra_count"] == 1
+        and _wx["controls"]["C2_so(3)_selfcentralizer"] == 0)
     _ck("free-lepton/confined-quark from e4-content: lepton e123 anticommutes with e4 (I4·e123=e4, alone); "
         "quark blades commute, reach e4 only collectively (3-facet product = colour singlet)",
         e4_content_confines_quarks_not_leptons()["I4·e123"].startswith("e4"))
@@ -1172,6 +1222,20 @@ def check_twt_matter():
     pc = pi3_S3_integer_completion()
     _ck("B=1/3 ∉ ℤ (no smooth-map degree 1/3) but 3×(1/3)=1 ∈ ℤ (integer completion)",
         (pc["B=1/3 is an integer"] is False) and (pc["3×(1/3) = 1 is an integer"] is True))
+    p3o = pi3_orientation_class_two_windings()
+    _ck("dimension census: Cl(4,0) dim 16, Cl⁺(4,0) dim 8 = 1+6+1 (CLOSED under the geometric "
+        "product), SIX grade-2 generators = dim so(4) — the local state's 6 real parameters",
+        p3o["dim_Cl_4_0"] == 16 and p3o["dim_Cl_even_4_0"] == 8
+        and p3o["n_grade2_generators"] == 6 and p3o["even_subalgebra_closed"] is True
+        and p3o["local_state_real_parameters"] == 6)
+    _ck("chiral factorization ⇒ TWO windings (R-002): SD and ASD EACH close as su(2) with "
+        "OPPOSITE structure-constant sign (+4/−4 = chirality) and mutually commute ⇒ "
+        "so(4) ≅ su(2)⊕su(2), Cl⁺(4,0) ≅ ℍ⊕ℍ ⇒ π₃(4D-orientation class) = ℤ×ℤ — "
+        "COVER-BLIND (πₙ≥2 iso across the double cover; LS-ℤ₂ stays an open branch, RUL-057)",
+        p3o["SD_closes_as_su2"] and p3o["ASD_closes_as_su2"]
+        and p3o["su2_structure_constants (SD, ASD)"] == (4.0, -4.0)
+        and p3o["chiral_factors_commute"] and p3o["n_windings"] == 2
+        and p3o["pi_3(4D-orientation class)"] == "Z x Z" and p3o["cover_blind"] is True)
     bm = baryon_mass_shared_rotor_nonadditive()
     _ck("system-level hadron mass: NON-ADDITIVE (shared B=1 rotor, mass≠ΣA_i) DERIVED; meson 2ω|cos(α/2)| "
         "2-body anchor (vector 4, pseudoscalar 0); colour slots ORTHONORMAL ⇒ colour MASS-BLIND/inert "
@@ -1232,7 +1296,7 @@ def check_twt_matter():
 
     print("§16.6 electron as topological defect (QCP scaling):")
     _ck(f"QCP exponent ν = 3·3·(1/2)·1 = 9/2  (got {electron_QCP_nu()})", electron_QCP_nu() == 4.5)
-    _ck(f"f_L = f_π·(1-D/J)^ν ≈ 0.115 MeV at D/J=0.79  (got {electron_f_L_MeV():.3f})", abs(electron_f_L_MeV() - 0.115) < 0.005)
+    _ck(f"f_L STIFFNESS = f_π·(1-D/J)^ν ≈ 0.115 MeV at D/J=0.79 — NOT m_e; no stiffness→mass conversion exists  (got {electron_f_L_MeV():.3f})", abs(electron_f_L_MeV() - 0.115) < 0.005)
     _ck("electron = one defect, two Hopf-linked windings (π_3=ℤ Skyrme, π_1=ℤ vortex)",
         electron_two_windings()["Hopf link H"] == 1)
     lnt = lepton_number_topological_conservation()
@@ -1374,6 +1438,72 @@ def check_twt_matter():
         "vacuum-subtracted" in pr["which_E0"]
         and pr["not_used_by"] == ["R-144 (dimensionless margin)"])
 
+    print("J,D/Γ rework bank (2026-08-21) — the canted vacuum's BRANCH STRUCTURE (§D.4.3):")
+    bs = canting_vacuum_branch_structure()
+    _ck("axis branch IDENTIFIED and reproduced: the 24-bond frame-bilinear sum on k = q·e₁, "
+        "B = e₁₄ equals §D.4.3's printed E(q) = −12J cos q − 12J − 2√2 D sin q up to the inert "
+        f"−24J bond-count constant (maxdiff {bs['axis_branch_closed_form_maxdiff']:.2e}); and the "
+        f"DM energy vanishes IDENTICALLY on an e₄-axis helix ({bs['dm_energy_on_e4_axis_helix']:.2e}) "
+        "— which is why the vacuum helix is SPATIAL, a fact §D.4.3 never states",
+        bs["axis_branch_closed_form_maxdiff"] < 1e-11
+        and bs["dm_energy_on_e4_axis_helix"] < 1e-12
+        and bs["reduced_vs_bond_sum_maxdiff"] < 1e-11)
+    _ck("that configuration is an INDEX-2 SADDLE for every D/J > 0: the transverse second "
+        "variation ∂²E/∂k₂² = 4J(cos q+3)(cos q−1)/cos q is an IDENTITY (sympy, tolerance-free, "
+        "after substituting the stationarity relation D = 6J tan q/√2) and is NEGATIVE at "
+        f"D/J = 0.2, 0.787, 2.0 (values "
+        f"{[round(v['d2E_dk2sq_closed_form'], 6) for v in bs['transverse_second_variation'].values()]}; "
+        "independent central-difference witness agrees to "
+        f"{max(v['relative_diff'] for v in bs['transverse_second_variation'].values()):.1e} relative)",
+        bs["saddle_index"] == 2 and bs["saddle_holds_for_all_DoverJ_gt_0"]
+        and all(v["d2E_dk2sq_closed_form"] < 0 and v["relative_diff"] < 1e-3
+                for v in bs["transverse_second_variation"].values()))
+    _ck("the BODY-DIAGONAL branch (k ∝ (1,1,1,0), all twelve e₄-bonds at ONE uniform angle) lies "
+        "LOWER, by the leading-order splitting law ΔE = −(1/243)(D/J)⁴·J — verified at D/J = 0.1 to "
+        f"{bs['branches'][0.1]['gap_relative_deviation_from_law']:.1e} relative. DERIVED-numeric "
+        "WITHIN THE SINGLE-q SIMPLE-BIVECTOR HELICAL FAMILY (RUL-049; multi-q, conical and "
+        "non-simple-B states unscanned); exact-arithmetic minimisation owed",
+        bs["branches"][0.1]["E_diagonal"] < bs["branches"][0.1]["E_axis"]
+        and bs["branches"][0.787]["E_diagonal"] < bs["branches"][0.787]["E_axis"]
+        and bs["branches"][0.1]["gap_relative_deviation_from_law"] < 1e-3
+        and "SINGLE-q" in bs["tier"])
+    _ck("R-108's closed form SURVIVES on both branches with a re-interpreted referent: the "
+        "leading-order helical-rate invariant |k|·λ = √2D/(6J) holds on the diagonal branch "
+        f"(deviation {bs['branches'][0.1]['rate_abs_deviation']:.1e} at D/J = 0.1) where on the axis "
+        "branch the same closed form appears as tan q. NORMALISATION quoted with the gap: at "
+        f"D/J = 0.787 it is {bs['gap_relative_to_full_bond_total_minus48J']:.1e} of the full "
+        f"−48J bond total and {bs['gap_relative_to_paper_printed_total']:.1e} of §D.4.3's printed "
+        "E(q) total. WHICH branch the DRIVEN kernel selects is OPEN (#1 gap, §D.5)",
+        bs["branches"][0.1]["rate_abs_deviation"] < 1e-6
+        and abs(bs["gap_relative_to_full_bond_total_minus48J"] - 3.2e-5) < 2e-6
+        and abs(bs["gap_relative_to_paper_printed_total"] - 6.4e-5) < 4e-6
+        and "#1 gap" in bs["open_branch_selection"])
+
+    print("J,D/Γ rework bank (2026-08-21) — the DM CHIRALITY LOCK at the driven group (§D.3.3):")
+    cl_ = dm_chirality_polarisation_lock()
+    a48 = cl_["counts"]["Stab(+e4)[48]"]
+    a24 = cl_["counts"]["Stab+(+e4)[24]"]
+    _ck("at the DRIVEN group Stab(+e₄) [48] the allowed DM space is 2-dimensional and contains NO "
+        f"chirally-polarised element at all (SD-polarised dim {a48['SD_polarised_dim']}, ASD-polarised "
+        f"dim {a48['ASD_polarised_dim']}, χ dim {a48['chi_dim']}): every allowed D is forced exactly "
+        "50/50 SD:ASD — so 'two chiral dials, one turned' is an OVER-STATEMENT at the driven group",
+        (a48["allowed_D_dim"], a48["SD_polarised_dim"], a48["ASD_polarised_dim"], a48["chi_dim"])
+        == (2, 0, 0, 0)
+        and all(abs(f - 0.5) < 1e-9 for f in a48["per_basis_SD_fraction"]))
+    _ck("the doubling is bought by DROPPING THE REFLECTIONS and by nothing else: at the proper "
+        f"subgroup [24] the space is {a24['allowed_D_dim']}-dimensional and splits "
+        f"{a24['SD_polarised_dim']} + {a24['ASD_polarised_dim']}, with χ opening to "
+        f"{a24['chi_dim']} — the driven group carries {cl_['n_reflections_in_driven_group']} "
+        "orientation-reversing elements (spatial parity among them), and ⋆∘Λ²g = det(g)·Λ²g∘⋆ locks "
+        "SD to ASD. TIER: the ZERO count is GENERIC-GIVEN-ONE-ORIENTATION-REVERSING-ELEMENT (canon "
+        "§5), not a D4 discovery; FENCE: bond-coupling SD/ASD content licenses NOTHING about weak "
+        "isospin (weak = SD is settled at R-171/R-079, not by any bond-coupling result)",
+        (a24["allowed_D_dim"], a24["SD_polarised_dim"], a24["ASD_polarised_dim"], a24["chi_dim"])
+        == (4, 2, 2, 2)
+        and cl_["n_reflections_in_driven_group"] == 24
+        and "GENERIC-GIVEN-ONE-ORIENTATION-REVERSING-ELEMENT" in cl_["tier"]
+        and "weak = SD" in cl_["weak_isospin_fence"])
+
     print("\nAll §10/§16/§22 matter-sector checks passed (incl. the BVP 8-vs-4 adjudication; companion-layer checks: twt_companion_test.py).")
 
 
@@ -1430,7 +1560,7 @@ def check_twt_weak():
         "universal linear charge functional -- ASSUMED, structural, FRAMING-supported by R-035 "
         "(DERIVED) + R-086a, and R-086a HAS NO ENGINE PRIMITIVE so it is never to be phrased as "
         "engine-checked; P5 per-defect chirality-independence; P6 proton = uud, an inside-frame "
-        "state-identification INPUT), INHERITING the counted weak=SD INPUT bit via R-058/R-079. "
+        "state-identification INPUT), INHERITING the weak=SD assignment (R-079) via R-058/R-079. "
         "Language: 'theorem-given-(P4,P5,P6)', NOT 'the import is retired'. The neutrality-of-atoms "
         "anchor is CONDITIONALLY REPLACED by P4+P5, and the 10^-21 bound flips from calibration "
         "input to falsification test GIVEN the premises",
@@ -1760,7 +1890,7 @@ def check_twt_hadrons():
         and abs(pq["law"]["at_0.3"]["excess"] - 0.08733219254516) < 1e-9)
     _ck("R-140 chiral structure + instanton accessibility: I₄-central factorization "
         "W = W₊P₊ + W₋P₋ with IDENTICAL angles arccos(cos²θ_D) in both sectors — the "
-        "plaquette is chirally BLIND (weak = SD stays the banked INPUT bit; §C.4.6(iii) "
+        "plaquette is chirally BLIND (weak = SD is settled at R-171/R-079, not here; §C.4.6(iii) "
         "annotated); per-sector holonomy Lie closure = FULL su(2)± (rank 3, not a U(1) "
         "subgroup) ⇒ π₃ = ℤ instanton sectors structurally accessible; dynamics stays "
         "kernel-gated as banked (no value claimed)",

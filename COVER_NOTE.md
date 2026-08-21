@@ -1,7 +1,7 @@
 # Cover note for reviewers — Time-Wave Theory, Foundational Paper V3
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-08-13 · verification suite: 501 checks (414 main + 87 companion) · engine: 316 public primitives (252 main + 64 companion)
+Paper revision 2026-08-13 · verification suite: 514 checks (427 main + 87 companion) · engine: 320 public primitives (256 main + 64 companion)
 
 ---
 
@@ -25,7 +25,7 @@ What follows is not a plea for charity — it is a list of things you can **chec
 each of which the reference class reliably fails. Check them, then form your view.
 
 **1. Run the verification suite.** `python twt_test.py` should print
-`ALL 414 CHECKS PASSED across 10 modules.` and `python twt_companion_test.py` should print
+`ALL 427 CHECKS PASSED across 10 modules.` and `python twt_companion_test.py` should print
 `ALL 87 COMPANION CHECKS PASSED across 7 modules.` These are executable algebraic assertions on a Clifford-algebra
 engine — Dirac relations, the invariant decompositions, the charge spectrum, the Weinberg
 ratio — not prose. Falsify any of them and the corresponding claim falls; the paper's claims
