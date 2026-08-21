@@ -4489,7 +4489,8 @@ def weak_su2_menu_exhaustion() -> dict:
         charged-lepton Dirac mass, so it is not a live member of this family.
         The kill consumes: CORE LS (the local state is a 4D orientation, so the module is the
         4-dim two-Weyl one), CORE S3 via forced_handedness (R-075), the two-ideal occupancy
-        (R-076), premise A-P2, and the singlet datum. It consumes NO endorsement and NO V3 pin
+        (R-076), premise A-P2 (ENDORSED since RUL-084 -- so this kill consumes exactly ONE
+        endorsement), and the singlet datum. It consumes NO V3 pin
         -- in particular not generations = ASD (that is the redundant centralizer route,
         weak_isospin_centralizer_is_SD) and not the imported coupling-parity correspondence
         (the weaker route, weak_isospin_SD_parity_exclusion).
@@ -4506,17 +4507,21 @@ def weak_su2_menu_exhaustion() -> dict:
 
     THE SURVIVING CONDITIONING PREMISE, CARRIED EXPLICITLY (do not drop it when quoting this):
         A-P2 -- "weak isospin is hosted by a 3-dimensional su(2) INSIDE grade-2 so(4)."
-        This is a structural identification, currently FRAMING in the engine
-        (weak_isospin_SD_parity_exclusion's own docstring says so verbatim) and stamped nowhere
-        in the Core charter. Everything above is conditional on it. A family member that hosts
-        weak isospin somewhere other than the substrate's own rotation algebra is not on this
-        menu and is untouched by any of these refutations -- that region is unexplored.
+        This is a structural identification, FRAMING in the engine
+        (weak_isospin_SD_parity_exclusion's own docstring says so verbatim) and STAMPED
+        ENDORSED in the Core charter (RUL-084, 2026-08-21) -- a PREFERRED DIRECTION, not an
+        axiom: it occupies the slot S7-1 vacated in the eight-item endorsed list. Everything
+        above is conditional on it. A family member that hosts weak isospin somewhere other
+        than the substrate's own rotation algebra goes the other way on that endorsement; it is
+        not on this menu and is untouched by any of these refutations -- that region is
+        unexplored, and the ENDORSED stamp (rather than CORE) is what keeps it a recorded open
+        branch instead of a denial.
 
-    WHAT THIS DOES AND DOES NOT LICENSE. It licenses: weak = SD is Core-forced GIVEN
+    WHAT THIS DOES AND DOES NOT LICENSE. It licenses: weak = SD is forced GIVEN
     {A-P2 + the single-chirality weak-current data}; the menu is closed by computation; the
-    "pick" language retires. It does NOT license: weak = SD as an unconditional Core axiom
-    (A-P2 is unstamped); V-A as a family consequence free of data; any claim about hosts
-    outside grade-2 so(4).
+    "pick" language retires; consumers sort into the CORE+ENDORSED conditional column. It does
+    NOT license: weak = SD as an unconditional Core axiom (A-P2 is ENDORSED, not CORE);
+    V-A as a family consequence free of data; any claim about hosts outside grade-2 so(4).
 
     Cross-refs: vminusa_is_spin4_factor_chirality (the kernel numbers, first banked there),
     weak_isospin_centralizer_is_SD (Route B, rides generations = ASD), forced_handedness
@@ -4747,12 +4752,15 @@ def weak_su2_menu_exhaustion() -> dict:
     assert dim_so3 == 3 and cent_so3 == 0 and r3 < 1e-12, (dim_so3, cent_so3, r3)
 
     return {
-        "tier": "DERIVED-A (classification + refutations) GIVEN premise A-P2 (FRAMING, unstamped)",
+        "tier": "DERIVED-A (classification + refutations) GIVEN premise A-P2 (FRAMING in the "
+                "engine; stamped ENDORSED, RUL-084 -- a preferred direction, not an axiom)",
         "headline": "the 3-dim su(2) menu inside grade-2 so(4) is CLOSED at three conjugacy "
                     "classes; ASD is the same member mirrored; the diagonal class is refuted "
                     "by the single-chirality weak-current data => weak = SD is not a pick",
         "conditioning_premise": "A-P2: weak isospin is a 3-dim su(2) INSIDE grade-2 so(4) "
-                               "(structural, FRAMING, stamped nowhere)",
+                               "(structural, FRAMING in the engine, STAMPED ENDORSED -- RUL-084, "
+                               "2026-08-21; a preferred direction a family member may go the "
+                               "other way on, so consumers sort CORE+ENDORSED)",
         "empirical_leg": "the right-handed fermions are weak-isospin SINGLETS (no right-handed "
                          "charged currents) -- NOT 'the neutrino is single-Weyl', which cannot "
                          "discriminate (see weyl_half_restriction below)",
@@ -4796,8 +4804,8 @@ def weak_su2_menu_exhaustion() -> dict:
                      "C1_new_tuples": sorted(set(tuples_broken) - set(tuples_real)),
                      "C2_so(3)_dim": dim_so3, "C2_so(3)_selfcentralizer": cent_so3,
                      "C2_so(3)_3dim_subalgebra_count": 1},
-        "does_not_license": "weak = SD as an unconditional Core axiom (A-P2 unstamped); any "
-                            "claim about hosts outside grade-2 so(4)",
+        "does_not_license": "weak = SD as an unconditional Core axiom (A-P2 is ENDORSED, not "
+                            "CORE -- RUL-084); any claim about hosts outside grade-2 so(4)",
     }
 
 
@@ -5983,7 +5991,9 @@ def weak_isospin_verdict():
           a menu. R-079 is now DERIVED-given-{A-P2 + the right-handed-singlet datum}. The sector
           still costs ONE empirical bit, but the bit is READ, not chosen, and it comes with a named
           structural premise (A-P2: weak isospin is a 3-dim su(2) inside grade-2 so(4) AT ALL --
-          FRAMING, unstamped, escalated to the human coordinator).
+          FRAMING in the engine, STAMPED ENDORSED by the human coordinator on 2026-08-21, RUL-084;
+          a preferred direction, so consumers sort into the CORE+ENDORSED conditional column and
+          divergence happens at A-P2, not at the assignment).
       (2) the MENU -- it is NOT {SD chiral, L-orbit parity-even}. The complete list of 3-dim Lie
           subalgebras of grade-2 so(4) is THREE conjugacy classes {SD, ASD, the diagonal so(3) class
           of which the L-orbit is ONE member}, computed by weak_su2_menu_exhaustion, and it is

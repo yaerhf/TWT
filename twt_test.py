@@ -299,8 +299,9 @@ def check_twt_algebra():
     _ck("weak=SD is the UNIQUE generation-blind su(2): centralizer(ASD) in so(4) is dim 3 = SD "
         f"(got {weak_isospin_centralizer_is_SD()['centralizer_dim']})",
         weak_isospin_centralizer_is_SD()["centralizer_dim"] == 3)
-    _ck("V-A given weak=SD: SU(2)+ has a half-module kernel (acts on one Weyl chirality only; "
-        "single-Weyl neutrino forbids the zero-kernel L-orbit) "
+    _ck("V-A given weak=SD: SU(2)+ has a half-module kernel (acts on one Weyl chirality only). "
+        "The old gloss 'the single-Weyl neutrino forbids the zero-kernel L-orbit' is WITHDRAWN "
+        "(RV-7): the discriminator is the RIGHT-HANDED half's weak-singlet character "
         f"(kernel {vminusa_is_spin4_factor_chirality()['SU(2)+_kernel']} of {vminusa_is_spin4_factor_chirality()['module_dim']})",
         vminusa_is_spin4_factor_chirality()["SU(2)+_kernel"] == vminusa_is_spin4_factor_chirality()["module_dim"] // 2)
 

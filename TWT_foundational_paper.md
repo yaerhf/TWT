@@ -112,6 +112,9 @@ table below, with the second already-measured exposure beside it.
 **Four checks, five minutes each.**
 
 1. `git clone https://github.com/yaerhf/TWT && cd TWT && pip install -r requirements.txt && python twt_test.py`
+   *(The research apparatus itself — the rules, roles, gates and telemetry the programme runs
+   on — is published separately at https://github.com/yaerhf/research-ratchet; companion
+   Section 6.)*
    — expect `ALL CHECKS PASSED` (on Windows, set `PYTHONUTF8=1` first). The suite is executable
    and public.
 2. §B.1.5's lattice result: the full automorphism group of the D4 root system (order 1152, `= W(F4)`,
@@ -284,12 +287,13 @@ with the cosmic rest frame (§B.4.5, §B.7).
   subalgebras that could host weak isospin is computed and closed at three entries, two of which
   are refuted: one is the same assignment under a mirrored orientation, the other charges the
   right-handed fermions, which are observed to be weak-isospin singlets (§C.4.2, R-171). What the
-  sector actually costs is a **named structural premise** — that weak isospin lives in a
+  sector actually costs is an **endorsed structural premise** — that weak isospin lives in a
   three-dimensional `su(2)` inside the substrate's own rotation algebra at all, which this paper
-  does not derive — plus **one empirical bit the framework reads rather than tunes**. Given those,
-  V−A, generation-blindness, the doublet and `up = SD` follow. It is not an axiom and it is no
-  longer a preferred direction either; a candidate diverges here only by rejecting the structural
-  premise, not by assigning the weak factor elsewhere within the substrate's rotation algebra.
+  does not derive and which is a **preferred direction** of the family (§A.6.3) — plus **one
+  empirical bit the framework reads rather than tunes**. Given those, V−A, generation-blindness,
+  the doublet and `up = SD` follow. The assignment itself is neither an axiom nor a preference; a
+  candidate diverges here by going the other way on the endorsed premise, not by assigning the
+  weak factor elsewhere within the substrate's rotation algebra.
 - `G_N` — the measured Newton constant, the gravitational anchor. Both cutoff scales
   (`Λ_S = √(2π) M_Pl`, the Sakharov scheme variable; `Λ_L = 1/a`, the grain spacing) are
   **back-fits of measured `G`** through the induced-gravity form, not independent inputs.
@@ -1092,15 +1096,17 @@ definition. A candidate that goes the other way on any of them is still a member
 grain discreteness (§D.3.2) · Skyrmion-class defects (§A.3, §C.1) · carrier structure (§A.3) ·
 the measured-`G` anchor practice (§B.6.2) · Koide `c = √2` (§C.3.2) ·
 `m = E₀` (§A.4) · generations as the anti-self-dual triple with the associativity premise
-(§C.3.8, §D.2.4).
+(§C.3.8, §D.2.4) · the weak-hosting premise — that weak isospin is hosted by a
+three-dimensional `su(2)` inside the substrate's grade-2 rotation algebra at all (§C.4.2).
 
-`weak = SD` is **not** on that list. It sits one level up, and differently: its menu is closed
-by computation and both alternatives are refuted (§C.4.2), so it is not a preference a family
-member may simply reverse. It is forced given one named structural premise — that weak isospin
-is hosted inside the substrate's grade-2 rotation algebra at all — together with the observed
-weak-isospin-singlet character of the right-handed fermions. Divergence at that node means
-rejecting the structural premise, which is a larger move than going the other way on an
-endorsement, and it is the only door left open there.
+`weak = SD` is **not** itself one of those directions, and it is not a pick either: its menu is
+closed by computation and both alternatives are refuted (§C.4.2), so it is not a preference a
+family member may simply reverse. It is forced given the last endorsement on the list above —
+the weak-hosting premise — together with the observed weak-isospin-singlet character of the
+right-handed fermions. Divergence at that node therefore happens one level down, at the
+endorsement rather than at the assignment: a candidate that hosts weak isospin somewhere other
+than the substrate's own rotation algebra goes the other way on a preferred direction exactly as
+it may on any other, and that is the only door open there.
 
 This is the reader's most consequential fork after the axioms themselves. A large block of
 Parts B and C is derived *given* one of the endorsements above, and those results are family
@@ -5102,8 +5108,9 @@ not a choice the framework makes; it is what the substrate leaves once the class
 computed and one measurement is read. Two things are consumed and both are named. The first is a
 **structural premise**: that weak isospin is hosted by a three-dimensional `su(2)` *inside the
 substrate's own grade-2 rotation algebra at all*. That premise is not derived anywhere in this
-paper, and a candidate that hosts weak isospin somewhere else is not on this menu and is untouched
-by anything above. The second is the **datum**: right-handed fermions carry no weak isospin.
+paper; it is one of the family's **preferred directions** (§A.6.3), and a candidate that hosts weak
+isospin somewhere else goes the other way on it — such a candidate is not on this menu and is
+untouched by anything above. The second is the **datum**: right-handed fermions carry no weak isospin.
 Given those two, `SD` is forced, and V−A, generation-blindness, the doublet structure and
 `up = SD` follow from it (R-060, R-061, R-077) — not as a family-level derivation free of
 measurement, but as consequences of a forced assignment whose two supports are on the table.
@@ -6857,7 +6864,8 @@ and the `e`-scheme face above.
 **Instance V3** (§A.6): `f_π`, `D/J` and `e` are its calibration picks; the measured-`G` anchor is
 a family-endorsed *practice* whose conversion into a cutoff runs through its gravity pick;
 `c = √2` and `m = E₀` are preferred directions this candidate takes, while the weak assignment is
-not a preference at all but a forced consequence of §C.4.2's closed menu and its two named supports. The family's own
+not itself a preference but a forced consequence of §C.4.2's closed menu and its two named
+supports — one of which, the weak-hosting premise, is a preferred direction like the other two. The family's own
 ledger is shorter and emptier in a way that must not be mistaken for economy: **the family has
 zero earned dimensionful scales.** Everything it genuinely earns is dimensionless or structural,
 the two scales in use here are a back-fit and a fit, and the ratio between them is neither derived
