@@ -283,10 +283,17 @@ def check_twt_spectra():
     print("        ⇒ two next directions: (1) the protected quantity is the ABSOLUTE (vacuum-relative) frequency, mass is a readout — may resolve the 90/120 mismatch in absolute space; (2) LOOSE windows re-describe why the mirror is bare-only (N16). Both FRAMING, owed the maps.")
 
     ch = charge_in_the_window_picture()
-    _ck("Yaer — CHARGE in the picture: charge = topological WINDING, Q=T3+Y/2 = +1/6 ± 1/2 (up/down diff = SYMMETRIC weak-isospin T3=±1/2, "
-        "common Y/2=+1/6; distinct-but-linked to the CP handedness; symmetric -> consistent with the mirror, doesn't source its residual asymmetry)",
+    _ck("Yaer — CHARGE in the picture: the winding supplies PROTECTION and the per-state VALUES are ASSIGNED "
+        "(keeper R2, 2026-08-21: this returned string previously read 'charge = the topological WINDING "
+        "(winding_charge)', asserting inside a RETURNED VALUE the exact provenance the main engine's own "
+        "docstring disclaims — the RV-7 shape. The check moved with the value: it now asserts the split, not "
+        "merely the surviving word 'winding'). Q=T3+Y/2 = +1/6 ± 1/2 (up/down diff = SYMMETRIC weak-isospin "
+        "T3=±1/2, common Y/2=+1/6; distinct-but-linked to the CP handedness; symmetric -> consistent with the "
+        "mirror, doesn't source its residual asymmetry)",
         abs(ch["charge_diff_is_symmetric"]["T3_updown"] - 0.5) < 1e-9 and abs(ch["charge_diff_is_symmetric"]["Y/2_common"] - 1/6) < 1e-3
-        and "winding" in ch["what_is_charge"])
+        and "PROTECTION" in ch["what_is_charge"] and "pi3_S3_integer_completion" in ch["what_is_charge"]
+        and "charge_assignment_from_anchor" in ch["what_is_charge"]
+        and "never from GMN" in ch["what_is_charge"])
     _ck("Yaer — could a charge-dependent window REDUCE the width? Decisive engine fact: the width GROWS (0.77/2.61/3.72) while ΔT3 is CONSTANT "
         "(=1) ⇒ a FIXED charge-shift gives constant width & CANNOT do it; charge-windows reduce width ONLY if the coupling is MULTIPLICATIVE/"
         "frequency-scaled (up/down cost ratio≈2≈|Q| ratio at 1↔2, breaks at 2↔3). NEGATIVE: cost ∝ |Q| FAILS (leptons 5.33 vs quarks ~9). NOT DERIVED",

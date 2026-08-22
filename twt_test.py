@@ -28,13 +28,98 @@ def check_twt_poc():
     _check("L ⊥ Q under bivector inner product  (Λ²Cl(4,0) = L ⊕ Q orthogonal direct sum)",
            lq['<L, Q> = 0 (all cross-terms)'] and lq['dim_L_orbit'] == 3 and lq['dim_Q_orbit'] == 3)
 
-    print("\nCharge sector — every value has a geometric source:")
+    print("\nCharge sector — the §2a boundary: what is COMPUTED, and what is ASSIGNED:")
     yl = hypercharge(LEPTON_BLADE["e123"]); yq = hypercharge(QUARK_BLADES["e124"])
-    _check(f"hypercharge(e123) = -1  (got {yl:+.0f})", abs(yl + 1) < 1e-9)
-    _check(f"hypercharge(quark) = +1 (got {yq:+.0f})", abs(yq - 1) < 1e-9)
-    Q = winding_charge()
-    _check(f"winding: Qu=+2/3 (got {Q['u']:+.3f}), Qd=-1/3 (got {Q['d']:+.3f})",
+    _check(f"[ANCHOR-FREE] hypercharge(e123) = -1 (got {yl:+.0f}) — the e_4-bilinear "
+           f"eigenvalue, computed from the blade with no charge input", abs(yl + 1) < 1e-9)
+    _check(f"[ANCHOR-FREE] hypercharge(quark) = +1 (got {yq:+.0f}) — same map, opposite "
+           f"sign; the sign opposition is the substrate content (R-056)", abs(yq - 1) < 1e-9)
+
+    # The boundary itself is machine-readable, and this check makes it stay that way:
+    # a charge-block primitive added without being classified on one side FAILS here.
+    prov = charge_sector_provenance()
+    _sides = set(prov["anchor_free"]) | set(prov["assigned"])
+    _block = {"hypercharge", "doublet_hypercharge", "charge_normalization_anchor_free",
+              "pi3_S3_integer_completion", "T3", "charge_assignment_from_anchor",
+              "winding_charge", "generation_spectrum", "gmn_coefficient", "weinberg_sin2"}
+    _check("[BOUNDARY] charge_sector_provenance classifies every primitive of the charge "
+           f"block on exactly one side (unclassified: {sorted(_block - _sides) or 'none'}), "
+           "no primitive sits on both, the premise table names P4-P7, and the primitive itself "
+           "proves the anchor-forcing identities SYMBOLICALLY (reviewer-derived 2026-08-21, "
+           "engine-asserted: the four GMN coefficients are an arithmetic progression so the "
+           "spread is 3*|Q_p - Q_n - 1| identically; P4 imposed FORWARD forces Q_p - Q_n = 1 "
+           "identically in c WITHOUT the lepton tie; the no-/3 universal-c anchor is the UNIQUE "
+           "point (1/2, -1/2)). It also carries the identification note: anchor-free is not "
+           "identification-free, the blade->particle dictionary is P6-class",
+           not (_block - _sides)
+           and not (set(prov["anchor_free"]) & set(prov["assigned"]))
+           and set(prov["premises"]) >= {"P4", "P5", "P6", "P7"}
+           and "WITHOUT the lepton tie" in prov["anchor_forcing"]["P4_forces"]
+           and "(1/2, -1/2)" in prov["anchor_forcing"]["no_over_3_unique_anchor"]
+           and "IDENTIFICATION-FREE" in prov["identification_note"])
+
+    # ---- the ASSIGNED side ------------------------------------------------------
+    # WHAT STOOD HERE AND WHY IT WENT (blind probe P2, 2026-08-19; the live case named
+    # in RUL-067's ground column; independently re-reported by external review round 2,
+    # 2026-08-21): a single check asserting Q['u'] ≈ 2/3 where Q['u'] is computed as
+    # (2·1 − 0)/3. It asserted that Python performs division and could not detect any
+    # change in physics content. It is replaced by three checks: the same equality kept
+    # but LABELED as the code-consistency regression guard it actually is, and two that
+    # can fail for a reason that matters. Both were negative-tested — see
+    # knowledge/audit/external_review_2026-08-21/CHARGE_SECTOR_REPAIR_2026-08-21.md.
+    Q = charge_assignment_from_anchor()
+    _check(f"[ASSIGNED — regression guard, NOT a physics check] at the default anchor "
+           f"(Q_p, Q_n) = (1, 0) the composition solve returns Qu=+2/3 (got {Q['u']:+.3f}), "
+           f"Qd=-1/3 (got {Q['d']:+.3f}). This is exact arithmetic on ENTERED literals: it "
+           f"detects a code change, never a change in physics content",
            abs(Q['u'] - 2/3) < 1e-9 and abs(Q['d'] + 1/3) < 1e-9)
+
+    def _gmn_spread(Qp, Qn, y_Q=None):
+        """max-min of the per-state GMN coefficient over the four states, at an arbitrary
+        anchor. y_Q overrides the R-057 trivector /3 for the counterfactual world."""
+        q = charge_assignment_from_anchor(Qp, Qn)
+        dh_ = doublet_hypercharge()
+        yq_ = dh_["u"] if y_Q is None else y_Q
+        yl_ = dh_["e"]
+        cs = {"nu": (q["nu"] - T3["nu"]) / yl_, "e": (q["e"] - T3["e"]) / yl_,
+              "u": (q["u"] - T3["u"]) / yq_,  "d": (q["d"] - T3["d"]) / yq_}
+        return max(cs.values()) - min(cs.values())
+
+    # DISCRIMINATING 1 — what could have disagreed: the anchor is NOT free. Requiring ONE
+    # universal c across both orbits (premise P4) forces the anchor DIFFERENCE exactly.
+    _sweep = [(1.0, 0.0), (1.0, 0.1), (1.2, 0.0), (0.5, -0.5), (2.0, 1.0), (0.9, 0.0)]
+    _pred = {(a, b): 3 * abs(a - b - 1.0) for a, b in _sweep}
+    _got = {(a, b): _gmn_spread(a, b) for a, b in _sweep}
+    _check("[ASSIGNED — DISCRIMINATING] P4 (one universal c across both orbits) pins the "
+           "anchor DIFFERENCE, not its value: the four-state GMN spread is exactly "
+           "3·|Q_p − Q_n − 1| — PROVEN as an identity in charge_sector_provenance (so these six "
+           "points witness a theorem, not a coincidence), and forced by P4 even WITHOUT the "
+           "lepton tie — zero on the whole line Q_p − Q_n = 1 "
+           f"(incl. the physically absurd (0.5, −0.5) and (2, 1)) and nonzero off it {[(k, round(v, 4)) for k, v in _got.items()]}. "
+           "So the substrate side buys Q_p − Q_n = 1 and the ENTERED value Q_p = 1 buys the "
+           "absolute normalization c = Q_p − 1/2 = 1/2 and nothing else. This is the honest "
+           "division of labour the old check hid",
+           all(abs(_got[k] - _pred[k]) < 1e-9 for k in _pred)
+           and _got[(1.0, 0.0)] < 1e-12 and _got[(0.9, 0.0)] > 0.29)
+
+    # DISCRIMINATING 2 — the R-057 /3 is load-bearing HERE, not just downstream: without it
+    # the integer nucleon anchor is not even compatible with one universal c.
+    _no3_at_real_anchor = _gmn_spread(1.0, 0.0, y_Q=hypercharge(QUARK_BLADES["e124"]))
+    _no3_at_half = _gmn_spread(0.5, -0.5, y_Q=hypercharge(QUARK_BLADES["e124"]))
+    _check("[ASSIGNED — DISCRIMINATING, counterfactual] delete the R-057 trivector /3 (use the "
+           f"raw Y_Q = +1) and the observed anchor (1, 0) no longer admits one universal c: "
+           f"spread = {_no3_at_real_anchor:.4f} ≠ 0. The unique anchor that does is "
+           f"(Q_p, Q_n) = (+1/2, −1/2) (spread {_no3_at_half:.1e}) — a half-charged proton and "
+           "a negatively charged neutron. So the /3 is what makes the integer nucleon anchor "
+           "compatible with P4 AND THE NEUTRALITY DATA: substrate-specific, not generic (canon "
+           "§5). The half-clause is load-bearing and was added at §8a review — untie the lepton "
+           "rows and the no-/3 world does admit a universal c = 1/6 at (1,0), at the price of "
+           "Q_nu = +1/3 and Q_e = -2/3, i.e. a charged neutrino and non-neutral hydrogen. Since "
+           "Q(nu_L) = 0 is the anchor's own stated provenance datum, the tied table is the right "
+           "one to quantify over — but 'at all' full stop was one notch stronger than the "
+           "computation",
+           abs(_no3_at_real_anchor - 1 / 3) < 1e-9 and _no3_at_half < 1e-12)
+
     c = gmn_coefficient()
     _check(f"GMN: c=1/2 on ALL blades (got {[round(c[s],3) for s in ['nu','e','u','d']]})",
            all(abs(c[s] - 0.5) < 1e-9 for s in c))
@@ -53,6 +138,24 @@ def check_twt_poc():
             fn(); _check(f"{fn.__name__} should have raised", False)
         except NotImplementedError as ex:
             print(f"  [RAISES] {fn.__name__}: {str(ex)[:70]}...")
+
+    # THE FOURTH GUARD, and why it is a counted check rather than a print (apparatus
+    # sabotage test, 2026-08-19): Substrate.tau_mem_over_tau_wave raises GatedError on
+    # the unchosen-kernel branch, but MemoryKernel.GATED was never CONSTRUCTED anywhere
+    # in the tree — so the raise was unreachable, and replacing it with a returned
+    # number left both suites fully green. A guard nothing exercises is not a guard.
+    # Note the class: no review role had "do the guards actually fire?" in its diet;
+    # only deliberate sabotage found it. Negative-tested by replacing the raise with a
+    # return, which now FAILS here.
+    _gated_fired = False
+    try:
+        Substrate(memory_kernel=MemoryKernel.GATED).tau_mem_over_tau_wave()
+    except GatedError:
+        _gated_fired = True
+    _check("Substrate.tau_mem_over_tau_wave RAISES on the unchosen-kernel branch — the guard is "
+           "EXERCISED, not merely written. Before this check nothing in either suite constructed "
+           "MemoryKernel.GATED, so swapping the raise for a number passed both suites in full",
+           _gated_fired)
 
     print("\nAll structural checks passed. The math is self-consistent.")
 
@@ -386,10 +489,33 @@ def check_twt_algebra():
     _ck("RULED pick (iv) restricted to Cl(4,0) == the banked reverse pairing (conservative extension; R1 2026-08-12)",
         pd["(iv) restricted to Cl(4,0) equals banked reverse pairing"])
     lk = boost_projection_leak_identity()
-    _ck("|g2(BAB⁻¹)|² = |A_⊥|² + cosh²ζ|A_∥|² engine-exact (all three e₁-blades leak to grade 1)",
-        lk["identity worst |lhs - rhs|"] < 1e-12)
-    _ck("A_∥ = 0 ⇒ exact equality: the projected-cost over-count is STRICT iff A_∥ ≠ 0",
-        lk["A_par = 0 => exact equality (residual)"] < 1e-12)
+    # P6-1 repair (2026-08-21): the tolerance is RELATIVE, and the sweep runs to
+    # ζ = 10 — an absolute 1e-12 was calibrated to the old ζ ≤ 1.5 sample and the
+    # same true identity breaks it at ζ = 6 (1.5e-11) and ζ = 10 (3.0e-8).
+    _ck("|g2(BAB⁻¹)|² = |A_⊥|² + cosh²ζ|A_∥|² engine-exact to RELATIVE 1e-13 over ζ ∈ {0…10} (relativistic rapidity; the absolute residual there is 3e-8)",
+        lk["identity worst RELATIVE residual (the gating number)"] < 1e-13
+        and lk["zeta sweep (fixed A, ascending)"][-1] >= 10.0)
+    # P6-1 repair: the label is now a PREDICATE on the leak keys, blade by blade,
+    # with the primitive's own ζ = 0 row asserted EMPTY as the named exception.
+    _ck("all three e₁-blades leak to grade 1 blade-by-blade (e12→e2, e13→e3, e14→e4, each carrying cosh²ζ); {e23,e24,e34} inert; leak = {e2,e3,e4} at every ζ ≠ 0 row and EMPTY at ζ = 0 (B = 1, the named exception)",
+        lk["all three e1-blades leak to grade 1 (blade by blade)"]
+        and lk["perp blades {e23,e24,e34} inert (no grade-1 leak)"]
+        and lk["e1-blades carry cosh^2(zeta), perp blades carry 1"]
+        and lk["all six A-coefficients bounded away from zero (leak predicate meaningful)"]
+        and lk["leak list = {e2,e3,e4} at every zeta != 0 row"]
+        and lk["leak list EMPTY at zeta = 0 (the named exception: B = 1)"])
+    # P6-1 repair: the true iff. "STRICT iff A_∥ ≠ 0" was FALSE — ζ ≠ 0 is required
+    # too, and ζ = 0 is in the primitive's own row set. 2×2 truth table, both ways.
+    _ck("projected-cost over-count = sinh²ζ|A_∥|² ⇒ STRICT iff (A_∥ ≠ 0 AND ζ ≠ 0): strict in that one cell of the 2×2 table, exact equality in the other three",
+        lk["strict over-count iff (A_par != 0 AND zeta != 0)"]
+        and lk["over-count closed form sinh^2(zeta)|A_par|^2 (rel residual)"] < 1e-13
+        and lk["strictness truth table {(A_par!=0, zeta!=0): over-count}"][(True, True)] > 1e-6)
+    # P6-1 repair: monotonicity COMPUTED off a fixed-A sweep (the old rows drew a
+    # new bivector per ζ, so the claim was unreadable) — and even in ζ, not ζ.
+    _ck("over-count monotone in |ζ|, NOT ζ: strictly increasing along the fixed-A ascending sweep, and EVEN in ζ (f(ζ) = f(−ζ) exactly)",
+        lk["over-count strictly monotone in |zeta| (computed, fixed A)"]
+        and lk["over-count EVEN in zeta (max rel |f(z)-f(-z)|)"] < 1e-13
+        and len(lk["over-count sequence vs ascending |zeta| (fixed A)"]) == len(lk["zeta sweep (fixed A, ascending)"]))
 
     print("\nAll algebra-completion checks passed (companion-layer checks: twt_companion_test.py).")
 
@@ -1544,7 +1670,7 @@ def check_twt_weak():
     _ck(f"ΔB = ΔL = N_gen = 3, Δ(B-L) = 0, Δ(B+L) = 6  (got {sr})",
         sr["ΔB = N_gen"] == 3 and sr["ΔL = N_gen"] == 3 and sr["Δ(B-L)"] == 0 and sr["Δ(B+L)"] == 6)
 
-    print("W1 (2026-07-27) — the charge flagship ANCHOR-FREE: Q_p = -Q_e theorem-given-(P4,P5,P6):")
+    print("W1 (2026-07-27) — the charge flagship ANCHOR-FREE: Q_p = -Q_e theorem-given-(P4,P5,P6,P7):")
     cnaf = charge_normalization_anchor_free()
     _ck("W1 the c-FREE IDENTITIES [DERIVED-A]: with the charge functional Q = T_3 + c*Y carried "
         "with c a FREE sympy symbol (anti-circularity: GMN c=1/2 never assumed), Q_p + Q_e = 0 and "
@@ -1561,15 +1687,33 @@ def check_twt_weak():
         "universal linear charge functional -- ASSUMED, structural, FRAMING-supported by R-035 "
         "(DERIVED) + R-086a, and R-086a HAS NO ENGINE PRIMITIVE so it is never to be phrased as "
         "engine-checked; P5 per-defect chirality-independence; P6 proton = uud, an inside-frame "
-        "state-identification INPUT), INHERITING the weak=SD assignment (R-079) via R-058/R-079. "
-        "Language: 'theorem-given-(P4,P5,P6)', NOT 'the import is retired'. The neutrality-of-atoms "
-        "anchor is CONDITIONALLY REPLACED by P4+P5, and the 10^-21 bound flips from calibration "
+        "state-identification INPUT; P7 the cross-sector weak-isospin alignment T_3(e) = T_3(d) = "
+        "-T_3(u), INPUT/posited -- ADDED to this primitive's named set 2026-08-21: the paper has "
+        "named P7 at C.2.7 since 2026-07-31 while the engine's tier, headline and premise list "
+        "named only P4-P6 and the code used the alignment regardless, so the engine was "
+        "understating its own conditionality against the paper), INHERITING the weak=SD assignment "
+        "(R-079) via R-058/R-079. "
+        "Language: 'theorem-given-(P4,P5,P6,P7)', NOT 'the import is retired'. The neutrality-of-atoms "
+        "anchor is CONDITIONALLY REPLACED by (P4,P5,P6,P7) -- ALL FOUR, not P4+P5 (keeper C1: "
+        "the primitive's own lepton-slot flip returns +1 with P4+P5 intact, so P6/P7 are "
+        "load-bearing in the T_3 bracket), and the 10^-21 bound flips from calibration "
         "input to falsification test GIVEN the premises",
         "NO ENGINE PRIMITIVE" in cnaf["tier"] and "P6" in cnaf["tier"]
         and "R-058/R-079" in cnaf["tier"]
-        and "THEOREM-GIVEN-(P4,P5,P6)" in cnaf["headline"]
+        and "THEOREM-GIVEN-(P4,P5,P6,P7)" in cnaf["headline"]
+        and "P7" in cnaf["tier"]
         and "CONDITIONALLY REPLACED" in cnaf["headline"]
         and "falsification test" in cnaf["headline"])
+    _ck("W1 P7 IS LOAD-BEARING, COMPUTED not asserted (added 2026-08-21 with P7's promotion into "
+        "the primitive's named premise set): the T_3 bracket vanishes ONLY under the stated "
+        "cross-sector alignment. Flip the LEPTON slot alone and Q_p + Q_e = +1; flip the QUARK "
+        "slots alone and it is -1; flip BOTH and it returns to 0 -- which is exactly why the "
+        "GLOBAL flip is a convention while the RELATIVE alignment is a posited premise. What "
+        "could have disagreed: if the bracket vanished under either single flip, P7 would be "
+        f"free and the paper's C.2.7 caveat would be over-cautious. Got: {cnaf['counterfactual_P7_slot_flips']}",
+        cnaf["counterfactual_P7_slot_flips"] == {"lepton_slot_flipped": 1,
+                                                 "quark_slots_flipped": -1,
+                                                 "global_flip_is_convention": 0})
     _ck("W1 the uud-UNIQUENESS BONUS (dissolves the C.3.13 side-assignment circularity smell): all "
         "four three-facet composites' charges relative to the electron are c-FREE -- uuu+e = +1, "
         "uud+e = 0, udd+e = -1, ddd+e = -2 -- so uud is the UNIQUE three-facet composite "

@@ -259,9 +259,180 @@ def triple_product_color():
     """[DERIVED] Sec 8.2: e124·e134·e234 = e4  (the color-singlet three-body relation)."""
     return e(1, 2, 4) * e(1, 3, 4) * e(2, 3, 4)
 
+# ======================================================================
+# 2a. THE CHARGE SECTOR — THE HONEST BOUNDARY (read this banner first)
+# ======================================================================
+# The charge sector has TWO sides and they are not the same kind of object. The
+# blind calibration probe P2 (2026-08-19) and external-review round 2 (2026-08-21)
+# both landed here, independently, because the code did not say so out loud: names
+# and comments in this block claimed COMPUTATION where the body performs ASSIGNMENT.
+# The mathematics was never wrong; the sentences around it were. This banner, the
+# CHARGE_SECTOR_PREMISES table below, and charge_sector_provenance() are the repair.
+#
+#   ANCHOR-FREE SIDE — what the substrate supplies with nothing tuned:
+#     * pi3_S3_integer_completion       B in Z. INTEGER-VALUEDNESS ONLY: a discrete
+#         charge lattice and its drift protection. No unit, no sign, no per-state value.
+#     * hypercharge, doublet_hypercharge  the e_4-bilinear signs (+1 on the Q-orbit
+#         trivectors, -1 on e123) and the trivector triple-product /3 — COMPUTED from
+#         the blades, with no charge input anywhere in the computation.
+#     * charge_normalization_anchor_free  Q_p + Q_e = 0 as an IDENTITY IN c: it holds
+#         for EVERY value of the normalization constant, so no anchor is consumed and
+#         nothing is tuned. This is the one result on this side that is about VALUES,
+#         and it is conditional on the named premises P4-P7 — not on a fitted number.
+#
+#   ASSIGNED SIDE — a table the substrate does not yet supply, entered by hand and
+#   riding the named premises P4-P7 (paper SSC.2.7; tiers in CHARGE_SECTOR_PREMISES):
+#     * T3                              which doublet slot each state occupies (P7).
+#     * charge_assignment_from_anchor   the frozen anchor (Q_p, Q_n) = (1, 0) plus a
+#         composition solve. NO WINDING IS COMPUTED (the legacy alias winding_charge
+#         is retained only so old call sites resolve).
+#     * generation_spectrum             the 15-state table, colour multiplicity 3.
+#     * gmn_coefficient, weinberg_sin2  COMPUTED, but computed OVER that table: their
+#         inputs are the assigned side, so their outputs inherit its premises.
+#
+# The boundary is machine-readable at charge_sector_provenance(), and the harness
+# asserts that every public primitive named in this block sits on exactly one side
+# of it — so a primitive added here without being classified FAILS the suite.
+# ======================================================================
+
+CHARGE_SECTOR_PREMISES = {
+    "P4": ("SINGLE UNIVERSAL LINEAR CHARGE FUNCTIONAL [ASSUMED — structural, "
+           "FRAMING-supported by R-035 (DERIVED) + R-086a (paper-level only, NO ENGINE "
+           "PRIMITIVE — never phrase anything riding P4 as engine-checked)]: measured "
+           "electric charge is ONE generator Q = T_3 + c*Y with ONE c across every "
+           "defect and both orbits."),
+    "P5": ("PER-DEFECT CHIRALITY-INDEPENDENCE OF Q [derived-structural given "
+           "matter = defect; engine-encoded in generation_spectrum's chirality-"
+           "independent Q column]."),
+    "P6": ("PROTON = uud THREE-FACET COMPOSITE [INPUT — inside-frame state-"
+           "identification, canon-legitimate; its content is checked: uud is the "
+           "UNIQUE three-facet composite neutralizing e, and that uniqueness is c-free]."),
+    "P7": ("CROSS-SECTOR WEAK-ISOSPIN ALIGNMENT T_3(e) = T_3(d) = -T_3(u) [INPUT — "
+           "POSITED]: the charged lepton occupies the slot opposite the doubly-"
+           "represented quark. Nothing in SSC.2.3 derives which doublet member the "
+           "electron is; the T3 table below posits it in code. Flipping the lepton "
+           "slot alone gives Q_p + Q_e = +1 and the quark slots alone -1 — only the "
+           "GLOBAL flip is a convention."),
+    "INHERITED": ("weak = SD (R-079) via R-058 — DERIVED-given-{A-P2 + the right-handed-"
+                  "singlet datum} since RUL-082 (C-32's first exhausted-menu promotion); "
+                  "NOT a counted free bit and NOT a pick. A-P2 is stamped ENDORSED "
+                  "(RUL-084). This sector adds no new input bit here; it inherits."),
+}
+
+
+def charge_sector_provenance() -> dict:
+    """[DERIVED-structural: the classification itself is bookkeeping, but it is
+    EXECUTABLE bookkeeping — the harness checks that every public primitive of the
+    charge block is classified on exactly one side, so an unclassified addition FAILS.]
+
+    THE ONE-SCREEN ANSWER to 'what does the substrate actually give you about charge?'
+
+    ANCHOR-FREE: integer-valuedness (pi_3), the e_4-bilinear hypercharge signs and the
+    /3, and the proton-electron neutrality IDENTITY IN c. Nothing on this side consumes
+    a fitted number: the neutrality identity holds for every normalization c, which is
+    exactly what makes the 10^-21 atom-neutrality measurement a TEST of the premises
+    rather than the calibration that fixes them.
+
+    ASSIGNED: the per-state charge VALUES. These are entered, not computed — the anchor
+    (Q_p, Q_n) = (1, 0), the doublet slot table T3, the 15-state spectrum with colour
+    multiplicity 3 — and they ride P4-P7. Everything computed downstream of them
+    (gmn_coefficient, weinberg_sin2) inherits their premises, however exact the
+    arithmetic that consumes them.
+
+    WHY THIS PRIMITIVE EXISTS. Two independent readers (blind probe P2, external review
+    round 2) traced this code top-down and met the assigned side wearing computational
+    names. The fix that is available is not to compute what the substrate does not yet
+    supply — it is to make the boundary impossible to walk past."""
+    anchor_free = {
+        "pi3_S3_integer_completion": "B in Z — the lattice and its drift protection; no value",
+        "hypercharge": "e_4-bilinear eigenvalue, computed from the blade; no charge input",
+        "doublet_hypercharge": "the same, plus the R-057 trivector /3",
+        "charge_normalization_anchor_free": ("Q_p + Q_e = 0 identically in c — the one "
+                                             "VALUE-level result that consumes no anchor"),
+    }
+    assigned = {
+        "T3": "the doublet-slot table — P7, posited in code",
+        "charge_assignment_from_anchor": "frozen anchor (Q_p, Q_n) = (1, 0) + composition solve",
+        "winding_charge": "LEGACY ALIAS of the above; the name is a misnomer, no winding is computed",
+        "generation_spectrum": "the 15-state table; colour multiplicity 3 entered by hand",
+        "gmn_coefficient": "exact arithmetic OVER the assigned table — inherits its premises",
+        "weinberg_sin2": "exact arithmetic OVER the assigned table — inherits its premises",
+    }
+    overlap = set(anchor_free) & set(assigned)
+    assert not overlap, f"a primitive cannot sit on both sides: {overlap}"
+
+    # ---- THE ANCHOR-FORCING IDENTITIES, ASSERTED SYMBOLICALLY -------------
+    # DERIVATION CREDIT: reviewer-derived (§8a contra-briefed reviewer, 2026-08-21),
+    # engine-asserted here. The developer had established these at six sampled anchor
+    # points; the reviewer proved them as IDENTITIES in (Q_p, Q_n) and found the
+    # stronger statement in (2), which answers the developer's own steelman better than
+    # the developer had argued it. Sampled points are now witnesses to a theorem, and
+    # the theorem is what this primitive asserts.
+    import sympy as _sp
+    _Qp, _Qn, _c = _sp.symbols("Q_p Q_n c")
+    _yQ, _yL = _sp.Rational(1, 3), _sp.Rational(-1, 1)
+    _T3 = {"nu": _sp.Rational(1, 2), "e": _sp.Rational(-1, 2),
+           "u": _sp.Rational(1, 2), "d": _sp.Rational(-1, 2)}
+    # (1) THE SPREAD IS AN EXACT IDENTITY. With the lepton rows tied to the anchor by the
+    #     c-free neutrality relations, the four per-state GMN coefficients form an
+    #     ARITHMETIC PROGRESSION {c_nu - d, c_nu, c_nu + d, c_nu + 2d} with
+    #     d = Q_p - Q_n - 1, so the spread is 3|d| identically in (Q_p, Q_n).
+    _Qu, _Qd = (2 * _Qp - _Qn) / 3, (2 * _Qn - _Qp) / 3
+    _cs = {"nu": (-_Qn - _T3["nu"]) / _yL, "e": (-_Qp - _T3["e"]) / _yL,
+           "u": (_Qu - _T3["u"]) / _yQ,    "d": (_Qd - _T3["d"]) / _yQ}
+    _d = _Qp - _Qn - 1
+    assert _sp.simplify(_cs["e"] - _cs["nu"] - _d) == 0, "AP step c_e - c_nu != delta"
+    assert _sp.simplify(_cs["u"] - _cs["e"] - _d) == 0, "AP step c_u - c_e != delta"
+    assert _sp.simplify(_cs["d"] - _cs["nu"] + _d) == 0, "AP step c_d - c_nu != -delta"
+    # (2) THE FORCING DOES NOT RIDE THE LEPTON TIE. Impose P4 FORWARD instead — every
+    #     state's charge IS T_3 + c*Y, composition only, no tie — and Q_p - Q_n = 1 comes
+    #     out identically in c. So P4 plus the T_3 slot table (P7) and the derived Y table
+    #     force the anchor DIFFERENCE outright; the tie only makes the assigned table
+    #     P4-faithful. CONDITIONING CLASS (RUL-049): forced given P7's slot table and the
+    #     derived hypercharge ratio — not forced simpliciter.
+    _Qu_f, _Qd_f = _T3["u"] + _c * _yQ, _T3["d"] + _c * _yQ
+    assert _sp.simplify((2 * _Qu_f + _Qd_f) - (_Qu_f + 2 * _Qd_f) - 1) == 0, \
+        "P4 forward must force Q_p - Q_n = 1 identically in c"
+    # (3) THE NO-/3 ANCHOR IS UNIQUE. Drop the R-057 /3 (raw y_Q = 1) and solve the
+    #     universal-c conditions: exactly one anchor survives, (Q_p, Q_n) = (1/2, -1/2).
+    _csn = {"nu": (-_Qn - _T3["nu"]) / _yL, "e": (-_Qp - _T3["e"]) / _yL,
+            "u": (_Qu - _T3["u"]) / 1,      "d": (_Qd - _T3["d"]) / 1}
+    _sol = _sp.solve([_csn["e"] - _csn["nu"], _csn["u"] - _csn["e"],
+                      _csn["d"] - _csn["e"]], [_Qp, _Qn], dict=True)
+    assert _sol == [{_Qp: _sp.Rational(1, 2), _Qn: _sp.Rational(-1, 2)}], _sol
+
+    return {
+        "anchor_free": anchor_free,
+        "assigned": assigned,
+        "premises": dict(CHARGE_SECTOR_PREMISES),
+        "boundary": ("integer-valuedness and the neutrality identity are anchor-free; "
+                     "the per-state VALUES are assigned and ride P4-P7"),
+        "identification_note": (
+            "ANCHOR-FREE IS NOT IDENTIFICATION-FREE. hypercharge sits on the anchor-free "
+            "side correctly — it computes an eigenvalue from a blade, with no charge input "
+            "and nothing tuned. But WHICH blade is 'the lepton' (e123) and which are 'the "
+            "colours' (the Q-orbit trivectors) is a state-identification of the P6 class: "
+            "inside-frame, canon-legitimate, named in P6 — and NOT itself computed. The "
+            "boundary's two terms are 'nothing tuned' vs 'entered'; identifications are a "
+            "third kind, riding the computed side with a prose premise. Said here because "
+            "external review round 2 named exactly this ('which blade is the lepton ... "
+            "assigned by hand') and the boundary table alone does not answer it."),
+        "anchor_forcing": {
+            "gmn_spread": "3*|Q_p - Q_n - 1|, identically in (Q_p, Q_n) — the four c's are an AP",
+            "P4_forces": ("Q_p - Q_n = 1, identically in c, WITHOUT the lepton tie — P4 plus "
+                          "the P7 slot table and the derived Y table force it outright"),
+            "anchor_absolute_free": "c = Q_p - 1/2 slides with the entered anchor",
+            "no_over_3_unique_anchor": "(Q_p, Q_n) = (1/2, -1/2) — the UNIQUE universal-c anchor",
+            "credit": "identities derived by the 2026-08-21 §8a reviewer; asserted here",
+        },
+        "tier": "DERIVED-structural (classification); the underlying claims keep their own tiers",
+    }
+
+
 def hypercharge(B: MV) -> float:
     """[DERIVED] Sec 18.2: Y is the eigenvalue of the e4-bilinear  ~B e4 B = Y·e4.
-    Computed from the blade alone — NO charge input. lepton e123 -> -1; each quark -> +1."""
+    Computed from the blade alone — NO charge input. lepton e123 -> -1; each quark -> +1.
+    ANCHOR-FREE side of the SS2a boundary banner: this is a computation, not a table."""
     res = B.reverse() * e(4) * B
     y = res.coeff((4,))
     # the map must return a pure multiple of e4 (eigenvector check)
@@ -270,24 +441,57 @@ def hypercharge(B: MV) -> float:
     return y
 
 
-# weak isospin: the meta-time rotor doublet (Sec 18.3) — cos -> +1/2, sin -> -1/2
-# [DERIVED given weak=SD INPUT]: the ±1/2 values follow from the doublet being the minimal
-# two-component rep of the SD chiral Spin(4) factor (see weak_isospin_centralizer_is_SD,
-# weak_isospin_verdict — the single 1-bit INPUT counted under parameter economy).
+# weak isospin: the meta-time rotor doublet (Sec 18.3) — cos -> +1/2, sin -> -1/2.
+# ASSIGNED side of the SS2a boundary. Two different things live in this one table and
+# the old comment ran them together:
+#   (i) the MAGNITUDE |T_3| = 1/2 is DERIVED-given-R-079: the doublet is the minimal
+#       two-component rep of the SD chiral Spin(4) factor (weak_isospin_centralizer_is_SD,
+#       weak_isospin_verdict). R-079 is itself DERIVED-given-{A-P2 + the right-handed-
+#       singlet datum} since RUL-082 — it is NO LONGER a counted 1-bit INPUT and no longer
+#       a pick (C-32's first exhausted-menu promotion; the old comment said INPUT and was
+#       stale from that ruling onward).
+#   (ii) the SLOT ASSIGNMENT — which member of each doublet takes the + sign, and that the
+#       charged lepton sits opposite the doubly-represented quark — is PREMISE P7
+#       (CHARGE_SECTOR_PREMISES above), INPUT/posited. It is posited HERE, in this literal.
 T3 = {"nu": +0.5, "e": -0.5, "u": +0.5, "d": -0.5}
 
-# electric charge from the TOPOLOGICAL WINDING (Sec 21.2 / 22.3), gate-free.
-# Anti-circularity: quark charges come from the integer baryon charges + composition,
-# NOT from T3 + Y/2.
-def winding_charge():
-    """[DERIVED-structural (the composition solve is exact rational arithmetic) GIVEN
-    an INPUT normalization anchor (Qp, Qn) = (1, 0) and the INPUT state-identification
-    p=uud, n=udd (P6); the function NAME is a legacy misnomer]
+# ASSIGNED side of the SS2a boundary. The per-state electric charge VALUES.
+# Anti-circularity holds (nothing here reads T3 + Y/2), but anti-circularity is NOT
+# derivation: the values are an anchor plus a composition solve, both entered by hand.
+def charge_assignment_from_anchor(Qp: float = 1.0, Qn: float = 0.0,
+                                  with_premises: bool = False):
+    """[ASSIGNMENT, not computation — DERIVED-structural only in the sense that the
+    composition solve is exact rational arithmetic. GIVEN an INPUT normalization anchor
+    (Qp, Qn) = (1, 0) and the INPUT state-identification p=uud, n=udd (P6).]
 
-    NAME WARNING (II-7 two-chains audit, 2026-07-29): NO WINDING IS COMPUTED HERE.
-    The only numeric inputs are the two frozen literals Qp, Qn = 1, 0. Everything
+    THE NAME NOW SURVIVES CONTACT WITH THE BODY (renamed 2026-08-21 from the legacy
+    `winding_charge`, which is retained below as a thin alias for old call sites). NO
+    WINDING IS COMPUTED HERE, and the old name said otherwise to every reader who met
+    it before the docstring — the defect two independent readers reported (blind probe
+    P2, 2026-08-19; external review round 2, 2026-08-21).
+    The only numeric inputs are the two anchor literals Qp, Qn = 1, 0. Everything
     else is the composition solve from p=uud, n=udd: 2Qu+Qd=Qp, Qu+2Qd=Qn
     (det=3) => Qu=(2Qp-Qn)/3, Qd=(2Qn-Qp)/3.
+
+    THE ANCHOR IS NOW AN ARGUMENT, not a frozen literal, so the counterfactual is
+    RUNNABLE, and running it says something the old frozen form could not. Feed a
+    perturbed anchor and read gmn_coefficient: the four per-state c values open into a
+    spread of exactly 3*(Qp - Qn - 1). So requiring ONE universal c (premise P4) forces
+    the anchor DIFFERENCE Qp - Qn = 1 — a real condition on the assignment, checkable
+    and breakable — while leaving the absolute anchor free, with c = Qp - 1/2 sliding
+    along it. That is the honest accounting: the substrate side pins the difference, and
+    the entered value Qp = 1 buys the absolute normalization c = 1/2 and nothing else.
+    Delete the R-057 /3 and the cross-orbit condition becomes Qp + Qn = 0 instead, which the
+    (1, 0) anchor FAILS — so the /3 is load-bearing here and the agreement is
+    substrate-specific rather than generic (harness demonstrations, twt_test.py). PRECISION
+    (added at §8a review): that statement quantifies over the TIED table, i.e. it carries the
+    neutrality data Q(nu_L) = 0 with it. Untie the lepton rows and the no-/3 world does admit
+    a universal c = 1/6 at the (1, 0) anchor — at the price of Q_nu = +1/3 and Q_e = -2/3, a
+    charged neutrino and non-neutral hydrogen. So: compatible with P4 AND the neutrality
+    datum, which is the anchor's own stated provenance — not 'compatible with P4' full stop.
+    Passing with_premises=True returns the values BESIDE their premise
+    labels (P4-P7 + the inherited R-079) instead of bare; the default return stays
+    the bare four-key dict because gmn_coefficient iterates its keys.
 
     WHAT THE TOPOLOGY ACTUALLY DELIVERS. pi3_S3_integer_completion proves B in Z
     only -- a discrete charge LATTICE and its drift protection; no unit, no sign, no
@@ -324,10 +528,46 @@ def winding_charge():
     is NOT supported is the stronger reading that Q is an INDEPENDENT TOPOLOGICAL
     determination of the 15 charge values racing GMN: the winding supplies
     PROTECTION, the charge functional supplies NORMALIZATION."""
-    Qp, Qn = 1, 0                      # Q_p=+1 anchored: Q_e=-1 (§18.2 algebraic) + B-L + neutrality
-    Qu = (2 * Qp - Qn) / 3.0           # = +2/3
-    Qd = (2 * Qn - Qp) / 3.0           # = -1/3
-    return {"nu": 0.0, "e": -1.0, "u": Qu, "d": Qd}
+    # THE ANCHOR. Its honest provenance is the single datum Q(nu_L) = 0 — supplied
+    # empirically (atom neutrality), or by the native wave-decoupled S_- route, or by
+    # the I-18 anomaly conditions — together with the c-free relations Q_p + Q_e = 0
+    # and Q_n + Q_nu = 0; all three provenances are catalogued and separately tiered in
+    # charge_normalization_anchor_free. It is NOT the "§18.2 algebraic" e_4-bilinear
+    # route: that route returns hypercharge Y, is per-blade, and cannot split the
+    # lepton doublet (see CORRECTED ANCHOR PROVENANCE in the docstring above). The
+    # comment that stood here asserted the refuted route and was the first provenance
+    # statement a top-down reader met — repaired 2026-08-21 (blind probe P2 finding 1).
+    Qu = (2 * Qp - Qn) / 3.0           # = +2/3 at the (1, 0) anchor
+    Qd = (2 * Qn - Qp) / 3.0           # = -1/3 at the (1, 0) anchor
+    # The lepton row is NOT the composition solve. It is the docstring's own CORRECTED
+    # ANCHOR PROVENANCE made executable: the c-free relations Q_p + Q_e = 0 and
+    # Q_n + Q_nu = 0 (charge_normalization_anchor_free) tie the lepton row to the
+    # anchor, so the whole table moves with the anchor exactly as the theorem says it
+    # must. Previously these two entries were independent frozen literals, which hid
+    # that dependence and made the anchor look like it only touched the quarks.
+    values = {"nu": -float(Qn) + 0.0, "e": -float(Qp), "u": Qu, "d": Qd}
+    if not with_premises:
+        return values
+    return {
+        "values": values,
+        "anchor": {"Qp": Qp, "Qn": Qn,
+                   "status": "INPUT — entered here, not computed from the substrate"},
+        "premises": dict(CHARGE_SECTOR_PREMISES),
+        "tier": ("ASSIGNMENT given the anchor + P6 state-identification; the arithmetic "
+                 "is exact, the inputs are not derived"),
+    }
+
+
+def winding_charge():
+    """[LEGACY ALIAS — the name is a misnomer and is kept only so that call sites and
+    citations written before 2026-08-21 continue to resolve. NO WINDING IS COMPUTED.]
+
+    Calls charge_assignment_from_anchor() at the default (Q_p, Q_n) = (1, 0) anchor.
+    Read that function's docstring — and the SS2a boundary banner — before using this.
+    What the winding chain actually supplies is integer-valuedness alone
+    (pi3_S3_integer_completion): the lattice and its drift protection, no unit, no
+    sign, no per-state value. New code should call the new name."""
+    return charge_assignment_from_anchor()
 
 def doublet_hypercharge():
     """[DERIVED] doublet Y: lepton e123 -> -1 (one blade); quark -> +1/3 (raw +1 shared
@@ -339,16 +579,30 @@ def doublet_hypercharge():
 def gmn_coefficient():
     """[DERIVED, gate-free] §18.4: WP-GMN1: c in Q = T3 + c·Y, per blade.
     Returns the dict of c per state; the exact 1/2 is FORCED, not chosen.
-    Clean determination = the lepton doublet (/3-free); quark doublet = consistency check."""
-    Q, Y = winding_charge(), doublet_hypercharge()
+    Clean determination = the lepton doublet (/3-free); quark doublet = consistency check.
+
+    SCOPE (SS2a boundary): the arithmetic here is exact, but its INPUTS are the assigned
+    side — Q from charge_assignment_from_anchor (anchor + composition) and T3 from the
+    posited slot table (P7). So c = 1/2 is exact GIVEN that table, not extracted from
+    the substrate independently of it. What IS non-trivial, and is checked in the
+    harness, is that the quark row and the lepton row return the SAME c: the quark Q
+    arrives by baryon composition from the anchor while Y_Q arrives by the e_4-bilinear
+    plus the R-057 /3, so their agreement tests the derived ratio Y_lep/Y_Q = -3.
+    Delete the /3 and the residue is 2c; move the anchor by delta and it is 2*delta."""
+    Q, Y = charge_assignment_from_anchor(), doublet_hypercharge()
     return {s: (Q[s] - T3[s]) / Y[s] for s in Q}
 
 def generation_spectrum():
-    """[DERIVED] Sec 18.5: the 15 Weyl states of one generation, as (label, T3, Q, mult).
-    Electric charge Q is chirality-INDEPENDENT (same for L and R); weak isospin T3 is
-    LEFT-only (right-handed states are weak singlets, T3=0). No nu_R in minimal content.
+    """[ASSIGNED TABLE — SS2a boundary] Sec 18.5: the 15 Weyl states of one generation,
+    as (label, T3, Q, mult). The 15-state content, the chirality pattern and the colour
+    multiplicity 3 are ENTERED HERE, matched to the Q-orbit trivector count; they are not
+    computed from the substrate. Q comes from charge_assignment_from_anchor (anchor +
+    composition) and T3 from the posited slot table (P7).
+    Electric charge Q is chirality-INDEPENDENT (same for L and R) — that column is
+    premise P5, engine-encoded here; weak isospin T3 is LEFT-only (right-handed states
+    are weak singlets, T3=0). No nu_R in minimal content.
     1+1+3+3 (left doublets) + 1+3+3 (right singlets) = 15."""
-    Q = winding_charge()
+    Q = charge_assignment_from_anchor()
     return [
         ("nu_L", T3["nu"], Q["nu"], 1), ("e_L", T3["e"], Q["e"], 1),
         ("u_L",  T3["u"],  Q["u"],  3), ("d_L", T3["d"], Q["d"], 3),
@@ -359,6 +613,9 @@ def generation_spectrum():
 def weinberg_sin2():
     """[DERIVED, gate-free] Sec 20.6: sin^2(theta_W) = ΣT3^2 / ΣQ^2 over the full
     generation. Uses only the gate-free spectrum; = 3/8 at unification.
+    SCOPE (SS2a boundary, stated first because it is the one a reader needs): the trace
+    is exact, and it is taken OVER THE ASSIGNED 15-state table of generation_spectrum.
+    It inherits that table's premises; it does not certify it.
     (ΣT3^2 = 2 from the doublets; ΣQ^2 = 16/3 needs ALL 15 states incl. RH singlets.)
     SCOPE (audit 2026-06-25): 3/8 is the UNIFICATION/tree value (the SU(5)/SO(10) group-theory
     normalization of the SM charge assignments); the MEASURED sin^2(theta_W)(M_Z) ≈ 0.231 needs
@@ -8312,7 +8569,8 @@ def topological_overproduction_test():
 
     Cross-references: pi3_S3_integer_completion (B-side integer protection),
     lepton_number_topological_conservation (L-side), meson_topological_status (B=0 sector
-    not protected — explains why pions decay), winding_charge."""
+    not protected — explains why pions decay); charge PROTECTION from
+    pi3_S3_integer_completion, charge VALUES from charge_assignment_from_anchor."""
     # Engine-witness the integer protection on each conserved charge
     pi3 = pi3_S3_integer_completion()
     assert pi3["3×(1/3) = 1 is an integer"], "B integer-completion must hold (π_3 side)"
@@ -8350,7 +8608,10 @@ def topological_overproduction_test():
             "pi3_S3_integer_completion (B integer)",
             "lepton_number_topological_conservation (L integer)",
             "meson_topological_status (B=0 not protected — pions decay)",
-            "winding_charge (Q from B, L)",
+            "pi3_S3_integer_completion (B in Z: the lattice + drift protection) and "
+            "charge_assignment_from_anchor (the per-state VALUES: entered anchor + "
+            "composition, riding P4-P7) — NOT 'Q from B, L', which the main engine's "
+            "own docstring disclaims: the winding chain determines none of the 15 values",
         ],
         "passes_by": "exhaustive enumeration",
     }
@@ -10199,7 +10460,10 @@ def eom_constraint_class():
         "H5_colour_Z3_dichotomy":    theta_rel_z3_isotropy_dichotomy,    # colour ℤ₃ (or break = Θ_rel)
         "H6_genSpin3_centralE_a":    mass_reconciliation_U1_Spin3,       # [E,J²]=0, U(1)_E ⊕ Spin(3)
         "H6_genSpin3_centralE_b":    cogear_linkage_kinematic,           # E central, commutes colour+gen
-        "H7_winding_continuity":     winding_charge,                     # ∂_μ j^μ=0 (grade-0)
+        "H7_winding_continuity":     pi3_S3_integer_completion,         # ∂_μ j^μ=0 (grade-0);
+        # re-pointed 2026-08-21 (keeper R2): the old entry named the charge-ASSIGNMENT
+        # primitive, which computes neither a winding nor a continuity. The topological
+        # content H7 is about — B in Z and its drift protection — is pi3_S3_integer_completion.
         "H10_frame_universal_EP":    equivalence_principle_protection,   # R̃∂R grade-2 ⇒ universal frame
         "H11_spine_weinberg":        weinberg_sin2,                      # must not contradict sin²θ_W=3/8
     }
@@ -10355,7 +10619,7 @@ def eom_invariant_variant_audit():
                                    "Θ_rel Z3-isotropy dichotomy (Schur; theta_rel_z3_isotropy_dichotomy)"]
     # invariant, but NOT a Layer-2 dynamical WIN (engine tiers, honest buckets):
     invariant_not_a_layer2_win = {
-        "static_Layer1 (EOM-independent)": ["charge quantization (winding_charge)",
+        "static_Layer1 (EOM-independent)": ["charge quantization (pi3_S3_integer_completion; the ASSIGNMENT of values is charge_assignment_from_anchor and is NOT EOM-independent of P4-P7)",
                                             "π₃(S³)=ℤ (pi3_S3_integer_completion)", "sin²θ_W=3/8 (weinberg_sin2)"],
         "topological/structural":          ["instanton ΔB=ΔL=3 (bpst_selection_rule)", "confinement = shared-rotor lock"],
         "generic-given-4D (canon §5)":     ["Sakharov Λ²-scaling (induced_G_quadratic_divergence_from_4D)"],
@@ -21833,19 +22097,26 @@ def marginal_skyrme_beta3_sign_dispersive():
 
 
 def charge_normalization_anchor_free():
-    """[DERIVED-structural, CONDITIONAL on (P4, P5, P6) — each named and tiered below —
+    """[DERIVED-structural, CONDITIONAL on (P4, P5, P6, P7) — each named and tiered below —
     and INHERITING the weak=SD assignment via R-058/R-079 (R-079 is DERIVED-given-{A-P2 +
     RH-singlet datum} since RUL-082, not a counted free bit)] + [DERIVED-A for the
     c-free algebraic identities themselves] — the charge flagship Q_p = -Q_e restated as
-    a THEOREM-GIVEN-(P4,P5,P6), holding for EVERY normalization c, so that the absolute
+    a THEOREM-GIVEN-(P4,P5,P6,P7), holding for EVERY normalization c, so that the absolute
     normalization no longer has to consume the neutrality-of-atoms anchor (W1, 2026-07-27).
 
     THE CLAIM, STATED WITH ITS CONDITIONALITY (the language is load-bearing: this is
-    'theorem-given-(P4,P5,P6)', NOT 'the import is retired/dissolved' unconditionally).
-    Under P4+P5+P6 below, Q_p + Q_e = 0 is an IDENTITY in the normalization symbol c —
+    'theorem-given-(P4,P5,P6,P7)', NOT 'the import is retired/dissolved' unconditionally).
+    Under P4+P5+P6+P7 below, Q_p + Q_e = 0 is an IDENTITY in the normalization symbol c —
     the charge functional's absolute scale drops out of the proton/electron equality
     entirely. The neutrality-of-atoms anchor is therefore CONDITIONALLY REPLACED by
-    P4+P5 (not removed from the books: P4 is FRAMING-supported, see its tier); and the
+    (P4, P5, P6, P7) — ALL FOUR, not P4+P5. That wording stood here through the P7
+    repair and is corrected by this primitive's OWN output: counterfactual_P7_slot_flips
+    returns Q_p + Q_e = +1 under a lepton-slot flip with P4+P5 intact, so P4+P5 alone
+    cannot carry the replacement; P6 (proton = uud) and P7 (the slot alignment) are
+    load-bearing in the T_3 bracket. (Keeper collision C1, 2026-08-21 — the same defect
+    class the P7 repair had just fixed one paragraph above, surviving in the replacement
+    sentence.) Not removed from the books either: P4 is FRAMING-supported, see its tier;
+    and the
     10^-21 atom-neutrality bound flips from a CALIBRATION input to a genuine
     FALSIFICATION TEST *given the premises*.
 
@@ -21866,6 +22137,18 @@ def charge_normalization_anchor_free():
            canon-legitimate: the same identification class as 'electron = e123-blade'].
            Mild, and its content is checked below: uud is the UNIQUE three-facet composite
            that neutralizes e, and that uniqueness is itself c-free.
+      (P7) CROSS-SECTOR WEAK-ISOSPIN ALIGNMENT T_3(e) = T_3(d) = -T_3(u) [INPUT —
+           POSITED]. The charged lepton occupies the slot opposite the doubly-
+           represented quark. This premise is LOAD-BEARING RIGHT HERE: the T_3 bracket
+           below vanishes only under this alignment — flip the lepton slot alone and
+           Q_p + Q_e = +1, flip the quark slots alone and it is -1; only the GLOBAL
+           flip is a convention. It is posited in the module-level T3 literal, and the
+           substrate does not yet say which member the electron is.
+           RECORDED HONESTLY (2026-08-21): the paper has named P7 in SSC.2.7 since
+           2026-07-31, but this primitive's premise list, tier and headline named only
+           P4-P6 while the code below used the alignment. The engine was understating
+           its own conditionality relative to the paper; the four-premise reading is
+           the correct one and both now agree.
       (INHERITED) weak = SD (R-079, DERIVED-given-{A-P2 + RH-singlet datum} since RUL-082), through
            R-058's T_3 = +-1/2 on doublets / 0 on singlets. The flagship does NOT add a
            new input bit; it inherits this one.
@@ -21976,6 +22259,19 @@ def charge_normalization_anchor_free():
     # counterfactual (canon SS5): remove the R-057 /3 -> residue exactly 2c
     ctf = sp.simplify((2 * (T3u + c * 1) + (T3d + c * 1) + Qe))
     assert sp.simplify(ctf - 2 * c) == 0, "no-/3 counterfactual residue must be 2c; got %s" % ctf
+    # P7 counterfactual (added 2026-08-21 with P7's promotion into the named set): the
+    # T_3 bracket vanishes ONLY under the stated alignment. Flip the lepton slot alone
+    # -> +1; flip the quark slots alone -> -1; flip BOTH (the global flip) -> 0, which
+    # is why the global flip is a convention and the relative alignment is a premise.
+    p7 = {
+        "lepton_slot_flipped": sp.simplify(Qp + (-T3e + c * yL)),
+        "quark_slots_flipped": sp.simplify((2 * (-T3u + c * yQ) + (-T3d + c * yQ)) + Qe),
+        "global_flip_is_convention": sp.simplify((2 * (-T3u + c * yQ) + (-T3d + c * yQ))
+                                                 + (-T3e + c * yL)),
+    }
+    assert p7["lepton_slot_flipped"] == 1, p7
+    assert p7["quark_slots_flipped"] == -1, p7
+    assert p7["global_flip_is_convention"] == 0, p7
 
     # ---- 1b. the uud-uniqueness table (all c-free) ----
     facets = {"uuu": 3 * Qu, "uud": 2 * Qu + Qd, "udd": Qu + 2 * Qd, "ddd": 3 * Qd}
@@ -22044,16 +22340,21 @@ def charge_normalization_anchor_free():
                  "structural, FRAMING-supported by R-035 DERIVED + R-086a which has NO ENGINE "
                  "PRIMITIVE — never phrase as engine-checked], P5 per-defect chirality-"
                  "independence [derived-structural given matter=defect], P6 proton = uud "
-                 "[INPUT — inside-frame state-identification, canon-legitimate]), INHERITING "
+                 "[INPUT — inside-frame state-identification, canon-legitimate], P7 the "
+                 "cross-sector weak-isospin alignment T_3(e) = T_3(d) = -T_3(u) [INPUT — "
+                 "POSITED; load-bearing in the T_3 bracket and computed here, see "
+                 "counterfactual_P7_slot_flips]), INHERITING "
                  "the weak=SD assignment (R-079) via R-058/R-079. NOT DERIVED-A as a physical "
-                 "claim: P4/P5/P6 are premise-class, not closed Clifford identities."),
-        "headline": ("Q_p = -Q_e is a THEOREM-GIVEN-(P4,P5,P6) — an identity for EVERY "
+                 "claim: P4/P5/P6/P7 are premise-class, not closed Clifford identities."),
+        "headline": ("Q_p = -Q_e is a THEOREM-GIVEN-(P4,P5,P6,P7) — an identity for EVERY "
                      "normalization c, inheriting weak=SD (R-058/R-079). The neutrality-of-"
-                     "atoms anchor is CONDITIONALLY REPLACED by P4+P5 (not unconditionally "
-                     "retired/dissolved); the 10^-21 atom-neutrality bound flips from "
+                     "atoms anchor is CONDITIONALLY REPLACED by (P4,P5,P6,P7) — all four, "
+                     "not P4+P5: the lepton-slot flip returns +1 with P4+P5 intact (not "
+                     "unconditionally retired/dissolved); the 10^-21 atom-neutrality bound flips from "
                      "calibration input to falsification test GIVEN those premises."),
         "c_free_identities": {"Q_p + Q_e": 0, "Q_n + Q_nu": 0, "Q_udd + Q_e": -1},
         "counterfactual_no_over_3": "Q_p + Q_e = 2c != 0  (substrate-specific to Y_lep/Y_Q = -3)",
+        "counterfactual_P7_slot_flips": {k: int(v) for k, v in p7.items()},
         "three_facet_table_relative_to_e": table,
         "uud_uniqueness": ("uud is the UNIQUE three-facet composite neutralizing e, and the "
                            "whole table is c-free — dissolves the SSC.3.13 side-assignment "
@@ -24230,52 +24531,162 @@ def boost_projection_leak_identity():
     part of B A B^-1 obeys, engine-exact:
         |g2(B A B^-1)|^2 = |A_perp|^2 + cosh^2(zeta) |A_par|^2,
     where A_par = the component on the three e1-blades {e12, e13, e14} (all three
-    LEAK to grade-1: e12->e2, e13->e3, e14->e4) and A_perp = {e23, e24, e34}
-    (inert). NARROWINGS (ADJUDICATION3 R-d): the over-count is STRICT iff
-    A_par != 0 (exact equality when A_par = 0), and monotone in |zeta|, not zeta.
+    LEAK to grade-1: e12->e2, e13->e3, e14->e4 — asserted here BLADE BY BLADE, and
+    the sole exception is named and asserted too: at zeta = 0 the conjugation is by
+    the identity, so that row's leak list is EMPTY and must be) and A_perp =
+    {e23, e24, e34} (inert: e1 commutes with all three, leak list empty at every
+    zeta).  NARROWINGS (ADJUDICATION3 R-d, as CORRECTED by probe P6 2026-08-21):
+    the over-count |g2(B A B^-1)|^2 - |A|^2 = sinh^2(zeta) |A_par|^2, so it is
+    STRICT iff A_par != 0 AND zeta != 0 — the old statement 'strict iff A_par != 0'
+    was a FALSE iff, refuted by the primitive's own zeta = 0 row; both directions of
+    the corrected iff are computed here as a 2x2 truth table. Monotone in |zeta|,
+    NOT zeta: the over-count is EVEN in zeta (computed) and strictly increasing
+    along an ascending |zeta| sweep at FIXED A (computed; the bivector is drawn once
+    OUTSIDE the sweep precisely so that the rows are comparable and the monotonicity
+    is readable from them rather than asserted).  TOLERANCE: the identity is exact,
+    so the residual reported for gating is RELATIVE — an absolute 1e-12 is
+    calibrated to the sample, not to the identity, and the same true identity breaks
+    it at zeta = 6 (~1.5e-11) and zeta = 10 (~3e-8) where cosh^2(zeta) is 1e5-1e8.
+    The sweep therefore RUNS OUT to zeta = 10 (relativistic rapidity) on purpose.
     CONSEQUENCE: any cost defined by the Cl(4,0)-grade-2 projection over-counts a
-    boosted configuration whenever A_par != 0 — the probe-8/8b gamma-criterion was
-    arithmetically unreachable BY CONSTRUCTION (the 8b failure was forced a priori).
-    The grade-1 'leak' is not an artifact: it is the other half of the Lorentzian
-    bivector space under gamma^0 = e4, gamma^j = e4 e_j (R-013/R-132) — the
-    projection discards half of a Lorentz-covariant object (N56's missing map)."""
+    GENUINELY boosted (zeta != 0) configuration whenever A_par != 0 — the probe-8/8b
+    gamma-criterion was arithmetically unreachable BY CONSTRUCTION (the 8b failure
+    was forced a priori).  SCOPE OF THAT CONSEQUENCE (it is a LEMMA, not the
+    verdict): it bites the 8/8b probes only if their cost functional IS this
+    projection norm, their boost IS this conjugation, and their Omega has
+    A_par != 0 — three facts living in probes_2026-08-02/probe8_moving_defect.py and
+    probe8b_derrick_gamma.py, none of which this primitive touches or certifies.
+    The grade-1 'leak' is not an artifact: the Cl(4,0)-grade-2 projection is not a
+    covariant operation under the spacetime dictionary gamma^0 = e4, gamma^j = e4 e_j
+    (R-013/R-132), so it discards part of a Lorentz-covariant object (N56's missing
+    map). WHAT THIS SENTENCE NO LONGER CLAIMS (probe P6 finding, struck 2026-08-21):
+    the leaked grade-1 content is NOT 'the other half of the Lorentzian bivector
+    space'. Under the stated dictionary the e_j4 blades are Lorentz VECTORS, so
+    e14 -> e4 is vector -> vector and lies outside that space entirely — the
+    identification was false for that case. The 'half' quantifier went with it: no
+    count of the discarded content is established here, and none is needed for the
+    consequence above."""
     import random
     import math as _m
-    rng = random.Random(8)
     G2 = [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
     PAR = [(1, 2), (1, 3), (1, 4)]
+    PERP = [(2, 3), (2, 4), (3, 4)]
+    LEAK_OF = {(1, 2): (2,), (1, 3): (3,), (1, 4): (4,)}
+    ALL_LEAK = [(2,), (3,), (4,)]
+
+    def _B(z):
+        c, s = _m.cosh(z / 2.0), _m.sinh(z / 2.0)
+        return (c * SCALAR + s * e(1), c * SCALAR - s * e(1))
+
+    def _g2sq(mv):
+        t = dict(mv.terms)
+        return sum(t.get(k, 0.0) ** 2 for k in G2), sorted(k for k in t if len(k) == 1)
+
+    # ONE bivector, drawn ONCE and held FIXED across the whole sweep. The old
+    # version drew inside the loop, so every row used a different A and the
+    # monotonicity claim was UNREADABLE from the rows (probe P6 defect 3).
+    rng = random.Random(8)
+    coeffs = {k: rng.uniform(-1, 1) for k in G2}
+    A = 0.0 * SCALAR
+    for k, c in coeffs.items():
+        A = A + c * e(*k)
+    par = sum(coeffs[k] ** 2 for k in PAR)
+    perp = sum(coeffs[k] ** 2 for k in PERP)
+    # the leak predicate below only MEANS anything if every e1-blade is present
+    all_blades_present = min(abs(coeffs[k]) for k in G2) > 0.05
+
+    # sweep runs out to relativistic rapidity on purpose (probe P6 defect 4)
+    ZETAS = (0.0, 0.31, 0.8, 1.5, 3.0, 6.0, 10.0)
     out_rows = []
-    worst = 0.0
-    for z in (0.0, 0.31, 0.8, 1.5):
-        coeffs = {k: rng.uniform(-1, 1) for k in G2}
-        A = 0.0 * SCALAR
-        for k, c in coeffs.items():
-            A = A + c * e(*k)
-        Bb = _m.cosh(z / 2) * SCALAR + _m.sinh(z / 2) * e(1)
-        Bbi = _m.cosh(z / 2) * SCALAR - _m.sinh(z / 2) * e(1)
-        img = Bb * A * Bbi
-        t = dict(img.terms)
-        g2n = sum(t.get(k, 0.0) ** 2 for k in G2)
-        par = sum(coeffs[k] ** 2 for k in PAR)
-        perp = sum(coeffs[k] ** 2 for k in G2 if k not in PAR)
+    worst_rel = 0.0
+    worst_abs = 0.0
+    leak_full_at_nonzero = True
+    leak_empty_at_zero = None
+    overcount = []
+    for z in ZETAS:
+        Bb, Bbi = _B(z)
+        g2n, leak = _g2sq(Bb * A * Bbi)
         pred = perp + (_m.cosh(z) ** 2) * par
-        worst = max(worst, abs(g2n - pred))
-        leak = sorted(k for k in t if len(k) == 1)
-        out_rows.append((z, g2n, pred, leak))
-    # strictness boundary: A_par = 0 => exact equality (no over-count)
+        res = abs(g2n - pred)
+        worst_abs = max(worst_abs, res)
+        worst_rel = max(worst_rel, res / abs(pred))
+        if z == 0.0:
+            # THE NAMED EXCEPTION: B = 1, so there is nothing to leak.
+            leak_empty_at_zero = (leak == [])
+        else:
+            leak_full_at_nonzero = leak_full_at_nonzero and (leak == ALL_LEAK)
+        overcount.append(g2n - (par + perp))
+        out_rows.append((z, g2n, pred, leak, res / abs(pred)))
+
+    # (1) the label made a PREDICATE, blade by blade: each e1-blade leaks to its
+    #     own grade-1 partner and picks up cosh^2; each perp blade is inert.
+    z1 = 0.9
+    Bb, Bbi = _B(z1)
+    blade_leak = {}
+    blade_g2 = {}
+    for k in PAR + PERP:
+        g2n, leak = _g2sq(Bb * e(*k) * Bbi)
+        blade_leak[k] = leak
+        blade_g2[k] = g2n
+    all_three_e1_blades_leak = all(blade_leak[k] == [LEAK_OF[k]] for k in PAR)
+    perp_blades_inert = all(blade_leak[k] == [] for k in PERP)
+    blade_factor_ok = (
+        max(abs(blade_g2[k] - _m.cosh(z1) ** 2) for k in PAR) < 1e-12
+        and max(abs(blade_g2[k] - 1.0) for k in PERP) < 1e-12)
+
+    # (2) the TRUE iff as a 2x2 truth table: over-count = sinh^2(zeta)|A_par|^2,
+    #     strict iff A_par != 0 AND zeta != 0. Both directions, cheap.
     Aperp = 0.7 * e(2, 3) - 0.4 * e(2, 4) + 1.1 * e(3, 4)
-    z = 0.9
-    Bb = _m.cosh(z / 2) * SCALAR + _m.sinh(z / 2) * e(1)
-    Bbi = _m.cosh(z / 2) * SCALAR - _m.sinh(z / 2) * e(1)
-    t = dict((Bb * Aperp * Bbi).terms)
-    g2n = sum(t.get(k, 0.0) ** 2 for k in [(2, 3), (2, 4), (3, 4)])
-    perp_exact = abs(g2n - (0.7 ** 2 + 0.4 ** 2 + 1.1 ** 2))
+    perp_only = 0.7 ** 2 + 0.4 ** 2 + 1.1 ** 2
+    table = {}
+    for has_par, X, n0 in ((True, A, par + perp), (False, Aperp, perp_only)):
+        for has_z, z in ((True, 0.9), (False, 0.0)):
+            Bb, Bbi = _B(z)
+            g2n, _ = _g2sq(Bb * X * Bbi)
+            table[(has_par, has_z)] = g2n - n0
+    iff_strict_case = table[(True, True)] / (par + perp)
+    iff_equality_cases = max(
+        abs(v) / (par + perp) for c, v in table.items() if c != (True, True))
+    strict_iff_par_and_zeta = (iff_strict_case > 1e-6 and iff_equality_cases < 1e-12)
+    # closed form check on the strict cell: sinh^2(0.9)*|A_par|^2
+    strict_closed_form_rel = abs(
+        table[(True, True)] - (_m.sinh(0.9) ** 2) * par) / (par + perp)
+
+    # (3) monotonicity COMPUTED off the fixed-A rows, and EVEN in zeta.
+    monotone_in_abs_zeta = all(
+        overcount[i + 1] > overcount[i] + 1e-9 for i in range(len(overcount) - 1))
+    even_in_zeta_rel = 0.0
+    for z in (0.31, 0.8, 1.5, 3.0):
+        Bp, Bpi = _B(z)
+        Bm, Bmi = _B(-z)
+        gp, _ = _g2sq(Bp * A * Bpi)
+        gm, _ = _g2sq(Bm * A * Bmi)
+        even_in_zeta_rel = max(even_in_zeta_rel, abs(gp - gm) / abs(gp))
+
     return {
         "tier": "DERIVED-A",
-        "identity worst |lhs - rhs|": worst,
-        "rows (zeta, |g2|^2, prediction, grade-1 leak keys)": out_rows,
-        "A_par = 0 => exact equality (residual)": perp_exact,
-        "strict over-count iff A_par != 0; monotone in |zeta|": True,
+        "identity worst RELATIVE residual (the gating number)": worst_rel,
+        "identity worst absolute residual (diagnostic; sample-dependent)": worst_abs,
+        "zeta sweep (fixed A, ascending)": ZETAS,
+        "rows (zeta, |g2|^2, prediction, grade-1 leak keys, rel residual)": out_rows,
+        "all six A-coefficients bounded away from zero (leak predicate meaningful)":
+            all_blades_present,
+        "all three e1-blades leak to grade 1 (blade by blade)":
+            all_three_e1_blades_leak,
+        "per-blade grade-1 leak map at zeta = 0.9": blade_leak,
+        "e1-blades carry cosh^2(zeta), perp blades carry 1": blade_factor_ok,
+        "perp blades {e23,e24,e34} inert (no grade-1 leak)": perp_blades_inert,
+        "leak list EMPTY at zeta = 0 (the named exception: B = 1)":
+            leak_empty_at_zero,
+        "leak list = {e2,e3,e4} at every zeta != 0 row": leak_full_at_nonzero,
+        "strictness truth table {(A_par!=0, zeta!=0): over-count}": table,
+        "strict over-count iff (A_par != 0 AND zeta != 0)": strict_iff_par_and_zeta,
+        "over-count closed form sinh^2(zeta)|A_par|^2 (rel residual)":
+            strict_closed_form_rel,
+        "over-count sequence vs ascending |zeta| (fixed A)": overcount,
+        "over-count strictly monotone in |zeta| (computed, fixed A)":
+            monotone_in_abs_zeta,
+        "over-count EVEN in zeta (max rel |f(z)-f(-z)|)": even_in_zeta_rel,
     }
 
 

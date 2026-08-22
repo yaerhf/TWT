@@ -1,11 +1,26 @@
-# Time-Wave Theory — Foundational Paper (V3)
+# Time-Wave Theory — the V3 Instance Dossier
 
-### Standard-Model structure from a single wave medium
+### The first candidate of TWT-Core, at full technical depth: Parts A–E
 
 *Yaer Aharon Haddad Fennech · Independent Researcher · hfyaer@gmail.com*
-*Engine, verification suite, and both documents: **https://github.com/yaerhf/TWT** —*
+*Engine, verification suite, and all three documents: **https://github.com/yaerhf/TWT** —*
 *`pip install -r requirements.txt && python twt_test.py` reproduces every algebraic claim below.*
-*Ships with a **companion file** — `TWT_foundational_paper_companion.md` — that consolidates
+
+**What this document is, and which one to read first.** This is the **instance dossier**: the
+complete technical development of **V3**, the first candidate member of the TWT-Core family, in the
+substrate machinery it is built on — the picks in full, the calibrations, the mass, charge, gauge
+and mixing material, the open dynamics, and the wounds at full depth. It is the family's technical
+corpus, and it is the document that carries every `(R-NNN)` result marker.
+
+**The family itself is stated elsewhere, and that is the entry point.** The seven axioms and the
+one refusal, what the family derives with no candidate at all, what that costs measured against the
+alternatives, what would kill it, and where this candidate is wounded — those are the **Core
+paper**, `TWT_core_paper.md`, which cites this dossier by section for everything instance-specific.
+A reader meeting the programme for the first time should read the Core paper first and come here
+for the depth behind any of its claims. Nothing below is superseded by it: the Core paper is
+shorter, not newer.
+
+*This dossier ships with a **companion file** — `TWT_foundational_paper_companion.md` — that consolidates
 all annexes, the back-of-book bookkeeping (Result Index, Dependency Graph, Engine ↔ Paper Map,
 Pending-Values Registry), the geometric reinterpretation catalog, the methodology principles,
 the development log, the stable-spectrum enumeration, the wave-phase stability ladder, and the
@@ -41,9 +56,13 @@ mechanics' postulate structure from one geometric projection, with the Born expo
 given four named premises plus Gleason's theorem (an import), and the Tsirelson bound `2√2`
 exact given the standard tensor-product state space — which the framework assumes rather than
 constructs; electromagnetism with the monopole absence conditional on the winding-as-source
-identification; induced gravity with the sign derived and `γ = 1` structural; exact charge
-discreteness across the 15-state generation spectrum — the framework's one end-to-end-derived
-spine result — with the proton–electron equality a theorem given four named structural premises;
+identification; induced gravity with the sign derived and `γ = 1` structural; charge quantization
+from topology — winding number is an integer, so the charge spectrum is discrete and the
+proton–electron equality is protected rather than tuned — together with hydrogen neutrality as an
+identity in the charge normalization constant, holding for every value of it, which turns the
+`10⁻²¹` neutrality measurement from a calibration into a test, with its condition that the
+*assignment* of values across the 15-state spectrum rides four named structural premises and an
+entered anchor;
 a three-generation count that is a dimension count of four-dimensional space, conditional on one
 named identification plus an associativity premise; `sin²θ_W = 3/8` as a native normalization
 identity at the scale where the two electroweak stiffnesses coincide; and a matter-stability triad
@@ -151,11 +170,13 @@ with a named source, not an oversight, and no restatement of the structural resu
 it. What the framework stakes instead is a set of prohibitions, and two places where the
 measurement already exists and the framework is behind.
 
-Read the table at two levels. The two **already-measured** rows are **instance-level**: each rides
-choices V3 pins (a regular lattice at a back-fit size, one induced-gravity chain, the instance's
-calibrations), and a family member that goes another way at those nodes inherits neither. The four
-prohibition rows are **family-level**: they follow from the axioms, or from the axioms plus a
-stated preferred direction, and a positive detection on any of them reaches every candidate.
+Read the table at two levels. Three rows are **instance-level**: the two **already-measured**
+rows — each rides choices V3 pins (a regular lattice at a back-fit size, one induced-gravity
+chain, the instance's calibrations), and a family member that goes another way at those nodes
+inherits neither — and the propagation-speed row, which rides this candidate's `c ↔ c_meta`
+identification. The three prohibition rows are **family-level**: they follow from the axioms, or
+from the axioms plus a stated preferred direction, and a positive detection on any of them
+reaches every candidate.
 §E.3 carries the level for all sixteen falsifier rows; §A.6 gives the architecture.
 
 | The exposure | What it kills | Where it stands |
@@ -174,9 +195,10 @@ conservation law. §E.3 carries the full sixteen-row falsifier table, including 
 consistency-class and floor-gated rows deliberately kept out of this one.
 
 **What it costs to buy this.** The Standard Model carries 19 free parameters (26–28 with
-neutrinos). This framework carries four counted substrate inputs plus the measured Newton
-constant, one further piece counted provisionally, and pins **zero of the 19 unconditionally**
-(up to three conditionally). Its output is on the structural axis, not the magnitude axis
+neutrinos). This framework carries four counted substrate inputs — the cell mass scale, the
+chirality ratio, the measured Newton constant, and one hadron-sector stabilizer counted
+provisionally — and pins **zero of the 19 unconditionally**; one conditionally, and two more
+only if a route this programme itself records as currently refuted is repaired. Its output is on the structural axis, not the magnitude axis
 (§E.2.1, §E.2.3) — it converts Standard-Model postulates into substrate consequences, and does
 not pretend to have bought magnitudes.
 
@@ -1008,7 +1030,8 @@ that drops any one of them is a different theory, however much else it shares.
 - **S5 — The medium is driven.** The advance is one-way and constitutive: the medium is not
   resting and not merely relaxing toward rest, it is driven.
 - **LS — The local state.** The medium's local state at each site is a 4D orientation — six real
-  parameters; whether its `ℤ₂` sign lives in the state itself or enters only at the emergent
+  parameters — stated for **any grain structure** a family member realizes, witness-free at
+  family level (each member re-witnesses it on its own grain); whether its `ℤ₂` sign lives in the state itself or enters only at the emergent
   covering sector is a deliberately open branch (§D.3.2). The continuum field inherits this
   target unchanged, and the wave's advance direction splits its generators into wave-parallel
   and wave-transverse.
@@ -1061,8 +1084,8 @@ would fire this is one that standard quantum mechanics *also* forbids, so in thi
 agreement confirms nothing — it is a consistency check, and the family inherits quantum
 mechanics' verdict either way — while disagreement kills. Maximum downside, no matching upside;
 that is the price of naming the frame. Second, this is the family's only *total* kill condition:
-of the sixteen falsifier rows at §E.3.1, fifteen stand at family level and one is instance-level
-(§E.3 carries the reading row by row). Said at its truest: this is a research programme with one
+of the sixteen falsifier rows at §E.3.1, fourteen stand at family level and two are instance-level
+(rows 6 and 12; §E.3 carries the reading row by row). Said at its truest: this is a research programme with one
 inherited kill condition, and empirical exposure otherwise lives in instances.
 
 Because this channel fires only where quantum mechanics also breaks, the family has no
@@ -3901,7 +3924,8 @@ engineering continues.
 # Part C — Matter, charges, generations, the gauge group
 
 *The Standard Model's structural skeleton, derived from the substrate. The tier mix begins to
-diversify here: charge quantization and the Weinberg angle are tight algebraic identities; the
+diversify here: charge discreteness and the Weinberg ratio are tight algebraic identities — the
+first from topology, the second a trace taken over the charge table §C.2 assigns; the
 gauge group structure follows from D4 orbit content; the lepton-mass triplet is currently a
 cross-validated fit rather than a forward derivation; the Cabibbo ratio is a candidate
 identification. The Result Index (companion Section 1) keeps the bookkeeping crisp.*
@@ -4355,15 +4379,28 @@ not a measurement of the size.
 
 ## §C.2 — Charges and the first generation
 
-The framework's cleanest spine result lives here. Charge quantization is not assumed; it
-is an algebraic identity in the substrate, with `|Q_p| = |Q_e|` tested to `< 10⁻²¹` empirically
-(R-063). The whole construction — hypercharge, fractional quark charges, weak isospin, V−A, GMN
-— follows from the Clifford spectrum plus the weak assignment of §C.4.2 (itself forced, on a
-closed menu, given one named structural premise and one measurement), though not uniformly by
-derivation: the right-handed singlet values below are GMN-consistent **assignments**, fixed by the
-blade spectrum plus the charge chain rather than independently derived (see the normalization note
-at the end of §C.2.1), and the `< 10⁻²¹` figure is an empirical test of the proton–electron charge
-equality, not a measurement of the substrate identity.
+The framework's cleanest spine result lives here, and it is two things.
+
+**Charge is quantized because winding number is an integer.** `π₃(S³) = ℤ` gives a discrete charge
+lattice and protects it against drift: there is no continuous parameter available by which a proton
+and an electron could come to differ. **And hydrogen neutrality is an identity in the normalization
+constant** — `Q_p + Q_e = 0` holds for *every* value of `c`, so nothing was tuned to make the two
+cancel, which is what turns the `< 10⁻²¹` neutrality measurement into a test of the framework rather
+than the datum that calibrates it (R-063, R-159). The Standard Model postulates both: its
+hypercharge assignments are chosen — anomaly-constrained, but chosen — and within the gauge group
+alone nothing forbids a proton and an electron whose charges fail to cancel. (A grand-unified
+embedding or a Dirac monopole would supply it; the point is that the Standard Model as such does
+not, and that this framework gets it from topology without a unifying group.)
+
+The condition, stated here once: the **spectrum of charge values** — which state carries `+2/3` and
+which `−1/3` — is an *assignment*, not a computation. It rides four named structural premises
+(P4–P7, §C.2.7), the entered anchor `(Q_p, Q_n) = (1, 0)`, and the weak assignment of §C.4.2. The
+winding chain supplies integer-valuedness and protection; the charge functional supplies the
+normalization. Everything that follows — hypercharge, the fractional quark charges, weak isospin,
+V−A, GMN — is computed from the Clifford spectrum *given* that assignment, and the engine marks the
+boundary between the two sides explicitly (`charge_sector_provenance`; the right-handed singlet
+values below are GMN-consistent assignments, fixed by the blade spectrum plus the charge chain
+rather than independently derived — see the normalization note at the end of §C.2.1).
 
 ### C.2.1 Hypercharge from the e_4-bilinear
 
@@ -4456,9 +4493,16 @@ a tautology. The relation's three ingredients are independently determined:
   `B ∈ ℤ`, hence a discrete charge *lattice* and its drift protection — no unit, no sign, no
   per-state value. Carried honestly with an unknown unit `q_0` and unknown integer windings
   `w_p, w_n`, the three-facet composition returns `Q_u = q_0(2w_p − w_n)/3` and
-  `Q_d = q_0(2w_n − w_p)/3`: three free parameters, nothing determined. (The engine primitive
-  named `winding_charge` accordingly computes no winding — it is the frozen pair `Q_p, Q_n = 1, 0`
-  plus that composition solve; the name is a legacy misnomer.) The specific anchor `Q_p = +1`,
+  `Q_d = q_0(2w_n − w_p)/3`: three free parameters, nothing determined. (The engine computes no
+  winding here: the primitive is `charge_assignment_from_anchor` — the anchor `Q_p, Q_n = 1, 0`
+  plus that composition solve — and it is named for what it does. `winding_charge` survives only
+  as a legacy alias so that earlier citations resolve. The anchor is a parameter of the function
+  rather than a frozen literal, which makes the counterfactual runnable: requiring one universal
+  `c` across both orbits, as (P4) does, forces `Q_p − Q_n = 1` exactly and leaves the absolute
+  anchor free, so the entered `Q_p = 1` buys the normalization `c = 1/2` and nothing more. Delete
+  the `/3` of §C.2.2 and the only anchor admitting one universal `c` is `(+1/2, −1/2)` — so that
+  `/3` is what makes an integer nucleon anchor compatible with (P4) at all.) The specific anchor
+  `Q_p = +1`,
   `Q_n = 0` still need not be imported: given two structural premises — **(P4)** measured electric
   charge is the eigenvalue of *one* universal linear generator `Q = T_3 + c·Y` across all
   sectors, and **(P5)** `Q` is chirality-independent per defect — the proton–electron relation
@@ -4551,13 +4595,18 @@ structural premises (P4, P5, P6, P7)** of §C.2.7, holding identically in the no
 `c` (R-159). The neutrality-of-atoms anchor is thereby **conditionally replaced (P4–P7), not
 retired**: P7 — the weak-isospin alignment — is exactly the bit the
 Standard Model fixes *by* the charges, so the anchor is relocated into a named posited premise
-rather than dissolved. **Charge quantization is the framework's cleanest spine result** — and,
-since the §B.1 signature result is posit-plus-implication rather than a derivation of the
-signature, the only one that is derived end to end — the discreteness by
-exact algebra, the proton–electron equality conditional on the named structural premises
-(P4/P5/P7, with P6 the state identification) rather than on an empirical anchor. The conserved
-discrete charge spectrum falls out of the substrate algebra; the signature is a
-posited placement whose observed form the algebra then forces.
+rather than dissolved. **Charge quantization is the framework's cleanest spine result**, and it is
+worth being exact about which part of it is carried end to end: the **discreteness**, by exact
+algebra from `π₃(S³) = ℤ`, and the **neutrality identity**, which holds for every `c` and so
+consumes no empirical anchor. What is *not* carried end to end is the assignment of values across
+the spectrum — that rides P4–P7 and the entered anchor, and the engine separates the two sides
+explicitly (`charge_sector_provenance`). Read against §B.1, whose signature result is
+posit-plus-implication rather than a derivation of the signature, this is the sharper of *those two*
+comparisons: the conserved discrete charge spectrum falls out of the substrate algebra, while the
+signature is a posited placement whose observed form the algebra then forces. It is not the only
+Standard-Model fact this framework obtains from structure rather than postulate — the generation
+count, the monopole absence, the `B − L` triad and the weak-host closure are others, each with its
+own stated conditions — and the conditioning class matters more here than the ranking does.
 
 ---
 
@@ -6964,7 +7013,7 @@ CP phase), rising to 26-28 with neutrinos.
 
 **On the structural axis**, TWT delivers **ten structural derivations** of SM choices
 the SM treats as postulates rather than parameters: the gauge group structure (§C.4); the charge
-spectrum (§C.2 — the discreteness unconditional, the normalization conditional on P4/P5/P7);
+spectrum (§C.2 — the discreteness unconditional, the normalization conditional on P4–P7 plus the entered anchor);
 the three-generation count (§C.3.8, generic-given-4D, conditional on the ℍ-unit identification
 + the associativity premise); `B − L` conservation +
 anomaly cancellation + Dirac neutrino character as one fact (§C.5.4–§C.5.6); no proton decay +
@@ -7006,8 +7055,9 @@ available and declined: an unnamed preferred foliation cannot be caught, because
 frame, somewhere" survives every measurement. Two riders travel with the choice and neither is
 optional. The measurement that would fire it is one standard quantum mechanics *also* forbids, so
 in this channel agreement confirms nothing and disagreement kills — maximum downside, no matching
-upside. And it is the family's *only* total kill condition: of the sixteen rows in §E.3.1, fifteen
-stand at family level and one is instance-level (row 12, whose kill number rides a pinned hadronic
+upside. And it is the family's *only* total kill condition: of the sixteen rows in §E.3.1, fourteen
+stand at family level and two are instance-level (row 6, this candidate's `c ↔ c_meta`
+identification, and row 12, whose kill number rides a pinned hadronic
 calibration). Because the channel fires only where quantum mechanics also breaks, the family
 carries **no independent empirical exposure in it**, and §A.6.2 names the one identified route to
 building an exposure of its own. That is not the same as saying the family is untouchable by
@@ -7063,10 +7113,13 @@ is not a pending detection but a **standing tension with existing data**, awaiti
 computation rather than an experiment. It is also, with the crossing-scale miss, one of the two
 exposures that belong to **this candidate instance** rather than to the family (§B.6.3, §C.4.5).
 
-**The same rows, sorted by level.** Fifteen of the sixteen are **family-level**: rows 1, 2, 3, 6,
+**The same rows, sorted by level.** Fourteen of the sixteen are **family-level**: rows 1, 2, 3,
 9, 10, 11, 13, 15 and 16 follow from the axioms or from the axioms plus one stated preferred
 direction; rows 4 and 5 are the family's kill condition itself; rows 7, 8 and 14 are family-level
-but value-gated or weak. One row is **instance-level**: row 12 (no top-quark baryon), because its
+but value-gated or weak. Two rows are **instance-level**: row 6, because it rides this
+candidate's `c ↔ c_meta` identification — the axioms state no rate and no uniformity, so a
+positive detection labels the emergent `c` non-uniform and the axioms stand — and row 12 (no
+top-quark baryon), because its
 kill number is built on this candidate's fitted hadronic calibration and its semiclassical
 inertia — a different anchoring re-derives the timescale or loses it.
 
@@ -7087,10 +7140,10 @@ framework's alone: exact Lorentz invariance forbids a sector-differential limiti
 so a positive detection costs the incumbent a symmetry at the same time. What separates it from
 rows 4–5 is the *kind* of prohibition — there, a theorem of the formalism this framework
 reproduces, so agreement is guaranteed in advance; here, an imposed symmetry a completed
-candidate could in principle depart from. What is settled about row 6 is that
-it lands at the axiom layer rather than the derivation layer; whether a positive result there ends
-the family outright, as rows 4–5 would, or forces reformulation inside it, is not settled here and
-is not asserted either way.
+candidate could in principle depart from. And what row 6 reaches is this candidate's
+`c ↔ c_meta` identification, not an axiom: the axioms state no rate and no uniformity, so a
+positive result there labels the emergent `c` non-uniform, the axioms stand, and the family
+reformulates at the instance layer — it does not end.
 
 The four operational categories: named near-term (single-detection-away), removed
 (achievements), value-gated (await #1-gap closure), structural-coherence (would break internal
@@ -7304,8 +7357,9 @@ typically unchanged. Seven representative items:
   **Read this as posit plus derived implication, not as a derivation of the signature** (§B.1): the
   timelike placement `e_5² = −1` is an INPUT — every theory locates its signature somewhere — while
   what is DERIVED-A is that `Cl(4,0) ≅ Cl(1,3)` as real algebras, so once the posit is made the
-  observer's signature is *forced* rather than separately chosen. The genuinely
-  derived-end-to-end spine result is charge quantization (§C.2.8).
+  observer's signature is *forced* rather than separately chosen. The result carried end to end
+  from the substrate is charge quantization — the discreteness and the neutrality identity, not the
+  assignment of values across the spectrum (§C.2.8).
 
 - **Matter is a defect.** The single load-bearing ontological commitment from which the
   framework's "primary contribution" character follows. Defects are configurations of one

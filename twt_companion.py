@@ -2831,7 +2831,9 @@ def charge_in_the_window_picture():
     CHARGE-DEPENDENT generation window REDUCE the band width?
 
     ── WHAT CHARGE IS ─────────────────────────────────────────────────────────────────────────────────
-    Charge = the topological WINDING (banked, `winding_charge`; never from GMN). Structurally Q = T₃ + Y/2.
+    Charge: the topological winding supplies PROTECTION (`pi3_S3_integer_completion` — B ∈ ℤ, a discrete
+    lattice and its drift protection); the per-state VALUES come from `charge_assignment_from_anchor`
+    (entered anchor + composition, riding P4–P7) — never from GMN. Structurally Q = T₃ + Y/2.
     For the quarks Q_u=+2/3, Q_d=−1/3 = **+1/6 ± 1/2**: the up/down DIFFERENCE is the weak-isospin **T₃ = ±1/2
     (SYMMETRIC)** — *posited as* the self-dual SU(2)₊ doublet (N4, CANDIDATE) — and the **+1/6 hypercharge (Y/2)
     is COMMON** to both.
@@ -2873,7 +2875,7 @@ def charge_in_the_window_picture():
     cost_prop_Q_fails = per_Q["lepton"] < 0.75 * min(per_Q["up"], per_Q["down"])   # leptons far below quarks
     assert cost_prop_Q_fails
     return {
-        "what_is_charge": "the topological WINDING (winding_charge); Q = T3 + Y/2 = +1/6 ± 1/2 for the quarks — up/down differ by the "
+        "what_is_charge": "the topological winding supplies PROTECTION (pi3_S3_integer_completion: B in Z, no unit, no sign, no value); the per-state VALUES are ASSIGNED (charge_assignment_from_anchor: entered anchor + composition, riding P4-P7) — never from GMN. Corrected 2026-08-21 (keeper R2, the RV-7 shape): this string asserted a provenance the main engine disclaims. Q = T3 + Y/2 = +1/6 ± 1/2 for the quarks — up/down differ by the "
                           "SYMMETRIC weak-isospin T3=±1/2 (self-dual SU(2)+, N4 U1 LOCATED: CKM arc 2026-06-23 + parity exclusion 2026-06-28), common Y/2=+1/6; distinct from (but linked to) the CP handedness",
         "charge_diff_is_symmetric": {"Y/2_common": round(Y_half, 4), "T3_updown": round(T3, 4),
                                      "implication": "symmetric (±T3) -> consistent with the symmetric mirror; does NOT source the mirror's residual asymmetry"},
