@@ -16,6 +16,15 @@ NEVER calls the companion. `from twt import *` re-exposes the whole main namespa
 here, so `import twt_companion` gives the full merged surface; the reverse import
 does not exist.
 
+THE FAMILY SPLIT, COMPANION SIDE (RUL-093/RUL-095, 2026-08-23). A SECOND cut now runs
+across the engine, on a different axis: family-level (CORE) vs V3-instance (CANDIDATE).
+On the MAIN side it is a FILE split (`twt_core.py` / `twt_candidate_v3.py`, with
+`twt.py` as the import facade). HERE it is an in-file SECTION split — two banner-
+delimited blocks below, ruled Option C because a fourth module would buy a small
+direction guard on a small file and cost a third harness. The defs were REORDERED
+ONLY: no docstring, body or tier tag changed, and the original relative order survives
+inside each section. Per-section censuses are pinned in scripts/check_records.py.
+
 Suite: twt_companion_test.py (this layer) + twt_test.py (main); scripts/bank.sh
 runs BOTH and refuses to bank unless both pass.
 """
@@ -29,6 +38,37 @@ from twt import *
 # `import *` skips underscore names — every MAIN-engine helper a companion def
 # actually calls (AST-derived list) is imported explicitly:
 from twt import _Mcirc, _adV, _biv, _blade_mul, _cl40, _mixing
+
+
+# ######################################################################
+# ######################################################################
+# ##                                                                  ##
+# ##   SECTION CORE — FAMILY-LEVEL COMPANION PRIMITIVES               ##
+# ##                                                                  ##
+# ######################################################################
+# ######################################################################
+# THE FAMILY SPLIT, COMPANION SIDE (RUL-093/RUL-095, 2026-08-23). The MAIN engine
+# split into two FILES on the family axis (twt_core.py / twt_candidate_v3.py). The
+# companion is 18 CORE / 43 CANDIDATE and is already the deep-dive layer, so it
+# carries the same cut as an in-file SECTION split instead — ruled Option C: a
+# fourth module would buy a small direction guard on a small file and cost a third
+# harness. Every def below was REORDERED ONLY; not one character of any docstring,
+# body or tier tag changed, and the relative order inside each section is the
+# file's original order.
+#
+# WHAT THIS SECTION HOLDS: companion primitives that consume NO V3 pick — exact
+# Clifford / homotopy algebra, the ASD-triple generation structure, the Koide /
+# Brannen structural face, the S5-generic NESS lean, the cost-pairing MENU algebra
+# (Q-2, ruled CORE: the menu is family-level, the picks V3-7/V3-8 are not in these
+# primitives), and the engine-internal audit record.
+#
+# DIRECTION NOTE: the file-level invariant that is AST-checked lives on the MAIN
+# side (twt_core.py must never reference twt_candidate_v3). Here the cut is
+# READABILITY-level by ruling — a section boundary is not a module boundary and the
+# gate does not pretend otherwise. What IS pinned is the per-section census
+# (scripts/check_records.py), so the sections cannot silently drift out of balance.
+# ######################################################################
+
 
 
 def single_relaxation_family_exclusion_probe():
@@ -119,6 +159,2208 @@ def single_relaxation_family_exclusion_probe():
         "bridges_named_CANDIDATE": "CANDIDATE-tier: (i) 58.56 via |Im chi|/|Re chi|^2 at the QCP (N31); (ii) spin-2 via Maxwell eta=C_T Lambda^2 tau + KSS floor; (iii) 2.05 via Volovik off-eq deviation (N33) -- revert clauses for the vacuous-fit half only",
         "verdict": "the analytic 2b move is SPENT: the passive single-relaxation family is EXCLUDED (Theta_rel identically 0) and its passive fit is vacuous (un-over-determined) => NOT a validated candidate; a family-exclusion (first-class, brief B0) directing to the driven sim B3",
     }
+
+
+def dip_planes_multiaxis_but_uniform_is_single_axis():
+    """[DERIVED — Level 1] §19.7: (D3) The three per-generation dip planes {(1,4),(2,4),(3,4)} induce so(3)
+    generators on V that SPAN so(3) (rank 3 = multi-axis), so a NON-uniform dip WOULD be multi-axis — but the
+    uniform-strength dip (one eps per sector) is their SUM, which is exactly the G-generator/colour symmetric
+    (1,1,1) axis = SINGLE axis. The multi-axis freedom exists but the uniform dip engages only the one axis."""
+    import math
+    np, e, I4 = _cl40()
+    D = [_adV(np, e, _biv(e, i, 4)) for i in (1, 2, 3)]
+    rank = int(np.linalg.matrix_rank(np.array([d.flatten() for d in D]), tol=1e-9))
+    assert rank == 3, rank
+    def axial(M): return np.array([M[2, 1], M[0, 2], M[1, 0]])
+    colour = _adV(np, e, (_biv(e, 1, 2) + _biv(e, 2, 3) - _biv(e, 1, 3)) / math.sqrt(3))
+    uniform = axial(D[0] + D[1] + D[2]); col_ax = axial(colour)
+    cosang = abs(uniform @ col_ax) / (np.linalg.norm(uniform) * np.linalg.norm(col_ax))
+    assert abs(cosang - 1.0) < 1e-9, cosang
+    return {"dip_planes_span_so3_rank": rank, "uniform_dip_parallel_to_colour_axis": round(float(cosang), 12),
+            "meaning": "multi-axis freedom exists but the uniform dip engages only the single symmetric axis"}
+
+
+def phase_D_colour_updown_blind():
+    """[DERIVED — PHASE D run, not cut off; Level 2, shares D2's contingency] (D4) The colour/I4 channel acts
+    as SO(3) on the spatial axes {e1,e2,e3} (I4-duals of the colour trivectors). up,down are BOTH colour
+    triplets => the SAME colour rotation hits both frames => CANCELS in V_u†V_d => still democratic. And
+    [colour-gen, I4]=0 => the up/down e4-orientation (handedness, §19.8.1) CANNOT make the colour rotation
+    differ. The thesis's own colour/chirality mechanism supplies no per-weak-isospin rotation (contingent, as
+    D2, on the weak-isospin identification — the only door that could differentiate up/down via colour)."""
+    import math
+    np, e, I4 = _cl40()
+    Mu, Md = _Mcirc(np, 1.033, 0.973, 2/9), _Mcirc(np, 1.172, 0.344, 2/9)
+    a = np.array([1.0, 1, 1]); a = a / np.linalg.norm(a)
+    K = np.array([[0, -a[2], a[1]], [a[2], 0, -a[0]], [-a[1], a[0], 0]])
+    Rcol = np.eye(3) + math.sin(0.7) * K + (1 - math.cos(0.7)) * K @ K
+    Mu2, Md2 = Rcol @ Mu @ Rcol.T, Rcol @ Md @ Rcol.T
+    cUD = np.linalg.norm(Mu2 @ Md2 - Md2 @ Mu2)
+    Vu, Vd = np.linalg.eigh(Mu2)[1], np.linalg.eigh(Md2)[1]
+    mixing = _mixing(np, Vu.conj().T @ Vd)
+    col_gen = (_biv(e, 1, 2) + _biv(e, 2, 3) - _biv(e, 1, 3))
+    cI4 = np.linalg.norm(col_gen @ I4 - I4 @ col_gen)
+    assert cUD < 1e-12 and mixing < 1e-9 and cI4 < 1e-12, (cUD, mixing, cI4)
+    return {"[M_u,M_d]_after_colour": f"{cUD:.1e}", "CKM_mixing_dist_from_permutation": f"{mixing:.1e}",
+            "[colour_gen,I4]": f"{cI4:.1e}",
+            "verdict": "colour is up/down-BLIND => no per-weak-isospin rotation => still DEMOCRATIC"}
+
+
+def hodge_split_invariance_theorem():
+    """[TASK-e4 PART A, theorem — VERIFIED] rest mass = |B_spatial| of a fixed generator
+    bivector B cycled by G (the §19.6.1 120°-about-(1,1,1) rotation). G is a SPATIAL bivector
+    (G in span{e12,e13,e23}); its adjoint preserves the spatial/e4 Hodge decomposition as a
+    direct sum of so(3) reps -> BOTH |B_spatial| AND |B_e4| are invariant along the whole
+    generation orbit (the build asserted only the first; the second is forced). A sector-MIXING
+    rotation (e24, a Q-bivector) DOES modulate |B_spatial| (contrast).
+    CONSEQUENCE: the literal '|B_spatial| of the G-cycled rotor' gives NO generation variation
+    -- not even the deferent. So THIS reading is dead; see epicycle_reading_dependent() for why
+    that does NOT settle the central claim."""
+    np = __import__("numpy")
+    G = G_generator()
+    assert all(bl in [(1, 2), (1, 3), (2, 3)] for bl, _ in G.terms), "G must be a SPATIAL bivector"
+    def sp(mv): return math.sqrt(sum(c*c for bl, c in mv.terms if bl in [(1, 2), (1, 3), (2, 3)]))
+    def e4f(mv): return math.sqrt(sum(c*c for bl, c in mv.terms if bl in [(1, 4), (2, 4), (3, 4)]))
+    B0 = 1.0*e(1, 2) + 0.7*e(1, 4) + 0.4*e(2, 3) + 0.5*e(3, 4)
+    sp0, e40 = sp(B0), e4f(B0)
+    dG_sp = dG_e4 = dmix = 0.0
+    for phi in np.linspace(0, 2*math.pi, 400):
+        RG = exp_unit_bivector(G, phi); BG = RG*B0*RG.reverse()
+        dG_sp = max(dG_sp, abs(sp(BG) - sp0)); dG_e4 = max(dG_e4, abs(e4f(BG) - e40))
+        RM = exp_unit_bivector(e(2, 4), phi); BM = RM*B0*RM.reverse()
+        dmix = max(dmix, abs(sp(BM) - sp0))
+    assert dG_sp < 1e-12, "G must preserve |B_spatial| exactly (Hodge-split invariance)"
+    assert dG_e4 < 1e-12, "G must preserve |B_e4| exactly too (the forced strengthening)"
+    assert dmix > 0.1, "a sector-mixing rotation (e24) must modulate |B_spatial| (contrast)"
+    return {"G_is_spatial": True, "max_d|B_spatial|_under_G": float(dG_sp),
+            "max_d|B_e4|_under_G": float(dG_e4), "max_d|B_spatial|_under_e24": round(float(dmix), 3),
+            "consequence": "|B_spatial|-of-G-cycled-rotor gives NO generation variation (not even deferent)"}
+
+
+def generations_are_defect_flows_on_spinor_S3() -> dict:
+    """[DERIVED geometry + FRAMING picture + CANDIDATE up/down + LOCATED dynamical residual]
+    The SHARP matter-as-defect image of the generation sector (replacing the fuzzy phase reading),
+    Yaer 2026-06-25. A generation is a DEFECT WINDING-FLOW on the spinor 3-sphere.
+
+    DERIVED (geometry, engine-checked): the anti-self-dual triple {e12+e34, e13-e24, e14+e23} are the
+    3 generators of ONE SU(2) factor of Spin(4) -- they are mutually ORTHOGONAL, EQUAL-NORM (norm^2=2),
+    and close as su(2) EXACTLY ([J_i,J_j] = -4 J_k, verified) = the 3 imaginary units of H. That SU(2) is the 3-sphere S^3 = unit-H,
+    which is PARALLELIZABLE by EXACTLY 3 global vector fields (the H units). So:
+      * generation = a defect's meta-time WINDING-FLOW along one of the 3 globally-consistent
+        invariant directions of the anti-self-dual spinor S^3;
+      * WHY EXACTLY 3 / WHY NOT 4 is now TOPOLOGICAL (defect-centric), not just 'su(2) is 3-dim':
+        S^3 admits exactly 3 combable global flows (dim S^3 = 3, and it is parallelizable so the flows
+        are GLOBALLY stable); a 4th generation would need a 4th independent global flow on S^3, which
+        does not exist. (Same count as the banked H-triple, RECAST as defect winding-flows -- this is
+        the sharp picture, NOT a new number.)
+
+    FRAMING (the picture, circular-polarization mapping): Spin(4) = SU(2)xSU(2) = the two CIRCULAR
+    handednesses (self-dual / anti-self-dual = left/right isoclinic). Generations live in ONE handedness
+    (anti-self-dual S^3, the 3 flows above); the OTHER handedness (self-dual S^3) is weak isospin su(2)+
+    [SETTLED SINCE (2026-06-29, N29; RE-SETTLED 2026-08-21, R-171/RUL-082 — the menu is THREE
+    classes and it CLOSED, so weak = SD su(2)+ is DERIVED-given-{A-P2 + RH-singlet datum}, not a
+    counted free bit): weak = SD su(2)+ is the framework's weak-host assignment
+    (§C.4.2) — one bit, with V−A/generation-blindness/up=SD derived-given-it; the historical
+    N4-era hedge formerly here is superseded.]
+    BASIS NOTE (wavefront, §12.5/§7): SPIN = the L-orbit {e12,e13,e23} (e4-FREE planes = the observer's
+    spatial rotations gamma^i gamma^j = -e_ij), and it is exactly the SPATIAL part of each anti-self-dual
+    generation flow (e12 in e12+e34, etc.). NOT {e_i4}: the Q-orbit {e14,e24,e34} is the observer's spatial
+    direction-VECTORS (gamma^j=e4 e_j) AND the §8.3 quark-CKM-orbit -- a DISTINCT role from the H-triple
+    generations (§8.4 warns against conflating them). So {e_ij}=spin is the right basis here, {e_i4} is not.
+    The vacuum is an ACTIVE carrier (s0=(1+e4)/2): it FILLS any defect WITHOUT topological winding
+    (pi_3(S^3)=Z); a generation survives only by winding (inverse of a radio signal, which survives by
+    frequency-separation on a passive carrier). So 'must span an amplitude reversal' = the nonzero-winding
+    condition = why the carrier does not fill these 3.
+
+    CANDIDATE (up/down, Gemini CAND 3, post-hoc + substrate-testable): the +e4 chirality sets the helicity
+    of the winding relative to the wave -- up-type CO-rotating (rides +e4: lighter gen-1, steeper scaling),
+    down-type COUNTER-rotating (m_d>m_u, slower). Matches the gross pattern (m_d>m_u; up-tower steeper);
+    the exact P+ = (1+e4)/2 projection test is owed; NOT derived.
+
+    LOCATED RESIDUAL (the #1 gap, unchanged but sharpened): the DYNAMICAL SELECTION -- the EOM by which a
+    defect locks onto these 3 flows and intermediate windings RADIATE/fill (Gemini CAND 1's radiative
+    limit-cycle is the candidate but UNPROVEN -- needs the driven-dissipative EOM; its D4-Langevin sim is
+    the N9 forbidden toy, NOT run) -- and the phase->mass map (which flow carries which generation mass /
+    the hierarchy). REFUTED en route: Gemini CAND 2 (period-doubling -> 3) -- period-doubling gives a 2^n
+    cascade (->inf before chaos), not 3, and omega/2^n != the mass ratios.
+
+    derived-vs-generic: substrate-specific = the anti-self-dual su(2) closure + S^3=unit-H being the rotor
+    target; the S^3-parallelizability '3 global flows' is the defect-picture form of dim su(2)=3 (a
+    sharpening, same count). NO new number is claimed derived; the dynamical selection stays the #1 gap."""
+    out = {}
+    J = [e(1, 2) + e(3, 4), e(1, 3) + (-1.0) * e(2, 4), e(1, 4) + e(2, 3)]
+    def norm2(x): return sum(c * c for _, c in x.terms)
+    out["anti_self_dual_triple_orthonormal"] = all(abs(norm2(j) - 2.0) < 1e-12 for j in J)  # equal-norm (=2)
+    # su(2) closure EXACTLY: [J_i, J_j] = -4 J_k (cyclic) -- tightened from blade-membership to proportionality
+    def approx_eq(a, b):
+        d = a - b
+        return all(abs(c) < 1e-9 for _, c in d.terms)
+    closes = []
+    for i, j in [(0, 1), (1, 2), (2, 0)]:
+        k = ({0, 1, 2} - {i, j}).pop()
+        closes.append(approx_eq(comm(J[i], J[j]), (-4.0) * J[k]))
+    out["su2_closure"] = all(closes)   # exact [J_i,J_j] = -4 J_k
+    assert out["anti_self_dual_triple_orthonormal"] and out["su2_closure"], \
+        "anti-self-dual triple must be an orthogonal equal-norm su(2) ([J_i,J_j]=-4J_k) = 3 H units = SU(2)=S^3 generators"
+    out["count"] = 3
+    out["why_3"] = "S^3 = SU(2) = unit-H is parallelizable by EXACTLY 3 global flows; a defect winds along one => 3 generations"
+    out["why_not_4"] = "no 4th independent global flow on S^3 (dim S^3 = 3); a 4th generation has nowhere to wind"
+    out["generations_handedness"] = "anti-self-dual S^3 (one circular polarization); self-dual S^3 = weak isospin su(2)+ [CANDIDATE §8.4; vs §10.5 L-orbit; embedding UNDETERMINED, N4]"
+    out["spin_basis"] = "SPIN = L-orbit {e12,e13,e23} (e4-free; = observer rotations gamma^i gamma^j = -e_ij, §12.5); = the spatial part of each anti-self-dual generation flow. NOT {e_i4} (Q-orbit = observer spatial AXES + §8.3 CKM-orbit, a distinct role)"
+    out["survival"] = "active vacuum carrier fills non-wound defects (pi_3=Z); generations survive by winding (NOT frequency-separation)"
+    out["up_down"] = "CANDIDATE (Gemini CAND3): +e4 helicity -- up co-rotating (steeper), down counter (m_d>m_u); P+ test owed"
+    out["dynamical_selection"] = "OPEN (#1 gap): the EOM picking 3 flows + radiating intermediates (CAND1 unproven); phase->mass map open"
+    out["period_doubling_why3"] = "REFUTED (CAND2): period-doubling is 2^n->inf, not 3; omega/2^n != mass ratios"
+    out["verdict"] = ("SHARP defect-picture: a generation = a defect WINDING-FLOW on the anti-self-dual spinor "
+                      "S^3 (one circular handedness); EXACTLY 3 because S^3 is parallelizable by exactly 3 global "
+                      "flows (defect-centric why-3/why-not-4, the SAME count as the H-triple recast); weak isospin "
+                      "= the other handedness; +e4 helicity = up/down (CANDIDATE). The DYNAMICAL selection (lock to "
+                      "3 + radiate the rest, and the mass hierarchy) stays the #1-gap residual; period-doubling REFUTED.")
+    return out
+
+
+# item 8b, step 5 (2026-06-24, Yaer: "do the residuals"). Residual (a): WHICH mass-measure governs the
+# multi-quark coherent sum -- the meson's linear-in-amplitude m=2w|cos(a/2)|, or the gear's frequency
+# lock? Resolved by the WINDING SENSE. Residual (b): the absolute omega scale = the #1 gap (located).
+def winding_sense_sets_mass_measure() -> dict:
+    """[DERIVED (winding sense) + FRAMING (the measure consequence)] item 8b step 5 -- RESIDUAL (a)
+    ADJUDICATED (structurally, by a FRAMING bridge; empirically undiscriminated): the meson and baryon
+    have DIFFERENT mass-measures because their constituents have OPPOSITE vs SAME winding sense -- one
+    ontology, mass=omega of the locked config, two regimes. NOTE this is a structural ADJUDICATION (the
+    deciding co<->gear link is FRAMING, not derived) NOT a closure: the two candidate floors are near-
+    degenerate so DATA cannot yet force the choice, and the gear's VALUES stay gap-gated (residual b).
+
+    DERIVED (topological winding):
+      * MESON = q + qbar: windings +1/3 and -1/3 -> net B=0 -> OPPOSITE sense = COUNTER-rotating pair.
+      * BARYON = 3 quarks: 3 x (+1/3) -> net B=1 (pi3_S3_integer_completion) -> SAME sense = CO-rotating.
+
+    FRAMING (why the measures differ -- the resolution of residual (a)):
+      * COUNTER-rotating (meson, opposite omega) -> the pair BEATS; the interference enters the mass
+        DIRECTLY: m = 2 omega |cos(alpha/2)| (meson_dynamical_current_split) -- mass LINEAR in the
+        coherent amplitude. This is the regime where the GOLDSTONE subtraction lives (alpha=pi cancels).
+      * CO-rotating (baryon, same omega) -> the frequencies LOCK and ADD: the colour-singlet constraint
+        omega1+omega2+omega3 = Omega_B (gear_eigenvalues) + an internal-mode INERTIA (Theta_A/Theta_B).
+        This is the §17.3 GEAR -- NOT a linear-in-amplitude coherent sum.
+      => The 'linear-|A| meson->baryon assumption' that underpinned steps 3-4 (the parallelogram floor,
+         the Goldstone subtraction) is the MESON (counter-rotating) measure IMPORTED. The BARYON's OWN
+         primary measure is the gear (co-rotating frequency lock), which is already DERIVED STRUCTURE.
+         They are ONE ontology (mass = omega of the locked configuration) under opposite vs same winding,
+         and they reconcile on the internal mode (step 2). So the baryon mass functional's BACKBONE is
+         the gear; the Goldstone-subtraction is the meson-sector sibling, consistent-on-the-mode but not
+         the baryon's fundamental measure.
+
+    EMPIRICAL (the two floors are near-degenerate, so data can't yet force the choice): the gear/arith
+    floor (S+L)/2 and the meson/quadrature floor sqrt((S^2+L^2)/2) differ by only 0.6 MeV at Lambda/Sigma
+    and ~9.9 MeV even at the wide N/Delta pair -- consistent with either; not a discriminator yet.
+
+    RESIDUAL (b) -- the ABSOLUTE omega/Omega_B scale -- is the #1 GAP (NOT a separate gate): it is the
+    SAME absolute-scale gate that sets f_pi / the soliton normalization (canon §2 'f_pi the one fitted
+    mass scale'; cf. q_l_stiffness_ratio_is_gap_gated). The gear gives the STRUCTURE (Omega_B=Sum omega,
+    Theta eigenvalues) gate-free; the absolute MeV waits on the driven-dissipative dynamics. Nothing
+    gate-free remains in (b) -- it is located, not open-ended.
+
+    NET (item 8b closeout): the non-additive baryon mass functional = the §17.3 GEAR (co-rotating
+    frequency-lock Omega_B=Sum omega + internal-mode inertia, DERIVED structure); colour mass-blind
+    (step 1); same-composition splits isolate the internal mode (step 2); the meson Goldstone
+    subtraction is the counter-rotating sibling (steps 3-4); residual (a) resolved (winding sense picks
+    the gear for baryons); residual (b) = the #1 gap (absolute scale). derived-vs-generic: substrate-
+    specific = the B=0(opposite)/B=1(same) winding topology and the engine's two measures; the
+    counter->beat / co->frequency-lock consequence is a FRAMING identification (physical, consistent
+    with both engine primitives), NOT a fresh derivation of either measure."""
+    out = {}
+    # DERIVED: winding sense (B numbers)
+    pc = pi3_S3_integer_completion()
+    assert pc["3×(1/3) = 1 is an integer"], "baryon B=1 (3 co-rotating 1/3 windings)"
+    out["meson_B"], out["baryon_B"] = 0, 1
+    out["meson_sense"] = "OPPOSITE (q + qbar) = counter-rotating"
+    out["baryon_sense"] = "SAME (3 quarks) = co-rotating"
+    # the two engine measures
+    out["meson_measure"] = "m = 2*omega*|cos(alpha/2)| (counter beat; LINEAR in coherent amplitude; Goldstone subtraction)"
+    out["baryon_measure"] = "gear: Omega_B = omega1+omega2+omega3 lock + inertia (§17.3 eigenvalues are DERIVED; the co-rotating<->gear LINKAGE is FRAMING)"
+    out["linear_A_is_meson_import"] = True   # steps 3-4's 'linear-|A| for baryon' = the meson measure
+    out["baryon_primary_measure"] = "the §17.3 gear (co-rotating frequency lock), NOT the linear coherent amplitude -- adjudicated via the FRAMING bridge"
+    # UPDATE: the linkage's FREQUENCY-LOCK half is no longer FRAMING -- it is DERIVED via E-centrality
+    out["cogear_linkage_freqlock_now_derived"] = ("cogear_linkage_kinematic: Omega_B=Sum omega is "
+        "DERIVED-CONDITIONAL (2026-07-02 sweep re-tier: central-E additivity holds ONLY in the E channel; "
+        "R-127/R-128 lock the observer-visible mass phase to winding blades whose axes do not commute) -- "
+        "the E-channel composition premise + the E-floor->observer bridge + the §17.3 INERTIA tensor + "
+        "whether freq-sum IS the mass are the open residual")
+    # EMPIRICAL: floors near-degenerate (can't yet discriminate)
+    floors = {}
+    for nm, m1, m2 in [("Lambda/Sigma", 1115.68, 1192.64), ("N/Delta", 938.27, 1232.0)]:
+        ar = (m1+m2)/2.0; qu = math.sqrt((m1*m1+m2*m2)/2.0)
+        floors[nm] = {"arith_gear": round(ar, 1), "quad_meson": round(qu, 1), "diff_MeV": round(qu-ar, 1)}
+    out["floors_near_degenerate"] = floors
+    out["empirically_undiscriminated"] = "floors agree to 0.6 (Lambda/Sigma) / 9.9 (N/Delta) MeV => DATA cannot force gear-vs-meson; the adjudication rests on the FRAMING winding bridge ALONE"
+    assert floors["N/Delta"]["diff_MeV"] < 15, "arith(gear) and quad(meson) floors must be near-degenerate (data can't force the choice)"
+    # RESIDUAL (b): the #1 gap
+    out["residual_b_absolute_scale"] = "the absolute omega/Omega_B scale = the #1 GAP (same gate as f_pi/soliton normalization); STRUCTURE gate-free, VALUE gap-gated; located, not open-ended"
+    out["verdict"] = ("RESIDUAL (a) ADJUDICATED structurally (FRAMING bridge, empirically undiscriminated): "
+                      "winding sense sets the measure -- meson (B=0, OPPOSITE/counter -> beat -> mass linear in "
+                      "amplitude, Goldstone) vs baryon (B=1, SAME/co -> frequency lock Omega_B=Sum omega -> the "
+                      "§17.3 GEAR, whose eigenvalues are DERIVED though the co<->gear LINKAGE is FRAMING). The "
+                      "linear-|A| of steps 3-4 is the MESON import; the baryon's primary measure is the gear; one "
+                      "ontology under opposite/same winding, reconciled on the internal mode. The two floors are "
+                      "near-degenerate so DATA can't yet force the choice (rests on the framing bridge). RESIDUAL "
+                      "(b) = the #1 gap (absolute scale, located, NOT separate).")
+    return out
+
+
+def generation_index_survives_brannen_excision():
+    """[DERIVED-STRUCTURAL — assembly synthesis B3, Workers 1+4 convergence]
+
+    The IDENTIFICATION of the generation operator with the meta-time phase advance (per
+    `generation_z3_is_metatime_phase`) does NOT depend on the √m=r² mass-measure choice or
+    the modified-Brannen empirical fit. The core derivation runs:
+
+      (i)  Spatial G_generator preserves |B_spatial| and |B_e_4| under conjugation to 1e-12
+           ⇒ spatial G is MASS-BLIND ⇒ cannot source any mass hierarchy
+      (ii) Therefore spatial G is the COLOUR Z3 (3 colours mass-degenerate)
+      (iii) The GENERATION operator must be a DIFFERENT Z3 action that DOES source a hierarchy
+      (iv) The meta-time phase advance is the natural candidate (acts on the e_5/τ_5 channel,
+           which is the mass channel per `mass_measure_from_omega` ontology)
+
+    Step (i) is pure Cl(4,0) algebra (commutator of G with bivector content, no mass measure
+    involved). Step (ii) is identification. Step (iii) is logical. Step (iv) identifies meta-time
+    phase as the operator — but does NOT bank what the operator's eigenvalues are at each phase.
+
+    What DOES depend on Brannen / √m=r² (and is THEREFORE under WP-MASS-MEASURE suspicion):
+    the SPECIFIC mass values at each meta-time phase sample. That's the spectrum-at-each-phase,
+    not the existence of the operator.
+
+    Consequence: if WP-MASS-MEASURE excises the unified-Brannen framework, the generation
+    OPERATOR identification survives. What gets demoted is the per-phase mass prediction.
+
+    This banks the engine-checkable separation between (a) the generation operator
+    (DERIVED, survives) and (b) the mass-at-each-phase prediction (CANDIDATE-strong,
+    conditional on the WP-MASS-MEASURE rebuild)."""
+    # Engine check: spatial G mass-blindness is purely algebraic (no mass measure invoked)
+    G = G_generator()
+    B0 = 1.0 * e(1, 2) + 0.7 * e(1, 4) + 0.4 * e(2, 3) + 0.5 * e(3, 4)
+    np = __import__("numpy")
+
+    def split(mv):
+        sp = math.sqrt(sum(c * c for b, c in mv.terms if b in [(1, 2), (1, 3), (2, 3)]))
+        ep = math.sqrt(sum(c * c for b, c in mv.terms if b in [(1, 4), (2, 4), (3, 4)]))
+        return sp, ep
+
+    sp0, ep0 = split(B0)
+    dsp_max = dep_max = 0.0
+    for phi in np.linspace(0, 2 * math.pi, 200):
+        R = exp_unit_bivector(G, phi)
+        sp, ep = split(R * B0 * R.reverse())
+        dsp_max = max(dsp_max, abs(sp - sp0))
+        dep_max = max(dep_max, abs(ep - ep0))
+    assert dsp_max < 1e-12 and dep_max < 1e-12, (
+        "spatial G mass-blindness must hold (pure algebra, no mass measure invoked)")
+    return {
+        "tier": "DERIVED-STRUCTURAL",
+        "spatial_G_max_dsp": dsp_max,
+        "spatial_G_max_dep": dep_max,
+        "spatial_G_is_mass_blind": True,
+        "implication_1_spatial_G_is_colour_Z3": True,
+        "implication_2_generation_operator_is_metatime_phase": True,
+        "depends_on_mass_measure": False,
+        "depends_on_Brannen": False,
+        "what_DOES_depend_on_mass_measure": (
+            "the per-phase mass eigenvalue spectrum (CANDIDATE-strong, conditional on WP-MASS-MEASURE rebuild)"
+        ),
+        "what_survives_Brannen_excision": (
+            "the OPERATOR identification: generation = meta-time phase advance, NOT spatial G"
+        ),
+    }
+
+
+def pure_L_rotor_preserves_spatial_radius():
+    """[DERIVED-A — Phase F audit residue, 2026-06-30]
+
+    Clean substrate-pure fact (the narrow result that survives the REFUTED forward-derivation
+    attempt of lepton ε=0 from L-orbit e_4-freeness, Phase F audit):
+
+      For any unit bivector B ∈ span(L_BIVECTORS) (with B²=−1) and any spatial vector r_0
+      ∈ span{e_1, e_2, e_3}, the rotor orbit r(φ) = exp(½φB)·r_0·exp(−½φB) has CONSTANT
+      spatial radius:
+        |r(φ)|_spatial² := Σ_{i=1,2,3} ⟨r(φ), e_i⟩² = |r_0|²   for all φ.
+
+    Underlying algebra: L_BIVECTORS commute with e_4 ⇒ L-rotors preserve the e_4-component
+    of any vector ⇒ the spatial component evolves as a rotation in the spatial 3-volume,
+    preserving its norm.
+
+    Honest scope (from Phase F audit REFUTED verdict):
+      - This DOES bank a clean substrate fact about L-rotor geometry.
+      - This does NOT by itself close the lepton ε=0 forward derivation. The Phase F
+        attempt (Worker 4 §8.2) tried to leverage this fact to derive ε=0 in the
+        modified-Brannen cos(2φ) channel, but the bridge fails on two counts:
+          (1) GRADE CONFLATION: lepton BLADE = e_123 (grade-3 trivector); lepton orbit
+              GENERATOR is a bivector (grade-2). No banked primitive maps lepton-blade
+              to L-bivector-as-rotor-generator. Different objects.
+          (2) PARAMETER CONFLATION: Brannen's τ = e_4-dip of OFFSET AXIS (deferent tilt);
+              the L↔Q-mixing-angle of the rotor GENERATOR is a different object. The
+              "cos(2φ) coefficient = sin²(τ)/2" claim depended on r_0 = e_1 (special
+              choice); for generic r_0 the ratio is 0.59-0.84, not 1.
+
+    Filed as the narrow honest residue of N-LEPTON-EPS-FROM-L-ORBIT (negatives ledger,
+    2026-06-30). The fact itself is real and could be a building block for future
+    substrate-derivations bridging lepton-blade to lepton-orbit-generator (gap 1)."""
+    np = __import__("numpy")
+    # Engine-verify for all three L-bivectors and several non-trivial r_0
+    for name, B in L_BIVECTORS.items():
+        # Confirm B²=−1
+        bb = (B * B).coeff(())
+        assert abs(bb - (-1.0)) < 1e-12, f"{name} must have B²=−1"
+        # Confirm B commutes with e_4
+        assert B * e(4) == e(4) * B, f"{name} must commute with e_4"
+    # For each L-bivector, check several r_0 and confirm spatial radius is constant
+    r0_choices = [e(1), e(2), e(3), 0.7 * e(1) + 0.4 * e(2), 0.5 * e(1) + 0.6 * e(2) + 0.3 * e(3)]
+    spatial_norm = lambda v: math.sqrt(sum(v.coeff((i,)) ** 2 for i in (1, 2, 3)))
+    for name, B in L_BIVECTORS.items():
+        for r0 in r0_choices:
+            target = spatial_norm(r0)
+            for phi in np.linspace(0, 2 * math.pi, 50):
+                R = exp_unit_bivector(B, phi / 2)
+                rphi = R * r0 * R.reverse()
+                got = spatial_norm(rphi)
+                assert abs(got - target) < 1e-10, (
+                    f"pure-L rotor under {name} must preserve spatial radius for r_0={r0}; "
+                    f"got {got} vs target {target} at phi={phi}")
+    return {
+        "tier": "DERIVED-A",
+        "claim": "pure-L rotor preserves spatial radius exactly (any L-bivector, any spatial r_0)",
+        "underlying_algebra": "L_BIVECTORS commute with e_4 ⇒ L-rotors preserve e_4 component ⇒ spatial radius preserved",
+        "engine_verified_for_L_bivectors": list(L_BIVECTORS.keys()),
+        "engine_verified_for_r0_choices": ["e_1", "e_2", "e_3", "0.7e_1+0.4e_2", "0.5e_1+0.6e_2+0.3e_3"],
+        "tolerance": "1e-10 absolute on spatial-radius difference",
+        "does_NOT_close": "lepton ε=0 forward derivation (Phase F audit REFUTED Worker 4 §8.2 chain)",
+        "bridge_gaps_remaining": [
+            "(1) GRADE: lepton blade e_123 (grade-3) ≠ L-bivector (grade-2); no banked map",
+            "(2) PARAMETER: Brannen τ (offset-axis e_4-dip) ≠ L↔Q-mixing of rotor generator",
+        ],
+        "filed_as": "narrow honest residue of N-LEPTON-EPS-FROM-L-ORBIT (negatives ledger)",
+    }
+
+
+def e4_acts_as_identity_on_Splus() -> bool:
+    """[DERIVED] §18.3a: e4·s0 = s0 (e4 = +1 on the e4=+1 ideal)."""
+    return (e(4) * s0()) == s0()
+
+
+def compact_spin4_favors_limit_cycle() -> dict:
+    """[DERIVED-generic / FRAMING — substrate facts produce a STRUCTURAL LEAN
+    toward Floquet limit-cycle NESS over self-organized-critical NESS, but do NOT
+    DECIDE the dichotomy (SOC is biased-against, not excluded). Sector-2 of the
+    2026-06-28 symmetry-shortcut hunt; supplies independent structural support
+    for Fork B in `eom_compatible_field_forks` and the N11-U1 / N15 lean.
+    Canon-§2 tier: DERIVED-generic (the unqualified/-generic variant — real but
+    generic-given-coarse-substrate-facts, the Sakharov-Λ² template of canon §5),
+    NOT DERIVED-A and NOT DERIVED-P. /FRAMING because the dichotomy stays open.]
+
+    Pin a SINGLE fork-lean from compact-group + periodic-drive geometry —
+    e5-litmus-free (no e5 spatial) and not §9.6-routed (no kernel import; §9.6
+    is the kernel that Fork B is ABOUT, so routing through it would beg the
+    question). Four substrate facts conjoin:
+
+    F1 — COMPACT TARGET. The rotor field lives on Spin(4) = SU(2)_+ × SU(2)_-
+      = S^3 × S^3, compact without boundary (the two chiral Spin(4) factors of
+      the substrate). Dissipative trajectories on a compact manifold are
+      uniformly bounded; no unbounded target-space scale develops. Caveat:
+      compactness alone does NOT kill SOC (SOC's correlation length is a
+      SPATIAL field-correlator property, not target-space).
+
+    F2 — PERIODIC FINITE-FREQUENCY DRIVE. The advancing e4 wave is a periodic
+      drive at the rotor frequency ω_d = mass (canon §0: mass = the meta-time
+      rotor frequency). Periodic + dissipative + compact ⇒ Floquet theory
+      applies and generically yields a T_d=2π/ω_d-periodic (or rationally
+      mode-locked p:q) attractor — a limit cycle. This is GENERIC dynamical-
+      systems theory (Floquet/Krein; Pikovsky–Rosenblum–Kurths synchronization),
+      DERIVED-generic-given-(compact + periodic-drive), NOT a TWT theorem.
+
+    F3 — MULTIPLE INTRINSIC SCALES. The substrate has ≥3 banked scales:
+      Λ (UV cutoff = grain spacing), T_d=2π/ω_d (drive period), f_π (hadronic-
+      cell scale) — and additionally the Spin(4) group radius from F1. SOC
+      requires SCALE INVARIANCE — a fine cancellation that no substrate
+      symmetry enforces (contrast: s=3 decoherence is symmetry-pinned, not
+      scale-tuned). Multi-scale ⇒ SOC is measure-zero — a LEAN, not a proof.
+
+    F4 — NO SLOW/FAST SEPARATION. Canonical SOC (BTW/OFC/sandpile) needs
+      slow drive + fast relaxation (drive ≪ relaxation rate). The e4-drive
+      is at the substrate's PRIMARY timescale (ω_d = ω_rotor, by ontology);
+      no slow-driving limit. Removes the canonical SOC mechanism; does not
+      exclude non-canonical continuum-SOC at finite drive.
+
+    NET — FORK B LEAN. F1+F2 furnish a generic Floquet attractor; F3+F4
+      remove canonical SOC routes. STRUCTURAL LEAN toward Floquet limit-cycle
+      NESS, substrate-grounded (none of F1-F4 imports the kernel, runs §9.6,
+      or uses e5 spatially) and INDEPENDENT of N9's D4-Langevin toy hint —
+      two independent supports converge on the same lean. NOT a decision: the
+      dichotomy is biased-against SOC, not exclusive (topological criticality
+      on compact targets, or continuum-SOC at finite drive, are not refuted).
+      The kernel decides; the geometry only leans. Note: the substance of F2
+      already lives in `theta_rel_universality_located` R2 (Floquet lean + N9
+      numerical hint); the genuinely NEW content here is F3 (multi-scale ⇒ SOC
+      measure-zero) and F4 (no slow/fast separation removes BTW/OFC SOC).
+
+    TIER (canon §2 + §5 derived-vs-generic). DERIVED-generic: each Fi is a
+    banked substrate fact (compactness, periodicity, multi-scale, timescale
+    identity); the CONJUNCTION is generic dynamical-systems theory, so the lean
+    is DERIVED-generic-given-(F1-F4), the Sakharov-Λ² template (canon §5) —
+    real but generic, NOT a substrate-specific theorem and NOT a closed Clifford
+    identity (so NOT DERIVED-A) and NOT a clean physical forcing (NOT DERIVED-P).
+    The DICHOTOMY remains OPEN (Fork B decision stays #1-gap GATED). Downstream:
+    the SOC-universality route to (α,g,g_s) is structurally DISFAVORED (not
+    refuted) — the gauge couplings likely require a more bespoke mechanism than
+    NESS universality.
+
+    NEGATIVES-DISCIPLINE (canon §4). Tried whether substrate GEOMETRY ALONE
+    decides Fork B → succeeded at the LEAN level (F1-F4) → would change if the
+    built §9.6 kernel flows to a genuine scale-invariant fixed point despite
+    F1-F4 (topological criticality on compact target / continuum-SOC at finite
+    drive). Then the kernel verdict overrides the geometric lean. Not a §1
+    SM-retreat (no e5-spatial, no §9.6 routing, no imported QFT theorem in the
+    forcing step).
+
+    self-check: F1 compact + boundary-free; F2 periodic finite-frequency drive
+    (ω_d = mass, canon §0); F3 substrate scales ≥3; F4 no slow/fast separation
+    (drive timescale = system timescale by ontology); cross-references
+    (theta_rel_universality_located N11/U1, eom_compatible_field_forks Fork B)
+    resolve and lean limit-cycle the same way."""
+    # F1 — Compact target.
+    F1 = {
+        "manifold": "Spin(4) = SU(2)_+ x SU(2)_- = S^3 x S^3",
+        "compact": True, "boundary": False,
+        "bites": "uniformly bounded dissipative trajectories; no target-space scale-divergence",
+        "caveat": "compactness alone does NOT kill SOC (correlation length is a SPATIAL "
+                  "field-correlator, not a target-space property)",
+    }
+    # F2 — Periodic finite-frequency drive (canon §0: mass = ω_d).
+    F2 = {
+        "drive": "advancing e4 wave at omega_d = mass (meta-time rotor freq; canon §0)",
+        "kind": "periodic, finite-frequency, continuous (NOT slow-driven)",
+        "period": "T_d = 2pi/omega_d",
+        "bites": "Floquet/Krein + Pikovsky synchronization => generic T_d-periodic (or p:q mode-locked) attractor",
+        "tier": "DERIVED-generic-given-(compact+periodic-drive), NOT a TWT theorem",
+    }
+    # F3 — Multiple intrinsic scales (SOC requires scale invariance).
+    F3 = {
+        "intrinsic_scales": ["Lambda (UV cutoff = monad spacing)",
+                              "T_d = 2pi/omega_d (drive period)",
+                              "f_pi (hadronic-cell scale)",
+                              "Spin(4) group radius (from F1)"],
+        "n_scales_at_least": 3,
+        "SOC_requirement": "scale-invariant attractor (no characteristic scale)",
+        "bites": ">=3 intrinsic scales => scale-invariance is measure-zero with no symmetry to enforce it",
+        "caveat": "SOC AT one of these scales is not strictly excluded — a LEAN, not a proof",
+    }
+    # F4 — No slow/fast separation.
+    F4 = {
+        "canonical_SOC_needs": "slow drive << fast relaxation (BTW/OFC/sandpile)",
+        "substrate_reality": "omega_drive = omega_rotor = omega_system (ontology: drive IS the substrate's primary timescale)",
+        "separation": False,
+        "bites": "removes canonical SOC mechanism by construction",
+        "caveat": "does NOT exclude non-canonical (continuum-SOC at finite drive) classes",
+    }
+    # Cross-references must resolve and the existing Fork B lean must agree.
+    tu = theta_rel_universality_located()
+    assert "FRAMING + LOCATED-GAP (N11)" in tu["tier"], "N11-U1 lean must resolve"
+    ff = eom_compatible_field_forks()
+    assert "limit-cycle" in ff["forks"]["B_NESS_character(N11)"]["status"], "Fork B lean must agree"
+    # Self-check assertions on the four substrate facts.
+    assert F1["compact"] and not F1["boundary"]
+    assert F2["kind"].startswith("periodic")
+    assert F3["n_scales_at_least"] >= 3
+    assert not F4["separation"]
+    lean = {
+        "Fork B verdict (geometry-only, e5-litmus-free, no §9.6 routing)": "LEANS LIMIT-CYCLE (Floquet)",
+        "support": "F1+F2 => generic Floquet attractor; F3+F4 => canonical SOC routes removed",
+        "vs N9": "N9 (D4-Langevin toy) and F1-F4 (structural) lean limit-cycle for INDEPENDENT reasons — "
+                 "convergent support, NOT a tighter derivation",
+        "decision_status": "DICHOTOMY NOT DECIDED — SOC biased-against, not excluded; the §9.6 kernel decides",
+    }
+    return {
+        "question": "does compact-Spin(4) + periodic e4-drive STRUCTURALLY prefer Floquet limit-cycle NESS "
+                    "over SOC-critical NESS, e5-litmus-free and not §9.6-routed?",
+        "answer": "STRUCTURAL LEAN yes (4 substrate facts F1-F4); DECISION no (geometry leans, kernel decides)",
+        "F1_compact_target": F1, "F2_periodic_drive": F2,
+        "F3_multi_scale": F3, "F4_no_slow_fast_separation": F4,
+        "lean": lean,
+        "fork_B_status_update": "OPEN, leans limit-cycle: was '(N9 D4-Langevin toy)' alone; now also "
+                                "'(F1-F4 structural, geometry-grounded)' — two independent supports converge",
+        "downstream_implication": "SOC-universality route to (alpha,g,g_s) (the §9.6 coupling-universality hope, "
+                                  "N11/N15) is STRUCTURALLY DISFAVORED — not refuted; gauge couplings "
+                                  "likely require a more bespoke mechanism than NESS universality",
+        "would_change_if": "the built §9.6 kernel is shown to flow to a genuine scale-invariant fixed point "
+                           "despite F1-F4 (e.g. topological criticality on compact targets, continuum-SOC at "
+                           "finite drive). Then the kernel verdict overrides the geometric lean.",
+        "scope_honesty": "DERIVED-generic-given-(F1-F4), NOT DERIVED-A/-P. Per canon §5 derived-vs-generic, "
+                         "this is the Sakharov-Λ² template: real, but generic-given-coarse-substrate-facts.",
+        "tier": "DERIVED-generic / FRAMING: structural lean derived from F1-F4 substrate facts; "
+                "dichotomy NOT decided (SOC biased-against, not excluded); Fork B DECISION stays #1-gap GATED. "
+                "Negatives-discipline (canon §4): tried→succeeded at LEAN level→would-change-if kernel shows SOC. "
+                "Not §1 SM-retreat (no e5-spatial, no §9.6 routing, no imported QFT theorem in the forcing).",
+    }
+
+
+def generation_values_monad_forked():
+    """[located-gap (N21 measure-fork RESOLVED) + DERIVED sub-results + FRAMING (the structure/value tiering) — N22;
+    TWT_DEFECT_CKM_GLUON.md §19] A 3-route workflow + developer verification (sympy-exact) asking which quantization
+    ordering the substrate dictates for the collective coordinate, and what TIER that makes the generation VALUES.
+    (The fork's small-size endpoint is the GRAIN — this primitive's name retains the older word 'monad'.)
+
+    ── RESOLVES the N21 measure sub-fork: the physical ordering is COVARIANT (Laplace-Beltrami), Q=0 ───────
+    The von Roos ordering ambiguity is PHYSICAL, so it must be fixed by the substrate. Collective-coordinate
+    quantization on a moduli space has a canonical answer — the COVARIANT (Laplace-Beltrami / Gervais-Jevicki)
+    operator, hermitian w.r.t. the invariant moduli measure. For the 1-D breathing modulus R it gives an induced
+    potential of EXACTLY ZERO for ANY metric g(R) (1-D moduli is flat; in arc-length s=∫√g dR, LB = −d²/ds², no
+    potential). LB is the UNIQUE reparametrization-covariant von Roos member — every non-LB ordering adds a +c/R²
+    that is NOT a coordinate scalar (it changes under R→u), hence unphysical. **So the covariant ordering supplies
+    NO induced −1/r²; the N21 "von Roos measure spans the BF threshold ⇒ could be supercritical" sub-route is CLOSED**
+    — the supercritical orderings are non-covariant artifacts. (One POSITED hinge: that the TWT rotor inner product
+    is the coordinate-free moduli L²-norm that selects LB — standard collective quantization, §17-grounded, not a
+    separately-built Clifford identity.)
+
+    ── the 2D-curvature objection, DEFUSED (the decisive push-past) ────────────────────────────────────
+    The physical collective manifold is really 2-D — (R, θ) with θ the meta-time mass-phase — and its Ricci scalar
+    is NONZERO (~R⁻³ at R→0), so a covariant DeWitt curvature term Q=ξ·R_scalar seems to survive. BUT θ is the
+    CENTRAL U(1)_E mass-phase (a CYCLIC, commuting coordinate). Separating ψ=e^{inθ}φ(R) collapses the 2-D operator
+    to a 1-D radial problem whose θ-centrifugal term n²/(2Λ(R)) with Λ=aR³+bR is **n²/(2bR) near R→0 — a SOFT 1/R
+    (degree −1), NOT a scale-invariant R⁻²** (sympy-exact). So the R⁻³ curvature is a coordinate artifact of the
+    un-separated operator; after separation there is no forced supercritical −g/r² from curvature.
+
+    ── ★ THE HONEST TIER OF THE GENERATION VALUES — a SHARPENED 2-WAY FORK (not a flat input) ───────────
+    With the measure sub-route dead, the cost-table VALUES (the 6 numbers; the lepton masses + CKM magnitudes that
+    are physical per §5) are GATED-WITH-AN-OPEN-FORK at the R→0 grain endpoint:
+      (a) a grain-scale INPUT — same tier as Λ/f_π (canon §2), the knowability shape of `induced_G_only_grain_scale_enters`
+          (cutoff-gated, consistent-with-not-confirming underivability) — IF the resolution is the conservative
+          self-adjoint-extension parameter fixed by grain-scale D4-lattice 3-body CONTACT (Efimov-on-the-lattice); OR
+      (b) Im χ-GATED and dynamically DERIVABLE — IF the resolution is the DISSIPATIVE hysteretic kernel (Fork A,
+          Θ_rel-kind coset-Cartan/FDT-violation); calling its output "input" would smuggle a gated quantity into the
+          input tier.
+    SHARPENING (tilts toward dynamical): a static boundary parameter alone gives at most ONE bound state, NOT a
+    geometric TOWER — log-periodicity still needs a genuine attractive −1/4 1/s² channel, so even branch (a) needs
+    the dynamical 3-body contact to SOURCE the channel. Both live routes are grain-scale and essentially DYNAMICAL;
+    the measure was a red herring for the values. Only the Im χ branch can supply the chirality-signed DSI-breaking
+    RUNNING rate the data demands (a single Λ/f_π ratio gives ONE universal log-period, but the data is 6 numbers =
+    3 distinct tower scales + within-tower drift of OPPOSITE signs, sign = the up↔down mirror).
+
+    ── the STRUCTURE/VALUE line (branch-independent SCAFFOLD vs FORKED VALUES) — tier-honest, mixed tiers ──
+    The branch-independent SCAFFOLD is NOT uniformly DERIVED — only two members are unconditionally DERIVED; the rest
+    are weaker and carry their true tier: (1) [DERIVED, sympy-exact] the 1-D-moduli covariant-Q=0 fact + the cyclic-θ
+    soft-1/R defusal; (2) [DERIVED, sympy-exact] the bulk-arithmetic negative (cranked no R⁻²); (3) [STRUCTURAL,
+    dynamical selection OPEN] the 3 windows (N13 topological, contingent on generation=ℍ-triple); (4) [DERIVED-in-KIND,
+    CONDITIONAL on up=SD/down=ASD — per V3 R-077 given the weak=SD assignment R-079
+    (DERIVED-given-{A-P2 + RH-singlet datum} since RUL-082, not an INPUT bit); label updated 2026-07-02 from the
+    stale 'N4-CANDIDATE' (N4 resolved (ii) LOCATED, see weak_isospin_verdict)] the up↔down MIRROR
+    (`chirality_is_a_reflection`); (5) [FRAMING — the
+    UNSETTLED channel] the NON-SELF-ADJOINT character (N21); (6) [TAUTOLOGY, not a prediction] the O(few) cost SCALE
+    (the r⁴ map, N20); (7) [FRAMING] the RELOCATION to R→0. So TWT derives THAT there are 3 (structural) non-self-adjoint
+    (framing) mirror-paired (conditional) O(few)-cost (tautology) windows needing a chirality-signed running rate; it
+    does NOT derive WHICH costs. NOT a derivation of the values; NOT a flat deflation to input. The #1 gap stands,
+    localized to: is the R→0 datum a conservative D4-3-body contact (values=INPUT) or the Im χ kernel (values=GATED)?
+
+    ── COORDINATE DISAMBIGUATION (the −1/r² channel's r/R) — to keep the arc unambiguous ────────────────
+    The radial coordinate r/R of the −1/r² channel is the **soliton-SIZE = breathing-mode collective MODULUS**
+    throughout N20–N22 (the dynamical coordinate whose closed-orbit action is S(r)); R→0 is its small-size = grain
+    limit. It is NOT the *static* soliton radius of the √m=r²⇒ω=r⁴ mass map (that enters only the cost=4·ln(r-gap)
+    TAUTOLOGY), and NOT the phase θ (the central U(1)_E mass-phase, cyclic, → the soft 1/R, not the −1/r²).
+
+    Tier: located-gap (N21 measure-fork resolved) + DERIVED sub-results (covariant LB ⇒ Q=0; cyclic-θ ⇒ soft 1/R) +
+    FRAMING (structure-DERIVED / values-FORKED). NOT DERIVED for the values.
+    self-check: the cyclic-θ centrifugal is degree −1 (soft 1/R), not R⁻²; Λ=aR³+bR has no R⁻² in n²/(2Λ)."""
+    import sympy as sp
+    R, a, b, nph = sp.symbols('R a b n_phase', positive=True)
+    # the decisive defusal: cyclic-theta separation gives a SOFT 1/R, not a scale-invariant R^-2
+    Lam = a * R**3 + b * R
+    cent = sp.series(nph**2 / (2 * Lam), R, 0, 2).removeO()
+    assert cent.coeff(R, -2) == 0                                    # NO scale-invariant R^-2
+    assert cent.coeff(R, -1) == nph**2 / (2 * b)                     # leading term is the SOFT 1/R (degree -1)
+    # the covariant (LB) member: induced potential identically 0 for ANY 1D metric. PROOF (Liouville normal form):
+    # LB as Sturm-Liouville -(p f')'=λ w f has p=√g·g⁻¹=g^{-1/2}, w=√g (the invariant measure); the induced potential
+    # is Q=m''(s)/m with m=(p·w)^{1/4}. For LB, p·w = g^{-1/2}·g^{1/2} = 1 ⇒ m=1 ⇒ Q=0, for any g. (non-LB orderings
+    # have p·w ≠ 1 ⇒ Q≠0, and that Q is not a coordinate scalar.)
+    m = sp.Symbol('m', positive=True)
+    g_pow = R**m                                                    # arbitrary power-law 1D moduli metric
+    p_lb, w_lb = g_pow**sp.Rational(-1, 2), sp.sqrt(g_pow)          # LB Sturm-Liouville weights
+    assert sp.simplify(p_lb * w_lb) == 1                            # ⇒ Liouville m=(pw)^{1/4}=1 ⇒ induced Q=0 (covariant ordering, any metric)
+    return {
+        "measure_subroute_resolved": "the physical (covariant Laplace-Beltrami) ordering gives Q=0 for the 1-D breathing modulus (any metric); LB is the unique "
+                                      "reparametrization-covariant von Roos member; non-covariant orderings add a +c/R² that is not a coordinate scalar ⇒ N21's supercritical measure sub-route is CLOSED",
+        "curvature_objection_defused": "the 2-D (R,θ) Ricci is ~R⁻³ at R→0, but θ is CYCLIC (central U(1)_E mass-phase); separation ψ=e^{inθ}φ(R) gives a θ-centrifugal "
+                                       "n²/(2(aR³+bR)) = soft n²/(2bR) (degree −1), NOT R⁻² ⇒ the curvature singularity is a coordinate artifact, no forced supercritical channel",
+        "values_tier": "GATED-WITH-AN-OPEN-FORK (NOT a flat input, NOT a derivation): the cost-table numbers / lepton masses / CKM magnitudes are EITHER (a) a monad-scale "
+                       "INPUT (tier Λ/f_π) if the R→0 resolution is the conservative self-adjoint-extension / D4-3-body-contact parameter, OR (b) Im χ-GATED and dynamically DERIVABLE if dissipative (Fork A)",
+        "sharpening": "a static boundary parameter alone gives ≤1 bound state, not a geometric TOWER; log-periodicity needs a genuine −1/4 1/s² channel, so even the conservative "
+                      "branch needs the dynamical 3-body contact to source it. Only the Im χ branch can supply the chirality-signed DSI-breaking RUNNING rate the 3 drifting towers demand",
+        "structural_scaffold_mixed_tiers": {
+            "DERIVED (sympy-exact)": ["1-D-moduli covariant Q=0 (+ cyclic-θ soft-1/R)", "the bulk-arithmetic negative (cranked no R⁻², N21)"],
+            "STRUCTURAL (dyn. selection open)": "3 windows (N13 topological, contingent on generation=ℍ-triple)",
+            "DERIVED-in-KIND (conditional on up=SD/down=ASD, per R-077 given weak=SD INPUT R-079; ex-N4-CANDIDATE, N4 resolved (ii) LOCATED)": "the up↔down mirror (chirality_is_a_reflection)",
+            "FRAMING": ["the NON-SELF-ADJOINT character (N21, the UNSETTLED channel)", "the relocation to R→0"],
+            "TAUTOLOGY (not a prediction)": "the O(few) cost scale (the r⁴ map, N20)"},
+        "coordinate_disambiguation": "the −1/r² channel's r/R is the soliton-SIZE = breathing-mode collective MODULUS (S(r) = its closed-orbit action; R→0 = monad limit), "
+                                     "NOT the static √m=r²⇒ω=r⁴ radius (that enters only the cost=4·ln(r-gap) tautology), NOT the phase θ (cyclic, → the soft 1/R)",
+        "next_step": "the SMALL-DEFECT discriminator: construct the TWT rotor inner product on the breathing moduli to FIX the R→0 extension, then test whether monad-scale "
+                     "D4-lattice 3-body CONTACT (Efimov-on-lattice) supplies a supercritical g_eff>1/4 channel AND the chirality-signed running rate — conservative (values=INPUT) vs Im χ (values=GATED)",
+        "tier": "located-gap (N21 measure-fork resolved) + DERIVED sub-results (covariant LB ⇒ Q=0; cyclic-θ ⇒ soft 1/R defusing the 2D curvature) + FRAMING (structure-DERIVED / "
+                "values-FORKED tiering); the VALUES tier is GATED-with-an-open-fork (conservative-INPUT vs dissipative-Im χ-GATED), NOT a flat input, NOT DERIVED for the values",
+    }
+
+
+def tunneling_evanescent_decay_constant():
+    """[DERIVED-A (both the exact NR recovery and the KG correction, sympy-exact); WP-TUN-1 RESOLVED
+    2026-07-06] Reproduces the SSB.3.6 evanescent-tail tunneling check with an engine primitive, and
+    CORRECTS the V2-era claim. RESULT: the recovery of the standard decay constant is EXACT in the
+    non-relativistic (Schrodinger) limit (0%, not 5%); the leading deviation is a RELATIVISTIC (KG-parent)
+    correction controlled by (V-E)/mc^2 -- NOT the tunneling depth V0/E. So the V2-era '5% in the
+    deep-tunneling regime V0/E >= 5' figure is MIS-PARAMETRIZED and is DEMOTED, replaced by the derived
+    correction formula.
+
+    (1) NON-RELATIVISTIC RECOVERY [DERIVED-A, EXACT]. The linearized wave equation in the classically-
+        forbidden region V > E is the time-independent Schrodinger form  psi'' = (2m(V-E)/hbar^2) psi,
+        with the decaying solution psi ~ exp(-kappa_NR x) and
+            kappa_NR = sqrt(2 m (V-E)) / hbar   -- the STANDARD QM decay constant, recovered EXACTLY
+        (0% deviation; it is the defining equation of the forbidden-region tail, not a 5% approximation).
+
+    (2) RELATIVISTIC (KG-PARENT) CORRECTION [DERIVED-A, sympy-exact]. TWT's actual substrate wave equation
+        is the hyperbolic KG parent (SSB.3.7); a static potential gives, in the forbidden region,
+            -hbar^2 c^2 psi'' + m^2 c^4 psi = (E - V)^2 psi   =>   kappa_rel = sqrt(m^2 c^4 - (E-V)^2)/(hbar c),
+        with E the TOTAL relativistic energy (E = mc^2 + W, W the non-rel energy). Then
+            kappa_rel / kappa_NR = sqrt(1 - (V-E)/(2 m c^2))  ~  1 - (V-E)/(4 m c^2),
+        where (V-E) is the non-rel barrier-minus-energy. The deviation from standard QM is thus
+        (V-E)/(4 m c^2) at leading order -- a RELATIVISTIC ratio (barrier energy vs rest mass), which
+        reaches 5% at (V-E)/mc^2 ~ 0.195.
+
+    (3) THE V2 FIGURE, CORRECTED [DEMOTE]. '5% in the deep-tunneling regime V0/E >= 5' conflates two
+        different ratios: the deviation is set by (V-E)/mc^2 (relativistic), NOT by V0/E (tunneling depth).
+        For a deep barrier that is still non-relativistic ((V-E) << mc^2) the deviation is << 5% no matter
+        how large V0/E is; a 5% deviation needs (V-E) ~ 0.2 mc^2, a semi-relativistic barrier. So the V2
+        '5% at V0/E>=5' is MIS-PARAMETRIZED. Correct statement (now in SSB.3.6): EXACT NR recovery + a
+        relativistic correction (V-E)/(4mc^2) controlled by the barrier-to-rest-mass ratio.
+
+    TWT-specific candidate prediction (UNCHANGED, CANDIDATE): a further small deviation when the wave-train
+    extent and the barrier scale are comparable (leading-edge/barrier interference) -- not quantified.
+
+    self-check: the NR forbidden-region equation gives kappa_NR = sqrt(2m(V-E))/hbar exactly; the KG
+    forbidden-region decay gives kappa_rel/kappa_NR = sqrt(1 - (V-E)/(2mc^2)) (sympy-exact); the deviation
+    is controlled by (V-E)/mc^2 (relativistic), NOT V0/E; 5% deviation at (V-E)/mc^2 ~ 0.195."""
+    import sympy as sp
+    m, c, hbar, W, Vpot = sp.symbols('m c hbar W V_pot', positive=True)
+    DeltaV = Vpot - W                                   # (V - E), non-rel barrier minus energy (>0)
+
+    # (1) NR: the forbidden-region Schrodinger solution's decay constant (exact)
+    kappa_NR = sp.sqrt(2 * m * DeltaV) / hbar
+    x = sp.symbols('x', real=True)
+    psi = sp.exp(-kappa_NR * x)
+    nr_residual = sp.simplify(sp.diff(psi, x, 2) - (2 * m * DeltaV / hbar**2) * psi)
+    nr_exact = (nr_residual == 0)                        # exact solution => 0% deviation
+
+    # (2) KG: forbidden-region relativistic decay constant + the correction ratio
+    E_tot = m * c**2 + W
+    kappa_rel = sp.sqrt(m**2 * c**4 - (E_tot - Vpot)**2) / (hbar * c)
+    ratio_sq = sp.simplify(kappa_rel**2 / kappa_NR**2)
+    correction_form = 1 - DeltaV / (2 * m * c**2)
+    kg_matches = (sp.simplify(ratio_sq - correction_form) == 0)
+    leading = sp.series(sp.sqrt(correction_form), DeltaV, 0, 2).removeO()   # 1 - (V-E)/(4mc^2)
+    leading_ok = (sp.simplify(leading - (1 - DeltaV / (4 * m * c**2))) == 0)
+
+    # (3) the deviation is relativistic ((V-E)/mc^2), NOT V0/E; 5% at ~0.195
+    dev5_ratio = float(sp.nsolve(sp.sqrt(1 - sp.Symbol('r') / 2) - sp.Rational(95, 100), sp.Symbol('r'), 0.2))
+
+    assert nr_exact, "NR forbidden-region recovery of kappa_NR = sqrt(2m(V-E))/hbar must be EXACT (0%)"
+    assert kg_matches, "KG correction kappa_rel/kappa_NR must be sqrt(1 - (V-E)/(2mc^2))"
+    assert leading_ok, "leading deviation must be (V-E)/(4 m c^2)"
+    assert abs(dev5_ratio - 0.195) < 0.01, "5% deviation occurs at (V-E)/mc^2 ~ 0.195 (relativistic, not V0/E)"
+
+    return {
+        "tier": "DERIVED-A (exact NR recovery + sympy-exact KG correction) -- WP-TUN-1 resolved",
+        "nr_recovery": "EXACT: the forbidden-region Schrodinger equation gives kappa_NR = sqrt(2m(V-E))/hbar with 0% deviation (it is the defining equation, not a 5% approximation)",
+        "kg_correction": "kappa_rel/kappa_NR = sqrt(1 - (V-E)/(2 m c^2)) ~ 1 - (V-E)/(4 m c^2) -- the RELATIVISTIC correction; this is STANDARD relativistic QM (any KG particle gets it), recovered here from the substrate's KG parent (SSB.3.7), NOT a TWT-specific prediction. The TWT-specific deviation remains the (unquantified) wave-train/barrier-scale interference",
+        "deviation_controlled_by": "(V-E)/mc^2 (barrier energy vs rest mass), NOT V0/E (tunneling depth); 5% at (V-E)/mc^2 ~ 0.195",
+        "v2_figure_verdict": "DEMOTED: '5% in the deep-tunneling regime V0/E >= 5' is MIS-PARAMETRIZED (conflates the relativistic ratio with the tunneling depth); replaced by the derived correction",
+        "twt_candidate_deviation": "UNCHANGED (CANDIDATE): a further deviation when wave-train extent ~ barrier scale (leading-edge/barrier interference), not quantified",
+    }
+
+
+# ---- e4-conjugation is the L/Q projector, not the up/down projector (CAND 3 refutation / N28) ----
+def e4_conjugation_is_LQ_not_updown() -> dict:
+    """[DERIVED — exact Clifford, no toy] §19.9: (N28 / CAND 3 refutation, 2026-06-28)
+    The e4-conjugation C4(B) = e4·B·e4 on all 6 grade-2 bivectors:
+      L-orbit {e12,e13,e23} (no e4 index): C4(B) = +B  (eigenvalue +1)
+      Q-orbit {e14,e24,e34} (one e4 index): C4(B) = -B  (eigenvalue -1)
+    So P+(e4) = ½(1+C4) projects onto L-orbit = LEPTON sector;
+       P-(e4) = ½(1-C4) projects onto Q-orbit = QUARK sector.
+    Within Q-orbit, ALL THREE bivectors share eigenvalue -1 — NO sub-splitting into up/down.
+
+    INCOMMUTABILITY: C4 and the Hodge star (I4·) are INCOMMENSURABLE on grade-2.
+    C4 maps the SD generator (e12-e34) to the ASD generator (e12+e34); [C4,Hodge](sd)=2*asd != 0.
+    The L/Q splitting (C4) and the SD/ASD splitting (I4) are orthogonal projections of grade-2 -- no
+    basis simultaneously diagonalizes both.
+
+    CAND 3 REFUTED (2026-06-24 candidate file, helical-pitch-asymmetry): the claim is that
+    P+(e4) = ½(1+e4) acting on the intersection of SD and ASD bivector spaces algebraically fixes
+    the up/down mass-scaling exponent ratio. This fails on two independent counts:
+      1. P+(e4) is the L/Q projector: C4=+1 ↔ LEPTON; C4=-1 ↔ QUARK. Within the Q-orbit C4=-1
+         uniformly on {e14,e24,e34} — there is no e4-based sub-splitting into up vs down.
+      2. SD∩ASD = {0}: the SD and ASD subspaces are complementary; their intersection is trivial,
+         so there is no non-zero element for P+(e4) to act on differentially.
+
+    LOCATED GAP -- N28: tried e4-helicity P+/-(e4) as up/down projector within Q-orbit ->
+    REFUTED: P+/-(e4) is the L/Q (lepton/quark sector) projector; within Q, C4 = -1 uniformly;
+    SD/ASD and L/Q are incommensurable. Would change if: sec.9.6 EOM distinguishes SD vs ASD
+    dynamics of Q-orbit bivectors (a Layer-2 driven-dissipative distinction, not a static Clifford fact).
+
+    DERIVED-VS-GENERIC (sec.5 guardrail): the algebraic eigenvalue formula C4(B)=+/-B depending on
+    e4-index count is GENERIC for any Euclidean Clifford algebra with a distinguished e4. What is
+    SUBSTRATE-SPECIFIC is the CONCLUSION -- "C4 is the L/Q projector" -- because that requires the
+    Cl(4,0) orbit identification L-orbit=lepton sector, Q-orbit=quark sector (banked via I4_maps_L_to_Q,
+    not generic across dimensions). The DERIVED tag attaches to the conclusion, not the formula.
+
+    Consistent with: chirality_does_not_source_P (I4:Q->L => chirality blind on Q-orbit);
+    chiral_split_demo (SD/ASD mixes L and Q); chirality_is_a_reflection (parity<->SD/ASD, FRAMING)."""
+    e4 = e(4)
+    L_bivs = {"e12": e(1)*e(2), "e13": e(1)*e(3), "e23": e(2)*e(3)}
+    Q_bivs = {"e14": e(1)*e(4), "e24": e(2)*e(4), "e34": e(3)*e(4)}
+
+    def c4(B): return e4 * B * e4
+
+    L_eigs_ok = {name: (c4(B) == B) for name, B in L_bivs.items()}
+    Q_eigs_ok = {name: (c4(B) == (-1.0) * B) for name, B in Q_bivs.items()}
+
+    # Incommutability: C4 maps SD generator to ASD (they are not C4 eigenstates)
+    sd_gen  = e(1)*e(2) - e(3)*e(4)   # self-dual (I4 eigenvalue +1)
+    asd_gen = e(1)*e(2) + e(3)*e(4)   # anti-self-dual (I4 eigenvalue -1)
+    c4_sd_is_asd = (c4(sd_gen) == asd_gen)
+
+    I4 = e(1)*e(2)*e(3)*e(4)
+    comm = c4(I4 * sd_gen) - (I4 * c4(sd_gen))   # [C4, Hodge](sd_gen) = 2·asd_gen
+    comm_nonzero = (comm.terms != ())
+
+    assert all(L_eigs_ok.values()),   f"L-orbit C4 eigenvalue +1 check failed: {L_eigs_ok}"
+    assert all(Q_eigs_ok.values()),   f"Q-orbit C4 eigenvalue -1 check failed: {Q_eigs_ok}"
+    assert c4_sd_is_asd,              "C4 must map SD(e12-e34) -> ASD(e12+e34)"
+    assert comm_nonzero,              "[C4,Hodge] must be non-zero on grade-2 bivectors"
+
+    return {
+        "L-orbit C4(B)=+B (LEPTON sector)": L_eigs_ok,
+        "Q-orbit C4(B)=-B (QUARK sector)": Q_eigs_ok,
+        "C4 maps SD(e12-e34) -> ASD(e12+e34)": c4_sd_is_asd,
+        "[C4,Hodge](sd_gen) non-zero": comm_nonzero,
+        "Q-orbit: no sub-splitting (all C4=-1)": all(Q_eigs_ok.values()),
+        "DERIVED": (
+            "P+(e4)=L-projector (lepton sector); P-(e4)=Q-projector (quark sector); "
+            "within Q-orbit C4=-1 uniformly -- no up/down sub-split exists. "
+            "SD/ASD and L/Q are incommensurable on grade-2 (C4 maps SD<->ASD; [C4,Hodge]!=0)."
+        ),
+        "CAND3_REFUTED": (
+            "P+(e4) acting on SD^ASD cannot algebraically fix up/down scaling: "
+            "(1) P+(e4) is the L/Q splitter, not up/down; C4=-1 uniformly on Q. "
+            "(2) SD^ASD={0}; no non-zero element to act on."
+        ),
+        "N28_located_gap": (
+            "Tried e4-helicity P+/-(e4) as up/down projector within Q-orbit -> REFUTED. "
+            "Would change if: sec.9.6 EOM distinguishes SD vs ASD dynamics on Q-orbit (Layer-2)."
+        ),
+        "tier": "DERIVED (exact Clifford, all asserts pass) + LOCATED-GAP N28 (CAND 3 refuted)",
+    }
+
+
+# ======================================================================
+# §19/§17.4 BRIDGE: META-TIME-PHASE SAMPLING vs V_4^perp PROJECTION READING
+# (Brannen formula consequences under the §17.4 reidentification)
+# ======================================================================
+
+def metatime_brannen_vs_v4perp_projection_reach():
+    """[DERIVED + LOCATED-GAP] §17.4 (ii) vs §19.2 — the two Brannen-amplitude
+    readings AGREE on the harmonic FORM but DIFFER on the Brannen-coefficient
+    REACH at the empirical Koide value.
+
+    §19.2 V_4^perp projection picture: A_{ki} = sqrt(3)*(v_k, e_{i4}) with
+    v_k = d + (c/sqrt(2))*e_hat_k, giving a_k = 1 + c*cos(phi_i - phi_k).
+    Here c is FREE (the V_4^perp tilt magnitude); K = (2+c^2)/6 reaches the
+    empirical K = 2/3 at c = sqrt(2) (INPUT, exact-but-unforced, §19.4).
+
+    §17.4 meta-time-phase sampling picture: sqrt(m_n) = r^2(phi_n, tau=0) where
+    r is the position-orbit spatial radius. At the lepton boundary tau=0
+    (eps_l = 0):
+        r^2(phi, 0) = (d + cos(phi-psi))^2 + sin^2(phi-psi)
+                    = (1+d^2) + 2*d*cos(phi-psi),
+    so the normalized Brannen amplitude is a_n = (1+d^2)*(1 + c_norm*cos(phi_n-psi))
+    with c_norm = 2*d/(1+d^2). By AM-GM, |c_norm| <= 1 for all real d (equality
+    at d=1), so K <= (2+1)/6 = 1/2. Solving 2*d/(1+d^2) = sqrt(2) gives the
+    quadratic sqrt(2)*d^2 - 2*d + sqrt(2) = 0 with discriminant 4 - 8 = -4 < 0:
+    NO REAL d delivers c = sqrt(2). Hence the empirical K = 2/3 <=> c = sqrt(2)
+    is UNREACHABLE under this literal position-orbit sampling at tau = 0.
+
+    Q1 (projection-forced sqrt(2)): NO — §17.4 has no sqrt(2) projection factor
+    (d is the orbit-offset magnitude, c_norm = 2*d/(1+d^2) is a different
+    geometric ratio); the §19.2 sqrt(2) (the V_4^perp transverse/longitudinal
+    projection ratio |e_{i4}^perp|/(e_{i4}, d) = sqrt(2/3)/(1/sqrt(3)) = sqrt(2))
+    has no counterpart here.
+
+    Q2 (Foot 45°): NO at tau = 0 — Foot 45° requires K = 2/3 (cos^2(theta) =
+    1/(3K) = 1/2). The §17.4 sampling caps K at 1/2 (at d=1, c_norm=1), giving
+    max Foot angle acos(sqrt(2/3)) ≈ 35.26°, NOT 45°.
+
+    Q3 (new structural constraint): YES — the bound c_norm <= 1 from
+    c_norm = 2*d/(1+d^2) is a structural constraint absent in §19.2. But it
+    DISAGREES with empirical c = sqrt(2), so it does NOT bank as a new
+    derivation; it functions as evidence that the literal §17.4 sampling reading
+    is INCOMPLETE as a route to the Brannen value (it captures the form but not
+    the magnitude).
+
+    Status:
+    - The two pictures SHARE the modified-Brannen harmonic FORM at tau=0
+      (deferent + cosine; no cos3/cos4) — engine-checked by
+      mass_measure_from_omega.
+    - The two pictures DIFFER on the Brannen c-reach: §19.2 free (INPUT
+      sqrt(2)); §17.4 bounded by 1 at lepton boundary.
+    - The §17.4 meta-time-phase reidentification (the *which* operator is the
+      generation operator) is DERIVED, engine-verified by
+      generation_z3_is_metatime_phase. The reading does NOT supply an
+      INDEPENDENT geometric derivation of c = sqrt(2); the V_4^perp picture's
+      INPUT status of c = sqrt(2) survives the reidentification.
+
+    This sharpens §19.4: the meta-time-phase sampling route is a additional closed
+    forcing-route for c = sqrt(2) (after the six listed in §19.4's table); the
+    §17.4 reidentification does NOT add a fresh derivation of K = 2/3. The
+    'would-change-if' handle: if the sampled amplitude were embedded in a larger
+    geometric construction (e.g., adding the e_4-dip even at the lepton
+    boundary, or rescaling by an additional V_4^perp factor) that restores the
+    c-reach to include sqrt(2), the bridge §17.4 <-> §19.2 at the Koide value
+    could close. Until then, the two pictures are bridged at the FORM level
+    only.
+
+    OUTCOME: LOCATED-GAP-REFINED.
+    """
+    import numpy as np
+
+    # The V_4^perp picture: c free, K = (2+c^2)/6 hits 2/3 at c = sqrt(2).
+    c_target = math.sqrt(2.0)
+    K_v4perp_at_c_sqrt2 = (2.0 + c_target * c_target) / 6.0
+    assert abs(K_v4perp_at_c_sqrt2 - 2.0/3.0) < 1e-12, \
+        "V_4^perp picture must give K=2/3 at c=sqrt(2)"
+
+    # The §17.4 sampling picture: c_norm = 2d/(1+d^2), max 1 at d=1.
+    ds = np.linspace(-5.0, 5.0, 4001)
+    c_norms = 2.0 * ds / (1.0 + ds * ds)
+    c_norm_max = float(np.max(np.abs(c_norms)))
+    assert abs(c_norm_max - 1.0) < 1e-12, \
+        "c_norm = 2d/(1+d^2) max must be 1 at d=1"
+
+    # No real d gives c_norm = sqrt(2): discriminant of sqrt(2)*d^2 - 2d + sqrt(2) = 0 is -4.
+    disc = 4.0 - 4.0 * math.sqrt(2.0) * math.sqrt(2.0)
+    assert disc < 0, "no real d yields c_norm = sqrt(2)"
+
+    # Numerical K-reach: sample tau=0 at several d and psi=delta_L=0.2222.
+    psi = 0.2222
+    Ks = []
+    for d in [0.3, 0.5, 0.7, 0.9, 1.0, 1.1, 1.3, 1.5, 2.0]:
+        a = [(d + math.cos(2.0 * math.pi * n / 3.0 - psi)) ** 2
+             + math.sin(2.0 * math.pi * n / 3.0 - psi) ** 2
+             for n in range(3)]
+        m = [ak * ak for ak in a]
+        K = sum(m) / (sum(math.sqrt(mk) for mk in m)) ** 2
+        Ks.append(K)
+    K_max_sampled = max(Ks)
+    assert K_max_sampled <= 0.5 + 1e-9, \
+        f"§17.4 K-reach must be <= 1/2 at tau=0 (got {K_max_sampled})"
+    assert K_max_sampled < 2.0 / 3.0 - 0.05, \
+        "K=2/3 must NOT be reached by §17.4 sampling at tau=0"
+
+    # Max Foot angle at K=1/2: cos^2(theta) = 1/(3K) = 2/3, theta = acos(sqrt(2/3)).
+    foot_max_at_K_half_deg = math.degrees(math.acos(math.sqrt(2.0 / 3.0)))
+
+    return {
+        "v4perp_picture": {
+            "formula": "a_k = 1 + c*cos(phi_i - phi_k); c FREE",
+            "K_at_c_sqrt2": K_v4perp_at_c_sqrt2,
+            "projection_factor": "sqrt(2) = |e_i4^perp|/(e_i4,d) = sqrt(2/3)/(1/sqrt(3))",
+            "projection_factor_role": "v_k = d + (c/sqrt(2))*e_hat_k -- makes the Brannen cos-coefficient be c (not c/sqrt(2) or c*sqrt(2))",
+        },
+        "metatime_sampling_picture": {
+            "formula": "a_n = (1+d^2) + 2d*cos(phi_n - psi) at tau=0",
+            "c_norm": "c_norm = 2d/(1+d^2)",
+            "c_norm_max": c_norm_max,
+            "K_cap_at_tau0": 0.5,
+            "K_max_sampled_at_psi_eq_deltaL": round(K_max_sampled, 6),
+            "discriminant_for_c_norm_eq_sqrt2": disc,
+            "foot_max_at_tau0_deg": round(foot_max_at_K_half_deg, 4),
+        },
+        "shared_structure": (
+            "the harmonic FORM at tau=0 (deferent + cosine, no cos3/cos4) -- the modified-Brannen form"
+        ),
+        "different_structure": (
+            "Brannen c-reach: V_4^perp free (INPUT to sqrt(2)); metatime bounded by 1 at tau=0"
+        ),
+        "Q1_projection_forced_sqrt2_in_metatime": (
+            "NO -- §17.4 has no sqrt(2) projection factor; d is the orbit-offset, "
+            "c_norm = 2d/(1+d^2) is the orbit-offset ratio bounded by 1"
+        ),
+        "Q2_foot_45deg_in_metatime_at_tau0": (
+            "NO -- max Foot at K=1/2 is acos(sqrt(2/3)) ~ 35.26deg, NOT 45deg"
+        ),
+        "Q3_new_constraint": (
+            "c_norm <= 1 at tau=0 is a structural BOUND not present in §19.2, but it "
+            "DISAGREES with empirical c=sqrt(2); functions as evidence the literal §17.4 "
+            "sampling reading is INCOMPLETE as a route to the Brannen value"
+        ),
+        "role_in_§19.4_forcing_table": (
+            "a STRUCTURAL INCOMPLETENESS at the lepton boundary tau=0 (c_norm capped at 1, c=sqrt(2) unreachable) — meta-time-phase sampling at "
+            "lepton boundary tau=0 caps K at 1/2; c=sqrt(2) is structurally unreachable. "
+            "The six §19.4 routes (parametric drive, generic dynamics, BPS, chiral standing-"
+            "wave, wavefront-null, topological/Hopf) plus this seventh remain all NEGATIVE"
+        ),
+        "would_change_if": (
+            "the §17.4 sampling were embedded in a larger geometric construction (extra "
+            "V_4^perp rescaling, or e_4-dip even at the lepton boundary) that restored the "
+            "c-reach to include sqrt(2)"
+        ),
+        "verdict": (
+            "LOCATED-GAP-REFINED -- two pictures bridge at the harmonic FORM, diverge at "
+            "the Brannen VALUE; the §17.4 reidentification does NOT add a fresh derivation "
+            "of K=2/3; INPUT status of c=sqrt(2) survives."
+        ),
+        "remaining_closure_route": (
+            "§9.6 driven-dissipative kernel + vortex-worldsheet "
+            "convolution producing the (19/2)sqrt(38) ratio."
+        ),
+    }
+
+
+# =============================================================================
+# V2 §3.2 systematic application audit — §26.4 path (vi) sweep (2026-06-30)
+# =============================================================================
+# Bank the audit OUTCOME as an engine-checkable primitive (canon §10): a
+# confirmed 'still FRAMING after V2 §3.2 audit' is a banking-worthy result per
+# canon §4; an audit-record primitive lets the harness self-detect drift if
+# any of these residuals are later promoted (the counts will need to update).
+
+def v2_section_3_2_audit_log() -> dict:
+    """[FRAMING — audit-record primitive; banking-worthy per canon §4]
+    §26.4 path (vi): V2 §3.2 SYSTEMATIC AUDIT sweep across engine FRAMING/CANDIDATE
+    primitives, asking whether the matter-as-defect + spatial<->meta-time-rotor I_4
+    Hodge coupling now FORCES any previously-asserted result.
+
+    PRECEDENT (5 V2 §3.2 unblockings explicitly named in §26.4):
+      * M-4              — Q_u/Q_d charge-split coherence under the SD<->ASD mirror
+      * W-LIVE-2 / M-6'  — up=SD chirality identification (V1 FRAMING -> V2 DERIVED)
+      * W-LIVE-3         — rich-branch memory kernel chosen (engine fork OPEN, leans hysteretic)
+      * W-LIVE-5         — baryon = one circular winding with three orthogonal facets
+      * W-LIVE-6         — Willis planetary-gear apparatus removed; V2 §3.2 ontology stands alone
+
+    AUDIT OUTCOME (this pass, 2026-06-30) — TWO BANKED FINDINGS:
+
+    *** FINDING 1 — A SIXTH V2 §3.2 UNBLOCKING HAS ALREADY LANDED (audit recognizes,
+    does not derive). ***  The Born projection subspace §14.4 was previously tagged
+    in V1 as 'the complex structure of the wavefront-Schrödinger sector' — partially
+    CIRCULAR with §14.2. V2 §3.2's soliton-background ansatz `Psi_def = F(chi) B_a
+    s_0 q_h(tau_5)` with a single chosen winding direction `B_a` from the L-orbit
+    triplet REPLACES the circular identification with a one-way derivation chain:
+        V2 §3.2  ==>  centralizer({e_4, B_a}) within Cl+(4,0) = {1, B}
+                 ==>  complex structure (i := B with B^2 = -1)
+                 ==>  Born projection
+    The engine primitive `born_subspace_one_B_forced` is now DERIVED-A (engine-exact
+    centralizer computation; all three L-orbit choices B_a in {e_12, e_13, e_23}
+    give the same closed {1, B} subalgebra). V2 paper §14.4 explicitly carries the
+    new 'forced by V2 §3.2, not stipulated' framing.
+    §26.4 path (vi) currently says 'Five V2 §3.2 unblockings have been banked';
+    the correct count is now SIX. W-REVIEW-P10 in the worklist still flags the
+    §14.4 deeper derivation as 'a sixth potential V2 unblocking candidate beyond
+    W-LIVE-5'; that flag is now ALREADY-LANDED.
+
+    *** FINDING 2 — NO SEVENTH UNBLOCKING THIS PASS (LOCATED-GAP-REFINED). ***
+    The 20 FRAMING/CANDIDATE engine primitives (this pass's sweep) categorize as:
+
+      (a) ALREADY-CONSISTENT with V2 §3.2 at current tier:
+          matter_stability_outside_frame, equivalence_principle_protection,
+          sakharov_xi_minimal_coupling.
+      (b) #1-gap-gated (§9.6 dynamics):
+          theta_rel_universality_located, eom_constraint_class,
+          eom_invariant_variant_audit, eom_compatible_field_forks (additionally
+            carries an inline [ASSERTED] for Z3-merge exhaustiveness — labeled),
+          protection_mechanism_located, subharmonic_transition_cost,
+          cp_chirality_90_120_mismatch, generation_loose_windows_vacuum_relative,
+          charge_in_the_window_picture, vacuum_relative_map_and_cp_commensurability,
+          gluon_octet_symmetric_space_split.
+      (c) L3 deep-gate (texture tetrad):
+          texture_metric_candidate, sakharov_induced_gravity,
+          gravitating_vacuum_energy, lambda_resolution_structure.
+      (d) Ontological consolidation; open residual independent of V2 §3.2:
+          generations_dynamical_count_structural,
+          baryon_mass_shared_rotor_nonadditive.
+    Each was checked under V2 §3.2 + I_4 Hodge coupling; none promote on this pass.
+
+    NAMED BRIEF CANDIDATES (per §26.4 path (vi)):
+      * §14.6 spin-statistics (W-LIVE-4): previously audited; the collective coord
+        A(t) and meta-time rotor q_h(tau_5) are independent SU(2) actions on the
+        same defect, coupling NOT directly forced. Stays 'compatible with, not
+        forced in pure SU(2)'.
+      * §16.6 L2 mechanism (nu_L2 = 3pi/2; Delta_nu_K = pi - 3 ~ 0.14 anomalous
+        vortex dimension): CS at Hopf k=1 gives eta_v^CS = 19/(8 pi) ~ 0.756 — a
+        ~5x overshoot of the required 0.14 (engine-verified: 0.7560/0.1416 = 5.34).
+        V2 §3.2 supplies the spatial<->meta-time-rotor coupling STRUCTURALLY (the
+        two-faces identification) but does NOT supply a reducing factor that scales
+        0.756 -> 0.14. Mechanism STAYS unidentified; tag CANDIDATE (paper §16.6
+        already).
+      * Colour / weak-isospin sector FRAMING: all located-gap or #1-gap-gated;
+        no V2 §3.2 forcing.
+      * 'ASSERTED' inline tags in substrate dynamics: single instance in
+        eom_compatible_field_forks (Z3-merge exhaustiveness); already documented.
+
+    WOULD CHANGE IF: (i) closure of the #1 gap §9.6 driven-dissipative kernel
+    reveals a structural coupling beyond §3.2 that promotes a category-(b) item;
+    (ii) the texture tetrad (item 16) supplies the L3-deep spin-connection that
+    promotes category-(c) items; (iii) a new ontology extension beyond V2 §3.2
+    (e.g. a §3.4 wave-drive refinement) supplies forcing for category-(d).
+
+    NET. Six V2 §3.2 unblockings now banked (including the §14.4 sixth recognized
+    here); the seventh is not §3.2-reachable on the current substrate map.
+
+    Tier: FRAMING (audit record). The audit OUTCOME is banking-worthy per canon §4.
+    This primitive does NOT derive anything new; it RECORDS the sweep outcome and
+    the recognized sixth unblocking, neither of which the engine harness can
+    self-detect without an explicit primitive.
+
+    self-check: 20 engine FRAMING/CANDIDATE primitives swept, 4 categories cover
+    them exhaustively; 5 prior + 1 newly-recognized sixth = 6 total banked."""
+    n_audited = 20
+    n_promotions_this_pass = 0
+    n_recognized_already_landed = 1
+    n_prior_unblockings = 5
+    n_total_unblockings = n_prior_unblockings + n_recognized_already_landed
+    out = {
+        "n_engine_framings_swept": n_audited,
+        "n_promotions_derived_this_pass": n_promotions_this_pass,
+        "n_unblockings_recognized_already_landed_this_pass": n_recognized_already_landed,
+        "n_prior_named_unblockings": n_prior_unblockings,
+        "n_total_banked_unblockings": n_total_unblockings,
+        "named_unblockings": [
+            "M-4 (Q_u/Q_d charge-split coherence under SD<->ASD mirror)",
+            "W-LIVE-2 / M-6' (up=SD chirality identification)",
+            "W-LIVE-3 (rich-branch memory kernel)",
+            "W-LIVE-5 (baryon = one circular winding with three orthogonal facets)",
+            "W-LIVE-6 (Willis gear retired; V2 §3.2 ontology stands alone)",
+            "RECOGNIZED-HERE: §14.4 Born subspace = centralizer({e_4, B_a}) within Cl+(4,0); "
+            "engine `born_subspace_one_B_forced` DERIVED-A; W-REVIEW-P10 'sixth candidate' "
+            "is ALREADY-LANDED in V2 paper + engine, not a future task",
+        ],
+        "category_a_already_consistent": [
+            "matter_stability_outside_frame",
+            "equivalence_principle_protection",
+            "sakharov_xi_minimal_coupling",
+        ],
+        "category_b_one_gap_gated": [
+            "theta_rel_universality_located",
+            "eom_constraint_class",
+            "eom_invariant_variant_audit",
+            "eom_compatible_field_forks",
+            "protection_mechanism_located",
+            "subharmonic_transition_cost",
+            "cp_chirality_90_120_mismatch",
+            "generation_loose_windows_vacuum_relative",
+            "charge_in_the_window_picture",
+            "vacuum_relative_map_and_cp_commensurability",
+            "gluon_octet_symmetric_space_split",
+        ],
+        "category_c_L3_deep_gate": [
+            "texture_metric_candidate",
+            "sakharov_induced_gravity",
+            "gravitating_vacuum_energy",
+            "lambda_resolution_structure",
+        ],
+        "category_d_ontology_consolidation": [
+            "generations_dynamical_count_structural",
+            "baryon_mass_shared_rotor_nonadditive",
+        ],
+        "named_brief_candidates_outcome": {
+            "section_14_6_spin_statistics_W_LIVE_4":
+                "previously audited (W-LIVE-4); stays 'compatible-with-not-forced'",
+            "section_16_6_L2_mechanism":
+                "CS overshoot ~5.34x (eta_v^CS = 0.756 vs required Delta_nu_K = pi-3 = 0.142); "
+                "V2 §3.2 supplies no reducing factor; mechanism stays CANDIDATE",
+            "colour_weak_isospin_FRAMING":
+                "all located-gap or #1-gap-gated; no V2 §3.2 forcing",
+            "ASSERTED_substrate_dynamics_inline":
+                "single inline [ASSERTED] in eom_compatible_field_forks (Z3-merge "
+                "exhaustiveness); already labeled honestly",
+        },
+        "would_change_if":
+            "(i) #1-gap closure (§9.6 kernel) supplies a category-(b) coupling beyond §3.2; "
+            "(ii) texture tetrad (item 16) supplies the L3-deep coupling for category-(c); "
+            "(iii) a §3.x ontology extension supplies forcing for (d).",
+        "owed_documentation_updates": [
+            "V2 paper §26.4 path (vi): 'Five V2 §3.2 unblockings' -> 'Six', name §14.4",
+            "V2 paper §26.5: 'five structural unblockings' -> 'six structural unblockings'",
+            "Worklist W-REVIEW-P10: mark ALREADY-LANDED (engine-banked + paper-installed)",
+        ],
+        "verdict":
+            "LOCATED-GAP-REFINED per canon §4: sweep produced (a) RECOGNITION that the "
+            "§14.4 Born-subspace unblocking is the sixth V2 §3.2 unblocking, already "
+            "landed in engine + paper but uncounted in §26.4; (b) NO seventh promotion "
+            "this pass — the remaining FRAMING/CANDIDATE residuals are dynamics- or "
+            "deep-gate-gated.",
+        "tier": "FRAMING (audit record); banking-worthy per canon §4",
+    }
+    n_categorized = (len(out["category_a_already_consistent"])
+                     + len(out["category_b_one_gap_gated"])
+                     + len(out["category_c_L3_deep_gate"])
+                     + len(out["category_d_ontology_consolidation"]))
+    assert n_categorized == n_audited, f"category coverage mismatch: {n_categorized} != {n_audited}"
+    assert n_total_unblockings == 6
+    assert n_promotions_this_pass == 0
+    assert n_recognized_already_landed == 1
+    assert len(out["named_unblockings"]) == n_total_unblockings
+    return out
+
+
+# ======================================================================
+# ADJUDICATION CONSOLIDATED BANK — chunk 2 (2026-08-12)
+# ======================================================================
+# Source: knowledge/candidates/probes_2026-08-02/ADJUDICATION_2026-08-03.md
+# (governing record of probes 1/2/2b/3/3b; "Bankable now as DERIVED-A" items
+# 1-5 and 8) and ADJUDICATION2_2026-08-03.md ("What SURVIVES" item 1).
+# Four primitives (+ helpers _a1_*):
+#   A12-1 conjugating_extension_omega_identities — probe-1 Omega-identities
+#         (items 1-3: |Om4| = k4/2 one-sided; conjugating Om4 closed form +
+#         the CORRECTED vanishing locus; <AXA~>_0 = <X>_0; Q-span preservation)
+#   A12-2 alpha_family_parallelogram_law        — items 3-4 (same-axis composite
+#         == alpha family; Delta_kin closed form; argmin = 1/2; retractions carried)
+#   A12-3 ecarrier_matched_defect_hblock_null   — item 8 (E-carrier h == 0 exact;
+#         the reverse-is-not-inverse trap; ruling-R1 h-null consonance leg)
+#   A12-4 lambda_perp_anw_half_theta            — ADJUDICATION2 item 1 (Lambda_perp
+#         density closed form; Lambda_perp = (1/2) Theta_ANW; Lambda = 32.1561;
+#         ANW-reproduction certificate)
+# Probe provenance (documentation only; every check is self-contained):
+# h0k_variational_probe1.py, carrier_probe2.py, carrier_probe2b_Ecarrier.py,
+# probe4_two_ladders.py.
+# ======================================================================
+
+
+def _a1_g0(X):
+    """Helper: scalar-grade coefficient of an MV, as a float."""
+    return float(dict(X.terms).get((), 0.0))
+
+
+def _a1_maxcoeff(X):
+    """Helper: coefficient-level magnitude max|c| over the blades of X.
+    NOT nrm2 of a difference: MV.from_dict prunes coefficients below 1e-12,
+    so the norm of a small difference multivector can collapse to exactly 0
+    — a vacuous metric (the probe-1 live catch)."""
+    return max((abs(c) for c in dict(X.terms).values()), default=0.0)
+
+
+def _a1_coeffdiff(A, B):
+    """Helper: float-level per-blade max |a - b| over the union of blades of
+    A and B (the subtraction happens in Python floats, never inside MV
+    arithmetic, so MV pruning cannot mask a real disagreement)."""
+    da, db = dict(A.terms), dict(B.terms)
+    return max((abs(da.get(k, 0.0) - db.get(k, 0.0))
+                for k in set(da) | set(db)), default=0.0)
+
+
+def _a1_nrm2(X):
+    """Helper: <X X~>_0 (use only on O(1) objects, never on small differences)."""
+    return _a1_g0(X * X.reverse())
+
+
+def _a1_comm(A, B):
+    return A * B - B * A
+
+
+def _a1_qhat(v):
+    """Helper: the Q-blade unit direction v -> v1*e14 + v2*e24 + v3*e34."""
+    return float(v[0]) * e(1, 4) + float(v[1]) * e(2, 4) + float(v[2]) * e(3, 4)
+
+
+def _a1_expu(u, half):
+    """Helper: exp(u*half) for u^2 = -1."""
+    import math as _m
+    return _m.cos(half) * SCALAR + _m.sin(half) * u
+
+
+def _a1_hedgehog(x, f, fp):
+    """Helper: B=1 Q-orbit hedgehog at the point x (3-seq) with profile VALUE f
+    and derivative fp at r = |x|. Returns (R_h, [o_1, o_2, o_3]) with the
+    corpus's analytic MC decomposition o_k = (d_k f) n + s c (d_k n) - s^2 n (d_k n)
+    (texture_matter_gravity_coupling form; FD-verified in probes 1/2/4)."""
+    import math as _m
+    r = _m.sqrt(x[0] ** 2 + x[1] ** 2 + x[2] ** 2)
+    n = (x[0] / r, x[1] / r, x[2] / r)
+    s, c = _m.sin(f), _m.cos(f)
+    nmv = _a1_qhat(n)
+    Rh = c * SCALAR + s * nmv
+    o = []
+    for k in range(3):
+        dkn = [((1.0 if i == k else 0.0) - n[i] * n[k]) / r for i in range(3)]
+        dmv = _a1_qhat(dkn)
+        o.append((fp * n[k]) * nmv + (s * c) * dmv - (s * s) * (nmv * dmv))
+    return Rh, o
+
+
+def conjugating_extension_omega_identities():
+    """[DERIVED-A] The Omega-identities of the R-128 mass-lock extensions over
+    the B=1 Q-orbit hedgehog — probe 1's exact algebra, banked per
+    ADJUDICATION_2026-08-03 items 1-3 with the corrected vanishing locus.
+    Lock axis u = I4*Qhat(a), k4 = omega/c_meta.
+
+    FACTS (all engine-checked here, coefficient-level):
+      (1) ONE-SIDED extensions (rigid R_h(x)*exp(u k4 x4/2) and co-rotating
+          R_h(x)*exp(u(x) k4 x4/2), u(x) = I4*Qhat(rhat)): |Omega_4| = k4/2
+          everywhere, exactly (Omega_4 = (k4/2)u resp. (k4/2)u(x); FD-verified).
+      (2) CONJUGATING extension R = A(x4) R_h A(x4)~, A = exp(u k4 x4/2):
+          Omega_4 = (k4/2)(R^-1 u R - u), FD-verified, with the closed magnitude
+          |Omega_4|^2 = k4^2 sin^2 f (1 - (n.a)^2) — hence the VANISHING LOCUS is
+          {sin f = 0} UNION {n = +/- a, the whole lock-axis ray}. THE CORRECTION
+          BANKED (reviewer P1-1): the probe memo's 'core and infinity' gloss was
+          INCOMPLETE — the lock-axis ray vanishes at every radius too.
+      (3) <A X A~>_0 = <X>_0 for ANY rotor A (cyclic scalar-grade identity):
+          the conjugating class is invisible to the observer's scalar
+          (mass-line) quadrature identically — R-127's mass phase cannot live on
+          a purely conjugating extension.
+      (4) Conjugation by exp(u theta/2), u = I4*Qhat(a), preserves the Q-blade
+          span: A Qhat(n) A~ has NO coefficient outside {e14, e24, e34}, so the
+          conjugated hedgehog rotor A R_h A~ stays in span{1, Q-blades} and its
+          u-blade (L-orbit) coefficient is exactly absent.
+    FENCES: kinematic identities of the named extension families only — no cost
+    hierarchy, no vacuum-branch selection here (probe 1's cost table F-2/F-3 is
+    conditional on the static-vacuum premise and is NOT banked by this entry);
+    uniqueness of the conjugating class is banked ONLY within the global
+    two-sided family L(x4) R_h M(x4) up to a constant rotor (item 2 scope — the
+    'unique finite-cost family' headline was over-broad and is not asserted).
+    Zero-checks sit below the MV pruning floor (1e-12): certified jointly by the
+    float-level per-blade metric and the closed-form magnitude in (2)."""
+    # runtime: ~0.1s
+    import math as _m
+    import random as _rd
+
+    K4 = 0.8317                      # probe value; identities are k4-independent
+    AXIS = (0.0, 0.0, 1.0)
+    U = I4 * _a1_qhat(AXIS)
+    rng = _rd.Random(20260812)
+
+    def _prof(r):
+        return _m.pi * _m.exp(-r), -_m.pi * _m.exp(-r)
+
+    def _Rfull(ext, x, x4):
+        r = _m.sqrt(x[0] ** 2 + x[1] ** 2 + x[2] ** 2)
+        f, _ = _prof(r)
+        Rh, _o = _a1_hedgehog(x, f, 0.0)
+        if ext == "rigid":
+            return Rh * _a1_expu(U, K4 * x4 / 2)
+        if ext == "corot":
+            n = (x[0] / r, x[1] / r, x[2] / r)
+            return Rh * _a1_expu(I4 * _a1_qhat(n), K4 * x4 / 2)
+        A = _a1_expu(U, K4 * x4 / 2)
+        return A * Rh * A.reverse()
+
+    def _Om4_fd(ext, x, x4, d=1e-6):
+        R = _Rfull(ext, x, x4)
+        return R.reverse() * ((1.0 / (2 * d)) * (_Rfull(ext, x, x4 + d)
+                                                 - _Rfull(ext, x, x4 - d)))
+
+    # --- (1) + (2): FD vs closed forms at seeded generic points
+    worst_fd = {"rigid": 0.0, "corot": 0.0, "conj": 0.0}
+    worst_norm = 0.0
+    for _ in range(8):
+        x = tuple(rng.uniform(-2.2, 2.2) for _ in range(3))
+        r = _m.sqrt(sum(c * c for c in x))
+        if r < 0.35:
+            continue
+        x4 = rng.uniform(-3.0, 3.0)
+        n = (x[0] / r, x[1] / r, x[2] / r)
+        # rigid / corot analytic Omega_4
+        for ext, uax in (("rigid", U), ("corot", I4 * _a1_qhat(n))):
+            ana = (K4 / 2) * uax
+            worst_fd[ext] = max(worst_fd[ext],
+                                _a1_coeffdiff(_Om4_fd(ext, x, x4), ana))
+            worst_norm = max(worst_norm,
+                             abs(_a1_nrm2(ana) * 4.0 / K4 ** 2 - 1.0))
+        # conjugating closed form (k4/2)(R^-1 u R - u), R the full configuration
+        R = _Rfull("conj", x, x4)
+        ana = (K4 / 2) * (R.reverse() * U * R - U)
+        worst_fd["conj"] = max(worst_fd["conj"],
+                               _a1_coeffdiff(_Om4_fd("conj", x, x4), ana))
+    assert all(1e-13 < v < 5e-8 for v in worst_fd.values()), \
+        "analytic Omega_4 must match FD at FD-noise level (0.0 would be vacuous)"
+    assert worst_norm < 1e-14, "one-sided |Omega_4| = k4/2 must be exact"
+
+    # --- (2) locus certificate, parametric in (f, n) at x4 = 0 (A = 1 there;
+    #     the FD check above already covers x4 != 0)
+    def _Om4_conj_param(f, n):
+        Rh = _m.cos(f) * SCALAR + _m.sin(f) * _a1_qhat(n)
+        return (K4 / 2) * (Rh.reverse() * U * Rh - U)
+
+    NGEN = [(0.6, 0.0, 0.8), (0.0, 1.0, 0.0),
+            (0.5345224838248488, 0.2672612419124244, 0.8017837257372732),
+            (0.1, 0.0, 0.99498743710662)]          # incl. a near-axis direction
+    FGEN = (0.4, 1.2, 2.7)
+    on_locus = 0.0
+    for f in (0.0, _m.pi):                          # sin f = 0
+        for n in NGEN:
+            on_locus = max(on_locus, _a1_maxcoeff(_Om4_conj_param(f, n)))
+    for f in FGEN:                                  # the whole lock-axis ray
+        for n in ((0.0, 0.0, 1.0), (0.0, 0.0, -1.0)):
+            on_locus = max(on_locus, _a1_maxcoeff(_Om4_conj_param(f, n)))
+    off_locus_min, mag_dev = float("inf"), 0.0
+    for f in FGEN:
+        for n in NGEN:
+            O = _Om4_conj_param(f, n)
+            d = n[2]                                # n . a with a = e_z
+            mag_dev = max(mag_dev, abs(_a1_nrm2(O)
+                          - K4 ** 2 * _m.sin(f) ** 2 * (1 - d * d)))
+            off_locus_min = min(off_locus_min, _a1_maxcoeff(O))
+    assert on_locus < 1e-14, "Omega_4 must vanish on {sin f = 0} U {n = +/- a}"
+    assert mag_dev < 1e-13, "|Omega_4|^2 = k4^2 sin^2 f (1 - (n.a)^2) exact"
+    assert off_locus_min > 1e-3, "Omega_4 must be visibly nonzero off the locus"
+
+    # --- (3) <A X A~>_0 = <X>_0 for rotors A, X random over all 16 Cl(4,0) blades
+    import itertools as _it
+    blades = [e(*idx) if idx else SCALAR
+              for g in range(5) for idx in _it.combinations(range(1, 5), g)]
+    worst_scalar = 0.0
+    for _ in range(6):
+        A = (_a1_expu(e(1, 2), rng.uniform(-2, 2))
+             * _a1_expu(e(1, 4), rng.uniform(-2, 2))
+             * _a1_expu(e(2, 3), rng.uniform(-2, 2)))
+        X = 0.0 * SCALAR
+        for B in blades:
+            X = X + rng.uniform(-1, 1) * B
+        worst_scalar = max(worst_scalar,
+                           abs(_a1_g0(A * X * A.reverse()) - _a1_g0(X)))
+    assert worst_scalar < 1e-12, "<A X A~>_0 = <X>_0 for rotors"
+
+    # --- (4) Q-span preservation + u-blade coefficient exactly absent
+    QKEYS = {(1, 4), (2, 4), (3, 4)}
+    worst_leak = 0.0
+    worst_ublade = 0.0
+    for _ in range(6):
+        a = [rng.gauss(0, 1) for _ in range(3)]
+        na = _m.sqrt(sum(c * c for c in a)); a = [c / na for c in a]
+        nn = [rng.gauss(0, 1) for _ in range(3)]
+        nb = _m.sqrt(sum(c * c for c in nn)); nn = [c / nb for c in nn]
+        ua = I4 * _a1_qhat(a)
+        A = _a1_expu(ua, rng.uniform(-2, 2))
+        img = A * _a1_qhat(nn) * A.reverse()
+        worst_leak = max(worst_leak,
+                         max((abs(c) for k, c in dict(img.terms).items()
+                              if k not in QKEYS), default=0.0))
+        f = rng.uniform(0.3, 2.8)
+        Rc = A * (_m.cos(f) * SCALAR + _m.sin(f) * _a1_qhat(nn)) * A.reverse()
+        dr = dict(Rc.terms)
+        worst_ublade = max(worst_ublade,
+                           max((abs(dr.get(k, 0.0)) for k in dict(ua.terms)),
+                               default=0.0))
+        worst_leak = max(worst_leak,
+                         max((abs(c) for k, c in dr.items()
+                              if k not in QKEYS and k != ()), default=0.0))
+    assert worst_leak < 1e-14, "conjugation must preserve the Q-blade span"
+    assert worst_ublade < 1e-14, "u-blade coefficient of A R_h A~ exactly absent"
+
+    return {
+        "tier": "DERIVED-A",
+        "one-sided |Om4| = k4/2 (worst |4|Om4|^2/k4^2 - 1|)": worst_norm,
+        "FD vs analytic Om4, worst coeff (rigid, corot, conj)": (
+            worst_fd["rigid"], worst_fd["corot"], worst_fd["conj"]),
+        "conj Om4 on the locus {sin f = 0} U {n = +/- a} (worst coeff)": on_locus,
+        "conj |Om4|^2 = k4^2 sin^2 f (1-(n.a)^2) (worst dev)": mag_dev,
+        "conj Om4 off-locus visibility (min maxcoeff)": off_locus_min,
+        "<A X A~>_0 - <X>_0 (worst)": worst_scalar,
+        "Q-span leak under conjugation (worst coeff)": worst_leak,
+        "u-blade coefficient of A R_h A~ (worst)": worst_ublade,
+        "locus correction": ("'core and infinity' gloss INCOMPLETE — the whole "
+                             "lock-axis ray n = +/- a vanishes too (ADJUDICATION_"
+                             "2026-08-03 item 1, reviewer P1-1)"),
+        "fence": ("kinematic identities only; cost table / vacuum-branch NOT "
+                  "banked; two-sided uniqueness only within L(x4) R_h M(x4) up "
+                  "to a constant rotor"),
+    }
+
+
+def alpha_family_parallelogram_law():
+    """[DERIVED-A] The alpha-family (carrier-phase split) cost algebra — probe 2's
+    corrected claim set, banked per ADJUDICATION_2026-08-03 items 3-4. Family:
+    R_alpha = L(x4) R_h(x) M(x4), L = exp(u_c a th/2), M = exp(u_c (1-a) th/2),
+    th = k_c x4, on the carrier R_vac = exp(u_c k_c x4/2), u_c = I4*Qhat(a_c).
+
+    FACTS (all engine-checked here, coefficient-level / pointwise):
+      (1) SAME-AXIS COMPOSITE IS NOT A NEW FAMILY: A R_h A~ q_c with
+          A = exp(u_c dk x4/2) equals the alpha family at a = dk/k_c POINTWISE
+          exactly — the same-axis internal rotation is a REPARAMETRIZATION of
+          the carrier-phase split, not a mass-differentiation dial.
+      (2) THE PARALLELOGRAM LAW (closed form, pointwise exact):
+              Delta_kin = -2 a (1-a) (1-c) (k_c/2)^2 c_2,
+          c = <R_h~ u_c R_h u_c~>_0, with c ALPHA-INDEPENDENT (extracted-c
+          spread across alpha ~1e-15 here; the adjudication's check: 1e-16).
+          Cross-link: 1 - c =
+          2 sin^2 f (1 - (n.a_c)^2) — the SAME object as the conjugating
+          Omega_4 magnitude (conjugating_extension_omega_identities fact 2).
+      (3) ARGMIN = 1/2, FORCED: both cost sectors are pointwise x4-independent,
+          pointwise QUADRATIC in alpha with non-negative curvature (convex),
+          and pointwise SYMMETRIC under alpha <-> 1-alpha; symmetry + convexity
+          force argmin = 1/2, and sector-wise minimization makes the argmin
+          c4/c2-INDEPENDENT (both sectors minimized at 1/2 — any non-negative
+          coupling pair inherits it).
+    RETRACTIONS CARRIED (ADJUDICATION_2026-08-03 item 4 — the corrected record):
+      * The 'wall kinetic deficit drives it' attribution was WRONG — at the
+        probe couplings (c2, c4) = (1, 0.25) the QUARTIC sector supplies 53.5%
+        of the alpha-dependence; the kinetic dip is not the driver.
+      * The probe-2 script line asserting 'matter as a hole ... computed' is
+        RETRACTED. The total carrier-relative density is a LARGE POSITIVE
+        EXCESS; the Om_4-kinetic sub-term dips only ~0.1% below the carrier in
+        probe 2's P1 table (wall-point witness here: dip = 2% of the local
+        excess, sign facts asserted).
+        The genuinely hole-shaped computed fact is the AMPLITUDE NOTCH: the
+        observer-line projection |z| drops from 1.000 (vacuum) to 0.384 at the
+        wall AT THE CARRIER'S OWN PHASE. Canon sec. 0's fence applies: the
+        hole is an image, never a load-bearing premise.
+    FENCE: the carrier premise itself stays H8-licensed / sec. 9.6-GATED in
+    value (axis, omega_c, scale); these are exact algebraic facts OF the named
+    family, not a carrier-value claim."""
+    # runtime: ~0.15s
+    import math as _m
+    import random as _rd
+
+    K_C = 0.8317
+    C2 = 1.0
+    U_C = I4 * _a1_qhat((0.0, 0.0, 1.0))
+    rng = _rd.Random(20260803)
+
+    def _prof(r):
+        return _m.pi * _m.exp(-r), -_m.pi * _m.exp(-r)
+
+    def _rh_o(x):
+        r = _m.sqrt(sum(c * c for c in x))
+        f, fp = _prof(r)
+        return _a1_hedgehog(x, f, fp)
+
+    def _R_alpha(x, x4, a):
+        Rh, _ = _rh_o(x)
+        th = K_C * x4
+        return _a1_expu(U_C, a * th / 2) * Rh * _a1_expu(U_C, (1 - a) * th / 2)
+
+    def _Om_alpha(x, x4, a):
+        Rh, o = _rh_o(x)
+        th = K_C * x4
+        M = _a1_expu(U_C, (1 - a) * th / 2)
+        Mr = M.reverse()
+        X = Mr * (Rh.reverse() * U_C * Rh) * M
+        return ([Mr * ok * M for ok in o]
+                + [(a * K_C / 2) * X + ((1 - a) * K_C / 2) * U_C])
+
+    def _sectors(Om):
+        e2 = sum(_a1_nrm2(ok) for ok in Om)
+        e4 = sum(_a1_nrm2(_a1_comm(Om[i], Om[j]))
+                 for i in range(4) for j in range(i + 1, 4))
+        return e2, e4
+
+    def _rand_pt():
+        while True:
+            x = tuple(rng.uniform(-2.2, 2.2) for _ in range(3))
+            if _m.sqrt(sum(c * c for c in x)) > 0.4:
+                return x
+
+    # --- P0 discipline: one FD spot-check of the analytic Omegas
+    x0, x40, a0 = _rand_pt(), 0.83, 0.35
+    R0 = _R_alpha(x0, x40, a0)
+    worst_p0 = 0.0
+    d = 1e-6
+    for mu in range(4):
+        if mu < 3:
+            xp = list(x0); xm = list(x0)
+            xp[mu] += d; xm[mu] -= d
+            dR = (1.0 / (2 * d)) * (_R_alpha(tuple(xp), x40, a0)
+                                    - _R_alpha(tuple(xm), x40, a0))
+        else:
+            dR = (1.0 / (2 * d)) * (_R_alpha(x0, x40 + d, a0)
+                                    - _R_alpha(x0, x40 - d, a0))
+        worst_p0 = max(worst_p0,
+                       _a1_coeffdiff(R0.reverse() * dR, _Om_alpha(x0, x40, a0)[mu]))
+    assert 1e-13 < worst_p0 < 5e-8, "alpha-family analytic Omegas vs FD"
+
+    # --- (1) same-axis composite == alpha family, pointwise
+    worst_comp = 0.0
+    for _ in range(10):
+        x = _rand_pt()
+        x4 = rng.uniform(-3.0, 3.0)
+        dk = rng.uniform(0.1, 0.7)
+        Rh, _ = _rh_o(x)
+        A = _a1_expu(U_C, dk * x4 / 2)
+        Rcomp = A * Rh * A.reverse() * _a1_expu(U_C, K_C * x4 / 2)
+        worst_comp = max(worst_comp,
+                         _a1_coeffdiff(Rcomp, _R_alpha(x, x4, dk / K_C)))
+    assert worst_comp < 1e-13, "same-axis composite must equal the alpha family"
+
+    # --- (2) the parallelogram law + alpha-independence of c + cross-link
+    worst_law = 0.0
+    worst_cspread = 0.0
+    worst_cx = 0.0
+    for _ in range(6):
+        x = _rand_pt()
+        x4 = rng.uniform(-3.0, 3.0)
+        Rh, _ = _rh_o(x)
+        c = _a1_g0(Rh.reverse() * U_C * Rh * U_C.reverse())
+        r = _m.sqrt(sum(v * v for v in x))
+        f, _fp = _prof(r)
+        nz = x[2] / r
+        worst_cx = max(worst_cx,
+                       abs((1 - c) - 2 * _m.sin(f) ** 2 * (1 - nz * nz)))
+        cs = []
+        for a in (0.2, 0.35, 0.5, 0.65, 0.8):
+            Om = _Om_alpha(x, x4, a)
+            dkin = C2 * (_a1_nrm2(Om[3]) - (K_C / 2) ** 2)
+            worst_law = max(worst_law, abs(
+                dkin - (-2 * a * (1 - a) * (1 - c) * (K_C / 2) ** 2 * C2)))
+            cs.append(1 + dkin / (2 * a * (1 - a) * (K_C / 2) ** 2 * C2))
+        worst_cspread = max(worst_cspread, max(cs) - min(cs))
+    assert worst_law < 1e-14, "Delta_kin = -2a(1-a)(1-c)(k_c/2)^2 c2 pointwise"
+    assert worst_cspread < 1e-13, "c must be alpha-independent"
+    assert worst_cx < 1e-13, "1 - c = 2 sin^2 f (1 - (n.a_c)^2) cross-link"
+
+    # --- (3) sector structure: x4-independence, quadraticity, symmetry, convexity
+    AGRID = (0.2, 0.35, 0.5, 0.65, 0.8)
+    worst_x4 = worst_sym = worst_quad = 0.0
+    min_curv2 = min_curv4 = float("inf")
+    for _ in range(3):
+        x = _rand_pt()
+        s1 = [_sectors(_Om_alpha(x, 0.7, a)) for a in AGRID]
+        s2 = [_sectors(_Om_alpha(x, 1.9, a)) for a in AGRID]
+        for p, q in zip(s1, s2):
+            worst_x4 = max(worst_x4, abs(p[0] - q[0]), abs(p[1] - q[1]))
+        for sec in (0, 1):
+            v = [p[sec] for p in s1]
+            worst_sym = max(worst_sym, abs(v[0] - v[4]), abs(v[1] - v[3]))
+            # exact quadratic through a = 0.2, 0.5, 0.8 -> predict 0.35, 0.65
+            A2 = (v[0] + v[4] - 2 * v[2]) / (2 * 0.3 ** 2)
+            A1 = (v[4] - v[0]) / 0.6
+            for a, vv in ((0.35, v[1]), (0.65, v[3])):
+                pred = v[2] + A1 * (a - 0.5) + A2 * (a - 0.5) ** 2
+                worst_quad = max(worst_quad, abs(pred - vv))
+            if sec == 0:
+                min_curv2 = min(min_curv2, A2)
+            else:
+                min_curv4 = min(min_curv4, A2)
+    assert worst_x4 < 1e-13, "alpha-family sector densities must be x4-independent"
+    assert worst_sym < 1e-12, "sectors must be symmetric under alpha <-> 1-alpha"
+    assert worst_quad < 1e-12, "sectors must be exactly quadratic in alpha"
+    assert min_curv2 >= -1e-12 and min_curv4 >= -1e-12, \
+        "sector curvatures must be non-negative (convexity)"
+
+    # --- wall-point witness of the corrected reading (retraction support)
+    xw = (0.8, 0.45, 0.35)
+    rw = _m.sqrt(sum(v * v for v in xw))
+    fw, _ = _prof(rw)
+    Rh, _ = _rh_o(xw)
+    zs = []
+    for i in range(16):
+        t = i / 16 * (4 * _m.pi / K_C)
+        R = Rh * _a1_expu(U_C, K_C * t / 2)
+        zs.append(_m.hypot(_a1_g0(R), _a1_g0(R * U_C.reverse())))
+    notch = sum(zs) / len(zs)
+    assert max(zs) - min(zs) < 1e-12, "|z| must be cycle-constant"
+    assert abs(notch - abs(_m.cos(fw))) < 1e-12, "notch |z| = |cos f| at the wall"
+    assert abs(notch - 0.3843) < 5e-4, "the banked 1.000 -> 0.384 notch value"
+    Om = _Om_alpha(xw, 0.9, 0.5)
+    e2, e4 = _sectors(Om)
+    dkin_w = C2 * (_a1_nrm2(Om[3]) - (K_C / 2) ** 2)
+    dtot_w = C2 * e2 + 0.25 * e4 - C2 * (K_C / 2) ** 2
+    assert dkin_w < 0.0 < dtot_w and abs(dkin_w) < 0.05 * dtot_w, \
+        "kinetic dip must be a small negative sub-term inside a positive excess"
+
+    return {
+        "tier": "DERIVED-A",
+        "alpha-family FD spot-check (worst coeff)": worst_p0,
+        "same-axis composite == alpha family (worst coeff)": worst_comp,
+        "parallelogram law residual (worst)": worst_law,
+        "c alpha-independence (extracted-c spread)": worst_cspread,
+        "1-c = 2 sin^2 f (1-(n.a_c)^2) cross-link (worst)": worst_cx,
+        "sector x4-independence (worst)": worst_x4,
+        "sector alpha<->1-alpha symmetry (worst, pointwise)": worst_sym,
+        "sector exact-quadraticity in alpha (worst)": worst_quad,
+        "min sector curvatures (quadratic, quartic)": (min_curv2, min_curv4),
+        "argmin": "1/2, both sectors, c4/c2-independent (symmetry + convexity)",
+        "wall notch |z| (vacuum 1.000 ->)": notch,
+        "wall Delta_kin / Delta_total (dip inside positive excess)": (
+            dkin_w, dtot_w),
+        "retractions": ("'wall kinetic deficit drives it' WRONG (quartic 53.5% "
+                        "at probe couplings); 'matter as a hole ... computed' "
+                        "RETRACTED — the computed fact is the amplitude notch; "
+                        "canon sec. 0 hole-image fence applies"),
+    }
+
+
+def ecarrier_matched_defect_hblock_null():
+    """[DERIVED-A] E-carrier h-block null (probe 2b, banked per
+    ADJUDICATION_2026-08-03 item 8): under the corpus's own carrier blade
+    E = I4*e5 (canon sec. 5; R-147 banks it h-null), the matched defect
+    R = R_h(x) * exp(E k_c x4/2) has its ENTIRE 16-entry texture h-block
+    h_mu_nu = <Omega_mu I4 Omega_nu>_0 IDENTICALLY ZERO — exact, FD-verified
+    with the TRUE inverse. Blade arithmetic: Omega_k = Omega_k^hedgehog (E is
+    central, the carrier factor cancels), Omega_4 = (k_c/2)E; then
+    h_44 ~ <I4 E^2>_0 = -<I4>_0 = 0, h_4k ~ <(E I4) Omega_k>_0 = 0 (E*I4 is
+    grade-1, the product carries grades 1 and 3 only), h_kl = the static
+    hedgehog's 0.
+
+    THE TRAP, DOCUMENTED (this probe's own first run failed on it):
+    E~ = +E (grade 5), so .reverse() is NOT the inverse for E-content — every
+    FD check against an E-carrier must build the true inverse
+    (R_h q_E)^-1 = q_E^-1 R_h~ explicitly (engine-witnessed below: q_E~ q_E
+    != 1 at O(1), q_E^-1 q_E = 1). Related energetics (banked in
+    cl41_pairing_sign_tables): the E-direction has NEGATIVE norm under the
+    reverse pairing, <Om_4 Om_4~>_0 = -(k_c/2)^2 (reported below) — the
+    REVERSE pairing is INDEFINITE on e5-content, hence its grade-0 is not a
+    density there; that is why the positive-definite pairing (iv) was ruled in
+    (R-168/RUL-018; under t the same object reads +(k_c/2)^2). [Gloss
+    re-worded 2026-08-13 per the K-O1 keeper C2: the earlier "R-127's 'E
+    leaves the ideal', as energetics" reading is retired — the exclusion's
+    instrument is the pairing-independent e5-content fact; site on RUL-018's
+    class-B revert list.]
+
+    RULING-R1 CONSONANCE LEG (2026-08-12): under the ruled positive-definite
+    pairing (iv) (cl41_positive_definite_pairing) the carrier is COSTED —
+    uniform volume density (k_c/2)^2 — while THIS entry certifies that the
+    E-carrier content is TEXTURE-INVISIBLE (h == 0 exactly, R-147 consonant):
+    the carrier's volume energy under pairing (iv) carries no h-block, so
+    banked texture results are untouched by costing the carrier.
+    SUPERSEDED CONTEXT: with R1 adopting pairing (iv), the 2026-08-03 'the
+    fork closes the other way and Sakharov stays sole route' sentence is the
+    superseded (iii)-branch reading; the h == 0 fact itself is pairing-
+    independent and is what this entry banks."""
+    # runtime: ~0.1s
+    import math as _m
+    import random as _rd
+
+    K_C = 0.8317
+    E5 = I4 * e(5)                     # E = I4 e5 = e12345, the carrier blade
+    rng = _rd.Random(20260812)
+
+    # blade algebra: E^2 = -1, E~ = +E, E central (sample incl. odd blades)
+    assert _a1_maxcoeff(E5 * E5 + SCALAR) < 1e-14, "E^2 = -1"
+    assert _a1_maxcoeff(E5.reverse() - E5) < 1e-14, "E~ = +E (grade 5)"
+    for b in (e(1), e(1, 2), e(1, 4), e(3, 4), e(1, 2, 3), e(2, 5), e(1, 5)):
+        assert _a1_maxcoeff(E5 * b - b * E5) < 1e-14, "E central"
+
+    def _qE(x4):
+        return _m.cos(K_C * x4 / 2) * SCALAR + _m.sin(K_C * x4 / 2) * E5
+
+    def _qE_inv(x4):
+        return _m.cos(K_C * x4 / 2) * SCALAR - _m.sin(K_C * x4 / 2) * E5
+
+    # the trap, engine-witnessed
+    trap = _a1_maxcoeff(_qE(1.7).reverse() * _qE(1.7) - SCALAR)
+    assert trap > 0.5, "reverse must visibly FAIL as the inverse for E-content"
+    assert _a1_maxcoeff(_qE_inv(1.7) * _qE(1.7) - SCALAR) < 1e-14, "true inverse"
+
+    def _prof(r):
+        return _m.pi * _m.exp(-r), -_m.pi * _m.exp(-r)
+
+    def _Om_analytic(x):
+        r = _m.sqrt(sum(c * c for c in x))
+        f, fp = _prof(r)
+        _Rh, o = _a1_hedgehog(x, f, fp)
+        return o + [(K_C / 2) * E5]
+
+    def _R(x, x4):
+        r = _m.sqrt(sum(c * c for c in x))
+        f, _ = _prof(r)
+        Rh, _o = _a1_hedgehog(x, f, 0.0)
+        return Rh * _qE(x4)
+
+    worst_fd = 0.0
+    worst_h = 0.0
+    pair_dev = 0.0
+    d = 1e-6
+    for _ in range(10):
+        x = tuple(rng.uniform(-2.2, 2.2) for _ in range(3))
+        if _m.sqrt(sum(c * c for c in x)) < 0.35:
+            continue
+        x4 = rng.uniform(-3.0, 3.0)
+        Om = _Om_analytic(x)
+        # FD with the TRUE inverse
+        r = _m.sqrt(sum(c * c for c in x))
+        f, _ = _prof(r)
+        Rh, _o = _a1_hedgehog(x, f, 0.0)
+        Rinv = _qE_inv(x4) * Rh.reverse()
+        for mu in range(4):
+            if mu < 3:
+                xp = list(x); xm = list(x)
+                xp[mu] += d; xm[mu] -= d
+                dR = (1.0 / (2 * d)) * (_R(tuple(xp), x4) - _R(tuple(xm), x4))
+            else:
+                dR = (1.0 / (2 * d)) * (_R(x, x4 + d) - _R(x, x4 - d))
+            worst_fd = max(worst_fd, _a1_coeffdiff(Rinv * dR, Om[mu]))
+        # the h-block: all 16 entries
+        for i in range(4):
+            for j in range(4):
+                worst_h = max(worst_h, abs(_a1_g0(Om[i] * I4 * Om[j])))
+        # reverse-pairing negative norm on the carrier direction (cross-ref)
+        pair_dev = max(pair_dev, abs(_a1_g0(Om[3] * Om[3].reverse())
+                                     + (K_C / 2) ** 2))
+    assert 1e-13 < worst_fd < 5e-8, "analytic Omegas vs FD (true inverse)"
+    assert worst_h < 1e-15, "the ENTIRE h-block must vanish identically"
+    assert pair_dev < 1e-14, "<Om_4 Om_4~>_0 = -(k_c/2)^2 (reverse pairing)"
+
+    return {
+        "tier": "DERIVED-A",
+        "max |h_mu_nu| over all 16 entries, all points": worst_h,
+        "FD vs analytic (TRUE inverse), worst coeff": worst_fd,
+        "trap witness maxcoeff(qE~ qE - 1) (reverse fails)": trap,
+        "<Om_4 Om_4~>_0 + (k_c/2)^2 (negative norm, cross-ref)": pair_dev,
+        "ruling_R1_consonance": ("h-null leg of the 2026-08-12 R1 package: "
+                                 "carrier volume energy under pairing (iv) is "
+                                 "texture-invisible (E-content h == 0, R-147)"),
+        "trap": "E~ = +E (grade 5): reverse is NOT the inverse for E-content",
+    }
+
+
+# ======================================================================
+# TAU5 ADJUDICATION BANK (2026-08-13)
+# ======================================================================
+# Source: knowledge/candidates/probes_2026-08-13/TAU5_ADJUDICATION_2026-08-13.md
+# (GOVERNING record of the tau5-hyperbolic collective-coordinate round; banking
+# triage feed item (b)). Two primitives, reusing the _a1_* helpers above:
+#   T5-1 one_sided_rotor_uniform_density_identity — the one-sided uniform
+#        kinetic-density identity (BOTH one-sided forms) + the conjugation-
+#        subtraction identity (the field-level subtraction, keeper fact 2)
+#   T5-2 tau5_unique_v_inert_combination — the b = -a lemma (I-C is the unique
+#        v-inert far-field combination; reviewer N-5)
+# Ledger descendant: N61 (the discrimination-null negative). Round scripts:
+# tau5_probe1_collective_coordinate.py (probe dir; every check below is
+# self-contained and does not import them).
+# ======================================================================
+
+
+def one_sided_rotor_uniform_density_identity():
+    """[DERIVED-A] THE ONE-SIDED UNIFORM KINETIC-DENSITY IDENTITY (tau5
+    adjudication 2026-08-13, three-way convergent root; N61). For the banked
+    one-sided mass-rotor rest form (R-125 class) with w_hat = u_hat*omega/2:
+
+      LEFT  form R = Q(tau5) R0(x):  Omega_5 = R0~ w_hat R0   (the A1 identity)
+      RIGHT form R = R0(x) Q(tau5):  Omega_5 = w_hat           (identically)
+
+    and in BOTH cases the kinetic density <Omega_5 t(Omega_5)>_0 equals
+    (omega/2)^2 |u_hat|^2 at EVERY point — exactly uniform, profile-independent
+    (checked on two distinct profiles), u_hat-independent in value. On this
+    Cl+(4,0) grade-2 content the ruled pairing (iv) coincides with the reverse
+    pairing (alpha_5 trivial without e5), so this IS the ruled-cost kinetic
+    density. THE FACT IS ONE-SIDEDNESS, NOT THE LEFT SHIFT (keeper engine fact
+    1: the right-multiplication form gives the same uniform density) — the
+    one-sided rotor does not tend to the static vacuum at infinity (Omega_5 ->
+    w_hat != 0), so ANY positive-definite pairing yields a positive limit
+    density and the raw 3-slice kinetic cost diverges AT REST: the standard
+    vacuum-stabilizer obstruction to treating a broken-symmetry direction as a
+    collective coordinate (Adkins-Nappi-Witten 1983; Coleman 1985 — credit via
+    import I-5 context). Spin(4)-invariance of the pairing buys the exact
+    UNIFORMITY (left form); positivity + the boundary condition buy the
+    divergence.
+
+    THE CONJUGATION-SUBTRACTION IDENTITY (keeper engine fact 2, exact): for the
+    two-sided (conjugation / spin-class) rotation R = A(tau5) R0 A~(tau5),
+
+        Omega_5(conj) = A (Omega_5(left) - w_hat) A~     EXACTLY,
+
+    so the conjugation class is the left-shift class MINUS ITS OWN ASYMPTOTE,
+    conjugated — i.e. the FIELD-LEVEL version of the subtraction the ruled cost
+    convention performs at the density level (R-130's F2 excess factorization
+    is the same move on the mode; the map between the two subtraction LEVELS is
+    the open O1 gap of the adjudication). Its density decays iff R0 -> 1
+    (checked: ~1e-10 by r = 12 on the witness profile, vs the one-sided form's
+    exact (omega/2)^2 there).
+
+    Checks below are non-vacuous: FD-vs-analytic at coefficient level (never
+    nrm2 of a small difference), uniformity across radii x directions x u_hat
+    x profiles, the omega^2 value, the conjugation identity at three radii,
+    and the decay dichotomy."""
+    import math as _m
+    w = 0.83
+    profiles = [
+        (lambda r: _m.pi * _m.exp(-r), lambda r: -_m.pi * _m.exp(-r)),
+        (lambda r: _m.pi / (1.0 + r * r), lambda r: -2 * _m.pi * r / (1 + r * r) ** 2),
+    ]
+    # FD step 1e-4, NOT smaller: at r = 12 the profile components are ~2e-5 and a
+    # 1e-6 step pushes their FD differences below the MV ~1e-12 prune floor,
+    # which silently zeroes them and corrupts the quotient (the canon's
+    # prune-vs-FD trap, caught live on this primitive's first run).
+    d = 1e-4
+    worst_left = worst_right = worst_unif = worst_conj = 0.0
+    for u in (e(1, 2), e(3, 4)):
+        what = (w / 2.0) * u
+        for (f, fp) in profiles:
+            for x in ((0.3, 0.2, 0.25), (0.9, -0.6, 0.4), (2.5, 2.0, 2.4),
+                      (12.0, 0.3, 0.2)):
+                r = _m.sqrt(x[0] ** 2 + x[1] ** 2 + x[2] ** 2)
+                R0, _o = _a1_hedgehog(x, f(r), fp(r))
+                # LEFT: FD on Q(t5) R0 vs the analytic R0~ w_hat R0
+                Q = lambda t5: _a1_expu(u, w * t5 / 2.0)
+                Om5L_fd = (Q(0.1) * R0).reverse() * (
+                    (1 / (2 * d)) * (Q(0.1 + d) * R0 - Q(0.1 - d) * R0))
+                Om5L = R0.reverse() * what * R0
+                worst_left = max(worst_left, _a1_coeffdiff(Om5L_fd, Om5L))
+                # RIGHT: FD on R0 Q(t5) vs w_hat identically
+                Om5R_fd = (R0 * Q(0.1)).reverse() * (
+                    (1 / (2 * d)) * (R0 * Q(0.1 + d) - R0 * Q(0.1 - d)))
+                worst_right = max(worst_right, _a1_coeffdiff(Om5R_fd, what))
+                # UNIFORMITY + VALUE, both forms (nrm2 on O(1) objects only)
+                for Om in (Om5L, what):
+                    worst_unif = max(worst_unif,
+                                     abs(_a1_nrm2(Om) - (w / 2.0) ** 2))
+    # conjugation-subtraction identity + decay dichotomy (witness profile)
+    f, fp = profiles[0]
+    u = e(1, 2)
+    what = (w / 2.0) * u
+    for x in ((0.5, 0.2, 0.1), (2.0, 0.5, 0.4), (6.0, 0.3, 0.2)):
+        r = _m.sqrt(x[0] ** 2 + x[1] ** 2 + x[2] ** 2)
+        R0, _o = _a1_hedgehog(x, f(r), fp(r))
+        A = lambda t5: _a1_expu(u, w * t5 / 2.0)
+        Rc = lambda t5: A(t5) * R0 * A(t5).reverse()
+        Om5c_fd = Rc(0.0).reverse() * ((1 / (2 * d)) * (Rc(d) - Rc(-d)))
+        Om5c = A(0.0) * (R0.reverse() * what * R0 + (-1.0) * what) * A(0.0).reverse()
+        worst_conj = max(worst_conj, _a1_coeffdiff(Om5c_fd, Om5c))
+    x12 = (12.0, 0.3, 0.2)
+    r12 = _m.sqrt(x12[0] ** 2 + x12[1] ** 2 + x12[2] ** 2)
+    R0, _o = _a1_hedgehog(x12, f(r12), fp(r12))
+    dens_conj_12 = _a1_nrm2(R0.reverse() * what * R0 + (-1.0) * what)
+    dens_left_12 = _a1_nrm2(R0.reverse() * what * R0)
+    assert worst_left < 1e-7 and worst_right < 1e-7, "one-sided FD identities"
+    assert worst_unif < 1e-12, "uniform density (omega/2)^2 both one-sided forms"
+    assert worst_conj < 1e-7, "conjugation-subtraction identity"
+    assert dens_conj_12 < 1e-6, "conjugation class must DECAY (vacuum fixed)"
+    assert abs(dens_left_12 - (w / 2.0) ** 2) < 1e-12, "one-sided must NOT decay"
+    return {
+        "tier": "DERIVED-A",
+        "left FD vs R0~ w_hat R0 (worst coeff)": worst_left,
+        "right FD vs w_hat (worst coeff)": worst_right,
+        "uniform density dev vs (omega/2)^2 (both forms, 2 profiles, 2 u_hat)":
+            worst_unif,
+        "one-sidedness": "left AND right forms uniform -- NOT a left-shift fact",
+        "conjugation identity Om5(conj) = A(Om5(left) - w_hat)A~ (worst coeff)":
+            worst_conj,
+        "decay dichotomy at r=12 (conj vs one-sided)": (dens_conj_12,
+                                                        dens_left_12),
+        "pairing note": "(iv) == reverse on this Cl+(4,0) content (alpha5 trivial)",
+        "credit": "ANW 1983 / Coleman 1985 (vacuum-stabilizer criterion), via I-5",
+        "governing record": "TAU5_ADJUDICATION_2026-08-13.md; ledger N61; "
+                            "subtraction-level map = the open O1 gap",
+    }
+
+
+def tau5_unique_v_inert_combination():
+    """[DERIVED-A lemma] THE UNIQUE v-INERT FAR-FIELD COMBINATION (tau5
+    adjudication 2026-08-13, reviewer N-5 adopted; N61). For the
+    T-coord-transported one-sided rotor (phase w*gamma*(tau5 - v*x1), the
+    coordinate-boosted rest form), the far-field sector densities are, in units
+    of (omega/2)^2:  d5 -> gamma^2  and  d1 -> gamma^2 v^2  (both engine-checked
+    below at large r). Among quadratic combinations a*d5 + b*d1, v-INERTNESS of
+    the asymptote for all v FORCES b = -a (sympy-exact below):
+        a*gamma^2 + b*gamma^2 v^2 = const in v  <=>  b = -a  (value = a).
+    CONSEQUENCE: the eta/action combination (the I-C object, b = -a) is the
+    UNIQUE v-inert one — every other combination (in particular the Noether
+    b = +a) has a v-DEPENDENT asymptote, so any FIXED background renders it
+    finite at one v only, and any background that renders it finite at every v
+    must itself carry the v-law: the DISCRIMINATION-NULL root of the tau5 route
+    (any background that makes a cost finite is the one that installs the
+    v-law). The action face's sqrt(1-v^2) is the change-of-variables triviality
+    (Schroers 1994: boosting a static soliton is 'merely a complicated way of
+    deriving something trivial'; credit carried). This lemma converts the probe
+    round's 'only I-C was finite' from observation to result."""
+    import math as _m
+    a, b, v = sp.symbols("a b v", real=True)
+    gamma2 = 1 / (1 - v ** 2)
+    expr = a * gamma2 + b * gamma2 * v ** 2
+    # v-inertness: expr - expr|_{v=0} == 0 identically in v
+    resid = sp.simplify(expr - expr.subs(v, 0))
+    num, _den = sp.fraction(sp.together(resid))
+    conds = sp.Poly(num, v).coeffs()
+    sols = sp.solve(conds, b)
+    forced = sp.simplify(sols[b] - (-a)) == 0 if isinstance(sols, dict) else \
+        all(sp.simplify(s - (-a)) == 0 for s in (sols if isinstance(sols, list) else [sols]))
+    inert_val = sp.simplify(expr.subs(b, -a))
+    # numeric far-field face (could fail): FD densities on the transported form
+    w = 0.83
+    u = e(1, 2)
+    d = 1e-6
+
+    def _f(r):
+        return _m.pi * _m.exp(-r)
+
+    def _fp(r):
+        return -_m.pi * _m.exp(-r)
+
+    def _dens(vv, x):
+        g = 1.0 / _m.sqrt(1 - vv * vv)
+
+        def R(x1, t5):
+            r = _m.sqrt((g * (x1 - vv * t5)) ** 2 + x[1] ** 2 + x[2] ** 2)
+            Rh, _o = _a1_hedgehog((g * (x1 - vv * t5), x[1], x[2]), _f(r), _fp(r))
+            return _a1_expu(u, w * g * (t5 - vv * x1) / 2.0) * Rh
+
+        Ri = R(x[0], 0.0).reverse()
+        d5 = _a1_nrm2(Ri * ((1 / (2 * d)) * (R(x[0], d) - R(x[0], -d))))
+        d1 = _a1_nrm2(Ri * ((1 / (2 * d)) * (R(x[0] + d, 0.0) - R(x[0] - d, 0.0))))
+        return d5 / (w / 2.0) ** 2, d1 / (w / 2.0) ** 2
+
+    worst = 0.0
+    combos = {}
+    for vv in (0.3, 0.6):
+        g2 = 1.0 / (1 - vv * vv)
+        d5, d1 = _dens(vv, (14.0, 0.3, 0.2))
+        worst = max(worst, abs(d5 - g2) / g2, abs(d1 - g2 * vv * vv) / (g2 * vv * vv))
+        combos[vv] = (d5 - d1, d5 + d1)
+    inert_meas = max(abs(combos[vv][0] - 1.0) for vv in combos)
+    noether_spread = abs(combos[0.6][1] - combos[0.3][1])
+    assert forced, "v-inertness must FORCE b = -a"
+    assert sp.simplify(inert_val - a) == 0, "inert value must equal a"
+    assert worst < 1e-3, "far-field densities must match gamma^2 / gamma^2 v^2"
+    assert inert_meas < 1e-3, "(1,-1) combination must be v-inert (measured)"
+    assert noether_spread > 0.3, "(1,+1) Noether combination must be v-DEPENDENT"
+    return {
+        "tier": "DERIVED-A (lemma; sympy-exact + far-field engine face)",
+        "b = -a forced (sympy)": bool(forced),
+        "inert value == a (sympy)": True,
+        "far-field density match at r=14 (worst rel)": worst,
+        "(1,-1) inertness measured (worst dev from 1)": inert_meas,
+        "(1,+1) Noether v-spread (must be > 0.3)": noether_spread,
+        "consequence": "I-C is the UNIQUE v-inert combination; any background "
+                       "finitizing another combination installs the v-law "
+                       "(discrimination-null root)",
+        "credit": "Schroers 1994 (gamma-face triviality); reviewer N-5 lemma",
+        "governing record": "TAU5_ADJUDICATION_2026-08-13.md; ledger N61",
+    }
+
+
+def ecarrier_common_mode_certificates():
+    """[DERIVED-A] K-O1 ROUND CERTIFICATES (governing record:
+    knowledge/candidates/probes_2026-08-13/KO1_ADJUDICATION_2026-08-13.md;
+    N56 K-O1 sub-item, RUL-022 booking; the round CLOSED WITHOUT EXECUTION —
+    every identity here was decided twice over at design time, and these three
+    legs are banked as the round's PROVEN BUG-CATCHERS (design-review bug
+    injection: reverse-as-inverse, alpha5-sign-drop, broken-e5-filter each
+    caught by exactly these checks). k_c is an ARBITRARY convention constant
+    (RUL-017: no carrier scale is named). Everything at rest (RUL-034/RUL-015).
+
+    LEG 1 (CL-1, E-centrality): q_{k+dk} q_k^-1 = q_dk EXACTLY (the identity
+    that collapses every referenced two-rate object); conjugation transparency
+    q_E X q_E^-1 = X; two-path TRUE-INVERSE carrier cancellation
+    (A1 qE) t(A2 qE) = A1 t(A2) for arbitrary Cl(4,0) branch content; and the
+    D-1 leg — the REVERSE overlap does NOT cancel the carrier:
+    (A1 qE)~ (A2 qE) = A1~ A2 qE^2 exactly (E central, qE~ = qE), with the
+    nonzero witness MEASURED both over all 32 blades AND within the {1, B}
+    line separately (stated = measured; MO sweep-integrity fix 2026-08-13).
+
+    LEG 2 (CL-2; pairing-(iv)-conditional — RUL-018 class B): t = alpha5 o
+    reverse satisfies t(q_E) = q_E^-1 — on the E-phase the ruled involution IS
+    the true inverse (alpha5 flips E, exactly compensating E~ = +E) — hence
+    <Psi_vac t(Psi_vac)>_0 = c0^2/2 and <Om_4 t(Om_4)>_0 = (k_c/2)^2, both
+    exactly x4-independent: every (iv)-class observable is carrier-FLAT.
+    CREDIT (corrected TWICE — K-O1 re-review, then keeper round-record
+    hygiene): this INSTANTIATES the banked per-blade positivity of
+    cl41_positive_definite_pairing (E is one of the 32 blades) — not new
+    content; and the (k_c/2)^2 MAGNITUDE was already engine-explicit under the
+    reverse pairing (opposite sign) in ecarrier_matched_defect_hblock_null's
+    return — the (iv)-SIGN version is what is new here.
+
+    LEG 3 (CL-3 — FACT ONLY; no observability claim in either direction): the
+    pure carrier Psi_vac = c0 s0 q_E(x4) has un-referenced Cl(4,0)-ideal
+    shadow cos(k_c x4/2) c0 s0 (amplitude modulation with zeros on the grid)
+    and reverse grade-0 <Psi~ Psi>_0 = cos(k_c x4) c0^2/2 — oscillating and
+    SIGN-INDEFINITE. Whether the un-referenced shadow is OBSERVABLE on a
+    carrier background is the round's HINGE H ('the ideal-shadow projection is
+    observable iff applied to a carrier-referenced object') — NOT
+    engine-decidable, banked domain EMPTY — filed at the
+    renormalization-dictionary assembly for coordinator ratification. H's LIVE
+    SCOPE (keeper C3 simplification): exactly the NON-t-paired residue — this
+    raw shadow — since E-centrality + t(q_E) = q_E^-1 make every t-paired
+    object carrier-transparent (the stronger, H-independent ground).
+
+    LEG 4 (keeper O1 — the {1,B} FACTORIZATION, the fact that decided C1's
+    true cost; K-O1 keeper verdict + MO C2, composed): for any detector/state
+    contents D, psi with a SHARED carrier, the reverse-referenced Born-class
+    overlap projected to the observer's {1, B} line factorizes EXACTLY:
+        <(D qE)~ (psi qE)>_{1,B} = cos(k_c x4) * <D~ psi>_{1,B},
+    a REAL COMMON SCALAR for every channel. Hence: probability RATIOS exactly
+    x4-invariant (common-mode cancellation — R-023's normalized probabilities
+    are carrier-independent); TOTAL probability breathes as cos^2(k_c x4) and
+    DEGENERATES 0/0 on the comb x4 = (2n+1)pi/(2 k_c); under the RULED adjoint
+    t the reference is exactly carrier-free (constant Sum P). This is the
+    engine ground of RUL-035 (class-(1), coordinator-enacted 2026-08-13):
+    R-023's observer-side reference operation on non-trivial (carrier)
+    backgrounds is the ruled adjoint t = alpha5 o reverse, REST-FRAME-scoped;
+    on Cl(4,0)/trivial backgrounds t == reverse so nothing recomputes; the
+    boost extension belongs to the dictionary (RUL-034 fence). Scope of the
+    fact: every reverse-referenced observer-side overlap (R-023 and, on
+    carrier backgrounds, the R-160 F3 total-function premise and the R-027
+    half-angle overlap — inherit-notes at their rows)."""
+    import math as _m
+    import random as _rd
+
+    K_C = 0.8317
+    C0 = 1.0
+    E5 = I4 * e(5)
+    s0 = 0.5 * SCALAR + 0.5 * e(4)
+    rng = _rd.Random(20260813)
+
+    def _t(X):
+        out = 0.0 * SCALAR
+        for idx, c in dict(X.reverse().terms).items():
+            sgn = -1.0 if 5 in idx else 1.0
+            B = e(*idx) if idx else SCALAR
+            out = out + c * sgn * B
+        return out
+
+    def _qE(x4, kc=K_C):
+        return _m.cos(kc * x4 / 2) * SCALAR + _m.sin(kc * x4 / 2) * E5
+
+    def _qEi(x4, kc=K_C):
+        return _m.cos(kc * x4 / 2) * SCALAR - _m.sin(kc * x4 / 2) * E5
+
+    def _shadow(X):
+        out = 0.0 * SCALAR
+        for idx, c in dict(X.terms).items():
+            if 5 not in idx:
+                B = e(*idx) if idx else SCALAR
+                out = out + c * B
+        return out
+
+    # generating facts (non-vacuous anchors: the reverse-trap witness must FAIL
+    # visibly as an inverse, so the checks below cannot pass under bug A)
+    assert _a1_maxcoeff(E5 * E5 + SCALAR) < 1e-12
+    assert _a1_maxcoeff(E5.reverse() - E5) < 1e-12
+    assert _a1_maxcoeff(_qE(1.7).reverse() * _qE(1.7) - SCALAR) > 0.5, \
+        "reverse must visibly FAIL as the inverse for E-content"
+    assert _a1_maxcoeff(_t(_qE(1.7)) - _qEi(1.7)) < 1e-12, "t(qE) = qE^-1"
+
+    def _line12(X):
+        """{1, B}-line projection coefficients (B = e12): (grade-0, B-coeff)."""
+        d = dict(X.terms)
+        return (float(d.get((), 0.0)), float(d.get((1, 2), 0.0)))
+
+    n_grid = 48
+    period = 2 * (4 * _m.pi / K_C)          # >= 2 carrier periods incl. the node
+    leg1 = leg1_wit = leg1_wit_line = leg2 = leg3 = leg4 = 0.0
+    ratio_dev = 0.0
+    breathe_dev = 0.0
+    for i in range(n_grid):
+        x4 = (i + 0.5) / n_grid * period
+        dk = rng.uniform(-2.0, 2.0)
+        # LEG 1 -- relative-phase collapse, transparency, two-path, D-1
+        leg1 = max(leg1, _a1_maxcoeff(_qE(x4, K_C + dk) * _qEi(x4) - _qE(x4, dk)))
+        A1 = (rng.uniform(-1, 1) * SCALAR + rng.uniform(-1, 1) * e(1, 2)
+              + rng.uniform(-1, 1) * e(1, 4) + rng.uniform(-1, 1) * e(1, 2, 3))
+        A2 = (rng.uniform(-1, 1) * SCALAR + rng.uniform(-1, 1) * e(2, 3)
+              + rng.uniform(-1, 1) * e(1) + rng.uniform(-1, 1) * e(1, 2, 3, 4))
+        leg1 = max(leg1, _a1_maxcoeff(
+            (A1 * _qE(x4)) * _t(A2 * _qE(x4)) - A1 * _t(A2)))
+        X = rng.uniform(-1, 1) * e(1, 3) + rng.uniform(-1, 1) * e(1, 2, 3)
+        leg1 = max(leg1, _a1_maxcoeff(_qE(x4) * X * _qEi(x4) - X))
+        rev_ov = (A1 * _qE(x4)).reverse() * (A2 * _qE(x4))
+        leg1 = max(leg1, _a1_maxcoeff(rev_ov - A1.reverse() * A2 * _qE(x4, 2 * K_C)))
+        resid = rev_ov - A1.reverse() * A2
+        leg1_wit = max(leg1_wit, _a1_maxcoeff(resid))
+        g0r, gBr = _line12(resid)
+        leg1_wit_line = max(leg1_wit_line, abs(g0r), abs(gBr))
+        # LEG 2 -- carrier-flat (iv)-observables
+        psi = C0 * s0 * _qE(x4)
+        leg2 = max(leg2, abs(_a1_g0(psi * _t(psi)) - C0 * C0 / 2))
+        Om4 = (K_C / 2) * E5
+        leg2 = max(leg2, abs(_a1_g0(Om4 * _t(Om4)) - (K_C / 2) ** 2))
+        # LEG 3 -- raw-shadow structure (fact only)
+        leg3 = max(leg3, _a1_maxcoeff(_shadow(psi) - _m.cos(K_C * x4 / 2) * C0 * s0))
+        leg3 = max(leg3, abs(_a1_g0(psi.reverse() * psi)
+                             - _m.cos(K_C * x4) * C0 * C0 / 2))
+    # LEG 4 -- the {1,B} factorization + common-mode facts (keeper O1 / MO C2)
+    Dets = []
+    for _ in range(3):
+        Dets.append(rng.uniform(-1, 1) * SCALAR + rng.uniform(-1, 1) * e(1, 2)
+                    + rng.uniform(-1, 1) * e(1, 3))
+    psi_b = 0.6 * SCALAR + 0.3 * e(1, 2) + 0.2 * e(2, 3)
+    z0 = [complex(*_line12(D.reverse() * psi_b)) for D in Dets]
+    P0 = [abs(z) ** 2 for z in z0]
+    S0n = sum(P0)
+    x4_samples = [0.0, 1.1, 2.5, 3.7773, _m.pi / (2 * K_C)]   # incl. the comb point
+    for x4 in x4_samples:
+        c = _m.cos(K_C * x4)
+        zs = [complex(*_line12((D * _qE(x4)).reverse() * (psi_b * _qE(x4))))
+              for D in Dets]
+        # factorization: z(x4) = cos(kc x4) * z0, per channel, exact
+        leg4 = max(leg4, max(abs(zs[j] - c * z0[j]) for j in range(3)))
+        Ps = [abs(z) ** 2 for z in zs]
+        Ss = sum(Ps)
+        # total probability breathes as cos^2 (degenerate 0/0 on the comb)
+        breathe_dev = max(breathe_dev, abs(Ss - c * c * S0n))
+        # ratios exactly invariant wherever defined
+        if Ss > 1e-20:
+            ratio_dev = max(ratio_dev,
+                            max(abs(Ps[j] / Ss - P0[j] / S0n) for j in range(3)))
+        # under the RULED adjoint the reference is exactly carrier-free
+        zt = [complex(*_line12(_t(D * _qE(x4)) * (psi_b * _qE(x4))))
+              for D in Dets]
+        zt0 = [complex(*_line12(_t(D) * psi_b)) for D in Dets]
+        leg4 = max(leg4, max(abs(zt[j] - zt0[j]) for j in range(3)))
+    comb_S = sum(abs(complex(*_line12(
+        (D * _qE(_m.pi / (2 * K_C))).reverse()
+        * (psi_b * _qE(_m.pi / (2 * K_C)))))) ** 2 for D in Dets)
+    # sign-indefiniteness of the reverse grade-0 (LEG 3, non-vacuous: both signs
+    # realized on the grid) and the shadow zero at the node
+    g0s = [_a1_g0((C0 * s0 * _qE(x4)).reverse() * (C0 * s0 * _qE(x4)))
+           for x4 in (0.1, _m.pi / K_C)]
+    assert g0s[0] > 0.0 and g0s[1] < 0.0, "reverse grade-0 must be sign-indefinite"
+    node_amp = _a1_maxcoeff(_shadow(C0 * s0 * _qE(_m.pi / K_C)))
+    assert leg1 < 1e-12 and leg2 < 1e-12 and leg3 < 1e-12
+    assert leg1_wit > 0.3, "the reverse overlap must visibly RETAIN the carrier"
+    assert leg1_wit_line > 0.05, \
+        "the retention must be visible WITHIN the {1,B} line (stated = measured)"
+    assert node_amp < 1e-12, "the raw shadow amplitude must vanish at the node"
+    assert leg4 < 1e-12, "{1,B} factorization + ruled-adjoint constancy must be exact"
+    assert ratio_dev < 1e-12, "normalized ratios must be exactly carrier-invariant"
+    assert breathe_dev < 1e-12, "Sum P must breathe as cos^2(k_c x4) exactly"
+    assert comb_S < 1e-20, "Sum P must vanish on the comb (the 0/0 degeneracy)"
+    return {
+        "tier": "DERIVED-A (legs 1/3/4 pairing-independent facts; leg 2 "
+                "pairing-(iv)-conditional, RUL-018 class B; leg 4's "
+                "reference-operation consequence is RUL-035)",
+        "leg1 centrality identities (worst coeff)": leg1,
+        "leg1 D-1 reverse-overlap carrier retention (witness, must be > 0.3)":
+            leg1_wit,
+        "leg1 D-1 retention within the {1,B} line (measured, must be > 0.05)":
+            leg1_wit_line,
+        "leg2 (iv)-flatness devs (worst)": leg2,
+        "leg3 raw-shadow structure devs (worst)": leg3,
+        "leg3 reverse grade-0 sign pair (+, -)": tuple(g0s),
+        "leg3 shadow amplitude at the node (exact 0)": node_amp,
+        "leg4 {1,B} factorization + ruled-adjoint constancy (worst)": leg4,
+        "leg4 normalized-ratio carrier-invariance (worst dev)": ratio_dev,
+        "leg4 Sum P vs cos^2 breathing (worst dev)": breathe_dev,
+        "leg4 Sum P on the comb (0/0 degeneracy witness)": comb_S,
+        "hinge": "H = 'ideal-shadow observable iff carrier-referenced' — NOT "
+                 "decided here; live scope = the raw un-referenced shadow "
+                 "(t-paired objects are carrier-transparent); filed for "
+                 "coordinator ratification",
+        "ruling": "RUL-035 (2026-08-13): R-023's observer-side reference on "
+                  "carrier backgrounds = the ruled adjoint t, rest-frame-scoped; "
+                  "t == reverse on Cl(4,0)/trivial backgrounds (nothing "
+                  "recomputes); boost extension = dictionary (RUL-034)",
+        "credits": "cl41_positive_definite_pairing (per-blade value, leg 2); "
+                   "ecarrier_matched_defect_hblock_null (matched-defect face + "
+                   "the reverse-pairing magnitude, opposite sign); "
+                   "R-147 blade table (texture faces, K-O3 caveat)",
+        "governing record": "KO1_ADJUDICATION_2026-08-13.md; N56 K-O1 sub-item",
+    }
+
+
+# ######################################################################
+# ######################################################################
+# ##                                                                  ##
+# ##   SECTION CANDIDATE — V3-INSTANCE COMPANION PRIMITIVES           ##
+# ##                                                                  ##
+# ######################################################################
+# ######################################################################
+# WHAT THIS SECTION HOLDS: companion primitives that consume a V3 PICK — the whole
+# CKM / meta-time exploration arc, the TASK-e4 epicycle series, the matter-as-defect
+# CKM/gluon ladder, the SU(6)/gear hadron-band toolbox, the D4-sited 24-cell
+# geometry, the Langevin calibration gate and the KSS channel probes, and everything
+# consuming lepton/quark mass VALUES or D/J numerics.
+#
+# MEMBERSHIP HERE IS NOT A TIER. It says: a different family member — same axioms,
+# different pick — would compute something else here. The tiers are unchanged by the
+# split and live where they always lived, in each primitive's own docstring.
+# ######################################################################
+
 
 
 def d4_langevin_calibration_gate():
@@ -773,50 +3015,6 @@ def ckm_metatime_status():
     }
 
 
-def dip_planes_multiaxis_but_uniform_is_single_axis():
-    """[DERIVED — Level 1] §19.7: (D3) The three per-generation dip planes {(1,4),(2,4),(3,4)} induce so(3)
-    generators on V that SPAN so(3) (rank 3 = multi-axis), so a NON-uniform dip WOULD be multi-axis — but the
-    uniform-strength dip (one eps per sector) is their SUM, which is exactly the G-generator/colour symmetric
-    (1,1,1) axis = SINGLE axis. The multi-axis freedom exists but the uniform dip engages only the one axis."""
-    import math
-    np, e, I4 = _cl40()
-    D = [_adV(np, e, _biv(e, i, 4)) for i in (1, 2, 3)]
-    rank = int(np.linalg.matrix_rank(np.array([d.flatten() for d in D]), tol=1e-9))
-    assert rank == 3, rank
-    def axial(M): return np.array([M[2, 1], M[0, 2], M[1, 0]])
-    colour = _adV(np, e, (_biv(e, 1, 2) + _biv(e, 2, 3) - _biv(e, 1, 3)) / math.sqrt(3))
-    uniform = axial(D[0] + D[1] + D[2]); col_ax = axial(colour)
-    cosang = abs(uniform @ col_ax) / (np.linalg.norm(uniform) * np.linalg.norm(col_ax))
-    assert abs(cosang - 1.0) < 1e-9, cosang
-    return {"dip_planes_span_so3_rank": rank, "uniform_dip_parallel_to_colour_axis": round(float(cosang), 12),
-            "meaning": "multi-axis freedom exists but the uniform dip engages only the single symmetric axis"}
-
-
-def phase_D_colour_updown_blind():
-    """[DERIVED — PHASE D run, not cut off; Level 2, shares D2's contingency] (D4) The colour/I4 channel acts
-    as SO(3) on the spatial axes {e1,e2,e3} (I4-duals of the colour trivectors). up,down are BOTH colour
-    triplets => the SAME colour rotation hits both frames => CANCELS in V_u†V_d => still democratic. And
-    [colour-gen, I4]=0 => the up/down e4-orientation (handedness, §19.8.1) CANNOT make the colour rotation
-    differ. The thesis's own colour/chirality mechanism supplies no per-weak-isospin rotation (contingent, as
-    D2, on the weak-isospin identification — the only door that could differentiate up/down via colour)."""
-    import math
-    np, e, I4 = _cl40()
-    Mu, Md = _Mcirc(np, 1.033, 0.973, 2/9), _Mcirc(np, 1.172, 0.344, 2/9)
-    a = np.array([1.0, 1, 1]); a = a / np.linalg.norm(a)
-    K = np.array([[0, -a[2], a[1]], [a[2], 0, -a[0]], [-a[1], a[0], 0]])
-    Rcol = np.eye(3) + math.sin(0.7) * K + (1 - math.cos(0.7)) * K @ K
-    Mu2, Md2 = Rcol @ Mu @ Rcol.T, Rcol @ Md @ Rcol.T
-    cUD = np.linalg.norm(Mu2 @ Md2 - Md2 @ Mu2)
-    Vu, Vd = np.linalg.eigh(Mu2)[1], np.linalg.eigh(Md2)[1]
-    mixing = _mixing(np, Vu.conj().T @ Vd)
-    col_gen = (_biv(e, 1, 2) + _biv(e, 2, 3) - _biv(e, 1, 3))
-    cI4 = np.linalg.norm(col_gen @ I4 - I4 @ col_gen)
-    assert cUD < 1e-12 and mixing < 1e-9 and cI4 < 1e-12, (cUD, mixing, cI4)
-    return {"[M_u,M_d]_after_colour": f"{cUD:.1e}", "CKM_mixing_dist_from_permutation": f"{mixing:.1e}",
-            "[colour_gen,I4]": f"{cI4:.1e}",
-            "verdict": "colour is up/down-BLIND => no per-weak-isospin rotation => still DEMOCRATIC"}
-
-
 def gate_B_branch():
     """[rank analysis → (iii); SUPERSEDED to (ii) LOCATED by the CKM arc (see RESOLVED_ below); the prior
     (a)/democratic bank is HELD, NOT banked.] The circulant THEOREM stands as algebra (orbit-function operators are
@@ -1452,37 +3650,6 @@ def ckm_from_triplet_overlap():
     return out
 
 
-def hodge_split_invariance_theorem():
-    """[TASK-e4 PART A, theorem — VERIFIED] rest mass = |B_spatial| of a fixed generator
-    bivector B cycled by G (the §19.6.1 120°-about-(1,1,1) rotation). G is a SPATIAL bivector
-    (G in span{e12,e13,e23}); its adjoint preserves the spatial/e4 Hodge decomposition as a
-    direct sum of so(3) reps -> BOTH |B_spatial| AND |B_e4| are invariant along the whole
-    generation orbit (the build asserted only the first; the second is forced). A sector-MIXING
-    rotation (e24, a Q-bivector) DOES modulate |B_spatial| (contrast).
-    CONSEQUENCE: the literal '|B_spatial| of the G-cycled rotor' gives NO generation variation
-    -- not even the deferent. So THIS reading is dead; see epicycle_reading_dependent() for why
-    that does NOT settle the central claim."""
-    np = __import__("numpy")
-    G = G_generator()
-    assert all(bl in [(1, 2), (1, 3), (2, 3)] for bl, _ in G.terms), "G must be a SPATIAL bivector"
-    def sp(mv): return math.sqrt(sum(c*c for bl, c in mv.terms if bl in [(1, 2), (1, 3), (2, 3)]))
-    def e4f(mv): return math.sqrt(sum(c*c for bl, c in mv.terms if bl in [(1, 4), (2, 4), (3, 4)]))
-    B0 = 1.0*e(1, 2) + 0.7*e(1, 4) + 0.4*e(2, 3) + 0.5*e(3, 4)
-    sp0, e40 = sp(B0), e4f(B0)
-    dG_sp = dG_e4 = dmix = 0.0
-    for phi in np.linspace(0, 2*math.pi, 400):
-        RG = exp_unit_bivector(G, phi); BG = RG*B0*RG.reverse()
-        dG_sp = max(dG_sp, abs(sp(BG) - sp0)); dG_e4 = max(dG_e4, abs(e4f(BG) - e40))
-        RM = exp_unit_bivector(e(2, 4), phi); BM = RM*B0*RM.reverse()
-        dmix = max(dmix, abs(sp(BM) - sp0))
-    assert dG_sp < 1e-12, "G must preserve |B_spatial| exactly (Hodge-split invariance)"
-    assert dG_e4 < 1e-12, "G must preserve |B_e4| exactly too (the forced strengthening)"
-    assert dmix > 0.1, "a sector-mixing rotation (e24) must modulate |B_spatial| (contrast)"
-    return {"G_is_spatial": True, "max_d|B_spatial|_under_G": float(dG_sp),
-            "max_d|B_e4|_under_G": float(dG_e4), "max_d|B_spatial|_under_e24": round(float(dmix), 3),
-            "consequence": "|B_spatial|-of-G-cycled-rotor gives NO generation variation (not even deferent)"}
-
-
 def epicycle_reading_dependent():
     """[TASK-e4 PART A, RECONCILED central finding] §17.4: The obstruction is READING-DEPENDENT. The §0
     ellipse construction is NOT 'cycle a bivector by G and take |B_spatial|'; it is 'project a
@@ -1568,88 +3735,6 @@ def bu_offset_not_charge_sourced():
             "unmotivated_near_hits": {k: round(v, 4) for k, v in near.items()},
             "not_delivered": "n=1/n=3 splitting cross-checks + phi-vs-Jpsi deficit (downstream of Part A)",
             "verdict": "located gap: b_u offset NOT sourced by charge/T3/gen-count; b and eps independent"}
-
-
-def generations_are_defect_flows_on_spinor_S3() -> dict:
-    """[DERIVED geometry + FRAMING picture + CANDIDATE up/down + LOCATED dynamical residual]
-    The SHARP matter-as-defect image of the generation sector (replacing the fuzzy phase reading),
-    Yaer 2026-06-25. A generation is a DEFECT WINDING-FLOW on the spinor 3-sphere.
-
-    DERIVED (geometry, engine-checked): the anti-self-dual triple {e12+e34, e13-e24, e14+e23} are the
-    3 generators of ONE SU(2) factor of Spin(4) -- they are mutually ORTHOGONAL, EQUAL-NORM (norm^2=2),
-    and close as su(2) EXACTLY ([J_i,J_j] = -4 J_k, verified) = the 3 imaginary units of H. That SU(2) is the 3-sphere S^3 = unit-H,
-    which is PARALLELIZABLE by EXACTLY 3 global vector fields (the H units). So:
-      * generation = a defect's meta-time WINDING-FLOW along one of the 3 globally-consistent
-        invariant directions of the anti-self-dual spinor S^3;
-      * WHY EXACTLY 3 / WHY NOT 4 is now TOPOLOGICAL (defect-centric), not just 'su(2) is 3-dim':
-        S^3 admits exactly 3 combable global flows (dim S^3 = 3, and it is parallelizable so the flows
-        are GLOBALLY stable); a 4th generation would need a 4th independent global flow on S^3, which
-        does not exist. (Same count as the banked H-triple, RECAST as defect winding-flows -- this is
-        the sharp picture, NOT a new number.)
-
-    FRAMING (the picture, circular-polarization mapping): Spin(4) = SU(2)xSU(2) = the two CIRCULAR
-    handednesses (self-dual / anti-self-dual = left/right isoclinic). Generations live in ONE handedness
-    (anti-self-dual S^3, the 3 flows above); the OTHER handedness (self-dual S^3) is weak isospin su(2)+
-    [SETTLED SINCE (2026-06-29, N29; RE-SETTLED 2026-08-21, R-171/RUL-082 — the menu is THREE
-    classes and it CLOSED, so weak = SD su(2)+ is DERIVED-given-{A-P2 + RH-singlet datum}, not a
-    counted free bit): weak = SD su(2)+ is the framework's weak-host assignment
-    (§C.4.2) — one bit, with V−A/generation-blindness/up=SD derived-given-it; the historical
-    N4-era hedge formerly here is superseded.]
-    BASIS NOTE (wavefront, §12.5/§7): SPIN = the L-orbit {e12,e13,e23} (e4-FREE planes = the observer's
-    spatial rotations gamma^i gamma^j = -e_ij), and it is exactly the SPATIAL part of each anti-self-dual
-    generation flow (e12 in e12+e34, etc.). NOT {e_i4}: the Q-orbit {e14,e24,e34} is the observer's spatial
-    direction-VECTORS (gamma^j=e4 e_j) AND the §8.3 quark-CKM-orbit -- a DISTINCT role from the H-triple
-    generations (§8.4 warns against conflating them). So {e_ij}=spin is the right basis here, {e_i4} is not.
-    The vacuum is an ACTIVE carrier (s0=(1+e4)/2): it FILLS any defect WITHOUT topological winding
-    (pi_3(S^3)=Z); a generation survives only by winding (inverse of a radio signal, which survives by
-    frequency-separation on a passive carrier). So 'must span an amplitude reversal' = the nonzero-winding
-    condition = why the carrier does not fill these 3.
-
-    CANDIDATE (up/down, Gemini CAND 3, post-hoc + substrate-testable): the +e4 chirality sets the helicity
-    of the winding relative to the wave -- up-type CO-rotating (rides +e4: lighter gen-1, steeper scaling),
-    down-type COUNTER-rotating (m_d>m_u, slower). Matches the gross pattern (m_d>m_u; up-tower steeper);
-    the exact P+ = (1+e4)/2 projection test is owed; NOT derived.
-
-    LOCATED RESIDUAL (the #1 gap, unchanged but sharpened): the DYNAMICAL SELECTION -- the EOM by which a
-    defect locks onto these 3 flows and intermediate windings RADIATE/fill (Gemini CAND 1's radiative
-    limit-cycle is the candidate but UNPROVEN -- needs the driven-dissipative EOM; its D4-Langevin sim is
-    the N9 forbidden toy, NOT run) -- and the phase->mass map (which flow carries which generation mass /
-    the hierarchy). REFUTED en route: Gemini CAND 2 (period-doubling -> 3) -- period-doubling gives a 2^n
-    cascade (->inf before chaos), not 3, and omega/2^n != the mass ratios.
-
-    derived-vs-generic: substrate-specific = the anti-self-dual su(2) closure + S^3=unit-H being the rotor
-    target; the S^3-parallelizability '3 global flows' is the defect-picture form of dim su(2)=3 (a
-    sharpening, same count). NO new number is claimed derived; the dynamical selection stays the #1 gap."""
-    out = {}
-    J = [e(1, 2) + e(3, 4), e(1, 3) + (-1.0) * e(2, 4), e(1, 4) + e(2, 3)]
-    def norm2(x): return sum(c * c for _, c in x.terms)
-    out["anti_self_dual_triple_orthonormal"] = all(abs(norm2(j) - 2.0) < 1e-12 for j in J)  # equal-norm (=2)
-    # su(2) closure EXACTLY: [J_i, J_j] = -4 J_k (cyclic) -- tightened from blade-membership to proportionality
-    def approx_eq(a, b):
-        d = a - b
-        return all(abs(c) < 1e-9 for _, c in d.terms)
-    closes = []
-    for i, j in [(0, 1), (1, 2), (2, 0)]:
-        k = ({0, 1, 2} - {i, j}).pop()
-        closes.append(approx_eq(comm(J[i], J[j]), (-4.0) * J[k]))
-    out["su2_closure"] = all(closes)   # exact [J_i,J_j] = -4 J_k
-    assert out["anti_self_dual_triple_orthonormal"] and out["su2_closure"], \
-        "anti-self-dual triple must be an orthogonal equal-norm su(2) ([J_i,J_j]=-4J_k) = 3 H units = SU(2)=S^3 generators"
-    out["count"] = 3
-    out["why_3"] = "S^3 = SU(2) = unit-H is parallelizable by EXACTLY 3 global flows; a defect winds along one => 3 generations"
-    out["why_not_4"] = "no 4th independent global flow on S^3 (dim S^3 = 3); a 4th generation has nowhere to wind"
-    out["generations_handedness"] = "anti-self-dual S^3 (one circular polarization); self-dual S^3 = weak isospin su(2)+ [CANDIDATE §8.4; vs §10.5 L-orbit; embedding UNDETERMINED, N4]"
-    out["spin_basis"] = "SPIN = L-orbit {e12,e13,e23} (e4-free; = observer rotations gamma^i gamma^j = -e_ij, §12.5); = the spatial part of each anti-self-dual generation flow. NOT {e_i4} (Q-orbit = observer spatial AXES + §8.3 CKM-orbit, a distinct role)"
-    out["survival"] = "active vacuum carrier fills non-wound defects (pi_3=Z); generations survive by winding (NOT frequency-separation)"
-    out["up_down"] = "CANDIDATE (Gemini CAND3): +e4 helicity -- up co-rotating (steeper), down counter (m_d>m_u); P+ test owed"
-    out["dynamical_selection"] = "OPEN (#1 gap): the EOM picking 3 flows + radiating intermediates (CAND1 unproven); phase->mass map open"
-    out["period_doubling_why3"] = "REFUTED (CAND2): period-doubling is 2^n->inf, not 3; omega/2^n != mass ratios"
-    out["verdict"] = ("SHARP defect-picture: a generation = a defect WINDING-FLOW on the anti-self-dual spinor "
-                      "S^3 (one circular handedness); EXACTLY 3 because S^3 is parallelizable by exactly 3 global "
-                      "flows (defect-centric why-3/why-not-4, the SAME count as the H-triple recast); weak isospin "
-                      "= the other handedness; +e4 helicity = up/down (CANDIDATE). The DYNAMICAL selection (lock to "
-                      "3 + radiate the rest, and the mass hierarchy) stays the #1-gap residual; period-doubling REFUTED.")
-    return out
 
 
 def epicycle_reading_resolved():
@@ -1760,93 +3845,6 @@ def same_composition_baryons_pin_internal_mode() -> dict:
     return out
 
 
-# item 8b, step 5 (2026-06-24, Yaer: "do the residuals"). Residual (a): WHICH mass-measure governs the
-# multi-quark coherent sum -- the meson's linear-in-amplitude m=2w|cos(a/2)|, or the gear's frequency
-# lock? Resolved by the WINDING SENSE. Residual (b): the absolute omega scale = the #1 gap (located).
-def winding_sense_sets_mass_measure() -> dict:
-    """[DERIVED (winding sense) + FRAMING (the measure consequence)] item 8b step 5 -- RESIDUAL (a)
-    ADJUDICATED (structurally, by a FRAMING bridge; empirically undiscriminated): the meson and baryon
-    have DIFFERENT mass-measures because their constituents have OPPOSITE vs SAME winding sense -- one
-    ontology, mass=omega of the locked config, two regimes. NOTE this is a structural ADJUDICATION (the
-    deciding co<->gear link is FRAMING, not derived) NOT a closure: the two candidate floors are near-
-    degenerate so DATA cannot yet force the choice, and the gear's VALUES stay gap-gated (residual b).
-
-    DERIVED (topological winding):
-      * MESON = q + qbar: windings +1/3 and -1/3 -> net B=0 -> OPPOSITE sense = COUNTER-rotating pair.
-      * BARYON = 3 quarks: 3 x (+1/3) -> net B=1 (pi3_S3_integer_completion) -> SAME sense = CO-rotating.
-
-    FRAMING (why the measures differ -- the resolution of residual (a)):
-      * COUNTER-rotating (meson, opposite omega) -> the pair BEATS; the interference enters the mass
-        DIRECTLY: m = 2 omega |cos(alpha/2)| (meson_dynamical_current_split) -- mass LINEAR in the
-        coherent amplitude. This is the regime where the GOLDSTONE subtraction lives (alpha=pi cancels).
-      * CO-rotating (baryon, same omega) -> the frequencies LOCK and ADD: the colour-singlet constraint
-        omega1+omega2+omega3 = Omega_B (gear_eigenvalues) + an internal-mode INERTIA (Theta_A/Theta_B).
-        This is the §17.3 GEAR -- NOT a linear-in-amplitude coherent sum.
-      => The 'linear-|A| meson->baryon assumption' that underpinned steps 3-4 (the parallelogram floor,
-         the Goldstone subtraction) is the MESON (counter-rotating) measure IMPORTED. The BARYON's OWN
-         primary measure is the gear (co-rotating frequency lock), which is already DERIVED STRUCTURE.
-         They are ONE ontology (mass = omega of the locked configuration) under opposite vs same winding,
-         and they reconcile on the internal mode (step 2). So the baryon mass functional's BACKBONE is
-         the gear; the Goldstone-subtraction is the meson-sector sibling, consistent-on-the-mode but not
-         the baryon's fundamental measure.
-
-    EMPIRICAL (the two floors are near-degenerate, so data can't yet force the choice): the gear/arith
-    floor (S+L)/2 and the meson/quadrature floor sqrt((S^2+L^2)/2) differ by only 0.6 MeV at Lambda/Sigma
-    and ~9.9 MeV even at the wide N/Delta pair -- consistent with either; not a discriminator yet.
-
-    RESIDUAL (b) -- the ABSOLUTE omega/Omega_B scale -- is the #1 GAP (NOT a separate gate): it is the
-    SAME absolute-scale gate that sets f_pi / the soliton normalization (canon §2 'f_pi the one fitted
-    mass scale'; cf. q_l_stiffness_ratio_is_gap_gated). The gear gives the STRUCTURE (Omega_B=Sum omega,
-    Theta eigenvalues) gate-free; the absolute MeV waits on the driven-dissipative dynamics. Nothing
-    gate-free remains in (b) -- it is located, not open-ended.
-
-    NET (item 8b closeout): the non-additive baryon mass functional = the §17.3 GEAR (co-rotating
-    frequency-lock Omega_B=Sum omega + internal-mode inertia, DERIVED structure); colour mass-blind
-    (step 1); same-composition splits isolate the internal mode (step 2); the meson Goldstone
-    subtraction is the counter-rotating sibling (steps 3-4); residual (a) resolved (winding sense picks
-    the gear for baryons); residual (b) = the #1 gap (absolute scale). derived-vs-generic: substrate-
-    specific = the B=0(opposite)/B=1(same) winding topology and the engine's two measures; the
-    counter->beat / co->frequency-lock consequence is a FRAMING identification (physical, consistent
-    with both engine primitives), NOT a fresh derivation of either measure."""
-    out = {}
-    # DERIVED: winding sense (B numbers)
-    pc = pi3_S3_integer_completion()
-    assert pc["3×(1/3) = 1 is an integer"], "baryon B=1 (3 co-rotating 1/3 windings)"
-    out["meson_B"], out["baryon_B"] = 0, 1
-    out["meson_sense"] = "OPPOSITE (q + qbar) = counter-rotating"
-    out["baryon_sense"] = "SAME (3 quarks) = co-rotating"
-    # the two engine measures
-    out["meson_measure"] = "m = 2*omega*|cos(alpha/2)| (counter beat; LINEAR in coherent amplitude; Goldstone subtraction)"
-    out["baryon_measure"] = "gear: Omega_B = omega1+omega2+omega3 lock + inertia (§17.3 eigenvalues are DERIVED; the co-rotating<->gear LINKAGE is FRAMING)"
-    out["linear_A_is_meson_import"] = True   # steps 3-4's 'linear-|A| for baryon' = the meson measure
-    out["baryon_primary_measure"] = "the §17.3 gear (co-rotating frequency lock), NOT the linear coherent amplitude -- adjudicated via the FRAMING bridge"
-    # UPDATE: the linkage's FREQUENCY-LOCK half is no longer FRAMING -- it is DERIVED via E-centrality
-    out["cogear_linkage_freqlock_now_derived"] = ("cogear_linkage_kinematic: Omega_B=Sum omega is "
-        "DERIVED-CONDITIONAL (2026-07-02 sweep re-tier: central-E additivity holds ONLY in the E channel; "
-        "R-127/R-128 lock the observer-visible mass phase to winding blades whose axes do not commute) -- "
-        "the E-channel composition premise + the E-floor->observer bridge + the §17.3 INERTIA tensor + "
-        "whether freq-sum IS the mass are the open residual")
-    # EMPIRICAL: floors near-degenerate (can't yet discriminate)
-    floors = {}
-    for nm, m1, m2 in [("Lambda/Sigma", 1115.68, 1192.64), ("N/Delta", 938.27, 1232.0)]:
-        ar = (m1+m2)/2.0; qu = math.sqrt((m1*m1+m2*m2)/2.0)
-        floors[nm] = {"arith_gear": round(ar, 1), "quad_meson": round(qu, 1), "diff_MeV": round(qu-ar, 1)}
-    out["floors_near_degenerate"] = floors
-    out["empirically_undiscriminated"] = "floors agree to 0.6 (Lambda/Sigma) / 9.9 (N/Delta) MeV => DATA cannot force gear-vs-meson; the adjudication rests on the FRAMING winding bridge ALONE"
-    assert floors["N/Delta"]["diff_MeV"] < 15, "arith(gear) and quad(meson) floors must be near-degenerate (data can't force the choice)"
-    # RESIDUAL (b): the #1 gap
-    out["residual_b_absolute_scale"] = "the absolute omega/Omega_B scale = the #1 GAP (same gate as f_pi/soliton normalization); STRUCTURE gate-free, VALUE gap-gated; located, not open-ended"
-    out["verdict"] = ("RESIDUAL (a) ADJUDICATED structurally (FRAMING bridge, empirically undiscriminated): "
-                      "winding sense sets the measure -- meson (B=0, OPPOSITE/counter -> beat -> mass linear in "
-                      "amplitude, Goldstone) vs baryon (B=1, SAME/co -> frequency lock Omega_B=Sum omega -> the "
-                      "§17.3 GEAR, whose eigenvalues are DERIVED though the co<->gear LINKAGE is FRAMING). The "
-                      "linear-|A| of steps 3-4 is the MESON import; the baryon's primary measure is the gear; one "
-                      "ontology under opposite/same winding, reconciled on the internal mode. The two floors are "
-                      "near-degenerate so DATA can't yet force the choice (rests on the framing bridge). RESIDUAL "
-                      "(b) = the #1 gap (absolute scale, located, NOT separate).")
-    return out
-
-
 # item 8b, step 8 (2026-06-24, Yaer: "what ARE the SU(6) pairs? geometric/dynamic meaning?").
 # The hyperfine pair coefficients sigma_ij are NOT just practical bookkeeping -- they are the discrete
 # RELATIVE ROTOR ORIENTATIONS of the quark pairs = the step-3 constructive/destructive interference signs.
@@ -1902,144 +3900,6 @@ def su6_pairs_are_rotor_orientation() -> dict:
                       "reconstructs) AND the resulting Lambda<Sigma ORDERING (calibrated to the Sigma-Lambda datum, "
                       "step-3) -- neither is independently derived. Only the rotor-interpretation of sigma_ij is DERIVED-as-meaning.")
     return out
-
-
-def generation_index_survives_brannen_excision():
-    """[DERIVED-STRUCTURAL — assembly synthesis B3, Workers 1+4 convergence]
-
-    The IDENTIFICATION of the generation operator with the meta-time phase advance (per
-    `generation_z3_is_metatime_phase`) does NOT depend on the √m=r² mass-measure choice or
-    the modified-Brannen empirical fit. The core derivation runs:
-
-      (i)  Spatial G_generator preserves |B_spatial| and |B_e_4| under conjugation to 1e-12
-           ⇒ spatial G is MASS-BLIND ⇒ cannot source any mass hierarchy
-      (ii) Therefore spatial G is the COLOUR Z3 (3 colours mass-degenerate)
-      (iii) The GENERATION operator must be a DIFFERENT Z3 action that DOES source a hierarchy
-      (iv) The meta-time phase advance is the natural candidate (acts on the e_5/τ_5 channel,
-           which is the mass channel per `mass_measure_from_omega` ontology)
-
-    Step (i) is pure Cl(4,0) algebra (commutator of G with bivector content, no mass measure
-    involved). Step (ii) is identification. Step (iii) is logical. Step (iv) identifies meta-time
-    phase as the operator — but does NOT bank what the operator's eigenvalues are at each phase.
-
-    What DOES depend on Brannen / √m=r² (and is THEREFORE under WP-MASS-MEASURE suspicion):
-    the SPECIFIC mass values at each meta-time phase sample. That's the spectrum-at-each-phase,
-    not the existence of the operator.
-
-    Consequence: if WP-MASS-MEASURE excises the unified-Brannen framework, the generation
-    OPERATOR identification survives. What gets demoted is the per-phase mass prediction.
-
-    This banks the engine-checkable separation between (a) the generation operator
-    (DERIVED, survives) and (b) the mass-at-each-phase prediction (CANDIDATE-strong,
-    conditional on the WP-MASS-MEASURE rebuild)."""
-    # Engine check: spatial G mass-blindness is purely algebraic (no mass measure invoked)
-    G = G_generator()
-    B0 = 1.0 * e(1, 2) + 0.7 * e(1, 4) + 0.4 * e(2, 3) + 0.5 * e(3, 4)
-    np = __import__("numpy")
-
-    def split(mv):
-        sp = math.sqrt(sum(c * c for b, c in mv.terms if b in [(1, 2), (1, 3), (2, 3)]))
-        ep = math.sqrt(sum(c * c for b, c in mv.terms if b in [(1, 4), (2, 4), (3, 4)]))
-        return sp, ep
-
-    sp0, ep0 = split(B0)
-    dsp_max = dep_max = 0.0
-    for phi in np.linspace(0, 2 * math.pi, 200):
-        R = exp_unit_bivector(G, phi)
-        sp, ep = split(R * B0 * R.reverse())
-        dsp_max = max(dsp_max, abs(sp - sp0))
-        dep_max = max(dep_max, abs(ep - ep0))
-    assert dsp_max < 1e-12 and dep_max < 1e-12, (
-        "spatial G mass-blindness must hold (pure algebra, no mass measure invoked)")
-    return {
-        "tier": "DERIVED-STRUCTURAL",
-        "spatial_G_max_dsp": dsp_max,
-        "spatial_G_max_dep": dep_max,
-        "spatial_G_is_mass_blind": True,
-        "implication_1_spatial_G_is_colour_Z3": True,
-        "implication_2_generation_operator_is_metatime_phase": True,
-        "depends_on_mass_measure": False,
-        "depends_on_Brannen": False,
-        "what_DOES_depend_on_mass_measure": (
-            "the per-phase mass eigenvalue spectrum (CANDIDATE-strong, conditional on WP-MASS-MEASURE rebuild)"
-        ),
-        "what_survives_Brannen_excision": (
-            "the OPERATOR identification: generation = meta-time phase advance, NOT spatial G"
-        ),
-    }
-
-
-def pure_L_rotor_preserves_spatial_radius():
-    """[DERIVED-A — Phase F audit residue, 2026-06-30]
-
-    Clean substrate-pure fact (the narrow result that survives the REFUTED forward-derivation
-    attempt of lepton ε=0 from L-orbit e_4-freeness, Phase F audit):
-
-      For any unit bivector B ∈ span(L_BIVECTORS) (with B²=−1) and any spatial vector r_0
-      ∈ span{e_1, e_2, e_3}, the rotor orbit r(φ) = exp(½φB)·r_0·exp(−½φB) has CONSTANT
-      spatial radius:
-        |r(φ)|_spatial² := Σ_{i=1,2,3} ⟨r(φ), e_i⟩² = |r_0|²   for all φ.
-
-    Underlying algebra: L_BIVECTORS commute with e_4 ⇒ L-rotors preserve the e_4-component
-    of any vector ⇒ the spatial component evolves as a rotation in the spatial 3-volume,
-    preserving its norm.
-
-    Honest scope (from Phase F audit REFUTED verdict):
-      - This DOES bank a clean substrate fact about L-rotor geometry.
-      - This does NOT by itself close the lepton ε=0 forward derivation. The Phase F
-        attempt (Worker 4 §8.2) tried to leverage this fact to derive ε=0 in the
-        modified-Brannen cos(2φ) channel, but the bridge fails on two counts:
-          (1) GRADE CONFLATION: lepton BLADE = e_123 (grade-3 trivector); lepton orbit
-              GENERATOR is a bivector (grade-2). No banked primitive maps lepton-blade
-              to L-bivector-as-rotor-generator. Different objects.
-          (2) PARAMETER CONFLATION: Brannen's τ = e_4-dip of OFFSET AXIS (deferent tilt);
-              the L↔Q-mixing-angle of the rotor GENERATOR is a different object. The
-              "cos(2φ) coefficient = sin²(τ)/2" claim depended on r_0 = e_1 (special
-              choice); for generic r_0 the ratio is 0.59-0.84, not 1.
-
-    Filed as the narrow honest residue of N-LEPTON-EPS-FROM-L-ORBIT (negatives ledger,
-    2026-06-30). The fact itself is real and could be a building block for future
-    substrate-derivations bridging lepton-blade to lepton-orbit-generator (gap 1)."""
-    np = __import__("numpy")
-    # Engine-verify for all three L-bivectors and several non-trivial r_0
-    for name, B in L_BIVECTORS.items():
-        # Confirm B²=−1
-        bb = (B * B).coeff(())
-        assert abs(bb - (-1.0)) < 1e-12, f"{name} must have B²=−1"
-        # Confirm B commutes with e_4
-        assert B * e(4) == e(4) * B, f"{name} must commute with e_4"
-    # For each L-bivector, check several r_0 and confirm spatial radius is constant
-    r0_choices = [e(1), e(2), e(3), 0.7 * e(1) + 0.4 * e(2), 0.5 * e(1) + 0.6 * e(2) + 0.3 * e(3)]
-    spatial_norm = lambda v: math.sqrt(sum(v.coeff((i,)) ** 2 for i in (1, 2, 3)))
-    for name, B in L_BIVECTORS.items():
-        for r0 in r0_choices:
-            target = spatial_norm(r0)
-            for phi in np.linspace(0, 2 * math.pi, 50):
-                R = exp_unit_bivector(B, phi / 2)
-                rphi = R * r0 * R.reverse()
-                got = spatial_norm(rphi)
-                assert abs(got - target) < 1e-10, (
-                    f"pure-L rotor under {name} must preserve spatial radius for r_0={r0}; "
-                    f"got {got} vs target {target} at phi={phi}")
-    return {
-        "tier": "DERIVED-A",
-        "claim": "pure-L rotor preserves spatial radius exactly (any L-bivector, any spatial r_0)",
-        "underlying_algebra": "L_BIVECTORS commute with e_4 ⇒ L-rotors preserve e_4 component ⇒ spatial radius preserved",
-        "engine_verified_for_L_bivectors": list(L_BIVECTORS.keys()),
-        "engine_verified_for_r0_choices": ["e_1", "e_2", "e_3", "0.7e_1+0.4e_2", "0.5e_1+0.6e_2+0.3e_3"],
-        "tolerance": "1e-10 absolute on spatial-radius difference",
-        "does_NOT_close": "lepton ε=0 forward derivation (Phase F audit REFUTED Worker 4 §8.2 chain)",
-        "bridge_gaps_remaining": [
-            "(1) GRADE: lepton blade e_123 (grade-3) ≠ L-bivector (grade-2); no banked map",
-            "(2) PARAMETER: Brannen τ (offset-axis e_4-dip) ≠ L↔Q-mixing of rotor generator",
-        ],
-        "filed_as": "narrow honest residue of N-LEPTON-EPS-FROM-L-ORBIT (negatives ledger)",
-    }
-
-
-def e4_acts_as_identity_on_Splus() -> bool:
-    """[DERIVED] §18.3a: e4·s0 = s0 (e4 = +1 on the e4=+1 ideal)."""
-    return (e(4) * s0()) == s0()
 
 
 # ---- §17.3  the same-composition-split eigenvalues (three-facet S2-symmetry inertia; "gear"=legacy label) ----
@@ -2239,161 +4099,6 @@ def gell_mann_okubo_gamma(Sigma_minus_Lambda: float = 77.0) -> float:
     half of an input datum, not a derived number; the structure that γ has this ROLE is what §17.4
     derives). Tier corrected from a prior mislabel: a quantity calibrated to a datum is INPUT, not DERIVED."""
     return Sigma_minus_Lambda / 2.0
-
-
-def compact_spin4_favors_limit_cycle() -> dict:
-    """[DERIVED-generic / FRAMING — substrate facts produce a STRUCTURAL LEAN
-    toward Floquet limit-cycle NESS over self-organized-critical NESS, but do NOT
-    DECIDE the dichotomy (SOC is biased-against, not excluded). Sector-2 of the
-    2026-06-28 symmetry-shortcut hunt; supplies independent structural support
-    for Fork B in `eom_compatible_field_forks` and the N11-U1 / N15 lean.
-    Canon-§2 tier: DERIVED-generic (the unqualified/-generic variant — real but
-    generic-given-coarse-substrate-facts, the Sakharov-Λ² template of canon §5),
-    NOT DERIVED-A and NOT DERIVED-P. /FRAMING because the dichotomy stays open.]
-
-    Pin a SINGLE fork-lean from compact-group + periodic-drive geometry —
-    e5-litmus-free (no e5 spatial) and not §9.6-routed (no kernel import; §9.6
-    is the kernel that Fork B is ABOUT, so routing through it would beg the
-    question). Four substrate facts conjoin:
-
-    F1 — COMPACT TARGET. The rotor field lives on Spin(4) = SU(2)_+ × SU(2)_-
-      = S^3 × S^3, compact without boundary (the two chiral Spin(4) factors of
-      the substrate). Dissipative trajectories on a compact manifold are
-      uniformly bounded; no unbounded target-space scale develops. Caveat:
-      compactness alone does NOT kill SOC (SOC's correlation length is a
-      SPATIAL field-correlator property, not target-space).
-
-    F2 — PERIODIC FINITE-FREQUENCY DRIVE. The advancing e4 wave is a periodic
-      drive at the rotor frequency ω_d = mass (canon §0: mass = the meta-time
-      rotor frequency). Periodic + dissipative + compact ⇒ Floquet theory
-      applies and generically yields a T_d=2π/ω_d-periodic (or rationally
-      mode-locked p:q) attractor — a limit cycle. This is GENERIC dynamical-
-      systems theory (Floquet/Krein; Pikovsky–Rosenblum–Kurths synchronization),
-      DERIVED-generic-given-(compact + periodic-drive), NOT a TWT theorem.
-
-    F3 — MULTIPLE INTRINSIC SCALES. The substrate has ≥3 banked scales:
-      Λ (UV cutoff = grain spacing), T_d=2π/ω_d (drive period), f_π (hadronic-
-      cell scale) — and additionally the Spin(4) group radius from F1. SOC
-      requires SCALE INVARIANCE — a fine cancellation that no substrate
-      symmetry enforces (contrast: s=3 decoherence is symmetry-pinned, not
-      scale-tuned). Multi-scale ⇒ SOC is measure-zero — a LEAN, not a proof.
-
-    F4 — NO SLOW/FAST SEPARATION. Canonical SOC (BTW/OFC/sandpile) needs
-      slow drive + fast relaxation (drive ≪ relaxation rate). The e4-drive
-      is at the substrate's PRIMARY timescale (ω_d = ω_rotor, by ontology);
-      no slow-driving limit. Removes the canonical SOC mechanism; does not
-      exclude non-canonical continuum-SOC at finite drive.
-
-    NET — FORK B LEAN. F1+F2 furnish a generic Floquet attractor; F3+F4
-      remove canonical SOC routes. STRUCTURAL LEAN toward Floquet limit-cycle
-      NESS, substrate-grounded (none of F1-F4 imports the kernel, runs §9.6,
-      or uses e5 spatially) and INDEPENDENT of N9's D4-Langevin toy hint —
-      two independent supports converge on the same lean. NOT a decision: the
-      dichotomy is biased-against SOC, not exclusive (topological criticality
-      on compact targets, or continuum-SOC at finite drive, are not refuted).
-      The kernel decides; the geometry only leans. Note: the substance of F2
-      already lives in `theta_rel_universality_located` R2 (Floquet lean + N9
-      numerical hint); the genuinely NEW content here is F3 (multi-scale ⇒ SOC
-      measure-zero) and F4 (no slow/fast separation removes BTW/OFC SOC).
-
-    TIER (canon §2 + §5 derived-vs-generic). DERIVED-generic: each Fi is a
-    banked substrate fact (compactness, periodicity, multi-scale, timescale
-    identity); the CONJUNCTION is generic dynamical-systems theory, so the lean
-    is DERIVED-generic-given-(F1-F4), the Sakharov-Λ² template (canon §5) —
-    real but generic, NOT a substrate-specific theorem and NOT a closed Clifford
-    identity (so NOT DERIVED-A) and NOT a clean physical forcing (NOT DERIVED-P).
-    The DICHOTOMY remains OPEN (Fork B decision stays #1-gap GATED). Downstream:
-    the SOC-universality route to (α,g,g_s) is structurally DISFAVORED (not
-    refuted) — the gauge couplings likely require a more bespoke mechanism than
-    NESS universality.
-
-    NEGATIVES-DISCIPLINE (canon §4). Tried whether substrate GEOMETRY ALONE
-    decides Fork B → succeeded at the LEAN level (F1-F4) → would change if the
-    built §9.6 kernel flows to a genuine scale-invariant fixed point despite
-    F1-F4 (topological criticality on compact target / continuum-SOC at finite
-    drive). Then the kernel verdict overrides the geometric lean. Not a §1
-    SM-retreat (no e5-spatial, no §9.6 routing, no imported QFT theorem in the
-    forcing step).
-
-    self-check: F1 compact + boundary-free; F2 periodic finite-frequency drive
-    (ω_d = mass, canon §0); F3 substrate scales ≥3; F4 no slow/fast separation
-    (drive timescale = system timescale by ontology); cross-references
-    (theta_rel_universality_located N11/U1, eom_compatible_field_forks Fork B)
-    resolve and lean limit-cycle the same way."""
-    # F1 — Compact target.
-    F1 = {
-        "manifold": "Spin(4) = SU(2)_+ x SU(2)_- = S^3 x S^3",
-        "compact": True, "boundary": False,
-        "bites": "uniformly bounded dissipative trajectories; no target-space scale-divergence",
-        "caveat": "compactness alone does NOT kill SOC (correlation length is a SPATIAL "
-                  "field-correlator, not a target-space property)",
-    }
-    # F2 — Periodic finite-frequency drive (canon §0: mass = ω_d).
-    F2 = {
-        "drive": "advancing e4 wave at omega_d = mass (meta-time rotor freq; canon §0)",
-        "kind": "periodic, finite-frequency, continuous (NOT slow-driven)",
-        "period": "T_d = 2pi/omega_d",
-        "bites": "Floquet/Krein + Pikovsky synchronization => generic T_d-periodic (or p:q mode-locked) attractor",
-        "tier": "DERIVED-generic-given-(compact+periodic-drive), NOT a TWT theorem",
-    }
-    # F3 — Multiple intrinsic scales (SOC requires scale invariance).
-    F3 = {
-        "intrinsic_scales": ["Lambda (UV cutoff = monad spacing)",
-                              "T_d = 2pi/omega_d (drive period)",
-                              "f_pi (hadronic-cell scale)",
-                              "Spin(4) group radius (from F1)"],
-        "n_scales_at_least": 3,
-        "SOC_requirement": "scale-invariant attractor (no characteristic scale)",
-        "bites": ">=3 intrinsic scales => scale-invariance is measure-zero with no symmetry to enforce it",
-        "caveat": "SOC AT one of these scales is not strictly excluded — a LEAN, not a proof",
-    }
-    # F4 — No slow/fast separation.
-    F4 = {
-        "canonical_SOC_needs": "slow drive << fast relaxation (BTW/OFC/sandpile)",
-        "substrate_reality": "omega_drive = omega_rotor = omega_system (ontology: drive IS the substrate's primary timescale)",
-        "separation": False,
-        "bites": "removes canonical SOC mechanism by construction",
-        "caveat": "does NOT exclude non-canonical (continuum-SOC at finite drive) classes",
-    }
-    # Cross-references must resolve and the existing Fork B lean must agree.
-    tu = theta_rel_universality_located()
-    assert "FRAMING + LOCATED-GAP (N11)" in tu["tier"], "N11-U1 lean must resolve"
-    ff = eom_compatible_field_forks()
-    assert "limit-cycle" in ff["forks"]["B_NESS_character(N11)"]["status"], "Fork B lean must agree"
-    # Self-check assertions on the four substrate facts.
-    assert F1["compact"] and not F1["boundary"]
-    assert F2["kind"].startswith("periodic")
-    assert F3["n_scales_at_least"] >= 3
-    assert not F4["separation"]
-    lean = {
-        "Fork B verdict (geometry-only, e5-litmus-free, no §9.6 routing)": "LEANS LIMIT-CYCLE (Floquet)",
-        "support": "F1+F2 => generic Floquet attractor; F3+F4 => canonical SOC routes removed",
-        "vs N9": "N9 (D4-Langevin toy) and F1-F4 (structural) lean limit-cycle for INDEPENDENT reasons — "
-                 "convergent support, NOT a tighter derivation",
-        "decision_status": "DICHOTOMY NOT DECIDED — SOC biased-against, not excluded; the §9.6 kernel decides",
-    }
-    return {
-        "question": "does compact-Spin(4) + periodic e4-drive STRUCTURALLY prefer Floquet limit-cycle NESS "
-                    "over SOC-critical NESS, e5-litmus-free and not §9.6-routed?",
-        "answer": "STRUCTURAL LEAN yes (4 substrate facts F1-F4); DECISION no (geometry leans, kernel decides)",
-        "F1_compact_target": F1, "F2_periodic_drive": F2,
-        "F3_multi_scale": F3, "F4_no_slow_fast_separation": F4,
-        "lean": lean,
-        "fork_B_status_update": "OPEN, leans limit-cycle: was '(N9 D4-Langevin toy)' alone; now also "
-                                "'(F1-F4 structural, geometry-grounded)' — two independent supports converge",
-        "downstream_implication": "SOC-universality route to (alpha,g,g_s) (the §9.6 coupling-universality hope, "
-                                  "N11/N15) is STRUCTURALLY DISFAVORED — not refuted; gauge couplings "
-                                  "likely require a more bespoke mechanism than NESS universality",
-        "would_change_if": "the built §9.6 kernel is shown to flow to a genuine scale-invariant fixed point "
-                           "despite F1-F4 (e.g. topological criticality on compact targets, continuum-SOC at "
-                           "finite drive). Then the kernel verdict overrides the geometric lean.",
-        "scope_honesty": "DERIVED-generic-given-(F1-F4), NOT DERIVED-A/-P. Per canon §5 derived-vs-generic, "
-                         "this is the Sakharov-Λ² template: real, but generic-given-coarse-substrate-facts.",
-        "tier": "DERIVED-generic / FRAMING: structural lean derived from F1-F4 substrate facts; "
-                "dichotomy NOT decided (SOC biased-against, not excluded); Fork B DECISION stays #1-gap GATED. "
-                "Negatives-discipline (canon §4): tried→succeeded at LEAN level→would-change-if kernel shows SOC. "
-                "Not §1 SM-retreat (no e5-spatial, no §9.6 routing, no imported QFT theorem in the forcing).",
-    }
 
 
 def generation_subharmonic_ladder():
@@ -3193,683 +4898,6 @@ def geometric_ladder_is_nonselfadjoint():
     }
 
 
-def generation_values_monad_forked():
-    """[located-gap (N21 measure-fork RESOLVED) + DERIVED sub-results + FRAMING (the structure/value tiering) — N22;
-    TWT_DEFECT_CKM_GLUON.md §19] A 3-route workflow + developer verification (sympy-exact) asking which quantization
-    ordering the substrate dictates for the collective coordinate, and what TIER that makes the generation VALUES.
-    (The fork's small-size endpoint is the GRAIN — this primitive's name retains the older word 'monad'.)
-
-    ── RESOLVES the N21 measure sub-fork: the physical ordering is COVARIANT (Laplace-Beltrami), Q=0 ───────
-    The von Roos ordering ambiguity is PHYSICAL, so it must be fixed by the substrate. Collective-coordinate
-    quantization on a moduli space has a canonical answer — the COVARIANT (Laplace-Beltrami / Gervais-Jevicki)
-    operator, hermitian w.r.t. the invariant moduli measure. For the 1-D breathing modulus R it gives an induced
-    potential of EXACTLY ZERO for ANY metric g(R) (1-D moduli is flat; in arc-length s=∫√g dR, LB = −d²/ds², no
-    potential). LB is the UNIQUE reparametrization-covariant von Roos member — every non-LB ordering adds a +c/R²
-    that is NOT a coordinate scalar (it changes under R→u), hence unphysical. **So the covariant ordering supplies
-    NO induced −1/r²; the N21 "von Roos measure spans the BF threshold ⇒ could be supercritical" sub-route is CLOSED**
-    — the supercritical orderings are non-covariant artifacts. (One POSITED hinge: that the TWT rotor inner product
-    is the coordinate-free moduli L²-norm that selects LB — standard collective quantization, §17-grounded, not a
-    separately-built Clifford identity.)
-
-    ── the 2D-curvature objection, DEFUSED (the decisive push-past) ────────────────────────────────────
-    The physical collective manifold is really 2-D — (R, θ) with θ the meta-time mass-phase — and its Ricci scalar
-    is NONZERO (~R⁻³ at R→0), so a covariant DeWitt curvature term Q=ξ·R_scalar seems to survive. BUT θ is the
-    CENTRAL U(1)_E mass-phase (a CYCLIC, commuting coordinate). Separating ψ=e^{inθ}φ(R) collapses the 2-D operator
-    to a 1-D radial problem whose θ-centrifugal term n²/(2Λ(R)) with Λ=aR³+bR is **n²/(2bR) near R→0 — a SOFT 1/R
-    (degree −1), NOT a scale-invariant R⁻²** (sympy-exact). So the R⁻³ curvature is a coordinate artifact of the
-    un-separated operator; after separation there is no forced supercritical −g/r² from curvature.
-
-    ── ★ THE HONEST TIER OF THE GENERATION VALUES — a SHARPENED 2-WAY FORK (not a flat input) ───────────
-    With the measure sub-route dead, the cost-table VALUES (the 6 numbers; the lepton masses + CKM magnitudes that
-    are physical per §5) are GATED-WITH-AN-OPEN-FORK at the R→0 grain endpoint:
-      (a) a grain-scale INPUT — same tier as Λ/f_π (canon §2), the knowability shape of `induced_G_only_grain_scale_enters`
-          (cutoff-gated, consistent-with-not-confirming underivability) — IF the resolution is the conservative
-          self-adjoint-extension parameter fixed by grain-scale D4-lattice 3-body CONTACT (Efimov-on-the-lattice); OR
-      (b) Im χ-GATED and dynamically DERIVABLE — IF the resolution is the DISSIPATIVE hysteretic kernel (Fork A,
-          Θ_rel-kind coset-Cartan/FDT-violation); calling its output "input" would smuggle a gated quantity into the
-          input tier.
-    SHARPENING (tilts toward dynamical): a static boundary parameter alone gives at most ONE bound state, NOT a
-    geometric TOWER — log-periodicity still needs a genuine attractive −1/4 1/s² channel, so even branch (a) needs
-    the dynamical 3-body contact to SOURCE the channel. Both live routes are grain-scale and essentially DYNAMICAL;
-    the measure was a red herring for the values. Only the Im χ branch can supply the chirality-signed DSI-breaking
-    RUNNING rate the data demands (a single Λ/f_π ratio gives ONE universal log-period, but the data is 6 numbers =
-    3 distinct tower scales + within-tower drift of OPPOSITE signs, sign = the up↔down mirror).
-
-    ── the STRUCTURE/VALUE line (branch-independent SCAFFOLD vs FORKED VALUES) — tier-honest, mixed tiers ──
-    The branch-independent SCAFFOLD is NOT uniformly DERIVED — only two members are unconditionally DERIVED; the rest
-    are weaker and carry their true tier: (1) [DERIVED, sympy-exact] the 1-D-moduli covariant-Q=0 fact + the cyclic-θ
-    soft-1/R defusal; (2) [DERIVED, sympy-exact] the bulk-arithmetic negative (cranked no R⁻²); (3) [STRUCTURAL,
-    dynamical selection OPEN] the 3 windows (N13 topological, contingent on generation=ℍ-triple); (4) [DERIVED-in-KIND,
-    CONDITIONAL on up=SD/down=ASD — per V3 R-077 given the weak=SD assignment R-079
-    (DERIVED-given-{A-P2 + RH-singlet datum} since RUL-082, not an INPUT bit); label updated 2026-07-02 from the
-    stale 'N4-CANDIDATE' (N4 resolved (ii) LOCATED, see weak_isospin_verdict)] the up↔down MIRROR
-    (`chirality_is_a_reflection`); (5) [FRAMING — the
-    UNSETTLED channel] the NON-SELF-ADJOINT character (N21); (6) [TAUTOLOGY, not a prediction] the O(few) cost SCALE
-    (the r⁴ map, N20); (7) [FRAMING] the RELOCATION to R→0. So TWT derives THAT there are 3 (structural) non-self-adjoint
-    (framing) mirror-paired (conditional) O(few)-cost (tautology) windows needing a chirality-signed running rate; it
-    does NOT derive WHICH costs. NOT a derivation of the values; NOT a flat deflation to input. The #1 gap stands,
-    localized to: is the R→0 datum a conservative D4-3-body contact (values=INPUT) or the Im χ kernel (values=GATED)?
-
-    ── COORDINATE DISAMBIGUATION (the −1/r² channel's r/R) — to keep the arc unambiguous ────────────────
-    The radial coordinate r/R of the −1/r² channel is the **soliton-SIZE = breathing-mode collective MODULUS**
-    throughout N20–N22 (the dynamical coordinate whose closed-orbit action is S(r)); R→0 is its small-size = grain
-    limit. It is NOT the *static* soliton radius of the √m=r²⇒ω=r⁴ mass map (that enters only the cost=4·ln(r-gap)
-    TAUTOLOGY), and NOT the phase θ (the central U(1)_E mass-phase, cyclic, → the soft 1/R, not the −1/r²).
-
-    Tier: located-gap (N21 measure-fork resolved) + DERIVED sub-results (covariant LB ⇒ Q=0; cyclic-θ ⇒ soft 1/R) +
-    FRAMING (structure-DERIVED / values-FORKED). NOT DERIVED for the values.
-    self-check: the cyclic-θ centrifugal is degree −1 (soft 1/R), not R⁻²; Λ=aR³+bR has no R⁻² in n²/(2Λ)."""
-    import sympy as sp
-    R, a, b, nph = sp.symbols('R a b n_phase', positive=True)
-    # the decisive defusal: cyclic-theta separation gives a SOFT 1/R, not a scale-invariant R^-2
-    Lam = a * R**3 + b * R
-    cent = sp.series(nph**2 / (2 * Lam), R, 0, 2).removeO()
-    assert cent.coeff(R, -2) == 0                                    # NO scale-invariant R^-2
-    assert cent.coeff(R, -1) == nph**2 / (2 * b)                     # leading term is the SOFT 1/R (degree -1)
-    # the covariant (LB) member: induced potential identically 0 for ANY 1D metric. PROOF (Liouville normal form):
-    # LB as Sturm-Liouville -(p f')'=λ w f has p=√g·g⁻¹=g^{-1/2}, w=√g (the invariant measure); the induced potential
-    # is Q=m''(s)/m with m=(p·w)^{1/4}. For LB, p·w = g^{-1/2}·g^{1/2} = 1 ⇒ m=1 ⇒ Q=0, for any g. (non-LB orderings
-    # have p·w ≠ 1 ⇒ Q≠0, and that Q is not a coordinate scalar.)
-    m = sp.Symbol('m', positive=True)
-    g_pow = R**m                                                    # arbitrary power-law 1D moduli metric
-    p_lb, w_lb = g_pow**sp.Rational(-1, 2), sp.sqrt(g_pow)          # LB Sturm-Liouville weights
-    assert sp.simplify(p_lb * w_lb) == 1                            # ⇒ Liouville m=(pw)^{1/4}=1 ⇒ induced Q=0 (covariant ordering, any metric)
-    return {
-        "measure_subroute_resolved": "the physical (covariant Laplace-Beltrami) ordering gives Q=0 for the 1-D breathing modulus (any metric); LB is the unique "
-                                      "reparametrization-covariant von Roos member; non-covariant orderings add a +c/R² that is not a coordinate scalar ⇒ N21's supercritical measure sub-route is CLOSED",
-        "curvature_objection_defused": "the 2-D (R,θ) Ricci is ~R⁻³ at R→0, but θ is CYCLIC (central U(1)_E mass-phase); separation ψ=e^{inθ}φ(R) gives a θ-centrifugal "
-                                       "n²/(2(aR³+bR)) = soft n²/(2bR) (degree −1), NOT R⁻² ⇒ the curvature singularity is a coordinate artifact, no forced supercritical channel",
-        "values_tier": "GATED-WITH-AN-OPEN-FORK (NOT a flat input, NOT a derivation): the cost-table numbers / lepton masses / CKM magnitudes are EITHER (a) a monad-scale "
-                       "INPUT (tier Λ/f_π) if the R→0 resolution is the conservative self-adjoint-extension / D4-3-body-contact parameter, OR (b) Im χ-GATED and dynamically DERIVABLE if dissipative (Fork A)",
-        "sharpening": "a static boundary parameter alone gives ≤1 bound state, not a geometric TOWER; log-periodicity needs a genuine −1/4 1/s² channel, so even the conservative "
-                      "branch needs the dynamical 3-body contact to source it. Only the Im χ branch can supply the chirality-signed DSI-breaking RUNNING rate the 3 drifting towers demand",
-        "structural_scaffold_mixed_tiers": {
-            "DERIVED (sympy-exact)": ["1-D-moduli covariant Q=0 (+ cyclic-θ soft-1/R)", "the bulk-arithmetic negative (cranked no R⁻², N21)"],
-            "STRUCTURAL (dyn. selection open)": "3 windows (N13 topological, contingent on generation=ℍ-triple)",
-            "DERIVED-in-KIND (conditional on up=SD/down=ASD, per R-077 given weak=SD INPUT R-079; ex-N4-CANDIDATE, N4 resolved (ii) LOCATED)": "the up↔down mirror (chirality_is_a_reflection)",
-            "FRAMING": ["the NON-SELF-ADJOINT character (N21, the UNSETTLED channel)", "the relocation to R→0"],
-            "TAUTOLOGY (not a prediction)": "the O(few) cost scale (the r⁴ map, N20)"},
-        "coordinate_disambiguation": "the −1/r² channel's r/R is the soliton-SIZE = breathing-mode collective MODULUS (S(r) = its closed-orbit action; R→0 = monad limit), "
-                                     "NOT the static √m=r²⇒ω=r⁴ radius (that enters only the cost=4·ln(r-gap) tautology), NOT the phase θ (cyclic, → the soft 1/R)",
-        "next_step": "the SMALL-DEFECT discriminator: construct the TWT rotor inner product on the breathing moduli to FIX the R→0 extension, then test whether monad-scale "
-                     "D4-lattice 3-body CONTACT (Efimov-on-lattice) supplies a supercritical g_eff>1/4 channel AND the chirality-signed running rate — conservative (values=INPUT) vs Im χ (values=GATED)",
-        "tier": "located-gap (N21 measure-fork resolved) + DERIVED sub-results (covariant LB ⇒ Q=0; cyclic-θ ⇒ soft 1/R defusing the 2D curvature) + FRAMING (structure-DERIVED / "
-                "values-FORKED tiering); the VALUES tier is GATED-with-an-open-fork (conservative-INPUT vs dissipative-Im χ-GATED), NOT a flat input, NOT DERIVED for the values",
-    }
-
-
-def tunneling_evanescent_decay_constant():
-    """[DERIVED-A (both the exact NR recovery and the KG correction, sympy-exact); WP-TUN-1 RESOLVED
-    2026-07-06] Reproduces the SSB.3.6 evanescent-tail tunneling check with an engine primitive, and
-    CORRECTS the V2-era claim. RESULT: the recovery of the standard decay constant is EXACT in the
-    non-relativistic (Schrodinger) limit (0%, not 5%); the leading deviation is a RELATIVISTIC (KG-parent)
-    correction controlled by (V-E)/mc^2 -- NOT the tunneling depth V0/E. So the V2-era '5% in the
-    deep-tunneling regime V0/E >= 5' figure is MIS-PARAMETRIZED and is DEMOTED, replaced by the derived
-    correction formula.
-
-    (1) NON-RELATIVISTIC RECOVERY [DERIVED-A, EXACT]. The linearized wave equation in the classically-
-        forbidden region V > E is the time-independent Schrodinger form  psi'' = (2m(V-E)/hbar^2) psi,
-        with the decaying solution psi ~ exp(-kappa_NR x) and
-            kappa_NR = sqrt(2 m (V-E)) / hbar   -- the STANDARD QM decay constant, recovered EXACTLY
-        (0% deviation; it is the defining equation of the forbidden-region tail, not a 5% approximation).
-
-    (2) RELATIVISTIC (KG-PARENT) CORRECTION [DERIVED-A, sympy-exact]. TWT's actual substrate wave equation
-        is the hyperbolic KG parent (SSB.3.7); a static potential gives, in the forbidden region,
-            -hbar^2 c^2 psi'' + m^2 c^4 psi = (E - V)^2 psi   =>   kappa_rel = sqrt(m^2 c^4 - (E-V)^2)/(hbar c),
-        with E the TOTAL relativistic energy (E = mc^2 + W, W the non-rel energy). Then
-            kappa_rel / kappa_NR = sqrt(1 - (V-E)/(2 m c^2))  ~  1 - (V-E)/(4 m c^2),
-        where (V-E) is the non-rel barrier-minus-energy. The deviation from standard QM is thus
-        (V-E)/(4 m c^2) at leading order -- a RELATIVISTIC ratio (barrier energy vs rest mass), which
-        reaches 5% at (V-E)/mc^2 ~ 0.195.
-
-    (3) THE V2 FIGURE, CORRECTED [DEMOTE]. '5% in the deep-tunneling regime V0/E >= 5' conflates two
-        different ratios: the deviation is set by (V-E)/mc^2 (relativistic), NOT by V0/E (tunneling depth).
-        For a deep barrier that is still non-relativistic ((V-E) << mc^2) the deviation is << 5% no matter
-        how large V0/E is; a 5% deviation needs (V-E) ~ 0.2 mc^2, a semi-relativistic barrier. So the V2
-        '5% at V0/E>=5' is MIS-PARAMETRIZED. Correct statement (now in SSB.3.6): EXACT NR recovery + a
-        relativistic correction (V-E)/(4mc^2) controlled by the barrier-to-rest-mass ratio.
-
-    TWT-specific candidate prediction (UNCHANGED, CANDIDATE): a further small deviation when the wave-train
-    extent and the barrier scale are comparable (leading-edge/barrier interference) -- not quantified.
-
-    self-check: the NR forbidden-region equation gives kappa_NR = sqrt(2m(V-E))/hbar exactly; the KG
-    forbidden-region decay gives kappa_rel/kappa_NR = sqrt(1 - (V-E)/(2mc^2)) (sympy-exact); the deviation
-    is controlled by (V-E)/mc^2 (relativistic), NOT V0/E; 5% deviation at (V-E)/mc^2 ~ 0.195."""
-    import sympy as sp
-    m, c, hbar, W, Vpot = sp.symbols('m c hbar W V_pot', positive=True)
-    DeltaV = Vpot - W                                   # (V - E), non-rel barrier minus energy (>0)
-
-    # (1) NR: the forbidden-region Schrodinger solution's decay constant (exact)
-    kappa_NR = sp.sqrt(2 * m * DeltaV) / hbar
-    x = sp.symbols('x', real=True)
-    psi = sp.exp(-kappa_NR * x)
-    nr_residual = sp.simplify(sp.diff(psi, x, 2) - (2 * m * DeltaV / hbar**2) * psi)
-    nr_exact = (nr_residual == 0)                        # exact solution => 0% deviation
-
-    # (2) KG: forbidden-region relativistic decay constant + the correction ratio
-    E_tot = m * c**2 + W
-    kappa_rel = sp.sqrt(m**2 * c**4 - (E_tot - Vpot)**2) / (hbar * c)
-    ratio_sq = sp.simplify(kappa_rel**2 / kappa_NR**2)
-    correction_form = 1 - DeltaV / (2 * m * c**2)
-    kg_matches = (sp.simplify(ratio_sq - correction_form) == 0)
-    leading = sp.series(sp.sqrt(correction_form), DeltaV, 0, 2).removeO()   # 1 - (V-E)/(4mc^2)
-    leading_ok = (sp.simplify(leading - (1 - DeltaV / (4 * m * c**2))) == 0)
-
-    # (3) the deviation is relativistic ((V-E)/mc^2), NOT V0/E; 5% at ~0.195
-    dev5_ratio = float(sp.nsolve(sp.sqrt(1 - sp.Symbol('r') / 2) - sp.Rational(95, 100), sp.Symbol('r'), 0.2))
-
-    assert nr_exact, "NR forbidden-region recovery of kappa_NR = sqrt(2m(V-E))/hbar must be EXACT (0%)"
-    assert kg_matches, "KG correction kappa_rel/kappa_NR must be sqrt(1 - (V-E)/(2mc^2))"
-    assert leading_ok, "leading deviation must be (V-E)/(4 m c^2)"
-    assert abs(dev5_ratio - 0.195) < 0.01, "5% deviation occurs at (V-E)/mc^2 ~ 0.195 (relativistic, not V0/E)"
-
-    return {
-        "tier": "DERIVED-A (exact NR recovery + sympy-exact KG correction) -- WP-TUN-1 resolved",
-        "nr_recovery": "EXACT: the forbidden-region Schrodinger equation gives kappa_NR = sqrt(2m(V-E))/hbar with 0% deviation (it is the defining equation, not a 5% approximation)",
-        "kg_correction": "kappa_rel/kappa_NR = sqrt(1 - (V-E)/(2 m c^2)) ~ 1 - (V-E)/(4 m c^2) -- the RELATIVISTIC correction; this is STANDARD relativistic QM (any KG particle gets it), recovered here from the substrate's KG parent (SSB.3.7), NOT a TWT-specific prediction. The TWT-specific deviation remains the (unquantified) wave-train/barrier-scale interference",
-        "deviation_controlled_by": "(V-E)/mc^2 (barrier energy vs rest mass), NOT V0/E (tunneling depth); 5% at (V-E)/mc^2 ~ 0.195",
-        "v2_figure_verdict": "DEMOTED: '5% in the deep-tunneling regime V0/E >= 5' is MIS-PARAMETRIZED (conflates the relativistic ratio with the tunneling depth); replaced by the derived correction",
-        "twt_candidate_deviation": "UNCHANGED (CANDIDATE): a further deviation when wave-train extent ~ barrier scale (leading-edge/barrier interference), not quantified",
-    }
-
-
-# ---- e4-conjugation is the L/Q projector, not the up/down projector (CAND 3 refutation / N28) ----
-def e4_conjugation_is_LQ_not_updown() -> dict:
-    """[DERIVED — exact Clifford, no toy] §19.9: (N28 / CAND 3 refutation, 2026-06-28)
-    The e4-conjugation C4(B) = e4·B·e4 on all 6 grade-2 bivectors:
-      L-orbit {e12,e13,e23} (no e4 index): C4(B) = +B  (eigenvalue +1)
-      Q-orbit {e14,e24,e34} (one e4 index): C4(B) = -B  (eigenvalue -1)
-    So P+(e4) = ½(1+C4) projects onto L-orbit = LEPTON sector;
-       P-(e4) = ½(1-C4) projects onto Q-orbit = QUARK sector.
-    Within Q-orbit, ALL THREE bivectors share eigenvalue -1 — NO sub-splitting into up/down.
-
-    INCOMMUTABILITY: C4 and the Hodge star (I4·) are INCOMMENSURABLE on grade-2.
-    C4 maps the SD generator (e12-e34) to the ASD generator (e12+e34); [C4,Hodge](sd)=2*asd != 0.
-    The L/Q splitting (C4) and the SD/ASD splitting (I4) are orthogonal projections of grade-2 -- no
-    basis simultaneously diagonalizes both.
-
-    CAND 3 REFUTED (2026-06-24 candidate file, helical-pitch-asymmetry): the claim is that
-    P+(e4) = ½(1+e4) acting on the intersection of SD and ASD bivector spaces algebraically fixes
-    the up/down mass-scaling exponent ratio. This fails on two independent counts:
-      1. P+(e4) is the L/Q projector: C4=+1 ↔ LEPTON; C4=-1 ↔ QUARK. Within the Q-orbit C4=-1
-         uniformly on {e14,e24,e34} — there is no e4-based sub-splitting into up vs down.
-      2. SD∩ASD = {0}: the SD and ASD subspaces are complementary; their intersection is trivial,
-         so there is no non-zero element for P+(e4) to act on differentially.
-
-    LOCATED GAP -- N28: tried e4-helicity P+/-(e4) as up/down projector within Q-orbit ->
-    REFUTED: P+/-(e4) is the L/Q (lepton/quark sector) projector; within Q, C4 = -1 uniformly;
-    SD/ASD and L/Q are incommensurable. Would change if: sec.9.6 EOM distinguishes SD vs ASD
-    dynamics of Q-orbit bivectors (a Layer-2 driven-dissipative distinction, not a static Clifford fact).
-
-    DERIVED-VS-GENERIC (sec.5 guardrail): the algebraic eigenvalue formula C4(B)=+/-B depending on
-    e4-index count is GENERIC for any Euclidean Clifford algebra with a distinguished e4. What is
-    SUBSTRATE-SPECIFIC is the CONCLUSION -- "C4 is the L/Q projector" -- because that requires the
-    Cl(4,0) orbit identification L-orbit=lepton sector, Q-orbit=quark sector (banked via I4_maps_L_to_Q,
-    not generic across dimensions). The DERIVED tag attaches to the conclusion, not the formula.
-
-    Consistent with: chirality_does_not_source_P (I4:Q->L => chirality blind on Q-orbit);
-    chiral_split_demo (SD/ASD mixes L and Q); chirality_is_a_reflection (parity<->SD/ASD, FRAMING)."""
-    e4 = e(4)
-    L_bivs = {"e12": e(1)*e(2), "e13": e(1)*e(3), "e23": e(2)*e(3)}
-    Q_bivs = {"e14": e(1)*e(4), "e24": e(2)*e(4), "e34": e(3)*e(4)}
-
-    def c4(B): return e4 * B * e4
-
-    L_eigs_ok = {name: (c4(B) == B) for name, B in L_bivs.items()}
-    Q_eigs_ok = {name: (c4(B) == (-1.0) * B) for name, B in Q_bivs.items()}
-
-    # Incommutability: C4 maps SD generator to ASD (they are not C4 eigenstates)
-    sd_gen  = e(1)*e(2) - e(3)*e(4)   # self-dual (I4 eigenvalue +1)
-    asd_gen = e(1)*e(2) + e(3)*e(4)   # anti-self-dual (I4 eigenvalue -1)
-    c4_sd_is_asd = (c4(sd_gen) == asd_gen)
-
-    I4 = e(1)*e(2)*e(3)*e(4)
-    comm = c4(I4 * sd_gen) - (I4 * c4(sd_gen))   # [C4, Hodge](sd_gen) = 2·asd_gen
-    comm_nonzero = (comm.terms != ())
-
-    assert all(L_eigs_ok.values()),   f"L-orbit C4 eigenvalue +1 check failed: {L_eigs_ok}"
-    assert all(Q_eigs_ok.values()),   f"Q-orbit C4 eigenvalue -1 check failed: {Q_eigs_ok}"
-    assert c4_sd_is_asd,              "C4 must map SD(e12-e34) -> ASD(e12+e34)"
-    assert comm_nonzero,              "[C4,Hodge] must be non-zero on grade-2 bivectors"
-
-    return {
-        "L-orbit C4(B)=+B (LEPTON sector)": L_eigs_ok,
-        "Q-orbit C4(B)=-B (QUARK sector)": Q_eigs_ok,
-        "C4 maps SD(e12-e34) -> ASD(e12+e34)": c4_sd_is_asd,
-        "[C4,Hodge](sd_gen) non-zero": comm_nonzero,
-        "Q-orbit: no sub-splitting (all C4=-1)": all(Q_eigs_ok.values()),
-        "DERIVED": (
-            "P+(e4)=L-projector (lepton sector); P-(e4)=Q-projector (quark sector); "
-            "within Q-orbit C4=-1 uniformly -- no up/down sub-split exists. "
-            "SD/ASD and L/Q are incommensurable on grade-2 (C4 maps SD<->ASD; [C4,Hodge]!=0)."
-        ),
-        "CAND3_REFUTED": (
-            "P+(e4) acting on SD^ASD cannot algebraically fix up/down scaling: "
-            "(1) P+(e4) is the L/Q splitter, not up/down; C4=-1 uniformly on Q. "
-            "(2) SD^ASD={0}; no non-zero element to act on."
-        ),
-        "N28_located_gap": (
-            "Tried e4-helicity P+/-(e4) as up/down projector within Q-orbit -> REFUTED. "
-            "Would change if: sec.9.6 EOM distinguishes SD vs ASD dynamics on Q-orbit (Layer-2)."
-        ),
-        "tier": "DERIVED (exact Clifford, all asserts pass) + LOCATED-GAP N28 (CAND 3 refuted)",
-    }
-
-
-# ======================================================================
-# §19/§17.4 BRIDGE: META-TIME-PHASE SAMPLING vs V_4^perp PROJECTION READING
-# (Brannen formula consequences under the §17.4 reidentification)
-# ======================================================================
-
-def metatime_brannen_vs_v4perp_projection_reach():
-    """[DERIVED + LOCATED-GAP] §17.4 (ii) vs §19.2 — the two Brannen-amplitude
-    readings AGREE on the harmonic FORM but DIFFER on the Brannen-coefficient
-    REACH at the empirical Koide value.
-
-    §19.2 V_4^perp projection picture: A_{ki} = sqrt(3)*(v_k, e_{i4}) with
-    v_k = d + (c/sqrt(2))*e_hat_k, giving a_k = 1 + c*cos(phi_i - phi_k).
-    Here c is FREE (the V_4^perp tilt magnitude); K = (2+c^2)/6 reaches the
-    empirical K = 2/3 at c = sqrt(2) (INPUT, exact-but-unforced, §19.4).
-
-    §17.4 meta-time-phase sampling picture: sqrt(m_n) = r^2(phi_n, tau=0) where
-    r is the position-orbit spatial radius. At the lepton boundary tau=0
-    (eps_l = 0):
-        r^2(phi, 0) = (d + cos(phi-psi))^2 + sin^2(phi-psi)
-                    = (1+d^2) + 2*d*cos(phi-psi),
-    so the normalized Brannen amplitude is a_n = (1+d^2)*(1 + c_norm*cos(phi_n-psi))
-    with c_norm = 2*d/(1+d^2). By AM-GM, |c_norm| <= 1 for all real d (equality
-    at d=1), so K <= (2+1)/6 = 1/2. Solving 2*d/(1+d^2) = sqrt(2) gives the
-    quadratic sqrt(2)*d^2 - 2*d + sqrt(2) = 0 with discriminant 4 - 8 = -4 < 0:
-    NO REAL d delivers c = sqrt(2). Hence the empirical K = 2/3 <=> c = sqrt(2)
-    is UNREACHABLE under this literal position-orbit sampling at tau = 0.
-
-    Q1 (projection-forced sqrt(2)): NO — §17.4 has no sqrt(2) projection factor
-    (d is the orbit-offset magnitude, c_norm = 2*d/(1+d^2) is a different
-    geometric ratio); the §19.2 sqrt(2) (the V_4^perp transverse/longitudinal
-    projection ratio |e_{i4}^perp|/(e_{i4}, d) = sqrt(2/3)/(1/sqrt(3)) = sqrt(2))
-    has no counterpart here.
-
-    Q2 (Foot 45°): NO at tau = 0 — Foot 45° requires K = 2/3 (cos^2(theta) =
-    1/(3K) = 1/2). The §17.4 sampling caps K at 1/2 (at d=1, c_norm=1), giving
-    max Foot angle acos(sqrt(2/3)) ≈ 35.26°, NOT 45°.
-
-    Q3 (new structural constraint): YES — the bound c_norm <= 1 from
-    c_norm = 2*d/(1+d^2) is a structural constraint absent in §19.2. But it
-    DISAGREES with empirical c = sqrt(2), so it does NOT bank as a new
-    derivation; it functions as evidence that the literal §17.4 sampling reading
-    is INCOMPLETE as a route to the Brannen value (it captures the form but not
-    the magnitude).
-
-    Status:
-    - The two pictures SHARE the modified-Brannen harmonic FORM at tau=0
-      (deferent + cosine; no cos3/cos4) — engine-checked by
-      mass_measure_from_omega.
-    - The two pictures DIFFER on the Brannen c-reach: §19.2 free (INPUT
-      sqrt(2)); §17.4 bounded by 1 at lepton boundary.
-    - The §17.4 meta-time-phase reidentification (the *which* operator is the
-      generation operator) is DERIVED, engine-verified by
-      generation_z3_is_metatime_phase. The reading does NOT supply an
-      INDEPENDENT geometric derivation of c = sqrt(2); the V_4^perp picture's
-      INPUT status of c = sqrt(2) survives the reidentification.
-
-    This sharpens §19.4: the meta-time-phase sampling route is a additional closed
-    forcing-route for c = sqrt(2) (after the six listed in §19.4's table); the
-    §17.4 reidentification does NOT add a fresh derivation of K = 2/3. The
-    'would-change-if' handle: if the sampled amplitude were embedded in a larger
-    geometric construction (e.g., adding the e_4-dip even at the lepton
-    boundary, or rescaling by an additional V_4^perp factor) that restores the
-    c-reach to include sqrt(2), the bridge §17.4 <-> §19.2 at the Koide value
-    could close. Until then, the two pictures are bridged at the FORM level
-    only.
-
-    OUTCOME: LOCATED-GAP-REFINED.
-    """
-    import numpy as np
-
-    # The V_4^perp picture: c free, K = (2+c^2)/6 hits 2/3 at c = sqrt(2).
-    c_target = math.sqrt(2.0)
-    K_v4perp_at_c_sqrt2 = (2.0 + c_target * c_target) / 6.0
-    assert abs(K_v4perp_at_c_sqrt2 - 2.0/3.0) < 1e-12, \
-        "V_4^perp picture must give K=2/3 at c=sqrt(2)"
-
-    # The §17.4 sampling picture: c_norm = 2d/(1+d^2), max 1 at d=1.
-    ds = np.linspace(-5.0, 5.0, 4001)
-    c_norms = 2.0 * ds / (1.0 + ds * ds)
-    c_norm_max = float(np.max(np.abs(c_norms)))
-    assert abs(c_norm_max - 1.0) < 1e-12, \
-        "c_norm = 2d/(1+d^2) max must be 1 at d=1"
-
-    # No real d gives c_norm = sqrt(2): discriminant of sqrt(2)*d^2 - 2d + sqrt(2) = 0 is -4.
-    disc = 4.0 - 4.0 * math.sqrt(2.0) * math.sqrt(2.0)
-    assert disc < 0, "no real d yields c_norm = sqrt(2)"
-
-    # Numerical K-reach: sample tau=0 at several d and psi=delta_L=0.2222.
-    psi = 0.2222
-    Ks = []
-    for d in [0.3, 0.5, 0.7, 0.9, 1.0, 1.1, 1.3, 1.5, 2.0]:
-        a = [(d + math.cos(2.0 * math.pi * n / 3.0 - psi)) ** 2
-             + math.sin(2.0 * math.pi * n / 3.0 - psi) ** 2
-             for n in range(3)]
-        m = [ak * ak for ak in a]
-        K = sum(m) / (sum(math.sqrt(mk) for mk in m)) ** 2
-        Ks.append(K)
-    K_max_sampled = max(Ks)
-    assert K_max_sampled <= 0.5 + 1e-9, \
-        f"§17.4 K-reach must be <= 1/2 at tau=0 (got {K_max_sampled})"
-    assert K_max_sampled < 2.0 / 3.0 - 0.05, \
-        "K=2/3 must NOT be reached by §17.4 sampling at tau=0"
-
-    # Max Foot angle at K=1/2: cos^2(theta) = 1/(3K) = 2/3, theta = acos(sqrt(2/3)).
-    foot_max_at_K_half_deg = math.degrees(math.acos(math.sqrt(2.0 / 3.0)))
-
-    return {
-        "v4perp_picture": {
-            "formula": "a_k = 1 + c*cos(phi_i - phi_k); c FREE",
-            "K_at_c_sqrt2": K_v4perp_at_c_sqrt2,
-            "projection_factor": "sqrt(2) = |e_i4^perp|/(e_i4,d) = sqrt(2/3)/(1/sqrt(3))",
-            "projection_factor_role": "v_k = d + (c/sqrt(2))*e_hat_k -- makes the Brannen cos-coefficient be c (not c/sqrt(2) or c*sqrt(2))",
-        },
-        "metatime_sampling_picture": {
-            "formula": "a_n = (1+d^2) + 2d*cos(phi_n - psi) at tau=0",
-            "c_norm": "c_norm = 2d/(1+d^2)",
-            "c_norm_max": c_norm_max,
-            "K_cap_at_tau0": 0.5,
-            "K_max_sampled_at_psi_eq_deltaL": round(K_max_sampled, 6),
-            "discriminant_for_c_norm_eq_sqrt2": disc,
-            "foot_max_at_tau0_deg": round(foot_max_at_K_half_deg, 4),
-        },
-        "shared_structure": (
-            "the harmonic FORM at tau=0 (deferent + cosine, no cos3/cos4) -- the modified-Brannen form"
-        ),
-        "different_structure": (
-            "Brannen c-reach: V_4^perp free (INPUT to sqrt(2)); metatime bounded by 1 at tau=0"
-        ),
-        "Q1_projection_forced_sqrt2_in_metatime": (
-            "NO -- §17.4 has no sqrt(2) projection factor; d is the orbit-offset, "
-            "c_norm = 2d/(1+d^2) is the orbit-offset ratio bounded by 1"
-        ),
-        "Q2_foot_45deg_in_metatime_at_tau0": (
-            "NO -- max Foot at K=1/2 is acos(sqrt(2/3)) ~ 35.26deg, NOT 45deg"
-        ),
-        "Q3_new_constraint": (
-            "c_norm <= 1 at tau=0 is a structural BOUND not present in §19.2, but it "
-            "DISAGREES with empirical c=sqrt(2); functions as evidence the literal §17.4 "
-            "sampling reading is INCOMPLETE as a route to the Brannen value"
-        ),
-        "role_in_§19.4_forcing_table": (
-            "a STRUCTURAL INCOMPLETENESS at the lepton boundary tau=0 (c_norm capped at 1, c=sqrt(2) unreachable) — meta-time-phase sampling at "
-            "lepton boundary tau=0 caps K at 1/2; c=sqrt(2) is structurally unreachable. "
-            "The six §19.4 routes (parametric drive, generic dynamics, BPS, chiral standing-"
-            "wave, wavefront-null, topological/Hopf) plus this seventh remain all NEGATIVE"
-        ),
-        "would_change_if": (
-            "the §17.4 sampling were embedded in a larger geometric construction (extra "
-            "V_4^perp rescaling, or e_4-dip even at the lepton boundary) that restored the "
-            "c-reach to include sqrt(2)"
-        ),
-        "verdict": (
-            "LOCATED-GAP-REFINED -- two pictures bridge at the harmonic FORM, diverge at "
-            "the Brannen VALUE; the §17.4 reidentification does NOT add a fresh derivation "
-            "of K=2/3; INPUT status of c=sqrt(2) survives."
-        ),
-        "remaining_closure_route": (
-            "§9.6 driven-dissipative kernel + vortex-worldsheet "
-            "convolution producing the (19/2)sqrt(38) ratio."
-        ),
-    }
-
-
-# =============================================================================
-# V2 §3.2 systematic application audit — §26.4 path (vi) sweep (2026-06-30)
-# =============================================================================
-# Bank the audit OUTCOME as an engine-checkable primitive (canon §10): a
-# confirmed 'still FRAMING after V2 §3.2 audit' is a banking-worthy result per
-# canon §4; an audit-record primitive lets the harness self-detect drift if
-# any of these residuals are later promoted (the counts will need to update).
-
-def v2_section_3_2_audit_log() -> dict:
-    """[FRAMING — audit-record primitive; banking-worthy per canon §4]
-    §26.4 path (vi): V2 §3.2 SYSTEMATIC AUDIT sweep across engine FRAMING/CANDIDATE
-    primitives, asking whether the matter-as-defect + spatial<->meta-time-rotor I_4
-    Hodge coupling now FORCES any previously-asserted result.
-
-    PRECEDENT (5 V2 §3.2 unblockings explicitly named in §26.4):
-      * M-4              — Q_u/Q_d charge-split coherence under the SD<->ASD mirror
-      * W-LIVE-2 / M-6'  — up=SD chirality identification (V1 FRAMING -> V2 DERIVED)
-      * W-LIVE-3         — rich-branch memory kernel chosen (engine fork OPEN, leans hysteretic)
-      * W-LIVE-5         — baryon = one circular winding with three orthogonal facets
-      * W-LIVE-6         — Willis planetary-gear apparatus removed; V2 §3.2 ontology stands alone
-
-    AUDIT OUTCOME (this pass, 2026-06-30) — TWO BANKED FINDINGS:
-
-    *** FINDING 1 — A SIXTH V2 §3.2 UNBLOCKING HAS ALREADY LANDED (audit recognizes,
-    does not derive). ***  The Born projection subspace §14.4 was previously tagged
-    in V1 as 'the complex structure of the wavefront-Schrödinger sector' — partially
-    CIRCULAR with §14.2. V2 §3.2's soliton-background ansatz `Psi_def = F(chi) B_a
-    s_0 q_h(tau_5)` with a single chosen winding direction `B_a` from the L-orbit
-    triplet REPLACES the circular identification with a one-way derivation chain:
-        V2 §3.2  ==>  centralizer({e_4, B_a}) within Cl+(4,0) = {1, B}
-                 ==>  complex structure (i := B with B^2 = -1)
-                 ==>  Born projection
-    The engine primitive `born_subspace_one_B_forced` is now DERIVED-A (engine-exact
-    centralizer computation; all three L-orbit choices B_a in {e_12, e_13, e_23}
-    give the same closed {1, B} subalgebra). V2 paper §14.4 explicitly carries the
-    new 'forced by V2 §3.2, not stipulated' framing.
-    §26.4 path (vi) currently says 'Five V2 §3.2 unblockings have been banked';
-    the correct count is now SIX. W-REVIEW-P10 in the worklist still flags the
-    §14.4 deeper derivation as 'a sixth potential V2 unblocking candidate beyond
-    W-LIVE-5'; that flag is now ALREADY-LANDED.
-
-    *** FINDING 2 — NO SEVENTH UNBLOCKING THIS PASS (LOCATED-GAP-REFINED). ***
-    The 20 FRAMING/CANDIDATE engine primitives (this pass's sweep) categorize as:
-
-      (a) ALREADY-CONSISTENT with V2 §3.2 at current tier:
-          matter_stability_outside_frame, equivalence_principle_protection,
-          sakharov_xi_minimal_coupling.
-      (b) #1-gap-gated (§9.6 dynamics):
-          theta_rel_universality_located, eom_constraint_class,
-          eom_invariant_variant_audit, eom_compatible_field_forks (additionally
-            carries an inline [ASSERTED] for Z3-merge exhaustiveness — labeled),
-          protection_mechanism_located, subharmonic_transition_cost,
-          cp_chirality_90_120_mismatch, generation_loose_windows_vacuum_relative,
-          charge_in_the_window_picture, vacuum_relative_map_and_cp_commensurability,
-          gluon_octet_symmetric_space_split.
-      (c) L3 deep-gate (texture tetrad):
-          texture_metric_candidate, sakharov_induced_gravity,
-          gravitating_vacuum_energy, lambda_resolution_structure.
-      (d) Ontological consolidation; open residual independent of V2 §3.2:
-          generations_dynamical_count_structural,
-          baryon_mass_shared_rotor_nonadditive.
-    Each was checked under V2 §3.2 + I_4 Hodge coupling; none promote on this pass.
-
-    NAMED BRIEF CANDIDATES (per §26.4 path (vi)):
-      * §14.6 spin-statistics (W-LIVE-4): previously audited; the collective coord
-        A(t) and meta-time rotor q_h(tau_5) are independent SU(2) actions on the
-        same defect, coupling NOT directly forced. Stays 'compatible with, not
-        forced in pure SU(2)'.
-      * §16.6 L2 mechanism (nu_L2 = 3pi/2; Delta_nu_K = pi - 3 ~ 0.14 anomalous
-        vortex dimension): CS at Hopf k=1 gives eta_v^CS = 19/(8 pi) ~ 0.756 — a
-        ~5x overshoot of the required 0.14 (engine-verified: 0.7560/0.1416 = 5.34).
-        V2 §3.2 supplies the spatial<->meta-time-rotor coupling STRUCTURALLY (the
-        two-faces identification) but does NOT supply a reducing factor that scales
-        0.756 -> 0.14. Mechanism STAYS unidentified; tag CANDIDATE (paper §16.6
-        already).
-      * Colour / weak-isospin sector FRAMING: all located-gap or #1-gap-gated;
-        no V2 §3.2 forcing.
-      * 'ASSERTED' inline tags in substrate dynamics: single instance in
-        eom_compatible_field_forks (Z3-merge exhaustiveness); already documented.
-
-    WOULD CHANGE IF: (i) closure of the #1 gap §9.6 driven-dissipative kernel
-    reveals a structural coupling beyond §3.2 that promotes a category-(b) item;
-    (ii) the texture tetrad (item 16) supplies the L3-deep spin-connection that
-    promotes category-(c) items; (iii) a new ontology extension beyond V2 §3.2
-    (e.g. a §3.4 wave-drive refinement) supplies forcing for category-(d).
-
-    NET. Six V2 §3.2 unblockings now banked (including the §14.4 sixth recognized
-    here); the seventh is not §3.2-reachable on the current substrate map.
-
-    Tier: FRAMING (audit record). The audit OUTCOME is banking-worthy per canon §4.
-    This primitive does NOT derive anything new; it RECORDS the sweep outcome and
-    the recognized sixth unblocking, neither of which the engine harness can
-    self-detect without an explicit primitive.
-
-    self-check: 20 engine FRAMING/CANDIDATE primitives swept, 4 categories cover
-    them exhaustively; 5 prior + 1 newly-recognized sixth = 6 total banked."""
-    n_audited = 20
-    n_promotions_this_pass = 0
-    n_recognized_already_landed = 1
-    n_prior_unblockings = 5
-    n_total_unblockings = n_prior_unblockings + n_recognized_already_landed
-    out = {
-        "n_engine_framings_swept": n_audited,
-        "n_promotions_derived_this_pass": n_promotions_this_pass,
-        "n_unblockings_recognized_already_landed_this_pass": n_recognized_already_landed,
-        "n_prior_named_unblockings": n_prior_unblockings,
-        "n_total_banked_unblockings": n_total_unblockings,
-        "named_unblockings": [
-            "M-4 (Q_u/Q_d charge-split coherence under SD<->ASD mirror)",
-            "W-LIVE-2 / M-6' (up=SD chirality identification)",
-            "W-LIVE-3 (rich-branch memory kernel)",
-            "W-LIVE-5 (baryon = one circular winding with three orthogonal facets)",
-            "W-LIVE-6 (Willis gear retired; V2 §3.2 ontology stands alone)",
-            "RECOGNIZED-HERE: §14.4 Born subspace = centralizer({e_4, B_a}) within Cl+(4,0); "
-            "engine `born_subspace_one_B_forced` DERIVED-A; W-REVIEW-P10 'sixth candidate' "
-            "is ALREADY-LANDED in V2 paper + engine, not a future task",
-        ],
-        "category_a_already_consistent": [
-            "matter_stability_outside_frame",
-            "equivalence_principle_protection",
-            "sakharov_xi_minimal_coupling",
-        ],
-        "category_b_one_gap_gated": [
-            "theta_rel_universality_located",
-            "eom_constraint_class",
-            "eom_invariant_variant_audit",
-            "eom_compatible_field_forks",
-            "protection_mechanism_located",
-            "subharmonic_transition_cost",
-            "cp_chirality_90_120_mismatch",
-            "generation_loose_windows_vacuum_relative",
-            "charge_in_the_window_picture",
-            "vacuum_relative_map_and_cp_commensurability",
-            "gluon_octet_symmetric_space_split",
-        ],
-        "category_c_L3_deep_gate": [
-            "texture_metric_candidate",
-            "sakharov_induced_gravity",
-            "gravitating_vacuum_energy",
-            "lambda_resolution_structure",
-        ],
-        "category_d_ontology_consolidation": [
-            "generations_dynamical_count_structural",
-            "baryon_mass_shared_rotor_nonadditive",
-        ],
-        "named_brief_candidates_outcome": {
-            "section_14_6_spin_statistics_W_LIVE_4":
-                "previously audited (W-LIVE-4); stays 'compatible-with-not-forced'",
-            "section_16_6_L2_mechanism":
-                "CS overshoot ~5.34x (eta_v^CS = 0.756 vs required Delta_nu_K = pi-3 = 0.142); "
-                "V2 §3.2 supplies no reducing factor; mechanism stays CANDIDATE",
-            "colour_weak_isospin_FRAMING":
-                "all located-gap or #1-gap-gated; no V2 §3.2 forcing",
-            "ASSERTED_substrate_dynamics_inline":
-                "single inline [ASSERTED] in eom_compatible_field_forks (Z3-merge "
-                "exhaustiveness); already labeled honestly",
-        },
-        "would_change_if":
-            "(i) #1-gap closure (§9.6 kernel) supplies a category-(b) coupling beyond §3.2; "
-            "(ii) texture tetrad (item 16) supplies the L3-deep coupling for category-(c); "
-            "(iii) a §3.x ontology extension supplies forcing for (d).",
-        "owed_documentation_updates": [
-            "V2 paper §26.4 path (vi): 'Five V2 §3.2 unblockings' -> 'Six', name §14.4",
-            "V2 paper §26.5: 'five structural unblockings' -> 'six structural unblockings'",
-            "Worklist W-REVIEW-P10: mark ALREADY-LANDED (engine-banked + paper-installed)",
-        ],
-        "verdict":
-            "LOCATED-GAP-REFINED per canon §4: sweep produced (a) RECOGNITION that the "
-            "§14.4 Born-subspace unblocking is the sixth V2 §3.2 unblocking, already "
-            "landed in engine + paper but uncounted in §26.4; (b) NO seventh promotion "
-            "this pass — the remaining FRAMING/CANDIDATE residuals are dynamics- or "
-            "deep-gate-gated.",
-        "tier": "FRAMING (audit record); banking-worthy per canon §4",
-    }
-    n_categorized = (len(out["category_a_already_consistent"])
-                     + len(out["category_b_one_gap_gated"])
-                     + len(out["category_c_L3_deep_gate"])
-                     + len(out["category_d_ontology_consolidation"]))
-    assert n_categorized == n_audited, f"category coverage mismatch: {n_categorized} != {n_audited}"
-    assert n_total_unblockings == 6
-    assert n_promotions_this_pass == 0
-    assert n_recognized_already_landed == 1
-    assert len(out["named_unblockings"]) == n_total_unblockings
-    return out
-
-
-# ======================================================================
-# ADJUDICATION CONSOLIDATED BANK — chunk 2 (2026-08-12)
-# ======================================================================
-# Source: knowledge/candidates/probes_2026-08-02/ADJUDICATION_2026-08-03.md
-# (governing record of probes 1/2/2b/3/3b; "Bankable now as DERIVED-A" items
-# 1-5 and 8) and ADJUDICATION2_2026-08-03.md ("What SURVIVES" item 1).
-# Four primitives (+ helpers _a1_*):
-#   A12-1 conjugating_extension_omega_identities — probe-1 Omega-identities
-#         (items 1-3: |Om4| = k4/2 one-sided; conjugating Om4 closed form +
-#         the CORRECTED vanishing locus; <AXA~>_0 = <X>_0; Q-span preservation)
-#   A12-2 alpha_family_parallelogram_law        — items 3-4 (same-axis composite
-#         == alpha family; Delta_kin closed form; argmin = 1/2; retractions carried)
-#   A12-3 ecarrier_matched_defect_hblock_null   — item 8 (E-carrier h == 0 exact;
-#         the reverse-is-not-inverse trap; ruling-R1 h-null consonance leg)
-#   A12-4 lambda_perp_anw_half_theta            — ADJUDICATION2 item 1 (Lambda_perp
-#         density closed form; Lambda_perp = (1/2) Theta_ANW; Lambda = 32.1561;
-#         ANW-reproduction certificate)
-# Probe provenance (documentation only; every check is self-contained):
-# h0k_variational_probe1.py, carrier_probe2.py, carrier_probe2b_Ecarrier.py,
-# probe4_two_ladders.py.
-# ======================================================================
-
-
-def _a1_g0(X):
-    """Helper: scalar-grade coefficient of an MV, as a float."""
-    return float(dict(X.terms).get((), 0.0))
-
-
-def _a1_maxcoeff(X):
-    """Helper: coefficient-level magnitude max|c| over the blades of X.
-    NOT nrm2 of a difference: MV.from_dict prunes coefficients below 1e-12,
-    so the norm of a small difference multivector can collapse to exactly 0
-    — a vacuous metric (the probe-1 live catch)."""
-    return max((abs(c) for c in dict(X.terms).values()), default=0.0)
-
-
-def _a1_coeffdiff(A, B):
-    """Helper: float-level per-blade max |a - b| over the union of blades of
-    A and B (the subtraction happens in Python floats, never inside MV
-    arithmetic, so MV pruning cannot mask a real disagreement)."""
-    da, db = dict(A.terms), dict(B.terms)
-    return max((abs(da.get(k, 0.0) - db.get(k, 0.0))
-                for k in set(da) | set(db)), default=0.0)
-
-
-def _a1_nrm2(X):
-    """Helper: <X X~>_0 (use only on O(1) objects, never on small differences)."""
-    return _a1_g0(X * X.reverse())
-
-
-def _a1_comm(A, B):
-    return A * B - B * A
-
-
-def _a1_qhat(v):
-    """Helper: the Q-blade unit direction v -> v1*e14 + v2*e24 + v3*e34."""
-    return float(v[0]) * e(1, 4) + float(v[1]) * e(2, 4) + float(v[2]) * e(3, 4)
-
-
-def _a1_expu(u, half):
-    """Helper: exp(u*half) for u^2 = -1."""
-    import math as _m
-    return _m.cos(half) * SCALAR + _m.sin(half) * u
-
-
 def _a1_dirs():
     """Helper: the probes' 14-direction unit set (6 axes + 8 cube diagonals)."""
     import math as _m
@@ -3880,540 +4908,6 @@ def _a1_dirs():
         nn = _m.sqrt(v[0] ** 2 + v[1] ** 2 + v[2] ** 2)
         out.append((v[0] / nn, v[1] / nn, v[2] / nn))
     return out
-
-
-def _a1_hedgehog(x, f, fp):
-    """Helper: B=1 Q-orbit hedgehog at the point x (3-seq) with profile VALUE f
-    and derivative fp at r = |x|. Returns (R_h, [o_1, o_2, o_3]) with the
-    corpus's analytic MC decomposition o_k = (d_k f) n + s c (d_k n) - s^2 n (d_k n)
-    (texture_matter_gravity_coupling form; FD-verified in probes 1/2/4)."""
-    import math as _m
-    r = _m.sqrt(x[0] ** 2 + x[1] ** 2 + x[2] ** 2)
-    n = (x[0] / r, x[1] / r, x[2] / r)
-    s, c = _m.sin(f), _m.cos(f)
-    nmv = _a1_qhat(n)
-    Rh = c * SCALAR + s * nmv
-    o = []
-    for k in range(3):
-        dkn = [((1.0 if i == k else 0.0) - n[i] * n[k]) / r for i in range(3)]
-        dmv = _a1_qhat(dkn)
-        o.append((fp * n[k]) * nmv + (s * c) * dmv - (s * s) * (nmv * dmv))
-    return Rh, o
-
-
-def conjugating_extension_omega_identities():
-    """[DERIVED-A] The Omega-identities of the R-128 mass-lock extensions over
-    the B=1 Q-orbit hedgehog — probe 1's exact algebra, banked per
-    ADJUDICATION_2026-08-03 items 1-3 with the corrected vanishing locus.
-    Lock axis u = I4*Qhat(a), k4 = omega/c_meta.
-
-    FACTS (all engine-checked here, coefficient-level):
-      (1) ONE-SIDED extensions (rigid R_h(x)*exp(u k4 x4/2) and co-rotating
-          R_h(x)*exp(u(x) k4 x4/2), u(x) = I4*Qhat(rhat)): |Omega_4| = k4/2
-          everywhere, exactly (Omega_4 = (k4/2)u resp. (k4/2)u(x); FD-verified).
-      (2) CONJUGATING extension R = A(x4) R_h A(x4)~, A = exp(u k4 x4/2):
-          Omega_4 = (k4/2)(R^-1 u R - u), FD-verified, with the closed magnitude
-          |Omega_4|^2 = k4^2 sin^2 f (1 - (n.a)^2) — hence the VANISHING LOCUS is
-          {sin f = 0} UNION {n = +/- a, the whole lock-axis ray}. THE CORRECTION
-          BANKED (reviewer P1-1): the probe memo's 'core and infinity' gloss was
-          INCOMPLETE — the lock-axis ray vanishes at every radius too.
-      (3) <A X A~>_0 = <X>_0 for ANY rotor A (cyclic scalar-grade identity):
-          the conjugating class is invisible to the observer's scalar
-          (mass-line) quadrature identically — R-127's mass phase cannot live on
-          a purely conjugating extension.
-      (4) Conjugation by exp(u theta/2), u = I4*Qhat(a), preserves the Q-blade
-          span: A Qhat(n) A~ has NO coefficient outside {e14, e24, e34}, so the
-          conjugated hedgehog rotor A R_h A~ stays in span{1, Q-blades} and its
-          u-blade (L-orbit) coefficient is exactly absent.
-    FENCES: kinematic identities of the named extension families only — no cost
-    hierarchy, no vacuum-branch selection here (probe 1's cost table F-2/F-3 is
-    conditional on the static-vacuum premise and is NOT banked by this entry);
-    uniqueness of the conjugating class is banked ONLY within the global
-    two-sided family L(x4) R_h M(x4) up to a constant rotor (item 2 scope — the
-    'unique finite-cost family' headline was over-broad and is not asserted).
-    Zero-checks sit below the MV pruning floor (1e-12): certified jointly by the
-    float-level per-blade metric and the closed-form magnitude in (2)."""
-    # runtime: ~0.1s
-    import math as _m
-    import random as _rd
-
-    K4 = 0.8317                      # probe value; identities are k4-independent
-    AXIS = (0.0, 0.0, 1.0)
-    U = I4 * _a1_qhat(AXIS)
-    rng = _rd.Random(20260812)
-
-    def _prof(r):
-        return _m.pi * _m.exp(-r), -_m.pi * _m.exp(-r)
-
-    def _Rfull(ext, x, x4):
-        r = _m.sqrt(x[0] ** 2 + x[1] ** 2 + x[2] ** 2)
-        f, _ = _prof(r)
-        Rh, _o = _a1_hedgehog(x, f, 0.0)
-        if ext == "rigid":
-            return Rh * _a1_expu(U, K4 * x4 / 2)
-        if ext == "corot":
-            n = (x[0] / r, x[1] / r, x[2] / r)
-            return Rh * _a1_expu(I4 * _a1_qhat(n), K4 * x4 / 2)
-        A = _a1_expu(U, K4 * x4 / 2)
-        return A * Rh * A.reverse()
-
-    def _Om4_fd(ext, x, x4, d=1e-6):
-        R = _Rfull(ext, x, x4)
-        return R.reverse() * ((1.0 / (2 * d)) * (_Rfull(ext, x, x4 + d)
-                                                 - _Rfull(ext, x, x4 - d)))
-
-    # --- (1) + (2): FD vs closed forms at seeded generic points
-    worst_fd = {"rigid": 0.0, "corot": 0.0, "conj": 0.0}
-    worst_norm = 0.0
-    for _ in range(8):
-        x = tuple(rng.uniform(-2.2, 2.2) for _ in range(3))
-        r = _m.sqrt(sum(c * c for c in x))
-        if r < 0.35:
-            continue
-        x4 = rng.uniform(-3.0, 3.0)
-        n = (x[0] / r, x[1] / r, x[2] / r)
-        # rigid / corot analytic Omega_4
-        for ext, uax in (("rigid", U), ("corot", I4 * _a1_qhat(n))):
-            ana = (K4 / 2) * uax
-            worst_fd[ext] = max(worst_fd[ext],
-                                _a1_coeffdiff(_Om4_fd(ext, x, x4), ana))
-            worst_norm = max(worst_norm,
-                             abs(_a1_nrm2(ana) * 4.0 / K4 ** 2 - 1.0))
-        # conjugating closed form (k4/2)(R^-1 u R - u), R the full configuration
-        R = _Rfull("conj", x, x4)
-        ana = (K4 / 2) * (R.reverse() * U * R - U)
-        worst_fd["conj"] = max(worst_fd["conj"],
-                               _a1_coeffdiff(_Om4_fd("conj", x, x4), ana))
-    assert all(1e-13 < v < 5e-8 for v in worst_fd.values()), \
-        "analytic Omega_4 must match FD at FD-noise level (0.0 would be vacuous)"
-    assert worst_norm < 1e-14, "one-sided |Omega_4| = k4/2 must be exact"
-
-    # --- (2) locus certificate, parametric in (f, n) at x4 = 0 (A = 1 there;
-    #     the FD check above already covers x4 != 0)
-    def _Om4_conj_param(f, n):
-        Rh = _m.cos(f) * SCALAR + _m.sin(f) * _a1_qhat(n)
-        return (K4 / 2) * (Rh.reverse() * U * Rh - U)
-
-    NGEN = [(0.6, 0.0, 0.8), (0.0, 1.0, 0.0),
-            (0.5345224838248488, 0.2672612419124244, 0.8017837257372732),
-            (0.1, 0.0, 0.99498743710662)]          # incl. a near-axis direction
-    FGEN = (0.4, 1.2, 2.7)
-    on_locus = 0.0
-    for f in (0.0, _m.pi):                          # sin f = 0
-        for n in NGEN:
-            on_locus = max(on_locus, _a1_maxcoeff(_Om4_conj_param(f, n)))
-    for f in FGEN:                                  # the whole lock-axis ray
-        for n in ((0.0, 0.0, 1.0), (0.0, 0.0, -1.0)):
-            on_locus = max(on_locus, _a1_maxcoeff(_Om4_conj_param(f, n)))
-    off_locus_min, mag_dev = float("inf"), 0.0
-    for f in FGEN:
-        for n in NGEN:
-            O = _Om4_conj_param(f, n)
-            d = n[2]                                # n . a with a = e_z
-            mag_dev = max(mag_dev, abs(_a1_nrm2(O)
-                          - K4 ** 2 * _m.sin(f) ** 2 * (1 - d * d)))
-            off_locus_min = min(off_locus_min, _a1_maxcoeff(O))
-    assert on_locus < 1e-14, "Omega_4 must vanish on {sin f = 0} U {n = +/- a}"
-    assert mag_dev < 1e-13, "|Omega_4|^2 = k4^2 sin^2 f (1 - (n.a)^2) exact"
-    assert off_locus_min > 1e-3, "Omega_4 must be visibly nonzero off the locus"
-
-    # --- (3) <A X A~>_0 = <X>_0 for rotors A, X random over all 16 Cl(4,0) blades
-    import itertools as _it
-    blades = [e(*idx) if idx else SCALAR
-              for g in range(5) for idx in _it.combinations(range(1, 5), g)]
-    worst_scalar = 0.0
-    for _ in range(6):
-        A = (_a1_expu(e(1, 2), rng.uniform(-2, 2))
-             * _a1_expu(e(1, 4), rng.uniform(-2, 2))
-             * _a1_expu(e(2, 3), rng.uniform(-2, 2)))
-        X = 0.0 * SCALAR
-        for B in blades:
-            X = X + rng.uniform(-1, 1) * B
-        worst_scalar = max(worst_scalar,
-                           abs(_a1_g0(A * X * A.reverse()) - _a1_g0(X)))
-    assert worst_scalar < 1e-12, "<A X A~>_0 = <X>_0 for rotors"
-
-    # --- (4) Q-span preservation + u-blade coefficient exactly absent
-    QKEYS = {(1, 4), (2, 4), (3, 4)}
-    worst_leak = 0.0
-    worst_ublade = 0.0
-    for _ in range(6):
-        a = [rng.gauss(0, 1) for _ in range(3)]
-        na = _m.sqrt(sum(c * c for c in a)); a = [c / na for c in a]
-        nn = [rng.gauss(0, 1) for _ in range(3)]
-        nb = _m.sqrt(sum(c * c for c in nn)); nn = [c / nb for c in nn]
-        ua = I4 * _a1_qhat(a)
-        A = _a1_expu(ua, rng.uniform(-2, 2))
-        img = A * _a1_qhat(nn) * A.reverse()
-        worst_leak = max(worst_leak,
-                         max((abs(c) for k, c in dict(img.terms).items()
-                              if k not in QKEYS), default=0.0))
-        f = rng.uniform(0.3, 2.8)
-        Rc = A * (_m.cos(f) * SCALAR + _m.sin(f) * _a1_qhat(nn)) * A.reverse()
-        dr = dict(Rc.terms)
-        worst_ublade = max(worst_ublade,
-                           max((abs(dr.get(k, 0.0)) for k in dict(ua.terms)),
-                               default=0.0))
-        worst_leak = max(worst_leak,
-                         max((abs(c) for k, c in dr.items()
-                              if k not in QKEYS and k != ()), default=0.0))
-    assert worst_leak < 1e-14, "conjugation must preserve the Q-blade span"
-    assert worst_ublade < 1e-14, "u-blade coefficient of A R_h A~ exactly absent"
-
-    return {
-        "tier": "DERIVED-A",
-        "one-sided |Om4| = k4/2 (worst |4|Om4|^2/k4^2 - 1|)": worst_norm,
-        "FD vs analytic Om4, worst coeff (rigid, corot, conj)": (
-            worst_fd["rigid"], worst_fd["corot"], worst_fd["conj"]),
-        "conj Om4 on the locus {sin f = 0} U {n = +/- a} (worst coeff)": on_locus,
-        "conj |Om4|^2 = k4^2 sin^2 f (1-(n.a)^2) (worst dev)": mag_dev,
-        "conj Om4 off-locus visibility (min maxcoeff)": off_locus_min,
-        "<A X A~>_0 - <X>_0 (worst)": worst_scalar,
-        "Q-span leak under conjugation (worst coeff)": worst_leak,
-        "u-blade coefficient of A R_h A~ (worst)": worst_ublade,
-        "locus correction": ("'core and infinity' gloss INCOMPLETE — the whole "
-                             "lock-axis ray n = +/- a vanishes too (ADJUDICATION_"
-                             "2026-08-03 item 1, reviewer P1-1)"),
-        "fence": ("kinematic identities only; cost table / vacuum-branch NOT "
-                  "banked; two-sided uniqueness only within L(x4) R_h M(x4) up "
-                  "to a constant rotor"),
-    }
-
-
-def alpha_family_parallelogram_law():
-    """[DERIVED-A] The alpha-family (carrier-phase split) cost algebra — probe 2's
-    corrected claim set, banked per ADJUDICATION_2026-08-03 items 3-4. Family:
-    R_alpha = L(x4) R_h(x) M(x4), L = exp(u_c a th/2), M = exp(u_c (1-a) th/2),
-    th = k_c x4, on the carrier R_vac = exp(u_c k_c x4/2), u_c = I4*Qhat(a_c).
-
-    FACTS (all engine-checked here, coefficient-level / pointwise):
-      (1) SAME-AXIS COMPOSITE IS NOT A NEW FAMILY: A R_h A~ q_c with
-          A = exp(u_c dk x4/2) equals the alpha family at a = dk/k_c POINTWISE
-          exactly — the same-axis internal rotation is a REPARAMETRIZATION of
-          the carrier-phase split, not a mass-differentiation dial.
-      (2) THE PARALLELOGRAM LAW (closed form, pointwise exact):
-              Delta_kin = -2 a (1-a) (1-c) (k_c/2)^2 c_2,
-          c = <R_h~ u_c R_h u_c~>_0, with c ALPHA-INDEPENDENT (extracted-c
-          spread across alpha ~1e-15 here; the adjudication's check: 1e-16).
-          Cross-link: 1 - c =
-          2 sin^2 f (1 - (n.a_c)^2) — the SAME object as the conjugating
-          Omega_4 magnitude (conjugating_extension_omega_identities fact 2).
-      (3) ARGMIN = 1/2, FORCED: both cost sectors are pointwise x4-independent,
-          pointwise QUADRATIC in alpha with non-negative curvature (convex),
-          and pointwise SYMMETRIC under alpha <-> 1-alpha; symmetry + convexity
-          force argmin = 1/2, and sector-wise minimization makes the argmin
-          c4/c2-INDEPENDENT (both sectors minimized at 1/2 — any non-negative
-          coupling pair inherits it).
-    RETRACTIONS CARRIED (ADJUDICATION_2026-08-03 item 4 — the corrected record):
-      * The 'wall kinetic deficit drives it' attribution was WRONG — at the
-        probe couplings (c2, c4) = (1, 0.25) the QUARTIC sector supplies 53.5%
-        of the alpha-dependence; the kinetic dip is not the driver.
-      * The probe-2 script line asserting 'matter as a hole ... computed' is
-        RETRACTED. The total carrier-relative density is a LARGE POSITIVE
-        EXCESS; the Om_4-kinetic sub-term dips only ~0.1% below the carrier in
-        probe 2's P1 table (wall-point witness here: dip = 2% of the local
-        excess, sign facts asserted).
-        The genuinely hole-shaped computed fact is the AMPLITUDE NOTCH: the
-        observer-line projection |z| drops from 1.000 (vacuum) to 0.384 at the
-        wall AT THE CARRIER'S OWN PHASE. Canon sec. 0's fence applies: the
-        hole is an image, never a load-bearing premise.
-    FENCE: the carrier premise itself stays H8-licensed / sec. 9.6-GATED in
-    value (axis, omega_c, scale); these are exact algebraic facts OF the named
-    family, not a carrier-value claim."""
-    # runtime: ~0.15s
-    import math as _m
-    import random as _rd
-
-    K_C = 0.8317
-    C2 = 1.0
-    U_C = I4 * _a1_qhat((0.0, 0.0, 1.0))
-    rng = _rd.Random(20260803)
-
-    def _prof(r):
-        return _m.pi * _m.exp(-r), -_m.pi * _m.exp(-r)
-
-    def _rh_o(x):
-        r = _m.sqrt(sum(c * c for c in x))
-        f, fp = _prof(r)
-        return _a1_hedgehog(x, f, fp)
-
-    def _R_alpha(x, x4, a):
-        Rh, _ = _rh_o(x)
-        th = K_C * x4
-        return _a1_expu(U_C, a * th / 2) * Rh * _a1_expu(U_C, (1 - a) * th / 2)
-
-    def _Om_alpha(x, x4, a):
-        Rh, o = _rh_o(x)
-        th = K_C * x4
-        M = _a1_expu(U_C, (1 - a) * th / 2)
-        Mr = M.reverse()
-        X = Mr * (Rh.reverse() * U_C * Rh) * M
-        return ([Mr * ok * M for ok in o]
-                + [(a * K_C / 2) * X + ((1 - a) * K_C / 2) * U_C])
-
-    def _sectors(Om):
-        e2 = sum(_a1_nrm2(ok) for ok in Om)
-        e4 = sum(_a1_nrm2(_a1_comm(Om[i], Om[j]))
-                 for i in range(4) for j in range(i + 1, 4))
-        return e2, e4
-
-    def _rand_pt():
-        while True:
-            x = tuple(rng.uniform(-2.2, 2.2) for _ in range(3))
-            if _m.sqrt(sum(c * c for c in x)) > 0.4:
-                return x
-
-    # --- P0 discipline: one FD spot-check of the analytic Omegas
-    x0, x40, a0 = _rand_pt(), 0.83, 0.35
-    R0 = _R_alpha(x0, x40, a0)
-    worst_p0 = 0.0
-    d = 1e-6
-    for mu in range(4):
-        if mu < 3:
-            xp = list(x0); xm = list(x0)
-            xp[mu] += d; xm[mu] -= d
-            dR = (1.0 / (2 * d)) * (_R_alpha(tuple(xp), x40, a0)
-                                    - _R_alpha(tuple(xm), x40, a0))
-        else:
-            dR = (1.0 / (2 * d)) * (_R_alpha(x0, x40 + d, a0)
-                                    - _R_alpha(x0, x40 - d, a0))
-        worst_p0 = max(worst_p0,
-                       _a1_coeffdiff(R0.reverse() * dR, _Om_alpha(x0, x40, a0)[mu]))
-    assert 1e-13 < worst_p0 < 5e-8, "alpha-family analytic Omegas vs FD"
-
-    # --- (1) same-axis composite == alpha family, pointwise
-    worst_comp = 0.0
-    for _ in range(10):
-        x = _rand_pt()
-        x4 = rng.uniform(-3.0, 3.0)
-        dk = rng.uniform(0.1, 0.7)
-        Rh, _ = _rh_o(x)
-        A = _a1_expu(U_C, dk * x4 / 2)
-        Rcomp = A * Rh * A.reverse() * _a1_expu(U_C, K_C * x4 / 2)
-        worst_comp = max(worst_comp,
-                         _a1_coeffdiff(Rcomp, _R_alpha(x, x4, dk / K_C)))
-    assert worst_comp < 1e-13, "same-axis composite must equal the alpha family"
-
-    # --- (2) the parallelogram law + alpha-independence of c + cross-link
-    worst_law = 0.0
-    worst_cspread = 0.0
-    worst_cx = 0.0
-    for _ in range(6):
-        x = _rand_pt()
-        x4 = rng.uniform(-3.0, 3.0)
-        Rh, _ = _rh_o(x)
-        c = _a1_g0(Rh.reverse() * U_C * Rh * U_C.reverse())
-        r = _m.sqrt(sum(v * v for v in x))
-        f, _fp = _prof(r)
-        nz = x[2] / r
-        worst_cx = max(worst_cx,
-                       abs((1 - c) - 2 * _m.sin(f) ** 2 * (1 - nz * nz)))
-        cs = []
-        for a in (0.2, 0.35, 0.5, 0.65, 0.8):
-            Om = _Om_alpha(x, x4, a)
-            dkin = C2 * (_a1_nrm2(Om[3]) - (K_C / 2) ** 2)
-            worst_law = max(worst_law, abs(
-                dkin - (-2 * a * (1 - a) * (1 - c) * (K_C / 2) ** 2 * C2)))
-            cs.append(1 + dkin / (2 * a * (1 - a) * (K_C / 2) ** 2 * C2))
-        worst_cspread = max(worst_cspread, max(cs) - min(cs))
-    assert worst_law < 1e-14, "Delta_kin = -2a(1-a)(1-c)(k_c/2)^2 c2 pointwise"
-    assert worst_cspread < 1e-13, "c must be alpha-independent"
-    assert worst_cx < 1e-13, "1 - c = 2 sin^2 f (1 - (n.a_c)^2) cross-link"
-
-    # --- (3) sector structure: x4-independence, quadraticity, symmetry, convexity
-    AGRID = (0.2, 0.35, 0.5, 0.65, 0.8)
-    worst_x4 = worst_sym = worst_quad = 0.0
-    min_curv2 = min_curv4 = float("inf")
-    for _ in range(3):
-        x = _rand_pt()
-        s1 = [_sectors(_Om_alpha(x, 0.7, a)) for a in AGRID]
-        s2 = [_sectors(_Om_alpha(x, 1.9, a)) for a in AGRID]
-        for p, q in zip(s1, s2):
-            worst_x4 = max(worst_x4, abs(p[0] - q[0]), abs(p[1] - q[1]))
-        for sec in (0, 1):
-            v = [p[sec] for p in s1]
-            worst_sym = max(worst_sym, abs(v[0] - v[4]), abs(v[1] - v[3]))
-            # exact quadratic through a = 0.2, 0.5, 0.8 -> predict 0.35, 0.65
-            A2 = (v[0] + v[4] - 2 * v[2]) / (2 * 0.3 ** 2)
-            A1 = (v[4] - v[0]) / 0.6
-            for a, vv in ((0.35, v[1]), (0.65, v[3])):
-                pred = v[2] + A1 * (a - 0.5) + A2 * (a - 0.5) ** 2
-                worst_quad = max(worst_quad, abs(pred - vv))
-            if sec == 0:
-                min_curv2 = min(min_curv2, A2)
-            else:
-                min_curv4 = min(min_curv4, A2)
-    assert worst_x4 < 1e-13, "alpha-family sector densities must be x4-independent"
-    assert worst_sym < 1e-12, "sectors must be symmetric under alpha <-> 1-alpha"
-    assert worst_quad < 1e-12, "sectors must be exactly quadratic in alpha"
-    assert min_curv2 >= -1e-12 and min_curv4 >= -1e-12, \
-        "sector curvatures must be non-negative (convexity)"
-
-    # --- wall-point witness of the corrected reading (retraction support)
-    xw = (0.8, 0.45, 0.35)
-    rw = _m.sqrt(sum(v * v for v in xw))
-    fw, _ = _prof(rw)
-    Rh, _ = _rh_o(xw)
-    zs = []
-    for i in range(16):
-        t = i / 16 * (4 * _m.pi / K_C)
-        R = Rh * _a1_expu(U_C, K_C * t / 2)
-        zs.append(_m.hypot(_a1_g0(R), _a1_g0(R * U_C.reverse())))
-    notch = sum(zs) / len(zs)
-    assert max(zs) - min(zs) < 1e-12, "|z| must be cycle-constant"
-    assert abs(notch - abs(_m.cos(fw))) < 1e-12, "notch |z| = |cos f| at the wall"
-    assert abs(notch - 0.3843) < 5e-4, "the banked 1.000 -> 0.384 notch value"
-    Om = _Om_alpha(xw, 0.9, 0.5)
-    e2, e4 = _sectors(Om)
-    dkin_w = C2 * (_a1_nrm2(Om[3]) - (K_C / 2) ** 2)
-    dtot_w = C2 * e2 + 0.25 * e4 - C2 * (K_C / 2) ** 2
-    assert dkin_w < 0.0 < dtot_w and abs(dkin_w) < 0.05 * dtot_w, \
-        "kinetic dip must be a small negative sub-term inside a positive excess"
-
-    return {
-        "tier": "DERIVED-A",
-        "alpha-family FD spot-check (worst coeff)": worst_p0,
-        "same-axis composite == alpha family (worst coeff)": worst_comp,
-        "parallelogram law residual (worst)": worst_law,
-        "c alpha-independence (extracted-c spread)": worst_cspread,
-        "1-c = 2 sin^2 f (1-(n.a_c)^2) cross-link (worst)": worst_cx,
-        "sector x4-independence (worst)": worst_x4,
-        "sector alpha<->1-alpha symmetry (worst, pointwise)": worst_sym,
-        "sector exact-quadraticity in alpha (worst)": worst_quad,
-        "min sector curvatures (quadratic, quartic)": (min_curv2, min_curv4),
-        "argmin": "1/2, both sectors, c4/c2-independent (symmetry + convexity)",
-        "wall notch |z| (vacuum 1.000 ->)": notch,
-        "wall Delta_kin / Delta_total (dip inside positive excess)": (
-            dkin_w, dtot_w),
-        "retractions": ("'wall kinetic deficit drives it' WRONG (quartic 53.5% "
-                        "at probe couplings); 'matter as a hole ... computed' "
-                        "RETRACTED — the computed fact is the amplitude notch; "
-                        "canon sec. 0 hole-image fence applies"),
-    }
-
-
-def ecarrier_matched_defect_hblock_null():
-    """[DERIVED-A] E-carrier h-block null (probe 2b, banked per
-    ADJUDICATION_2026-08-03 item 8): under the corpus's own carrier blade
-    E = I4*e5 (canon sec. 5; R-147 banks it h-null), the matched defect
-    R = R_h(x) * exp(E k_c x4/2) has its ENTIRE 16-entry texture h-block
-    h_mu_nu = <Omega_mu I4 Omega_nu>_0 IDENTICALLY ZERO — exact, FD-verified
-    with the TRUE inverse. Blade arithmetic: Omega_k = Omega_k^hedgehog (E is
-    central, the carrier factor cancels), Omega_4 = (k_c/2)E; then
-    h_44 ~ <I4 E^2>_0 = -<I4>_0 = 0, h_4k ~ <(E I4) Omega_k>_0 = 0 (E*I4 is
-    grade-1, the product carries grades 1 and 3 only), h_kl = the static
-    hedgehog's 0.
-
-    THE TRAP, DOCUMENTED (this probe's own first run failed on it):
-    E~ = +E (grade 5), so .reverse() is NOT the inverse for E-content — every
-    FD check against an E-carrier must build the true inverse
-    (R_h q_E)^-1 = q_E^-1 R_h~ explicitly (engine-witnessed below: q_E~ q_E
-    != 1 at O(1), q_E^-1 q_E = 1). Related energetics (banked in
-    cl41_pairing_sign_tables): the E-direction has NEGATIVE norm under the
-    reverse pairing, <Om_4 Om_4~>_0 = -(k_c/2)^2 (reported below) — the
-    REVERSE pairing is INDEFINITE on e5-content, hence its grade-0 is not a
-    density there; that is why the positive-definite pairing (iv) was ruled in
-    (R-168/RUL-018; under t the same object reads +(k_c/2)^2). [Gloss
-    re-worded 2026-08-13 per the K-O1 keeper C2: the earlier "R-127's 'E
-    leaves the ideal', as energetics" reading is retired — the exclusion's
-    instrument is the pairing-independent e5-content fact; site on RUL-018's
-    class-B revert list.]
-
-    RULING-R1 CONSONANCE LEG (2026-08-12): under the ruled positive-definite
-    pairing (iv) (cl41_positive_definite_pairing) the carrier is COSTED —
-    uniform volume density (k_c/2)^2 — while THIS entry certifies that the
-    E-carrier content is TEXTURE-INVISIBLE (h == 0 exactly, R-147 consonant):
-    the carrier's volume energy under pairing (iv) carries no h-block, so
-    banked texture results are untouched by costing the carrier.
-    SUPERSEDED CONTEXT: with R1 adopting pairing (iv), the 2026-08-03 'the
-    fork closes the other way and Sakharov stays sole route' sentence is the
-    superseded (iii)-branch reading; the h == 0 fact itself is pairing-
-    independent and is what this entry banks."""
-    # runtime: ~0.1s
-    import math as _m
-    import random as _rd
-
-    K_C = 0.8317
-    E5 = I4 * e(5)                     # E = I4 e5 = e12345, the carrier blade
-    rng = _rd.Random(20260812)
-
-    # blade algebra: E^2 = -1, E~ = +E, E central (sample incl. odd blades)
-    assert _a1_maxcoeff(E5 * E5 + SCALAR) < 1e-14, "E^2 = -1"
-    assert _a1_maxcoeff(E5.reverse() - E5) < 1e-14, "E~ = +E (grade 5)"
-    for b in (e(1), e(1, 2), e(1, 4), e(3, 4), e(1, 2, 3), e(2, 5), e(1, 5)):
-        assert _a1_maxcoeff(E5 * b - b * E5) < 1e-14, "E central"
-
-    def _qE(x4):
-        return _m.cos(K_C * x4 / 2) * SCALAR + _m.sin(K_C * x4 / 2) * E5
-
-    def _qE_inv(x4):
-        return _m.cos(K_C * x4 / 2) * SCALAR - _m.sin(K_C * x4 / 2) * E5
-
-    # the trap, engine-witnessed
-    trap = _a1_maxcoeff(_qE(1.7).reverse() * _qE(1.7) - SCALAR)
-    assert trap > 0.5, "reverse must visibly FAIL as the inverse for E-content"
-    assert _a1_maxcoeff(_qE_inv(1.7) * _qE(1.7) - SCALAR) < 1e-14, "true inverse"
-
-    def _prof(r):
-        return _m.pi * _m.exp(-r), -_m.pi * _m.exp(-r)
-
-    def _Om_analytic(x):
-        r = _m.sqrt(sum(c * c for c in x))
-        f, fp = _prof(r)
-        _Rh, o = _a1_hedgehog(x, f, fp)
-        return o + [(K_C / 2) * E5]
-
-    def _R(x, x4):
-        r = _m.sqrt(sum(c * c for c in x))
-        f, _ = _prof(r)
-        Rh, _o = _a1_hedgehog(x, f, 0.0)
-        return Rh * _qE(x4)
-
-    worst_fd = 0.0
-    worst_h = 0.0
-    pair_dev = 0.0
-    d = 1e-6
-    for _ in range(10):
-        x = tuple(rng.uniform(-2.2, 2.2) for _ in range(3))
-        if _m.sqrt(sum(c * c for c in x)) < 0.35:
-            continue
-        x4 = rng.uniform(-3.0, 3.0)
-        Om = _Om_analytic(x)
-        # FD with the TRUE inverse
-        r = _m.sqrt(sum(c * c for c in x))
-        f, _ = _prof(r)
-        Rh, _o = _a1_hedgehog(x, f, 0.0)
-        Rinv = _qE_inv(x4) * Rh.reverse()
-        for mu in range(4):
-            if mu < 3:
-                xp = list(x); xm = list(x)
-                xp[mu] += d; xm[mu] -= d
-                dR = (1.0 / (2 * d)) * (_R(tuple(xp), x4) - _R(tuple(xm), x4))
-            else:
-                dR = (1.0 / (2 * d)) * (_R(x, x4 + d) - _R(x, x4 - d))
-            worst_fd = max(worst_fd, _a1_coeffdiff(Rinv * dR, Om[mu]))
-        # the h-block: all 16 entries
-        for i in range(4):
-            for j in range(4):
-                worst_h = max(worst_h, abs(_a1_g0(Om[i] * I4 * Om[j])))
-        # reverse-pairing negative norm on the carrier direction (cross-ref)
-        pair_dev = max(pair_dev, abs(_a1_g0(Om[3] * Om[3].reverse())
-                                     + (K_C / 2) ** 2))
-    assert 1e-13 < worst_fd < 5e-8, "analytic Omegas vs FD (true inverse)"
-    assert worst_h < 1e-15, "the ENTIRE h-block must vanish identically"
-    assert pair_dev < 1e-14, "<Om_4 Om_4~>_0 = -(k_c/2)^2 (reverse pairing)"
-
-    return {
-        "tier": "DERIVED-A",
-        "max |h_mu_nu| over all 16 entries, all points": worst_h,
-        "FD vs analytic (TRUE inverse), worst coeff": worst_fd,
-        "trap witness maxcoeff(qE~ qE - 1) (reverse fails)": trap,
-        "<Om_4 Om_4~>_0 + (k_c/2)^2 (negative norm, cross-ref)": pair_dev,
-        "ruling_R1_consonance": ("h-null leg of the 2026-08-12 R1 package: "
-                                 "carrier volume energy under pairing (iv) is "
-                                 "texture-invisible (E-content h == 0, R-147)"),
-        "trap": "E~ = +E (grade 5): reverse is NOT the inverse for E-content",
-    }
 
 
 def lambda_perp_anw_half_theta():
@@ -4646,438 +5140,4 @@ def lambda_perp_anw_half_theta():
                   "construction (definitional, not discovered); rigid-rotor "
                   "identity, NOT a measured moment of inertia (BKS "
                   "back-reaction untested)"),
-    }
-
-
-# ======================================================================
-# TAU5 ADJUDICATION BANK (2026-08-13)
-# ======================================================================
-# Source: knowledge/candidates/probes_2026-08-13/TAU5_ADJUDICATION_2026-08-13.md
-# (GOVERNING record of the tau5-hyperbolic collective-coordinate round; banking
-# triage feed item (b)). Two primitives, reusing the _a1_* helpers above:
-#   T5-1 one_sided_rotor_uniform_density_identity — the one-sided uniform
-#        kinetic-density identity (BOTH one-sided forms) + the conjugation-
-#        subtraction identity (the field-level subtraction, keeper fact 2)
-#   T5-2 tau5_unique_v_inert_combination — the b = -a lemma (I-C is the unique
-#        v-inert far-field combination; reviewer N-5)
-# Ledger descendant: N61 (the discrimination-null negative). Round scripts:
-# tau5_probe1_collective_coordinate.py (probe dir; every check below is
-# self-contained and does not import them).
-# ======================================================================
-
-
-def one_sided_rotor_uniform_density_identity():
-    """[DERIVED-A] THE ONE-SIDED UNIFORM KINETIC-DENSITY IDENTITY (tau5
-    adjudication 2026-08-13, three-way convergent root; N61). For the banked
-    one-sided mass-rotor rest form (R-125 class) with w_hat = u_hat*omega/2:
-
-      LEFT  form R = Q(tau5) R0(x):  Omega_5 = R0~ w_hat R0   (the A1 identity)
-      RIGHT form R = R0(x) Q(tau5):  Omega_5 = w_hat           (identically)
-
-    and in BOTH cases the kinetic density <Omega_5 t(Omega_5)>_0 equals
-    (omega/2)^2 |u_hat|^2 at EVERY point — exactly uniform, profile-independent
-    (checked on two distinct profiles), u_hat-independent in value. On this
-    Cl+(4,0) grade-2 content the ruled pairing (iv) coincides with the reverse
-    pairing (alpha_5 trivial without e5), so this IS the ruled-cost kinetic
-    density. THE FACT IS ONE-SIDEDNESS, NOT THE LEFT SHIFT (keeper engine fact
-    1: the right-multiplication form gives the same uniform density) — the
-    one-sided rotor does not tend to the static vacuum at infinity (Omega_5 ->
-    w_hat != 0), so ANY positive-definite pairing yields a positive limit
-    density and the raw 3-slice kinetic cost diverges AT REST: the standard
-    vacuum-stabilizer obstruction to treating a broken-symmetry direction as a
-    collective coordinate (Adkins-Nappi-Witten 1983; Coleman 1985 — credit via
-    import I-5 context). Spin(4)-invariance of the pairing buys the exact
-    UNIFORMITY (left form); positivity + the boundary condition buy the
-    divergence.
-
-    THE CONJUGATION-SUBTRACTION IDENTITY (keeper engine fact 2, exact): for the
-    two-sided (conjugation / spin-class) rotation R = A(tau5) R0 A~(tau5),
-
-        Omega_5(conj) = A (Omega_5(left) - w_hat) A~     EXACTLY,
-
-    so the conjugation class is the left-shift class MINUS ITS OWN ASYMPTOTE,
-    conjugated — i.e. the FIELD-LEVEL version of the subtraction the ruled cost
-    convention performs at the density level (R-130's F2 excess factorization
-    is the same move on the mode; the map between the two subtraction LEVELS is
-    the open O1 gap of the adjudication). Its density decays iff R0 -> 1
-    (checked: ~1e-10 by r = 12 on the witness profile, vs the one-sided form's
-    exact (omega/2)^2 there).
-
-    Checks below are non-vacuous: FD-vs-analytic at coefficient level (never
-    nrm2 of a small difference), uniformity across radii x directions x u_hat
-    x profiles, the omega^2 value, the conjugation identity at three radii,
-    and the decay dichotomy."""
-    import math as _m
-    w = 0.83
-    profiles = [
-        (lambda r: _m.pi * _m.exp(-r), lambda r: -_m.pi * _m.exp(-r)),
-        (lambda r: _m.pi / (1.0 + r * r), lambda r: -2 * _m.pi * r / (1 + r * r) ** 2),
-    ]
-    # FD step 1e-4, NOT smaller: at r = 12 the profile components are ~2e-5 and a
-    # 1e-6 step pushes their FD differences below the MV ~1e-12 prune floor,
-    # which silently zeroes them and corrupts the quotient (the canon's
-    # prune-vs-FD trap, caught live on this primitive's first run).
-    d = 1e-4
-    worst_left = worst_right = worst_unif = worst_conj = 0.0
-    for u in (e(1, 2), e(3, 4)):
-        what = (w / 2.0) * u
-        for (f, fp) in profiles:
-            for x in ((0.3, 0.2, 0.25), (0.9, -0.6, 0.4), (2.5, 2.0, 2.4),
-                      (12.0, 0.3, 0.2)):
-                r = _m.sqrt(x[0] ** 2 + x[1] ** 2 + x[2] ** 2)
-                R0, _o = _a1_hedgehog(x, f(r), fp(r))
-                # LEFT: FD on Q(t5) R0 vs the analytic R0~ w_hat R0
-                Q = lambda t5: _a1_expu(u, w * t5 / 2.0)
-                Om5L_fd = (Q(0.1) * R0).reverse() * (
-                    (1 / (2 * d)) * (Q(0.1 + d) * R0 - Q(0.1 - d) * R0))
-                Om5L = R0.reverse() * what * R0
-                worst_left = max(worst_left, _a1_coeffdiff(Om5L_fd, Om5L))
-                # RIGHT: FD on R0 Q(t5) vs w_hat identically
-                Om5R_fd = (R0 * Q(0.1)).reverse() * (
-                    (1 / (2 * d)) * (R0 * Q(0.1 + d) - R0 * Q(0.1 - d)))
-                worst_right = max(worst_right, _a1_coeffdiff(Om5R_fd, what))
-                # UNIFORMITY + VALUE, both forms (nrm2 on O(1) objects only)
-                for Om in (Om5L, what):
-                    worst_unif = max(worst_unif,
-                                     abs(_a1_nrm2(Om) - (w / 2.0) ** 2))
-    # conjugation-subtraction identity + decay dichotomy (witness profile)
-    f, fp = profiles[0]
-    u = e(1, 2)
-    what = (w / 2.0) * u
-    for x in ((0.5, 0.2, 0.1), (2.0, 0.5, 0.4), (6.0, 0.3, 0.2)):
-        r = _m.sqrt(x[0] ** 2 + x[1] ** 2 + x[2] ** 2)
-        R0, _o = _a1_hedgehog(x, f(r), fp(r))
-        A = lambda t5: _a1_expu(u, w * t5 / 2.0)
-        Rc = lambda t5: A(t5) * R0 * A(t5).reverse()
-        Om5c_fd = Rc(0.0).reverse() * ((1 / (2 * d)) * (Rc(d) - Rc(-d)))
-        Om5c = A(0.0) * (R0.reverse() * what * R0 + (-1.0) * what) * A(0.0).reverse()
-        worst_conj = max(worst_conj, _a1_coeffdiff(Om5c_fd, Om5c))
-    x12 = (12.0, 0.3, 0.2)
-    r12 = _m.sqrt(x12[0] ** 2 + x12[1] ** 2 + x12[2] ** 2)
-    R0, _o = _a1_hedgehog(x12, f(r12), fp(r12))
-    dens_conj_12 = _a1_nrm2(R0.reverse() * what * R0 + (-1.0) * what)
-    dens_left_12 = _a1_nrm2(R0.reverse() * what * R0)
-    assert worst_left < 1e-7 and worst_right < 1e-7, "one-sided FD identities"
-    assert worst_unif < 1e-12, "uniform density (omega/2)^2 both one-sided forms"
-    assert worst_conj < 1e-7, "conjugation-subtraction identity"
-    assert dens_conj_12 < 1e-6, "conjugation class must DECAY (vacuum fixed)"
-    assert abs(dens_left_12 - (w / 2.0) ** 2) < 1e-12, "one-sided must NOT decay"
-    return {
-        "tier": "DERIVED-A",
-        "left FD vs R0~ w_hat R0 (worst coeff)": worst_left,
-        "right FD vs w_hat (worst coeff)": worst_right,
-        "uniform density dev vs (omega/2)^2 (both forms, 2 profiles, 2 u_hat)":
-            worst_unif,
-        "one-sidedness": "left AND right forms uniform -- NOT a left-shift fact",
-        "conjugation identity Om5(conj) = A(Om5(left) - w_hat)A~ (worst coeff)":
-            worst_conj,
-        "decay dichotomy at r=12 (conj vs one-sided)": (dens_conj_12,
-                                                        dens_left_12),
-        "pairing note": "(iv) == reverse on this Cl+(4,0) content (alpha5 trivial)",
-        "credit": "ANW 1983 / Coleman 1985 (vacuum-stabilizer criterion), via I-5",
-        "governing record": "TAU5_ADJUDICATION_2026-08-13.md; ledger N61; "
-                            "subtraction-level map = the open O1 gap",
-    }
-
-
-def tau5_unique_v_inert_combination():
-    """[DERIVED-A lemma] THE UNIQUE v-INERT FAR-FIELD COMBINATION (tau5
-    adjudication 2026-08-13, reviewer N-5 adopted; N61). For the
-    T-coord-transported one-sided rotor (phase w*gamma*(tau5 - v*x1), the
-    coordinate-boosted rest form), the far-field sector densities are, in units
-    of (omega/2)^2:  d5 -> gamma^2  and  d1 -> gamma^2 v^2  (both engine-checked
-    below at large r). Among quadratic combinations a*d5 + b*d1, v-INERTNESS of
-    the asymptote for all v FORCES b = -a (sympy-exact below):
-        a*gamma^2 + b*gamma^2 v^2 = const in v  <=>  b = -a  (value = a).
-    CONSEQUENCE: the eta/action combination (the I-C object, b = -a) is the
-    UNIQUE v-inert one — every other combination (in particular the Noether
-    b = +a) has a v-DEPENDENT asymptote, so any FIXED background renders it
-    finite at one v only, and any background that renders it finite at every v
-    must itself carry the v-law: the DISCRIMINATION-NULL root of the tau5 route
-    (any background that makes a cost finite is the one that installs the
-    v-law). The action face's sqrt(1-v^2) is the change-of-variables triviality
-    (Schroers 1994: boosting a static soliton is 'merely a complicated way of
-    deriving something trivial'; credit carried). This lemma converts the probe
-    round's 'only I-C was finite' from observation to result."""
-    import math as _m
-    a, b, v = sp.symbols("a b v", real=True)
-    gamma2 = 1 / (1 - v ** 2)
-    expr = a * gamma2 + b * gamma2 * v ** 2
-    # v-inertness: expr - expr|_{v=0} == 0 identically in v
-    resid = sp.simplify(expr - expr.subs(v, 0))
-    num, _den = sp.fraction(sp.together(resid))
-    conds = sp.Poly(num, v).coeffs()
-    sols = sp.solve(conds, b)
-    forced = sp.simplify(sols[b] - (-a)) == 0 if isinstance(sols, dict) else \
-        all(sp.simplify(s - (-a)) == 0 for s in (sols if isinstance(sols, list) else [sols]))
-    inert_val = sp.simplify(expr.subs(b, -a))
-    # numeric far-field face (could fail): FD densities on the transported form
-    w = 0.83
-    u = e(1, 2)
-    d = 1e-6
-
-    def _f(r):
-        return _m.pi * _m.exp(-r)
-
-    def _fp(r):
-        return -_m.pi * _m.exp(-r)
-
-    def _dens(vv, x):
-        g = 1.0 / _m.sqrt(1 - vv * vv)
-
-        def R(x1, t5):
-            r = _m.sqrt((g * (x1 - vv * t5)) ** 2 + x[1] ** 2 + x[2] ** 2)
-            Rh, _o = _a1_hedgehog((g * (x1 - vv * t5), x[1], x[2]), _f(r), _fp(r))
-            return _a1_expu(u, w * g * (t5 - vv * x1) / 2.0) * Rh
-
-        Ri = R(x[0], 0.0).reverse()
-        d5 = _a1_nrm2(Ri * ((1 / (2 * d)) * (R(x[0], d) - R(x[0], -d))))
-        d1 = _a1_nrm2(Ri * ((1 / (2 * d)) * (R(x[0] + d, 0.0) - R(x[0] - d, 0.0))))
-        return d5 / (w / 2.0) ** 2, d1 / (w / 2.0) ** 2
-
-    worst = 0.0
-    combos = {}
-    for vv in (0.3, 0.6):
-        g2 = 1.0 / (1 - vv * vv)
-        d5, d1 = _dens(vv, (14.0, 0.3, 0.2))
-        worst = max(worst, abs(d5 - g2) / g2, abs(d1 - g2 * vv * vv) / (g2 * vv * vv))
-        combos[vv] = (d5 - d1, d5 + d1)
-    inert_meas = max(abs(combos[vv][0] - 1.0) for vv in combos)
-    noether_spread = abs(combos[0.6][1] - combos[0.3][1])
-    assert forced, "v-inertness must FORCE b = -a"
-    assert sp.simplify(inert_val - a) == 0, "inert value must equal a"
-    assert worst < 1e-3, "far-field densities must match gamma^2 / gamma^2 v^2"
-    assert inert_meas < 1e-3, "(1,-1) combination must be v-inert (measured)"
-    assert noether_spread > 0.3, "(1,+1) Noether combination must be v-DEPENDENT"
-    return {
-        "tier": "DERIVED-A (lemma; sympy-exact + far-field engine face)",
-        "b = -a forced (sympy)": bool(forced),
-        "inert value == a (sympy)": True,
-        "far-field density match at r=14 (worst rel)": worst,
-        "(1,-1) inertness measured (worst dev from 1)": inert_meas,
-        "(1,+1) Noether v-spread (must be > 0.3)": noether_spread,
-        "consequence": "I-C is the UNIQUE v-inert combination; any background "
-                       "finitizing another combination installs the v-law "
-                       "(discrimination-null root)",
-        "credit": "Schroers 1994 (gamma-face triviality); reviewer N-5 lemma",
-        "governing record": "TAU5_ADJUDICATION_2026-08-13.md; ledger N61",
-    }
-
-
-def ecarrier_common_mode_certificates():
-    """[DERIVED-A] K-O1 ROUND CERTIFICATES (governing record:
-    knowledge/candidates/probes_2026-08-13/KO1_ADJUDICATION_2026-08-13.md;
-    N56 K-O1 sub-item, RUL-022 booking; the round CLOSED WITHOUT EXECUTION —
-    every identity here was decided twice over at design time, and these three
-    legs are banked as the round's PROVEN BUG-CATCHERS (design-review bug
-    injection: reverse-as-inverse, alpha5-sign-drop, broken-e5-filter each
-    caught by exactly these checks). k_c is an ARBITRARY convention constant
-    (RUL-017: no carrier scale is named). Everything at rest (RUL-034/RUL-015).
-
-    LEG 1 (CL-1, E-centrality): q_{k+dk} q_k^-1 = q_dk EXACTLY (the identity
-    that collapses every referenced two-rate object); conjugation transparency
-    q_E X q_E^-1 = X; two-path TRUE-INVERSE carrier cancellation
-    (A1 qE) t(A2 qE) = A1 t(A2) for arbitrary Cl(4,0) branch content; and the
-    D-1 leg — the REVERSE overlap does NOT cancel the carrier:
-    (A1 qE)~ (A2 qE) = A1~ A2 qE^2 exactly (E central, qE~ = qE), with the
-    nonzero witness MEASURED both over all 32 blades AND within the {1, B}
-    line separately (stated = measured; MO sweep-integrity fix 2026-08-13).
-
-    LEG 2 (CL-2; pairing-(iv)-conditional — RUL-018 class B): t = alpha5 o
-    reverse satisfies t(q_E) = q_E^-1 — on the E-phase the ruled involution IS
-    the true inverse (alpha5 flips E, exactly compensating E~ = +E) — hence
-    <Psi_vac t(Psi_vac)>_0 = c0^2/2 and <Om_4 t(Om_4)>_0 = (k_c/2)^2, both
-    exactly x4-independent: every (iv)-class observable is carrier-FLAT.
-    CREDIT (corrected TWICE — K-O1 re-review, then keeper round-record
-    hygiene): this INSTANTIATES the banked per-blade positivity of
-    cl41_positive_definite_pairing (E is one of the 32 blades) — not new
-    content; and the (k_c/2)^2 MAGNITUDE was already engine-explicit under the
-    reverse pairing (opposite sign) in ecarrier_matched_defect_hblock_null's
-    return — the (iv)-SIGN version is what is new here.
-
-    LEG 3 (CL-3 — FACT ONLY; no observability claim in either direction): the
-    pure carrier Psi_vac = c0 s0 q_E(x4) has un-referenced Cl(4,0)-ideal
-    shadow cos(k_c x4/2) c0 s0 (amplitude modulation with zeros on the grid)
-    and reverse grade-0 <Psi~ Psi>_0 = cos(k_c x4) c0^2/2 — oscillating and
-    SIGN-INDEFINITE. Whether the un-referenced shadow is OBSERVABLE on a
-    carrier background is the round's HINGE H ('the ideal-shadow projection is
-    observable iff applied to a carrier-referenced object') — NOT
-    engine-decidable, banked domain EMPTY — filed at the
-    renormalization-dictionary assembly for coordinator ratification. H's LIVE
-    SCOPE (keeper C3 simplification): exactly the NON-t-paired residue — this
-    raw shadow — since E-centrality + t(q_E) = q_E^-1 make every t-paired
-    object carrier-transparent (the stronger, H-independent ground).
-
-    LEG 4 (keeper O1 — the {1,B} FACTORIZATION, the fact that decided C1's
-    true cost; K-O1 keeper verdict + MO C2, composed): for any detector/state
-    contents D, psi with a SHARED carrier, the reverse-referenced Born-class
-    overlap projected to the observer's {1, B} line factorizes EXACTLY:
-        <(D qE)~ (psi qE)>_{1,B} = cos(k_c x4) * <D~ psi>_{1,B},
-    a REAL COMMON SCALAR for every channel. Hence: probability RATIOS exactly
-    x4-invariant (common-mode cancellation — R-023's normalized probabilities
-    are carrier-independent); TOTAL probability breathes as cos^2(k_c x4) and
-    DEGENERATES 0/0 on the comb x4 = (2n+1)pi/(2 k_c); under the RULED adjoint
-    t the reference is exactly carrier-free (constant Sum P). This is the
-    engine ground of RUL-035 (class-(1), coordinator-enacted 2026-08-13):
-    R-023's observer-side reference operation on non-trivial (carrier)
-    backgrounds is the ruled adjoint t = alpha5 o reverse, REST-FRAME-scoped;
-    on Cl(4,0)/trivial backgrounds t == reverse so nothing recomputes; the
-    boost extension belongs to the dictionary (RUL-034 fence). Scope of the
-    fact: every reverse-referenced observer-side overlap (R-023 and, on
-    carrier backgrounds, the R-160 F3 total-function premise and the R-027
-    half-angle overlap — inherit-notes at their rows)."""
-    import math as _m
-    import random as _rd
-
-    K_C = 0.8317
-    C0 = 1.0
-    E5 = I4 * e(5)
-    s0 = 0.5 * SCALAR + 0.5 * e(4)
-    rng = _rd.Random(20260813)
-
-    def _t(X):
-        out = 0.0 * SCALAR
-        for idx, c in dict(X.reverse().terms).items():
-            sgn = -1.0 if 5 in idx else 1.0
-            B = e(*idx) if idx else SCALAR
-            out = out + c * sgn * B
-        return out
-
-    def _qE(x4, kc=K_C):
-        return _m.cos(kc * x4 / 2) * SCALAR + _m.sin(kc * x4 / 2) * E5
-
-    def _qEi(x4, kc=K_C):
-        return _m.cos(kc * x4 / 2) * SCALAR - _m.sin(kc * x4 / 2) * E5
-
-    def _shadow(X):
-        out = 0.0 * SCALAR
-        for idx, c in dict(X.terms).items():
-            if 5 not in idx:
-                B = e(*idx) if idx else SCALAR
-                out = out + c * B
-        return out
-
-    # generating facts (non-vacuous anchors: the reverse-trap witness must FAIL
-    # visibly as an inverse, so the checks below cannot pass under bug A)
-    assert _a1_maxcoeff(E5 * E5 + SCALAR) < 1e-12
-    assert _a1_maxcoeff(E5.reverse() - E5) < 1e-12
-    assert _a1_maxcoeff(_qE(1.7).reverse() * _qE(1.7) - SCALAR) > 0.5, \
-        "reverse must visibly FAIL as the inverse for E-content"
-    assert _a1_maxcoeff(_t(_qE(1.7)) - _qEi(1.7)) < 1e-12, "t(qE) = qE^-1"
-
-    def _line12(X):
-        """{1, B}-line projection coefficients (B = e12): (grade-0, B-coeff)."""
-        d = dict(X.terms)
-        return (float(d.get((), 0.0)), float(d.get((1, 2), 0.0)))
-
-    n_grid = 48
-    period = 2 * (4 * _m.pi / K_C)          # >= 2 carrier periods incl. the node
-    leg1 = leg1_wit = leg1_wit_line = leg2 = leg3 = leg4 = 0.0
-    ratio_dev = 0.0
-    breathe_dev = 0.0
-    for i in range(n_grid):
-        x4 = (i + 0.5) / n_grid * period
-        dk = rng.uniform(-2.0, 2.0)
-        # LEG 1 -- relative-phase collapse, transparency, two-path, D-1
-        leg1 = max(leg1, _a1_maxcoeff(_qE(x4, K_C + dk) * _qEi(x4) - _qE(x4, dk)))
-        A1 = (rng.uniform(-1, 1) * SCALAR + rng.uniform(-1, 1) * e(1, 2)
-              + rng.uniform(-1, 1) * e(1, 4) + rng.uniform(-1, 1) * e(1, 2, 3))
-        A2 = (rng.uniform(-1, 1) * SCALAR + rng.uniform(-1, 1) * e(2, 3)
-              + rng.uniform(-1, 1) * e(1) + rng.uniform(-1, 1) * e(1, 2, 3, 4))
-        leg1 = max(leg1, _a1_maxcoeff(
-            (A1 * _qE(x4)) * _t(A2 * _qE(x4)) - A1 * _t(A2)))
-        X = rng.uniform(-1, 1) * e(1, 3) + rng.uniform(-1, 1) * e(1, 2, 3)
-        leg1 = max(leg1, _a1_maxcoeff(_qE(x4) * X * _qEi(x4) - X))
-        rev_ov = (A1 * _qE(x4)).reverse() * (A2 * _qE(x4))
-        leg1 = max(leg1, _a1_maxcoeff(rev_ov - A1.reverse() * A2 * _qE(x4, 2 * K_C)))
-        resid = rev_ov - A1.reverse() * A2
-        leg1_wit = max(leg1_wit, _a1_maxcoeff(resid))
-        g0r, gBr = _line12(resid)
-        leg1_wit_line = max(leg1_wit_line, abs(g0r), abs(gBr))
-        # LEG 2 -- carrier-flat (iv)-observables
-        psi = C0 * s0 * _qE(x4)
-        leg2 = max(leg2, abs(_a1_g0(psi * _t(psi)) - C0 * C0 / 2))
-        Om4 = (K_C / 2) * E5
-        leg2 = max(leg2, abs(_a1_g0(Om4 * _t(Om4)) - (K_C / 2) ** 2))
-        # LEG 3 -- raw-shadow structure (fact only)
-        leg3 = max(leg3, _a1_maxcoeff(_shadow(psi) - _m.cos(K_C * x4 / 2) * C0 * s0))
-        leg3 = max(leg3, abs(_a1_g0(psi.reverse() * psi)
-                             - _m.cos(K_C * x4) * C0 * C0 / 2))
-    # LEG 4 -- the {1,B} factorization + common-mode facts (keeper O1 / MO C2)
-    Dets = []
-    for _ in range(3):
-        Dets.append(rng.uniform(-1, 1) * SCALAR + rng.uniform(-1, 1) * e(1, 2)
-                    + rng.uniform(-1, 1) * e(1, 3))
-    psi_b = 0.6 * SCALAR + 0.3 * e(1, 2) + 0.2 * e(2, 3)
-    z0 = [complex(*_line12(D.reverse() * psi_b)) for D in Dets]
-    P0 = [abs(z) ** 2 for z in z0]
-    S0n = sum(P0)
-    x4_samples = [0.0, 1.1, 2.5, 3.7773, _m.pi / (2 * K_C)]   # incl. the comb point
-    for x4 in x4_samples:
-        c = _m.cos(K_C * x4)
-        zs = [complex(*_line12((D * _qE(x4)).reverse() * (psi_b * _qE(x4))))
-              for D in Dets]
-        # factorization: z(x4) = cos(kc x4) * z0, per channel, exact
-        leg4 = max(leg4, max(abs(zs[j] - c * z0[j]) for j in range(3)))
-        Ps = [abs(z) ** 2 for z in zs]
-        Ss = sum(Ps)
-        # total probability breathes as cos^2 (degenerate 0/0 on the comb)
-        breathe_dev = max(breathe_dev, abs(Ss - c * c * S0n))
-        # ratios exactly invariant wherever defined
-        if Ss > 1e-20:
-            ratio_dev = max(ratio_dev,
-                            max(abs(Ps[j] / Ss - P0[j] / S0n) for j in range(3)))
-        # under the RULED adjoint the reference is exactly carrier-free
-        zt = [complex(*_line12(_t(D * _qE(x4)) * (psi_b * _qE(x4))))
-              for D in Dets]
-        zt0 = [complex(*_line12(_t(D) * psi_b)) for D in Dets]
-        leg4 = max(leg4, max(abs(zt[j] - zt0[j]) for j in range(3)))
-    comb_S = sum(abs(complex(*_line12(
-        (D * _qE(_m.pi / (2 * K_C))).reverse()
-        * (psi_b * _qE(_m.pi / (2 * K_C)))))) ** 2 for D in Dets)
-    # sign-indefiniteness of the reverse grade-0 (LEG 3, non-vacuous: both signs
-    # realized on the grid) and the shadow zero at the node
-    g0s = [_a1_g0((C0 * s0 * _qE(x4)).reverse() * (C0 * s0 * _qE(x4)))
-           for x4 in (0.1, _m.pi / K_C)]
-    assert g0s[0] > 0.0 and g0s[1] < 0.0, "reverse grade-0 must be sign-indefinite"
-    node_amp = _a1_maxcoeff(_shadow(C0 * s0 * _qE(_m.pi / K_C)))
-    assert leg1 < 1e-12 and leg2 < 1e-12 and leg3 < 1e-12
-    assert leg1_wit > 0.3, "the reverse overlap must visibly RETAIN the carrier"
-    assert leg1_wit_line > 0.05, \
-        "the retention must be visible WITHIN the {1,B} line (stated = measured)"
-    assert node_amp < 1e-12, "the raw shadow amplitude must vanish at the node"
-    assert leg4 < 1e-12, "{1,B} factorization + ruled-adjoint constancy must be exact"
-    assert ratio_dev < 1e-12, "normalized ratios must be exactly carrier-invariant"
-    assert breathe_dev < 1e-12, "Sum P must breathe as cos^2(k_c x4) exactly"
-    assert comb_S < 1e-20, "Sum P must vanish on the comb (the 0/0 degeneracy)"
-    return {
-        "tier": "DERIVED-A (legs 1/3/4 pairing-independent facts; leg 2 "
-                "pairing-(iv)-conditional, RUL-018 class B; leg 4's "
-                "reference-operation consequence is RUL-035)",
-        "leg1 centrality identities (worst coeff)": leg1,
-        "leg1 D-1 reverse-overlap carrier retention (witness, must be > 0.3)":
-            leg1_wit,
-        "leg1 D-1 retention within the {1,B} line (measured, must be > 0.05)":
-            leg1_wit_line,
-        "leg2 (iv)-flatness devs (worst)": leg2,
-        "leg3 raw-shadow structure devs (worst)": leg3,
-        "leg3 reverse grade-0 sign pair (+, -)": tuple(g0s),
-        "leg3 shadow amplitude at the node (exact 0)": node_amp,
-        "leg4 {1,B} factorization + ruled-adjoint constancy (worst)": leg4,
-        "leg4 normalized-ratio carrier-invariance (worst dev)": ratio_dev,
-        "leg4 Sum P vs cos^2 breathing (worst dev)": breathe_dev,
-        "leg4 Sum P on the comb (0/0 degeneracy witness)": comb_S,
-        "hinge": "H = 'ideal-shadow observable iff carrier-referenced' — NOT "
-                 "decided here; live scope = the raw un-referenced shadow "
-                 "(t-paired objects are carrier-transparent); filed for "
-                 "coordinator ratification",
-        "ruling": "RUL-035 (2026-08-13): R-023's observer-side reference on "
-                  "carrier backgrounds = the ruled adjoint t, rest-frame-scoped; "
-                  "t == reverse on Cl(4,0)/trivial backgrounds (nothing "
-                  "recomputes); boost extension = dictionary (RUL-034)",
-        "credits": "cl41_positive_definite_pairing (per-blade value, leg 2); "
-                   "ecarrier_matched_defect_hblock_null (matched-defect face + "
-                   "the reverse-pairing magnitude, opposite sign); "
-                   "R-147 blade table (texture faces, K-O3 caveat)",
-        "governing record": "KO1_ADJUDICATION_2026-08-13.md; N56 K-O1 sub-item",
     }

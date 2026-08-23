@@ -179,13 +179,93 @@ def check_twt_foundation():
 # ---- twt_algebra ----------------------------------------
 def check_twt_algebra():
     print("split invariant (2026-08-13):")
-    import io as _io, os as _os
-    _src = open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "twt.py"),
-                encoding="utf-8").read()
-    _ck("MAIN never imports COMPANION (no 'import twt_companion' statement in twt.py — "
-        "the mirror ships MAIN alone; canon §6 split invariant)",
+    import io as _io, os as _os, ast as _ast
+    _here = _os.path.dirname(_os.path.abspath(__file__))
+    _read = lambda f: open(_os.path.join(_here, f), encoding="utf-8").read()
+    # WIDENED 2026-08-23 (family split): the MAIN engine is now THREE files — the facade
+    # and its two halves — and the 2026-08-13 invariant binds all three, not just the one
+    # that happens to be named twt.py. A guard that checks the facade only would pass
+    # vacuously the moment a companion import were added to a half.
+    _main_files = ("twt.py", "twt_core.py", "twt_candidate_v3.py")
+    _ck("MAIN never imports COMPANION (no 'import twt_companion' statement in any of "
+        "twt.py / twt_core.py / twt_candidate_v3.py — the mirror ships MAIN alone; "
+        "canon §6 split invariant)",
         not any(ln.strip().startswith(("import twt_companion", "from twt_companion"))
-                for ln in _src.splitlines()))
+                for f in _main_files for ln in _read(f).splitlines()))
+
+    print("family split invariant (2026-08-23, RUL-093/RUL-095): CORE never consumes CANDIDATE:")
+    def _module_names(sourcetext):
+        """module-level names a file DEFINES (defs, classes, assignments)."""
+        out = set()
+        for _n in _ast.parse(sourcetext).body:
+            if isinstance(_n, (_ast.FunctionDef, _ast.ClassDef)):
+                out.add(_n.name)
+            elif isinstance(_n, _ast.Assign):
+                for _t in _n.targets:
+                    for _x in (_t.elts if isinstance(_t, _ast.Tuple) else [_t]):
+                        if isinstance(_x, _ast.Name):
+                            out.add(_x.id)
+        return out
+
+    def _direction_violations(core_text, cand_text):
+        """every twt_candidate_v3 name REFERENCED anywhere in twt_core (AST, not grep —
+        a docstring mention is a string constant and must not fire)."""
+        cand = _module_names(cand_text)
+        core_tree = _ast.parse(core_text)
+        core_defined = _module_names(core_text)
+        hits = {}
+        for _x in _ast.walk(core_tree):
+            if isinstance(_x, _ast.Name) and _x.id in cand and _x.id not in core_defined:
+                hits.setdefault(_x.id, []).append(_x.lineno)
+            elif isinstance(_x, (_ast.Import, _ast.ImportFrom)):
+                _mod = getattr(_x, "module", None) or ""
+                _nms = [a.name for a in _x.names]
+                if "twt_candidate_v3" in _mod or any("twt_candidate_v3" in n for n in _nms):
+                    hits.setdefault("import twt_candidate_v3", []).append(_x.lineno)
+        return hits
+
+    _core_src, _cand_src = _read("twt_core.py"), _read("twt_candidate_v3.py")
+    _viol = _direction_violations(_core_src, _cand_src)
+    _ck(f"twt_core.py references NO name defined in twt_candidate_v3.py — the family may "
+        f"not depend on the instance; the reverse edge is the allowed one (violations: "
+        f"{ {k: v[:3] for k, v in _viol.items()} or 'none'})", not _viol)
+    # THE GUARD IS SEEN TO FIRE (RUL-095 execution requirement, the relocation-leg standard):
+    # a planted violation must be detected, or the check above is decoration. Both mutations
+    # are run here against in-memory copies — the files on disk are never touched.
+    _m1 = _core_src + "\n\ndef _planted():\n    return induced_level_parity_on_baryon_worldline()\n"
+    _m2 = "import twt_candidate_v3\n" + _core_src
+    _ck("the direction guard is NOT vacuous: a planted CORE->CANDIDATE call is caught, and "
+        "so is a planted 'import twt_candidate_v3' (two demonstrated failure modes)",
+        bool(_direction_violations(_m1, _cand_src)) and bool(_direction_violations(_m2, _cand_src)))
+
+    print("facade conservation (twt.py re-exports BOTH halves — the ~40 probe scripts, the "
+          "simulator and twt_companion import `twt` unmodified):")
+    import twt as _twt, twt_core as _tc, twt_candidate_v3 as _tv
+    _want = ({n for n in _module_names(_core_src) if not n.startswith("__")}
+             | {n for n in _module_names(_cand_src) if not n.startswith("__")})
+    _absent = sorted(n for n in _want if not hasattr(_twt, n))
+    _ck(f"every module-level name of both halves — PRIVATE HELPERS INCLUDED (twt_companion "
+        f"imports six of them by name from `twt`) — is an attribute of the facade "
+        f"({len(_want)} names; absent: {_absent or 'none'})", not _absent)
+
+    print("CORE_PROVENANCE — the intra-CORE third-commitment-class registry (RUL-095 (iii)):")
+    _prov = charge_sector_provenance()
+    _reg = CORE_PROVENANCE
+    _bad = []
+    for _row, _v in _reg.items():
+        for _c in _v["consumers"]:
+            if not hasattr(_twt, _c):                      # (i) the name must resolve
+                _bad.append(f"{_row}:{_c}:absent")
+            elif "marker" in _v:                           # (ii) it must name its own premise
+                _seg = _core_src.split(f"\n{_c}" if _c.isupper() else f"\ndef {_c}")
+                if len(_seg) < 2 or _v["marker"] not in _seg[1].split("\ndef ")[0]:
+                    _bad.append(f"{_row}:{_c}:marker-missing")
+    _ck(f"every registered class-(c) consumer resolves in the engine AND names its own "
+        f"entered datum / posited premise in its own source (offenders: {_bad or 'none'})",
+        not _bad)
+    _ck("the charge row of CORE_PROVENANCE is EXACTLY charge_sector_provenance()'s ASSIGNED "
+        "side — the two boundaries are one boundary and cannot drift apart",
+        set(_reg["charge_assignment_chain"]["consumers"]) == set(_prov["assigned"]))
     print("§5.3 algebra dimensions:")
     d = cl40_vs_cl41()
     _ck(f"Cl(4,0)=16, Cl(4,1)=32, NOT iso (got {d})", d == {"Cl(4,0)":16,"Cl(4,1)":32,"isomorphic":False})
@@ -433,7 +513,10 @@ def check_twt_algebra():
         and _wx["menu_classes_up_to_Aut(so(4))"] == 2)
     _ck("diagonal-class KILL (Route A): ker(SD)=ker(ASD)=2 (each grips exactly one Weyl half) "
         "while ker(L-orbit)=0 and ker(every graph subalgebra)=0 ⇒ a diagonal host would give "
-        f"right-handed charged currents (got {_wx['kernels_on_4dim_spinor']})",
+        "right-handed charged currents AT FULL STRENGTH — one su(2) at one coupling, charging "
+        "W− exactly as strongly as W+ — and none is OBSERVED AT ANY ACCESSIBLE ENERGY (the "
+        "datum is read, not tuned, and reversible; its FAMILY INPUTS register row carries the "
+        f"would-change-if) (got {_wx['kernels_on_4dim_spinor']})",
         _wx["kernels_on_4dim_spinor"]["SD"] == 2 and _wx["kernels_on_4dim_spinor"]["ASD"] == 2
         and _wx["kernels_on_4dim_spinor"]["L-orbit"] == 0
         and _wx["kernels_on_4dim_spinor"]["graph_subalgebras"] == [0])
@@ -1301,6 +1384,159 @@ def check_twt_spectra():
         and "**IF**" in bgc["would_change_if"]
         and "FAILED" in bgc["would_change_if"])
 
+
+    # ============ G5 — WHAT `D/J ≈ 0.79` MEASURES, AND THE TAUTOLOGY FENCE ============
+    # Governing records: knowledge/audit/gamma_referent_2026-08-23/ (§CONSENSUS + §ADDENDUM).
+    _g5 = DoverJ_calibration_referent()
+    _ar = _g5["arc_ratio_rider"]
+    _ck("G5 PART 1 — the ROUTING THEOREM: what `D/J ≈ 0.79` measures is `D_total / "
+        "J_effective`, a RATIO OF TOTALS, with an exact channel exclusivity (B = D_e₄ + "
+        "β·D_spatial is exactly Γ-clean; A = J + Σᵢ αᵢΓᵢ is exactly D-clean, and by the "
+        "exhaustive menu nothing else can enter either). THE REFERENT REVIEW STANDING SINCE "
+        "2026-08-17 CLOSES NEGATIVELY: 0.79 is NOT re-pinnable as a single-parameter "
+        "measurement of J and D, on three independent computed refusals (the calibration's "
+        "functional is OUTSIDE the scalar sector so tracelessness gives zero protection; Γ "
+        "enters at the SAME order as J; the one blind direction loses blindness off the "
+        "banked branches). ★ THE OLD FENCE IS KEPT, NOT WIDENED: the flat assertion '0.79 "
+        "is a measurement of a combination RATHER THAN D/J' stays UNLICENSED — it asserts "
+        "αᵢ ≠ 0, which remains uncomputable. Conditioning: the frame-bilinear class pick, "
+        "bilinear order, and JD-5 open on the ℤ₃ leg",
+        "RATIO OF TOTALS" in _g5["what_0_79_measures"]
+        and "NEGATIVELY" in _g5["verdict"]
+        and "cannot be re-pinned" in _g5["verdict"]
+        and len(_g5["three_computed_refusals_of_a_re_pin"]) == 3
+        and "RATHER THAN" in _g5["still_not_licensed"]
+        and "uncomputable" in _g5["still_not_licensed"]
+        and "Gamma-clean" in _g5["routing"]["numerator B (parity-ODD)"]
+        and "D-clean" in _g5["routing"]["denominator A (parity-EVEN)"]
+        and "#1-gap-routed" in _g5["admixture_sizes"]
+        and "JD-5" in _g5["tier"])
+
+    _ck("G5 PART 2 — the ARC-RATIO RIDER enters at CANDIDATE with its numbers verified on "
+        f"the engine's OWN constants: δ_L = 2/9 rad exactly (= 6/27, the n = 3 rung of the "
+        f"2:4:6 ladder) ⇒ D/J = tan(2/3) = {_ar['DoverJ_exact']:.16f}, against the fitted "
+        f"{_ar['fitted_on_engine_constants']:.12f} — relative offset "
+        f"{_ar['relative_offset_exact_vs_fit']:.3e} (0.00157%), which is TIGHTER than the "
+        f"banked rounded quote 0.787's own offset "
+        f"{_ar['relative_offset_of_the_rounded_quote_0.787']:.3e} (0.0200%). ★ CONSEQUENTLY "
+        "0.787 STOPS BEING THE QUOTED FIGURE either way: the honest quotable object is the "
+        "fitted 0.78686 with its band, or — conditionally on the reading — tan(2/3). "
+        "★ WHAT FIXING δ_L BUYS, counted honestly: one fitted CONTINUOUS parameter becomes "
+        "one prediction, so the lepton leg's D/J calibration carries no continuous free "
+        "parameter and one integer (n = 3). It does NOT make the lepton mass TRIPLE "
+        "parameter-free — Λ and the c = √2 INPUT remain. CREDIT: the 2/9 observation is "
+        "BRANNEN's; δ_U = 2/27 and δ_D = 4/27 are ŻENCZYKOWSKI's; the arc-ratio reading "
+        "supplies the ADDRESS, not the number — and the F3 bibliography duty is OPEN",
+        _ar["tier"] == "CANDIDATE"
+        and abs(_ar["delta_L_exact_rad"] - 2.0 / 9.0) < 1e-15
+        and abs(_ar["DoverJ_exact"] - math.tan(2.0 / 3.0)) < 1e-15
+        and _ar["ladder_address"] == {"as_27ths": "6/27", "n": 3,
+                                      "rung_set": "2:4:6 over 27"}
+        and abs(_ar["relative_offset_exact_vs_fit"] - 1.5678e-5) < 1e-8
+        and (_ar["relative_offset_exact_vs_fit"]
+             < _ar["relative_offset_of_the_rounded_quote_0.787"])
+        and "0.787 STOPS BEING THE QUOTED FIGURE" in _g5["quoting_rule"]
+        and "fitted 0.78686" in _g5["quoting_rule"]
+        and "Brannen" in _ar["credit"] and "Zenczykowski" in _ar["credit"]
+        and "ADDRESS, not" in _ar["credit"]
+        and _ar["F3_bibliography_duty"].startswith("OPEN")
+        and "does NOT make the lepton mass TRIPLE parameter-free"
+            in _ar["what_fixing_delta_L_buys"])
+
+    _ck("★★ G5's CORE DESIGN — THE TAUTOLOGY FENCE, ASSERTED. The chain's SINGLE empirical "
+        "fact is δ_L ≈ 2/9 rad (Brannen's observation). The `D/J`-level agreement is "
+        "therefore a TAUTOLOGICAL RESTATEMENT — `D/J := tan(3·δ_L)` BY DEFINITION, so the "
+        "'0.00157%' is tan(3·) applied to BOTH SIDES OF ONE FACT — and the returned dict "
+        "must LABEL it so: NOT an agreement, NOT a confirmation, NOT corroboration of the "
+        "arc-ratio reading. The precedent is cited BY NAME in the label: "
+        "`brannen_comb_commitment_dominance_and_dof_vacuity`'s "
+        "`min_over_mean_is_NOT_corroboration` (a function of (c, δ) alone, so matching the "
+        "target fixes it by construction — reported so it cannot be mistaken for an "
+        "independent check). Same class, same remedy. AND THE LADDER IS POSTDICTIVE: formed "
+        "on the ALREADY-KNOWN δ values and entered as 'noted non-coincidences ONLY' "
+        "(governing record: TWT_worklist.md, THE 1/27 PHASE LADDER, coordinator input "
+        "2026-08-03) — what it buys is COMPRESSION, one integer for one real, at ZERO "
+        "predictive weight",
+        "TAUTOLOGICAL RESTATEMENT" in _g5["tautology_label"]
+        and "NOT an agreement" in _g5["tautology_label"]
+        and "NOT a confirmation" in _g5["tautology_label"]
+        and "BY DEFINITION" in _g5["tautology_label"]
+        and "BOTH SIDES OF ONE EMPIRICAL FACT" in _g5["tautology_label"]
+        and "brannen_comb_commitment_dominance_and_dof_vacuity" in _g5["tautology_label"]
+        and "min_over_mean_is_NOT_corroboration" in _g5["tautology_label"]
+        and "BRANNEN" in _ar["single_empirical_fact"].upper()
+        and "POSTDICTIVE" in _ar["ladder_is_POSTDICTIVE"]
+        and "ALREADY-KNOWN" in _ar["ladder_is_POSTDICTIVE"]
+        and "COMPRESSION" in _ar["ladder_is_POSTDICTIVE"]
+        and "ZERO predictive weight" in _ar["ladder_is_POSTDICTIVE"]
+        and "coordinator input 2026-08-03" in _ar["ladder_is_POSTDICTIVE"])
+
+    # THE PLANTED-VIOLATION DEMO for the tautology fence. The whole point of the label is
+    # that it CANNOT be relabelled as agreement/confirmation and still pass. Planted here
+    # on a copy so the failure mode is SEEN TO FIRE rather than asserted to exist.
+    _planted = dict(_g5)
+    _planted["tautology_label"] = ("0.00157% agreement between the exact form and the fit "
+                                   "— a confirmation of the arc-ratio reading")
+    def _fence_ok(d):
+        t = d["tautology_label"]
+        return ("TAUTOLOGICAL RESTATEMENT" in t and "NOT an agreement" in t
+                and "NOT a confirmation" in t and "BY DEFINITION" in t)
+    _ck("★ G5's PLANTED-VIOLATION DEMO, run in-process: the tautology label is replaced by "
+        "an 'agreement / confirmation' wording on a copy of the returned dict, and the "
+        "fence predicate is re-run — it REJECTS the planted copy while accepting the real "
+        "one. So the vacuous-agreement reading cannot re-enter through the returned record",
+        _fence_ok(_g5) and not _fence_ok(_planted))
+
+    _ck("★ G5's SECOND SHIPPED FAILURE MODE — the MASS-DEFINITION CONTROL, in the return "
+        "dict so the σ can never be quoted alone. The 0.41σ propagates ONLY the PDG mass "
+        "uncertainties; it does NOT cover the mass-MEASURE conditional (√m = r² and the "
+        "pole-vs-MS̄ definition, which `DoverJ_from_lepton_masses`'s own docstring names as "
+        f"conditional (a) and which §C.3.4 records moving the Foot angle ~50× its band). A "
+        f"0.1% coherent shift in m_τ — far smaller than a pole→MS̄ conversion — moves the "
+        f"result to {_ar['mass_definition_control']['m_tau x (1 - 0.001)']['PDG_sigma']:.1f} "
+        f"PDG-σ. THE DEFINITION SYSTEMATIC DWARFS THE STATISTICAL BAR BY ORDERS, so 0.41σ "
+        "is NEVER a confidence level for the arc-ratio reading",
+        abs(_ar["PDG_band"]["sigma_of_tan(2/3)"] - 0.41) < 0.02
+        and _ar["mass_definition_control"]["m_tau x (1 - 0.001)"]["PDG_sigma"] > 10.0
+        and _ar["mass_definition_control"]["m_tau x (1 - 0.005)"]["PDG_sigma"] > 50.0
+        and "ONLY the PDG mass uncertainties" in _ar["sigma_is_NOT_a_confidence_level"]
+        and "MASS-MEASURE" in _ar["sigma_is_NOT_a_confidence_level"]
+        and "dwarfs" in _ar["sigma_is_NOT_a_confidence_level"])
+
+    _et = _ar["non_tautological_tests"]["baryon_e_test"]
+    _ck("★ G5 — THE NON-TAUTOLOGICAL TESTS are the rider's ONLY evidential future, and the "
+        f"first of them is NOT YET DISCRIMINATING (deviation below instrument spread): the "
+        f"exact reading DEMANDS e = √18/tan(2/3) = {_et['e_required']:.6f} against the "
+        f"historical e_ANW = {_et['e_ANW_historical']} — {_et['percent_low']:.2f}% low. "
+        "Either e_ANW is ~1.06% high of what the substrate demands, or the two legs' J_eff "
+        "differ by that much (which is exactly GR-2 / JD-6(b)). The other two tests are the "
+        "GR-2 read-out at 0.1% and a second sector landing on the 1/27 ladder with no new "
+        "freedom. ★ AND THE VALUE BANKS AS A REPORTED COMPARISON, WIRED TO NOTHING: "
+        "`does_not_license` forbids feeding tan(2/3) into delta_L_from_DoverJ, "
+        "canting_pitch_q_rad, dressed_coupling, eta_DM or any other consumer — that would be "
+        "the cross-leg error this whole review is about, AND would convert a CANDIDATE into "
+        "a banked default by the back door",
+        "NOT YET DISCRIMINATING" in _et["STATUS"]
+        and _et["percent_low"] > 1.0
+        and abs(_et["e_required"] - 5.391979) < 1e-5
+        and len(_ar["non_tautological_tests"]) == 3
+        and _ar["banks_as"] == "A REPORTED COMPARISON, WIRED TO NOTHING"
+        and "delta_L_from_DoverJ" in _g5["does_not_license"]
+        and "canting_pitch_q_rad" in _g5["does_not_license"]
+        and "back door" in _g5["does_not_license"]
+        and "confidence level" in _g5["does_not_license"]
+        and "corroboration" in _g5["does_not_license"])
+
+    # The wiring fence is not only prose: assert the engine's live consumers are UNMOVED.
+    _ck("★ G5's WIRING FENCE, VERIFIED AGAINST THE LIVE ENGINE (not just asserted in prose): "
+        "no consumer has been re-wired to the exact form — `DoverJ_from_lepton_masses()` "
+        "still returns the FITTED value on the engine's own constants, not tan(2/3), and "
+        "`delta_L_from_DoverJ` still inverts whatever it is passed. The exact value is a "
+        "reported comparison and nothing consumes it",
+        abs(DoverJ_from_lepton_masses() - _ar["fitted_on_engine_constants"]) < 1e-15
+        and abs(DoverJ_from_lepton_masses() - _ar["DoverJ_exact"]) > 1e-6
+        and abs(delta_L_from_DoverJ(0.787) - math.atan(0.787) / 3.0) < 1e-15)
+
     print("All §19 generation-sector checks passed (empirical masses corroborate the relations; companion-layer checks: twt_companion_test.py).")
 
 
@@ -1424,7 +1660,8 @@ def check_twt_matter():
     print("§16.6 electron as topological defect (QCP scaling):")
     _ck(f"QCP exponent ν = 3·3·(1/2)·1 = 9/2  (got {electron_QCP_nu()})", electron_QCP_nu() == 4.5)
     _ck(f"f_L STIFFNESS = f_π·(1-D/J)^ν ≈ 0.115 MeV at D/J=0.79 — NOT m_e; no stiffness→mass conversion exists  (got {electron_f_L_MeV():.3f})", abs(electron_f_L_MeV() - 0.115) < 0.005)
-    _ck("electron = one defect, two Hopf-linked windings (π_3=ℤ Skyrme, π_1=ℤ vortex)",
+    _ck("electron = one defect, two Hopf-linked windings (π_3=ℤ Skyrme, π_1=ℤ vortex) — the "
+        "ELECTRON's pair, NOT R-002's ℤ×ℤ two windings of the state class",
         electron_two_windings()["Hopf link H"] == 1)
     lnt = lepton_number_topological_conservation()
     _ck(f"L-number topological conservation: L(L-orbit)=1, L(Q-orbit)=0, B-L anomaly-free (§23.7)",
@@ -1606,6 +1843,300 @@ def check_twt_matter():
         and abs(bs["gap_relative_to_paper_printed_total"] - 6.4e-5) < 4e-6
         and "#1 gap" in bs["open_branch_selection"])
 
+
+    print("THE ESTATE OF N64 (2026-08-23) — the four-round estate dispute's banked outcome:")
+    md_ = brannen_comb_commitment_dominance_and_dof_vacuity()
+    _ck("PERIOD LATTICE = 2π·D4*, as a FOURIER-SUPPORT THEOREM, not a controls hedge: the J-term's "
+        "support {±e_i±e_j} GENERATES D4 so periods(J) = 2π·D4* exactly, and the DM-term's "
+        "π-periodicity per coordinate never restricts. Measured on three D4* generators "
+        f"(max dev {max(md_['period_deviations'].values()):.1e}) WITH the negative control at "
+        f"2π(½,½,0,0) SEEN TO REJECT ({md_['period_negative_control_2pi_half_half_0_0']:.2e}) — "
+        "a lattice check that never rejects has not been shown to be one. This is the ONE "
+        "DERIVED-A item to come out of the Y2 dispute",
+        md_["period_lattice"] == "2pi*D4*"
+        and max(md_["period_deviations"].values()) < 1e-12
+        and md_["period_negative_control_2pi_half_half_0_0"] > 1.0
+        and "FOURIER-SUPPORT THEOREM" in md_["period_lattice_ground"])
+    _ck("the closed-comb enumeration is exhaustive OF TRANSLATION-STEP combs and nothing more: two "
+        "steps coincide iff g ≡ g′ mod 3·D4*, so a complete residue system of D4*/3D4* covers them "
+        f"all — {md_['residue_system']['candidates_in_box']} candidates → "
+        f"{md_['residue_system']['distinct_classes']} classes ({md_['residue_system']['non_degenerate']} "
+        "non-degenerate), and {0,1,2}⁴ ALONE hits every class exactly once (ℤ⁴ → D4*/3D4* is an "
+        "isomorphism, so the 81 half-integer candidates are redundant)",
+        md_["residue_system"]["candidates_in_box"] == 162
+        and md_["residue_system"]["distinct_classes"] == 81
+        and md_["residue_system"]["non_degenerate"] == 80
+        and md_["residue_system"]["integer_reps_alone_suffice"] is True)
+    _ck("★ THE FINDING IS THE INEQUALITY, and it is asserted so the numbers can never be separated: "
+        f"c_max(translation-closed) = {md_['c_max_translation_closed']} < √2 < "
+        f"{md_['c_max_twisted_closed_nondegenerate']} = c_max(screw-closed, non-degeneracy-guarded) "
+        f"< {md_['c_max_twisted_closed']} unconstrained. TWO defensible readings of 'a closed ℤ₃ comb' "
+        "STRADDLE the Koide point, so NO GEOMETRIC CEILING IS A SUBSTRATE PROPERTY — the reachable "
+        "amplitude is dominated by the UNBANKED M-3 commitment (CELL meta-time phase → GRAIN helix "
+        f"configuration). Reproduced live: the maximising class gives {md_['c_max_translation_closed_reproduced_on_maximising_class']:.6f}, "
+        f"an 80-class polish sweep does not exceed it ({md_['c_max_translation_closed_80class_sweep']:.6f}), "
+        f"and a guarded screw search reaches {md_['c_max_twisted_guarded_live_witness']:.4f} > √2",
+        md_["c_max_translation_closed"] < math.sqrt(2.0)
+        < md_["c_max_twisted_closed_nondegenerate"] < md_["c_max_twisted_closed"]
+        and abs(md_["c_max_translation_closed_reproduced_on_maximising_class"] - 1.216468) < 1e-5
+        and md_["c_max_translation_closed_80class_sweep"] < 1.216468 + 1e-4
+        and md_["c_max_twisted_guarded_live_witness"] > math.sqrt(2.0)
+        and md_["sqrt2_attained_on_closed_comb"] is True
+        and len(md_["commitment_menu"]) == 5)
+    _ck("the SUBTRACTION is the global vacuum (never the ray minimum — m = E₀'s own referent), and "
+        "the correction yields the cross-check neither side of the dispute had: the corrected axis "
+        f"λ=1 ray value {md_['axis_lambda1_global_subtracted_cross_check']:.6f} EQUALS the exhaustive "
+        f"translation-closed maximum {md_['c_max_translation_closed']}, because g = (0,0,2,0) IS an "
+        "axis-type comb — which dissolves the apparent paradox of a ray value exceeding an "
+        f"'exhaustive' maximum. Free 4D vacuum lands on the BANKED body-diagonal value "
+        f"({md_['global_vacuum_free_search']:.9f} vs {md_['global_vacuum_banked_body_diagonal']:.9f})",
+        abs(md_["axis_lambda1_global_subtracted_cross_check"]
+            - md_["c_max_translation_closed"]) < 1e-4
+        and abs(md_["global_vacuum_free_search"]
+                - md_["global_vacuum_banked_body_diagonal"]) < 1e-9
+        and "global vacuum" in md_["subtraction"])
+    _ck("★ THE MASS-RATIO CAVEAT TRAVELS WITH THE NUMBERS: the exhibited NON-DEGENERATE screw point "
+        f"HIT B closes exactly (residual {max(abs(x) for x in md_['screw_hit_B']['closure_residual_over_2pi']):.1e} "
+        f"in D4*, min/mean {md_['screw_hit_B']['min_over_mean']:.4f} — NOT the c→2 two-massless corner) "
+        f"and hits c = √2, K = 2/3 to twelve digits — yet its √m ladder is "
+        f"1 : {md_['screw_hit_B']['sqrt_mass_ratios'][1]:.2f} : {md_['screw_hit_B']['sqrt_mass_ratios'][2]:.2f} "
+        f"(HIT A: 1 : {md_['screw_hit_A']['sqrt_mass_ratios'][1]:.2f} : {md_['screw_hit_A']['sqrt_mass_ratios'][2]:.2f}) "
+        "against the measured 1 : 206.77 : 3477.37. Matching K is ONE equation; matching the ladder "
+        "is TWO, and NO configuration measured in the AMPLITUDE dispute came near it — what that "
+        "dispute demolished is the EXPLANATION offered for batch 1's kill (a geometric ceiling), "
+        "never the kill. ★ AND THE CAVEAT CARRIES ITS OWN SUPERSESSION, RUL-049-conditioned IN THE "
+        "SAME STRING: the JOINT (c, δ) search DOES reach the ladder exactly, so the kill in its "
+        "'cannot-reach-the-data' form DOES NOT SURVIVE on the SCREW family — whose "
+        "generation-legality is an OPEN COORDINATOR CALL — and is UNTOUCHED on the TRANSLATION-STEP "
+        "family. It is REPLACED by a dof/vacuity kill, never removed (next check)",
+        abs(md_["screw_hit_B"]["c"] - math.sqrt(2.0)) < 1e-8
+        and abs(md_["screw_hit_B"]["K"] - 2.0 / 3.0) < 1e-8
+        and md_["screw_hit_B"]["closure_in_D4star"] is True
+        and md_["screw_hit_B"]["min_over_mean"] > 0.25
+        and md_["screw_hit_B"]["sqrt_mass_ratios"][2] < 300.0
+        and md_["screw_hit_A"]["sqrt_mass_ratios"][2] < 300.0
+        and "DOES NOT SURVIVE on the SCREW family" in md_["mass_ratio_caveat"]
+        and "OPEN COORDINATOR CALL" in md_["mass_ratio_caveat"]
+        and "UNTOUCHED on the TRANSLATION-STEP family" in md_["mass_ratio_caveat"]
+        and "COUNTED, UNFORCED INPUT" in md_["koide_rows_unchanged"])
+
+    print("THE ESTATE OF N64 — the JOINT (c, δ) SEARCH: attainment and vacuity, ONE finding:")
+    _ck("★ THE NEVER-SEPARABLE PAIR, MEASURED IN ONE CALL: the closed screw family ATTAINS the "
+        f"MEASURED charged-lepton ladder EXACTLY — {md_['attainment_exhibited_point']['mass_ratios'][1]:.6f} "
+        f"and {md_['attainment_exhibited_point']['mass_ratios'][2]:.4f} against the measured "
+        f"206.768283 and 3477.365267 (relative error "
+        f"{max(md_['attainment_exhibited_point']['relative_error_per_ratio']):.1e}, inside the "
+        f"pre-registered ATTAINED band), on a closure exact to "
+        f"{max(abs(x) for x in md_['attainment_exhibited_point']['closure_over_2pi']):.1e} — on ALL "
+        f"EIGHT order-3 symmetries, at {md_['attainment_independent_solutions']['search_refinement_pass']} "
+        f"mutually-distant solutions plus {md_['attainment_independent_solutions']['ratification_independent_solver']} "
+        "more from the ratification round's INDEPENDENT solver — ★ AND THAT IS THE NULL RESULT: "
+        f"{md_['free_reals']} free reals against {md_['constraints']} constraints ⇒ a "
+        f"{md_['solution_manifold_dim']}-DIMENSIONAL SOLUTION MANIFOLD returning "
+        f"{md_['sm_quantities_returned']} SM quantities. Reaching the data is worth nothing here",
+        md_["measured_triple_attained"] is True
+        and max(md_["attainment_exhibited_point"]["relative_error_per_ratio"]) < 1e-6
+        and md_["attainment_on_all_eight_symmetries"] is True
+        and md_["sm_quantities_returned"] == "0 of 19"
+        and md_["solution_manifold_dim"] == 4)
+    _ck("the dof kill is JACOBIAN-ATTACK-PROOF, and the counting argument is the load-bearing step "
+        f"— NOT the measurement: dim = free_reals − constraints = {md_['free_reals']} − "
+        f"{md_['constraints']} = {md_['solution_manifold_dim']}, and a 2×6 Jacobian has rank ≤ 2 "
+        "IDENTICALLY, so dim ≥ 4 AT EVERY SOLUTION whatever the rank turns out to be. Rank 2 is the "
+        "MAXIMUM — the LEAST vacuous case available to the family; any rank DROP makes the manifold "
+        f"LARGER. Measured here at the exhibited point: rank {md_['jacobian_rank']}, singular values "
+        f"{[round(x, 3) for x in md_['jacobian_singular_values']]} (well separated ⇒ the two "
+        "constraints are locally independent, which is the BEST the family could have done). And "
+        "widening cannot rescue it: any widening adds PARAMETERS or BRANCHES, neither adds CONSTRAINTS",
+        md_["solution_manifold_dim"] == md_["free_reals"] - md_["constraints"] == 4
+        and md_["jacobian_rank"] == 2
+        and len(md_["jacobian_singular_values"]) == 2
+        and "rank <= 2 IDENTICALLY" in md_["dof_kill_is_jacobian_attack_proof"]
+        and "neither adds" in md_["widening_makes_the_kill_stronger"])
+    _ck("the order-3 step-form enumeration REBUILT FROM SCRATCH inside the D4 point group closed by "
+        f"generators: {md_['point_group_order']} elements, {md_['symmetries_of_E_reduced']} symmetries "
+        f"of E_reduced, EXACTLY {md_['order3_symmetries']} of order 3 (max deviation "
+        f"{md_['order3_symmetry_max_deviation']:.1e}), every one with rank(I+ρ+ρ²) = "
+        f"{md_['N_rank_for_every_order3']} — which is what makes closure TWO scalar equations. ★ THE "
+        f"ENUMERATION IS SEEN TO REJECT: a non-symmetry inside the same group deviates by "
+        f"{md_['symmetry_enumeration_negative_control']:.3f} > 1. ★ SCOPE, tightened per the "
+        "ratification: EXHAUSTIVE OF THE ORDER-3 LINEAR SYMMETRIES OF E_reduced — never 'of linear ρ' "
+        "— with the ρ³ = I-without-symmetry class DECLARED UNSCANNED, and the published "
+        "exhaustiveness ARGUMENT repaired to run through ρᵀ(D4) = D4, not through fixing the J-term",
+        md_["point_group_order"] == 1152
+        and md_["symmetries_of_E_reduced"] == 96
+        and md_["order3_symmetries"] == 8
+        and md_["N_rank_for_every_order3"] == 2
+        and md_["symmetry_enumeration_negative_control"] > 1.0
+        and md_["order3_symmetry_max_deviation"] < 1e-12
+        and "EXHAUSTIVE OF THE ORDER-3 LINEAR SYMMETRIES" in md_["order3_exhaustiveness_scope"]
+        and "rho^T(D4) = D4" in md_["order3_exhaustiveness_argument"]
+        and len(md_["order3_declared_unscanned"]) == 4
+        and any("rho^3 = I" in s for s in md_["order3_declared_unscanned"]))
+    _ck("★ δ BINDS BEFORE c DOES — the ONE strategic finding of the whole four-round dispute, and the "
+        f"reason every ceiling in it measured the WEAKER face: |t|_c / |t|* = {md_['pitch_threshold_c_only']} "
+        f"/ {md_['pitch_threshold_joint']} = {md_['delta_binds_first_factor']:.4f}. Corroborated live: "
+        f"max c over k₀ at |t|_c is {md_['max_c_at_pitch_threshold_c_only']:.4f} = √2. The pitch lattice "
+        f"L = ker(N) ∩ 2π·D4* is HEXAGONAL 2π·A₂ (DERIVED — a half-integer D4* vector has no zero "
+        f"coordinate so it cannot meet {{x₄ = 0}}), minimal vector {md_['pitch_L_minimal_vector']:.6f} = "
+        f"2π√2, covering radius {md_['pitch_L_covering_radius']:.6f}; the exhibited screw reduces from "
+        f"{md_['screws_must_be_quoted_reduced_mod_L']['exhibited_raw']:.6f} to "
+        f"{md_['screws_must_be_quoted_reduced_mod_L']['exhibited_reduced']:.6f}, so screws are NOT "
+        "comparable unless quoted mod L",
+        abs(md_["delta_binds_first_factor"] - 1.1402) < 1e-3
+        and abs(md_["max_c_at_pitch_threshold_c_only"] - math.sqrt(2.0)) < 5e-3
+        and abs(md_["pitch_L_minimal_vector"] - 2.0 * math.pi * math.sqrt(2.0)) < 1e-9
+        and abs(md_["screws_must_be_quoted_reduced_mod_L"]["exhibited_reduced"] - 0.603642) < 1e-5)
+    _ck("lattice-t mass blindness is DERIVED-A and is a MEASURE-ZERO KNIFE-EDGE, computed on BOTH "
+        f"sides so the sharper family-level statement replaces the single-base-point ε table: the "
+        f"three comb energies coincide to {md_['lattice_t_spread']:.1e} for EVERY lattice translation "
+        f"and EVERY base point (c = 0 identically ⇒ 100% of the splitting rides the NON-LATTICE part "
+        f"of t), yet at reduced pitch 0.10 the maximum is already {md_['max_c_at_small_pitch_0p10']:.4f} "
+        "≈ 2. And the δ-window at c = √2 is the FULL non-negativity window ψ ∈ [π/4, π/3] of width "
+        f"π/12 — brute-forced measure fraction {md_['delta_window_measure_fraction']:.4f} = 0.25 — "
+        "saturated to machine precision and EMPTY outside it: THE SUBSTRATE CONTRIBUTES EXACTLY ZERO "
+        "CONSTRAINT BEYOND E₀ ≥ 0",
+        md_["lattice_t_mass_blind"] is True
+        and md_["lattice_t_spread"] < 1e-12
+        and md_["max_c_at_small_pitch_0p10"] > 1.9
+        and abs(md_["delta_window_measure_fraction"] - 0.25) < 1e-3
+        and "measure-zero" in md_["lattice_t_blindness_is_a_measure_zero_knife_edge"].lower()
+        and "CONTRAST" in md_["lattice_t_blindness_is_a_measure_zero_knife_edge"])
+
+    print("THE INSEPARABILITY GUARD — the never-separable discipline made EXECUTABLE (AST-level):")
+    import os as _os, ast as _ast
+    _here = _os.path.dirname(_os.path.abspath(__file__))
+    _read = lambda f: open(_os.path.join(_here, f), encoding="utf-8").read()
+    _ATTAIN_KEY = "measured_triple_attained"
+    _VACUITY_KEYS = ("solution_manifold_dim", "jacobian_rank", "sm_quantities_returned",
+                     "free_reals", "constraints")
+
+    def _returned_dict_keys(sourcetext):
+        """{function name -> set of STRING keys in every dict it RETURNS} (AST, not grep —
+        a docstring mention is a string constant and must not fire)."""
+        out = {}
+        for _fn in _ast.walk(_ast.parse(sourcetext)):
+            if not isinstance(_fn, (_ast.FunctionDef, _ast.AsyncFunctionDef)):
+                continue
+            keys = set()
+            for _r in _ast.walk(_fn):
+                if isinstance(_r, _ast.Return) and isinstance(_r.value, _ast.Dict):
+                    for _k in _r.value.keys:
+                        if isinstance(_k, _ast.Constant) and isinstance(_k.value, str):
+                            keys.add(_k.value)
+            if keys:
+                out[_fn.name] = keys
+        return out
+
+    def _inseparability_violations(sourcetext):
+        """the attainment fact and the vacuity facts must be returned by ONE function.
+        Fires if: no function returns the attainment key; more than one does; or the one
+        that does fails to return every vacuity key alongside it."""
+        byfn = _returned_dict_keys(sourcetext)
+        carriers = sorted(n for n, k in byfn.items() if _ATTAIN_KEY in k)
+        if len(carriers) != 1:
+            return {"attainment carriers": carriers or "none"}
+        missing = sorted(k for k in _VACUITY_KEYS if k not in byfn[carriers[0]])
+        return {f"{carriers[0]} returns the attainment WITHOUT": missing} if missing else {}
+
+    _cand_src_v3 = _read("twt_candidate_v3.py")
+    _isep = _inseparability_violations(_cand_src_v3)
+    _ck("★ THE ATTAINMENT AND THE VACUITY ARE RETURNED BY ONE CALL, AND NO OTHER: exactly one "
+        f"function in twt_candidate_v3.py returns `{_ATTAIN_KEY}`, and it returns all of "
+        f"{list(_VACUITY_KEYS)} alongside it. A corpus able to quote 'the banked geometry reproduces "
+        "the charged-lepton ladder exactly' WITHOUT 'on a 4-dimensional solution manifold, returning "
+        "0 of 19' has been handed the worst sentence in this program's history — this check is what "
+        f"makes the never-separable discipline EXECUTABLE rather than a hope (violations: {_isep or 'none'})",
+        not _isep)
+    # THE GUARD IS SEEN TO FIRE — three planted splits, all against in-memory copies; the
+    # file on disk is never touched. A guard never demonstrated firing is decoration.
+    _split_a = _cand_src_v3.replace('"solution_manifold_dim": MANIFOLD_DIM,',
+                                    '"solution_manifold_dim_MOVED_OUT": MANIFOLD_DIM,', 1)
+    _split_b = _cand_src_v3 + (
+        '\n\ndef _planted_second_carrier():\n'
+        '    return {"measured_triple_attained": True}\n')
+    _split_c = _cand_src_v3.replace('"measured_triple_attained": True,',
+                                    '"measured_triple_attained_RELOCATED": True,', 1)
+    _ck("the inseparability guard is NOT vacuous — THREE demonstrated failure modes, each the real "
+        "way this could go wrong: (a) a vacuity key moved out of the dict; (b) a SECOND function "
+        "returning the attainment fact on its own (the split that would let it be quoted alone); "
+        "(c) the attainment key relocated out of the carrier entirely",
+        bool(_inseparability_violations(_split_a))
+        and bool(_inseparability_violations(_split_b))
+        and bool(_inseparability_violations(_split_c))
+        and _split_a != _cand_src_v3 and _split_c != _cand_src_v3)
+
+    print("THE ESTATE OF N64 — B2, the six-band magnon STIFFNESS spectrum of the canted vacuum:")
+    mb_ = magnon_stiffness_bands_canted_vacuum()
+    _ck("at D = 0 the shared band is an EXACT OPERATOR IDENTITY H(k) = 12·J·k̃²(k)·𝟙₆ "
+        f"(max dev {mb_['D0_identity_max_dev']:.2e}), upgrading induced_G_from_linear_face_band STEP 1 "
+        "from a WP-LV1 LICENCE to an identity. ★ SHIPPED FAILURE MODE — the factor-2 label trap that "
+        "sits directly under this line in the probe script: the 6·J·k̃² form is SEEN TO FAIL by "
+        f"{mb_['D0_identity_wrong_factor_6J_dev']:.1f}, so a reader checking the identity against a "
+        "'6J' print cannot conclude it fails",
+        mb_["D0_identity_max_dev"] < 1e-12
+        and mb_["D0_identity_wrong_factor_6J_dev"] > 1.0
+        and mb_["D0_operator_identity"] == "H(k) = 12 * J * ktilde^2(k) * 1_6")
+    _ck("at Γ the spectrum is 2 GAPLESS + 4 EXACTLY FOURFOLD-DEGENERATE gapped on BOTH single-q "
+        f"branches — body-diagonal {[round(x, 6) for x in mb_['gamma_spectrum']['body-diagonal']]}, "
+        f"axis {[round(x, 6) for x in mb_['gamma_spectrum']['axis']]} — so the 2+4 SPLIT is "
+        "BRANCH-ROBUST (stronger than 'confirms the banked N_G = 2', which is scoped to the AXIS "
+        "branch). ★ SECOND SHIPPED FAILURE MODE: the EVEN DM convention (excluded by §D.4.3's own "
+        f"printed E(q)) DESTROYS the structure — {mb_['even_convention_control_spectrum'][:3]}… all "
+        "six gapless",
+        mb_["n_gapless"] == 2 and mb_["n_gapped"] == 4
+        and mb_["split_is_branch_robust"] is True
+        and mb_["even_convention_control_destroys_split"] is True)
+    _ck("★ but the VALUE g is BRANCH-SPECIFIC and must never be quoted branch-blind: "
+        f"g = {mb_['g_body_diagonal']:.6f} (body-diagonal) vs {mb_['g_axis']:.6f} (axis) at D/J = 0.787, "
+        f"{100 * mb_['branch_relative_difference']:.1f}% apart, with branch SELECTION #1-gap OPEN. And "
+        "this is STIFFNESS, NOT BOGOLIUBOV (F2): bosonic Bogoliubov is paraunitary against a τ₃ "
+        "metric and that operator is not this one — so this does NOT discharge the two banked "
+        "'6-band Bogoliubov UN-BANKED' IOUs, which name a different object and are left standing",
+        abs(mb_["g_body_diagonal"] - 0.412121) < 1e-5
+        and abs(mb_["g_axis"] - 0.405987) < 1e-5
+        and mb_["g_is_branch_specific"] is True
+        and "STIFFNESS" in mb_["object"] and "NOT a Bogoliubov" in mb_["object"]
+        and "UN-BANKED" in mb_["does_not_discharge"])
+
+    print("THE ESTATE OF N64 — KC-1, the one-way symmetry-class filter on #1-gap kernel candidates:")
+    kc_ = spectral_branch_symmetry_class_filter()
+    _ck("KC-1 is ONLY IF, not IFF: failing the test is DECISIVE, PASSING is NECESSARY-NOT-SUFFICIENT "
+        "(a complex-class kernel can still be nodeless, and the banked substrate fails the second "
+        "test independently — the gapless set is exactly {Γ, ±k₀}). Measured on the banked D4 "
+        f"Hessian, body-diagonal branch at D/J = 0.787: H(k)* = H(−k) at {kc_['hermiticity_dev']:.1e} "
+        f"and spectrum(k) = spectrum(−k) at {kc_['spec_inversion_dev']:.1e}, both EXACTLY, so an "
+        f"antiunitary acts at fixed k ⇒ REAL (orthogonal) class ⇒ codimension 2 ⇒ Jacobian rank 3 "
+        f"NEVER occurs (histogram {kc_['rank_histogram']})",
+        kc_["direction"] == "necessary-not-sufficient"
+        and kc_["hermiticity_dev"] < 1e-13 and kc_["spec_inversion_dev"] < 1e-13
+        and kc_["rank_3_absent"] is True and 3 not in kc_["rank_histogram"])
+    _ck("★ CORRECTION TO THE GOVERNING RECORD, found by this pass's own check design: 'Chern ≡ 0' at "
+        "the rank-2 crossings is NOT robust. Codimension 2 means a small S² around a crossing CUTS "
+        f"the degeneracy locus — measured, the two-band gap on the sphere collapses to "
+        f"{min(c['min_gap_on_S2'] for c in kc_['substrate_rank2_crossings']):.1e} at radius "
+        f"{kc_['sphere_radius']:.0e} — so NO ℤ-valued invariant is defined there, and the SAME "
+        f"instrument returns {kc_['chern_values_returned_across_crossings']} at different crossings. "
+        "The CODIMENSION is the real-class signature (exactly what the estate verdict's §KC-1.2 says); "
+        "L1's verdict — no Weyl node on this substrate — is UNCHANGED and better evidenced",
+        kc_["chern_definable_at_substrate_crossings"] is False
+        and len(kc_["chern_values_returned_across_crossings"]) > 1
+        and all(c["min_gap_on_S2"] < 1e-5 for c in kc_["substrate_rank2_crossings"]))
+    _ck("★ MANDATED FAILURE MODE — the filter is SEEN TO RETURN THE OTHER ANSWER: on a synthetic "
+        f"complex-class Weyl node the SAME instrument gives Chern {[round(c, 5) for c in kc_['chern_control_weyl']]} "
+        f"with the sphere gap BOUNDED AWAY at 2r ({kc_['sphere_gap_weyl'][0]:.1e}), and that node FAILS "
+        f"the real-class test the substrate passes ({kc_['weyl_control_fails_real_class_test']:.2f}); a "
+        "synthetic real-class control reproduces the substrate's collapsed-gap signature. And two "
+        "fences travel with the primitive: the real-class ASSIGNMENT is EVIDENCE-NOT-THEOREM (the "
+        "inversion operator M is not exhibited — owed), and 'escape (a) measured EMPTY' is WITHDRAWN "
+        "as a mis-transcription: the Ω/metric escape is UNMEASURED / kernel-GATED, never empty",
+        all(abs(abs(c) - 1.0) < 1e-6 for c in kc_["chern_control_weyl"])
+        and all(g > 1.9e-3 for g in kc_["sphere_gap_weyl"])
+        and kc_["weyl_control_fails_real_class_test"] > 1.0
+        and kc_["inversion_operator_exhibited"] is False
+        and "UNMEASURED / KERNEL-GATED" in kc_["escape_a_status"]
+        and "CLEAN" in kc_["frame_jurisdiction_N49"])
+
     print("J,D/Γ rework bank (2026-08-21) — the DM CHIRALITY LOCK at the driven group (§D.3.3):")
     cl_ = dm_chirality_polarisation_lock()
     a48 = cl_["counts"]["Stab(+e4)[48]"]
@@ -1630,6 +2161,230 @@ def check_twt_matter():
         and cl_["n_reflections_in_driven_group"] == 24
         and "GENERIC-GIVEN-ONE-ORIENTATION-REVERSING-ELEMENT" in cl_["tier"]
         and "weak = SD" in cl_["weak_isospin_fence"])
+
+
+    # ================= THE Γ-CHANNEL REFERENT CLOSURE (2026-08-23) =================
+    # Governing records: knowledge/audit/gamma_referent_2026-08-23/ (the review's
+    # §CONSENSUS + §ADDENDUM, the reviewer verdict, and JOINT_BANKING_2026-08-23.md).
+    # Each check states what it IS and what it is NOT, and each primitive's own
+    # failure mode is run IN-PROCESS and asserted to fire.
+    _g1 = bond_invariant_menu_frame_bilinear()
+    _ld, _rl = _g1["ladder_frame_bilinear"], _g1["ladder_rotor_linear"]
+    _ck("G1 the bond-invariant menu is COMPUTED EXHAUSTIVE AT TEN under the driven group, "
+        "IN THE FRAME-BILINEAR (relative-frame) REALIZATION [DERIVED-A on the counts; "
+        f"ladder {[_ld[g]['TOTAL'] for g in ('1152','96','48','24')]} = 2/8/10/12 with "
+        f"J:{_ld['48']['J']} ⊕ D:{_ld['48']['D']} ⊕ Γ:{_ld['48']['Gamma']} at Stab(+e₄)]. "
+        "★ C-33: the ROTOR-LINEAR realization gives a DIFFERENT ladder "
+        f"{[_rl[g]['TOTAL'] for g in ('1152','96','48','24')]} = 1/2/4/8 (Γ does not exist "
+        "at that order; the grade-4 χ channel sits in its place, dim 0 at [48] and 2 at "
+        "[24]) — and WHICH realization is 'the' menu is the V3-2-class PICK, family tree "
+        "LS-ℤ₂, where the fork was ALREADY RECORDED (this round CONFIRMS, it does not "
+        "originate). ★★ WHAT THIS CHECK IS NOT: it is NOT a residue measurement. "
+        "'residue = 0' is an ALGEBRAIC IDENTITY of the parametrisation — the three channel "
+        f"projectors commute EXACTLY with both constraints (max|[P,R]| = "
+        f"{_g1['commutation_witness']['max|[P_ch, R]|']:.1e}, max|[P,H]| = "
+        f"{_g1['commutation_witness']['max|[P_ch, H]|']:.1e}) and sum to I, so the ranks add "
+        "identically and a nonzero residue was NOT A POSSIBLE OUTCOME (canon §8a's own "
+        "tell). The exhaustiveness is ANALYTIC — the complete 1⊕6⊕9 split preserved by both "
+        "constraints — and the completeness of the RELATIVE-FRAME ANSATZ itself is a NAMED, "
+        "UNMEASURED premise. Wording fence: 'computed EXHAUSTIVE', never C-32's "
+        "'computed closed' (the {J,D} pick is LIVE and counted, V3-2)",
+        [_ld[g]["TOTAL"] for g in ("1152", "96", "48", "24")] == [2, 8, 10, 12]
+        and (_ld["48"]["J"], _ld["48"]["D"], _ld["48"]["Gamma"]) == (2, 2, 6)
+        and [_rl[g]["TOTAL"] for g in ("1152", "96", "48", "24")] == [1, 2, 4, 8]
+        and _rl["48"]["chi"] == 0 and _rl["24"]["chi"] == 2
+        and _g1["residue_zero_is_an_identity"] is True
+        and max(_g1["commutation_witness"].values()) < 1e-12
+        and "ANALYTIC" in _g1["exhaustiveness_ground"]
+        and "NOT a residue measurement" in _g1["exhaustiveness_ground"]
+        and "RELATIVE-FRAME BILINEAR ANSATZ" in _g1["open_premise_relative_frame_ansatz"]
+        and "MEASURED BY NOTHING" in _g1["open_premise_relative_frame_ansatz"]
+        and "EXHAUSTIVE" in _g1["wording_fence"]
+        and "never 'computed closed'" in _g1["wording_fence"]
+        and len(_g1["four_pipelines"]) == 4
+        and "ALREADY BANKED" in _g1["already_recorded_at"])
+
+    _pl = _g1["planted_noncommuting_projector"]
+    _ck("★ G1's DEMONSTRATED FAILURE MODE, run in-process: a rank-1 projector that does NOT "
+        f"commute with the constraints (max|[P_bad, R]| = {_pl['max|[P_bad, R]|']:.3e}) is "
+        f"planted, and the SVD ranks of its two-part resolution of the identity do NOT add "
+        f"— {_pl['rank_part_1']} + {_pl['rank_part_2']} = {_pl['sum']} against the true "
+        f"total {_pl['true_total']}. THAT is what the residue quantity tests: COMMUTATION, "
+        "not the lattice. Seen to fire",
+        _pl["fires"] is True and _pl["max|[P_bad, R]|"] > 1e-6
+        and _pl["sum"] != _pl["true_total"])
+
+    _g2 = bond_channel_parity_exclusivity()
+    _ck("G2 the CHANNEL→PARITY EXCLUSIVITY theorem at TRACE-PAIRING strength [DERIVED-A, "
+        "CONFIGURATION-INDEPENDENT — the one result of the round carrying no branch risk and "
+        "no class-of-configuration risk]: Tr(K Wᵀ) = Tr(Kᵀ W) for ARBITRARY real W, so "
+        "symmetric couplings (J, Γ) are reversal-EVEN and antisymmetric ones (D) reversal-"
+        f"ODD — verified on independent random SO(4) rotors per bond AND on random "
+        f"NON-orthogonal W (worst relative deviation {max(_g2['worst_relative_deviation'].values()):.1e}), "
+        "i.e. NO helix, NO simple bivector, NOT EVEN A ROTOR is required. ⇒ Γ can only "
+        "renormalise the parity-EVEN denominator and D_spatial is the ONLY channel in the "
+        "exhaustive menu that can reach the parity-ODD numerator — a SELECTION RULE. ★ ALL "
+        "THE PHYSICS IS IN THE NAMED PREMISE 'chirality reversal acts as W_b → W_bᵀ', which "
+        "on a helix is the identity q → −q; the algebra above is free. ★★ TWO SCOPE FENCES "
+        "ASSERTED HERE: (a) 'EXACTLY TWO amplitudes' is CLASS-CONDITIONED (RUL-049) to "
+        "single-q families generated by a unit SIMPLE bivector; (b) 'JD-5 HALF-DISCHARGED' "
+        "is WITHDRAWN as a label — JD-5 STANDS UNDISCHARGED on its recorded ℤ₃ scope and "
+        "RUL-071(vi)'s conditioning of 0.79 on it is UNCHANGED (the pitch statement is a "
+        "fact about a DIFFERENT functional)",
+        max(_g2["worst_relative_deviation"].values()) < 1e-9
+        and len(_g2["worst_relative_deviation"]) == 4
+        and "ARBITRARY real" in _g2["identity"]
+        and "not even a rotor" in _g2["scope_measured_on"]
+        and _g2["branch_risk"].startswith("NONE")
+        and "ONLY channel" in _g2["routing"]["selection_rule"]
+        and "CLASS-CONDITIONED" in _g2["exactly_two_amplitudes"]
+        and "SIMPLE" in _g2["exactly_two_amplitudes"]
+        and "STANDS, UNDISCHARGED" in _g2["JD5_status"]
+        and "WITHDRAWN" in _g2["JD5_status"]
+        and "UNCHANGED" in _g2["JD5_status"]
+        and all(_g2["pitch_functional_parities"][k] == "EVEN"
+                for k in ("J#1", "J#2", "Gamma#1", "bankedJ"))
+        and all(_g2["pitch_functional_parities"][k] == "ODD"
+                for k in ("D#1", "D#2", "bankedD")))
+
+    _mx = _g2["mixed_symmetry_control"]
+    _ck("★ G2's DEMONSTRATED FAILURE MODE, run in-process: a deliberately MIXED-symmetry "
+        f"coupling (J#1 + D#1) must come back MIXED, not EVEN and not ODD — |E−Eᵀ|rel = "
+        f"{_mx['relative |E - E^T|']:.3f} AND |E+Eᵀ|rel = {_mx['relative |E + E^T|']:.3f}, "
+        "both O(1). Without it the parity classifier could be returning its input's name",
+        _mx["fires"] is True and _mx["verdict"] == "MIXED"
+        and _mx["relative |E - E^T|"] > 1e-6 and _mx["relative |E + E^T|"] > 1e-6)
+
+    _g3 = bond_harmonic_ceiling_by_generator_class()
+    _cx = _g3["counterexample"]
+    _ck("G3 the HARMONIC CEILING is CONDITIONED ON THE TWIST-GENERATOR CLASS, not on "
+        "bilinear order [DERIVED-A-given-(a SIMPLE or ISOCLINIC (SD/ASD) generator); "
+        "REFUTED without that premise]. ★ THIS CHECK EXISTS TO MAKE THE OVER-CLAIM "
+        "UNSAYABLE FROM THE ENGINE: the submitted round asserted 'either way the ceiling is "
+        "m ≤ 2 < 3' and 'no bilinear-order computation, however refined, can compute αᵢ or "
+        "β' — bare necessity claims (RUL-049) and FALSE AS WRITTEN. The premise that DOES "
+        f"make the ceiling true is verified here: every SD and every ASD bivector is "
+        f"ISOCLINIC (B² = −λ²I, residuals ≤ {max(_g3['isoclinic_premise']['residual_SD'], _g3['isoclinic_premise']['residual_ASD']):.1e}), "
+        "so canon §5's GENERATIONS = the ASD triple SUPPLIES it — as an IDENTIFICATION, not "
+        "a theorem. ⇒ JD-6's upgrade is DERIVED-CONDITIONAL, and conditioned on the "
+        "TWIST/CONFIGURATION class, NOT on 'the banked action class' (the submitted phrase "
+        "mislocated it). ★★ AND THE VACUITY CENSUS IS REPAIRED: the round's second "
+        f"construction E = Tr(Rᵀ(Σ_b K_b)R Q) is VACUOUS for {_g3['vacuous_members']} of 12 "
+        "couplings (four give Σ_b K_b = 0 ⇒ E ≡ 0; four give Σ_b K_b ∝ I ⇒ E constant, so "
+        "every m ≥ 1 vanishes trivially) — the identical defect was self-caught in one "
+        "script of that round and NOT swept into the other, where it was load-bearing "
+        "(canon §2, sweep after a patch)",
+        _g3["vacuous_members"] == 8
+        and max(_g3["isoclinic_premise"]["residual_SD"],
+                _g3["isoclinic_premise"]["residual_ASD"]) < 1e-12
+        and "IDENTIFICATION, not a theorem" in _g3["isoclinic_premise"]["source"]
+        and "CONDITIONALLY" in _g3["JD6_status"]
+        and "TWIST/CONFIGURATION class" in _g3["JD6_status"]
+        and "NOT on" in _g3["JD6_status"]
+        and "withdrawn as a bare necessity claim" in _g3["does_not_license"]
+        and _g3["ceiling_by_generator_class"]["general (a,b)"]["rep"] == "max(a,b)"
+        and all(_g3["measured_harmonics"][c]["bankedJ"]["|c3|"] < 1e-10
+                for c in ("simple(1,0)", "SD-isoclinic(1,1)", "ASD-isoclinic(1,-1)")))
+
+    _ck("★ G3's DEMONSTRATED FAILURE MODE, run in-process — THE COUNTEREXAMPLE IS THE "
+        f"FAILURE MODE: a bond-BILINEAR energy on a helix generated by a NON-ISOCLINIC "
+        f"bivector with plane angles (1,3) carries |c₃| = {_cx['|c3|']:.4f} at the SAME "
+        f"magnitude as |c₁| = {_cx['|c1|']:.4f}, on the BANKED J coupling. The primitive "
+        "RETURNS that nonzero m₃, so the unconditioned ceiling can never be re-asserted "
+        "from this engine — and the would-change-if names exactly this world",
+        _cx["|c3|"] > 1.0
+        and abs(_cx["|c3|"] - _cx["|c1|"]) < 1e-6 * _cx["|c1|"]
+        and "bond-BILINEAR" in _cx["order"]
+        and "non-isoclinic" in _g3["would_change_if"])
+
+    _g4 = gamma_survivor_pitch_genericity()
+    _lk = _g4["survivor_leak_equal_per_bond_scale"]
+    _ax = _g4["banked_branches"]["AXIS  k=q e1, B=e14"]
+    _ck("G4 the Γ SURVIVOR'S INERTNESS IS NON-GENERIC — located gap GR-1 [DERIVED-A on the "
+        "banked branches; DERIVED-numeric off them]. On the two banked high-symmetry "
+        f"branches the survivor is EXACTLY pitch-blind ({_ax['survivor_pitch_weight']:.1e}) "
+        f"with pitch-visible Γ dimension 1 (axis) / 2 (diagonal); on generic single-q "
+        f"branches the visible dimension is 4 on essentially every branch "
+        f"({_g4['generic_visible_dimension_distribution']}) and the survivor's own pitch "
+        "entry is NONZERO. ★★ THE NUMBER IS CORRECTED AND THE OLD ONE WITHDRAWN: the "
+        "submitted '7.134e-01 — i.e. O(1)' was a BARE NUMBER compared against nothing, "
+        "violating the same report's own normalisation discipline. At EQUAL PER-BOND SCALE "
+        f"the leak is worst {_lk['worst_this_run']:.2e} / median {_lk['median_this_run']:.2e} "
+        "— a few percent worst case, ~0.1% median, i.e. a REAL but markedly WEAK leak "
+        "against the pitch-visible directions' exact 1/2, and NOT a protection. The worst "
+        "case is a SAMPLE MAXIMUM (seed named); the median is stable. ★ Blast radius of the "
+        "unscoped claim: EMPTY (every live site already carries the scope) — ONE annotation "
+        "is owed, at family-tree V3-2's risk ordering, and it is repaired ASYMMETRICALLY "
+        "(the D_spatial half branch-INDEPENDENT by G2's selection rule, the Γ half "
+        "branch-CONDITIONAL). Keeper L-2 UPHELD-not-discharged; V3-2a "
+        "ANNOTATED-not-discharged. Q(k) ≡ 0 is DEFINITIONAL and is not reported as evidence",
+        _ax["survivor_pitch_weight"] < 1e-12
+        and _ax["pitch_visible_Gamma_dim"] == 1
+        and _g4["banked_branches"]["BODY-DIAGONAL k~(1,1,1,0), B~(e14+e24+e34)"]
+                ["pitch_visible_Gamma_dim"] == 2
+        and _g4["generic_visible_dimension_distribution"].get(4, 0) >= 190
+        and 5e-3 < _lk["worst_this_run"] < 2e-1
+        and 1e-4 < _lk["median_this_run"] < 1e-2
+        and _lk["worst_is_a_sample_maximum"] is True
+        and "WITHDRAWN" in _g4["survivor_raw_worst_WITHDRAWN"]["why_withdrawn"].upper()
+        and "BARE NUMBER" in _g4["survivor_raw_worst_WITHDRAWN"]["why_withdrawn"].upper()
+        and abs(_g4["entry_ratio_pitch_visible_over_J"]["value"] - 0.5) < 1e-15
+        and max(abs(abs(v) - 0.5) for v in
+                _g4["entry_ratio_pitch_visible_over_J"]["q_scan"].values()) < 1e-12
+        and "EQUAL MAXIMUM PER-BOND" in _g4["entry_ratio_pitch_visible_over_J"]["normalisation"]
+        and "1/3" in _g4["entry_ratio_pitch_visible_over_J"]["normalisation"]
+        and _g4["blast_radius_of_the_unscoped_claim"].startswith("EMPTY")
+        and "ASYMMETRICALLY" in _g4["one_annotation_owed"]
+        and _g4["discharges"].startswith("NEITHER")
+        and "definitional" in _g4["Qk_is_definitional_not_evidence"])
+
+    _ck("★ G4's DEMONSTRATED FAILURE MODE (positive control), run in-process: the "
+        "pseudo-dipolar W(F₄)-invariant Γ direction (K_b = u_b u_bᵀ − I/4) IS visible on "
+        f"BOTH banked branches at O(1) ({_ax['positive_control_pseudo_dipolar']:.3f} axis, "
+        f"{_g4['banked_branches']['BODY-DIAGONAL k~(1,1,1,0), B~(e14+e24+e34)']['positive_control_pseudo_dipolar']:.3f} "
+        "diagonal), so the survivor's measured blindness is not an artefact of a "
+        "profile map that returns zero for everything",
+        _ax["positive_control_pseudo_dipolar"] > 0.1
+        and _g4["banked_branches"]["BODY-DIAGONAL k~(1,1,1,0), B~(e14+e24+e34)"]
+                ["positive_control_pseudo_dipolar"] > 0.1)
+
+    _g6 = gamma_admixture_cross_functional_route()
+    _ds, _bs = _g6["discriminator"], _g6["bridge_sensitivity_control"]
+    _ck("G6 = GR-2 / JD-6(b) — THE THREE J_eff FACES, and the first number the review has "
+        "produced for a Γ admixture [CANDIDATE — a ROUTE, not a measurement]. Filed as a "
+        "named COROLLARY of JD-6, deliberately NOT an independent fourth gap (GR-2 is empty "
+        "if JD-6's coefficients vanish; gap-inventory inflation is a real cost). ★ THE FENCE "
+        "IS WIDENED from the submitted 'never combine D/J with an independently-fixed J' to "
+        "'NEVER CARRY A RATIO CALIBRATED ON ONE FUNCTIONAL INTO ANOTHER' — the submitted "
+        "form named ONE junction while placing every cross-leg consumer in NOT-EXPOSED on a "
+        "ground valid only WITHIN one functional, which is exactly what GR-2 denies ACROSS "
+        f"functionals. VALUES DO NOT MOVE; what moves is the claim that the formula is being "
+        f"fed the right substrate quantity. THE NUMBER: J_eff(pitch)/J_eff(ℤ₃) = "
+        f"{_ds['J_eff(pitch)/J_eff(Z3)']:.6f} and, through G4's exact entry ratio 1/2, "
+        f"Δ(Γ/J) ≈ {_ds['Delta(Gamma/J)_between_the_two_functionals']*100:.2f}% of J — with "
+        "its FOUR-ITEM conditioning class in the same breath (RUL-049), any one of which "
+        "voids it. RESOLUTION ROUTE: an independent e — or the J that f_π² = 8J/a fixes — at "
+        "the 0.1% level would READ OUT the admixture instead of absorbing it into a '1.1% "
+        "agreement'",
+        abs(_ds["Delta(Gamma/J)_between_the_two_functionals"] - 0.0215) < 5e-4
+        and abs(_ds["J_eff(pitch)/J_eff(Z3)"] - 1.01076) < 1e-4
+        and _ds["pitch_entry_ratio_a_visible_over_a_J"] == 0.5
+        and _g6["fence"] == "NEVER CARRY A RATIO CALIBRATED ON ONE FUNCTIONAL INTO ANOTHER"
+        and _g6["values_move"] is False
+        and len(_g6["conditioning_class_RUL049"]) == 4
+        and _g6["any_one_failing_voids_the_number"] is True
+        and "COROLLARY" in _g6["gap_id"] and "NOT an independent gap" in _g6["gap_id"]
+        and "0.1%" in _g6["resolution_route"]
+        and len(_g6["exposed_classes"]) == 3)
+
+    _ck("★ G6's DEMONSTRATED FAILURE MODE, run in-process: the SAME route run on the √12 "
+        f"bridge instead of the disclaimed √18 one returns Δ(Γ/J) = {_bs['sqrt12_route_Delta(Gamma/J)']*100:.1f}% "
+        f"against {_bs['sqrt18_route_Delta(Gamma/J)']*100:.2f}% — a relative spread of "
+        f"{_bs['relative_spread']:.1f}, i.e. LARGER THAN THE ANSWER ITSELF. The route is "
+        "bridge-bound, and 2.15% can never be quoted as a measurement",
+        _bs["relative_spread"] > 1.0
+        and abs(_bs["sqrt18_route_Delta(Gamma/J)"]
+                - _ds["Delta(Gamma/J)_between_the_two_functionals"]) < 1e-15)
 
     print("\nAll §10/§16/§22 matter-sector checks passed (incl. the BVP 8-vs-4 adjudication; companion-layer checks: twt_companion_test.py).")
 
@@ -1740,7 +2495,285 @@ def check_twt_weak():
         and "UNDER-determined" in cnaf["rh_hypercharges"]["control"]
         and "Z3" in cnaf["colour_honesty"])
 
-    print("\nAll §18.3a/§20.3/§23.6/§23.7/§23.8 weak-sector checks passed (incl. instanton Q=1 by integration; F-7 (iii) promoted; companion-layer checks: twt_companion_test.py).")
+    print("R-172 — WHICH SIDE THE WEAK HOST ACTS ON (RUL-091's deep-layer discharge; the "
+          "external body-frame submission, verified cross-class and integrated per keeper + "
+          "consensus 2026-08-23). Every count names its realization (C-33):")
+    _bf = weak_host_must_be_body_frame(carrier="Cl+", hosting="body")
+    _bfx = weak_host_must_be_body_frame(carrier="Cl+", hosting="space")   # the broken state
+    _bfd = _bf["defect"]
+    _ck("THE DEFECT is COMPUTED, not asserted: on the OBSERVER'S OWN SIDE a chiral host fails "
+        f"to commute with the lock — [L_J, L_SD] {_bfd['[L_J, L_SD]']['nonzero']}/9 nonzero and "
+        f"[L_K, L_SD] {_bfd['[L_K, L_SD] (grade-one K, BANKED)']['nonzero']}/9 in the BANKED "
+        f"GRADE-ONE realization (K_j = ½e_j), {_bfd['[L_K, L_SD] (grade-two K, the alternative)']['nonzero']}"
+        "/9 in the grade-two one — and identically J₁ = −½e₂₃ = "
+        f"({_bfd['J1_decomposition']['SD_part']}) + ({_bfd['J1_decomposition']['ASD_part']}), "
+        "both chiral parts nonzero: a lab rotation IS half an SD rotation plus half an ASD "
+        "rotation. THE CONCLUSION IS REALIZATION-ROBUST and that robustness is computed — the "
+        "tables are nonzero under BOTH lock realizations; only the counts move",
+        _bfd["[L_J, L_SD]"]["nonzero"] == 6
+        and _bfd["[L_K, L_SD] (grade-one K, BANKED)"]["nonzero"] == 9
+        and _bfd["[L_K, L_SD] (grade-two K, the alternative)"]["nonzero"] == 6
+        and _bfd["J1_both_parts_nonzero"] and _bfd["realization_robust"] is True)
+    _bft = _bf["commutator_tables"]
+    _ck("THE BODY-FRAME HOST COMMUTES WITH THE OBSERVER'S LOCK GENERATORS: all four tables "
+        f"0/9, worst residual {max(x['max'] for x in _bft.values()):.1e}. ★ AND THE SHIPPED "
+        "FAILURE MODE IS RUN IN THE SAME BREATH (manuals/banking.md): the identical computation "
+        "against the BROKEN state — hosting='space', the reading every R-079 use-site carried "
+        f"before RUL-091 — comes back [L_J,host_SD] {_bfx['commutator_tables']['[L_J, host_SD]']['nonzero']}/9 "
+        f"and [L_K,host_SD] {_bfx['commutator_tables']['[L_K, host_SD]']['nonzero']}/9 nonzero, "
+        "i.e. this check IS SEEN TO FAIL for its named reason and is not decoration",
+        _bf["host_commutes_with_Lorentz"] is True
+        and _bfx["host_commutes_with_Lorentz"] is False
+        and _bfx["commutator_tables"]["[L_J, host_SD]"]["nonzero"] == 6
+        and _bfx["commutator_tables"]["[L_K, host_SD]"]["nonzero"] == 9)
+    _ck("the repair is ASSOCIATIVITY at full strength — not for the host's three generators but "
+        "for the whole algebra: max|[L_g, R_h]| = "
+        f"{_bf['repair']['max|[L_g, R_h]| over ALL g, h in the 16-blade basis']:.1e} over ALL "
+        "g, h in the 16-blade basis (the even-h statement the ruling quotes is the weaker one). "
+        "A body-frame host is Lorentz-scalar BY CONSTRUCTION, for every lock realization",
+        _bf["repair"]["max|[L_g, R_h]| over g in Cl(4,0), h in Cl+"] < 1e-12
+        and _bf["repair"]["max|[L_g, R_h]| over ALL g, h in the 16-blade basis"] < 1e-12)
+    _bfo = _bf["opposite_algebra"]
+    _ck("the body copy is the OPPOSITE Lie algebra ([R_X,R_Y] = −R_[X,Y], residual "
+        f"{_bfo['max|[R_X,R_Y] + R_[X,Y]|']:.1e}; the left action is a homomorphism, residual "
+        f"{_bfo['max|[L_X,L_Y] - L_[X,Y]|']:.1e}), isomorphic via X → −X, so R-171's conjugacy "
+        f"classification carries over verbatim; I₄ central in Cl⁺ (residual "
+        f"{_bfo['I4_central_in_Cl+_residual']:.1e}) ⇒ the SD/ASD split is the SAME split on the "
+        "body side",
+        _bfo["max|[R_X,R_Y] + R_[X,Y]|"] < 1e-12 and _bfo["max|[L_X,L_Y] - L_[X,Y]|"] < 1e-12
+        and _bfo["I4_central_in_Cl+_residual"] < 1e-12)
+    _bfc, _bfs = _bf["I4_grading_dims"], _bf["annihilation_is_side_independent"]
+    _ck("★ THE OWED TRANSFER IS NOW COMPUTED, closing an orphan in the standing record: "
+        "weak_su2_menu_exhaustion's kernel numbers are taken on the 4-dim spinor module under "
+        "the LEFT action, while the RULED hosting is RIGHT action on the even module, and "
+        "RUL-091(iii) ASSERTED the transfer ('an ideal fact, hence side-independent') with no "
+        "primitive computing it. Computed here on the I₄ GRADING of Cl⁺ (NOT the observer's "
+        f"chirality — C-33): image_dim(R_SD|W₊) = {_bfc['SD|W+']['image_dim_operator_span']}, "
+        f"(R_SD|W₋) = {_bfc['SD|W-']['image_dim_operator_span']}, (R_ASD|W₊) = "
+        f"{_bfc['ASD|W+']['image_dim_operator_span']}, (R_ASD|W₋) = "
+        f"{_bfc['ASD|W-']['image_dim_operator_span']} on the OPERATOR-SPAN reading "
+        f"({_bfc['SD|W+']['image_dim_image_subspace']}/{_bfc['SD|W-']['image_dim_image_subspace']}"
+        f"/{_bfc['ASD|W+']['image_dim_image_subspace']}/{_bfc['ASD|W-']['image_dim_image_subspace']} "
+        "on the image-subspace reading — the word carries two readings and both are returned), "
+        f"no leak; and the LEFT action gives the IDENTICAL table ({_bfs['left_SD|W+']}, "
+        f"{_bfs['left_SD|W-']}) ⇒ side-independent, as claimed",
+        _bfc["SD|W+"]["image_dim_operator_span"] == 3 and _bfc["SD|W-"]["image_dim_operator_span"] == 0
+        and _bfc["ASD|W+"]["image_dim_operator_span"] == 0
+        and _bfc["ASD|W-"]["image_dim_operator_span"] == 3
+        and (_bfc["SD|W+"]["image_dim_image_subspace"],
+             _bfc["ASD|W-"]["image_dim_image_subspace"]) == (4, 4)
+        and _bfs["left_SD|W+"] == _bfs["right_SD|W+"] == 3
+        and _bfs["left_SD|W-"] == _bfs["right_SD|W-"] == 0
+        and max(x["leak"] for x in _bfc.values()) < 1e-9)
+    _bfb = _bf["bimodule"]
+    _ck("the BIMODULE IDENTITIES — ALGEBRA ONLY, fenced: the L and R Casimirs on W₊ are the "
+        f"SAME scalar ({_bfb['casimirs']['L_SD|W+']['scalar']:.1f} in the NAMED normalization "
+        "u_a² = −1 − I₄, so the VALUE is normalization-dependent and the load-bearing content "
+        "is the EQUALITY), both vanish on W₋, and W₊ is IRREDUCIBLE under (L_SD, R_SD) jointly "
+        f"(generated algebra dim {_bfb['generated_algebra_dim']} = End(W₊)). These are "
+        "statements about the LOCAL EVEN-ALGEBRA MODULE on the I₄ grading and nothing else — "
+        "the scope fence is asserted here, in the check, so no CORE string can quietly promote "
+        "them to a claim about one-defect STATES (that consumes the UNBUILT collective "
+        "manifold, against the corpus's only built band)",
+        _bfb["L_and_R_casimirs_equal_on_W+"] and _bfb["casimirs"]["L_SD|W+"]["is_scalar"]
+        and _bfb["casimirs"]["R_SD|W+"]["is_scalar"]
+        and abs(_bfb["casimirs"]["L_SD|W-"]["scalar"]) < 1e-9
+        and abs(_bfb["casimirs"]["R_SD|W-"]["scalar"]) < 1e-9
+        and _bfb["W+_irreducible_under_(L_SD,R_SD)"]
+        and "NOT a statement about one-defect STATES" in _bfb["scope_fence"])
+    _bfa = _bf["body_algebra_available_on_carrier"]
+    _bfl = _bf["observer_lock_does_not_preserve_carrier"]
+    _ck(f"on the Cl⁺ carrier the FULL body so(4) is available (right-stabiliser bivectors "
+        f"{_bfa['dim_bivectors']} of 6); AND the C-33 grading fence is COMPUTED, not asserted: "
+        f"with the BANKED grade-one boosts the observer's lock does not even preserve this "
+        f"carrier (max leak {_bfl['max leak(L_K grade-one, carrier)']:.4f}, and "
+        f"{_bfl['max leak(L_K grade-one, W+)']:.1f} on W₊) while the rotations do "
+        f"({_bfl['max leak(L_J, carrier)']:.1e}) — so W± is the I₄ grading and CANNOT be read "
+        "as the observer's chirality; that bridge is unbuilt",
+        _bfa["is_full_so(4)"] and _bfa["dim_bivectors"] == 6
+        and _bfl["max leak(L_K grade-one, carrier)"] > 1.0
+        and _bfl["max leak(L_J, carrier)"] < 1e-9
+        and _bfl["max leak(L_K grade-two, carrier)"] < 1e-9)
+    _bfS = weak_host_must_be_body_frame(carrier="S", hosting="body")
+    _bfSa = _bfS["body_algebra_available_on_carrier"]
+    _ck("CONTROL C2 — THE CARRIER IS A BRANCH POINT, and the computation returns a DIFFERENT "
+        f"verdict on it: on S = Cl·s₀ the right-stabiliser AMONG EVEN ELEMENTS (that qualifier "
+        f"is load-bearing — the full stabiliser is {_bfSa['right_stabiliser_all_grades_dim']}-"
+        f"dimensional) is the e₄-commutant {_bfSa['right_stabiliser_even']} ≅ ℍ — ONE su(2), "
+        f"not two — charging BOTH halves of the I₄ grading (span dims "
+        f"{_bfSa['single_su2_span_dim_on_W+']} "
+        f"and {_bfSa['single_su2_span_dim_on_W-']}), i.e. the diagonal-class occupancy the "
+        "right-handed-singlet datum kills. So the body route survives on Cl⁺ and is refuted by "
+        "the datum on S — the two modules the corpus names for the local state's one-sided "
+        "internal action are separated by an observable, and WHICH the internal host acts on "
+        "is an OPEN node, not decided here",
+        _bfSa["is_e4_commutant_H"] and not _bfSa["is_full_so(4)"]
+        and _bfSa["single_su2_span_dim_on_W+"] == 3
+        and _bfSa["single_su2_span_dim_on_W-"] == 3
+        and _bfSa["right_stabiliser_all_grades_dim"] == 8
+        and "REFUTED BY DATA" in _bfS["verdict"])
+
+    print("the left-centralizer theorem — BANKED (it was cited as a ground of RUL-091 while "
+          "unbanked; a ruling grounded on an uncomputed theorem is a record-invariant defect):")
+    _lc = lock_left_centralizer_is_u1()
+    _ck("post-lock the LEFT-acting centralizer of the observer's so(1,3) inside Cl(4,0) is "
+        f"span{{1, e123}} ≅ ℂ — dim {_lc['centralizer_dim']}, support "
+        f"{_lc['centralizer_support_blades']}, COMMUTATIVE (max|[x,y]| = "
+        f"{_lc['max|[x,y]| over the centralizer']:.1e}) with (e123)² = {_lc['e123_squared']:.0f}: "
+        "a U(1), never an su(2) — an su(2) needs three mutually non-commuting directions and "
+        "there are only two directions in total. ★ THE DEMONSTRATED FAILURE MODE, run here: "
+        f"drop the BOOSTS and centralize the rotations alone and the answer MOVES "
+        f"{_lc['centralizer_dim']} → {_lc['control_rotations_only(the demonstrated failure mode)']['dim']} "
+        f"({_lc['control_rotations_only(the demonstrated failure mode)']['support']}), so the 2 "
+        "is measuring the boosts and not bookkeeping",
+        _lc["centralizer_dim"] == 2
+        and _lc["centralizer_support_blades"] == ["1", "e123"]
+        and _lc["is_commutative"] and abs(_lc["e123_squared"] + 1.0) < 1e-12
+        and _lc["control_rotations_only(the demonstrated failure mode)"]["dim"] == 4)
+
+
+    # ===== THE Φ BRIDGE — the V4-ASD Layer-A round's ONLY bankable result (2026-08-23) =====
+    # Governing records: knowledge/audit/external_review_2026-08-22/V4ASD_LAYERA_2026-08-23.md
+    # (its §CONSENSUS SUPERSEDES the body) + VERDICT_REVIEWER_LAYERA_2026-08-23.md +
+    # JOINT_BANKING_2026-08-23.md.
+    _phi = spinor_module_graded_iso()
+    _w = _phi["code_correctness_witness_NOT_the_evidence"]
+    _ck("Φ: Cl⁺(4,0) → S = Cl(4,0)·s₀, x ↦ x·s₀, is a LEFT-Cl(4,0)-LINEAR BIJECTION carrying "
+        "the I₄ grading to the I₄ grading — Φ(W±) = S± exactly [DERIVED-A BY IDENTITY]. THE "
+        "EVIDENCE IS THE ARGUMENT, NOT THE RESIDUALS: e₄s₀ = s₀ ⇒ Cl·s₀ = Cl⁺·s₀; x·s₀ = 0 "
+        "with x even forces x ∈ Cl⁺ ∩ Cl⁻ = 0 ⇒ injective; left-linearity IS associativity, "
+        "g(x·s₀) = (gx)·s₀; and P± = (1 ± I₄)/2 is CENTRAL in Cl⁺, so Φ(W±) = P±·S = S±. "
+        f"(The residuals — rank {_w['rank Phi(Cl+)']}, image {_w['||(1-P_S) Phi(Cl+)||']:.1e}, "
+        f"left-linearity {_w['left-linearity residual']:.1e}, grading {_w['||(1-P_S+) Phi(W+)||']:.1e} "
+        "— are a CODE-CORRECTNESS witness and are labelled so in the returned dict; a tight "
+        "tolerance on an associativity identity is canon §8a's own tell, not rigour.) "
+        "★ WHAT IT CLOSES: the GRADED-LEFT-MODULE half of the keeper's two-module orphan — "
+        "the I₄ grading of Cl⁺ and the I₄ grading of S are ONE grading, transported "
+        "canonically — which retroactively LICENSES the previously silent W₊/S₊ "
+        "identification. ★ WHAT IT DOES NOT CLOSE, asserted in the dict: the V4-0 carrier "
+        "node, the I₄-grading↔observer-handedness bridge (R-172(viii), UNBUILT), and the "
+        "boost-invariance of R-076's occupancy",
+        _phi["identity_holds"]["e4.s0 == s0"] is True
+        and _phi["identity_holds"]["s0 idempotent"] is True
+        and _phi["identity_holds"]["I_4 central in Cl+"] < 1e-12
+        and _w["rank Phi(Cl+)"] == 8
+        and max(_w["||(1-P_S) Phi(Cl+)||"], _w["left-linearity residual"],
+                _w["||(1-P_S+) Phi(W+)||"], _w["||(1-P_S-) Phi(W-)||"]) < 1e-12
+        and len(_phi["the_identity"]) == 4
+        and "ASSOCIATIVITY" in _phi["the_identity"][2]
+        and "CENTRAL" in _phi["the_identity"][3]
+        and "code-correctness witness, never the evidence" in _w["note"]
+        and "GRADED-LEFT-MODULE" in _phi["closes"]
+        and len(_phi["does_not_close"]) == 3
+        and any("V4-0 carrier node" in s for s in _phi["does_not_close"])
+        and any("UNBUILT" in s for s in _phi["does_not_close"]))
+
+    _m1 = _phi["mandatory_check_1_body_side_differs"]
+    _ck("★ Φ's MANDATORY FAILURE-MODE CHECK #1 — THE BODY SIDE GENUINELY DIFFERS, and the "
+        "qualifier that keeps 'only through Φ' from being an over-claim. S is NOT a right "
+        f"Cl⁺-module (leak(R_ASD, S) = {_m1['leak(R_ASD, S)']:.1f} against "
+        f"leak(R_ASD, Cl⁺) = {_m1['leak(R_ASD, Cl+)']:.1e}); the body action reaches S only "
+        f"through the s₀-dependent transport ρ(h): x·s₀ ↦ x·h·s₀, which differs from S's own "
+        f"right multiplication by {_m1['||rho(ASD) - R_ASD|| on S']:.1f}. ★ BUT A GENUINE "
+        "INTRINSIC LORENTZ-SCALAR BODY ACTION ON S DOES EXIST — End_Cl(S), the 8-dim "
+        "right-stabiliser {1,e₄,e₁₂,e₁₃,e₂₃,e₁₂₄,e₁₃₄,e₂₃₄} whose EVEN part is the single ℍ "
+        "{1,e₁₂,e₁₃,e₂₃}, exactly the one-su(2) diagonal-class algebra R-172(6)C2 already "
+        f"names — AND ρ IS NOT IN IT: max‖[L_even, ρ(ASD)]‖ = {_m1['max||[L_even, rho(ASD)]||']:.1e} "
+        f"but max‖[L_odd, ρ(ASD)]‖ = {_m1['max||[L_odd,  rho(ASD)]||']:.1f}. SEEN TO FIRE. "
+        "Without this check the unqualified 'the body action reaches S only through Φ' "
+        "re-enters — and that omission HIDES THE VERY FACT THAT MAKES V4-0 A BRANCH POINT",
+        _m1["fires"] is True
+        and _m1["leak(R_ASD, S)"] > 0.5 and _m1["leak(R_ASD, Cl+)"] < 1e-9
+        and _m1["leak(rho(ASD), S)"] < 1e-9
+        and _m1["||rho(ASD) - R_ASD|| on S"] > 0.5
+        and _m1["intrinsic left-Cl-linear right-stabiliser of S"]
+            == ["1", "e4", "e12", "e13", "e23", "e124", "e134", "e234"]
+        and _m1["its even part"] == ["1", "e12", "e13", "e23"]
+        and _m1["max||[L_even, rho(ASD)]||"] < 1e-9
+        and _m1["max||[L_odd,  rho(ASD)]||"] > 1e-6
+        and "INTRINSIC" in _m1["honest_sentence"]
+        and "branch point" in _m1["why_mandatory"])
+
+    _m2 = _phi["mandatory_check_2_realization_split_C33"]
+    _ck("★ Φ's MANDATORY FAILURE-MODE CHECK #2 — THE C-33 REALIZATION SPLIT, both "
+        "realizations returned under their own keys exactly as R-172 does. Under the BANKED "
+        "grade-one lock (K_j = ½e_j, a Cl(4,0) VECTOR) an observer boost maps one I₄ half "
+        f"INTO the other: leak(L_K¹, S₊) = {_m2['leak(L_K grade-ONE, S+)  [BANKED]']:.1f} "
+        f"exactly, against {_m2['leak(L_K grade-TWO, S+)  [alternative]']:.1e} under the "
+        f"grade-two alternative; and the transported label FAILS the canon §5 / RUL-099 "
+        f"invariance test on R-076's OWN module for ALL NINE pairs "
+        f"([L_K¹, ρ(ASD)] on S: {_m2['[L_K grade-ONE, rho(ASD)] on S  [BANKED]']['nonzero']} of 9, "
+        f"max {_m2['[L_K grade-ONE, rho(ASD)] on S  [BANKED]']['max']:.1f}), while under "
+        "grade-two it is 0 of 9 and against lab rotations it is 0 of 9 in both. SEEN TO "
+        "FIRE. ★ THE POINT: the associativity identity [L_g, R_h] = 0 — re-verified here at "
+        f"{_m2['associativity control on Cl(4,0) acting on itself']:.1e} over the FULL "
+        "16-blade basis — is a fact about Cl(4,0) acting on ITSELF and does NOT transfer to "
+        "the pair (observer on S, label on S), because the label on S is not a right "
+        "multiplication. Any argument clearing an S-sited label on that identity is computed "
+        "on the wrong object",
+        _m2["fires"] is True
+        and abs(_m2["leak(L_K grade-ONE, S+)  [BANKED]"] - 1.0) < 1e-12
+        and _m2["leak(L_K grade-TWO, S+)  [alternative]"] < 1e-9
+        and _m2["leak(L_J, S+)"] < 1e-9
+        and _m2["[L_K grade-ONE, rho(ASD)] on S  [BANKED]"]["nonzero"] == 9
+        and _m2["[L_K grade-TWO, rho(ASD)] on S  [alternative]"]["nonzero"] == 0
+        and _m2["[L_J, rho(ASD)] on S"]["nonzero"] == 0
+        and _m2["associativity control on Cl(4,0) acting on itself"] < 1e-12
+        and "does NOT transfer" in _m2["consequence"]
+        and "wrong object" in _m2["why_mandatory"])
+
+    _e1, _e2 = _phi["exposure_E1"], _phi["exposure_E2"]
+    _ck("★ THE TWO EXPOSURES THE Φ ROUND SURFACED — both PRE-EXISTING, neither created here, "
+        f"neither previously carried. E-1: R-076's I₄-graded OCCUPANCY IS NOT "
+        f"BOOST-INVARIANT in the banked realization — e₁·P₊ − P₋·e₁ = "
+        f"{_e1['e1.P+ - P-.e1']:.1e} EXACTLY and L_{{e₁}}(S₊) ⊆ S₋ at "
+        f"{_e1['L_e1(S+) inside S-']:.1e}, so 'occupies one ideal / occupies both' is not a "
+        "Lorentz-stable species property under the banked grade-one lock (sited at R-076's "
+        "companion row and at the V4-ASD node). E-2: RUL-099 ON THE V4-0-SIGNED CARRIER Cl⁺, "
+        f"TESTED AGAINST THE BANKED LOCK, IS VACUOUS — leak(L_K¹, Cl⁺) = "
+        f"{_e2['leak(L_K grade-one, Cl+)']:.6f} = √2, i.e. the banked boost is a VECTOR "
+        "(odd) and is NOT AN OPERATOR ON Cl⁺ AT ALL, so there is nothing to commute with; "
+        "the test becomes non-vacuous only on S, where the label fails. ★ E-2 IS RUL-099's "
+        "FIRST REFINEMENT, recorded at the ruling's register row: AN INVARIANCE TEST MUST "
+        "NAME THE REALIZATION ON WHICH IT IS NON-VACUOUS — a vacuous pass is not a pass",
+        _e1["e1.P+ - P-.e1"] < 1e-12 and _e1["L_e1(S+) inside S-"] < 1e-12
+        and _e1["pre_existing"] is True and len(_e1["sited_at"]) == 2
+        and abs(_e2["leak(L_K grade-one, Cl+)"] - math.sqrt(2.0)) < 1e-12
+        and "VACUOUS" in _e2["statement"]
+        and "NAME THE REALIZATION" in _e2["refinement_of_RUL-099"]
+        and "vacuous pass is not a pass" in _e2["refinement_of_RUL-099"]
+        and "RUL-099" in _e2["sited_at"][0])
+
+    _ck("★★ AND WHAT THE Φ ROUND DOES *NOT* CARRY — the honesty content of this bank. The "
+        "Layer-A round submitted a menu-DISCRIMINATING verdict at the V4-ASD node; it was "
+        "WITHDRAWN IN FULL at consensus, on the reviewer's computed counter-findings, every "
+        "one of which the author reproduced independently before conceding. Struck: 'a j = 1 "
+        "occurs NOWHERE in the local field module' (one DOES — the ASD triple itself, under "
+        "the ADJOINT action, at exactly the j=1 Casimir; the C-33 ACTION axis was named in "
+        "the setup and dropped at the headline, a C-33 violation at the round's own "
+        "headline); the strike of any seat reading (no Layer-A computation on any module "
+        "under any action can REACH the recorded seat reading, which names no module and no "
+        "action — so neither table can strike it OR establish it); the 'only door' "
+        "dichotomy (a bare necessity claim, RUL-049); the FCNC re-basing (a non-sequitur — "
+        "the debt is UNTOUCHED and stays where the keeper put it); and the claimed "
+        "ASYMMETRY between the readings — because (L_J, ρ(ASD)) generates ALL of End(S₋) "
+        "AND the weak-side mirror (L_J, R_SD) generates all of End(W₊) too, so that argument "
+        "form would refute banked R-079 when mirrored and is invalid at this layer, in BOTH "
+        "directions. **LAYER A DID NOT DISCRIMINATE**: the node stays OPEN, its menu reverts "
+        "three-way, and Layer B (the K2 stabiliser computation) is the SOLE decider. The "
+        "primitive's own `does_not_license` carries this so the withdrawn verdict cannot "
+        "re-enter through the engine",
+        "LAYER A DID NOT DISCRIMINATE" in _phi["layer_A_verdict"]
+        and "stays OPEN" in _phi["layer_A_verdict"]
+        and "sole" in _phi["layer_A_verdict"].lower()
+        and "only bankable result" in _phi["layer_A_verdict"]
+        and "menu narrowing" in _phi["does_not_license"]
+        and "ACTION named" in _phi["does_not_license"]
+        and "C-33" in _phi["does_not_license"]
+        and "scope fence" in _phi["does_not_license"]
+        and "R-079" in _phi["does_not_license"])
+
+    print("\nAll §18.3a/§20.3/§23.6/§23.7/§23.8 weak-sector checks passed (incl. instanton Q=1 by integration; F-7 (iii) promoted; R-172 body-frame hosting + the left-centralizer theorem banked 2026-08-23; companion-layer checks: twt_companion_test.py).")
 
 
 # ---- twt_em ----------------------------------------
@@ -2043,6 +3076,18 @@ def check_twt_hadrons():
         and "chirally BLIND" in pq["outcome"]
         and "FRAMING preserved" in pq["tier"]
         and "leg 4 ANSWERED-AT-PARITY" in pq["p2_4_status"])
+
+    # B-1 (RUL-095 (iv), the RUL-083 witness-split pattern). The R-141 regression that used
+    # to run INSIDE the CORE primitive lock_channel_is_axial_chiral_channel_p1b_split moved,
+    # verbatim, into the V3 witness that may hold it. The assertion did not weaken: it is
+    # still executed on every suite run — from the file where the instance-sited leg lives.
+    print("B-1 — the V3 witness leg of the family-level lock-channel claim (R-161/R-141):")
+    _w = lock_channel_p1b_split_v3_witness()
+    _ck("the V3 witness runs the moved R-141 regression AND states the exposure: the family "
+        "claim is witnessed ONLY by the V3 route (D4 chain S1b/S1c + the FR scheme, V3-11) "
+        "pending a family-level witness",
+        "P1b" in _w["regression"] and "ONLY by this V3 route" in _w["exposure"]
+        and "DERIVED-A" in _w["family_claim_tier"])
 
     print("R-141 — P2-4 leg 4: the induced-level PARITY on the baryon worldline:")
     il = induced_level_parity_on_baryon_worldline()
@@ -2903,6 +3948,28 @@ def check_twt_cosmo():
         "anisotropic quartic ⇒ anisotropy only at dim-8 — AND states that neither reaches the isotropic dim-6 term",
         any("H4_isotropy_orders" in x and "deg-4 invariant space 1-dim" in x and "that is E1" in x
             for x in ec["HARD_boundary_inline_engine"]))
+    # H8's own gate, re-fired here so THIS check arbitrates rather than trusting the aggregator.
+    # (The same raise is separately exercised by the 2026-08-19 sabotage guard in check_structure;
+    # what is new here is that H8's boundary entry now depends on it instead of on an isinstance.)
+    try:
+        Substrate(memory_kernel=MemoryKernel.GATED).tau_mem_over_tau_wave()
+        _h8_gate_fired = False
+    except GatedError:
+        _h8_gate_fired = True
+    _ck("H8 REPAIRED (2026-08-23) and now EXERCISED, not type-checked: the boundary's H8 entry was a bare "
+        "isinstance(Substrate().memory_kernel, MemoryKernel) — an assertion on an Enum member that cannot fail, the "
+        "R-165 defect class sitting two lines under the comment describing its own fix, and counted in n_engine inside "
+        "a primitive advertising LIVE banked facts. Both orders are now separated and BEHAVIOURALLY checked here too: "
+        "(a) with NO branch chosen tau_mem RAISES (GatedError) — the driven NESS's memory magnitude stays #1-gap open, "
+        "not quietly equilibrium; (b) the fork is the live binary {fading, hysteretic} and it MOVES tau_mem (only the "
+        "hysteretic branch carries the reactive-barrier exp(S/hbar) §11.6 needs) — a constitutive fork, not a label",
+        any("H8_drive_dissipation_fork" in x and "tau_mem RAISES" in x and "MOVES tau_mem" in x
+            for x in ec["HARD_boundary_inline_engine"])
+        and {k.value for k in MemoryKernel if k is not MemoryKernel.GATED} == {"fading", "hysteretic"}
+        and "exp(S/hbar)" in Substrate(memory_kernel=MemoryKernel.HYSTERETIC).tau_mem_over_tau_wave()
+        and Substrate(memory_kernel=MemoryKernel.FADING).tau_mem_over_tau_wave()
+            != Substrate(memory_kernel=MemoryKernel.HYSTERETIC).tau_mem_over_tau_wave()
+        and _h8_gate_fired)
     _ck("E1 ADDED as the class's FIRST EMPIRICAL constraint — and deliberately NOT numbered H12: it is IMPORTED data "
         "(I-19), it is a CEILING that can refute but supplies no equation (zero anchor rank), and its bindingness is "
         "CONDITIONAL on the un-built outside↔inside projection, carried as an explicit field so an I-19 excision fires "
@@ -3109,8 +4176,16 @@ def check_twt_cosmo():
         and "R-041" in iglf["tier"] and "DERIVED-CONDITIONAL-on-(OA-LF-i AND OA-LF-ii)" in iglf["tier"])
     _ck("W5 the a-VALUE, its RANGE, the NORMALIZATION SPREAD and the JURISDICTION FENCE: c_lat = "
         "21.83 is the GAPLESS-SHARED-BAND idealization -- the realistic canted vacuum has N_G = 2 "
-        "(2 gapless + 4 gapped, exact 6-band Bogoliubov structure UN-BANKED) and the honest "
-        "refinement window -5%...-25% maps to a in [1.61, 1.86] ell_Planck (derived stiffness "
+        "(2 gapless + 4 gapped, exact 6-band Bogoliubov structure UN-BANKED). ** THE -5%...-25% "
+        "REFINEMENT WINDOW AND ITS a in [1.61, 1.86] IMAGE ARE WITHDRAWN 2026-08-23 (estate of "
+        "N64, B1): the window rode a UNIFORM-GAP spot check assuming (gap/b_max)^2 in [0.01, 0.04] "
+        "while the actual canted vacuum gives 4.049e-05 -- 247x-988x too large -- and is 2 gapless "
+        "+ 4 gapped, not uniform-gap. NO WINDOW AND NO REPLACEMENT NUMBER IS ASSERTED (the "
+        "six-band measure is unresolved at M <= 47, Richardson limit consistent with ZERO), which "
+        "is what the banked induced_G_leading_coefficient_mass_independent line at STEP 2 already "
+        "predicts. THE FENCE IS UNWEAKENED: a is a BACK-FIT of measured G_N, so a narrower window "
+        "narrows a back-fit and MOVES NO EMPIRICAL CLAIM -- IT IS NEVER BETTER AGREEMENT ** "
+        "(derived stiffness "
         "anisotropy shifts c_lat by < 0.01%). THREE-WAY normalization spread noted (paper 16 pi^2 / "
         "bracket 96 pi^2 / sakharov 192 pi^2): the paper B.6.2 table IS self-consistent under its "
         "OWN formula (c_reg = c_lat/12 = 1.82, inside 'c_reg ~ 1') so a convention note is needed, "
@@ -3126,7 +4201,16 @@ def check_twt_cosmo():
         "c_reg disagreement; the 2026-07-29 resolution + 2026-07-30 which-Lambda ruling SPLIT the "
         "symbol, Lambda_S scheme / Lambda_L = 1/a = [0.386, 0.734] M_Pl for dispersion consumers, and "
         "RETIRED the wide bracket. 'It agrees better with the data' is NEVER a reason)",
-        "[1.61, 1.86]" in iglf["gapless_idealization"]["=> a range"]
+        "WITHDRAWN 2026-08-23" in iglf["gapless_idealization"]["honest refinement window"]
+        and "NO WINDOW IS ASSERTED" in iglf["gapless_idealization"]["honest refinement window"]
+        and iglf["gapless_idealization"]["premise refutation (2026-08-23, B1)"][
+            "no number of the -0.111% class is asserted anywhere"] is True
+        and abs(iglf["gapless_idealization"]["premise refutation (2026-08-23, B1)"][
+            "(g/b_max)^2"] - 4.049e-05) < 1e-8
+        and "NEVER BE QUOTED AS ONE" in iglf["gapless_idealization"][
+            "jurisdiction fence (verbatim, unweakened)"]
+        and "BACK-FIT OF MEASURED G_N" in iglf["gapless_idealization"][
+            "jurisdiction fence (verbatim, unweakened)"]
         and "UN-BANKED" in iglf["gapless_idealization"]["canted vacuum"]
         and "16 pi^2" in iglf["normalization_spread"]["three conventions"]["paper SSB.6.2"]
         and "192 pi^2" in iglf["normalization_spread"]["three conventions"]["sakharov_induced_gravity"]

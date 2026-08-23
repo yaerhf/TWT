@@ -1654,7 +1654,7 @@ in the ledger/worklist as cited. Recorded here so the adjudication is not mistak
   test measured the construction, not the channels. WOULD CHANGE IF: the twist is implemented as
   a site-dependent (relative) generation twist on a genuinely ℤ₃-structured configuration, where
   the two senses are inequivalent — and the same re-test should measure harmonic content, not
-  only parity. **The assignment remains ASSERTED, and every `B/A` statement routes through it.**
+  only parity. **The assignment remains ASSERTED, and every `B/A` statement routes through it.** **★ STATUS 2026-08-23 (Γ-referent closure): UNCHANGED.** The closure discharged the *analogous* assignment on the **PITCH** functional, where `q → −q` **is** `W → Wᵀ` identically and `Tr(K Wᵀ) = Tr(Kᵀ W)` holds for arbitrary real `W` — but that is a **different functional**, so **nothing of JD-5 as recorded is discharged**; the closure's first-draft *"half-discharged"* label is **WITHDRAWN**, and RUL-071(vi)'s conditioning of `0.79` on JD-5 stands. At dressed level the assignment additionally requires the reversal to be a symmetry of the driven kernel, which a NESS kernel need not respect — #1-gap-routed. Engine `bond_channel_parity_exclusivity` (R-177).
 - **SUB-NOTE JD-7 (a discriminator re-pointed, not read out).** TRIED: reading out family-tree
   node LS-ℤ₂'s discriminator (1) — rotor-linear vs frame-bilinear bond content — from the banked
   bond sector. FAILED BECAUSE: the two readings are **banked-equivalent at helix and quadratic
@@ -1667,3 +1667,398 @@ in the ledger/worklist as cited. Recorded here so the adjudication is not mistak
   classes provably differ (the rotor-linear J-quartic lies outside `span{S₁,S₂}` where the
   frame-bilinear one is inside at `8.9e-16`), and shown to break or preserve `κ_F = J/24` and the
   ~1% `√18/(D/J)` e-match at R-107/R-109. **UNBUILT.**
+- **★ SUB-NOTE GR-1 (NEW 2026-08-23 — the Γ survivor's inertness is NON-GENERIC).** TRIED:
+  establishing the Lorentz-safe Γ survivor's exact vanishing as a **lattice identity**, so that it
+  could carry a protection argument for the numerical spine. FAILED BECAUSE: it is a property of
+  the two **banked high-symmetry branches only**. On them the survivor is exactly pitch-blind
+  (`≤2e-16`) with pitch-visible Γ dimension 1 (axis) / 2 (diagonal); on **generic** single-`q`
+  branches the visible dimension is **4 on essentially every branch** and the survivor's own pitch
+  entry is nonzero — **a few percent of `J`'s own even weight worst case, ~0.1% median, at EQUAL
+  PER-BOND SCALE.** (The round's submitted headline `7.134e-01` — *"i.e. O(1)"* — was a **bare
+  number compared against nothing**, in violation of that same report's own normalisation
+  discipline, and is **WITHDRAWN**; the honest reading is a REAL but markedly WEAK leak against the
+  pitch-visible directions' exact `1/2`, and NOT a protection.) So any protection argument resting
+  on the survivor is **coupled to the branch question**, which is #1-gap open. WOULD CHANGE IF: the
+  branch question resolves onto a high-symmetry `k̂` for a **dynamical** reason at §D.5.7 — static
+  energetics need not govern a NESS vacuum (the same handle as N62's own would-change-if (2)).
+  BLAST RADIUS OF THE UNSCOPED CLAIM: **EMPTY** — every live corpus site already carries the scope,
+  so this **confirms and quantifies** the record rather than correcting it; **one** annotation was
+  owed (family-tree **V3-2**'s risk ordering) and is repaired **asymmetrically** — the `D_spatial`
+  half is branch-INDEPENDENT by the exact parity selection rule, the `Γ` half branch-CONDITIONAL.
+  Feeds keeper latent **L-2** (UPHELD, not discharged) and quantifies node **V3-2a**(iii)
+  (ANNOTATED, not discharged). Engine `gamma_survivor_pitch_genericity` (R-179); record `knowledge/audit/gamma_referent_2026-08-23/`.
+- **★ SUB-NOTE JD-6(b) (= GR-2, NEW 2026-08-23 — the three `J_eff` faces).** Filed as a **named
+  COROLLARY of JD-6, deliberately NOT an independent gap**: it is empty if JD-6's entry
+  coefficients vanish, and gap-inventory inflation is a real cost. TRIED: treating `J` as ONE
+  constant shared by `f_π² = 8J/a` (R-106), the helix pitch, and the ℤ₃ generation amplitude.
+  FAILED BECAUSE: `Γ` renormalises each through a **different functional** — the quadratic
+  dispersion kernel `Q(k)`, the branch-dependent `(1−cos)` weight, and the dressed ℤ₃ harmonic —
+  and the three coincide **only if the `Γ` admixture vanishes**. THE FENCE, widened from the
+  submitted *"never combine `f_π` with `D/J`"*: **NEVER CARRY A RATIO CALIBRATED ON ONE FUNCTIONAL
+  INTO ANOTHER** — the exposure is not one junction, it is the **default-argument wiring itself**,
+  reaching every cross-leg consumer, `over_determination_scan`'s band rationale and the **shipped**
+  lepton↔baryon over-determination headline. **VALUES DO NOT MOVE**; what moves is the claim that
+  the formula is being fed the right substrate quantity (the unnamed premise `α = a`). WOULD CHANGE
+  IF: the dressed `Γ` couplings are pinned, or an argument fixes the substrate `Γ` to zero.
+  DISCRIMINATOR, a **ROUTE and not a measurement**: since the parity selection rule puts `Γ` in the
+  denominator ONLY, `J_eff(pitch)/J_eff(ℤ₃) ≈ 1.0108` and, through the exact entry ratio `1/2`,
+  **`Δ(Γ/J) ≈ +2.15%` of `J`** — riding a **four-item conditioning class (RUL-049), any one of
+  which voids it**. RESOLUTION: an independent determination of `e`, or of the `J` that
+  `f_π² = 8J/a` fixes, **at the 0.1% level** would read the admixture out instead of absorbing it
+  into a *"1.1% agreement"*. Engine `gamma_admixture_cross_functional_route` (R-181); record `knowledge/audit/gamma_referent_2026-08-23/`.
+
+---
+
+**N63 — can the weak `su(2)` be hosted by LEFT (space-frame) multiplication on the spinor carrier, the side every `R-079` use-site silently carried? → NO: a chiral host on the observer's OWN side fails to commute with the observer's Lorentz generators, so weak isospin would not be a Lorentz-scalar label. The refutation is of the SIDE, not of the MEMBER. (2026-08-23; drafted at external review, verified cross-class, adjudicated by the coherence keeper and closed to consensus; records in `knowledge/audit/external_review_2026-08-22/`: `VERIFICATION_BODY_FRAME_2026-08-23.md` incl. its §CONSENSUS, `VERDICT_KEEPER_BODY_FRAME_2026-08-23.md`, `BODY_FRAME_INTEGRATION_2026-08-23.md`; engine-checked in `weak_host_must_be_body_frame` and `lock_left_centralizer_is_u1`.)**
+
+- TRIED: hosting weak isospin as the self-dual chiral factor of grade-2 `so(4)` acting on the
+  spinor carrier by **LEFT multiplication** — the same side as §B.3.5's observer rotors `ψ → Rψ`
+  and §B.1.3's `J_i, K_j`. This is not a proposal anyone made; it is the reading every use-site of
+  `R-079` carried **without saying so**, until RUL-091 forced the side to be named.
+- FAILED BECAUSE (two independent grounds, both now engine-computed):
+  **(1) the commutators.** With the lock in the **BANKED GRADE-ONE realization** (`J_i = −½e_jk`,
+  `K_j = ½e_j`, a Cl(4,0) *vector* — the realization is named because the counts depend on it):
+  `[L_{J_i}, L_{T_a}] ≠ 0` for **6 of 9** pairs and `[L_{K_j}, L_{T_a}] ≠ 0` for **9 of 9**. Under
+  the grade-two alternative `K_j = ½e_{j4}` the boost rows read **6 of 9** instead — so **the
+  conclusion is realization-robust and only the counts move**, which the primitive computes rather
+  than asserts. The identity `J_1 = −½e₂₃ = (+¼e₁₄ −¼e₂₃) + (−¼e₁₄ −¼e₂₃)` makes it exact rather
+  than approximate: every lab rotation IS half a self-dual rotation plus half an anti-self-dual
+  one, so **no** chiral host on the observer's side can be a Lorentz scalar. The same failure holds
+  for the anti-self-dual factor (6/9, 9/9).
+  **(2) the left-centralizer theorem**, cited as a ground of RUL-091 while unbanked and now banked:
+  post-lock the LEFT-acting centralizer of the observer's `so(1,3)` inside `Cl(4,0)` is
+  `span{1, e₁₂₃} ≅ ℂ` — dimension **2**, commutative, a `U(1)` and **never** an `su(2)`. Drop the
+  boosts and the answer moves 2 → 4, so the number measures the boosts and not bookkeeping.
+- THE SURVIVOR, and why it costs nothing: the **BODY-frame (right-multiplication)** host commutes
+  with every left-acting operator **by associativity** — `max|[L_g, R_h]| = 0` exactly over ALL
+  `g, h` in the 16-blade basis, not merely over the host's generators — so it is Lorentz-scalar
+  *by construction*, with nothing tuned. The body copy is the **opposite** Lie algebra
+  (`[R_X, R_Y] = −R_{[X,Y]}`), isomorphic via `X → −X`, so `R-171`'s conjugacy classification
+  carries over verbatim; and since `I₄` is central in `Cl⁺` the SD/ASD split is the *same* split
+  there.
+- SCOPE: **the refutation is of the SIDE, not of the MEMBER.** `R-171`'s classification and both
+  its refutations stand — they were computed in the right algebra, on a side that was never named.
+  Nothing in `R-171`, `R-079`, `R-060`, `R-061`, `R-062`, `R-077` or `R-078` loses a tier, a value
+  or a count.
+- WOULD CHANGE IF Z: (1) the observer's action on the local state is shown to be **two-sided**
+  (`ψ → RψR̃`) rather than one-sided — then there is no free side and the whole computation must be
+  redone on the sandwich action. `R-167` records the sandwich as *not* the spin action, so this is
+  currently closed, but **it is the door, and that record is now load-bearing and should be
+  re-verified**; (2) a **carrier** other than `Cl⁺` or `S = Cl·s₀` is adopted — the available body
+  algebra is whatever that carrier's even right-stabiliser is, and the branch must be rerun on it;
+  (3) the lock is realized differently — the conclusion survives (computed on both realizations),
+  the quoted counts do not.
+- **CONSISTENT WITH `R-058`, at the strength its own row states and no further.** `R-058`'s
+  objection — that under rotations of the rotor axis the meta-time rotor pair transforms `1 ⊕ 3`
+  and *not* as a doublet, because "the doublet reading needs LEFT multiplication on `ℍ ≅ ℂ²`" — is
+  this same defect seen from the other end. **But it is NOT dissolved here, and the earlier draft's
+  "the `1 ⊕ 3` objection dissolves" is REJECTED: different referents.** `R-058` is about the
+  **meta-time rotor pair**; the body-frame primitive is about `W₊` on the **even-subalgebra
+  module**, and it does not touch the rotor pair at all. What the row's own dated correction says
+  is the operative wording: the banked structure **TRANSFERS** to the right action, and **the
+  re-carrying primitive is OWED and enters as CANDIDATE**. `R-058`'s FRAMING/INPUT tier is
+  unchanged by the side ruling, and its `T₃` slot remains **posited in-engine (P7)** — so the
+  consistency noted here must not be read as closing `R-058`'s objection.
+- STATUS: **CLOSED route.** Survivor: the body-frame hosting on the `Cl⁺` carrier
+  (`weak_host_must_be_body_frame`), whose own conditioning class — including the **UNBUILT**
+  `I₄`-grading ↔ observer-chirality bridge — travels with it. **What the survivor does NOT buy:**
+  no scale, no mass, no promotion of its bimodule identities to a claim about one-defect states,
+  and no demotion of `generations = ASD` (the body move commutes the ASD copy with the observer
+  exactly as it does the SD copy; what the body-ASD triple carries is an **OPEN** family-tree node).
+
+
+## N64 — generation masses as mode-locking (Arnold-tongue) frequency ratios → REFUTED at first contact, exactly and kernel-free (2026-08-23, the tongues arc)
+
+- TRIED: the originator's gear-locking seed (generations = the three widest locking tongues of
+  the defect rotor on the ℤ₃ meta-time comb; masses = the locked ratios; the top = a marginal
+  tongue; no fourth window). Level-2 computation, no-toy discipline: every ingredient banked or
+  counted; test variables (ω, √ω, ω^¼) fixed from the record BEFORE testing.
+- FAILED BECAUSE: locking's defining property is an EXACTLY RATIONAL frequency ratio,
+  independent of drive and kernel — and the banked lepton masses give
+  m_μ/m_e = 206.7682830, rational only at q ≈ 10³–10⁴ at measurement precision (resonance
+  order N ≈ 207 even at 0.5%); the widest-tongue ordering predicts 1 : 2 : 4 against the
+  measured 1 : 206.77 : 3477.37 — 869× off, in all three pre-registered variables. The
+  passing counterfactual is exhibited (1:2:3 or 1:2:4 would have passed). Additionally the
+  seed's COUNT mechanism (a width cutoff) collides with the banked structural count
+  (`generations_dynamical_count_structural`: explicitly not a stability cutoff); and the
+  mechanism is not statable on the banked record at all without a new two-phase-defect
+  commitment (M-3, unbanked, RUL-048-class).
+- WOULD CHANGE IF: (i) a NON-ANALYTIC defect–drive coupling (fires against P-an and R-165's
+  dim-8 suppression — priced, not free); or (ii) the M-3 two-phase commitment is taken AND the
+  locked quantity is something other than the mass frequency (no banked candidate); or (iii)
+  locking is claimed for a quantity the pre-registered variable set excludes — which requires
+  naming it BEFORE testing, else the test is vacuous by monotone reparametrization.
+- SALVAGE (what survived, distinct from the kill): the count-of-three and no-fourth ride the
+  banked ℤ₃ symmetry and never needed the mechanism; ~~KC-1's escape (a) measured EMPTY on the
+  substrate~~ **[CORRECTED 2026-08-23, estate item KC-1 — "EMPTY" IS A MIS-TRANSCRIPTION AND IS
+  WITHDRAWN.** What was measured empty is a SUB-CLASS of escape (a): four modifications of the
+  time-derivative structure and of the hopping — a dissipative real Γ, a gyroscopic Γ, a uniform
+  Peierls phase, a real antisymmetric hopping — each exactly zero, with only a genuinely COMPLEX
+  hopping firing. **The Ω/metric (paraunitary) escape itself was never touched**: Ω is #1-gap
+  content and unbanked, and the spectral probe's own fork labels that branch *"kernel-GATED — not
+  open"*. The honest status is **UNMEASURED / KERNEL-GATED**, never "empty" — writing "empty"
+  converts a named gate into a closed measurement, the canon §4 / RUL-049 mirror-rule failure.
+  `TONGUES_L2_2026-08-23.md` also *defines* escape (a) two incompatible ways at its lines 32 and
+  400 ("first-order/precessional" vs "first-order/paraunitary"); both are annotated there.
+  Engine: `spectral_branch_symmetry_class_filter` (`twt_candidate_v3`), which also corrects KC-1's
+  direction to **ONLY IF** (necessary, not sufficient) and carries the real-class assignment as
+  EVIDENCE-NOT-THEOREM (the inversion operator `M` is not exhibited — owed).**]; the locking
+  sector's budget cost (2–4 of ~4–6 constants) is now a computed benchmark for any future
+  dynamical-mass mechanism.
+- ★ SCOPE CORRECTION (2026-08-23, same day, the ORIGINATOR's push — recorded per the
+  claim-vs-result rule): the kill covers the DIRECT readings only (mass = a banked monotone
+  function of the locked frequency: ω, √ω, ω^¼). The originator's intended form — "gear-like
+  and LINKED TO mass" — is the GEOMETRIC-MEDIATION reading: the locked quantities are the
+  winding integers (exactly rational, as locking demands) while the mass is the ENERGY of the
+  locked configuration, E₀(p,q; helix geometry) — a banked-supported split (m = E₀ is a FAMILY
+  INPUT; the helix energy functional with branch structure is banked, §D.4.3/JD round). That
+  form was parked as M-3-unstatable, NOT killed, and is now the arc's named OPEN branch,
+  testable non-toy: compute E₀ on locked configurations of the BANKED helix family and
+  confront the mass pattern, with the mediating map pre-registered from banked geometry
+  BEFORE testing (the vacuity fence binds — a post-hoc fitted map is excluded).
+- ★ THE OPEN BRANCH ADJUDICATED same day (T2′, freeze fence HELD on timestamps —
+  TONGUES_T2PRIME_2026-08-23.md): the corkscrew/E₀-mediated form is KILLED BY THEOREM T2P-1,
+  symbolic and parameter-free — vacuum subtraction forces the banked first-harmonic energy to
+  K = 1/2 identically (amplitude = mean, c = 1); ~~the generous whole-family scan (6 named + 400
+  random directions, anharmonic reduced energy) lifts the ceiling only to c_max = 1.3034
+  against the needed √2, best ladder off +28%/−24%~~ **[THE CEILING CLAUSE IS WITHDRAWN
+  2026-08-23 — see the YIELDS block below. `1.3034` rode an uncounted gear-ratio convention on
+  three points that are NOT a closed ℤ₃ orbit, and was inflated by a ray-minimum instead of
+  global-vacuum subtraction. NO CEILING BANKS: the reachable amplitude is M-3-COMMITMENT-
+  DOMINATED, and two defensible closed-comb readings (1.216468 translation-step vs 2.000000
+  order-3-affine) STRADDLE √2, which is attained exactly on the second. T2P-1 itself and the
+  MASS-RATIO kill are UNTOUCHED — what was demolished is this clause's *explanation* of the
+  kill, never the kill]**; the √2 would need a reference 0.293·R
+  above vacuum where the energy is NEGATIVE on 90° of arc — contradicting the m = E₀ referent.
+  NOT a re-run of N12: the class DOES produce 10²–10⁵ spreads; the failure is the amplitude
+  ratio, not the range. The deficit batch (the second originator statement): the linear form
+  dies on rationality (exact Fractions); the gap form m ∝ √(1−ρ²) (R-123+R-017) GENUINELY
+  escapes the rationality kill and needs no M-3 — but the banked sub-harmonic ladder is
+  bounded exactly at 2/√3 (off 3011×) and the near-baseline ladder needs q ≳ 2.4e7.
+- YIELDS — ★ **THE ESTATE, AS SETTLED BY THE FOUR-ROUND §8a DISPUTE (2026-08-23).** The block
+  below REPLACES the original Y1–Y4 wording, which was wrong at Y1 and Y2 and stale at Y3/Y4.
+  Governing records: `knowledge/audit/generations_arc_2026-08-23/VERDICT_REVIEWER_ESTATE_2026-08-23.md`
+  (verdict + ratification addendum §R5.4), `TONGUES_T2PRIME_2026-08-23.md` (§CONSENSUS,
+  §CONSENSUS-R4, §LINEAGE), `ESTATE_BANKING_2026-08-23.md` (the enactment). Nothing is contested
+  on either side.
+  - **(Y1) STRUCK — REFUTED AS VACUOUS, and it collided with a result this very document cites.**
+    The banked §D.4.3 axis-branch energy IS a pure first harmonic in the pitch (exact, symbolic).
+    That does NOT derive the Brannen form: **on a ℤ₃ comb EVERY energy does**, because three real
+    numbers carry exactly a mean plus one complex first harmonic — which is banked at
+    `brannen_z3_harmonic_collapse_invariant` with PRIORITY to Koide (hep-ph/0005137, 2000) and
+    Żenczykowski (PRD 86 (2012) 117303). Counter-computed on four manifestly non-first-harmonic
+    energies and a random 9-harmonic series: worst reconstruction residual `1.8e-15`/`3.6e-15`
+    (both sides, independent code), the same order as the claimed `7.1e-15`. **THE SELF-COLLISION,
+    on the record: T2′ §3.2 quotes that very primitive for the `N = 3` aliasing, three sections
+    after asserting the form was underived.** What survives is the AMPLITUDE — pure first harmonic
+    ⇒ `c = 1` identically — which is **T2P-1, the kill.** Y1 was the kill wearing a positive's
+    clothes. Bankable residue: one self-limiting line in `canting_vacuum_branch_structure`.
+  - **(Y2) REPLACED — NO GEOMETRIC CEILING IS ESTABLISHED; THE QUANTITY IS M-3-COMMITMENT-DOMINATED.**
+    The Brannen amplitude reachable from the banked `{J,D}` helix energy is dominated by the
+    UNBANKED M-3 commitment — how the CELL-layer meta-time ℤ₃ phase acts on the GRAIN-layer helix
+    — not by the substrate. All values global-vacuum subtracted (the ray-minimum subtraction of
+    BOTH published scans was a defect and inflated every `c`):
+    `1.216468` (closed comb, **translation** step — exhaustive over the 80 non-degenerate classes
+    of `D4*/3D4*` with a free base point); `1.303371` (unit-gear ray — **not** a closed comb,
+    **WITHDRAWN**, an uncounted normalisation convention); `1.994608` (`λ = 2, 5` rays — **not**
+    closed combs, **WITHDRAWN** by their author); `2.000000` (closed comb, **order-3 affine
+    "screw" step** `h(k) = ρk + t`, `h³ = id` verified directly; `1.827129` under a non-degeneracy
+    guard), **with `c = √2` and `K = 2/3` ATTAINED EXACTLY AND NON-DEGENERATELY on the last.**
+    ★ **THE SCREW TURN:** a ℤ₃ comb needs an order-3 **MAP**, not an order-3 **translation** —
+    restricting the step to a translation is itself a CHOSEN commitment, and at a factor
+    `2.000/1.216 = 1.64` it is **the largest-priced commitment in the dispute**, having been
+    priced at zero. Two closed readings STRADDLE the Koide point.
+    ⇒ **THE KOIDE VALUE IS NOT LOCALISED OUTSIDE THE BANKED FAMILY.** The original Y2 sentence to
+    that effect is **FALSE and is struck**, and no such clause may be added to the Koide rows.
+    ★ ~~**AND THE RATIO KILL STANDS, UNTOUCHED:**~~ **[SUPERSEDED 2026-08-23 BY THE CLOSING
+    ROUND — see (Y6) below. The AMPLITUDE dispute never reached the ladder (the two exhibited
+    `√2` screw points give √m ladders `1 : 7.83 : 235.62` and `1 : 1.56 : 85.66` against the
+    measured `1 : 206.77 : 3477.37`), and on that evidence the clause was correct. The JOINT
+    `(c, δ)` search then reached the ladder EXACTLY. RUL-049 conditioning, in the same
+    sentence: batch 1's kill in its *cannot-reach-the-data* form DOES NOT SURVIVE **on the
+    SCREW family — whose generation-legality is an OPEN COORDINATOR CALL**, and is
+    **UNTOUCHED on the TRANSLATION-STEP family**. The kill is REPLACED by a stronger one of a
+    different class (dof/vacuity), never removed; T2P-1 is untouched throughout.]**
+    **This dispute demolished the EXPLANATION offered for batch 1's kill (a geometric
+    ceiling), never the kill itself.**
+    WHAT IS BANKED FROM THE DISPUTE: (i) the **period lattice `2π·D4*`** as a Fourier-support
+    THEOREM (the J-term's support generates `D4`; the DM-term's π-periodicity never restricts) —
+    the one DERIVED-A item it produced; (ii) the seventh negative forcing route for `c = √2`
+    (after R-065/R-066's six) and the second non-negativity amplitude cap (after **N60**, whose
+    scan MAP-E re-ran uncredited and whose SCOPE line is §3.6's escape — see §LINEAGE).
+    Engine: `brannen_comb_commitment_dominance_and_dof_vacuity` (`twt_candidate_v3`), which returns
+    all four maxima in ONE dict and asserts `1.216468 < √2 < 1.827129` so they cannot be quoted
+    apart. **OPEN, and a coordinator call, not a worker's:** does canon §5's "L-orbit blades are
+    never generation LABELS" extend to "never inside the generation STEP MAP"? That single ruling
+    selects between the two closed rows — and a fifth row, *any order-3 map outside
+    {translation, ρ·translation}*, is **NAMED AND UNSCANNED**: twice an exhaustiveness claim was
+    refuted by widening the step-form, so no maximum over "all ℤ₃ combs" exists at all.
+  - ★★ **(Y6) THE CLOSING ROUND — THE JOINT `(c, δ)` SEARCH: THE LADDER IS ATTAINED EXACTLY,
+    AND THAT IS THE KILL.** *(2026-08-23; `SCREW_JOINT_SEARCH_2026-08-23.md` with its frozen
+    pre-registration and `screw_joint_scripts/sj_00…sj_08`, ratified in
+    `VERDICT_REVIEWER_ESTATE_2026-08-23.md` **SECOND ADDENDUM §S1–§S8** — all three keystones
+    re-derived independently by the reviewer's own group construction, solver and thresholds,
+    every load-bearing number reproducing, several digit-for-digit. Five passes; **nothing
+    contested**. Enacted per `ESTATE_CLOSURE_2026-08-23.md`.)*
+    The computation the four-round dispute defined and never ran: search the closed screw family
+    for the **FULL** charged-lepton triple — `c`, `K` **and** the measured Brannen phase `δ`,
+    i.e. both mass ratios — instead of for `c` alone.
+    **ATTAINED, EXACTLY.** `log-err = 0.000000e+00`; mass ratios `1 : 206.768282988 :
+    3477.365266602` against the identical measured values (per-component relative error
+    `~3e-15`), on **ALL EIGHT** order-3 symmetries independently, at **19 mutually-distant
+    solutions** in one refinement pass — plus **14 more** found by the ratification round's
+    INDEPENDENT solver on a different parametrisation, objective and dedup radius. **Nothing is
+    fragile about the hit, which is precisely the problem with it.**
+    ★ **AND THAT IS THE NULL RESULT, EXACTLY AS PRE-REGISTERED — THE KILL IS NOW A dof/VACUITY
+    KILL, NOT A REACHABILITY KILL.** **6 free reals** (`k₀` 4 + `t`'s `ker(N)` components 2 —
+    the mod-`L` reduction acts *inside* `ker(N)`, removing redundancy, not dimension) against
+    **2 constraints** (`K` is not a third: `K = (2+c²)/6` identically, conceded by both sides)
+    ⇒ a **4-DIMENSIONAL SOLUTION MANIFOLD**, returning **`0` of the SM's `19`** quantities — it
+    returns the two numbers it was fed. **THE KILL IS JACOBIAN-ATTACK-PROOF BY COUNTING ALONE**
+    (the ratification's strengthening, and the load-bearing step — the measured rank is
+    *confirmation*, not foundation): a `2×6` Jacobian has rank `≤ 2` **identically**, so
+    `dim ≥ 6 − 2 = 4` **at every solution, whatever the rank turns out to be**; rank 2 is the
+    **maximum**, i.e. the **least vacuous** case available to the family, and any rank **drop**
+    makes the manifold **larger**. **Widening the family makes the kill STRONGER** — a widening
+    adds parameters or branches, and neither adds constraints. Against RUL-098's criterion
+    (parameter compression, `~4–6` counted constants for the SM's `~19`) it **spends 2 and
+    compresses nothing: net yield NEGATIVE**; measured against the corpus's own vacuity control
+    **MAP-G** (`log-err 1.08e-07` on **4 free INTEGERS**, recorded VACUOUS BY CONSTRUCTION),
+    `log-err = 0` on **6 free REALS** is **more** vacuous, not less. `D/J = 0.787` is **not**
+    corroborated by the hit — it was held fixed, but the 6 reals absorb everything.
+    **THE PRE-REGISTERED OBSTRUCTION DOES NOT EXIST:** at `c = √2` the family reaches the
+    **entire** analytic non-negativity window `δ ∈ [0, π/12]` (DERIVED-A: `ψ ∈ [π/4, π/3]`,
+    25 % of the fold domain, brute-forced at `0.2500`) and **nothing outside it** — the
+    substrate adds **exactly zero** constraint beyond `E₀ ≥ 0`, which is a constraint of the
+    construction, not of the geometry.
+    ★ **THE ONE NON-TRIVIAL THING FOUND, and it was on nobody's list — THE PITCH ESTATE.**
+    `L = ker(N) ∩ 2π·D4* = 2π·A₂`, **hexagonal**, DERIVED not asserted (a half-integer `D4*`
+    vector has **no zero coordinate**, so the half-integer coset cannot meet `{x₄ = 0} ⊃ ker(N)`;
+    only `2π·ℤ⁴` survives): minimal vector `2π√2 = 8.885766`, covering radius `5.130199`.
+    **Lattice-`t` mass blindness is DERIVED-A in three lines** (`ρ` a symmetry of `E` preserving
+    `2π·D4*` ⇒ all three comb energies coincide ⇒ `X₁ = 0` ⇒ `c = 0` identically, for **every**
+    base point) — so **100 % of the screw comb's splitting rides the NON-LATTICE part of `t`**,
+    and it is a **MEASURE-ZERO KNIFE-EDGE**: `c = 0` exactly on the lattice, `max c ≈ 2` already
+    at reduced pitch `0.10`. The measured triple is reachable **only** below
+    `|t|* = 0.616296` (isotropic in the kernel plane to `0.09 %`, measured at **non-symmetric**
+    angles because 60° spacing is `ρ`'s own symmetry on that plane and would have manufactured
+    the isotropy), where the **amplitude is still fine** (`max c = 1.506 > √2`; `c = √2` alone
+    survives to `|t|_c = 0.702693`). ⇒ **★ `δ` BINDS BEFORE `c` DOES, BY A FACTOR `1.1402` —
+    matching the phase is a strictly stronger requirement on the screw pitch than matching the
+    amplitude, and EVERY ceiling in four rounds measured the WEAKER face. That is the one
+    strategic finding of the entire dispute.** And the cross-check nobody had: reduced mod `L`,
+    **every** screw published in the dispute lands in that same small-pitch regime
+    (`0.6268 / 0.4448 / 0.4482 / 0.6036`) while the **raw** published values were
+    `9.08 / 15.61 / 15.28 / 15.78` — **all four "different" screws are ONE regime the
+    un-reduced coordinates concealed**, so screw translations must be quoted reduced mod `L` or
+    the published numbers are not comparable to each other.
+    **THE STEP-FORM COUNT IS EIGHT, NOT TWO** (`1152 / 96 / 8`, rebuilt from scratch by both
+    sides, `~7e-15`), every one with `rank(I + ρ + ρ²) = 2` — which is what makes closure two
+    scalar equations. **Scope, tightened, and the ARGUMENT repaired:** exhaustive **of the
+    order-3 linear SYMMETRIES of `E_reduced`** and of nothing wider (never *"of linear `ρ`"*),
+    by `E∘ρ = E ⇒ ρᵀ(R ∪ S) = R ∪ S ⇒ ρᵀ(D4) = D4` — **not** by "a symmetry fixes the `J`-term
+    separately", which does not follow. **The `ρ³ = I`-without-symmetry class is strictly LARGER
+    and is DECLARED UNSCANNED** — it is the widening class that has now refuted three
+    exhaustiveness claims in this dispute.
+    **`min/mean = 0.040350` IS NOT CORROBORATION** — it is a function of `(c, δ)` alone, so
+    matching the target fixes it by construction; and it sits **below the 5 % non-degeneracy
+    guard the whole dispute imposed on every `c`-maximisation**, i.e. **that guard would have
+    excluded the physical target**. Self-reported by the reviewer against its own instrument and
+    promoted the same pass to a standing class — *guards are calibrated on the target, never at
+    a round number* (`TWT_CHECKER_CALIBRATION.md`; `RULES_BY_ROLE.md` §X).
+    **A MEASURE HONESTY NOTE THAT CUTS THE OTHER WAY:** `960,000` random draws from the family
+    reached `c ∈ [0.000058, 1.342770]` with **zero** samples within `0.01` of `√2` — **random
+    sampling alone would have reported a MISS**. The hits live on a thin set reachable only by
+    optimisation. That is why the dispute's ray scans kept finding ceilings, and it is a
+    standing warning that *"scanned N random directions and found nothing"* is weak evidence on
+    this family.
+    **WHAT WOULD CONVERT THE FIT INTO A RESULT — NAMED, NOT COMPUTED:** (1) the quark/CKM comb
+    with the **same** `ρ`, closure class, `D/J` and `(t, k₀)` **shared or related by a named
+    rule** — the only item that could do it alone; (2) the neutrino Brannen phase with **no new
+    parameters**; (3) a dynamical selection principle from the **#1 gap** (§D.5) — the 4 spare
+    dimensions are exactly what a kernel would have to fix, and this is the honest statement of
+    what the corkscrew reading is waiting on; (4) any independent structure **fixing the screw
+    pitch**, which would turn `|t|*` into a genuine **falsifier**.
+    **RE-ATTACK HANDLE:** *tried* the joint `(c, δ)` search on the closed screw family → *it
+    succeeded exactly, which is the failure* → *would change if* the family were cut to **≤ 1
+    free real** by an independent principle, or if the **same 6 parameters** were made to carry
+    a **second sector's** triple. Anything less leaves the fit vacuous. **No further
+    single-sector work on this family can change its status: the branch is not blocked, it is
+    EMPTY AT SINGLE-SECTOR RESOLUTION.** Replacing `E₀ ∝ √m` by `m = E₀` or `m ∝ √E₀` moves the
+    target `(c, δ)` but not the family's reach and not the dof accounting, so the verdict is
+    expected identical — **named, not computed**.
+    ★ **AND THIS IS WHY THE OPEN CANON-§5 CALL IS NOW CHEAP.** Does *"the L-orbit blades are
+    never generation LABELS"* extend to *"never inside the generation STEP MAP"*? **Still a
+    coordinator call and still not pre-empted** (RUL-030 class 3) — but the price has collapsed:
+    **the family buys nothing, so EXCLUDING IT FORFEITS NOTHING.** If the screw is ruled
+    ILLEGAL, §2's eight symmetries, lattice-`t` mass blindness and the dof method survive as
+    substrate facts and as method, and batch 1's kill survives untouched on the legal family. If
+    it is ALLOWED, the hit is still a **2-parameter FIT with a 4-dimensional residual manifold**.
+    Engine: **`brannen_comb_commitment_dominance_and_dof_vacuity`** — the primitive RENAMED and
+    EXTENDED to carry both halves in **one dict**, because *the attainment and the vacuity are
+    ONE FINDING*: a corpus able to quote *"the banked geometry reproduces the charged-lepton
+    ladder exactly"* without *"on a 4-dimensional solution manifold, returning 0 of 19"* has been
+    handed the worst sentence in this program's history. **The discipline is EXECUTABLE, not
+    hoped for:** an AST-level **inseparability guard** in `twt_test.py` fails if the attainment
+    key and the vacuity keys are ever returned by different functions, demonstrated firing on
+    three planted splits (in-suite in memory, and on disk at
+    `generations_arc_2026-08-23/closure_scripts/cl_01`).
+    **THREE DEFECTS OF THE SEARCH PASS, filed per canon §4 and ratified as tainting nothing:**
+    a **pre-written conclusion refuted by its own output** — the `§CONSENSUS-R4` R6(ii) class
+    committed **one round after it was recorded** (struck IN THE SCRIPT under a `DEFECT NOTICE`;
+    chasing the contradiction is what produced the whole pitch estate); an initial search design
+    that **could not have found the answer** (random sampling + a `log-err`-only objective;
+    `19.2M` samples reached only `0.42`); and an isotropy first measured on `ρ`'s own 60°
+    symmetry angles, re-measured off-symmetry and survived. **Both process signals are in
+    `TWT_CHECKER_CALIBRATION.md`, not here.**
+  - **(Y3) UNCHANGED IN SUBSTANCE, RE-SCOPED:** the gap form `m ∝ √(1−ρ²)` remains the one reading
+    that kills the rationality objection without new commitments and **without needing M-3** — dead
+    on the banked sub-harmonic ladder (bounded exactly at `2/√3`, off by `3011×`) and prohibitive
+    on a free near-baseline ladder (`q_e ≥ 2.4e7`), recorded with its would-change-if. Nothing in
+    the estate dispute touched it. It is the surviving re-attack handle of the two batches.
+  - **(Y4) M-3 IS RE-MOTIVATED, NOT DECOUPLED — the original clause is WITHDRAWN.** Y2 shows that
+    granting M-3 *with a specified step-form* moves the batch-1 number by a factor 1.64 and
+    reaches the Koide point, so *"granting it does not rescue batch 1"* is **withdrawn**. What
+    survives of the decoupling argument: M-3 is still a **CELL→GRAIN layer crossing** that must
+    never be silent (canon §0), and **batch 2 still does not need it**. The recommendation stands
+    that M-3 be decided on its own merits — but it is now the dispute's **deciding** question,
+    not an incidental prerequisite.
+  - **(Y5, from the coordinator's addendum, same day) THE 45° BRIDGE HAS NO COMPUTED FACE.** The
+    identity is exact and worth stating once: `c = √2 ⟺ K = 2/3 ⟺ (√m₁,√m₂,√m₃) sits at 45° to
+    the democratic direction (1,1,1)`, i.e. `cos²θ = 1/(3K) = 1/2`. The originator's kinematic
+    reading — lateral `c` ⊕ advance `c` → the `√2` diagonal, the 45° screw as the corkscrew at
+    maximal lateral speed — is the same 45° in VELOCITY space, and **the bridge between the two
+    angles is OPEN**. Tested at eleven `c = √2` screw points (3 published + 8 found) against 36
+    non-`√2` controls on the same family: **no k-space geometric partition — screw pitch, step
+    angle, advance/arc, advance/lateral — sits at the equal-partition value across the `√2` set;
+    every candidate fails by wide margins**, as it must, since `c = √2` is one equation on a
+    six-real family. **AT THIS FAMILY'S LEVEL THE ONLY 45° PRESENT IS THE DEFINITIONAL ONE**, and
+    that one is a restatement, not evidence (it was run explicitly as the tautology control —
+    and it earned its keep by catching a real instrument defect in the first draft). Two
+    by-products: (a) **all three published `√2` exhibits sit on the ZERO-PITCH branch** — `N t = 0`
+    there, so `h` is conjugate to `ρ` by a translation, a pure 120° rotation about a displaced
+    axis: **at those points the "corkscrew" is not a corkscrew**, which weakens (does not kill)
+    the literal-corkscrew defence of the screw row, since nonzero-pitch `√2` points do exist;
+    (b) 45° pitch is a condition one could IMPOSE, never one `√2` carries — a new counted choice
+    stacked on the M-3 step-form choice. **The kinematic reading stays CANDIDATE with no computed
+    face; C-33 binds — the identification is named, not felt.** Script:
+    `t2prime_scripts/t2p_45deg_signature.py`.
+- STATUS: CLOSED route, BOTH scopes (the direct readings AND the geometric-mediation form).
+  The generations arc continues on the ℤ₃ connecting-map route. ★ **CORRECTED 2026-08-23:** the
+  mass-VALUES question is **NOT** "localized outside the banked single-q family" — that reading
+  came from the withdrawn Y2 ceiling and is struck. What the estate dispute leaves instead is
+  sharper in a different direction: the reachable amplitude is **M-3-commitment-dominated**, so
+  the open question is a **RULING on the step-form**, not a search outside the family; and the
+  MASS-RATIO kill is ~~untouched by any of it~~ **[FINAL FORM 2026-08-23, see (Y6): the
+  ratio kill in its CANNOT-REACH form does not survive ON THE SCREW FAMILY — whose
+  generation-legality is an OPEN COORDINATOR CALL — and is UNTOUCHED on the
+  TRANSLATION-STEP family. It is REPLACED by a dof/VACUITY kill that is stronger, is
+  proof against a Jacobian attack by counting alone, and gets STRONGER when the family
+  is widened. The arc's outcome is therefore: the DIRECT-READING kill STANDS; the
+  GEOMETRIC-MEDIATION kill is REPLACED, not lost; and the branch is EMPTY at
+  single-sector resolution, which makes the standing canon-§5 ruling CHEAP.]**
+  Governing records: TONGUES_L2_2026-08-23.md +
+  TONGUES_T2PRIME_2026-08-23.md (incl. §CONSENSUS, §CONSENSUS-R4, §LINEAGE) +
+  VERDICT_REVIEWER_ESTATE_2026-08-23.md (verdict + ratification addendum + SECOND
+  ADDENDUM §S1–§S8) + SCREW_JOINT_SEARCH_2026-08-23.md + ESTATE_BANKING_2026-08-23.md +
+  ESTATE_CLOSURE_2026-08-23.md.

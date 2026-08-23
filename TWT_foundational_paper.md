@@ -1233,11 +1233,13 @@ observer in a Euclidean substrate.
 
 **Scope of the claim, stated up front.** What is derived here is
 the **emergence of observer-frame Lorentz structure**, *given* the framework's signature posit — not
-the signature itself. Axiom A-1a takes the spatial substrate `(ℝ⁴, g)` positive-definite and §A.5.6
-puts the timelike direction on the meta-time generator, `e_5² = −1`. That placement is a **posit**,
-not a theorem: every theory must locate its signature somewhere, and TWT locates it on `e_5`. Read
-strictly, the framework *relocates* the signature rather than deriving it, and this section should
-not be read as claiming otherwise.
+the signature itself. Axiom A-1a takes the spatial substrate `(ℝ⁴, g)` positive-definite, and
+§A.5.6 places the framework's one negative square on the meta-time generator, `e_5² = −1` — a
+posit that supplies the central complex structure `E = I_4·e_5`, not the observer's timelike
+direction, which the wavefront lock places on the advance axis `e_4` (`γ⁰ = e_4`, `(γ⁰)² = +1`).
+That placement is a **posit**, not a theorem: every theory must locate its negative square
+somewhere, and TWT locates it there. Read strictly, the framework *relocates* the signature rather
+than deriving it, and this section should not be read as claiming otherwise.
 
 What the section does establish, and what makes it a spine result, is the non-trivial half: that
 `Cl(4,0)` and `Cl(1,3)` are the **same real algebra**, so a wavefront-locked observer inside a
@@ -1764,7 +1766,11 @@ linearized operator is `ℂ`-scalar at leading order; that is a named added prem
 (iv) R-127 is undisturbed and in fact sharpened: the mass phase is right-multiplication by
 `exp(ω τ₅ B_a/2)`, which is the *global `ℂ` scalar* of this qubit and commutes with the `SU(2)`
 spin action — "the mass phase never leaves `B_a`" and "spin acts on the left" are the two halves of
-the `ℍ ≅ ℂ²` picture, here supplied by the substrate rather than imported.
+the `ℍ ≅ ℂ²` picture, here supplied by the substrate rather than imported. The same left/right
+division of labour sets where the internal quantum numbers live: spin and the Lorentz generators act
+on the **left** (the space frame), while weak isospin acts on the **right** (the body frame), the
+two commuting identically — which is why a rotation or boost of the apparatus moves the spin label
+and leaves the weak label alone.
 
 What remains open is narrower but real: restricting the fluctuation to `Z(e_4)` is still a *choice*
 — weaker than `span{1, B_a}`, and motivated by (W), but not derived from it — and the four
@@ -3590,7 +3596,7 @@ Causality is the same fact from another angle: causes precede effects along `e_4
 the direction the wave carries influence. The light-cone structure of relativistic causality
 emerges from `+e_4` under the wavefront isomorphism (§B.1).
 
-### B.7.2 Two asymmetries from one initial condition — and what the third still needs
+### B.7.2 One asymmetry from the wave's direction — and what the other two still need
 
 Three observed asymmetries usually treated as independent (R-044):
 
@@ -3599,39 +3605,46 @@ Three observed asymmetries usually treated as independent (R-044):
 - **Weak handedness** — parity violation, weak sector left-handed.
 
 In TWT these are not three independent cosmological inputs — but neither are all three
-manifestations of one fact. **Two** of them, the causal arrow and weak handedness, are observable
-faces of the single fact of the wave's propagation direction `+e_4`; the thermodynamic arrow is
-correlated with it only partially, and the paragraphs below say exactly how far. The causal arrow is `+e_4`
-directly. Weak handedness traces to `+e_4` because chirality is defined by orientation relative to
-the propagation axis: the parity-odd condensate `⟨I_4⟩ ≠ 0` rides the wave's chiral DM
-contribution (§C.5.3), while *which* chiral factor the weak force gauges is settled without a
-further choice: the two chiral factors are exchanged by an orientation relabelling, so naming one
-of them "the weak one" costs nothing, and the alternative host that is *not* a relabelling is
-excluded by the right-handed fermions' weak-singlet character (§C.4.2). The thermodynamic arrow is the medium's irreversible
+manifestations of one fact. **One** of them, the causal arrow, is the observable face of the wave's
+propagation direction `+e_4`; weak handedness is selected by a datum on an orientation the
+framework does not pin, and the thermodynamic arrow is correlated with `+e_4` only partially — the
+paragraphs below say exactly how far. The causal arrow is `+e_4` directly. **Weak handedness does
+not follow from `+e_4` alone.**
+Chirality is the `I_4`-grading of the substrate's rotation algebra — `I_4` is central in the even
+subalgebra, squares to `+1`, and grades the self-dual triple by `+1` and the anti-self-dual triple
+by `−1` — and the orientation reversal `x ↦ e_4 x e_4` **fixes `+e_4` exactly** while flipping `I_4`
+and exchanging the two chiral factors. One and the same propagation direction is therefore
+compatible with either handedness, and the propagation axis does not define chirality. What `+e_4`
+fixes is the causal arrow. *Which* chiral factor the weak force gauges is settled without a further
+choice, but by a different support: the two chiral factors are exchanged by an orientation
+relabelling, so naming one of them "the weak one" costs nothing, and the alternative host that is
+*not* a relabelling is excluded by the right-handed fermions' weak-singlet character (§C.4.2). The
+`SD`/`ASD` label is an orientation convention that nothing in the framework pins. The thermodynamic arrow is the medium's irreversible
 response to its own drive — the retarded boundary condition plus observer-relative coarse-graining
 giving entropy increase; **but the low-entropy past is a separate cosmological input, and the
 framework reduces rather than fully derives the second law**.
 
 **Counterfactual, and where the correlation is not derived.** In a universe with the wave
-propagating along `−e_4`, the causal arrow and the weak handedness would reverse *together*. The
+propagating along `−e_4`, the causal arrow reverses; whether the weak handedness reverses with it
+depends on the relabelling used, since an orientation-preserving one leaves `I_4` fixed. The
 thermodynamic arrow's behaviour under wave-direction reversal is more subtle: it depends on whether
 the cosmological low-entropy boundary condition is correlated with the wave's propagation
 direction. If the low-entropy IC is itself a wavefront-direction phenomenon — plausible, **not
-derived in this framework** — all three flip together. If the low-entropy IC is independent of
-propagation direction, only the causal and weak-handedness arrows flip, and the thermodynamic arrow
-stays set by whichever direction the low-entropy boundary lies in. **In either case it is the
-causal and weak-handedness asymmetries that are not independent** — both are the same orientation
-`+e_4` in different sectors — while **the thermodynamic arrow has a separate, only
-partially-correlated origin**.
+derived in this framework** — it flips with the causal arrow. If the low-entropy IC is independent
+of propagation direction, the thermodynamic arrow stays set by whichever direction the low-entropy
+boundary lies in. **In either case it is the causal arrow alone that `+e_4` fixes** — the weak
+handedness rides an unpinned orientation together with the right-handed-singlet datum — while
+**the thermodynamic arrow has a separate, only partially-correlated origin**.
 
 This is a unification claim, and the count it supports is smaller than an unqualified reading
 suggests. The SM treats parity violation as an empirical fact added by hand (`V−A`); the framework
-ties it to the same `+e_4` that picks the arrow of time, given the weak assignment of §C.4.2. The
-honest ledger is therefore **two** asymmetries from the one initial condition — the causal arrow
-and weak handedness — plus, standing between `+e_4` and the handedness, the two named supports of
-that assignment (a structural premise the paper does not derive, and the right-handed fermions'
-weak-singlet character), plus **one separate cosmological input** (the low-entropy past) that the
-thermodynamic arrow still requires. Two from the IC, not three; and the second law is *reduced*
+does not derive it from `+e_4` either, but it locates it in the same algebra, with the weak
+assignment of §C.4.2 doing the selecting. The honest ledger is therefore **one** asymmetry from the
+wave's propagation direction — the causal arrow — plus weak handedness, which rides an orientation
+convention nothing in the framework pins together with the two named supports of that assignment (a
+structural premise the paper does not derive, and the right-handed fermions' weak-singlet
+character), plus **one separate cosmological input** (the low-entropy past) that the thermodynamic
+arrow still requires. One from the wave's direction, not three; and the second law is *reduced*
 here, not derived.
 
 ### B.7.3 `c_meta = c` on average
@@ -3992,7 +4005,7 @@ identification is itself flagged as possibly coincidence-riding, §C.3.11). Quot
 the *output* of the relation would be circular — the
 baryon-side `D/J ≈ 0.778` of §C.3.11 is itself *defined* by back-solving `√18/e` at the
 empirical `e = 5.45`. The ~1.1% cross-sector spread between the two calibrations is the honest
-content of the over-determination signal. The numerical coefficient
+content of the cross-sector **agreement** (§C.3.11, which states what each leg measures). The numerical coefficient
 `36.47` is the exact hedgehog-BVP eigenvalue (R-051); ANW publish it to three figures as
 `M = 36.5 F_π/e`. With the displayed
 inputs this
@@ -4615,8 +4628,8 @@ own stated conditions — and the conditioning class matters more here than the 
 This section carries the framework's mixed-tier content. The structural derivations (three-count
 with its count generic-given-4D (Frobenius as remark, §C.3.8), Koide form `K = 2/3 ⇔ c = √2`, Foot 45° characterization, forced-left-handed
 neutrino, single-Weyl lightness) are clean. The lepton-mass-ratio values currently sit at FIT
-tier rather than forward-derived — the cross-sector D/J over-determination is a real coherence
-signal but not a forward derivation. The Result Index (companion Section 1) keeps the
+tier rather than forward-derived — the cross-sector `D/J` agreement is a real coherence signal
+between two different functionals (§C.3.11), not a forward derivation. The Result Index (companion Section 1) keeps the
 distinction crisp.
 
 ### C.3.1 The Z_3 of V_4-perp; the Brannen amplitude form
@@ -4767,7 +4780,7 @@ one-loop pole → `MS-bar` estimate of §C.3.3 (own computation, **not banked**)
 - **Foot 45° (§C.3.4):** `45.000° → ≈ 45.05°`. Inherits `K`'s shift exactly, since `K = 1/(3cos²θ)`.
 - **The fitted `δ_L` (§C.3.5):** `12.73° → ≈ 12.67°`.
 - **The lepton-sector determination of `D/J`:** `0.787 → 0.781`. **This does not weaken R-074's
-  cross-sector over-determination — it tightens it.** The baryon-sector leg (`0.778`, from the Skyrme
+  cross-sector agreement — it tightens it.** The baryon-sector leg (`0.778`, from the Skyrme
   stabilizer) uses no lepton mass and does not move, so the lepton↔baryon agreement goes from `1.08%`
   to `0.34 – 0.40%`. Recorded because the direction is favourable and must not be quietly dropped.
 - **The `μ² ↔ m_N/3` convergence (R-134) is the most exposed item**, for a structural reason worth
@@ -4972,16 +4985,39 @@ bookkeeping number (no top hadrons, §C.5.9), so it cannot be falsified against 
 stands as a counted fit recorded in the companion registry, not a numbered result; §A.4's
 forward reference resolves here.
 
-### C.3.11 Cross-sector D/J — the over-determination
+### C.3.11 Cross-sector `D/J` — what the two legs actually measure
 
 The lepton sector calibrates `D/J ≈ 0.787` via Brannen `δ_L = 12.73°`. Independently, the baryon
-sector reads `D/J = √18 / e ≈ 0.779` from the Skyrme stabilizer with the ANW-historical
-`e ≈ 5.45` (matching the ANW fitted `f_π = 129 MeV`) (R-074). The two values agree to
-~1.1%. This is the framework's **genuine cross-sector over-determination signal** — two
-independently-calibrated sector fits convergent on the same value to within 1%, with no
-adjustable parameter between them. The structural meaning is that the same chirality ratio
-parameterizes both leptonic and baryonic phenomenology, as the framework requires; the
-quantitative ~1% agreement is empirically positive but not yet a forward derivation.
+sector reads `D/J = √18 / e ≈ 0.778` from the Skyrme stabilizer with the ANW-historical
+`e ≈ 5.45` (matching the ANW fitted `f_π = 129 MeV`) (R-074). The two values agree to ~1.1%.
+
+**What that agreement is, at earned strength (R-180, R-181).** Each leg measures a **ratio of
+totals** — a parity-odd bond amplitude over a parity-even one — and not a single-parameter
+measurement of `J` and `D`. By the exact channel→parity selection rule the numerator
+`B = D_{e₄} + β·D_spatial` is exactly `Γ`-clean and the denominator `A = J + Σᵢ αᵢΓᵢ` is exactly
+`D`-clean, with nothing else able to enter either (R-176, R-177); the admixture **sizes** are
+#1-gap-routed. Decisively, the two legs' parity-**even** totals belong to **different functionals**
+— the `ℤ₃` generation amplitude and the helix pitch — and are the same substrate number **only if
+the symmetric-traceless (`Γ`) bond admixture vanishes** (R-181, JD-6(b)). Indeed
+`e ≈ √18/(D/J) = cot q`, so the baryon leg **is** the pitch functional. The agreement is therefore
+evidence that **two different readings of the chirality cohere**; it is **not** a second reading of
+one pinned parameter and **not** an independent over-determination. Nothing is fitted between the
+two legs — but the `Γ` admixture is not nothing: R-181's route sizes the implied difference of
+denominators at `Δ(Γ/J) ≈ +2.15%` of `J`, under a four-part conditioning class any one of whose
+failures voids the number. The standing fence follows directly: **never carry a ratio calibrated on
+one functional into another** — `f_π² = 8J/a` and this lepton↔baryon comparison included.
+
+**The arc-ratio reading sharpens the same fact from the other side [CANDIDATE].** If `δ_L = 2/9`
+rad exactly — Brannen's observation, the `n = 3` rung `6/27` of the 2:4:6 ladder — then
+`D/J = tan(2/3) = 0.786843` and the lepton leg fixes the ratio with no continuous freedom left in
+it. The baryon leg then **demands** `e = √18/tan(2/3) = 5.391979` against the literature's
+`e_ANW = 5.45`: a residual of 1.06% that is a statement about **one constant** rather than a
+scatter between two fits. **As a test this is not yet discriminating.** The historical Skyrme `e`
+is itself a fit whose spread across determinations exceeds the deviation, so a ~1% offset fails
+nothing; the test bites only against a determination at or below the ~1% level, read from primary
+sources before any promotion. And the `D/J`-level "agreement" internal to the lepton leg is a
+**tautological restatement** — `D/J := tan(3δ_L)` by definition, so it is `tan(3·)` applied to both
+sides of one empirical fact — never a confirmation of anything.
 
 *(Side note on the geometric coincidence. The baryon-side back-derivation rides on
 `e ≈ √18/(D/J)`, where the √18 itself rides a geometric coincidence whose physical referent the
@@ -5007,7 +5043,7 @@ open frequency-sum-vs-full-mass fork.
 
 If a mechanism ever pins the per-rotor lock frequency to the lepton democratic component,
 `m_N = 3μ²` would co-derive the nucleon mass from the lepton tower with zero hadronic input —
-one fewer counted dial. Until then: a recorded candidate over-determination row, with the
+one fewer counted dial. Until then: a recorded candidate convergence row, with the
 post-hoc/look-elsewhere caveat carried.
 
 ### C.3.12 Neutrino forced left-handed; single Weyl; lightness
@@ -5146,8 +5182,10 @@ three-dimensional algebra. A left-handed single-Weyl neutrino therefore cannot t
 and any argument that it can is mistaken. The discriminator is the *other* half: SD annihilates it
 outright — that half is a weak **singlet** sector — while the diagonal class charges it exactly as
 strongly as the first. Under a diagonal host the right-handed fermions would form a second weak
-doublet sector at full strength. They do not: the right-handed fermions are weak-isospin singlets
-and there are no right-handed charged currents. The framework supplies the occupancy this argument
+doublet sector at full strength. They do not: the right-handed fermions are weak-isospin singlets,
+and no right-handed charged current is observed at any accessible energy. The datum is read, not
+tuned, and it is reversible: an observed right-handed charged current reverses it. The framework
+supplies the occupancy this argument
 needs from its own structure — the charged lepton occupies *both* Weyl ideals, and that two-ideal
 occupancy is its Dirac-mass channel (§C.3.12, R-076) — so the other half is not empty and the
 datum bites.
@@ -5159,7 +5197,11 @@ computed and one measurement is read. Two things are consumed and both are named
 substrate's own grade-2 rotation algebra at all*. That premise is not derived anywhere in this
 paper; it is one of the family's **preferred directions** (§A.6.3), and a candidate that hosts weak
 isospin somewhere else goes the other way on it — such a candidate is not on this menu and is
-untouched by anything above. The second is the **datum**: right-handed fermions carry no weak isospin.
+untouched by anything above. The second is the **datum**: no right-handed charged current is
+observed at any accessible energy, so the right-handed fermions are read as weak-isospin singlets —
+read from experiment rather than tuned, and reversible, an observed right-handed charged current
+reversing it (the datum's FAMILY INPUTS register row carries that would-change-if, and no
+restatement of it may be stronger than the row).
 Given those two, `SD` is forced, and V−A, generation-blindness, the doublet structure and
 `up = SD` follow from it (R-060, R-061, R-077) — not as a family-level derivation free of
 measurement, but as consequences of a forced assignment whose two supports are on the table.
@@ -5564,22 +5606,40 @@ magnitude remain the §D.5 kernel's burden. Gated to Paper-2.
 
 ### C.5.3 The ⟨I_4⟩ parity-breaking condensate
 
-The DM coupling `D/J ≈ 0.79` means the D4 ground state has
+The DM sector's parity-odd content is carried, if anywhere, by the pseudoscalar expectation
 
-> `⟨I_4⟩ ≠ 0`.
+> `⟨I_4⟩`,
 
-`I_4` is the pseudoscalar, and `I_4 → −I_4` under spatial parity. So `⟨I_4⟩ ≠ 0` is the
-algebraic carrier of parity violation — it picks out one handedness for the substrate (R-086).
+since `I_4 → −I_4` under orientation reversal. **`⟨I_4⟩ ≠ 0` is a named premise inherited from
+`D ≠ 0`, not a computed result**: no primitive in either engine computes `⟨I_4⟩`, its magnitude or
+its sign, and the sign of `D` is itself a convention — reversing the helical wavevector is exactly
+equivalent to reversing `D`. A non-zero `⟨I_4⟩` would be the algebraic carrier of parity violation,
+and it would fix a handedness **relative to the bond convention only**. It does not fix the
+substrate's orientation absolutely: the reversal `x ↦ e_4 x e_4` fixes the propagation axis `+e_4`
+exactly while flipping `I_4` and exchanging the two chiral factors; every banked bond term is
+invariant under it; and the banked helical vacuum is exactly invariant under it, with zero
+grade-four content. Nothing banked pins the orientation, and the `SD`/`ASD` label is a recorded
+convention (R-086).
 
 **Honest scope.** `⟨I_4⟩` is a *gauge singlet* — it commutes with
 every bivector, so for every rotor `R`, `R I_4 R̃ = I_4` exactly. A condensate invariant under
 `G` *cannot* break `G`. Therefore **⟨I_4⟩ delivers parity violation, NOT electroweak symmetry
 breaking.**
 
-The substrate-level origin of `⟨I_4⟩ ≠ 0` is the **DM-induced topological boundary term**
-`𝓛_top(D) ∝ D · I_4 · ...` of §D.4.4 (R-110): the 4 no-shared-index `e_4`-bonds of §D.3 source a
-term linear in `D` proportional to `I_4`, which on integration over a domain delivers the
-`⟨I_4⟩`-condensate parity-odd structure. One `D`, multiple manifestations (§C.5.7).
+**The substrate-level origin is not built, and the route named here previously is refuted in the
+class in which it was stated.** Every DM bond bivector is a `Q`-orbit blade; the product of any two
+`Q`-blades has grades `{0, 2}` only, so **no bilinear in the DM bond data can be proportional to
+`I_4`** — and at the driven point group `Stab(+e_4)` the pseudoscalar channel has dimension zero,
+so there is no orientation-odd invariant to write down at all and every allowed DM coupling is
+forced exactly `50 : 50` between the two chiral sectors. `I_4` first becomes reachable at **cubic**
+order, `e_14 e_24 e_34 = −I_4`, which is where §D.4.4's candidate seat `𝓛_top = µ Ψ_0 ρ_L` (R-110)
+lives: that term is cubic, **not linear in `D`**, and its coefficient `µ` is gated on the substrate
+dynamics (§D.5). The framework's dedicated channel result already records that the bare `I_4`
+insertion vanishes identically in all grades and both sectors, and that the `ρ_L` seat is pointed
+to rather than confirmed. **The conditioning class:** this non-existence is exact *within the
+bilinear bond-action class on the driven group* `Stab(+e_4)`; the cubic and derivative classes are
+unscanned, and extending the invariant count to them is the computation that would close the
+question either way.
 
 ### C.5.3a The doublet-condensate Φ as EWSB order parameter
 
@@ -5663,9 +5723,11 @@ Three predictions, one substrate reason. Canonical falsifiers §E.3 rows 2 + 3.
 The β-decay channel `n → p + e^- + ν̄_e` reads in the substrate as an L-pair creation through
 the `I_4` Hodge map (R-090). The L-orbit's bivector winding source `J` is connected to the
 Q-orbit's facet structure via `I_4`; the L-pair (electron + antineutrino) is created by the
-algebraic mediation of the same `I_4` that the parity-violation condensate carries (§C.5.3).
+algebraic mediation of `I_4` — the Hodge map itself, which this channel consumes independently of
+whether any `⟨I_4⟩` condensate exists (that question is open at §C.5.3).
 **One `D`, multiple manifestations** — the same `D` that fixes the Cabibbo angle, the generation
-phase, the Skyrme stabilizer, and parity violation also supplies the β-decay channel.
+phase, and the Skyrme stabilizer also supplies the β-decay channel; parity violation is withdrawn
+from this list — its candidate substrate seat is cubic with an open coefficient (§C.5.3).
 
 ### C.5.8 Stable-sector enumeration; the wave-phase ladder
 
@@ -6094,7 +6156,7 @@ measurement of a ratio of two couplings and becomes a measurement of a combinati
 the ratio is quoted throughout this paper as a calibrated input with a named referent condition,
 and not as a pinned single-parameter measurement.
 
-Cross-sector consistency: independently, the baryon Skyrme stabilizer gives `D/J ≈ 0.779`
+Cross-sector consistency: independently, the baryon Skyrme stabilizer gives `D/J ≈ 0.778`
 (§C.3.11). The ~1.1% cross-sector agreement is a **hedged cross-check** (the engine's own tag):
 the `√18` bridge's physical referent is disclaimed, the
 massless-pion scheme was chosen partly on this very agreement, and the substrate relation
@@ -7344,12 +7406,14 @@ typically unchanged. Seven representative items:
   mechanism rather than a completed account of measurement; the measure itself is no longer
   assumed.
 
-- **Parity violation and β-decay share one substrate parameter.** The same `D` that produces the
-  Cabibbo angle, the generation phase, the Skyrme stabilizer, *and* parity violation also
-  supplies the β-decay channel. The 4 no-shared-index `e_4`-bonds generate a topological boundary
-  term linear in `D`, proportional to `I_4` — the substrate origin of parity violation. The
-  electron in β⁻ is *created* as an L-winding excitation, not drawn from a pool; the mediator is
-  the same `I_4` Hodge map. **One number, multiple manifestations** (§C.5.3, §C.5.7).
+- **β-decay shares the substrate parameter `D` with the flavour sector.** The same `D` that
+  produces the Cabibbo angle, the generation phase, and the Skyrme stabilizer also supplies the
+  β-decay channel. The 4 no-shared-index `e_4`-bonds are where a topological boundary term would
+  have to live, but the substrate origin of parity violation is **not** built: no orientation-odd
+  invariant exists at bilinear order in the bond data, and the candidate seat of §D.4.4 is cubic
+  with an open coefficient (§C.5.3). The electron in β⁻ is *created* as an L-winding excitation,
+  not drawn from a pool; the mediator is the same `I_4` Hodge map. **One number, multiple
+  manifestations** (§C.5.3, §C.5.7).
 
 - **The Lorentzian signature of observed spacetime is the algebraic shadow of a
   wavefront-locked observer in a Euclidean substrate.** The induced spatial frame

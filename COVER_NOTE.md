@@ -1,7 +1,7 @@
 # Cover note for reviewers — Time-Wave Theory: the Core paper and its first candidate
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-08-13 · verification suite: 521 checks (434 main + 87 companion) · engine: 322 public primitives (258 main + 64 companion)
+Paper revision 2026-08-13 · verification suite: 577 checks (490 main + 87 companion) · engine: 335 public primitives (271 main + 64 companion), the main engine split family/instance 171 CORE + 100 CANDIDATE
 
 ---
 
@@ -37,7 +37,7 @@ What follows is not a plea for charity — it is a list of things you can **chec
 each of which the reference class reliably fails. Check them, then form your view.
 
 **1. Run the verification suite.** `python twt_test.py` should print
-`ALL 434 CHECKS PASSED across 10 modules.` and `python twt_companion_test.py` should print
+`ALL 490 CHECKS PASSED across 10 modules.` and `python twt_companion_test.py` should print
 `ALL 87 COMPANION CHECKS PASSED across 7 modules.` These are executable algebraic assertions on a Clifford-algebra
 engine — Dirac relations, the invariant decompositions, the charge spectrum, the Weinberg
 ratio — not prose. Falsify any of them and the corresponding claim falls; the paper's claims
@@ -261,10 +261,19 @@ reviewer should spend time on them at all.
 3. **The companion** (`TWT_foundational_paper_companion.pdf`) — the bookkeeping: every
    numbered result's status, dependencies and engine cross-reference; the falsifier registries;
    the import registry; the development log. A lookup volume, not linear reading.
-4. **The verification suite** (`twt.py` + `twt_companion.py` + the two harnesses, Python, needs
-   sympy/scipy) — the executable primitives encoding the algebraic content; the current census is
-   the header line at the top of this note, which is checked against the source tree rather than
-   written by hand.
+4. **The verification suite** (the main engine `twt.py` — a thin import facade over
+   `twt_core.py` and `twt_candidate_v3.py` — plus `twt_companion.py` and the two harnesses;
+   Python, needs sympy/scipy) — the executable primitives encoding the algebraic content; the
+   current census is the header line at the top of this note, which is checked against the source
+   tree rather than written by hand. **The engine carries the paper's architecture in its file
+   structure:** `twt_core.py` holds the FAMILY-level primitives (the axioms' consequences — no
+   gravity result and no dimensionful number among them), `twt_candidate_v3.py` holds everything
+   consuming one of V3's pins (the calibrations, the D4-sited constructions, the spectra), and a
+   suite check walks the abstract syntax tree to assert that the core half never references a name
+   defined in the candidate half. `import twt` still gives you the whole merged surface, so no
+   script had to change. Inside the core half, `CORE_PROVENANCE` lists the third commitment class
+   — core results riding an ENTERED empirical datum or a POSITED premise (the charge anchor and
+   P4–P7, the right-handed-singlet datum, A-P2′) rather than the axioms alone.
 5. **The ledgers that ship with it** — the negatives ledger, the family tree (the candidate's pick
    register, with each pick's menu and revert clause), and the comparative ontological-debt ledger
    behind the Core paper's §3.
