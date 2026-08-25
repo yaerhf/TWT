@@ -11,8 +11,10 @@
 
 Let $G = \operatorname{Aut}(D_4)$ be the automorphism group of the $D_4$ root system in
 $\mathbb{R}^4$, of order $1152$ (isomorphic to the Weyl group $W(F_4)$, whose invariant degrees are
-$\{2,6,8,12\}$). Because $G$ has no invariant of degree $4$ other than $(k^2)^2$, the space of
-$G$-invariant quartic polynomials is **one-dimensional**. Consequently, for *any* dispersion kernel
+$\{2,6,8,12\}$). Because $4$ admits no expression as a sum of parts drawn from $\{2,6,8,12\}$ other
+than $2+2$, the space of
+$G$-invariant quartic polynomials is **one-dimensional**, spanned by $(k^2)^2$. Consequently, for
+*any* **scalar** dispersion kernel $K:\mathbb{R}^4\to\mathbb{R}$
 that is invariant under the $D_4$ point group and analytic at $k=0$, the quartic term of its
 derivative expansion is exactly rotationally invariant: there is no anisotropic $p^4$ term, and
 hence no anisotropic dimension-six Lorentz-violating operator, whatever the underlying dynamics.
@@ -26,13 +28,17 @@ group $W(B_4)$ has invariant degrees $\{2,4,6,8\}$, admits a two-dimensional deg
 space containing $\sum_i k_i^4$, and its nearest-neighbour dispersion is direction-dependent already
 at quartic order (axis-to-diagonal ratio $4$).
 
-Two premises are load-bearing and are stated up front rather than in a footnote: **(P-an)**
-analyticity in $k$, so that a derivative expansion exists at all; and **(P-pg)** invariance under the
+Three premises are load-bearing and are stated up front rather than in a footnote: **(P-an)**
+analyticity in $k$, so that a derivative expansion exists at all; **(P-pg)** invariance under the
 *full* point group **including triality** — the reflection subgroup $W(D_4)$ of order $192$ has a
-*three*-dimensional degree-4 invariant space, and the two second-shell sub-orbits $\{\pm 2e_i\}$ and
-$(\pm1,\pm1,\pm1,\pm1)$ are each separately anisotropic (fourth-moment residual $32$ apiece),
-cancelling *only* at equal weight. A coupling that weights triality-related orbits unequally
-restores dimension-six anisotropy.
+*three*-dimensional degree-4 invariant space, and the second shell splits under it into **three**
+orbits of eight: $\{\pm 2e_i\}$ (fourth-moment residual $32$) and the two coordinate-parity classes
+of $(\pm1,\pm1,\pm1,\pm1)$ (residual $16$ each). Their combined fourth moment is isotropic **iff all
+three carry equal weight**; a coupling that weights triality-related orbits unequally
+restores dimension-six anisotropy. And **(P-sc)** the kernel is **scalar** — real-valued, carrying no
+internal indices. The theorem does not extend to matrix-valued (equivariant) kernels; the published
+dimension-six bounds quoted below are for photons, electrons and protons, none of which is a scalar
+field. See §8.3.
 
 We also state clearly what the result does **not** do. It closes the **anisotropic** channel only.
 The rotationally *invariant* dimension-six term is untouched: for the nearest-neighbour $D_4$ kernel
@@ -41,8 +47,13 @@ $O(1)$ coefficient. Lorentz violation is not solved by this theorem; one of its 
 closed, and the surviving channel is the one that carries the strongest published constraints.
 
 Finally, on attribution: the *physical* content — that the $D_4$/$F_4$ lattice has an isotropic
-quartic while the hypercubic lattice does not — is **known in the lattice field theory literature**
-and dates to Neuberger (1987); it was restated for lattice QCD as recently as December 2025. The
+quartic while the hypercubic lattice does not — is older than this note by four decades. It is the
+organising criterion of the **lattice-gas hydrodynamics** literature of 1986–87, where the same
+lattice appears as FCHC (the sites of $\mathbb{Z}^4$ with even coordinate sum) and is adopted
+precisely because no three-dimensional regular lattice has an isotropic fourth-rank moment. The
+*field-theoretic* reading — that this is what removes the dimension-six Lorentz-breaking operator of
+the hypercubic regulator — is **Neuberger (1987)**; it was restated for lattice QCD as recently as
+December 2025. The
 group-level form of the statement, with triality named as the protecting mechanism, is due to Chow
 (1999), and the two-sided sharpness (degree-4 isotropy "well known", the anisotropic sixth moment
 computed) is established in the lattice-kinetic-theory literature (Chen–Goldhirsch–Orszag 2008).
@@ -143,7 +154,10 @@ this note depends on that programme, and no part of it is assumed below. The rea
 $\mathbb{R}^4$, a root system, and a Taylor expansion.
 
 The novelty claim is deliberately narrow, and is set out in full in §9. In brief: the *physics* is
-known. Neuberger (1987) argued that $F_4$ lattices are singularly well suited to regularising scalar
+known, and known earlier than the lattice-field-theory citations alone would suggest — the
+fourth-rank isotropy of the $D_4$/FCHC bond set, and the failure of the hypercubic lattice at the
+same order, are the organising criterion of the 1986–87 lattice-gas automaton literature (§9(0)).
+Neuberger (1987) argued that $F_4$ lattices are singularly well suited to regularising scalar
 fields precisely because the dimension-six Lorentz-breaking operator that afflicts the hypercubic
 lattice is absent; the free $F_4$ dispersion $g(p) = p^2 - \tfrac{1}{12}(p^2)^2 + O(p^6)$ has been in
 the literature since then; and Katz and Nogradi (2025) state for the same lattice that "at order
@@ -170,7 +184,9 @@ flag rather than hide.
 **Lattice.** $D_4 = \{x \in \mathbb{Z}^4 : \textstyle\sum_i x_i \in 2\mathbb{Z}\}$. Its minimal
 vectors (the $D_4$ *root system*, and simultaneously its nearest-neighbour bond set) are the $24$
 vectors obtained from $(\pm1,\pm1,0,0)$ by permutation of coordinates, each of squared length $2$.
-The kissing number $24$ is the maximum in four dimensions [Conway–Sloane]. The convex hull of these
+The *lattice* kissing number $24$ is maximal among four-dimensional lattices [Conway–Sloane]; that
+$24$ is also the **unrestricted** four-dimensional kissing number — no packing of any kind does
+better — was a long-standing open problem, settled only by Musin (2008). The convex hull of these
 $24$ points is the regular 24-cell.
 
 **Point group.** $G := \operatorname{Aut}(D_4\text{ root system}) = \{A \in O(4) : A\Phi = \Phi\}$
@@ -187,6 +203,12 @@ $K(k) = \sum_{d\ge0} P_d(k)$ with $P_d$ homogeneous of degree $d$, converging ne
 **Assumption (P-pg) — point-group symmetry.** $K(Ak) = K(k)$ for all $A \in G$, with $G$ the
 **full** group of order $1152$, not a subgroup.
 
+**Assumption (P-sc) — scalar kernel.** $K$ is real-valued: $K:\mathbb{R}^4\to\mathbb{R}$, carrying
+no internal (polarization, flavour, spinor) indices. A matrix-valued kernel $M_{\mu\nu}(k)$ obeys
+*equivariance*, $M(Ak) = A\,M(k)\,A^{\mathsf T}$, not invariance, and lives in a larger
+invariant-theory object that the proof below never touches. §8.3 shows the restriction is
+load-bearing rather than decorative.
+
 **EFT dictionary.** With a dispersion relation $E^2 = p^2 + m^2 + \sum_n \eta^{(n)} p^n/M^{n-2}$, a
 $p^n$ term originates in a mass-dimension-$(n+2)$ operator. We will use the two dictionary entries
 $n = 4 \leftrightarrow$ dimension six and $n = 6 \leftrightarrow$ dimension eight throughout.
@@ -196,7 +218,12 @@ is $M_{i_1\cdots i_{2m}} = \sum_{v\in S} w_v\, v_{i_1}\cdots v_{i_{2m}}$. We cal
 *isotropic* if $M_{ijkl} = A(\delta_{ij}\delta_{kl} + \delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk})$
 for some $A$, and measure failure by the **residual**
 $\max_{ijkl} |M_{ijkl} - A(\delta\delta+\delta\delta+\delta\delta)_{ijkl}|$ with $A$ fixed by the
-mixed component $M_{1122}$.
+mixed component $M_{1122}$. This residual is a raw, unnormalised diagnostic: it is neither
+scale-invariant nor divided by the orbit size, so residuals may be compared *within* a table but not
+across tables, lattices, or normalisations. Where a scale-free comparison is wanted, the right
+quantity is the ratio of the degree-4 harmonic component of the moment to its isotropic part; every
+statement below uses the residual only as a zero/nonzero test and as a like-for-like comparison at
+fixed total weight.
 
 ---
 
@@ -212,8 +239,12 @@ the groups is not their action on the roots but their invariant rings:
 | $W(B_4)$ | all signed permutations $=\operatorname{Aut}(\mathbb{Z}^4)$ | $384$ | $\{2,4,6,8\}$ | **2** |
 | $G = \operatorname{Aut}(D_4) \cong W(F_4)$ | $W(D_4)\rtimes S_3$ (triality) | $1152$ | $\{2,6,8,12\}$ | **1** |
 
-The chain $W(D_4) \subset W(B_4) \subset G$ has indices $2$ and $3$; the index-$3$ step is triality,
-generated by the orthogonal involution
+The chain $W(D_4) \subset W(B_4) \subset G$ has indices $2$ and $3$; the index-$3$ step is where
+triality enters. Precisely: $G/W(D_4) \cong S_3$ is the triality group, and $G = \langle W(B_4), T
+\rangle$, which suffices because $W(B_4)$ is maximal in $G$ — so a *single* extra element generates
+the missing index-3 step even though that element is not itself of order 3. The generator we use is
+the orthogonal **involution** ($T^2 = \mathbb{1}$, $\det T = -1$; triality *proper* is the order-3
+outer automorphism, and $T$ maps to a transposition in $S_3$, not to a 3-cycle)
 
 $$
 T \;=\; \tfrac12\begin{pmatrix} 1&1&1&1\\ 1&1&-1&-1\\ 1&-1&1&-1\\ 1&-1&-1&1\end{pmatrix},
@@ -279,9 +310,18 @@ $$
 $$
 
 The quartic coefficient is $-1/12$ **independently of direction** — the numerically extracted value
-agrees with $-1/12$ to eight digits along random directions (Appendix A). This reproduces exactly the
-coefficient quoted in the lattice literature for the $F_4$ lattice, $g(p) = p^2 - \tfrac{1}{12}(p^2)^2
-+ O(p^6)$, which is a useful external check on the moments.
+agrees with $-1/12$ to eight digits along random directions (Appendix A).
+
+**Pinning the normalisation before quoting the literature.** The number $-1/12$ is
+convention-dependent and the convention must be stated or the comparison is empty. Here $a$
+multiplies $k\cdot v$ with $|v|^2 = 2$, so $a$ is *not* the nearest-neighbour distance: the bonds
+have length $a\sqrt2$. Writing the same kernel in terms of the bond length $b = a\sqrt2$ gives
+$b^2k^2\bigl[\tfrac12 - \tfrac{b^2}{48}k^2\bigr]$, i.e. a quartic-to-quadratic ratio of $-1/24$, not
+$-1/12$. The direction-independence is the convention-free content; the *value* agrees with the
+$F_4$ dispersion $g(p) = p^2 - \tfrac{1}{12}(p^2)^2 + O(p^6)$ quoted in the lattice literature only
+in the normalisation used here, and the reader should confirm the source's convention before
+treating the match as an external check. What is genuinely convention-free, and is what the check
+actually tests, is the moment ratio $M_{1111} = 3M_{1122}$.
 
 Note what the same expansion says about the *isotropic* dimension-six term: it is right there, with
 coefficient $-1/12$. Nothing in this note removes it. See §8.
@@ -299,7 +339,11 @@ $k_1,\dots,k_4$.
 **Lemma 1 (Chevalley–Shephard–Todd).** $G \cong W(F_4)$ is a finite reflection group, so its
 invariant ring $\mathbb{R}[k]^G$ is a polynomial algebra on four algebraically independent
 homogeneous generators, of degrees $d_1,\dots,d_4$. For $F_4$ these degrees are $\{2,6,8,12\}$
-(equivalently, the exponents are $1,5,7,11$ and the Coxeter number is $12$).
+(equivalently, the exponents are $1,5,7,11$ and the Coxeter number is $12$). *The degrees are an
+invariant of the group together with its **reflection representation**, not of the abstract group:
+the statement applies here because $G$ acts on $\mathbb{R}^4$ in exactly that representation, which
+is why Remark (i) below — that $G$ is the Weyl group of the $F_4$ root system, acting on its own
+root space — is a step in the argument and not decoration.*
 
 **Lemma 2 (Poincaré series).** Consequently
 $\sum_d \dim \mathbb{R}[k]^G_d\, t^d = \prod_{j=1}^4 (1-t^{d_j})^{-1}$, and
@@ -327,13 +371,27 @@ element of that space, $P_4 \in \mathbb{R}\,(k\cdot k)^2$. $\square$
 **Corollary (no anisotropic dimension-six operator).** A dispersion relation derived from such a
 kernel has an $O(p^4)$ term of the form $c\,(p^2)^2$ with $c$ a single constant. There is no
 direction-dependent $p^4$ contribution, hence no anisotropic dimension-six LIV operator, for any
-choice of **scalar** couplings compatible with the full point group. The scalar restriction is
-load-bearing, not decorative: the theorem's quantifier is $K:\mathbb{R}^4 \to \mathbb{R}$, and it
-does not extend to internal-index-carrying (matrix-valued) kernels, which obey equivariance
-$M(Ak) = A\,M(k)\,A^{\mathsf T}$ rather than invariance and live in a larger invariant-theory
-object the proof never touches. The point group cannot close that sector: the unique fully
-$W(F_4)$-invariant symmetric-traceless bond coupling (the pseudo-dipolar direction) already
-carries a direction-dependent four-derivative polarization splitting.
+choice of **scalar** couplings compatible with the full point group — premise (P-sc). That premise
+is load-bearing, not decorative, and the point group cannot close the matrix-valued sector. Here is
+the two-line reason. Take the pseudo-dipolar bond coupling, the natural $W(F_4)$-symmetric
+symmetric-rank-2 kernel, $M_{\mu\nu}(k) = \sum_v v_\mu v_\nu\,\bigl(1-\cos(k\cdot v)\bigr)$; its
+four-derivative part is $T_{\mu\nu}(k) = \sum_v v_\mu v_\nu (k\cdot v)^4$ up to a constant. Contract
+with $k$:
+
+$$
+T_{\mu\nu}(k)\,k^\mu k^\nu \;=\; \sum_v (k\cdot v)^6 \;=\; M_6(k),
+$$
+
+which §6 shows is **not** a multiple of $(k^2)^3$. But any isotropic symmetric rank-2 tensor built
+from $k$ has the form $\alpha(k^2)\,\delta_{\mu\nu} + \beta(k^2)\,k_\mu k_\nu$, whose contraction
+with $k^\mu k^\nu$ is a rotationally invariant degree-6 polynomial, hence a multiple of $(k^2)^3$.
+So $T_{\mu\nu}$ is not isotropic. The two-derivative part $\sum_v v_\mu v_\nu (k\cdot v)^2$ *is*
+isotropic — it is the (isotropic) fourth moment contracted twice — so the splitting appears exactly
+at four derivatives and not before. Numerically (Appendix A) the eigenvalues of $T_{\mu\nu}$
+transverse to $k$ are threefold degenerate at $4$ along $e_1$ and at $2$ along
+$(1,1,0,0)/\sqrt2$ — different values, so the *magnitude* already depends on direction — and along a
+generic direction they are **non-degenerate**: a direction-dependent four-derivative polarization
+splitting, present in the simplest $W(F_4)$-symmetric matrix-valued kernel there is.
 
 Three remarks.
 
@@ -350,14 +408,26 @@ $\dim\mathbb{R}[k]^G_4 = \dim \mathcal{H}_4^G + \dim \mathcal{H}_2^G + 1$. Since
 $\dim\mathbb{R}[k]^G_2 = 1$ we have $\mathcal{H}_2^G = 0$, so the theorem is exactly the statement
 $\mathcal{H}_4^G = 0$: **$G$ admits no invariant harmonic of degree 4**.
 
-**(c) Spherical-design corollary.** If $\mathcal{H}_4^G = 0$ then for any $Y \in \mathcal{H}_{d}$ with
+**(c) Spherical-design corollary — this is Sobolev's theorem.** If $\mathcal{H}_4^G = 0$ then for
+any $Y \in \mathcal{H}_{d}$ with
 $d \le 4$ and any $G$-orbit $\mathcal{O}$ on a sphere, $\sum_{v\in\mathcal{O}} Y(v) = 0$ — the sum
 defines a $G$-invariant functional on $\mathcal{H}_d$, which must vanish when $\mathcal{H}_d^G = 0$.
 Hence **every $G$-orbit on a sphere is a spherical 4-design**, and a 5-design since $-\mathbb{1}\in G$
-kills the odd degrees. The $24$-cell realising a spherical 5-design is a classical fact
-[Delsarte–Goethals–Seidel 1977; Cohn–Conway–Elkies–Kumar 2007]; the group statement above implies it,
-and is strictly stronger, since it constrains arbitrary weighted combinations of orbits and not just
-single orbits. A concrete instance of the theorem: the Reynolds average of $k_1^4$ over $G$ is
+kills the odd degrees. The derivation is retained above for self-containedness, but the statement is
+not new: it is Sobolev's theorem (1962) — for a finite reflection group, an invariant cubature
+formula is exact to degree $t$ **iff** it is exact on the invariant polynomials of degree $\le t$ —
+specialised to a group whose invariants of degree $\le 4$ all restrict to constants on the sphere.
+
+The converse also holds, and it corrects a claim made in an earlier draft of this note. If every
+$G$-orbit on a sphere is a 4-design and $Y \in \mathcal{H}_4^G$ were nonzero, pick $x$ with
+$Y(x) \ne 0$; $G$-invariance makes $Y$ constant on the orbit of $x$, so the orbit sum is a nonzero
+multiple of $Y(x)$, contradicting the design property. Hence $\mathcal{H}_4^G = 0$ is
+**equivalent** to "every $G$-orbit is a 4-design", not strictly stronger than it — and since a
+weighted union of designs is a design, the "arbitrary weighted combinations of orbits" argument
+establishes nothing extra. What the group statement *is* stronger than is the classical
+single-orbit fact that the $24$-cell is a spherical 5-design
+[Delsarte–Goethals–Seidel 1977; Cohn–Conway–Elkies–Kumar 2007], which it implies.
+A concrete instance of the theorem: the Reynolds average of $k_1^4$ over $G$ is
 exactly $\tfrac18 (k^2)^2$, which is precisely the average of $k_1^4$ over the full rotation group
 $O(4)$, namely $3|k|^4/(4\cdot 6)$. The finite group of order $1152$ reproduces the continuous
 average exactly at fourth order.
@@ -456,10 +526,36 @@ k^2$, or fractional-power terms — the argument does not apply. Polynomial inva
 polynomials. A non-analytic kernel can be $G$-invariant and still direction-dependent at leading
 non-quadratic order.
 
-This is a real restriction, not a formality. Substrates with dissipation or long-range memory are
-exactly the ones for which non-analytic kernels are expected. The honest statement is: *given a
+This is a real restriction, not a formality, and the loophole is not empty — here is an explicit
+counterexample, built from material already on the table. Let $A(k)$ be the anisotropic sextic
+invariant of §6. Then
+
+$$
+K_\epsilon(k) \;=\; k^2 \;+\; \epsilon\,\bigl|A(k)\bigr|^{2/3}
+$$
+
+is continuous, $G$-invariant, and its leading correction $|A|^{2/3}$ is homogeneous of degree $4$ —
+yet it is **not** a multiple of $(k^2)^2$. It cannot be: $A$ takes both signs on the unit sphere and
+therefore vanishes on a nontrivial cone (along the arc from $e_1$ to $(1,1,0,0)/\sqrt2$ it vanishes
+at exactly $\pi/8$, where $A = 0$ identically), so $|A|^{2/3}/(k^2)^2$ is not constant. A degree-4
+homogeneous function analytic at the origin would have to *be* a quartic polynomial, and the only
+$G$-invariant one is $c\,(k^2)^2$; so $|A|^{2/3}$ is non-analytic, exactly as the premise requires,
+and $K_\epsilon$ is a $G$-symmetric kernel with a genuinely anisotropic degree-four part. (All four
+properties — invariance under all $1152$ elements, degree-4 homogeneity, non-constancy of the ratio
+to $(k^2)^2$, and the zero on the sphere — are checked in Appendix A.)
+
+The honest statement is therefore: *given a
 derivative expansion, the quartic term is isotropic; whether a derivative expansion exists is a
 separate question about the dynamics.*
+
+**A partial rescue for the one case that matters most.** The realistic way analyticity fails in an
+interacting theory is that massless loops generate logarithms, and the news there is good. A term
+$f(k)\log k^2$ with $f$ homogeneous of degree $4$ still requires $f$ itself to be $G$-invariant —
+$\log k^2$ is already invariant, and the analytic and log-multiplied parts cannot mix — so $f$ is
+forced to $(k^2)^2$ and the term is $(k^2)^2\log k^2$, isotropic. Logarithmic non-analyticity does
+not reopen the anisotropic channel; power-law and fractional non-analyticity, of the
+$|A|^{2/3}$ type above, does. This makes the loop-robustness claim at the end of §8.4 tighter than
+a bare appeal to "any $G$-preserving regulator" would be.
 
 ### 8.2 (P-pg) The full point group, including triality
 
@@ -469,27 +565,71 @@ protection at all. Even $W(B_4)$ symmetry (order $384$) leaves a two-dimensional
 §7 shows.
 
 The failure mode is concrete and worth spelling out, because it is how a real model would lose the
-result without anybody noticing. Consider the second shell of $D_4$, which splits under $W(D_4)$
-into two sub-orbits:
+result without anybody noticing. Consider the second shell of $D_4$ — the $24$ vectors
+$\{\pm2e_i\}\cup(\pm1,\pm1,\pm1,\pm1)$ of squared length $4$. It is a single orbit under $G$; it
+splits into **two** orbits under $W(B_4)$ (sizes $8$ and $16$); and it splits into **three** orbits
+of eight under $W(D_4)$, because even signed permutations preserve the product of the coordinates
+and hence the parity of the number of minus signs:
 
-| sub-orbit | size | $M_{1111}$ | $M_{1122}$ | 4th-moment residual |
-|---|---:|---:|---:|---:|
-| $\{\pm 2 e_i\}$ | 8 | 32 | 0 | **32** |
-| $(\pm1,\pm1,\pm1,\pm1)$ | 16 | 16 | 16 | **32** |
-| combined, equal weight | 24 | 48 | 16 | **0** |
-| combined, weights $2\!:\!1$ | 24 | — | — | **32** |
+| $W(D_4)$-orbit | size | $M_{1111}$ | $M_{1122}$ | $M_{1234}$ | 4th-moment residual |
+|---|---:|---:|---:|---:|---:|
+| $\mathcal{O}_1 = \{\pm 2 e_i\}$ | 8 | 32 | 0 | 0 | **32** |
+| $\mathcal{O}_2 = (\pm1)^4$, even # of $-$ | 8 | 8 | 8 | $+8$ | **16** |
+| $\mathcal{O}_3 = (\pm1)^4$, odd # of $-$ | 8 | 8 | 8 | $-8$ | **16** |
+| $\mathcal{O}_2\cup\mathcal{O}_3$ (the $W(B_4)$ orbit) | 16 | 16 | 16 | 0 | **32** |
+| all three, equal weight | 24 | 48 | 16 | 0 | **0** |
+| all three, weights $2\!:\!1\!:\!1$ | 24 | 80 | 16 | 0 | **32** |
 
-Each sub-orbit is separately, and substantially, anisotropic. They cancel *exactly* — and only — at
-equal weight, because triality exchanges them. A model that assigns different couplings to
-second-neighbour bonds of the two types (a completely natural thing to do if one has not noticed the
-triality structure, since they are geometrically distinguishable: one is "along an axis", the other
-"along a diagonal") **restores dimension-six anisotropy at full strength**.
+Each orbit is separately, and substantially, anisotropic. With weights $(w_1,w_2,w_3)$ the two
+independent obstructions are
+
+$$
+M_{1234} \;=\; 8\,(w_2 - w_3), \qquad
+M_{1111} - 3M_{1122} \;=\; 32w_1 - 16w_2 - 16w_3 ,
+$$
+
+and these vanish together **iff $w_1 = w_2 = w_3$**: fourth-order isotropy holds exactly at equal
+weight on all three orbits, and nowhere else. (Note that the second obstruction is *not*
+proportional to $w_1 - w_2$; it is $32\bigl(w_1 - \tfrac{w_2+w_3}{2}\bigr)$, so the axis orbit is
+balanced against the *mean* of the two diagonal orbits.)
+
+The three-orbit form is also where the $S_3$ becomes visible. The generator $T$ of §3 swaps
+$\mathcal{O}_1 \leftrightarrow \mathcal{O}_2$ and fixes $\mathcal{O}_3$ pointwise-as-a-set — exactly
+what a transposition in $S_3 \cong G/W(D_4)$ should do. It also sharpens the failure mode. A model
+builder is far more likely to lose triality by weighting *axes against diagonals* ($w_1 \ne w_2 =
+w_3$, a completely natural thing to do if one has not noticed the triality structure, since the two
+are geometrically distinguishable: one is "along an axis", the other "along a diagonal") than by
+splitting the two diagonal orbits, which are distinguished only by a sign parity that $W(B_4)$
+merges and that nobody tracks by accident. Either failure **restores dimension-six anisotropy at
+full strength**.
 
 So the protection is a property of the symmetry of the *action*, not of the *lattice geometry* alone.
 Putting fields on a $D_4$ lattice is necessary but not sufficient; the couplings must respect
 triality. This is the result's own "would change if" clause and it should travel with it.
 
-### 8.3 What the theorem does **not** do
+### 8.3 (P-sc) A scalar kernel
+
+The theorem's quantifier is $K:\mathbb{R}^4\to\mathbb{R}$, and that is not a stylistic choice. A
+kernel carrying internal indices — a polarization tensor, a spinor structure, a flavour matrix —
+transforms by *equivariance*, $M(Ak) = A\,M(k)\,A^{\mathsf T}$, and the relevant object is then the
+space of $G$-equivariant matrix-valued quartics, which is larger than $\mathbb{R}[k]^G_4$ and which
+the proof of §5 does not touch.
+
+The gap is not hypothetical. §5's corollary exhibits it explicitly: the simplest fully
+$W(F_4)$-symmetric matrix-valued bond coupling has $T_{\mu\nu}(k)k^\mu k^\nu = M_6(k)$, which is not
+a multiple of $(k^2)^3$, so the four-derivative tensor is not isotropic, and its transverse
+eigenvalues split along a generic direction while remaining degenerate along $e_1$ and
+$(1,1,0,0)/\sqrt2$. The two-derivative part is isotropic, so the splitting is a genuine
+four-derivative effect and not a leading-order artefact.
+
+This matters for how the result may be quoted. The constraints assembled in §1.1 are bounds on
+photons, electrons and protons; Neuberger's title is *Spinless fields on $F_4$ lattices*. None of
+those objects is a scalar field. A reader who takes the abstract's quantifier to range over "any
+dispersion kernel" will read the theorem as covering exactly the sector it does not. The scalar
+restriction therefore travels with the result, on the same footing as (P-an) and (P-pg), and
+extending the statement to the equivariant case is open work this note does not do.
+
+### 8.4 What the theorem does **not** do
 
 This subsection is the one that must not be skimmed.
 
@@ -529,7 +669,43 @@ is dimension eight. Whether any such substrate exists is not addressed.
 
 Honest attribution requires separating three literatures.
 
-**(i) Lattice field theory — where this result already lives.** The physical content is known and
+**(0) Lattice-gas hydrodynamics — the earliest home of the criterion, and it is not lattice field
+theory.** The requirement that drives everything below — *find a lattice whose point group makes the
+fourth-rank tensor built from its bond vectors isotropic* — was already the organising criterion of
+the lattice-gas automaton literature of 1986–87, a year before Neuberger. There, the motivation is
+not Lorentz violation but the Navier–Stokes limit: a lattice gas reproduces isotropic hydrodynamics
+only if its fourth-rank velocity moment is isotropic, no regular three-dimensional lattice achieves
+this, and the standard resolution is to go to four dimensions and project. The lattice that does the
+job is the face-centred hypercubic (FCHC) lattice, defined in that literature as the sites of
+$\mathbb{Z}^4$ with even coordinate sum — which is *verbatim* the $D_4$ of §2, with the same $24$
+nearest neighbours. d'Humières, Lallemand and Frisch, *Lattice gas models for 3D hydrodynamics*,
+Europhys. Lett. **2**, 291 (1986) is where the FCHC model is introduced; Frisch, d'Humières,
+Hasslacher, Lallemand, Pomeau and Rivet, Complex Systems **1**, 649 (1987) is the systematic
+treatment, and Hénon, Complex Systems **1**, 475 (1987) works with the FCHC isometry group directly.
+Wolfram, *Cellular automaton fluids 1*, J. Stat. Phys. **45**, 471 (1986) treats the
+group-theoretic isotropy conditions for cellular-automaton fluids in the same period.
+
+So the note's earlier statement — that the physical content "dates to Neuberger (1987)" — assigns
+the origin a year too late and to the wrong literature. **The physical content of §4–§5, that the
+$D_4$/FCHC bond set has an isotropic fourth-rank moment where the hypercubic one does not, belongs
+to the 1986 lattice-gas literature.** What Neuberger (1987) contributes, and what remains properly
+his, is the *field-theoretic* reading: that this is what removes the dimension-six Lorentz-breaking
+operator of the hypercubic regulator.
+
+*Verification status of this paragraph, stated because absence-and-priority claims are only as good
+as their sourcing.* The EPL 1986 bibliographic record and abstract were read from the publisher
+(DOI 10.1209/0295-5075/2/4/006); the abstract confirms the FCHC-based 4D lattice gas projected to
+three dimensions but does **not** itself state the rank-four-isotropy motivation, and the full text
+was not obtained. The Complex Systems 1987 and Hénon 1987 papers, and Wolfram 1986, were **not read
+in the original** — the scans exceeded the retrieval limits available here. The FCHC $=$ $D_4$
+identification and the "no regular 3D lattice suffices, so use 4D and project" criterion are taken
+from secondary descriptions of those papers, not from the primaries. Accordingly the paragraph
+above should be read as a **priority claim with secondary sourcing**: the direction of the
+correction is not in doubt, but a referee-grade version of §9 requires these four items read in the
+original, and the specific sentence "introduced FCHC *precisely because* it is the simplest lattice
+achieving rank-four isotropy" is **not** yet confirmed against a primary and is not asserted here.
+
+**(i) Lattice field theory — where the field-theoretic reading lives.** The physical content is known and
 should be credited there. Celmaster (1982) introduced gauge theories on the four-dimensional
 body-centred hypercubic lattice specifically because its point group is three times larger than the
 hypercubic one, and pursued the programme through the 1980s with several collaborators. Neuberger
@@ -592,8 +768,11 @@ Chow (1999), all of whose citers are lattice field theory — is the dimension-s
 that the hypercubic protection *fails* at degree 4 (where $\sum_i k_i^4$ survives), and that the
 $D_4$/$F_4$ point group *succeeds* there. That single narrowed item is the gap this note is aimed
 at. (Absence claims are only as good as their coverage; the search coverage and its stated
-weaknesses are on record, and pre-1991 lattice-gas originals — where Chen–Goldhirsch–Orszag locate
-the "well known" degree-4 result — were not read in the original.)
+weaknesses are on record. The pre-1991 lattice-gas originals — where Chen–Goldhirsch–Orszag locate
+the "well known" degree-4 result — are now identified and credited in §9(0) above, but three of the
+four are still **not read in the original**; that paragraph states exactly which, and the absence
+claim in this paragraph is correspondingly weaker against the lattice-gas literature than against
+the lattice-field-theory one.)
 
 **A different protection mechanism, for contrast.** In the analogue-gravity programme, Volovik and
 collaborators derive emergent Lorentz invariance in fermionic condensates from a *topological*
@@ -617,15 +796,23 @@ the mechanism here keeps the lattice and buys two orders in $E/\Lambda$.
 
 * $\operatorname{Aut}(D_4) \cong W(F_4)$ has order $1152$ and invariant degrees $\{2,6,8,12\}$.
 * Consequently $\dim\mathbb{R}[k]^G_4 = 1$: the only invariant quartic is $(k^2)^2$. Any analytic,
-  point-group-symmetric dispersion kernel therefore has an exactly isotropic quartic term, and there
-  is no anisotropic dimension-six Lorentz-violating operator.
+  point-group-symmetric, **scalar** dispersion kernel therefore has an exactly isotropic quartic
+  term, and there is no anisotropic dimension-six Lorentz-violating operator *in that sector*.
 * $\dim\mathbb{R}[k]^G_6 = 2$, with an explicit anisotropic invariant $A(k)$ taking both signs on the
   unit sphere, and the sixth bond moment is anisotropic. Dimension eight is therefore *reached*.
 * $\mathbb{Z}^4$ fails: $\dim\mathbb{R}[k]^{W(B_4)}_4 = 2$, $\sum_i k_i^4$ survives, and the
   nearest-neighbour dispersion is direction-dependent at quartic order by a factor of $4$. The result
   is an $F_4$ fact, not a four-dimensionality fact.
-* Two premises are load-bearing: analyticity, and the full point group including triality. Unequal
-  weighting of triality-related orbits restores dimension-six anisotropy at full strength.
+* Three premises are load-bearing: **(P-an)** analyticity — and the loophole is non-empty,
+  $k^2 + \epsilon|A(k)|^{2/3}$ being a $G$-invariant kernel with an anisotropic degree-four part,
+  though logarithmic non-analyticity is harmless since $f\log k^2$ still forces $f = (k^2)^2$;
+  **(P-pg)** the full point group including triality — the second shell carries **three** $W(D_4)$
+  orbits of eight (residuals $32,16,16$) and isotropy holds *iff all three weights are equal*, so
+  unequal weighting of triality-related orbits restores dimension-six anisotropy at full strength;
+  and **(P-sc)** a **scalar** kernel — the theorem does not reach matrix-valued (equivariant)
+  kernels, and the simplest $W(F_4)$-symmetric one already splits polarizations
+  direction-dependently at four derivatives, while the bounds of §1.1 are for photons, electrons and
+  protons, none of them scalars.
 * **The theorem closes the anisotropic channel only.** The isotropic dimension-six term survives with
   an $O(1)$ coefficient ($-1/12$ for the nearest-neighbour kernel) and is the more strongly
   constrained one. Lorentz violation is not solved.
@@ -651,7 +838,10 @@ Checks, in order:
   (3) dim of the degree-d G-invariant polynomials, by Reynolds averaging + numerical rank;
   (4) the free nearest-neighbour dispersion, showing the quartic term is isotropic;
   (5) the Z^4 (hypercubic) contrast;
-  (6) premise P-pg: the two shell-2 sub-orbits cancel only at equal weight.
+  (6) premise P-pg: the THREE shell-2 W(D4) orbits cancel only at equal weight on all three;
+  (7) Remark (i): G acts on the second shell, and the rescaled union is the 48-root F4 system;
+  (8) premise P-sc: the matrix-valued (pseudo-dipolar) kernel is NOT isotropic at 4 derivatives;
+  (9) premise P-an: |A(k)|^{2/3} is a non-analytic G-invariant anisotropic quartic.
 """
 import itertools
 import numpy as np
@@ -730,7 +920,13 @@ def aut_root_system(roots):
             img = arr @ A.T
             if np.allclose(img, np.rint(img)) and all(tuple(int(x) for x in q) in Rs
                                                       for q in np.rint(img)):
-                out[np.round(A, 9).tobytes()] = np.round(A, 9)
+                # normalise -0.0 -> 0.0 BEFORE hashing: raw float bytes distinguish the two
+                # signed zeros, which would double-count an element and inflate |G|.  It does
+                # not bite for this group, but the whole point of this routine is that the
+                # group is computed rather than assumed, so the hash must not be fragile.
+                A = np.round(A, 9)
+                A = np.where(np.abs(A) < 1e-12, 0.0, A)
+                out[A.tobytes()] = A
             return
         for w in rl:                      # prune on partial Gram matrix
             if all(abs(sum(a*b for a, b in zip(w, chosen[m])) - gram[k][m]) < 1e-9
@@ -805,8 +1001,12 @@ check("PREMISE P-pg: degree-4 invariant space of W(D4) alone is 3-dimensional",
 # ---------------------------------------------------------------- (4)(5) dispersion
 print("\n(4)/(5) free nearest-neighbour dispersion, D4 vs Z^4")
 Rm, Zm = np.array(R, float), np.array(Z, float)
-gD4 = lambda k: np.sum(1 - np.cos(Rm @ k)) / 6.0
-gZ4 = lambda k: np.sum(1 - np.cos(Zm @ k))
+# 2*sin(x/2)^2 instead of 1-cos(x): algebraically identical, but 1-cos loses ~3 significant
+# digits to cancellation at the x ~ 1e-2 sample points used below, which is the same order as
+# the tolerance in quartic_coeff.  This is free and removes the margin question entirely.
+_1mcos = lambda x: 2.0 * np.sin(x / 2.0) ** 2
+gD4 = lambda k: np.sum(_1mcos(Rm @ k)) / 6.0
+gZ4 = lambda k: np.sum(_1mcos(Zm @ k))
 def quartic_coeff(g, u):
     ts = np.array([1e-2, 2e-2, 3e-2])
     A  = np.vstack([ts**2, ts**4, ts**6]).T
@@ -837,9 +1037,9 @@ check("M6 is invariant under the triality generator T, while sum k_i^4 is not",
       and not all(np.isclose(np.sum(k**4), np.sum((T@k)**4)) for k in kk))
 aniso = lambda k: M6f(k)/12.0 - 1.25*(k@k)**3      # J(k) - (5/4)(k^2)^3, J = 5k^2 S4 - 4 S6
 check("the anisotropic sextic A(k) = 5k^2 sum k_i^4 - 4 sum k_i^6 - (5/4)(k^2)^3 is nonzero"
-      " and G-invariant",
+      " and G-invariant under ALL 1152 elements",
       any(abs(aniso(k)) > 1e-9 for k in kk) and all(np.isclose(aniso(k), aniso(A@k))
-                                                     for k in kk for A in G[:50]))
+                                                     for k in kk for A in G))
 # NB: the axis e1 and the body diagonal (1,1,1,1)/2 are related BY TRIALITY, so A must agree on
 # them.  Inequivalent unit directions are the short-root direction e1 and the long-root direction
 # (1,1,0,0)/sqrt(2).
@@ -851,16 +1051,126 @@ check("A(k) separates the short-root from the long-root direction (so it really 
       f"A(e1)={aniso(sh):.6f}  vs  A((1,1,0,0)/sqrt2)={aniso(lg):.6f}")
 
 # ---------------------------------------------------------------- (6) premise P-pg
-print("\n(6) premise P-pg: the shell-2 sub-orbits")
-oA = [tuple(s if k == i else 0 for k in range(4)) for i in range(4) for s in (2, -2)]
-oB = [t for t in itertools.product((1, -1), repeat=4)]
-rA, _ = resid4(oA); rB, _ = resid4(oB)
-check("each shell-2 sub-orbit is separately anisotropic with residual 32",
-      rA == 32 and rB == 32, f"{{+-2e_i}}: {rA},  (+-1,+-1,+-1,+-1): {rB}")
-rEq, AEq = resid4(oA + oB)
-check("they cancel EXACTLY at equal weight", rEq == 0, f"combined residual={rEq}, A={AEq}")
-rUn, _ = resid4(oA + oB, w=[2]*len(oA) + [1]*len(oB))
-check("unequal weighting (2:1) RESTORES quartic anisotropy", rUn != 0, f"residual={rUn}")
+print("\n(6) premise P-pg: the shell-2 orbits (THREE under W(D4), two under W(B4))")
+shell2 = ([tuple(s if k == i else 0 for k in range(4)) for i in range(4) for s in (2, -2)]
+          + [t for t in itertools.product((1, -1), repeat=4)])
+
+def orbits(Gp, pts):
+    pts = [tuple(p) for p in pts]; rem, orbs = set(pts), []
+    while rem:
+        v = next(iter(rem))
+        o = {tuple(int(round(x)) for x in (A @ np.array(v, float))) for A in Gp}
+        assert o <= set(pts), "an orbit left the shell — the group does not act on it"
+        orbs.append(sorted(o)); rem -= o
+    return orbs
+
+oD, oB4, oG = orbits(WD4, shell2), orbits(WB4, shell2), orbits(G, shell2)
+check("shell 2 is ONE orbit under G, TWO under W(B4) (8+16), THREE of 8 under W(D4)",
+      sorted(len(o) for o in oG) == [24] and sorted(len(o) for o in oB4) == [8, 16]
+      and sorted(len(o) for o in oD) == [8, 8, 8],
+      f"G:{sorted(len(o) for o in oG)}  B4:{sorted(len(o) for o in oB4)}  "
+      f"D4:{sorted(len(o) for o in oD)}")
+# label the three W(D4) orbits: axis / even-parity diagonal / odd-parity diagonal
+def lab(o):
+    v = o[0]
+    if max(abs(x) for x in v) == 2: return "axis"
+    return "diag+" if np.prod(v) > 0 else "diag-"
+byname = {lab(o): o for o in oD}
+rows = {n: (mom(o, (0,)*4), mom(o, (0, 0, 1, 1)), mom(o, (0, 1, 2, 3)), resid4(o)[0])
+        for n, o in byname.items()}
+check("W(D4) orbit moments: axis (32,0,0,res 32); diag+ (8,8,+8,res 16); diag- (8,8,-8,res 16)",
+      rows["axis"] == (32, 0, 0, 32) and rows["diag+"] == (8, 8, 8, 16)
+      and rows["diag-"] == (8, 8, -8, 16), f"{rows}")
+check("the two DIAGONAL orbits are separately anisotropic but W(B4) merges them into residual 32",
+      resid4(byname["diag+"] + byname["diag-"])[0] == 32)
+rEq, AEq = resid4(byname["axis"] + byname["diag+"] + byname["diag-"])
+check("they cancel EXACTLY at equal weight on all three", rEq == 0,
+      f"combined residual={rEq}, A={AEq}")
+w21 = [2]*8 + [1]*8 + [1]*8
+allv = byname["axis"] + byname["diag+"] + byname["diag-"]
+rUn = resid4(allv, w=w21)[0]
+check("weights 2:1:1 (axis vs diagonals) RESTORE quartic anisotropy: M_1111=80, M_1122=16, res 32",
+      rUn == 32 and mom(allv, (0,)*4, w21) == 80 and mom(allv, (0, 0, 1, 1), w21) == 16,
+      f"residual={rUn}")
+# the two obstructions, and the iff
+def obstr(w1, w2, w3):
+    w = [w1]*8 + [w2]*8 + [w3]*8
+    return (mom(allv, (0, 1, 2, 3), w), mom(allv, (0,)*4, w) - 3*mom(allv, (0, 0, 1, 1), w))
+check("M_1234 = 8(w2-w3) and M_1111-3M_1122 = 32w1-16w2-16w3 (NOT 32(w1-w2))",
+      all(obstr(a, b, c) == (8*(b-c), 32*a-16*b-16*c)
+          for a, b, c in itertools.product(range(-2, 3), repeat=3)))
+check("=> fourth-order isotropy holds IFF all three weights are equal",
+      all((obstr(a, b, c) == (0, 0)) == (a == b == c)
+          for a, b, c in itertools.product(range(-2, 3), repeat=3)))
+# triality: T swaps the axis orbit with one diagonal orbit and fixes the other
+def which(v):
+    for n, o in byname.items():
+        if tuple(int(round(x)) for x in v) in [tuple(y) for y in o]: return n
+    return "?"
+Tact = {n: {which(T @ np.array(v, float)) for v in o} for n, o in byname.items()}
+check("T acts on the three orbits as a TRANSPOSITION (swaps axis<->diag+, fixes diag-)",
+      Tact == {"axis": {"diag+"}, "diag+": {"axis"}, "diag-": {"diag-"}}, f"{Tact}")
+
+# ---------------------------------------------------------------- (7) Remark (i): the F4 system
+print("\n(7) Remark (i): G acts on shell 2, and shell1 + shell2/2 is the 48-root F4 system")
+S2 = np.array(shell2, float)
+inset = lambda v, S: bool(np.any(np.all(np.abs(S - v) < 1e-9, axis=1)))
+check("G genuinely acts on the second shell (all 1152 x 24 images land back in it)",
+      all(inset(A @ v, S2) for A in G for v in S2))
+F4 = np.array(sorted({tuple(np.round(x, 9) + 0.0) for x in
+                      list(Rm) + list(S2 / 2.0)}), float)
+check("|F4 root set| = 48, with squared lengths {1, 2} (24 short + 24 long)",
+      len(F4) == 48 and sorted({round(float(v @ v), 6) for v in F4}) == [1.0, 2.0],
+      f"|F4|={len(F4)}")
+check("G preserves the 48-root set", all(inset(A @ v, F4) for A in G for v in F4))
+check("it IS a root system: closed under its own reflections, and <b,a^v> in Z",
+      all(inset(b - 2*(a @ b)/(a @ a)*a, F4) for a in F4 for b in F4)
+      and all(abs(2*(a @ b)/(a @ a) - round(2*(a @ b)/(a @ a))) < 1e-9
+              for a in F4 for b in F4))
+check("|Aut(F4 root system)| = 1152 = |G| (rebuilt independently as a stabiliser)",
+      len(aut_root_system([tuple(int(round(x)) for x in v) for v in 2*F4])) == 1152)
+
+# ---------------------------------------------------------------- (8) premise P-sc
+print("\n(8) premise P-sc: the theorem does NOT cover matrix-valued kernels")
+Tmn = lambda k, p: np.einsum('va,vb,v->ab', Rm, Rm, (Rm @ k) ** p)
+kk2 = [rng.normal(size=4) for _ in range(5)]
+check("T_ab(k) k^a k^b = M6(k) for the four-derivative pseudo-dipolar tensor",
+      all(np.isclose(k @ Tmn(k, 4) @ k, M6(k)) for k in kk2))
+check("M6(k) is NOT a multiple of (k^2)^3, so T_ab is NOT an isotropic tensor",
+      len({round(M6(k)/(k @ k)**3, 6) for k in kk2}) > 1)
+def iso_resid(p, k):
+    Tt = Tmn(k, p)
+    a, b = np.linalg.lstsq(np.vstack([np.eye(4).ravel()*(k @ k),
+                                      np.outer(k, k).ravel()]).T, Tt.ravel(), rcond=None)[0]
+    return np.max(np.abs(Tt - (a*(k @ k)*np.eye(4) + b*np.outer(k, k))))/np.max(np.abs(Tt))
+check("the TWO-derivative part IS isotropic (residual ~ 0) — the splitting is genuinely quartic",
+      max(iso_resid(2, k) for k in kk2) < 1e-12,
+      f"2-deriv {max(iso_resid(2,k) for k in kk2):.2e}  "
+      f"vs 4-deriv {max(iso_resid(4,k) for k in kk2):.3f}")
+def transverse(k):
+    k = k/np.linalg.norm(k)
+    _, V = np.linalg.eigh(np.eye(4) - np.outer(k, k))
+    return np.linalg.eigvalsh(V[:, 1:].T @ Tmn(k, 4) @ V[:, 1:])
+ug = rng.normal(size=4); ug /= np.linalg.norm(ug)
+check("transverse eigenvalues of the 4-derivative tensor SPLIT along a generic direction",
+      np.ptp(transverse(ug)) > 1e-6 and np.ptp(transverse(sh)) < 1e-9,
+      f"generic {np.round(transverse(ug),3)}  e1 {np.round(transverse(sh),3)}  "
+      f"(1,1,0,0)/r2 {np.round(transverse(lg),3)}")
+
+# ---------------------------------------------------------------- (9) premise P-an
+print("\n(9) premise P-an: an explicit non-analytic G-invariant anisotropic quartic")
+cex = lambda k: abs(aniso(np.asarray(k, float))) ** (2.0/3.0)
+check("|A(k)|^{2/3} is G-invariant under all 1152 elements",
+      all(np.isclose(cex(A @ k), cex(k)) for k in kk2 for A in G))
+check("|A(k)|^{2/3} is homogeneous of degree 4",
+      all(np.isclose(cex(2.7*k), 2.7**4 * cex(k)) for k in kk2))
+check("|A(k)|^{2/3} is NOT a multiple of (k^2)^2 (so the quartic part is anisotropic)",
+      len({round(cex(k)/(k @ k)**2, 9) for k in kk2}) > 1)
+arc = lambda t: np.array([np.cos(t), np.sin(t), 0.0, 0.0])
+check("A vanishes on a nontrivial cone (A(arc(pi/8)) = 0), so |A|^{2/3} is non-analytic there",
+      abs(aniso(arc(np.pi/8))) < 1e-12 and aniso(arc(0.0))*aniso(arc(np.pi/4)) < 0,
+      f"A(e1)={aniso(arc(0.0)):.3f}, A(pi/8)={aniso(arc(np.pi/8)):.1e}, "
+      f"A(pi/4)={aniso(arc(np.pi/4)):.3f}")
 
 print("\n" + ("ALL CHECKS PASSED" if not fails else f"FAILURES: {fails}"))
 ```
@@ -871,10 +1181,8 @@ print("\n" + ("ALL CHECKS PASSED" if not fails else f"FAILURES: {fails}"))
 (1) bond sets and moments
   [OK ] D4 has 24 nearest-neighbour bonds, all of squared length 2  |bonds|=24
   [OK ] D4 second moment = 12 delta_ij
-  [OK ] D4 fourth moment exactly isotropic: M_1111 = 12 = 3 M_1122, residual 0
-        M_1111=12, M_1122=4, residual=0
-  [OK ] D4 sixth moment NOT isotropic (M_112233 = 0 but M_111111 = 12 != 0)
-        M_111111=12, M_112233=0, residual=12
+  [OK ] D4 fourth moment exactly isotropic: M_1111 = 12 = 3 M_1122, residual 0  M_1111=12, M_1122=4, residual=0
+  [OK ] D4 sixth moment NOT isotropic (M_112233 = 0 but M_111111 = 12 != 0)  M_111111=12, M_112233=0, residual=12
 
 (2) the point group
   [OK ] |Aut(D4 root system)| = 1152 = |W(F4)|  got 1152
@@ -893,23 +1201,43 @@ print("\n" + ("ALL CHECKS PASSED" if not fails else f"FAILURES: {fails}"))
   [OK ] PREMISE P-pg: degree-4 invariant space of W(D4) alone is 3-dimensional
 
 (4)/(5) free nearest-neighbour dispersion, D4 vs Z^4
-  [OK ] D4: quartic coefficient is direction-INDEPENDENT and equals -1/12
-        min=-0.08333334 max=-0.08333333, -1/12=-0.08333333
-  [OK ] Z^4: quartic coefficient is direction-DEPENDENT, = -(1/12) sum u_i^4
-        axis -0.083333 vs diagonal -0.020833  (ratio 4)
+  [OK ] D4: quartic coefficient is direction-INDEPENDENT and equals -1/12  min=-0.08333333 max=-0.08333333, -1/12=-0.08333333
+  [OK ] Z^4: quartic coefficient is direction-DEPENDENT, = -(1/12) sum u_i^4  axis -0.083333 vs diagonal -0.020833  (ratio 4)
   [OK ] Z^4 fourth bond moment anisotropic: N_1111 = 2, N_1122 = 0, residual 2
   [OK ] explicit sixth moment M6(k) = 60 k^2 sum k_i^4 - 48 sum k_i^6
   [OK ] M6 is invariant under the triality generator T, while sum k_i^4 is not
-  [OK ] the anisotropic sextic A(k) = ... is nonzero and G-invariant
+  [OK ] the anisotropic sextic A(k) = 5k^2 sum k_i^4 - 4 sum k_i^6 - (5/4)(k^2)^3 is nonzero and G-invariant under ALL 1152 elements
   [OK ] A(k) is constant on a triality orbit: A(e1) = A((1,1,1,1)/2)  A=-0.250000
-  [OK ] A(k) separates the short-root from the long-root direction
-        A(e1)=-0.250000  vs  A((1,1,0,0)/sqrt2)=0.250000
+  [OK ] A(k) separates the short-root from the long-root direction (so it really is anisotropic)  A(e1)=-0.250000  vs  A((1,1,0,0)/sqrt2)=0.250000
 
-(6) premise P-pg: the shell-2 sub-orbits
-  [OK ] each shell-2 sub-orbit is separately anisotropic with residual 32
-        {+-2e_i}: 32,  (+-1,+-1,+-1,+-1): 32
-  [OK ] they cancel EXACTLY at equal weight  combined residual=0, A=16
-  [OK ] unequal weighting (2:1) RESTORES quartic anisotropy  residual=32
+(6) premise P-pg: the shell-2 orbits (THREE under W(D4), two under W(B4))
+  [OK ] shell 2 is ONE orbit under G, TWO under W(B4) (8+16), THREE of 8 under W(D4)  G:[24]  B4:[8, 16]  D4:[8, 8, 8]
+  [OK ] W(D4) orbit moments: axis (32,0,0,res 32); diag+ (8,8,+8,res 16); diag- (8,8,-8,res 16)  {'diag-': (8, 8, -8, 16), 'diag+': (8, 8, 8, 16), 'axis': (32, 0, 0, 32)}
+  [OK ] the two DIAGONAL orbits are separately anisotropic but W(B4) merges them into residual 32
+  [OK ] they cancel EXACTLY at equal weight on all three  combined residual=0, A=16
+  [OK ] weights 2:1:1 (axis vs diagonals) RESTORE quartic anisotropy: M_1111=80, M_1122=16, res 32  residual=32
+  [OK ] M_1234 = 8(w2-w3) and M_1111-3M_1122 = 32w1-16w2-16w3 (NOT 32(w1-w2))
+  [OK ] => fourth-order isotropy holds IFF all three weights are equal
+  [OK ] T acts on the three orbits as a TRANSPOSITION (swaps axis<->diag+, fixes diag-)  {'diag-': {'diag-'}, 'diag+': {'axis'}, 'axis': {'diag+'}}
+
+(7) Remark (i): G acts on shell 2, and shell1 + shell2/2 is the 48-root F4 system
+  [OK ] G genuinely acts on the second shell (all 1152 x 24 images land back in it)
+  [OK ] |F4 root set| = 48, with squared lengths {1, 2} (24 short + 24 long)  |F4|=48
+  [OK ] G preserves the 48-root set
+  [OK ] it IS a root system: closed under its own reflections, and <b,a^v> in Z
+  [OK ] |Aut(F4 root system)| = 1152 = |G| (rebuilt independently as a stabiliser)
+
+(8) premise P-sc: the theorem does NOT cover matrix-valued kernels
+  [OK ] T_ab(k) k^a k^b = M6(k) for the four-derivative pseudo-dipolar tensor
+  [OK ] M6(k) is NOT a multiple of (k^2)^3, so T_ab is NOT an isotropic tensor
+  [OK ] the TWO-derivative part IS isotropic (residual ~ 0) — the splitting is genuinely quartic  2-deriv 4.28e-16  vs 4-deriv 0.099
+  [OK ] transverse eigenvalues of the 4-derivative tensor SPLIT along a generic direction  generic [1.844 2.375 4.044]  e1 [4. 4. 4.]  (1,1,0,0)/r2 [2. 2. 2.]
+
+(9) premise P-an: an explicit non-analytic G-invariant anisotropic quartic
+  [OK ] |A(k)|^{2/3} is G-invariant under all 1152 elements
+  [OK ] |A(k)|^{2/3} is homogeneous of degree 4
+  [OK ] |A(k)|^{2/3} is NOT a multiple of (k^2)^2 (so the quartic part is anisotropic)
+  [OK ] A vanishes on a nontrivial cone (A(arc(pi/8)) = 0), so |A|^{2/3} is non-analytic there  A(e1)=-0.250, A(pi/8)=0.0e+00, A(pi/4)=0.250
 
 ALL CHECKS PASSED
 ```
@@ -933,7 +1261,12 @@ ALL CHECKS PASSED
 | $D_4$ free dispersion quartic coefficient | $-1/12$, direction-independent | computed; matches published $F_4$ value |
 | $\mathbb{Z}^4$ bond moments | $N_{1111}=2$, $N_{1122}=0$, residual $2$ | computed |
 | $\mathbb{Z}^4$ quartic anisotropy | axis:diagonal $=4$ | computed |
-| shell-2 sub-orbit residuals | $32$ each; $0$ combined at equal weight | computed |
+| shell-2 orbit structure | $1$ orbit under $G$; $2$ under $W(B_4)$ ($8+16$); **$3$ of $8$** under $W(D_4)$ | computed |
+| shell-2 $W(D_4)$-orbit residuals | axis $32$; the two diagonal parity orbits $16$ each; $0$ combined at equal weight; $32$ at weights $2\!:\!1\!:\!1$ | computed |
+| shell-2 isotropy condition | $M_{1234}=8(w_2-w_3)$, $M_{1111}-3M_{1122}=32w_1-16w_2-16w_3$; isotropic iff $w_1=w_2=w_3$ | computed |
+| $F_4$ root system (Remark (i)) | shell 1 $\cup$ (shell 2)/2 $=$ $48$ roots, lengths$^2$ $\{1,2\}$, reflection-closed, integral; $\lvert\operatorname{Aut}\rvert=1152$ | computed |
+| (P-sc) matrix-valued kernel | $T_{\mu\nu}k^\mu k^\nu = M_6(k) \not\propto (k^2)^3$; 2-derivative part isotropic to $4\times10^{-16}$, 4-derivative part not; transverse eigenvalues split generically | computed |
+| (P-an) counterexample | $\lvert A(k)\rvert^{2/3}$: $G$-invariant, degree-4 homogeneous, $\not\propto (k^2)^2$, vanishes at $\pi/8$ on the $e_1\!\to\!(1,1,0,0)/\sqrt2$ arc | computed |
 | photon $\xi^{(4)}$ bound | $-10^{-7} \lesssim \xi^{(4)} \lesssim 10^{-8}$ | quoted, Liberati (2013) eq. 75 |
 | electron $\eta^{(4)}$ bound | $-10^{-7} \lesssim \eta^{(4)} \lesssim 10^{-6}$ | quoted, Liberati (2013) eq. 75 |
 | proton $\eta^{(4)}_p$ bound | $-10^{-3} \lesssim \eta^{(4)}_p \lesssim 10^{-6}$ (99% CL) | quoted, Liberati (2013) eq. 76 |
@@ -944,6 +1277,28 @@ ALL CHECKS PASSED
 
 All entries below were checked against arXiv, Crossref or the publisher record. Items marked
 *(unverified)* were not confirmed against a primary source and should be checked before submission.
+
+**Lattice-gas hydrodynamics — the FCHC ($=D_4$) lattice and the rank-four isotropy criterion**
+
+0a. D. d'Humières, P. Lallemand and U. Frisch, *Lattice gas models for 3D hydrodynamics*,
+    Europhys. Lett. **2** (4), 291 (1986). DOI: 10.1209/0295-5075/2/4/006. *(Publisher record and
+    abstract read directly; the abstract confirms the 4D face-centred-hypercubic lattice gas and its
+    3D projection but does **not** state the rank-four-isotropy motivation. Full text not obtained —
+    the motivation clause is therefore **not** asserted in §9(0).)*
+
+0b. U. Frisch, D. d'Humières, B. Hasslacher, P. Lallemand, Y. Pomeau and J.-P. Rivet, *Lattice gas
+    hydrodynamics in two and three dimensions*, Complex Systems **1**, 649–707 (1987). *(NOT READ IN
+    THE ORIGINAL — the archival scan exceeded the retrieval limits available here. Cited on
+    secondary description only.)*
+
+0c. M. Hénon, *Isometric collision rules for the four-dimensional FCHC lattice gas*, Complex Systems
+    **1**, 475–494 (1987). *(NOT READ IN THE ORIGINAL; same reason. This is the standard source for
+    the FCHC isometry group, and for the definition of FCHC as the sites of $\mathbb{Z}^4$ with even
+    coordinate sum — i.e. for the FCHC $=D_4$ identification used in §9(0).)*
+
+0d. S. Wolfram, *Cellular automaton fluids 1: Basic theory*, J. Stat. Phys. **45**, 471–526 (1986).
+    *(NOT READ IN THE ORIGINAL. Cited for the group-theoretic treatment of lattice isotropy
+    conditions in the same period.)*
 
 **Lattice field theory on non-hypercubic lattices**
 
@@ -1013,3 +1368,45 @@ All entries below were checked against arXiv, Crossref or the publisher record. 
     system is however re-derived here as a corollary in §5c.)*
 23. H. Cohn, J. H. Conway, N. D. Elkies and A. Kumar, *The $D_4$ root system is not universally
     optimal*, Experimental Mathematics **16**, 313–320 (2007); arXiv:math/0607447.
+24. S. L. Sobolev, *Cubature formulas on the sphere invariant under transformations of finite
+    rotation groups*, Dokl. Akad. Nauk SSSR **146** (2), 310–313 (1962); English translation Soviet
+    Math. Dokl. **3**, 1307–1310 (1962). *(Bibliographic record verified against the Mathnet.ru
+    archive record. The theorem as used in §5(c) — for a finite reflection group, an invariant
+    cubature formula is exact to degree $t$ iff it is exact on the invariant polynomials of degree
+    $\le t$ — is taken from secondary statements of Sobolev's theorem; the original was **not read
+    in the original**.)*
+25. O. R. Musin, *The kissing number in four dimensions*, Annals of Mathematics **168** (1), 1–32
+    (2008); arXiv:math/0309430. *(Abstract and publication record read directly; establishes
+    $k(4) = 24$ for unrestricted packings, described there as a long-standing open problem. This is
+    the correct citation for the §2 kissing-number statement; Conway–Sloane covers the **lattice**
+    kissing number only.)*
+
+---
+
+## Appendix C — Revision record
+
+Repairs applied on **2026-08-25** in response to an independent cold review of this note. Each was
+recomputed independently before application. The review, and the adjudication recording the
+computations together with the items that were **refuted** or held **proposed-but-not-applied**, are
+internal records, not shipped with this note
+(`knowledge/audit/standalone_reviews_2026-08-25/review_d4_01_24_08_2026.md` and
+`.../ADJUDICATION_D4_2026-08-25.md`).
+
+| # | Where | Repair | Stamp |
+|---|---|---|---|
+| R1 | Abstract | The reason for one-dimensionality restated non-circularly: $4$ has no expression as a sum of parts from $\{2,6,8,12\}$ other than $2+2$ | 2026-08-25 |
+| R2 | Abstract, §2, §5, §8.3 (new), §10 | **(P-sc)** promoted from a clause inside a corollary to a stated premise; the abstract's quantifier now says *scalar*; the two-line contraction argument and a numerical check added | 2026-08-25 |
+| R3 | Abstract, §8.2, Appendix A(6), Appendix B | **Factual correction.** The second shell splits into **three** $W(D_4)$ orbits of eight, not two — residuals $32,16,16$, not "$32$ apiece"; the two-orbit reading is the $W(B_4)$ one. Table rebuilt, the two weight obstructions given explicitly, the isotropy condition sharpened to *iff all three weights are equal*, the triality transposition made visible, and the $2\!:\!1\!:\!1$ row's em-dashes filled in ($80$, $16$) | 2026-08-25 |
+| R4 | §2 | Kissing number: $24$ as the **unrestricted** four-dimensional maximum is Musin (2008), not Conway–Sloane, which covers the lattice case | 2026-08-25 |
+| R5 | §2 | The isotropy residual flagged as a raw, unnormalised diagnostic, not comparable across tables or lattices | 2026-08-25 |
+| R6 | §3 | $T$ is an **involution**; triality proper is the order-3 outer automorphism. Restated as $G=\langle W(B_4),T\rangle$ with the maximality of $W(B_4)$ as the reason, and $T \mapsto$ a transposition in $S_3$ | 2026-08-25 |
+| R7 | §4 | The $-1/12$ **normalisation pinned**: $a$ multiplies $k\cdot v$ with $\lvert v\rvert^2=2$, so the bond length is $a\sqrt2$ and the same kernel in bond-length units gives $-1/24$. The convention-free content is the moment ratio, not the number | 2026-08-25 |
+| R8 | §5, Lemma 1 | Invariant degrees depend on the **reflection representation**, not the abstract group; Remark (i) is a step in the argument | 2026-08-25 |
+| R9 | §5(c) | Attributed to **Sobolev (1962)**. "Strictly stronger" **withdrawn**: $\mathcal{H}_4^G=0$ is *equivalent* to the 4-design property (converse proved inline), and weighted unions of designs are designs, so the old justification established nothing. It is stronger than the classical *single-orbit* 24-cell fact | 2026-08-25 |
+| R10 | §8.1 | The (P-an) loophole made **non-empty** by an explicit counterexample, $K = k^2 + \epsilon\lvert A(k)\rvert^{2/3}$, with its non-analyticity located ($A$ vanishes at $\pi/8$ on the $e_1 \to (1,1,0,0)/\sqrt2$ arc). Added the log-robustness sharpening: $f\log k^2$ forces $f=(k^2)^2$ | 2026-08-25 |
+| R11 | §9(0) (new), §1.3, Abstract | **Attribution corrected.** The fourth-rank isotropy of the $D_4$/FCHC bond set, and the hypercubic failure at the same order, belong to the **1986–87 lattice-gas** literature, not to Neuberger (1987), whose contribution is the field-theoretic reading. The verification status of every new citation is stated in the paragraph itself: one primary read, three **not read in the original**, and the "*precisely because* of rank-four isotropy" motivation explicitly **not asserted** | 2026-08-25 |
+| R12 | §9(iii) | The pre-1991 coverage caveat re-pointed at §9(0) and correspondingly weakened for the lattice-gas literature | 2026-08-25 |
+| R13 | Appendix A | Code robustness: $-0.0$ normalised before hashing group elements; $1-\cos x$ replaced by $2\sin^2(x/2)$ (recovers ~3 significant digits at the $10^{-2}$ sample points, against a $10^{-6}$ tolerance); the $G$-invariance check on $A(k)$ run over **all 1152** elements rather than the first 50 | 2026-08-25 |
+| R14 | Appendix A(7) | Remark (i)'s promise discharged: explicit checks that $G$ acts on the second shell, that shell 1 $\cup$ (shell 2)$/2$ is a genuine $48$-root system (reflection-closed, integral), and that its automorphism group, rebuilt independently, has order $1152$ | 2026-08-25 |
+| R15 | Appendix A(8),(9) | New numerical checks for (P-sc) and (P-an), as described in R2 and R10 | 2026-08-25 |
+| — | §8.3 → §8.4 | The former §8.3 ("What the theorem does not do") is renumbered **§8.4**; its content is **unchanged**. The review's central objection to it — that after continuation $(k\cdot k)^2$ is a Lorentz scalar, so the isotropic quartic is a mass renormalisation rather than a boost violation — is **not adjudicated in this pass** and no edit implementing it has been made. See the adjudication file | 2026-08-25 |

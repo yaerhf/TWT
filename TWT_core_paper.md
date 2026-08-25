@@ -36,14 +36,18 @@ complete list of three-dimensional subalgebras that could host weak isospin insi
 rotation algebra is computed closed at three conjugacy classes, one of which is the same assignment
 mirrored and one of which is refuted by the observed weak-singlet character of the right-handed
 fermions — so the weak assignment is forced given one endorsed premise and one datum read from
-experiment, and V−A, generation-blindness and the doublet structure follow from it.
+experiment, and generation-blindness, the doublet structure and the up-sector's chirality follow
+from it — as does V−A, named last because it is the entered datum in Dirac-bilinear form rather than
+a fourth output.
 
 **The exposures, stated by us and first.** Both belong to the first candidate, not to the family.
-The isotropic dimension-six Lorentz-violation coefficient's naive value at that candidate's own
+The isotropic dimension-six Lorentz-violation coefficient's natural value at that candidate's own
 lattice scale is excluded by existing cosmic-ray and gamma-ray limits by three to nine orders of
 magnitude. The electroweak crossing scale is not derived at all, and the candidate's one computable
 reading of it lands a third below the measured `sin²θ_W(M_Z)`, with the four standard escape routes
-computed and closed. The family carries neither wound because it makes no numerical claim at either
+computed and closed — descent and closures alike inside an imported elementary-field
+renormalization-group frame this candidate's own emergent gauge sector does not itself license. The
+family carries neither wound because it makes no numerical claim at either
 place, and that is not a defence.
 
 **How to check it.** The algebraic content is backed by an executable public suite in which the
@@ -182,7 +186,23 @@ charter fixes them, verbatim.
 
 > **THE REFUSAL — the substrate is a material medium, not a field.**
 
-Three notes belong with the list and nowhere else.
+Four notes belong with the list and nowhere else.
+
+**On S2.** The axiom's *"squares to −1"* clause is easy to misread as placing the observer's
+Lorentzian signature, and it does not: the observer's time is the advance axis, which squares to
+`+1`, and §2.2's arc is independent of S2 outright. **What the clause places is a complex structure.**
+The four-dimensional substrate algebra is central simple over the reals — its centre is the scalars,
+so no *central* element of it squares to `−1`, however many non-central ones do. Adjoining a
+generator of negative square is what makes the extended algebra carry a central copy of the complex
+numbers rather than splitting into a real direct sum, and the resulting central unit `E = I₄e₅`
+satisfies `E² = e₅²` exactly — the axiom's sign is that unit's sign, so the clause is genuinely
+consumed rather than decorative. What it buys is the substrate's **one global phase**: a single phase
+circle every configuration can carry, on which the colour carrier, the carrier structure along the
+advance direction and the mass floor are all built. Negating it in the engine is a measured
+experiment rather than an argument — eighteen primitives and four of the suite's ten modules change
+their answers, and nothing in §2 does. **So S2 is a phase placement and not a signature placement**:
+it earns its axiom cost, and it earns it entirely outside the list §2 publishes, which is why §2 read
+alone appears not to need it.
 
 **On LS.** The axiom is stated witness-free: it fixes the size of the local state for any grain
 structure, and each member re-witnesses it on its own grain. Its `ℤ₂` clause is deliberately not
@@ -261,13 +281,20 @@ trivector `e₁₂₃` returns `−e₄`. **The two orbits carry opposite signs*
 whole content of the hypercharge bracket below. Hypercharge is then constant across each weak
 doublet, forced by Schur's lemma, since it must commute with the doublet's generators.
 
-*The factor of three is a triple product.* The three advance-bearing trivectors satisfy
+*The orbit of three is what makes a three-facet decomposition available.* The three advance-bearing
+trivectors compose to the advance axis,
 
 > `e₁₂₄ · e₁₃₄ · e₂₃₄ = e₄`,
 
-so a configuration decomposing into three such facets carries one third of the integer charge per
-facet. The fractional values `±1/3, ±2/3` follow from that triple-product structure together with
-the per-blade bilinear signs, and **no per-defect value outside `{0, ±1/3, ±2/3, ±1}` is reachable in
+and the product is **alternating**: the three even orderings return `+e₄` and the three odd ones
+`−e₄`, so the sign belongs to an *oriented* triple rather than to an unordered set of facets, and an
+orientation convention has to be named wherever that sign is used. What the orbit supplies is a
+structure with exactly three advance-bearing members and one spatial member carrying the opposite
+bilinear sign. **The step from that to a charge is an assignment and not a computation**: blade
+composition is multiplicative and charge is additive, so passing between them requires a
+homomorphism, and the homomorphism — one third of the integer winding per facet — is entered, as the
+provenance paragraph below records. The fractional values `±1/3, ±2/3` follow from that assignment
+together with the per-blade bilinear signs, and **no per-defect value outside `{0, ±1/3, ±2/3, ±1}` is reachable in
 the algebra at all**. Composite charges are integer sums of those units and are not confined to the
 list: the engine's own three-facet table returns `+2` for `uuu`, the `Δ⁺⁺`. What the algebra fixes is
 the unit, not the total.
@@ -280,7 +307,8 @@ the functional in the standard form `Q = T₃ + c·Y` with `c` left free. Then
 **identically in `c`.** Both brackets vanish separately. The isospin bracket vanishes because `uud`
 plus the electron is one complete quark doublet plus an up-versus-down-opposed pair; the hypercharge
 bracket vanishes because the `e₄`-bilinear gives the two orbits opposite signs and the trivector
-triple-product supplies the factor of three — the `3 × 1/3 = 1` arithmetic. Nothing was tuned to make
+orbit supplies the factor of three — the `3 × 1/3 = 1` arithmetic, **written throughout in the
+normalization `Y_lep / Y_Q = −3`, three times the conventional hypercharge scale**. Nothing was tuned to make
 the proton and the electron cancel, and the same computation returns the neutron-neutrino
 cancellation and singles out `uud` uniquely: of the four three-facet composites only `uud` lands at
 minus the electron's charge. This is what turns the `10⁻²¹` neutrality measurement from the datum
@@ -316,11 +344,32 @@ the absolute anchor free; and deleting the factor of three, the only anchor admi
 `c` is a half-charged proton with a negatively charged neutron. That factor is what makes an integer
 nucleon anchor compatible with the premise at all — substrate-specific, not generic.
 
+**One consequence of the same orbit structure, because it is the first question the picture raises.**
+If charge comes in thirds because a configuration decomposes into three facets, a single facet in
+isolation is not a configuration with a third of the charge — **it is not a valid configuration at
+all.** A lone facet is one orthogonal component of one circular winding, and the three are not three
+objects bound together; they are one object. The topological reading is the formal shadow of that:
+there is no smooth map `S³ → S³` of degree one third. So the absence of free fractional charges in
+this family is not a force holding something in — it is a statement about what shapes exist, and it
+is the same fact as the charge spectrum above. What that reading does *not* supply is the
+short-distance behaviour of the same sector, which is the family's sharpest structural exposure and
+is stated at that rank in §4.4.
+
 **Against the incumbent, at equal depth.** The Standard Model postulates both halves. Its
 hypercharge assignments are chosen — anomaly-constrained, but chosen — and within the gauge group
 alone nothing forbids a proton and an electron whose charges fail to cancel. A grand-unified
-embedding or a Dirac monopole would supply it; the point is that the Standard Model as such does
-not, and that this family gets the discreteness from topology without buying a larger group. It is
+embedding or a Dirac monopole would supply it, and one member of that class is a much closer cousin
+than the rest: Pati and Salam's fourth colour reads lepton number as the fourth value of the colour
+index, extending the group of the three baryonic colours to a four-colour group whose internal `U(1)`
+direction is the one later usage calls `B − L` — the same 3+1 arithmetic the two facts above run on
+(Pati & Salam, *Phys. Rev. D* **10**, 275 (1974)). The honest framing is therefore not that this
+family uniquely earns the 3+1 split, but that it **joins a class of structures that furnish it and is
+the only member of that class that furnishes it without buying a group**: that scheme pays with an
+enlarged gauge group, a breaking sector, and quark-to-lepton gauge vertices whose flavour-violating
+meson decays are experimentally constrained. What is distinctive here is the price, not the
+possession — and the price has a matching cost, stated in §4.4: no gauge dynamics is delivered with
+it. The point against the incumbent is unchanged: the Standard Model as such does not supply the
+cancellation, and this family gets the discreteness from topology without buying a larger group. It is
 not the only Standard-Model fact this family obtains from structure rather than postulate — the
 generation count, the weak-host closure, the monopole absence and the `B − L` triad are others, each
 with its own stated conditions — and the conditioning class matters more than the ranking does.
@@ -347,7 +396,10 @@ the other, rather than two and two.
 **And the Lorentz algebra comes with it.** In the same embedding the boost and rotation generators
 are `K_j = ½ e_j` and `J_i = −½ e_{jk}` — grade-one and grade-two elements of the *same* substrate
 algebra, the first non-compact and the second compact — and they close on `so(1,3)` with the correct
-signs. The commutator of two boosts returns a rotation rather than a boost,
+signs. That the boost generator is a grade-one element and not a plane is what makes it hyperbolic
+rather than circular: the isomorphism is not grade-preserving at the boost planes, so rapidities add
+and velocities compose by Einstein's rule exactly, rather than by the wrong-signed and unbounded law
+a rotation of a Euclidean plane would give (§3.4). The commutator of two boosts returns a rotation rather than a boost,
 
 > `[K_i, K_j] = −ε_{ijk} J_k`,
 
@@ -494,7 +546,8 @@ real dimensions wide, and two commuting directions are never an `su(2)` — so n
 survives there at all. What the side does *not* touch is the discriminator above: the two chiral
 factors sit inside the two central ideals of the even subalgebra, so that discriminator returns the
 same table whether the generators act from the left or from the right — an ideal fact, and
-side-independent. Three fences travel with that. The argument covers a label carried by the local
+side-independent. Three fences travel with that, and a fourth — on the level rather than on the
+construction — closes the subsection below. The argument covers a label carried by the local
 state; a label carried instead by a defect's collective coordinates is a different construction, and
 it is unbuilt. The classification above sweeps the *three-dimensional* subalgebras of the rotation
 algebra, so a candidate hosting weak isospin in a larger structure — a two-scale host, say — is
@@ -513,9 +566,33 @@ rotation algebra at all. It is not derived anywhere; it is one of the family's p
 and a candidate that hosts weak isospin somewhere else is untouched by anything above. The second is
 the **datum**: no right-handed charged current is observed at any accessible energy, so the
 right-handed fermions are read as weak-isospin singlets — read from experiment rather than tuned.
-Given those two, the self-dual host is forced, and V−A, generation-blindness, the doublet structure
-and the up-sector's chirality follow from it. Divergence at this node therefore happens one level
-down, at the endorsement, exactly as it may at any other preferred direction.
+Given those two, the self-dual host is forced, and generation-blindness, the doublet structure and
+the up-sector's chirality follow from it — as does V−A, which is worth naming last rather than
+first, because purely-left-handed coupling is what the entered datum says and `V − A` is that same
+statement in Dirac-bilinear form. The first three are consequences in domains the datum did not fix;
+V−A is the datum wearing different notation, and the arc is stronger stated that way. Divergence at
+this node therefore happens one level down, at the endorsement, exactly as it may at any other
+preferred direction.
+
+**And the fourth fence, which is on the level rather than on the construction.** Everything above is
+a statement about *labels and selection rules*: which states sit in which doublet slot, which
+chirality couples, which generation the coupling is blind to. **There is no gauge boson anywhere in
+this family.** What is classified above is the host algebra of a label carried by the local state,
+not a chiral *spectrum*: `V−A` here means the chirality structure of a current, not the interaction
+that current would enter, and the gauge sector sits on the field-reclamation debt of §4.4,
+un-reclaimed. The lattice no-go a field theorist reaches for first therefore does not bind this
+construction, and the reason is worth stating exactly, because it is easy to mistake for an escape.
+Nielsen and Ninomiya's theorem quantifies over lattice theories with a free quadratic fermion action
+and a conserved chiral phase (Nielsen & Ninomiya, *Phys. Lett. B* **105**, 219 (1981); the cleanest
+proof is Friedan, *Commun. Math. Phys.* **85**, 481 (1982)); no fermion field is defined on this
+substrate at all — matter here is a quantized soliton, and the engine carries no anticommuting
+structure anywhere — so the hypotheses have no referent rather than being evaded. **That is not an
+evasion of the theorem; it is a statement that the family has not yet reached the place where the
+theorem applies**, since no chiral spectrum has been exhibited from the substrate either. The
+passage that would reach it — exhibiting the observed chiral content as the low-energy spectrum of
+the substrate's own solitonic sector — is unwritten, and it is the same debt §4.4 names as field
+reclamation. A member that instead introduces a fundamental lattice fermion field inherits the
+theorem in full and owes one of its known evasions.
 
 **On the accounting.** This sector's cost was formerly booked as one free input bit — "the choice of
 SD". That reading does not survive the classification. Self-dual versus anti-self-dual is not a bit
@@ -541,11 +618,26 @@ missing the matter-sector bound by seventeen orders (Collins, Perez, Sudarsky, U
 independent fields with `N − 1` relative-speed observables — and this family denies the
 precondition. What that argument does *not* show is that the substrate is itself exactly
 Lorentz-invariant under its interacting dynamics; that question is open and stays open. It collapses
-a generically fatal problem about `N` fields into one tractable question about one medium, and it
-carries one substrate assumption that is not engine-checkable — that one medium generates all the
-radiative corrections, so the induced coefficient really is common to every species — which is
-registered as an import rather than carried at a flat derived tag. It closes the dimension-four
-half. It does not close the dimension-six residual.
+a generically fatal problem about `N` fields into one tractable question about one medium.
+
+**And the whole of it rides one substrate assumption that is not engine-checkable**: that one medium
+generates all the radiative corrections, so the induced coefficient really is common to every
+species. That assumption is registered as an import rather than carried at a flat derived tag, and
+it is stated here as the load-bearing premise it is rather than as a rider — because the family's
+own picture argues against it. A defect is defective on several independent axes at once (§1.1), and
+species that differ along those axes generically couple differently to the medium's modes; one
+medium supplies one *source* of corrections, not one *coefficient*. Getting a universal shift needs
+a further symmetry argument — a Ward-type identity forcing the leading correction to be independent
+of a defect's internal structure — and no such identity is exhibited here; that is the shape of what
+is missing, not a demonstration that nothing else could do the work. The nearest worked substrate
+programme in the literature (§3.4) reaches the opposite conclusion for its own medium, obtaining
+species-dependent effective metrics generically and recovering a single one only where a vacuum
+symmetry connects the species. And the premise has a second face inside this paper: it is the same
+proposition as the gauge entry on §4.4's field-reclamation list, so it becomes payable — without the
+unbuilt dynamics — the moment the photon is exhibited as a collective mode of the substrate with
+universal coupling. So the dimension-four half is closed **conditional on a universality claim about
+substrate self-energies**, and the obstacle above is deferred rather than defused. It does not close
+the dimension-six residual either way.
 
 **Arrangement level, and said as such.** A member that realizes the grain as a **D4 lattice** gets a
 second, sharper protection — but that is a property of the arrangement, which is a candidate pick
@@ -554,19 +646,34 @@ it is `W(F4)`, whose invariant degrees are `{2, 6, 8, 12}` — so its space of d
 polynomials is one-dimensional, spanned by `(k²)²` alone. For any dispersion kernel invariant under
 that point group and analytic in `k`, there is no anisotropic quartic at all. The degree-six
 invariant space is two-dimensional, so the leading rotational anisotropy of the polarization-averaged
-dispersion sits at **dimension eight** — reached, not merely bounded. This is not generic to
-lattices: the simple-cubic lattice admits a two-dimensional degree-four invariant space containing
+dispersion sits at **dimension eight** — reached, not merely bounded. **The two countings run
+together throughout this subsection and the convention is worth naming once: degrees are polynomial
+degrees in the dispersion relation, dimensions are operator dimensions in Lorentz-violating effective
+field theory, and the correspondence is degree four ↔ dimension six, degree six ↔ dimension eight.**
+This is not generic to lattices: the simple-cubic lattice admits a two-dimensional degree-four invariant space containing
 `Σ kᵢ⁴`.
 
-**Three premises carry that inference and are stated rather than buried.** That a derivative
+**Four premises carry that inference and are stated rather than buried.** That a derivative
 expansion exists — a non-analytic driven-dissipative memory kernel, which is the family's own unbuilt
 object, is not covered by a polynomial-invariant argument at all. That the *full* point group
 including triality acts — the reflection subgroup alone has a three-dimensional degree-four space,
 and the second shell's two sub-orbits are each anisotropic, cancelling only at equal weight, so a
 substrate coupling weighting triality-related orbits unequally would restore dimension-six
-anisotropy. And that the kernel is a scalar in the internal index: the theorem governs the
+anisotropy. That the kernel is a scalar in the internal index: the theorem governs the
 polarization-averaged dispersion and does not cover matrix-valued kernels, which the point group
-cannot close.
+cannot close. And that the symmetry **operative** on the sector the result is quoted for is that
+full point group rather than the subgroup a *driven* steady state leaves intact — the premise the
+first three did not state. The theorem is proved in four Euclidean variables, while leading
+rotational anisotropy is a three-dimensional claim and a driven medium singles out its advance
+axis; the stabilizer of that axis has order 48 and restricts faithfully onto the full octahedral
+group, whose degree-four *spatial* invariant space is **two**-dimensional and contains
+`Σᵢ kᵢ⁴`. At the driven group an anisotropic spatial quartic is therefore *permitted*, and what
+excludes it is not symmetry but interaction content: the bond set's spatial fourth moment computes
+to zero — and does so by cancellation between the axis-bearing and in-hyperplane bonds, not by a
+property of either. Any driven-sector term populating that permitted invariant would restore
+dimension-six spatial anisotropy. **This is a permission, not a demonstrated term** — no kernel
+written down in this programme exhibits it — but it is the premise on which the headline
+generality rests, and it is named here rather than left to be found.
 
 **The prior art here is not ours, and the credit comes before the argument.** That the D4/F4 lattice
 suppresses rotational-symmetry-breaking cutoff effects relative to the hypercubic lattice is
@@ -627,9 +734,10 @@ three places:
 - **No proton decay.** Baryon number is one of those two integer windings. Non-perturbative
   violation respects `ΔB = ΔL = 3`, so a channel taking one baryon to none is forbidden — and the
   selection rule is itself obtained rather than assumed, from the substrate's instanton topology
-  together with the index theorem's zero-mode count, at three generations. **The proton is absolutely stable**, at any
-  lifetime, which is the family's one distinctive forward bet against grand unification: unification
-  expects decay at *some* level, and this family forbids it outright.
+  together with the index theorem's zero-mode count, at three generations. **The proton is absolutely
+  stable in the smooth sector**, at any lifetime — which is the family's one distinctive forward bet
+  against grand unification: unification expects decay at *some* level, and this family forbids it
+  outright. What "in the smooth sector" carries is the paragraph below.
 - **Dirac neutrinos.** With `B − L` exactly conserved, a Majorana mass term is forbidden, because it
   would carry `Δ(B − L) = −2`.
 - **No neutrinoless double beta decay.** The same conservation law forbids the signature.
@@ -644,6 +752,22 @@ sequence relating the two bases, and while such a splitting always exists it is 
 the family has not named one. Nothing above turns on it — each prohibition is argued at a
 configuration whose sector is fixed by its own construction — and the residue closes if the sector
 assignment is ever derived rather than assumed.
+
+**And it rides the arrangement, not only the defect class.** Homotopy invariance is a statement about
+continuous maps. In a grainy member — and grain discreteness is one of the family's preferred
+directions, so that is the endorsed reading — a configuration whose core shrinks toward the grain
+spacing leaves the space of admissible maps, and the winding number is simply not defined through the
+transition. This is not a hypothetical: the programme's own lattice flows have recorded unwinding
+events at under-resolved cores, and its own lattice charge measurements are faithful only as the
+core-to-spacing ratio grows, with a measured deficit falling as the inverse square of that ratio. **So
+the prohibition is exact in a continuum member and carries a resolution condition in every grainy
+one.** The condition is parametrically enormous in the first candidate — a hadronic core against a
+Planckian spacing — but that is an estimate and not a computation: converting it into a rate is a
+dynamical statement, and the rate face is gated exactly as the non-perturbative channel's is. The
+suppression that estimate would give is deliberately not used to keep the prohibition
+unconditional, because this programme refused the natural-value estimate where it ran against it, at
+the dimension-six coefficient of §5.3. **The family forbids the decay channel; it does not compute the
+unwinding rate of the member it endorses.**
 
 **One prohibition of a different kind, so the boundary is visible.** Magnetic monopoles are absent
 here **by the source identification, not by algebra**, and the difference matters. The grade-three
@@ -719,22 +843,33 @@ see. That objection is correct as stated, and the answer is a criterion applied 
 list first:
 
 > **A structural fact counts as *obtained* rather than *relabelled* when (i) a named substrate
-> feature's deletion breaks it — an exhibited failing counterfactual — and (ii) it is independent of
-> the framework's free parameters.**
+> feature's deletion breaks it — an exhibited failing counterfactual; (ii) it is independent of the
+> framework's free parameters; and (iii) the feature does work it was not selected to do — either
+> *structurally*, by carrying a load in a sector it was not introduced for, or *empirically*, by
+> having a consequence in a domain not used to fix it which was then independently tested and
+> confirmed.**
 
-Applied to the family's own claimed list of ten structural facts, the separator **collapses one pair
-into a single fact, removes one outright, and leaves eight distinct claims** — graded as follows, and
-every entry named so the grading can be checked rather than taken:
+**Clause (iii) does the work the first two cannot, and the reason it is here is worth stating before
+the grading.** A feature chosen in order to produce a result will always break that result when it is
+deleted, so clause (i) fires automatically in exactly the case the separator advertises itself
+against. That the first two clauses are not vacuous is visible in their own application below — they
+strike one entry outright, leave two partial and collapse a pair — but what they cannot do is
+separate an obtained fact from a reverse-engineered premise, and clause (iii), the classical demand
+for excess content, is what addresses that.
 
-| Grade | Count | Which |
+Applied to the family's own claimed list of ten structural facts, the first two clauses **collapse one
+pair into a single fact, remove one outright, and leave eight distinct claims** — graded as follows,
+and every entry named so the grading can be checked rather than taken:
+
+| Grade on clauses (i) and (ii) | Count | Which |
 |---|---|---|
-| **Pass cleanly** | **2** | the **charge arc** (§2.1) and the **weak arc** (§2.4) — each with an exhibited failing counterfactual and each independent of the framework's free parameters |
+| **Pass both** | **2** | the **charge arc** (§2.1) and the **weak arc** (§2.4) — each with an exhibited failing counterfactual and each independent of the framework's free parameters |
 | Pass with a stated weakening | 4 | the **generation count** (§2.3) — generic-given-four-dimensions, real but not substrate-specific · the **Lorentzian signature flip** (§2.2) — half-chosen: the algebra isomorphism is a theorem, the timelike placement is an axiom · the **monopole absence** (§2.6) — conditional on the winding-as-source identification, whose failing world is named in place · the **`B − L` closure** (§2.6) — narrowed, because the incumbent also obtains `B − L` as an accidental symmetry; what survives is the closure of the Dirac-versus-Majorana question the incumbent leaves open |
 | Partial or undecomposed | 2 | the **gauge group** — one factor is obtained, not the group, since colour is not a gauge group in this family at all · the **up/down mirror** — the parity relation is contentful, the SD/ASD label is convention, and no counterfactual was exhibited for it |
 | Collapsed into another entry | 1 | proton stability and the absence of neutrinoless double beta decay share the `B − L` root — one fact with three faces (§2.6), so no independent credit |
 | **Does not belong on the list** | **1** | the **Tsirelson bound** — the engine itself tiers it as a framing identification, because it rides the composite state space §3.3 books as *assumed* |
 
-**Two facts pass cleanly, and that is the defensible core of the economy case.** The charge arc, with
+**Two facts pass the first two clauses.** The charge arc, with
 the caveat of §2.1 — the discreteness unconditional, the neutrality identity conditional on the
 endorsement it inherits. The weak arc, with the endorsed hosting premise and the right-handed-singlet
 datum travelling with it wherever it is quoted — and with the side of the hosting action computed
@@ -745,11 +880,46 @@ decomposition leaves partial or undecomposed and which are recorded as such rath
 passes; stating the tail as a tail is the point of the exercise, and the decomposition itself is in
 the comparative ledger `TWT_COMPARATIVE_LEDGER.md`, shipped with the dossier.
 
+**And the third clause, applied to the same ten, with the harsher half reported first.** On the
+**empirical** half — a consequence in a domain not used to fix the premises, which was then
+independently tested and confirmed — **the family scores zero of ten.** That is not a new admission.
+It is §4.1's sentence, that this programme has no channel of its own in which agreement would count
+as evidence, arriving where it belongs; the nucleon charge anchor is the datum the construction
+enters — the hydrogen-neutrality bound then *tests* the identity rather than calibrating it (§2.1) —
+the absence of fractional charge is the datum matched, and the generation count is the
+datum matched. One entry is **pending** rather than failed: the `B − L` closure's excess content is
+entirely forward — Dirac neutrinos, no neutrinoless double beta decay, the sterile mass tie — and all
+of it is currently null, which is untested-and-consistent rather than corroborated. On the
+**structural** half — a load carried in a sector the feature was not introduced for — three entries
+pass and they share one root, so they collapse to **two structural passes, sharing that root**: the
+charge arc, whose trivector orbit carries four separate loads (the charge unit, the hypercharge sign
+opposition, the `ℤ₃` colour count and the `B − L` anomaly arithmetic), none of which it was installed
+to carry, and the `B − L` closure, which carries the same root into a second sector's closure.
+
+**The input side of the same worry is measured too, by an instrument this programme already runs, and
+the two numbers belong in one sentence.** What clause (iii) is afraid of is a premise introduced only
+to make a result work. The comparative ledger prices every banked result's premises on a four-point
+scale — free, cheap, costly, or **convoluted**, the last being a premise whose only motivation is the
+result it enables, and a convoluted reading is grounds for demotion however correct the mathematics —
+and run over the audited corpus that instrument returned **zero convoluted premises**, with both of
+its demotion slots empty. It is not an instrument that declines to fire: the same campaign returned
+five double-billed findings and one under-billed, four of the six against this programme, and refuted
+the author's registered expectation on one line. **So the honest pair is: zero convoluted premises on
+the input side; zero empirical excess and two structural passes on the output side.** A programme with
+two structural passes, no convoluted premises, zero empirical passes and a named route to a first one
+is a coherent position stated honestly. A programme claiming two clean passes on a criterion that
+cannot fail is not. The named route is §4.1's: the finite-grain / bounded-amplitude higher-order-interference deviation
+law.
+
 **The separator is not an announcement; here is it applied, with both counterfactuals exhibited.**
 For the charge arc: delete the trivector factor of three of §2.1 and the neutrality bracket no longer
-vanishes — the residue is `2c ≠ 0`, so the identity is broken by deleting a named substrate feature,
-and it is broken *for every* value of the free normalization rather than for a special one. That is
-both clauses of the separator satisfied by one deletion, and the deletion is runnable. For the weak
+vanishes — the residue is `2c ≠ 0` in this paper's hypercharge normalization, the one in which
+`Y_lep / Y_Q = −3`; in the conventional normalization with `Y_Q = 1/3` the same residue reads
+`−2c/3`, the two differing by the overall scale of `Y` and by which orbit is written first. The
+number is normalization-dependent and the *point* is not: it is nonzero for **every** value of the
+free constant. So the identity is broken by deleting a named substrate feature, and it is broken for
+every value of the free normalization rather than for a special one. That is the first two clauses
+satisfied by one deletion, and the deletion is runnable. For the weak
 arc: delete the right-handed-singlet datum and the diagonal class survives the classification, so the
 menu re-opens and the assignment reverts to a choice; delete instead the assumption that the host
 lies in the substrate's rotation algebra and there is no menu to close at all. Both deletions change
@@ -780,7 +950,7 @@ whichever side it was built to flatter.
 |---|---|---|
 | **Continuous parameters fitted to data** | **19** (26–28 with neutrinos) | **0** — the family names no number |
 | **Structural commitments, same basis** *(SURVEYED for the incumbent)* | **~10** on a fine individuation: the gauge group; the chirality assignment; the fifteen-Weyl representation content; the hypercharge assignments; three generations; colour in the fundamental; one Higgs doublet; the sign of the Higgs mass term; the dimension-four truncation; four-dimensional field theory on a fixed background. Three of these are components of the representation content, so a coarse individuation gives **~6** — and the finer reading is the one that flatters the challenger, which is why the coarse figure is stated here too | **8**: seven axioms and one refusal |
-| **Structural facts obtained rather than chosen** *(graded by §3.1)* | **anomaly cancellation**, constraining the hypercharges given the chosen representation content — and, at the same depth, the accidental-symmetry earnings of renormalizability: baryon and lepton number, hence proton stability at the renormalizable level; the absence of tree-level flavour-changing neutral currents; the custodial relation given one Higgs doublet; asymptotic freedom given the gauge choice. **These are real structural earnings and several of them overlap what this family claims on its own side of this row** | of ten claimed: **two clean, four weakened, two partial, one collapsed into another, one struck** (§3.1) |
+| **Structural facts obtained rather than chosen** *(graded by §3.1)* | **anomaly cancellation**, constraining the hypercharges given the chosen representation content — and, at the same depth, the accidental-symmetry earnings of renormalizability: baryon and lepton number, hence proton stability at the renormalizable level; the absence of tree-level flavour-changing neutral currents; the custodial relation given one Higgs doublet; asymptotic freedom given the gauge choice. **These are real structural earnings and several of them overlap what this family claims on its own side of this row** | of ten claimed: **two pass the first two separator clauses, four weakened, two partial, one collapsed into another, one struck** — and on the third clause, the demand for excess content, **two structural passes and zero empirical** (§3.1) |
 | **Earned dimensionful scales** | **1 of 5 scale classes** — the QCD scale, by dimensional transmutation | **0** |
 | **Load-bearing items outside the count** | the 19 exclude the structural column and the neutrino sector | the driven-dynamics placeholder and the grain-to-cell transfer, both **high**; and six of the eight preferred directions sit off any parameter ledger |
 
@@ -829,11 +999,17 @@ and the bill above it stands.**
 
 **4 — Lorentz invariance. This is the line the framework is behind on, and no gain elsewhere is
 offered as compensation.** Everett wins it outright: its ontology raises no sub-quantum scale at
-which a Lorentz-violating coefficient could arise. Two real counterweights exist here — the
-one-medium light cone of §2.5, making dimension-four relative-boost violation structurally zero
-rather than tuned, and a lattice member's point group pushing rotational anisotropy to dimension
-eight. **Neither reaches the isotropic dimension-six residual, whose natural coefficient is excluded
-by existing limits by three to nine orders.** The programme asserts no value there and cannot
+which a Lorentz-violating coefficient could arise. **One theorem and one conditional counterweight
+exist here, and they are not the same kind of thing.** A lattice member's point group pushes
+rotational anisotropy to dimension eight — that is a representation-theoretic theorem, valid for any
+analytic point-group-symmetric kernel, and it is the harder of the two — though it too is
+conditional, and §2.5 names its four premises, including the one that matters most for a *driven*
+substrate: that the operative symmetry is the full point group and not the subgroup the drive
+leaves intact, at which an anisotropic spatial quartic is permitted rather than forbidden. The one-medium light cone of
+§2.5 would make dimension-four relative-boost violation structurally zero rather than tuned, **but
+it rides an unexhibited universality claim about substrate self-energies, so it is a conditional
+defusal and is counted as one.** **Neither reaches the isotropic dimension-six residual, whose
+natural coefficient is excluded by existing limits by three to nine orders.** The programme asserts no value there and cannot
 presently compute one, so what the data has fixed is a **ceiling its unbuilt dynamics must deliver
 beneath** — the harder position, since the rivals have nothing here a measurement could address, and
 not a refutation. **The exposure belongs to the first candidate, not to the family — and the family
@@ -860,8 +1036,9 @@ evolution parameter distinct from observed time for eighty years, with a foundin
 textbook, a review literature, and a conference series that has met biennially for twenty-eight
 years. Read against it, this family decomposes as: **their two-time kinematics, plus substrate
 realism, plus the Euclidean signature with the wavefront lock, plus matter-as-defect.** The first
-block has an eighty-year formalization behind it; the other three are entirely this programme's own
-claim and its own risk.
+block has an eighty-year formalization behind it; of the remaining three, two are held outright and
+in print elsewhere — the second kinship below — so what is this programme's own is the conjunction
+rather than the blocks.
 
 Four corrections bind every use of that kinship. Their meta-time frequency goes as mass *squared*,
 so the correspondence with mass-as-frequency holds only up to a quadratic map — say so at every use
@@ -873,6 +1050,64 @@ precedent for the *shape* of this family's debt, not for its payment — two pro
 neither claimed as a solution, with a non-unique equilibrium. And their fifth-direction constant is a
 late addition, free and unmeasured, so both sides of the resemblance to this family's meta-time speed
 are unpinned.
+
+**A second kinship, and it is closer on two of the four blocks.** Volovik's
+quantum-vacuum-as-medium programme holds the substrate-realist premise outright and in print — the
+vacuum as a real structured medium whose excitations are the particles — and obtains from a worked
+microscopic model a list this family recognizes: emergent Lorentz invariance in a low-energy corner,
+chiral fermions, gauge fields as collective modes, topological defects as analogues of cosmic
+strings and monopoles, and an inner
+observer who cannot see the substrate's own geometry (*The Universe in a Helium Droplet*, Oxford,
+2003). Two of those parallels are close enough to state individually. His inner observer is made of
+the liquid's low-energy quasiparticles, so its rods and clocks are set by the effective metric those
+quasiparticles themselves define; such an observer cannot measure the motion of the superfluid
+vacuum, cannot register its anisotropy, and reads the ground state as empty space — which is the same
+shape of argument as §2.2's remark that an observer's spatial axes here are bivectors containing the
+advance direction. He scopes that blindness explicitly to the low-energy corner and to purely local
+measurement, and makes it observer-relative rather than absolute: what the inner observer cannot
+separate, an external observer separates without difficulty. And in the A-phase the Fermi point is
+doubly degenerate through the *ordinary* nuclear spin of the atom; perturbing that `ℤ₂` symmetry
+splits it into two elementary Fermi points whose independent motion is carried by a collective
+variable coupling to that spin as a **local and dynamical `SU(2)` gauge field** — he derives its
+Yang–Mills action by integrating out the fermions and finds its coupling equal to the emergent
+electromagnetic one, with the atomic spin in the role of weak isospin. **Two limits travel with that
+citation and neither is optional.** That emergent `SU(2)` governs the Fermi-point degeneracy and
+**not** the quasiparticles' chirality, which is carried by a different index, so he nowhere claims it
+reproduces the Standard Model's left-handed factor; and he states plainly that the A-phase is not a
+perfect system for a complete simulation of relativistic quantum field theory — its gauge invariance
+approximate, its analogue `W` massive beyond the model it is derived in, its charge screening rather
+than antiscreening. What the correspondence is, on his own account, is a shared universality class
+fixed by momentum-space topology, not an exact mapping.
+
+**So substrate realism is not this programme's own risk. Matter-as-defect remains this programme's
+own:** his matter analogue is the fermionic quasiparticle, with defects playing the cosmic-string
+and monopole roles, whereas here the defect *is* the matter. What is also
+this programme's own is the conjunction — that the medium's motion *is* the second time's advance,
+which a defect's phase must match, welding the carrier to the drive. Two corrections bind the kinship
+in the opposite direction, and both are ours to state. His protection mechanism is momentum-space
+topology at a Fermi point, and this family's first candidate has measured that route **closed on its
+own substrate**: the banked grain dynamics sit in the real symmetry class, with no node at finite
+momentum and the only available invariant valued in `ℤ₂` rather than `ℤ`. And his own accounting has
+the Standard Model's node marginal, the two halves cancelling, so that mechanism protects nothing at
+the target even where it is formulable. The kinship is on the premise; the mechanisms diverge, and
+this family's runs through real-space topology throughout.
+
+**A third and smaller kinship, where the news runs the other way.** A separate small literature
+reformulates special relativity on a four-dimensional Euclidean space with proper time as the fourth
+axis and Lorentz transformations read as `SO(4)` rotations. It is closer to §2.2's *starting point*
+than the two-time tradition is, and it is a different kind of thing: those are reparametrizations of
+an existing theory, with no medium and no dynamics, and this family should not be filed with them.
+One structural remark is worth making, because it is checkable in one line and it distinguishes the
+constructions rather than the ambitions. **A boost realized as a rotation of a Euclidean plane is
+circular: its parameters add, but the induced velocity composes with the wrong sign and is unbounded
+and periodic, so there is no invariant speed.** In the construction of §2.2 the observer's boost
+generator is not a plane of the substrate at all: the lock puts the observer's time on the advance
+axis, so `γ⁰γʲ = e_j` is a substrate **vector** with square `+1`, the exponential is hyperbolic,
+rapidities add, and `v = tanh w` reproduces Einstein velocity addition identically — collinearly
+exact, with the Wigner rotation appearing for non-collinear composition exactly as relativity
+requires. **What that shows is where the two constructions part, not that either is more
+ambitious**; whether any particular paper in that literature carries the circular reading is a
+question about that literature, and this paper does not answer it.
 
 **Precedent, not validation.** Kinship moves the family from isolated to a member of a small,
 respectable tradition. It is not evidence that the family is true.
@@ -889,12 +1124,34 @@ hosting premise and one datum read from experiment, it is forced (§2.4). **That
 the cheapest of the debts, and it does not generalize:** the method closes menus that are finite and
 algebraic, and the largest item above is a space of constructions, which no such enumeration reaches.
 
+**The same verdict, in plainer words, because the accounting above is easy to read as more than it
+is.** The **unconditional** residue of §2 is a set of correct facts about a sixteen-dimensional real
+Clifford algebra together with an identification dictionary assembled with the Standard Model in
+view — of which two entries survive a separator this paper applies to its own list first, each with a
+deletion that breaks it and neither touching a fitted parameter, one entry of which that separator
+**strikes**, and on whose demand for excess content the empirical score is zero (§3.1). The
+**conditional** residue is a reconstruction of quantum numbers — labels, slots and selection rules —
+not of interactions: there is no gauge boson anywhere in this family. The **empirical** posture is
+four null forward bets, two wounds belonging to the first candidate, one live internal rework, and
+one family-level structural exposure in the incumbent's best-tested sector. And the **entire**
+magnitude sector is mortgaged to one object nobody has built.
+
+Nothing in that sentence rivals the incumbent anywhere the incumbent is testable, and this paper does
+not claim otherwise. What the programme has that its reference class rarely has is an audit trail
+that makes the sentence above reachable in an afternoon by someone who did not write it — which is a
+real achievement and is not yet physics progress. §6.3's confessed failure mode is, on the evidence
+of this paper, **partially realized**.
+
 Two things this section does not do. It does not decide whether the theory is true: parsimony is
 evidential only between empirically equivalent theories, and this family is not empirically
 equivalent to the incumbent — it is behind it in two named places. And it does not present a finished
 picture. Every column here for the rivals is a photograph of a finished ontology; this one is an
 architect's rendering, conditional on a single unbuilt object delivering the magnitudes the family
-owes. **No entry above is evidence that it will be built.**
+owes. **No entry above is evidence that it will be built.** And a third: it does not claim that any
+structural result above has been *confirmed*. Every channel in which the family's §2 results are
+currently exposed is one in which a detection would break them and a null confirms nothing (§4.1).
+Parsimony is what this section measures; corroboration is what the programme does not yet have a
+channel for.
 
 ---
 
@@ -929,10 +1186,24 @@ forces the next candidate rather than ending the family. Said at its truest: **t
 programme with one inherited total kill condition, a real set of family-level prohibitions, and no
 channel of its own in which agreement would count as evidence.**
 
-**The one identified route to building the last of those** is the finite-grain,
-higher-order-interference channel: the Born rule's finite-grain deviation law would be a
-structure-derived number the incumbent inputs as exactly zero, and the triple-slit programme already
-supplies a bound. That deviation law is not derived here. It is named as a route, not as a result.
+**And the asymmetry is not local to this channel.** Every row of §4.2 is a *forbiddance*: the family
+says what cannot be observed, and each row is currently null. A holding forbiddance is consistency,
+not confirmation — so the reading above applies to the structural results of §2 and not only to the
+kill condition. The family's structural content is, at present, **breakable but not corroborable**: a
+positive detection anywhere in §4.2 reaches a derivation or a preferred direction, and no null
+anywhere in §4.2 is evidence that any of them is right. That is a statement about the *channels* and
+not about the *content* — §3.1's separator exists precisely to test whether a retrodiction was
+obtained or relabelled, and it is applied to this family's own list first, which is why its empirical
+half reads zero — but the channel fact is the one that decides what the programme can *earn*, and it
+is why the finite-grain / bounded-amplitude interference law below is not one docket item among many.
+
+**The one identified route to building the last of those** is the finite-grain / bounded-amplitude,
+higher-order-interference channel: the Born rule's deviation law — sourced either by the medium's
+grain (vanishing with it) or by the medium's amplitude ceiling (present at fixed grain) — would be
+a structure-derived number the incumbent inputs as exactly zero, and the triple-slit programme
+already supplies a bound. The two sources carry different scaling laws, and which one a positive
+result would implicate is part of what the channel's protocol must separate. That deviation law is
+not derived here. It is named as a route family, not as a result.
 
 ## 4.2 What the family forbids
 
@@ -943,7 +1214,7 @@ derivation rather than an axiom.
 
 | What would be observed | Channel | Current bound | What it reaches |
 |---|---|---|---|
-| **Proton decay**, at any lifetime | Super-Kamiokande, Hyper-K, DUNE | `τ/B > 2.4 × 10³⁴` yr, 90% CL | the topological protection of baryon number (§2.6) — **the family's one distinctive forward bet**: grand unification expects decay at *some* level and this family forbids it outright |
+| **Proton decay**, at any lifetime | Super-Kamiokande, Hyper-K, DUNE | `τ/B > 2.4 × 10³⁴` yr, 90% CL | the topological protection of baryon number (§2.6) — **the family's one distinctive forward bet**: grand unification expects decay at *some* level and this family forbids it outright — and, in any grainy member, the resolution condition under which the winding is defined at all, a condition this family states and does not compute |
 | **Neutrinoless double beta decay** | KamLAND-Zen, LEGEND, nEXO, CUPID | `T₁⁄₂(¹³⁶Xe) > 3.8 × 10²⁶` yr, 90% CL | exact `B − L` conservation, and with it the Dirac neutrino character that conservation forces. What does *not* die with it: anomaly cancellation is a trace identity on the charge assignment, untouched by a broken conservation law |
 | **A sterile neutrino at any mass far above the active scale** | KATRIN's kink search, extended into the keV range by the TRISTAN detector upgrade | none observed | the Dirac-partner mass tie `m_sterile = m_active ≲ 0.12 eV` — the same `B − L` root as the row above, probed through the right-handed partner's mass rather than through `0νββ`; the tie's *number* is value-gated on the candidate's neutrino-mass machinery, so what a detection reaches is the Dirac character itself |
 | **A fourth fermion generation** | LHC; neutrino-oscillation precision | none observed | the dimension count of §2.3, together with its identification and associativity premise |
@@ -951,7 +1222,7 @@ derivation rather than an axiom.
 | **Fractional charge outside `{±1/3, ±2/3, ±1}`** | direct searches | none observed | the trivector charge spectrum of §2.1; the spectrum does not ride any arrangement |
 | **Tree-level flavour-changing neutral currents** | precision flavour physics | tight upper bounds | the weak host of §2.4 — either its structural premise or its empirical leg |
 | **A non-zero proton–electron charge sum** | neutrality-of-matter and bulk-matter charge tests | `\|Q_p + Q_e\|/e ≲ 10⁻²¹` | the four premises of §2.1; the family reverts to an empirical charge anchor |
-| **A gravitational-wave / photon speed difference** beyond `10⁻¹⁵` | multimessenger astronomy | `\|c_GW/c − 1\| ≲ 10⁻¹⁵` | one substrate, one light cone — grounded on S1a with S4 directly, and **not** on §2.5's matter-species argument, which covers the matter sector only; §4.4 records the family-level re-grounding of the structural gravity facts as owed |
+| **A gravitational-wave / photon speed difference** beyond `10⁻¹⁵` | multimessenger astronomy | `\|c_GW/c − 1\| ≲ 10⁻¹⁵` | one substrate, one light cone. The claim is family-*eligible* — it should follow from S1a with S4 — but the re-grounding is **owed, not performed** (§4.4), and it does **not** rest on §2.5's matter-species argument, which covers the matter sector only and not the gravitational mode. A detection here would therefore reach an expectation this paper has not derived, which is a weaker reach than the other rows in this table and is stated as one |
 
 **Two honest readings of that table, and they cut in opposite directions.** Several of these rows
 would falsify the Standard Model too, because they test predictions the two share — the charge ladder
@@ -1012,6 +1283,32 @@ deliverable, not a concession, and this paper does not claim the re-grounding ha
 unbuilt object: the driven-dissipative substrate dynamics. **The family owns the kernel programme; it
 owns no kernel.**
 
+**One exposure, and it is the family's rather than a candidate's.** Colour is not a gauge group in
+this family at all, and that statement reaches every member. It buys something real — the charge
+spectrum of §2.1 and the confinement reading that comes with it — and it owes something the
+programme has not delivered: **the short-distance response**. The debt is owed to measurements, and
+it is stated against them. Deep-inelastic scattering resolves pointlike, fractionally charged
+constituents inside the nucleon; the structure functions exhibit Bjorken scaling, and violate it
+logarithmically, in the way a pointlike-constituent description requires; jet production and its
+angular distributions are measured phenomena of the same class. Those are among the best-measured
+structural facts in physics, and every one of them is dimensionless — so the scale argument above
+gives this exposure no shelter whatever. A defect picture must reproduce that behaviour as the
+short-distance limit of its own structure, and this one has not. The programme's own engine ranks it
+as the **make-or-break empirical falsifier** and is wired to raise rather than return there. **It is
+the family's sharpest structural exposure, and it is stated here at that rank.**
+
+Two fences belong with it. First, the exposure is against the data and not against a rival's
+bookkeeping: the incumbent's own strong sector is priced, not assumed debt-free. §3.2 credits it with
+the one earned dimensionful scale in the comparison — the strong scale, by dimensional transmutation
+— and the comparative ledger prices the rest of the sector item by item, including the asymmetry that
+its lattice machinery works precisely because a lattice there is a **regulator** whose artifacts are
+removed in a continuum limit, which is the opposite of the ontological status a grain has in a grainy
+member of this family. That asymmetry is booked against this family, not for it, and nothing on the
+incumbent's side of the ledger relieves the exposure stated here. Second, the family's own picture
+supplies a stance here and not a discharge: a defect's spatial extent is configuration-dependent, so
+pointlike scattering off a lepton is not by itself an embarrassment for a defect ontology — but the
+nucleon's internal short-distance response is a different object, and nothing in §2 reaches it.
+
 **The field-reclamation debt.** The refusal demotes the field to instance-level description, which
 creates a duty the demotion does not discharge. Fields won historically by doing work a medium could
 not be shown to do: retardation, radiation reaction, local conservation of energy and momentum in
@@ -1068,7 +1365,7 @@ authoritative where the two differ; the dossier's own §A.6.4 carries the same t
 | | **Standard Model** | **This candidate** |
 |---|---|---|
 | Continuous parameters fitted to data | **19** (26–28 with neutrinos) | **4** — the cell mass scale, the chirality ratio, the measured Newton constant, and one hadron-sector stabilizer counted **provisionally** |
-| Of the 19, pinned at their measured values | — (they are its inputs) | **0 unconditional; 1 conditional** — a candidate reading of a 1968 mass-ratio relation — **and 2 more only if a route this programme itself records as currently refuted is repaired.** *This candidate does not reproduce the nineteen from four.* The four buy a different and smaller set of outputs, and **this row is not separable from the one above it** |
+| Of the 19, pinned at their measured values | — (they are its inputs) | **0 unconditional; 1 conditional** — a candidate reading of the Gatto–Sartori–Tonin mass-ratio relation (1968), which is not this programme's — **and 2 more only if a route this programme itself records as currently refuted is repaired.** *This candidate does not reproduce the nineteen from four.* The four buy a different and smaller set of outputs, and **this row is not separable from the one above it** |
 | Exact values read as one bit | — | the Koide amplitude; the right-handed fermions' weak-singlet character |
 | Counted structural premises | not counted, by convention | the soliton-mass identification |
 | Structural commitments | ~10 fine / ~6 coarse (§3.2) | the family's 8, **plus 8 preferred directions, plus the eleven picks of §5.1 — the largest structural inventory in the comparison** |
@@ -1113,7 +1410,10 @@ constant; if they split, the bridge relating them dies and the convergence claim
   profile gives 936.4 MeV for the nucleon (−0.3%), 1229.8 MeV for the Δ (−0.2%), and a splitting of
   293.4 MeV (+0.1%). **The honesty note is inseparable from the numbers: the two couplings were
   historically fitted to those two masses, so this is a pipeline consistency at no new parameter, not
-  a new prediction.**
+  a new prediction.** Said at the weight the display deserves, rather than at the weight three
+  agreeing rows suggest: **this sector inherits the semiclassical Skyrme model's performance and adds
+  nothing to it.** The rows are here because a pipeline that failed to reproduce them would be
+  refuted by them, not because they are earnings of this candidate.
 - **A recorded candidate convergence, not banked as a result.** The lepton-sector scale and the
   nucleon's per-rotor share agree to 0.28% between two measured quantities with no parameter between
   them. The naive derivation route for it is blocked, the floor reading of the same object does not
@@ -1126,13 +1426,18 @@ matrix, and neutrino masses. All are downstream of the unbuilt kernel.
 
 ## 5.3 The two wounds
 
-Both belong to this candidate. Both are already measured against.
+Both belong to this candidate. Both are already measured against. The family's own sharpest
+structural exposure is not here but in §4.4 — the short-distance response of a colour sector that is
+not a gauge group — and it outranks both of these; it is not in this section because it is not this
+candidate's.
 
 **The dimension-six Lorentz-violation ceiling.** The rotationally invariant dimension-six coefficient
 escapes both protections of §2.5. Its coefficient is gated on the unbuilt dynamics, so the programme
-asserts no value for it; what existing cosmic-ray and gamma-ray limits exclude is its **naive** value
-at this candidate's own lattice scale, by three to nine orders of magnitude, and those limits bind
-every future completion. **If the substrate dynamics deliver a coefficient of order one, this
+asserts no value for it; what existing cosmic-ray and gamma-ray limits exclude is its **natural**
+value at this candidate's own lattice scale, by three to nine orders of magnitude, and those limits
+bind every future completion — natural, not naive: order one is what a driven-dissipative kernel at a
+Planckian grain generically delivers, so the three to nine orders of suppression are a **mechanism
+the programme owes**, not a correction it expects. **If the substrate dynamics deliver a coefficient of order one, this
 candidate is dead — not evolved.** And "this candidate" is exact rather than a hedge: what dies is
 killed at three pinned choices in series — a *regular* arrangement, its *back-fit* size, and *one*
 induced-gravity chain to denominate that size in Planck units at all. A member proposed at the
@@ -1144,7 +1449,10 @@ say which of discreteness, Lorentz invariance and finite valency it gives up.
 the two electroweak stiffnesses coincide — not a prediction of the measured value, and the programme
 says so about its own best-known number. The crossing scale itself is not derived at all, and this
 candidate's one computable reading of it lands 0.154–0.158 against a measured 0.2312: a 33% miss of a
-five-digit number, with the four standard escape routes computed and closed. What the miss indicts is
+five-digit number, with the four standard escape routes computed and closed — descent and closures
+alike inside an imported elementary-field renormalization-group frame that this candidate's own
+emergent / composite gauge sector does not itself license, and if that premise fails the reading is
+not refuted but gated. What the miss indicts is
 this candidate's arrangement and its calibrations.
 
 **A third exposure, live and internal.** One of this candidate's own picks is under rework, and the

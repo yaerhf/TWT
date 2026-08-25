@@ -41,7 +41,8 @@ def check_twt_poc():
     _sides = set(prov["anchor_free"]) | set(prov["assigned"])
     _block = {"hypercharge", "doublet_hypercharge", "charge_normalization_anchor_free",
               "pi3_S3_integer_completion", "T3", "charge_assignment_from_anchor",
-              "winding_charge", "generation_spectrum", "gmn_coefficient", "weinberg_sin2"}
+              "winding_charge", "generation_spectrum", "gmn_coefficient", "weinberg_sin2",
+              "B_minus_L_anomaly"}
     _check("[BOUNDARY] charge_sector_provenance classifies every primitive of the charge "
            f"block on exactly one side (unclassified: {sorted(_block - _sides) or 'none'}), "
            "no primitive sits on both, the premise table names P4-P7, and the primitive itself "
@@ -904,6 +905,55 @@ def check_twt_observer_qm():
         and "imported group theory" in bo["tier"]
         and "OFF the shell" in bo["would_change_if"])
 
+    print("R-184 the general-bilinear third-order null (Sorkin arc, non-Gleason route to R-160's conclusion):")
+    bt = bilinear_detection_third_order_null()
+    _ck("(T1) MASTER STRUCTURAL THEOREM, general n PROVED not sampled — UNDER THE P(∅)=0 "
+        "HYPOTHESIS (no slit-independent monomial; a constant k has I₃=k≠0 — the SK-F1 "
+        "vacuum-offset channel sits OUTSIDE this theorem, the R-184 closing review's computed "
+        "catch): I₃[P] is EXACTLY the all-three-slit-touching part of P(ABC) — verified "
+        "against the directly extracted all-3 part on the ladder (|ψ|²)^m for m = 2..5 "
+        "(12/55/153/336 terms; the reviewer reproduced m = 7 at 1107). The superset "
+        "sign-sums are +1/0/0/+1 for |T|=3/2/1/0, so only the all-three class and the "
+        "hypothesis-excluded constant class survive",
+        sorted(bt["T1_master_theorem"]) == [2, 3, 4, 5]
+        and all(v["I3_equals_all_three_touching_part_of_P_ABC"] and v["I3_nonzero"]
+                for v in bt["T1_master_theorem"].values())
+        and [bt["T1_master_theorem"][m]["terms"] for m in (2, 3, 4, 5)] == [12, 55, 153, 336]
+        and bt["T1_master_theorem"][2]["exact_homogeneity_degree"] == 4)
+    _ck("(T2) THE NULL: ANY bilinear detection functional is annihilated — arbitrary slit-pair "
+        "kernel M_ij with Hermiticity NOT assumed, and d-component amplitudes with an "
+        "arbitrary bilinear metric at d ∈ {1,2,3,6} (the two branches the arc's own menu "
+        "names, witnessed explicitly — the L1 memo cited a 2-component witness for them). No "
+        "locality assumed: a non-local kernel K(x,y) only produces another arbitrary complex "
+        "M_ij. TIER RIDER MANDATORY (canon §5, in kind with brannen_z3_harmonic_collapse_"
+        "invariant): DERIVED-A GIVEN the hypotheses — generic set-indexed inclusion-exclusion, "
+        "NOT a Clifford/D4 identity, zero TWT content",
+        bt["T2_null"]["arbitrary_slit_pair_kernel_M_ij"]
+        and bt["T2_null"]["hermiticity_assumed"] is False
+        and bt["T2_null"]["locality_assumed"] is False
+        and sorted(bt["T2_null"]["d_component_arbitrary_metric"]) == [1, 2, 3, 6]
+        and all(bt["T2_null"]["d_component_arbitrary_metric"].values())
+        and "NOT a Clifford/D4 identity" in bt["tier"])
+    _ck("(T3) THE HYPOTHESIS IS PART OF THE THEOREM + (T4) THE DEMONSTRATED FAILURE MODE — "
+        "two planted violations, so neither half is vacuous. (T3): with a slit-configuration-"
+        "DEPENDENT kernel M^S_ij the null FAILS (computed, not asserted), so "
+        "slit-configuration-independence is a real premise — and it is the premise a "
+        "slit-set-dependent vacuum/carrier offset would deny, which nothing here covers. "
+        "(T4): a NONLINEAR functional gives I₃ ≠ 0 for every m ≥ 2 (positive multinomial "
+        "coefficients cannot cancel), with exact homogeneity s^{2m}. R-160 RELATION AT ITS "
+        "TRUE STRENGTH: an independent non-Gleason route to R-160's CONCLUSION only — "
+        "one-way, fixing no exponent until the EMPIRICAL third-order null is adjoined (a "
+        "datum R-160 does not need); not a re-derivation, not a discharge of F2, not support "
+        "for the rest of the Sorkin arc",
+        bt["T3_hypothesis"]["counter_case_fires"] is True
+        and bt["T3_hypothesis"]["set_dependent_kernel_null"] is False
+        and bt["T3_hypothesis"]["fixed_kernel_null"] is True
+        and bt["T4_failure_mode"]["planted_violation_demonstrated"] is True
+        and bt["T4_failure_mode"]["checked_m"] == [2, 3, 4, 5]
+        and "NON-GLEASON" in bt["r160_relation"].upper()
+        and "conclusion only" in bt["r160_relation"].lower()
+        and "F2" in bt["r160_relation"])
+
 
     print("\nAll §13–§15 observer/QM checks passed (companion-layer checks: twt_companion_test.py).")
 
@@ -1455,8 +1505,8 @@ def check_twt_spectra():
         "independent check). Same class, same remedy. AND THE LADDER IS POSTDICTIVE: formed "
         "on the ALREADY-KNOWN δ values and entered as 'noted non-coincidences ONLY' "
         "(governing record: TWT_worklist.md, THE 1/27 PHASE LADDER, coordinator input "
-        "2026-08-03) — what it buys is COMPRESSION, one integer for one real, at ZERO "
-        "predictive weight",
+        "2026-08-03) — A NOTED REGULARITY OF ZERO EVIDENTIAL WEIGHT (the 'compression, one "
+        "integer for one real' booking is RETIRED; see the demotion check that follows)",
         "TAUTOLOGICAL RESTATEMENT" in _g5["tautology_label"]
         and "NOT an agreement" in _g5["tautology_label"]
         and "NOT a confirmation" in _g5["tautology_label"]
@@ -1467,9 +1517,36 @@ def check_twt_spectra():
         and "BRANNEN" in _ar["single_empirical_fact"].upper()
         and "POSTDICTIVE" in _ar["ladder_is_POSTDICTIVE"]
         and "ALREADY-KNOWN" in _ar["ladder_is_POSTDICTIVE"]
-        and "COMPRESSION" in _ar["ladder_is_POSTDICTIVE"]
-        and "ZERO predictive weight" in _ar["ladder_is_POSTDICTIVE"]
+        and "NOTED REGULARITY OF ZERO EVIDENTIAL WEIGHT" in _ar["ladder_is_POSTDICTIVE"]
         and "coordinator input 2026-08-03" in _ar["ladder_is_POSTDICTIVE"])
+
+    _ck("★ THE LADDER'S 'COMPRESSION' BOOKING IS RETIRED — demoted to A NOTED REGULARITY OF "
+        "ZERO EVIDENTIAL WEIGHT on THIS CORPUS'S OWN ground, not on a reviewer's say-so: "
+        "R-173's dof/vacuity result computes that the geometry reaches the measured triple "
+        "on a FOUR-DIMENSIONAL solution manifold (6 free reals − 2 constraints, Jacobian "
+        "rank 2), so every NEARBY ladder value is reached too — the ladder labels a point in "
+        "a CONTINUUM and EXCLUDES NOTHING. Compression is evidence only when the compressed "
+        "description is CONSTRAINED. The bit ledger is shipped and does not close in the "
+        "ladder's favour even before the vacuity kill: bought = 3 reals → 3 small integers; "
+        "paid = the base 27, the EVEN rung parity (the 'why even harmonics' question still "
+        "OPEN), ~log2(3!) ≈ 2.58 bits of sector assignment, and an UNPAYABLE model-class "
+        "charge (the family 'rational multiple of 1/27 rad' was itself chosen after the "
+        "values were known, and the family is unbounded). ★ AND THE PLANTED-VIOLATION DEMO "
+        "RUNS: restoring the old 'COMPRESSION — one integer for one real' wording on a copy "
+        "is REJECTED by the demotion predicate",
+        (lambda _lp: (
+            _lp(_ar) and not _lp({"ladder_is_POSTDICTIVE":
+                                  "POSTDICTIVE ... What it buys is COMPRESSION — one integer "
+                                  "for one real — and it carries ZERO predictive weight."})))(
+            lambda d: ("NOTED REGULARITY OF ZERO EVIDENTIAL WEIGHT" in d["ladder_is_POSTDICTIVE"]
+                       and "EXCLUDES NOTHING" in d["ladder_is_POSTDICTIVE"]))
+        and set(_ar["ladder_bit_accounting"]) == {
+            "bought", "paid_1_base", "paid_2_parity", "paid_3_assignment",
+            "paid_4_model_class", "net"}
+        and "UNPAYABLE IN BITS" in _ar["ladder_bit_accounting"]["paid_4_model_class"]
+        and "2.58" in _ar["ladder_bit_accounting"]["paid_3_assignment"]
+        and "R-173" in _ar["ladder_is_POSTDICTIVE"]
+        and "FOUR-DIMENSIONAL" in _ar["ladder_is_POSTDICTIVE"])
 
     # THE PLANTED-VIOLATION DEMO for the tautology fence. The whole point of the label is
     # that it CANNOT be relabelled as agreement/confirmation and still pass. Planted here
@@ -1487,21 +1564,91 @@ def check_twt_spectra():
         "one. So the vacuous-agreement reading cannot re-enter through the returned record",
         _fence_ok(_g5) and not _fence_ok(_planted))
 
-    _ck("★ G5's SECOND SHIPPED FAILURE MODE — the MASS-DEFINITION CONTROL, in the return "
-        "dict so the σ can never be quoted alone. The 0.41σ propagates ONLY the PDG mass "
-        "uncertainties; it does NOT cover the mass-MEASURE conditional (√m = r² and the "
-        "pole-vs-MS̄ definition, which `DoverJ_from_lepton_masses`'s own docstring names as "
-        f"conditional (a) and which §C.3.4 records moving the Foot angle ~50× its band). A "
-        f"0.1% coherent shift in m_τ — far smaller than a pole→MS̄ conversion — moves the "
-        f"result to {_ar['mass_definition_control']['m_tau x (1 - 0.001)']['PDG_sigma']:.1f} "
-        f"PDG-σ. THE DEFINITION SYSTEMATIC DWARFS THE STATISTICAL BAR BY ORDERS, so 0.41σ "
-        "is NEVER a confidence level for the arc-ratio reading",
-        abs(_ar["PDG_band"]["sigma_of_tan(2/3)"] - 0.41) < 0.02
-        and _ar["mass_definition_control"]["m_tau x (1 - 0.001)"]["PDG_sigma"] > 10.0
-        and _ar["mass_definition_control"]["m_tau x (1 - 0.005)"]["PDG_sigma"] > 50.0
-        and "ONLY the PDG mass uncertainties" in _ar["sigma_is_NOT_a_confidence_level"]
-        and "MASS-MEASURE" in _ar["sigma_is_NOT_a_confidence_level"]
-        and "dwarfs" in _ar["sigma_is_NOT_a_confidence_level"])
+    _mdc = _ar["mass_definition_control"]["m_tau x (1 - 0.001)"]
+    _v_new = _ar["input_vintage_control"]["m_tau = 1776.93 +- 0.09 (this engine)"]
+    _v_old = _ar["input_vintage_control"]["m_tau = 1776.86 +- 0.12 (an earlier vintage)"]
+    _ck("★ G5 — THE SIGMA IS DELETED, NOT FENCED (ruled 2026-08-24), and the RESIDUAL IS "
+        f"QUOTED AS AN OFFSET: δ_fit − 2/9 = {_ar['residual_offset_rad']:+.3e} rad, a "
+        f"fractional agreement of {_ar['fractional_agreement_delta']:.2e} in δ "
+        f"({_ar['fractional_agreement_DoverJ']:.2e} in D/J). NO SIGNIFICANCE IS QUOTED — "
+        "there is no null hypothesis, and the residual sits BELOW the input-systematic "
+        "sensitivity. TWO SHIPPED CONTROLS carry the ruling's ground, both expressed in "
+        "RADIANS so no σ can re-enter through them: (a) the MASS-DEFINITION CONTROL — a 0.1% "
+        f"coherent m_τ shift moves δ_L by {abs(_mdc['shift_from_fitted_rad']):.2e} rad, "
+        f"{_mdc['multiple_of_observed_residual']:.0f}× the observed residual, and the "
+        "mass-MEASURE conditional (√m = r², pole-vs-MS̄) is not covered by any propagated "
+        "bar at all; (b) ★ the INPUT-VINTAGE CONTROL, the sharper one and the reason the σ "
+        f"goes — m_τ = 1776.93 gives a residual of {abs(_v_new['residual_rad']):.3e} rad "
+        f"while m_τ = 1776.86 (0.07 MeV away, INSIDE the older vintage's own bar) gives "
+        f"{abs(_v_old['residual_rad']):.3e} rad, a factor "
+        f"{abs(_v_old['residual_rad'])/abs(_v_new['residual_rad']):.1f}. A σ-count built on "
+        "this swings 0.41↔0.89 for ONE unchanged claim: the statistic measures how well m_τ "
+        "is MEASURED, so it is ANTI-INFORMATIVE, not merely incomplete",
+        abs(_ar["residual_offset_rad"] - 2.5397e-6) < 1e-9
+        and abs(_ar["fractional_agreement_delta"] - 1.1429e-5) < 1e-8
+        and _mdc["multiple_of_observed_residual"] > 20.0
+        and (abs(_v_old["residual_rad"]) / abs(_v_new["residual_rad"])) > 2.5
+        and "NO SIGNIFICANCE IS QUOTED" in _ar["no_significance_is_quoted"]
+        and "ANTI-INFORMATIVE" in _ar["no_significance_is_quoted"]
+        and "DELETED FROM THIS RECORD" in _ar["no_significance_is_quoted"]
+        and "OPEN commitment" in _ar["renormalization_point"]
+        and "POLE" in _ar["renormalization_point"]
+        and "NOT RG-stable" in _ar["renormalization_point"])
+
+    # THE ABSENCE FENCE — executable. The deleted statistic must not survive under ANY key,
+    # and it must not be reconstructible from the returned parts without tripping the
+    # does_not_license clause. Planted here so the fence is SEEN TO FIRE.
+    def _no_sigma(d):
+        # NOTE the whitelist by construction: the DECLARATIVE clause key
+        # `no_significance_is_quoted` is not a statistic and is not matched. What is matched
+        # is any key that would HOLD a σ-count (`sigma`, `σ`, `..._confidence_...`).
+        bad = ("sigma", "σ", "confidence")
+        for k, v in d.items():
+            kl = str(k).lower()
+            if any(b.lower() in kl for b in bad):
+                return False
+            if isinstance(v, dict) and not _no_sigma(v):
+                return False
+        return True
+    _planted_sigma = dict(_ar)
+    _planted_sigma["PDG_band"] = {"sigma_of_tan(2/3)": 0.41}
+    _ck("★ G5's THIRD SHIPPED FAILURE MODE — the ABSENCE FENCE, run in-process: the returned "
+        "arc-ratio record is scanned recursively for any key naming a significance statistic "
+        "(σ / sigma / confidence — the word 'significance' itself is DELIBERATELY unmatched, "
+        "so the declarative no_significance_is_quoted clause can exist) and must contain NONE — the old `PDG_band."
+        "sigma_of_tan(2/3)` key is GONE, not merely captioned. A copy with the old key "
+        "planted back is REJECTED while the live record passes, so the deleted statistic "
+        "cannot re-enter through the returned dict. `does_not_license` separately forbids "
+        "RECONSTRUCTING it by dividing residual_offset_rad by input_uncertainty_scale_rad — "
+        "the same error by another route",
+        _no_sigma(_ar) and not _no_sigma(_planted_sigma)
+        and "PDG_band" not in _ar
+        and "SIGNIFICANCE STATISTIC" in _g5["does_not_license"]
+        and "reconstructing one by" in _g5["does_not_license"]
+        and "forbidden by does_not_license" in _ar[
+            "input_uncertainty_scale_is_NOT_a_bar_to_divide_by"])
+
+    _tf = _ar["trials_factor"]
+    _ck("★ G5 — THE TRIALS FACTOR IS WHAT REPLACES THE σ, and it is stronger than one was: "
+        f"over the stated rational menu {_tf['menu']} ({_tf['n_candidates']} candidates, "
+        f"local density {_tf['local_density_per_unit_delta']:.0f} per unit δ near the "
+        "target), at a tolerance equal to the OBSERVED residual, **2/9 is the ONLY hit** — "
+        f"chance expectation {_tf['chance_expectation_local_density']:.4f} on a "
+        "local-density bookkeeping. An external reviewer's independent and WIDER menu (2394 "
+        "candidates, q < 20) returned the SAME unique hit at 0.16; ★ WE QUOTE THE MORE "
+        "CONSERVATIVE 0.16, our own reproduction being ~40× more favourable and therefore "
+        "not the number to lead with. ★★ AND THE CONDITIONING CLASS IS CARRIED (RUL-049), "
+        "which neither computation stated: the trials factor bounds the look-elsewhere "
+        "WITHIN THE STATED MENU, and the menu was chosen AFTER 2/9 was known — so what is "
+        "bounded is WHICH RUNG, never WHETHER a rational-menu reading was the thing to look "
+        "for. Evidence about uniqueness; NOT evidence about the reading's prior",
+        _tf["hits"] == [("p/q", 2, 9)]
+        and _tf["n_candidates"] == 956
+        and _tf["chance_expectation_local_density"] < _tf["quoted_chance_expectation"]
+        and _tf["quoted_chance_expectation"] == 0.16
+        and "WITHIN THE STATED MENU" in _tf["CONDITIONING_CLASS_RUL_049"]
+        and "AFTER 2/9 was known" in _tf["CONDITIONING_CLASS_RUL_049"]
+        and "NOT evidence about the reading's prior" in _tf["CONDITIONING_CLASS_RUL_049"])
 
     _et = _ar["non_tautological_tests"]["baryon_e_test"]
     _ck("★ G5 — THE NON-TAUTOLOGICAL TESTS are the rider's ONLY evidential future, and the "
@@ -1524,7 +1671,7 @@ def check_twt_spectra():
         and "delta_L_from_DoverJ" in _g5["does_not_license"]
         and "canting_pitch_q_rad" in _g5["does_not_license"]
         and "back door" in _g5["does_not_license"]
-        and "confidence level" in _g5["does_not_license"]
+        and "QUOTING ANY " in _g5["does_not_license"]
         and "corroboration" in _g5["does_not_license"])
 
     # The wiring fence is not only prose: assert the engine's live consumers are UNMOVED.
@@ -1664,7 +1811,7 @@ def check_twt_matter():
         "ELECTRON's pair, NOT R-002's ℤ×ℤ two windings of the state class",
         electron_two_windings()["Hopf link H"] == 1)
     lnt = lepton_number_topological_conservation()
-    _ck(f"L-number topological conservation: L(L-orbit)=1, L(Q-orbit)=0, B-L anomaly-free (§23.7)",
+    _ck(f"L-number topological conservation: L(L-orbit)=1, L(Q-orbit)=0, B-L doublet-sector condition (§23.7)",
         lnt["L(L-orbit defect)"] == 1 and lnt["L(Q-orbit defect)"] == 0
         and lnt["L_conserved_perturbatively"] and lnt["B_conserved_perturbatively"])
     pmns = pmns_no_substrate_derivation()
@@ -2415,8 +2562,20 @@ def check_twt_weak():
 
     print("§23.7 B-L anomaly cancellation (3×1/3=1):")
     bl = B_minus_L_anomaly()
-    _ck(f"A_B = 3×(1/3) = 1, A_L = 1, A_(B-L) = 0  (got {bl})", bl["B-L anomaly-free"] and bl["A_B = 3×(1/3)"] == 1)
+    _ck(f"A_B = 3×(1/3) = 1, A_L = 1, A_(B-L) = 0 — the DOUBLET-SECTOR condition "
+        f"(scoped 2026-08-24: no longer billed as 'anomaly-free' outright)  (got A_B={bl['A_B = 3×(1/3)']})",
+        bl["B-L doublet-sector condition vanishes"] and bl["A_B = 3×(1/3)"] == 1)
     _ck(f"A_(B+L) = 2 (anomalous)", bl["B+L anomalous"] and bl["A_{B+L}"] == 2)
+    _ck("singlet-inclusive B−L sums over the LIVE gauged table (LH conv): linear and cubic "
+        f"BOTH exactly −1 on the 15 alone (got {bl['sum(B-L) gauged 15 (LH conv)']}, "
+        f"{bl['sum(B-L)^3 gauged 15 (LH conv)']}), and BOTH complete to exactly 0 with "
+        "R-121's sterile partner — the sterile's CLASSICAL completion work for R-089's "
+        "exactness, consuming no SMG import (the full free-c anomaly system with RH "
+        "hypercharges unknown is banked at charge_normalization_anchor_free, R-159; "
+        "OI-1 closed by discovery, record oi1_anomaly_ledger_2026-08-24)",
+        bl["sum(B-L) gauged 15 (LH conv)"] == -1
+        and bl["sum(B-L)^3 gauged 15 (LH conv)"] == -1
+        and bl["both complete to 0 with R-121 sterile"])
 
     print("§23.8 BPST instanton charge + selection rule:")
     Q = bpst_charge_Q()
@@ -3411,12 +3570,27 @@ def check_twt_cosmo():
         "and D4's SIXTH bond moment is ANISOTROPIC (residual 12 ≠ 0) ⇒ dimension eight is actually REACHED",
         abs(lv["invariant_poly_dims_deg_2_4_6"][6] - 2.0) < 1e-6
         and lv["D4_sixth_moment_isotropy_residual"] > 0 and "LEADING" in lv["anisotropy_leading_order"])
-    _ck("the dim-8 inference is CONDITIONAL and its two premises are NAMED, not buried: (P-an) analyticity in k "
-        "— a non-analytic driven-dissipative memory kernel (the #1 gap itself) is not covered; (P-pg) the FULL "
-        "point group INCLUDING TRIALITY — W(D4) alone has a 3-dim degree-4 space, and unequal weighting of "
-        "triality-related shell-2 orbits RESTORES dim-6 anisotropy",
-        "P-an" in lv["anisotropy_premises"] and "P-pg" in lv["anisotropy_premises"]
-        and "DERIVED-conditional-on-(P-an ∧ P-pg)" in lv["tier"])
+    _ck("the dim-8 inference is CONDITIONAL and ALL FOUR of its premises are NAMED, not buried — FULL NAMING "
+        "as of 2026-08-25, the ONE coordinated engine+suite+companion edit the R-165 amendment §4(i) left "
+        "owed (the literal previously named the two headline premises and silently omitted (P-gs), added "
+        "2026-07-31, and (P-op), added 2026-08-25): (P-an) analyticity in k — a non-analytic "
+        "driven-dissipative memory kernel (the #1 gap itself) is not covered; (P-pg) the FULL point group "
+        "INCLUDING TRIALITY — W(D4) alone has a 3-dim degree-4 space, and unequal weighting of "
+        "triality-related shell-2 orbits RESTORES dim-6 anisotropy; (P-gs) the ground state preserves the "
+        "point group — the §D.4.3 spiral breaks it, leaving SC-2's sidereal residual; (P-op) the OPERATIVE "
+        "symmetry is the full point group, NOT the order-48 DRIVEN subgroup, where the degree-4 SPATIAL "
+        "invariant space is 2-dimensional and the protection is carried by a +4/-4 interaction-content "
+        "cancellation rather than by symmetry. THE STRING IS NOT EXHAUSTIVE OF ALL CONDITIONS AND SAYS SO: "
+        "it is the paper §E premise register's four, and the §B.1.5 scalar-in-internal-index condition is a "
+        "fifth that register does not label. WHAT THIS CHECK ENFORCES: every premise the tier names is "
+        "DEFINED in the returned anisotropy_premises, and the two sets agree exactly — the engine↔paper "
+        "drift class the record-invariants policy exists to catch",
+        set(lv["anisotropy_premises"]) == {"P-an", "P-pg", "P-gs", "P-op"}
+        and all(k in lv["tier"] for k in ("P-an", "P-pg", "P-gs", "P-op"))
+        and "DERIVED-conditional-on-(P-an ∧ P-pg ∧ P-gs ∧ P-op)" in lv["tier"]
+        and "FULL NAMING" in lv["tier"] and "FIFTH" in lv["tier"]
+        and "+4/-4" in lv["anisotropy_premises"]["P-op"]
+        and "SC-2" in lv["anisotropy_premises"]["P-gs"])
     _ck("NOT generic to lattices: simple-cubic Z⁴ 4th moment is ANISOTROPIC (residual 2, N_1111=2 vs N_1122=0) — "
         "the D4-vs-Z⁴ contrast is what makes the dim-8 push substrate-specific rather than generic",
         lv["Z4_fourth_moment_isotropy_residual"] > 0)

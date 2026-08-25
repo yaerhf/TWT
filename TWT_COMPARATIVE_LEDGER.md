@@ -534,7 +534,7 @@ booked as exactly that.
 |---|---|---|---|---|
 | **Status of Lorentz invariance** | Formalism covariant at the QFT level; **collapse is not covariant** (hyperplane dependence, Aharonov–Albert 1981) | **Predictions** Lorentz-invariant; **ontology is not** — the foliation is a preferred structure | **Exact and fundamental.** No collapse, no preferred structure | **EMERGENT, for an exact one.** The substrate is Euclidean with a preferred frame; observer-frame Lorentz structure is derived |
 | **How the cost is handled** | **Deferred by refusing the question** — instrumentalism declines to make collapse a physical process. Low cost if instrumentalist, unpayable if realist | **Paid and accepted.** Bohmians state it plainly | **NOT PAID — THERE IS NOTHING TO PAY.** This is Everett's clean win on this line, and the ledger records it as such | **Paid, with structural returns** (next row) and **one standing empirical tension** (row after) |
-| **What TWT buys with the cost** | — | — | — | **An offensive win, not a defence.** R-016: all matter species inherit one light cone *because they are defects of one field*, so relative-boost dimension-four LV is structurally zero, not tuned. The Collins–Perez–Sudarsky–Urrutia–Vucetich (2004) radiative-naturalness obstacle — which misses the `~10⁻²⁰` matter-sector bound by 17 orders for generic emergent-Lorentz programmes — **presupposes N independent fields, and TWT denies the precondition.** Additionally, D4 point-group invariant theory forces the quartic isotropic, putting leading rotational anisotropy at **dimension eight**, `≈ 2 × 10⁻³¹` at the highest observed cosmic-ray energies (provenance §B.1.5, ruled band's loose corner §B.6.2) |
+| **What TWT buys with the cost** | — | — | — | **An offensive win, not a defence.** R-016: all matter species inherit one light cone *because they are defects of one field*, so relative-boost dimension-four LV is structurally zero, not tuned. The Collins–Perez–Sudarsky–Urrutia–Vucetich (2004) radiative-naturalness obstacle — which misses the `~10⁻²⁰` matter-sector bound by 17 orders for generic emergent-Lorentz programmes — **presupposes N independent fields, and TWT denies the precondition.** Additionally, D4 point-group invariant theory forces the quartic isotropic, putting leading rotational anisotropy at **dimension eight**, `≈ 2 × 10⁻³¹` at the highest observed cosmic-ray energies (provenance §B.1.5, ruled band's loose corner §B.6.2) — **on §B.1.5's four premises, P-op included: the theorem is proved at the full point group, and under the driven subgroup an anisotropic *spatial* quartic is permitted, absent only by the bond set's computed zero spatial fourth moment (P2 row below)** |
 | **What TWT owes** | — | — | — | **The rotationally-invariant dimension-six residual `η⁽⁴⁾`.** Not a relative-boost observable (R-016 does not reach it), not an anisotropy (D4 does not reach it), and at dimension six a species-universal coefficient is **not removable by rescaling**. At the substrate's naive coefficient `c = 1` it would read `η⁽⁴⁾ ∈ [1.9, 6.7]` — **excluded by three to nine orders** (provenance §E.2.2 / §E.3.5(4) / I-19, on the ruled `Λ_L` band). The framework does not claim that value and cannot presently compute one |
 | **Denomination of that charge** *(repaired 2026-08-16, C7 run)* | — | — | — | The **EXISTENCE** of the exposure is unconditional and TWT-specific. The **MAGNITUDE** is conditional on four named premises: **I-3** (the `Λ_L` band is measured `G` inverted through the Sakharov one-loop form — a substrate-level import at status OPEN, so the microscopic scale is set by a macroscopic anchor, C7); **I-19(e)** (identity-class transfer of the substrate coefficient to the observed dispersion, hedged in the *frame* register only, never the *scale* register); **P-an** (analyticity — a driven-dissipative memory kernel, i.e. the #1 gap itself, need not be analytic); and **`c = 1`** (an EFT-naturalness estimate the framework explicitly does not claim). **The conditionality is NOT relief:** strike I-3 and the size becomes *unstated* while the exposure remains, and the framework then owes **both** `Λ` and `η⁽⁴⁾` — under debt structure a worse position, not a better one. The escape and the arithmetic share a premise |
 | **Pricing of the yardstick this line invokes** *(added 2026-08-16; the role file's YARDSTICK PRICING rule)* | **Can decline the estimate** — the same instrumentalist move it uses at C6, at the price of declining to say what is there (the position C5 books as the worst available under debt structure). **Declining is abstention, not satisfaction** | **Cannot decline AS-INSTANTIATED.** A realist about the wave function *and* the Hamiltonian inherits the SM's own naturalness violations at its floor (C7). **But the inheritance is MODULAR** *(qualifier added under contra-review revision 6, and it runs against TWT)*: Bohmian mechanics ports across Hamiltonians, so a BSM discovery dissolving the hierarchy problem relieves it **at zero framework cost**, touching no Bohmian commitment | **Cannot decline as-instantiated**, and the point is sharper here than anywhere: **Everett's clean win above is on LORENTZ INVARIANCE, not on naturalness.** Its floor is the SM's, so it carries the unprotected `μ²` and the cosmological constant unchanged. **Modular in the same way** — Everett is an interpretation of *whatever quantum theory is true*, and its floor is a swappable slot | The arbiter is **EFT naturalness** (`c = O(1)` unless a symmetry forbids). **It is applied here and it STAYS applied** — TWT posits a *physical* cutoff, which is precisely the condition under which the estimate is well defined and binding **(rider: the estimate also presumes the derivative expansion `P-an`, on which the denomination row two cells up already makes the MAGNITUDE conditional; existence survives `P-an`'s failure, magnitude does not — do not quote "stays applied" without it)**. But it is **not a standard the incumbent meets**: the same criterion, applied to the target this whole line stands on, is violated at the electroweak scale (~10³²–10³⁴ in mass-squared) and, once gravity enters, at the cosmological constant (~10¹²⁰–10¹²³) — **both magnitudes now denominated at C7. And TWT's exposure is ARCHITECTURE-FIXED where the rivals' is modular: no discovery elsewhere relieves it, only its own kernel can** |
@@ -1140,7 +1140,7 @@ independent-use count.**
 | # | Audited result | Shared-base premises consumed | Per-result-**EXCLUSIVE** premises | Class | Count | Premise-cost (RUL-038) | Verdict |
 |---|---|---|---|---|---|---|---|
 | P1 | **§B.1.1–B.1.3** wavefront isomorphism / signature (R-013, R-014, R-015) | S1a, S2, S3 | **none** | (a) | **0** | **FREE** | `SYMMETRIC` |
-| P2 | **§B.1.5** D4 quartic isotropy ⇒ dim-8 anisotropy (R-165) | S1a, S1b | **P-an** (analyticity of the dispersion kernel in `k`); **P-pg** (the *full* point group incl. triality); **P-gs** (ground state preserves the point group) | (d) / (d) / **(b)** | **3** | **COSTLY** | `IRREDUCIBLE` on P-pg; `SYMMETRIC` on the result |
+| P2 | **§B.1.5** D4 quartic isotropy ⇒ dim-8 anisotropy (R-165) | S1a, S1b | **P-an** (analyticity of the dispersion kernel in `k`); **P-pg** (the *full* point group incl. triality); **P-gs** (ground state preserves the point group); **P-op** (the symmetry *operative* on the spatial anisotropy sector is the FULL point group `[1152]`, not the **driven** subgroup `Stab(e₄)` `[48]` ≅ `W(B₃)` spatially, at which the degree-4 spatial invariant space is 2-dimensional and `Σᵢkᵢ⁴` is *permitted* — the protection then resting on the bond set's computed zero spatial fourth moment, i.e. on interaction content rather than symmetry; added 2026-08-25, D4 standalone review round) | (d) / (d) / **(b)** / (d) | **4** | **COSTLY** | `IRREDUCIBLE` on P-pg; `SYMMETRIC` on the result. **(P-op raises the count from 3 to 4 and does not change the cost band; it is the one number this amendment moves, and it moves because a premise was added, not because a result did)** |
 | P3 | **§B.3.1** complex structure + sector locks (R-020, R-021, R-127, R-128) | S1a, S3, S4, S4b, S2 | the **interferometry datum** (the observed one-particle mode *is* a propagating phase); the **Q-orbit "structural analog" status**; the **same-observer premise** | (d) / (d) / (d) | **3** | **COSTLY** | `IRREDUCIBLE` on the datum (menu enumerated); `PROMOTABLE` on the `Z(e₄)` restriction (below) |
 | P4 | **§B.3.3** Born rule, exponent exactly 2 (R-023, R-160) | S1a, S3, S4b; P3's `{1, B_a}` | **F2** — statistical noncontextuality (F1, F3, F4 are carried by the framework's own commitments, per §B.3.3 verbatim) | (d) | **1** | **COSTLY** | `SYMMETRIC` |
 | P5 | **§B.4** Bell / Tsirelson / no-signaling (R-027, R-028, R-029) | S1a, S3, S4, S4b; P3's `Z(e₄)` qubit | **the two-defect tensor product**; **the singlet state** | **(c)** / **(c)** | **2** | **COSTLY** — but see the collapse note | `PROMOTABLE` (tensor product); `IRREDUCIBLE` (singlet) |
@@ -1832,8 +1832,11 @@ nothing; they exist so that a reader meets both sides' structural inventories or
 > abstract. What the counted inputs buy is a different and smaller set of outputs. What the
 > framework claims against the incumbent is a **short list of Standard-Model structural facts
 > obtained rather than postulated, GRADED BY A STATED SEPARATOR rather than counted** — of which
-> **two pass cleanly** (the charge arc; the weak arc, given A-P2 and the right-handed-singlet
-> datum), each with an **exhibited failing counterfactual** and independent of the free parameters.
+> **two pass the separator's first two clauses** (the charge arc; the weak arc, given A-P2 and the
+> right-handed-singlet datum), each with an **exhibited failing counterfactual** and independent of
+> the free parameters — and, on the separator's third clause (added 2026-08-24; see the re-grade in
+> the tally below), **two structural passes and ZERO empirical**, against **zero CONVOLUTED premises**
+> on the input side.
 > That is what **structure without a unifying group** means here — at the price of a **larger
 > structural-commitment inventory than the incumbent's**, one unbuilt object that gates every
 > magnitude, and two already-measured instance-level failures.
@@ -1971,9 +1974,33 @@ full and recorded as the sharper form of the charge.
 
 ### The tally, and the row as it now reads
 
-**Ten claimed → eight distinct → TWO that pass the separator cleanly.**
+**Ten claimed → eight distinct → TWO that pass the separator's first two clauses.**
 
-- **Pass cleanly (2):** the charge arc (row 2) · the weak arc (row 7).
+**RE-GRADE 2026-08-24 (round-4 Opus finding O4; E-1 ADOPTED CROSS-WIRED, RUL-101).** The separator
+gains a **third clause** — *the feature does work it was not selected to do* — because clauses (i)
+and (ii) cannot detect a reverse-engineered premise: a feature chosen to produce a result always
+breaks that result when deleted. The clause is **split**, and the split is what makes the result
+honest in both directions: **(iii-a) STRUCTURAL excess** — the named feature carries a load in a
+sector it was not introduced for; **(iii-b) EMPIRICAL excess** — it has a consequence in a domain
+not used to fix it, which was then independently tested and confirmed. Run over the same ten:
+**(iii-b) = ZERO of ten**, with the `B − L` closure **PENDING rather than failed** (its excess
+content is entirely forward — Dirac neutrinos, no `0νββ`, the sterile mass tie — all currently
+null); **(iii-a) = THREE entries sharing one root, collapsing to TWO independent structural
+passes** (the charge arc's two halves and the `B − L` closure). The reviewer's predicted `2 → 0` is
+**CONFIRMED on the clause he named**, and the corrected picture is more informative than either
+number alone. **Cross-wire, per the human's ruling:** the premise side of the same worry is already
+measured by this ledger's own instrument — **RUL-038's premise-cost scale**, whose `CONVOLUTED`
+class is exactly "a new premise whose only motivation is making this result work" — and at Gate A
+that instrument returned **`CONVOLUTED` = 0, both demotion slots empty** (RUL-060's ground, from a
+run that in the same campaign returned five DOUBLE-BILLED findings and one UNDER-BILLED, four of six
+against TWT). **Both numbers are published together and neither is quoted without the other: zero
+convoluted premises on the input side; zero empirical excess and two structural passes on the
+output side.** Enacted in Core §3.1 and §3.2 in the round-4 §8a apply batch. **Revert:** strike this
+block and the separator returns to two clauses with "two pass cleanly", which is the state E-1
+found in unrelated contradiction with §4.1's own "no channel in which agreement would count as
+evidence".
+
+- **Pass clauses (i) and (ii) (2):** the charge arc (row 2) · the weak arc (row 7).
 - **Pass with a stated weakening (4):** generic-given-4D (3) · half-chosen (8) · conditional on a
   premise whose failing world is named (9) · narrowed to a genuine incumbent-agnostic closure (4).
 - **Partial or undecomposed this pass (2):** the gauge group (1, one factor only) · the up/down

@@ -5575,7 +5575,9 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
           has N_1111 = 2 while N_1122 = 0 (4th-moment residual 2), and its point group B4 (order 384)
           has a TWO-dimensional degree-4 invariant space — Σk_i⁴ exists there. Dim-8 is an F4/D4
           fact, not a 4-dimensionality fact.
-          TWO PREMISES, NAMED (do not drop them — the inference is conditional, not absolute):
+          PREMISES, NAMED (do not drop them — the inference is conditional, not absolute; the
+          paper carries two further ones this docstring does not restate, (P-gs) the ground state
+          preserving the point group and the scalar-in-internal-index premise — see §B.1.5):
             (P-an) ANALYTICITY in k, i.e. a derivative expansion exists. A driven-dissipative memory
                    kernel — the #1 gap itself — need not be analytic, and a non-analytic kernel is
                    not covered by any polynomial-invariant argument.
@@ -5586,6 +5588,35 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                    ONLY at equal weight. A substrate coupling that weights triality-related orbits
                    unequally RESTORES dimension-six anisotropy. This is the positive result's own
                    would-change-if (N52), and it is why the result must not be over-trusted.
+            (P-op) THE OPERATIVE SYMMETRY IS THE FULL POINT GROUP [1152], NOT THE DRIVEN SUBGROUP
+                   (added 2026-08-25, D4 standalone cold-review round; adjudication record
+                   knowledge/audit/standalone_reviews_2026-08-25/ADJUDICATION_D4_2026-08-25.md §1.4,
+                   amendment record R165_AMENDMENT_2026-08-25.md — NOT SHIPPED, internal audit
+                   paths). The theorem above is proved in FOUR Euclidean variables at the full
+                   group; the claim it is QUOTED for — leading ROTATIONAL (spatial) anisotropy,
+                   read against SME anisotropic coefficients and sidereal cosmic-ray limits — is a
+                   THREE-dimensional statement, and a driven steady state singles out e4. The
+                   driven group is Stab_G(e4), order 48 (the same G48 that `_gamma_bond_rig` builds
+                   and asserts); it is block-diagonal and restricts FAITHFULLY and EXACTLY onto
+                   W(B3) — all 48 signed 3-permutations — whose invariant degrees are {2,4,6}. So
+                   the degree-4 SPATIAL invariant space at the driven group is TWO-dimensional,
+                   spanned by (k_sp²)² AND Σ_{i<=3} k_i⁴: an anisotropic spatial quartic is
+                   PERMITTED there, though it is FORBIDDEN at the full group. What carries the
+                   protection at the driven group is therefore INTERACTION CONTENT, not symmetry —
+                   the 24-bond set's spatial fourth moment is exactly isotropic (residual 0), and
+                   it is so by CANCELLATION: the 12 e4-bearing bonds give spatial residual +4 and
+                   the 12 bonds in the e4=0 hyperplane give -4. A permission left unpopulated, not
+                   a forbidden term.
+                   WOULD-CHANGE-IF: any driven-sector term populating that permitted invariant —
+                   a coupling surviving at G48 but not at G, with nonzero spatial fourth moment
+                   (equivalently any reweighting breaking the +4/-4 cancellation) — RESTORES
+                   dimension-six SPATIAL anisotropy, facing SME-type sidereal bounds rather than
+                   the isotropic ones. This premise is the group-theoretic content of the
+                   arbitration the §D.5.7 Γ-survivor pointer dockets: the candidate answer to
+                   "which premise does a nonzero driven-group Γ survivor evade" is (P-op), not
+                   (P-an) and not (P-pg). NOTHING COMPUTED HERE MOVES — no value, tier or count
+                   changes on this premise; it is a scope statement made explicit. This primitive's
+                   own asserts remain full-group statements and are correct as such.
       (3) the ROTATIONALLY INVARIANT dim-6 residual η⁽⁴⁾ p⁴/M²_Pl — NOT PROTECTED BY EITHER.
           It is not a relative-boost observable (so (1) does not reach it) and it is not an
           anisotropy (so (2) does not reach it). At dim 6 a species-UNIVERSAL coefficient is NOT
@@ -5769,7 +5800,26 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
             "P-pg": "the FULL point group INCLUDING TRIALITY; W(D4) (order 192) alone has a 3-dim degree-4 "
                     "invariant space, and the shell-2 sub-orbits {±2e_i} and (±1,±1,±1,±1) are each "
                     "anisotropic (residual 32 apiece), cancelling ONLY at equal weight — unequal weighting "
-                    "of triality-related orbits RESTORES dim-6 anisotropy (N52 risk note)"},
+                    "of triality-related orbits RESTORES dim-6 anisotropy (N52 risk note)",
+            "P-gs": ("the GROUND STATE PRESERVES THE POINT GROUP. The SSD.4.3 spiral vacuum BREAKS it; "
+                     "what is left is a species-universal O(q^2) splitting absorbable by the I-22 "
+                     "rescaling class, plus a space-fixed/sidereal residual that is SC-2's open "
+                     "question. Carried in the paper SSE premise register since 2026-07-31; entered "
+                     "into this returned value 2026-08-25 with the full tier naming, so the tier "
+                     "string names nothing this primitive does not define"),
+            "P-op": ("the OPERATIVE SYMMETRY on the SPATIAL-anisotropy sector is the FULL point group "
+                     "(1152), NOT the DRIVEN subgroup Stab_G(e4) (order 48, restricting faithfully and "
+                     "exactly onto W(B3), invariant degrees {2,4,6}), whose degree-4 SPATIAL invariant "
+                     "space is TWO-dimensional and PERMITS an anisotropic spatial quartic. At the driven "
+                     "group the protection is carried by INTERACTION CONTENT, not by symmetry: the "
+                     "24-bond spatial fourth moment is isotropic by a +4/-4 CANCELLATION between the "
+                     "e4-bearing and the in-hyperplane bonds -- a permission left unpopulated, not a "
+                     "forbidden term. WOULD-CHANGE-IF: any driven-sector term populating that permitted "
+                     "invariant (equivalently any reweighting breaking the +4/-4 cancellation) RESTORES "
+                     "dimension-six SPATIAL anisotropy, facing SME-type SIDEREAL bounds rather than the "
+                     "isotropic ones. Added 2026-08-25; see this docstring's (P-op) block for the full "
+                     "statement and the SSD.5.7 Gamma-survivor arbitration pointer. NOTHING COMPUTED "
+                     "MOVES: this premise can only make the POSITIVE half weaker")},
         "dim6_isotropic_eta4": "GATED (#1 gap: substrate strain-mode dispersion; Cl41Wave().wave_speed_c raises)",
         "normalization": ("eta4 is the coefficient of p^4/M_Pl^2 (Liberati convention); the SUBSTRATE's "
                           "natural form is c*p^4/Lambda^2 with c = O(1), so eta4 = c*(M_Pl/Lambda)^2. "
@@ -5810,7 +5860,13 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                                      "is named per canon §0a, but its BINDINGNESS is itself conditional — "
                                      "I-19 premise (e)"),
         "tier": ("DERIVED-A (lattice moment identities + invariant-space dimensions, exact) + "
-                 "DERIVED-conditional-on-(P-an ∧ P-pg) (the dimension-EIGHT inference) + "
+                 "DERIVED-conditional-on-(P-an ∧ P-pg ∧ P-gs ∧ P-op) (the dimension-EIGHT "
+                 "inference -- FULL NAMING, 2026-08-25: the four are the paper SSE premise "
+                 "register's own list, and every one of them is DEFINED in this "
+                 "primitive's anisotropy_premises. The SSB.1.5 scalar-in-internal-index "
+                 "condition is a FIFTH named condition that register does not label, and "
+                 "is therefore not in this string either -- said here so the list's reach "
+                 "is not over-read) + "
                  "INPUT (published n=4 bounds, I-19) + GATED (the dim-6 isotropic coefficient itself)"),
         "recorded_as": "open exposure E.3.3 VG-6 / E.3.5(4) + negative N52 — NOT a falsifier row, NOT a passed test",
     }
@@ -7575,8 +7631,26 @@ def brannen_scale_nucleon_third_convergence() -> dict:
           LOOK-ELSEWHERE AUDIT (reviewer's engine scan, banked below): over the
           four canonical cell-scale comparators {f_pi, 1/Theta_0, M_0/3, m_N/3}
           x all reduced rationals p/q <= 8 at 0.5% tolerance, EXACTLY TWO hits
-          -- m_N/3 at multiplier 1, and the fit-tied 8/5 -- a genuinely small
-          trials factor; 'suggestive, not compelling' is the right strength.
+          -- m_N/3 at multiplier 1, and the fit-tied 8/5.
+          ★ SCOPE REPAIR 2026-08-24 (strictly weakening; record
+          knowledge/audit/R134_NTRIED_EXTRACT_2026-08-24.md, assembled for the
+          round-4 reviewer's F-7): the phrase 'a genuinely small trials factor'
+          IS OVER-STATED AS WRITTEN AND IS WITHDRAWN. The menu's own local
+          density was computed for the first time in that pass -- the 172
+          candidate ratios sit at ~60 per ln-unit near 1, so at 0.5% tolerance
+          the menu ALONE expects ~0.6 chance hits, against ONE independent hit
+          observed -- the hit scored AT POLE MASSES (in MS-bar the same
+          comparison FAILS the 0.5% criterion, +0.80% at m_mu / -1.56% at M_Z;
+          the scheme label is part of the observation, N57 scope). That is a
+          trials factor of order the signal, not a small
+          one. 'Suggestive, not compelling' SURVIVES and is better supported
+          than before; only the supporting phrase falls.
+          ★ AND THE MENU'S CONDITIONING (RUL-049): it was built AROUND mu^2
+          after m_N/3 was known, so it bounds WHICH comparator and WHICH
+          rational -- never WHETHER a cell-scale pairing was the thing to look
+          for. The campaign-wide N_tried the reviewer asked for DOES NOT EXIST
+          and is NOT RECONSTRUCTIBLE; the telemetry was never kept, and the
+          O(10) in caveat (a) is an unenumerated estimate.
 
     VERDICT ON 'COINCIDENCE?': not decidable today -- recorded as a CANDIDATE
     over-determination row (canon S0a: two sector-independent numbers
@@ -12971,8 +13045,12 @@ def DoverJ_calibration_referent() -> dict:
     tautology was very nearly banked as a confirmation.
 
     (i) THE CHAIN'S SINGLE EMPIRICAL FACT is `delta_L ~ 2/9 rad` — **Brannen's observation**.
-        Everything else in the chain is a restatement of it. Propagating the PDG lepton-mass
-        uncertainties, 2/9 sits at **0.41 sigma** from the fitted central value.
+        Everything else in the chain is a restatement of it. ★ THE RESIDUAL IS QUOTED AS AN
+        OFFSET, NEVER AS A SIGNIFICANCE: on the engine's own constants
+        `delta_fit - 2/9 = +2.540e-6 rad`, a FRACTIONAL AGREEMENT of `1.14e-5` in delta
+        (`1.57e-5` in D/J). **NO SIGNIFICANCE IS QUOTED — there is no null hypothesis here,
+        and the residual sits BELOW the input-systematic sensitivity** (the two controls in
+        (iii)). Any sigma-count is DELETED from this record by ruling, not merely fenced.
     (ii) ★ THE `D/J`-LEVEL "0.00157% AGREEMENT" IS A **TAUTOLOGICAL RESTATEMENT**, NOT AN
         AGREEMENT AND NOT A CONFIRMATION. `D/J := tan(3 delta_L)` BY DEFINITION, so applying
         `tan(3 . )` to both sides of one empirical fact produces two numbers that agree
@@ -12982,23 +13060,68 @@ def DoverJ_calibration_referent() -> dict:
         `min_over_mean_is_NOT_corroboration` — *"a function of (c, delta) ALONE, so matching
         the target fixes it by construction — reported so it cannot be mistaken for an
         independent check."* Same class, same remedy: reported so it cannot be mistaken.
-    (iii) THE SIGMA IS **NEVER A CONFIDENCE LEVEL.** The 0.41 sigma propagates ONLY the PDG
-        mass uncertainties. It does NOT cover the MASS-MEASURE conditional (the sqrt(m)=r^2
-        choice; pole vs MS-bar), which `DoverJ_from_lepton_masses`'s own docstring names as
-        conditional (a) and which paper §C.3.4 records moving the Foot angle ~50x its band.
-        THE CONTROL IS IN THE RETURN DICT SO THE SIGMA CAN NEVER BE QUOTED ALONE: a 0.1%
-        coherent shift in m_tau — far smaller than a pole->MS-bar conversion — moves the
-        result by ~20 PDG-sigma. The definition systematic dwarfs the statistical bar by
-        orders.
-    (iv) THE 1/27 LADDER IS **POSTDICTIVE**. It was formed on the ALREADY-KNOWN delta values
-        and entered as *"noted non-coincidences ONLY"* (governing record: `TWT_worklist.md`,
-        THE 1/27 PHASE LADDER, coordinator input 2026-08-03). What it buys is COMPRESSION —
-        one integer (n = 3) for one real (delta_L) — and it carries **ZERO predictive
-        weight**. Fixing delta_L = 2/9 converts one fitted continuous parameter into one
+    (iii) ★ THE SIGMA IS DELETED, NOT FENCED — and the reason is that IT IS
+        ANTI-INFORMATIVE, not merely incomplete. A propagated-PDG-mass sigma measures how
+        well m_tau is MEASURED, so the SAME unchanged physical agreement is reported as a
+        different "significance" every time the input improves. Two controls, both computed
+        here and both shipped in the return dict, make that concrete:
+          (a) MASS-DEFINITION CONTROL. A 0.1% coherent shift in m_tau — far smaller than a
+              pole->MS-bar conversion, and NOT covered by any propagated bar — moves
+              delta_L by ~1.24e-4 rad, i.e. **~49x the observed residual**. The MEASURE
+              conditional (sqrt(m)=r^2; pole vs MS-bar), which
+              `DoverJ_from_lepton_masses`'s docstring names as conditional (a) and which
+              paper §C.3.4 records moving the Foot angle ~50x its band, dwarfs the residual
+              by orders.
+          (b) INPUT-VINTAGE CONTROL — the sharper of the two, and it is why the sigma goes.
+              Moving m_tau by 0.07 MeV (0.004%, WITHIN one PDG vintage's own bar: the
+              1776.86 +- 0.12 vintage vs the 1776.93 +- 0.09 one this engine carries)
+              changes the residual from 2.540e-6 to 7.409e-6 rad — a factor 2.9 — and a
+              naive sigma-count correspondingly reports 0.41 or 0.89 for ONE unchanged
+              claim. A statistic that swings by 2.2x on an input revision nobody would call
+              a change of physics is not reporting the physics. **This control was produced
+              by reconciling our own computation against an external reviewer's; it is the
+              ruling's evidential ground.**
+    (iv) THE 1/27 LADDER IS **POSTDICTIVE**, and it is **A NOTED REGULARITY OF ZERO
+        EVIDENTIAL WEIGHT** — the earlier *"COMPRESSION, one integer for one real"* booking
+        is RETIRED as too generous. It was formed on the ALREADY-KNOWN delta values and
+        entered as *"noted non-coincidences ONLY"* (governing record: `TWT_worklist.md`,
+        THE 1/27 PHASE LADDER, coordinator input 2026-08-03). ★ THE GROUND IS THIS CORPUS'S
+        OWN: R-173's dof/vacuity result computes that the geometry reaches the measured
+        triple on a **4-DIMENSIONAL solution manifold** (6 free reals - 2 constraints,
+        Jacobian rank 2), so every NEARBY ladder value is reached as well. The ladder LABELS
+        A POINT IN A CONTINUUM and EXCLUDES NOTHING — and compression is evidence only when
+        the compressed description is CONSTRAINED. See `ladder_bit_accounting` for what the
+        ladder pays (base, rung parity, ~2.58 bits of assignment, and an UNPAYABLE
+        model-class charge) against what it buys.
+        Separately and still true: fixing delta_L = 2/9 converts one fitted continuous
+        parameter into one
         prediction, so the lepton leg's D/J calibration carries no continuous free parameter
         and one integer; it does NOT make the lepton mass TRIPLE parameter-free (Lambda and
         the c = sqrt2 INPUT remain).
-    (v) THE NON-TAUTOLOGICAL TESTS — the rider's ONLY evidential future, enumerated:
+    (v) ★ THE TRIALS FACTOR — what REPLACES the sigma, and it is stronger than one. Computed
+        here, not asserted: over the rational menu {p/q, p*pi/q, p/(q*pi), p/(q*sqrt2)} with
+        p, q <= 19 and gcd(p,q) = 1 (956 candidates; local density ~750 per unit delta near
+        the target), at a tolerance equal to the OBSERVED residual, **`2/9` is the ONLY hit**,
+        with a chance expectation of ~0.004. An external reviewer's independent and WIDER
+        menu (2394 candidates, q < 20) returned the SAME unique hit at a chance expectation
+        of 0.16; **we quote the more conservative 0.16**, our own reproduction being ~40x
+        more favourable and therefore not the number to lead with.
+        ★★ THE CONDITIONING CLASS, which neither computation states and which is the honest
+        limit of the result (RUL-049): the trials factor bounds the look-elsewhere WITHIN
+        THE STATED MENU. **The menu itself was chosen AFTER 2/9 was known** — "small rational,
+        possibly times pi or sqrt2" is a family selected in the light of the answer — so what
+        is bounded is *which rung*, never *whether a rational-menu reading was the thing to
+        look for*. It is evidence about uniqueness, not about the reading's prior.
+    (vi) ★ THE RENORMALIZATION POINT IS OWED, and this is where it is paid. `delta_L` is
+        computed from POLE masses (the PDG charged-lepton pole values carried at the top of
+        `twt_core`), and the Koide/arc-ratio relation is **NOT RG-stable** — a Koide-type
+        relation exact at one scale is not exact at another, so the claim has no meaning
+        without its point. THE CLAIM IS THEREFORE ASSERTED AT THE POLE-MASS POINT AND
+        NOWHERE ELSE, and **no substrate argument yet fixes the pole point as the right
+        one** — that is an OPEN commitment, not a fine-print caveat. For leptons the running
+        is small, so this does not rescue or destroy the residual; it means the residual is
+        a statement about a particular scheme-and-scale, which the record must say.
+    (vii) THE NON-TAUTOLOGICAL TESTS — the rider's ONLY evidential future, enumerated:
         (a) **THE BARYON e-TEST, NOT YET DISCRIMINATING (coordinator ruling 2026-08-23: a 1.1% deviation is not a failure against a number whose own literature spread exceeds it - the historical Skyrme `e` is a fit that varied substantially across determinations; the test discriminates only with a determination at or below the ~1% level, read from primaries before any promotion).** The exact reading demands
             e = sqrt18/tan(2/3) = 5.391979 against the historical e_ANW = 5.45: **off by
             1.06%**. Stated here exactly as plainly as a success would be.
@@ -13020,9 +13143,14 @@ def DoverJ_calibration_referent() -> dict:
     reading supplies the number's ADDRESS, not the number.
 
     FAILURE MODES SHIPPED WITH THE PRIMITIVE:
-      * `mass_definition_control` — the 0.1% m_tau shift blowing the agreement to ~20 sigma
-        is IN the return dict, so the exact form can never be re-asserted from the engine as
-        a precision result.
+      * `mass_definition_control` — the 0.1% m_tau shift moving delta_L by ~49x the observed
+        residual is IN the return dict, so the exact form can never be re-asserted from the
+        engine as a precision result.
+      * `input_vintage_control` — the two PDG m_tau vintages giving residuals 2.9x apart,
+        shipped so that any future re-introduction of a sigma-count is refuted BY THE RETURN
+        DICT ITSELF rather than by prose.
+      * `no_sigma_count_in_record` — an executable ABSENCE fence: the returned record is
+        asserted to contain no significance statistic under any key.
       * `tautology_label` + the suite's planted-violation demo — the D/J-level agreement is
         labelled TAUTOLOGICAL RESTATEMENT and the label is asserted; a planted relabel to
         "agreement"/"confirmation" fails the check.
@@ -13045,6 +13173,13 @@ def DoverJ_calibration_referent() -> dict:
     delta_exact = 2.0 / 9.0
     dj_exact = math.tan(3.0 * delta_exact)
 
+    # ── the residual, quoted as an OFFSET. No significance statistic is computed here, by
+    #    ruling: see docstring (iii). The input-uncertainty SCALE is still reported (it is
+    #    a sensitivity, not a bar to divide by) but no ratio to it is ever formed.
+    offset_rad = delta_fit - delta_exact
+    frac_delta = abs(offset_rad) / delta_exact
+    frac_dj = abs(dj_fit - dj_exact) / dj_exact
+
     rng = np.random.default_rng(20260823)
     N = 200000
     me = rng.normal(M_E, 1.5e-10, N)
@@ -13053,22 +13188,61 @@ def DoverJ_calibration_referent() -> dict:
     rr = np.sqrt(np.stack([me, mmu, mta]))
     bb = rr / rr.mean(axis=0) - 1.0
     zz = sum(bb[k] * np.exp(-1j * 2 * np.pi * k / 3) for k in range(3))
-    djs = np.tan(3 * np.angle(zz))
-    dj_mean, dj_sd = float(djs.mean()), float(djs.std())
-    sigma = abs(dj_mean - dj_exact) / dj_sd
+    delta_scale = float((np.angle(zz) - 2 * np.pi / 3).std())
 
-    control = {}
-    for f in (0.001, 0.005):
-        rc = [math.sqrt(m) for m in (M_E, M_MU, M_TAU * (1 - f))]
+    def _delta_of(mt):
+        rc = [math.sqrt(m) for m in (M_E, M_MU, mt)]
         Mc = sum(rc) / 3.0
         bc = [x / Mc - 1.0 for x in rc]
-        zc = sum(bc[k] * cmath.exp(-1j * 2 * math.pi * k / 3) for k in range(3))
-        v = math.tan(3.0 * cmath.phase(zc))
+        return cmath.phase(sum(bc[k] * cmath.exp(-1j * 2 * math.pi * k / 3)
+                               for k in range(3))) - 2.0 * math.pi / 3.0
+
+    # (a) MASS-DEFINITION CONTROL — expressed in the SAME units as the quotable (rad, and
+    #     multiples of the observed residual) so no sigma can re-enter through it.
+    control = {}
+    for f in (0.001, 0.005):
+        dc = _delta_of(M_TAU * (1 - f))
         control[f"m_tau x (1 - {f})"] = {
-            "D/J": v, "percent_from_tan(2/3)": abs(v - dj_exact) / dj_exact * 100.0,
-            "PDG_sigma": abs(v - dj_mean) / dj_sd}
-    assert control["m_tau x (1 - 0.001)"]["PDG_sigma"] > 10.0, (
-        "the mass-definition control must DEMONSTRATE the systematic dwarfing the bar")
+            "delta_L_rad": dc,
+            "shift_from_fitted_rad": dc - delta_fit,
+            "multiple_of_observed_residual": abs(dc - delta_fit) / abs(offset_rad),
+            "D/J": math.tan(3.0 * dc)}
+    assert control["m_tau x (1 - 0.001)"]["multiple_of_observed_residual"] > 20.0, (
+        "the mass-definition control must DEMONSTRATE the measure systematic dwarfing the "
+        "residual — in radians, not in sigma")
+
+    # (b) INPUT-VINTAGE CONTROL — the anti-informativeness demonstration. Two PDG m_tau
+    #     vintages, one unchanged claim, residuals a factor ~2.9 apart.
+    vintage = {}
+    for mt, sd, tag in ((1776.93, 0.09, "m_tau = 1776.93 +- 0.09 (this engine)"),
+                        (1776.86, 0.12, "m_tau = 1776.86 +- 0.12 (an earlier vintage)")):
+        dv = _delta_of(mt)
+        vintage[tag] = {"residual_rad": dv - delta_exact,
+                        "fractional_agreement": abs(dv - delta_exact) / delta_exact,
+                        "propagated_delta_scale_rad": sd / 0.09 * delta_scale}
+    _r1 = abs(vintage["m_tau = 1776.93 +- 0.09 (this engine)"]["residual_rad"])
+    _r2 = abs(vintage["m_tau = 1776.86 +- 0.12 (an earlier vintage)"]["residual_rad"])
+    assert _r2 / _r1 > 2.5, (
+        "the input-vintage control must DEMONSTRATE that the residual — and hence any "
+        "sigma-count built on it — swings on an input revision that is not a change of "
+        "physics; that demonstration is the ground of the delete-the-sigma ruling")
+
+    # ── THE TRIALS FACTOR: what replaces the sigma. Deterministic, menu stated in full.
+    from math import gcd as _gcd
+    _fams = {"p/q": lambda p, q: p / q,
+             "p*pi/q": lambda p, q: p * math.pi / q,
+             "p/(q*pi)": lambda p, q: p / (q * math.pi),
+             "p/(q*sqrt2)": lambda p, q: p / (q * math.sqrt(2.0))}
+    _cands = [(nm, p, q, f(p, q))
+              for nm, f in _fams.items()
+              for q in range(1, 20) for p in range(1, 20) if _gcd(p, q) == 1]
+    _tol = abs(offset_rad)
+    _hits = sorted({(nm, p, q) for nm, p, q, v in _cands if abs(v - delta_fit) <= _tol})
+    _near = [c for c in _cands if abs(c[3] - delta_exact) <= 0.01]
+    _rho = len(_near) / 0.02
+    assert _hits == [("p/q", 2, 9)], (
+        "the trials-factor menu must return 2/9 as the UNIQUE hit — if it does not, the "
+        "claim's whole non-tautological content has changed and the record must be redrawn")
 
     e_required = math.sqrt(18.0) / dj_exact
     e_anw = 5.45
@@ -13110,18 +13284,74 @@ def DoverJ_calibration_referent() -> dict:
             "single_empirical_fact": (
                 "delta_L ~ 2/9 rad — BRANNEN'S OBSERVATION. Everything else in the chain "
                 "restates it."),
-            "PDG_band": {"D/J_mean": dj_mean, "D/J_sd": dj_sd, "sigma_of_tan(2/3)": sigma,
-                         "draws": N, "seed": 20260823},
-            "sigma_is_NOT_a_confidence_level": (
-                "the band propagates ONLY the PDG mass uncertainties. It does NOT cover the "
-                "MASS-MEASURE conditional (sqrt(m)=r^2; pole vs MS-bar). See "
-                "mass_definition_control — the systematic dwarfs the bar by orders."),
+            # ---- THE QUOTABLE FORM (ruled 2026-08-24): offset + fractional agreement +
+            #      an explicit no-significance clause + the trials factor + the RG point.
+            "residual_offset_rad": offset_rad,
+            "fractional_agreement_delta": frac_delta,
+            "fractional_agreement_DoverJ": frac_dj,
+            "no_significance_is_quoted": (
+                "NO SIGNIFICANCE IS QUOTED. There is no null hypothesis here, and the "
+                "residual sits BELOW the input-systematic sensitivity: see "
+                "mass_definition_control (a 0.1% m_tau shift moves delta_L by ~49x the "
+                "residual) and input_vintage_control (two PDG m_tau vintages give residuals "
+                "a factor 2.9 apart). A propagated-mass sigma is ANTI-INFORMATIVE — it "
+                "measures how well m_tau is measured, so the same unchanged agreement is "
+                "reported as a different 'significance' every time the input improves. The "
+                "sigma-count is DELETED FROM THIS RECORD, not fenced."),
+            "input_uncertainty_scale_rad": delta_scale,
+            "input_uncertainty_scale_is_NOT_a_bar_to_divide_by": (
+                "reported as a SENSITIVITY SCALE only. Forming residual/scale reconstructs "
+                "the deleted statistic and is forbidden by does_not_license."),
             "mass_definition_control": control,
+            "input_vintage_control": vintage,
+            "trials_factor": {
+                "menu": ("{p/q, p*pi/q, p/(q*pi), p/(q*sqrt2)}, p,q <= 19, gcd(p,q) = 1"),
+                "n_candidates": len(_cands),
+                "local_density_per_unit_delta": _rho,
+                "tolerance_rad": _tol,
+                "hits": _hits,
+                "chance_expectation_local_density": _rho * 2 * _tol,
+                "quoted_chance_expectation": 0.16,
+                "quoted_from": (
+                    "an external reviewer's independent and WIDER menu (2394 candidates, "
+                    "q < 20) returned the SAME unique hit at 0.16. We quote 0.16, the more "
+                    "conservative figure; our own reproduction is ~40x more favourable and "
+                    "is therefore not the number to lead with."),
+                "CONDITIONING_CLASS_RUL_049": (
+                    "the trials factor bounds the look-elsewhere WITHIN THE STATED MENU. "
+                    "The menu was chosen AFTER 2/9 was known, so what is bounded is WHICH "
+                    "RUNG, never WHETHER a rational-menu reading was the thing to look for. "
+                    "Evidence about uniqueness; NOT evidence about the reading's prior.")},
+            "renormalization_point": (
+                "delta_L is computed from POLE masses, and the Koide/arc-ratio relation is "
+                "NOT RG-stable, so the claim is meaningless without its point. IT IS "
+                "ASSERTED AT THE POLE-MASS POINT AND NOWHERE ELSE, and no substrate "
+                "argument yet fixes the pole point as the right one — an OPEN commitment, "
+                "not fine print. Lepton running is small, so this neither rescues nor "
+                "destroys the residual; it scopes it to one scheme and scale."),
             "ladder_is_POSTDICTIVE": (
                 "POSTDICTIVE: formed on the ALREADY-KNOWN delta values and entered as 'noted "
                 "non-coincidences ONLY' (governing record: TWT_worklist.md, THE 1/27 PHASE "
-                "LADDER, coordinator input 2026-08-03). What it buys is COMPRESSION — one "
-                "integer for one real — and it carries ZERO predictive weight."),
+                "LADDER, coordinator input 2026-08-03). ★ IT IS A NOTED REGULARITY OF ZERO "
+                "EVIDENTIAL WEIGHT — the earlier 'COMPRESSION, one integer for one real' "
+                "booking is RETIRED as too generous, on this corpus's OWN ground: R-173's "
+                "dof/vacuity result (brannen_comb_commitment_dominance_and_dof_vacuity) "
+                "computes that the geometry reaches the measured triple on a "
+                "FOUR-DIMENSIONAL solution manifold (6 free reals - 2 constraints, Jacobian "
+                "rank 2), so every NEARBY ladder value is reached too. The ladder therefore "
+                "LABELS A POINT IN A CONTINUUM and EXCLUDES NOTHING; compression is evidence "
+                "only when the compressed description is CONSTRAINED, and here it is not."),
+            "ladder_bit_accounting": {
+                "bought": "3 reals (delta_L, delta_U, delta_D) -> 3 small integers",
+                "paid_1_base": "the denominator 27 rather than 9, 81, 12, ... — a free choice",
+                "paid_2_parity": "the rung set is EVEN (2:4:6) not (1:2:3) — >= 1 bit, and "
+                                 "the 'why even harmonics' question is still OPEN",
+                "paid_3_assignment": "which rung to which sector — log2(3!) ~ 2.58 bits",
+                "paid_4_model_class": "UNPAYABLE IN BITS: the family 'rational multiple of "
+                                      "1/27 rad' was itself selected AFTER the values were "
+                                      "known, and the family is unbounded",
+                "net": "the ledger does not close in the ladder's favour even before the "
+                       "vacuity kill; with it, the accounting is moot — nothing is excluded"},
             "what_fixing_delta_L_buys": (
                 "one fitted continuous parameter becomes one prediction: the lepton leg's "
                 "D/J calibration then carries no continuous free parameter and one integer "
@@ -13146,7 +13376,9 @@ def DoverJ_calibration_referent() -> dict:
                        "the number."),
             "F3_bibliography_duty": "OPEN — neither Brannen nor Zenczykowski is in the bibliography",
             "open_commitments": ["why n = 3", "the even-harmonic question",
-                                 "the mass-measure conditional"],
+                                 "the mass-measure conditional",
+                                 "the renormalization point (pole vs any other) is not "
+                                 "fixed by any substrate argument"],
             "banks_as": "A REPORTED COMPARISON, WIRED TO NOTHING",
         },
         # ---- THE FENCE
@@ -13165,9 +13397,14 @@ def DoverJ_calibration_referent() -> dict:
             "wiring tan(2/3) into delta_L_from_DoverJ, canting_pitch_q_rad, canting_cos_q, "
             "spiral_angle_deg, dressed_coupling, eta_DM or ANY consumer — that is the "
             "cross-leg error (a Z3-leg value fed into pitch-functional formulae) and it "
-            "would convert a CANDIDATE into a banked default by the back door; quoting the "
-            "0.41 sigma as a confidence level; reading the D/J-level agreement as "
-            "corroboration of anything"),
+            "would convert a CANDIDATE into a banked default by the back door; QUOTING ANY "
+            "SIGNIFICANCE STATISTIC FOR THE ARC-RATIO READING, or reconstructing one by "
+            "dividing residual_offset_rad by input_uncertainty_scale_rad — the statistic is "
+            "deleted by ruling because it is anti-informative, and re-deriving it from the "
+            "returned parts is the same error by another route; reading the D/J-level "
+            "agreement as corroboration of anything; reading the trials factor as evidence "
+            "for the arc-ratio reading's PRIOR rather than for the rung's uniqueness "
+            "within a post-hoc menu"),
         "record": "knowledge/audit/gamma_referent_2026-08-23/",
     }
 

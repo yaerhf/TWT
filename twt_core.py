@@ -369,7 +369,8 @@ CORE_PROVENANCE = {
                     "the 15-state spectrum with colour multiplicity 3"),
         "premises": ["P4", "P5", "P6", "P7"],
         "consumers": ["T3", "charge_assignment_from_anchor", "winding_charge",
-                      "generation_spectrum", "gmn_coefficient", "weinberg_sin2"],
+                      "generation_spectrum", "gmn_coefficient", "weinberg_sin2",
+                      "B_minus_L_anomaly"],
         "mechanical_check": "consumers == charge_sector_provenance()['assigned'] keys",
         "boundary_primitive": "charge_sector_provenance",
         "not_in_class": ("pi3_S3_integer_completion, hypercharge, doublet_hypercharge, "
@@ -471,6 +472,12 @@ def charge_sector_provenance() -> dict:
         "generation_spectrum": "the 15-state table; colour multiplicity 3 entered by hand",
         "gmn_coefficient": "exact arithmetic OVER the assigned table — inherits its premises",
         "weinberg_sin2": "exact arithmetic OVER the assigned table — inherits its premises",
+        "B_minus_L_anomaly": ("exact arithmetic OVER the assigned table's state PATTERN — "
+                              "inherits its premises; B, L entered per label. Honesty note "
+                              "(reviewer D5): the singlet-inclusive sums are insensitive to "
+                              "the colour multiplicity (quark L/conjugate contributions "
+                              "cancel pairwise), so what they consume is the pattern, not "
+                              "the 3"),
     }
     overlap = set(anchor_free) & set(assigned)
     assert not overlap, f"a primitive cannot sit on both sides: {overlap}"
@@ -714,7 +721,10 @@ def generation_spectrum():
     composition) and T3 from the posited slot table (P7).
     Electric charge Q is chirality-INDEPENDENT (same for L and R) — that column is
     premise P5, engine-encoded here; weak isospin T3 is LEFT-only (right-handed states
-    are weak singlets, T3=0). No nu_R in minimal content.
+    are weak singlets, T3=0). No nu_R among the GAUGED states tabulated here — the
+    sterile S_- partner (R-121) is not tabulated; its Y(S_-) = 0 rides the
+    FRAMING-supported wave-decoupled => gauge-decoupled link named separately in
+    charge_normalization_anchor_free, not a closed identity.
     1+1+3+3 (left doublets) + 1+3+3 (right singlets) = 15."""
     Q = charge_assignment_from_anchor()
     return [
@@ -6950,14 +6960,51 @@ def anomaly(X_per_quark: float, X_per_lepton: float) -> float:
     return 3 * X_per_quark + 1 * X_per_lepton
 
 def B_minus_L_anomaly():
-    """[DERIVED] §23.7: A_B = 3·(1/3) = 1, A_L = 1, so A_{B-L}=0 (anomaly-free, exactly
-    conserved) and A_{B+L}=2 (anomalous). The cancellation IS the identity 3×1/3=1:
-    (colors)×(B per quark) = (lepton L)."""
+    """[DERIVED] §23.7: A_B = 3·(1/3) = 1, A_L = 1, so A_{B-L} = 0 and A_{B+L} = 2.
+    The cancellation IS the identity 3×1/3=1: (colors)×(B per quark) = (lepton L).
+
+    SCOPE (§8a keeper repair, 2026-08-24 — the old headline "anomaly-free, exactly
+    conserved" was wider than what this computed): the doublet sum above is ONE
+    condition of the standard set. The two singlet-inclusive sums, computed here
+    LIVE over the gauged 15-state table (LH convention: a right-handed singlet
+    enters as its conjugate, X -> -X), are BOTH exactly -1 on the gauged states
+    alone — and BOTH complete to exactly ZERO when R-121's sterile partner
+    (B-L = -1 as a right-handed field, +1 conjugated) is included. So the sterile
+    does CLASSICAL completion work for the R-089 exactness story, and that work
+    consumes no symmetric-mass-generation import.
+
+    CROSS-REFERENCE (OI-1 closed by discovery, 2026-08-24): the FULL continuous
+    anomaly system for hypercharge — the RH values as UNKNOWNS, the two-branch
+    forcing y_e = -2 and {y_u, y_d} = {4/3, -2/3}, the Witten mod-2 doublet
+    parity, and the charged-nu_R control — is banked at
+    charge_normalization_anchor_free (R-159, registered imports I-17/I-18). The
+    round-4 commission's OI-1 proposal ("these sums are currently implicit") was
+    adjudicated FALSE against that primitive; record:
+    knowledge/audit/oi1_anomaly_ledger_2026-08-24/. The mod-16 significance of
+    the 16th state stays on the FENCED SMG import rows (registered 2026-08-24 as
+    I-30/I-31, alias I-NN2, with the primary read's repairs and quarantines carried) —
+    negatives N67, N68 — and is NOT asserted here."""
     A_B = anomaly(sp.Rational(1, 3), 0)         # 3·1/3 = 1
     A_L = anomaly(0, 1)                          # 1
+    # singlet-inclusive sums over the LIVE gauged table (B, L entered per label
+    # class; the state content/multiplicity is the assigned table's)
+    BL = {"nu": -1, "e": -1, "u": sp.Rational(1, 3), "d": sp.Rational(1, 3)}
+    tot1 = tot3 = sp.Integer(0)
+    for label, _t3, _q, mult in generation_spectrum():
+        x = BL[label.split("_")[0]] * (1 if label.endswith("_L") else -1)
+        tot1 += mult * x
+        tot3 += mult * x ** 3
+    assert tot1 == -1 and tot3 == -1, (tot1, tot3)
+    sterile_conj = 1                              # nu_R: B-L = -1, conjugated -> +1
+    assert tot1 + sterile_conj == 0 and tot3 + sterile_conj ** 3 == 0
     return {"A_B = 3×(1/3)": A_B, "A_L": A_L,
             "A_{B-L}": A_B - A_L, "A_{B+L}": A_B + A_L,
-            "B-L anomaly-free": (A_B - A_L) == 0, "B+L anomalous": (A_B + A_L) != 0}
+            "B-L doublet-sector condition vanishes": (A_B - A_L) == 0,
+            "B+L anomalous": (A_B + A_L) != 0,
+            "sum(B-L) gauged 15 (LH conv)": tot1,
+            "sum(B-L)^3 gauged 15 (LH conv)": tot3,
+            "both complete to 0 with R-121 sterile": (tot1 + sterile_conj == 0)
+                                                     and (tot3 + sterile_conj ** 3 == 0)}
 
 
 # ---- §23.8  BPST instanton: charge Q=1 + the selection rule --------------------
@@ -13791,7 +13838,7 @@ def charge_normalization_anchor_free():
     consistency comparison at the END, never as an input.
 
     self-checks (all in the code below): engine ground truth re-read (R-056 sign
-    opposition, R-057 /3, 3*y_Q + y_L = 0, B-L anomaly-free, 15-state spectrum,
+    opposition, R-057 /3, 3*y_Q + y_L = 0, B-L doublet-sector condition, 15-state spectrum,
     sin^2 = 3/8); sympy-exact vanishing of Q_p + Q_e, Q_n + Q_nu identically in the free
     symbol c, and Q_udd + Q_e = -1; the no-/3 counterfactual residue = 2c; the four-row
     c-free three-facet table with uud unique; the exact two-branch anomaly solution set
@@ -13812,7 +13859,8 @@ def charge_normalization_anchor_free():
     assert yq_raw == -yl_eng, "R-056 sign opposition broken"
     assert dh["e"] == -1 and abs(dh["u"] - 1.0 / 3.0) < 1e-15, "R-057 /3 broken: %r" % dh
     assert abs(3 * dh["u"] + dh["e"]) < 1e-15, "3*y_Q + y_L = 0 (R-087 arithmetic) broken"
-    assert B_minus_L_anomaly()["B-L anomaly-free"], "R-087 B-L anomaly-freedom broken"
+    assert B_minus_L_anomaly()["B-L doublet-sector condition vanishes"], \
+        "R-087 B-L doublet-sector condition broken"
     assert all(abs(v - 0.5) < 1e-15 for v in gmn_coefficient().values()), "engine GMN != 1/2"
     assert sum(m for *_, m in generation_spectrum()) == 15, "15-Weyl-state spectrum broken"
     assert weinberg_sin2() == 0.375, "sin^2(theta_W) != 3/8"
@@ -15938,3 +15986,249 @@ def spinor_module_graded_iso(carrier: str = "Cl+") -> dict:
         "record": ("knowledge/audit/external_review_2026-08-22/V4ASD_LAYERA_2026-08-23.md "
                    "(§CONSENSUS supersedes the body) + VERDICT_REVIEWER_LAYERA_2026-08-23.md"),
     }
+
+
+# ======================================================================
+# THE GENERAL-BILINEAR THIRD-ORDER NULL (Sorkin arc, banked 2026-08-25)
+# ======================================================================
+# One primitive. Provenance: the Sorkin scaling arc's symbolic core
+# (knowledge/audit/sorkin_arc_2026-08-25/: PREREGISTRATION_FROZEN.md,
+# SORKIN_SCALING_L1_2026-08-25.md as history, SORKIN_L2_2026-08-25.md as the
+# operative claim register SS2.1-2.3/2.7) and its three SS8a verdicts in the same
+# directory (VERDICT_REVIEWER_SORKIN_L1.md -- which PROVED the general-n
+# structural theorem the arc had only sampled, and which supplied the
+# slit-configuration-independence hypothesis; VERDICT_METAOBSERVER_SORKIN_L1.md;
+# VERDICT_KEEPER_SORKIN_L1.md -- "engine-bankable as stated. Bank it whatever
+# happens to the rest.").
+# CONSUMES NO V3 PICK: a symbolic theorem about set-indexed inclusion-exclusion.
+# It is CORE by the canon SS6 rule (choose the file by what it consumes) and it
+# rides no entered datum and no posited premise, so it takes no CORE_PROVENANCE row.
+# ======================================================================
+
+
+def bilinear_detection_third_order_null(max_m: int = 5):
+    """[DERIVED-A GIVEN additive amplitudes + a slit-configuration-INDEPENDENT bilinear
+    kernel -- generic set-indexed inclusion-exclusion, NOT a Clifford/D4 identity]
+    (R-184.) The tier rider is mandatory and is the reviewer's SS1.4 requirement, in kind
+    with `brannen_z3_harmonic_collapse_invariant`: every identity below is exact, and NONE
+    of it is substrate-specific. It holds for ANY theory with additive amplitudes and
+    bilinear detection, with ZERO TWT content. Exact != substrate-specific (canon SS5,
+    derived-vs-generic).
+
+    THE OPERATOR. For a detection functional P defined on subsets of three slits {A,B,C},
+    Sorkin's third-order interference term is the inclusion-exclusion combination
+        I3[P] = P(ABC) - P(AB) - P(AC) - P(BC) + P(A) + P(B) + P(C).
+
+    -------------------------------------------------------------------------------
+    (T1) THE MASTER STRUCTURAL THEOREM -- general n, PROVED, not sampled.
+    HYPOTHESIS (load-bearing -- the R-184 closing review's computed catch, 2026-08-25,
+    and it is the Sorkin arc's own F1 vacuum-offset finding stated as mathematics):
+    P carries NO slit-independent (constant) monomial, i.e. P(empty set) = 0. A
+    constant k has I3[const k] = k != 0 while its all-three-touching part is 0 --
+    the vacuum-offset channel is OUTSIDE this theorem, exactly as SK-F1 records.
+    -------------------------------------------------------------------------------
+        Under that hypothesis, I3[P] is EXACTLY the all-three-slit-touching part of P(ABC).
+
+    PROOF. Write P(S) as a sum of monomials in the slit amplitudes. For a monomial
+    touching the nonempty proper slit-subset T, the signed sum over the supersets of T
+    appearing in I3 vanishes (the superset sign-sums are +1 / 0 / 0 / +1 for
+    |T| = 3 / 2 / 1 / 0 -- so ONLY the |T| = 3 and the constant |T| = 0 classes
+    survive, and the constant class is excluded by hypothesis); a monomial touching
+    all three slits appears only in P(ABC), with coefficient +1. []
+    The theorem is verified symbolically below on the homogeneous ladder P = (|psi|^2)^m
+    for m = 2..max_m (12 / 55 / 153 / 336 / 640 terms at m = 2..6), against the directly
+    extracted all-three-touching part of P(ABC). The reviewer independently reproduced it
+    through m = 7 (1107 terms).
+
+    -------------------------------------------------------------------------------
+    (T2) THE NULL -- the corollary that does the work.
+    -------------------------------------------------------------------------------
+        ANY detection functional BILINEAR in the slit amplitudes -- on ANY
+        finite-dimensional state space, with ANY bilinear kernel -- is annihilated:
+        I3 == 0 identically.
+
+    PROOF. Every monomial of a bilinear functional has bidegree (1,1) and therefore touches
+    AT MOST TWO of the three slits; by (T1) the all-three-touching part is empty. []
+    So the null is not a coincidence of a particular detector model: it is (T1) plus
+    degree counting. Checked below in three independent parametrizations:
+      (a) the arbitrary slit-pair kernel P(S) = sum_{i,j in S} M_ij psi_i conj(psi_j) with
+          M_ij INDEPENDENT complex symbols -- Hermiticity is NOT needed and is NOT assumed;
+      (b) d-component amplitudes with an arbitrary bilinear metric G_mn, for
+          d in {1, 2, 3, 6} -- the two `d` branches the arc's own scaling menu names are
+          witnessed EXPLICITLY here, because the L1 memo cited a two-component witness for
+          a claim about d in {3,6} (reviewer R2, a mis-cite repaired at the bank);
+      (c) NO LOCALITY IS ASSUMED. For any detection kernel K(x,y), however non-local,
+          M_ij := int int K(x,y) psi_i(x) conj(psi_j(y)) is just an arbitrary complex
+          number, so (a) already covers it.
+
+    -------------------------------------------------------------------------------
+    (T3) THE HYPOTHESIS, STATED AS PART OF THE THEOREM AND NOT AS A FOOTNOTE.
+    -------------------------------------------------------------------------------
+    SLIT-CONFIGURATION INDEPENDENCE: the bilinear kernel must be the SAME across slit
+    configurations -- M_ij, not M^S_ij. This is the reviewer's K1 conditionality (R3), and
+    it BITES: with a set-dependent kernel the null FAILS, computed below as a live
+    counter-case rather than asserted. It is physically mild -- a detector does not know
+    which slits are open -- but it is a real premise, and it is exactly the premise a
+    slit-set-DEPENDENT vacuum/carrier offset would deny (the arc's live SK-F1 failure mode,
+    which remains UNCOMPUTED there and is NOT covered by anything here).
+
+    -------------------------------------------------------------------------------
+    (T4) THE DEMONSTRATED FAILURE MODE -- the null is SHARP, and the check is not vacuous.
+    -------------------------------------------------------------------------------
+    For every m >= 2, I3[(|psi|^2)^m] != 0. PROOF: by (T1) it equals the all-three-touching
+    part of |a+b+c|^{2m}, whose multinomial coefficients are strictly positive, so no
+    cancellation is possible. [] Hence a nonlinear detection functional ALWAYS produces
+    third-order interference within this class -- verified below, together with exact
+    homogeneity of degree 2m (the intensity scaling the arc reads off it).
+    A tight tolerance on a vacuous check is a tell, not rigour (canon SS8a): the planted
+    nonlinear violation is what makes the null a measurement rather than a tautology.
+
+    -------------------------------------------------------------------------------
+    WHAT THIS DOES AND DOES NOT DO FOR THE BORN EXPONENT (R-160). Read the strength.
+    -------------------------------------------------------------------------------
+    (T2)+(T4) give an INDEPENDENT, NON-GLEASON ROUTE TO R-160's CONCLUSION -- and to its
+    CONCLUSION ONLY, not to its chain. R-160 derives the exponent 2 from four named
+    in-framework premises (F1-F4) plus imported Gleason. This primitive derives, from set
+    combinatorics alone, that bilinear (exponent-2) detection has I3 == 0 while every
+    strictly higher homogeneous power has I3 != 0. The two routes share no premise:
+    F1-F4 do not appear here, and Gleason is not used.
+      THE HONEST GAP, NAMED: this primitive is a ONE-WAY implication and by itself fixes
+      no exponent. It reaches R-160's conclusion only when combined with the EMPIRICAL
+      third-order null (the Sorkin experiments) -- an empirical leg R-160's chain does not
+      need. So the corroboration is: two independent roads to one conclusion, one of them
+      needing a datum the other does not. That is a coherence gain, not a redundancy, and
+      it is NOT a re-derivation of R-160, NOT a discharge of F2 (the corpus's own
+      registered weakest premise), and NOT support for anything else in the Sorkin arc.
+      NOTHING ELSE FROM THAT ARC IS BANKED HERE: no `rho_sat` scaling, no `kappa_TWT`, no
+      intensity-exponent claim about the substrate, no SK-P1 bounded-amplitude premise.
+
+    self-checks: (T1) on m = 2..max_m against the extracted all-three-touching part; (T2)
+    in parametrizations (a) and (b) at d in {1,2,3,6}; (T3)'s set-dependent counter-case
+    NONZERO; (T4) nonzero + exact homogeneity on the same ladder."""
+    import sympy as _sp
+    from itertools import combinations as _combinations
+
+    _a, _b, _c = _sp.symbols('sorkin_a sorkin_b sorkin_c')
+    AMP = {'A': _a, 'B': _b, 'C': _c}
+    SETS = [('A', 'B', 'C'), ('A', 'B'), ('A', 'C'), ('B', 'C'), ('A',), ('B',), ('C',)]
+    SIGNS = [+1, -1, -1, -1, +1, +1, +1]
+    _BASE = {_a, _b, _c, _sp.conjugate(_a), _sp.conjugate(_b), _sp.conjugate(_c)}
+    _SLOT = {_a: 'a', _sp.conjugate(_a): 'a', _b: 'b', _sp.conjugate(_b): 'b',
+             _c: 'c', _sp.conjugate(_c): 'c'}
+
+    def _touched(term):
+        return {_SLOT[s] for s in term.free_symbols & _BASE}
+
+    def _I3(Pk):
+        """I3 of a functional taking the LIST OF OPEN SLIT KEYS (not the amplitudes) —
+        so a set-dependent kernel is expressible and (T3) can actually be tested."""
+        return _sp.expand(sum(s * Pk(list(S)) for s, S in zip(SIGNS, SETS)))
+
+    out = {}
+
+    # ---- (T1) the master structural theorem, m = 2..max_m -------------------
+    t1 = {}
+    for m in range(2, max(2, int(max_m)) + 1):
+        def P_pow(keys, m=m):
+            tot = sum(AMP[k] for k in keys)
+            return (tot * _sp.conjugate(tot))**m
+        lhs = _I3(P_pow)
+        full = _sp.expand(P_pow(['A', 'B', 'C']))
+        all3 = _sp.Add(*[t for t in _sp.Add.make_args(full)
+                         if _touched(t) == {'a', 'b', 'c'}])
+        agrees = _sp.simplify(lhs - all3) == 0
+        nterms = len(_sp.Add.make_args(lhs))
+        # (T4) on the same ladder: nonzero + exact homogeneity of degree 2m
+        s = _sp.Symbol('sorkin_s', positive=True)
+        scaled = _sp.expand(lhs.subs({_a: s * _a, _b: s * _b, _c: s * _c},
+                                     simultaneous=True))
+        homog = _sp.simplify(scaled - s**(2 * m) * lhs) == 0
+        assert agrees, f"(T1) FAILS at m={m}: I3 != all-three-touching part of P(ABC)"
+        assert lhs != 0, f"(T4) FAILS at m={m}: I3 vanished on a nonlinear functional"
+        assert homog, f"(T4) FAILS at m={m}: homogeneity is not exactly s^{2 * m}"
+        t1[m] = {"I3_equals_all_three_touching_part_of_P_ABC": bool(agrees),
+                 "I3_nonzero": True, "terms": nterms,
+                 "exact_homogeneity_degree": 2 * m,
+                 "intensity_power_kappa_over_u": m - 1}
+    out["T1_master_theorem"] = t1
+
+    # ---- (T2)(a) arbitrary slit-pair kernel, Hermiticity NOT assumed --------
+    M = {(i, j): _sp.Symbol(f'sorkin_M_{i}{j}') for i in 'ABC' for j in 'ABC'}
+
+    def P_pairkernel(keys):
+        return sum(M[(i, j)] * AMP[i] * _sp.conjugate(AMP[j]) for i in keys for j in keys)
+    null_a = _sp.simplify(_I3(P_pairkernel)) == 0
+    assert null_a, "(T2)(a) FAILS: general slit-pair bilinear kernel is not annihilated"
+
+    # ---- (T2)(b) d-component amplitudes, arbitrary bilinear metric ----------
+    by_d = {}
+    for d in (1, 2, 3, 6):
+        COMP = {k: [_sp.Symbol(f'sorkin_{k}{m}') for m in range(d)] for k in 'ABC'}
+        G = {(m, n): _sp.Symbol(f'sorkin_G_{m}_{n}') for m in range(d) for n in range(d)}
+
+        def P_multi(keys, COMP=COMP, G=G, d=d):
+            tot = [sum(COMP[k][m] for k in keys) for m in range(d)]
+            return sum(G[(m, n)] * tot[m] * _sp.conjugate(tot[n])
+                       for m in range(d) for n in range(d))
+        val = _sp.simplify(_sp.expand(sum(s * P_multi(list(S))
+                                          for s, S in zip(SIGNS, SETS))))
+        assert val == 0, f"(T2)(b) FAILS at d={d}"
+        by_d[d] = True
+    out["T2_null"] = {"arbitrary_slit_pair_kernel_M_ij": bool(null_a),
+                      "hermiticity_assumed": False,
+                      "locality_assumed": False,
+                      "d_component_arbitrary_metric": by_d,
+                      "state_space": "any finite-dimensional; the argument is d-free"}
+
+    # ---- (T3) the hypothesis, tested as a live counter-case -----------------
+    MS = {(S, i, j): _sp.Symbol(f'sorkin_MS_{"".join(S)}_{i}{j}')
+          for r in range(1, 4) for S in _combinations('ABC', r)
+          for i in 'ABC' for j in 'ABC'}
+
+    def P_setdep(keys):
+        S = tuple(sorted(keys))
+        return sum(MS[(S, i, j)] * AMP[i] * _sp.conjugate(AMP[j])
+                   for i in keys for j in keys)
+    setdep = _sp.expand(sum(s * P_setdep(list(S)) for s, S in zip(SIGNS, SETS)))
+    assert _sp.simplify(setdep) != 0, \
+        "(T3) FAILS: the set-dependent counter-case did not fire — the hypothesis " \
+        "would then be vacuous and the theorem statement would be wrong"
+    out["T3_hypothesis"] = {
+        "statement": ("the bilinear kernel must be SLIT-CONFIGURATION-INDEPENDENT "
+                      "(M_ij, not M^S_ij) — part of the theorem, not a footnote"),
+        "fixed_kernel_null": True,
+        "set_dependent_kernel_null": False,
+        "counter_case_fires": True,
+        "physical_reading": "a detector does not know which slits are open",
+        "what_it_does_not_cover": ("a slit-set-DEPENDENT vacuum/carrier offset — the "
+                                   "Sorkin arc's live SK-F1 failure mode, UNCOMPUTED "
+                                   "there and untouched here")}
+
+    # ---- (T4) summary -------------------------------------------------------
+    out["T4_failure_mode"] = {
+        "statement": ("I3[(|psi|^2)^m] != 0 for every m >= 2 — the all-three-touching "
+                      "part of |a+b+c|^{2m} has strictly positive multinomial "
+                      "coefficients, so it cannot cancel"),
+        "planted_violation_demonstrated": True,
+        "checked_m": sorted(t1),
+        "why_it_matters": ("without it the null is a tautology about a functional class "
+                           "nobody varied; with it the null is sharp")}
+
+    out["tier"] = ("DERIVED-A GIVEN additive amplitudes + a slit-configuration-independent "
+                   "bilinear kernel — generic set-indexed inclusion-exclusion, NOT a "
+                   "Clifford/D4 identity (canon §5 derived-vs-generic; the rider is "
+                   "mandatory, in kind with brannen_z3_harmonic_collapse_invariant)")
+    out["r160_relation"] = (
+        "INDEPENDENT NON-GLEASON ROUTE TO R-160's CONCLUSION, and to its conclusion only. "
+        "Shares no premise with R-160's chain (F1–F4 absent; Gleason unused). ONE-WAY: it "
+        "fixes no exponent by itself and reaches the conclusion only with the EMPIRICAL "
+        "third-order null adjoined — a datum R-160 does not need. NOT a re-derivation of "
+        "R-160, NOT a discharge of F2, NOT support for the rest of the Sorkin arc.")
+    out["does_not_license"] = (
+        "any rho_sat scaling, any kappa_TWT value, any substrate intensity-exponent claim, "
+        "the SK-P1 bounded-amplitude premise, or any reading of this as Clifford/D4 content")
+    out["record"] = ("knowledge/audit/sorkin_arc_2026-08-25/ — SORKIN_L2_2026-08-25.md "
+                     "§§2.1–2.3, 2.7 (operative register) + VERDICT_REVIEWER_SORKIN_L1.md "
+                     "(R1/R2/R3, §1.4) + VERDICT_METAOBSERVER_SORKIN_L1.md + "
+                     "VERDICT_KEEPER_SORKIN_L1.md; freeze at PREREGISTRATION_FROZEN.md")
+    return out
