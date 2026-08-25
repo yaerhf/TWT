@@ -32,7 +32,7 @@ pip install -r requirements.txt
 python twt_test.py
 ```
 
-Expected output: `ALL 490 CHECKS PASSED across 10 modules.` (On Windows, set `PYTHONUTF8=1` first.)
+Expected output: `ALL 497 CHECKS PASSED across 10 modules.` (On Windows, set `PYTHONUTF8=1` first.)
 
 The engine is split in two. `twt_test.py` above runs the **main** harness; the deep-dive layer
 has its own:
@@ -41,7 +41,7 @@ has its own:
 python twt_companion_test.py
 ```
 
-Expected output: `ALL 87 COMPANION CHECKS PASSED across 7 modules.` — 577 checks in total.
+Expected output: `ALL 87 COMPANION CHECKS PASSED across 7 modules.` — 584 checks in total.
 
 ## What is in here
 
