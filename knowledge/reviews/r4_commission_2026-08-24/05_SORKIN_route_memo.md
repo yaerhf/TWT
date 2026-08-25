@@ -1,5 +1,49 @@
 # 05 — Route memo: a finite-grain deviation law for the Sorkin parameter
 
+> ## ⚠ DATED HEADER ANNOTATION (2026-08-25, Sorkin L2 repair pass) — NUMBERS IN THIS MEMO'S BODY THAT DID NOT SURVIVE
+>
+> **This memo's BODY IS NOT EDITED — it is a filed submission and stands as its author wrote it.**
+> This annotation exists because the memo is the Sorkin arc's cited **Authority**, so a reader following
+> the pointer would otherwise take its unverified figures as operative. **The arc's operative records
+> are `knowledge/audit/sorkin_arc_2026-08-25/PREREGISTRATION_FROZEN.md` and, for every claim,
+> `SORKIN_L2_2026-08-25.md` in that directory.**
+>
+> **1. TWO LITERATURE NUMBERS FAILED PRIMARY FETCH AND ARE USED NOWHERE** (arc finding SK-F3; the
+> "used nowhere" claim was independently keeper-verified by grep — they appear only at §0 and §"state
+> of the art" of this memo, lines 9 and 11, and nowhere else in the corpus):
+> - **"the quantum-regime Sorkin parameter has since been measured at the 2×10⁻³ level"** — NOT
+>   CONFIRMED at abstract level against the fetched primaries.
+> - **"engineered up to κ ≈ 0.25 in near-field-enhanced settings"** — NOT CONFIRMED at abstract level.
+> - Consequently **this memo's operative window "κ_exp ≲ 10⁻³–10⁻⁴" is superseded** by the frozen,
+>   fetched window: **κ_exp ≲ 10⁻² (Sinha et al., *Science* 329, 418 (2010)) and κ_exp ≲ 10⁻⁴ (Kauten
+>   et al., *NJP* 19, 033017 (2017))** — and those two bounds are **not the same quantity**: Sinha's is
+>   **raw**, Kauten's is **already detector-nonlinearity-corrected but not looped-path-corrected**
+>   (L2 §5.5).
+>
+> **2. THE §2 HEADLINE SHAPE OVER-CLAIMED, AND WAS WEAKENED BY THE ARC AGAINST ITSELF.** *"Any
+> saturation-type substrate produces an intensity-linear κ residual"* needs the `η₁ ≠ 0` condition
+> attached; the registered shape is **κ_TWT ∝ u^{n\*}, n\* ≥ 1** with the first nonvanishing order
+> setting the exponent (generically 1 — *generic over the substrate premise's own parameter space*).
+>
+> **3. THE §2 DISCRIMINATOR SENTENCE DOES NOT STAND AS PUT.** *"Existing triple-slit datasets taken at
+> multiple intensities can already bound the slope dκ/dI"* — **there is no such dataset** (no published
+> series is an intensity scan at fixed geometry, fixed detector **and** fixed photon statistics; Kauten's
+> three points confound all three at once). And **the intensity slope is not by itself a discriminator**:
+> detector dead time gives slope **0.998** and photodiode saturation **1.012**, both at the claimed
+> `n* = 1`, at magnitudes comparable to Sinha's own published central value. The deliverable is
+> re-registered as **the degeneracy-breaking protocol** (L2 §5.2), with **Rozema et al., *Phys. Rev. A*
+> 103, 052204 (2021)** credited as prior art for nonlinearity-sourced `I₃` inside ordinary QM.
+>
+> **4. THE §2 SAFETY CLAIM IS CONDITIONAL, NOT CERTIFIED.** *"Thirty-plus decades below κ_exp: safe"*
+> rides an **UNDERIVED localization volume** for `u` — 30.0 decades of swing across defensible readings,
+> with a refutation corner at L = 0.088 fm — across an **un-built outside↔inside projection** (L2 §6).
+>
+> **5. DESCRIPTOR:** Route 1 is a **saturation** computation; "counting/measure" is **Route 3**'s
+> descriptor. Both are kernel-free.
+>
+> *(Route 2 remains #1-gap-blocked and was not opened. Route 3's floor is quoted `d`-blind — the `1/d`
+> prefactor is omitted, ≤0.8 decades.)*
+
 Prepared 2026-08-24 by Claude (Anthropic). Status: **SUBMITTED FOR ADJUDICATION — attempt record, not a result.** Per the commission: a fresh route matters more than a finished result; this memo delivers three routes, two with derived scaling shapes and benchmark magnitudes, one honestly blocked, each with its consumed premises named and its level (family vs candidate) tagged.
 
 ## 0. Target and definitions

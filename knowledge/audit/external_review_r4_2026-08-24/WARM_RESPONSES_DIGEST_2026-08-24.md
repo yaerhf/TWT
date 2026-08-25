@@ -122,13 +122,15 @@ goes, A.1's §6.3 consequence binds (publish, or scope the claim).
 
 | # | item | disposition |
 |---|---|---|
-| 1 | Mirror scope: publish-on-cite + five items, OR scope §6.3's auditability claim | **HUMAN** (two-witnessed) |
-| 2 | Arc-ratio quote repair (drop σ; offset + 3.3e-5 + no-significance + trials; pole-mass point; 0.41-vs-0.89 reconciliation computed first) | PROPOSED-§8a |
-| 3 | Ladder "compression" → "observation" + run R-173's vacuity instrument on it | PROPOSED-§8a |
-| 4 | The sterile cross-brace row (exists ∧ hypercharge-neutral; tiered at the weaker leg) | DOCKETED §8a banking candidate |
-| 5 | Kikukawa failure-diagnosis cell split | PROPOSED-§8a (I-31 one-cell) |
+| 1 | Mirror scope: publish-on-cite + five items, OR scope §6.3's auditability claim | **RULED: PUBLISH (RUL-103, same day)** — executed, mirror 6051415; item 5 deferred-assembling |
+| 2 | Arc-ratio quote repair (drop σ; offset + no-significance + trials; pole-mass point; 0.41-vs-0.89 reconciliation computed first) | **RULED + APPLIED (RUL-104)** — reconciliation EXACT: an **input-vintage** difference (`m_τ` 1776.93±0.09 vs 1776.86±0.12), not an error-treatment error; the σ is **deleted**. ⚠ **the `3.3e-5` written in this row is HIS figure on the old `m_τ`** — ours is `1.14e-5` in δ (`1.57e-5` in D/J); row text corrected, the §A.2 narrative left verbatim as the record of what he said |
+| 3 | Ladder "compression" → "observation" + run R-173's vacuity instrument on it | **RULED + APPLIED (RUL-104)** — demoted to *a noted regularity of zero evidential weight*; R-173's 4-dimensional solution manifold run against the ladder explicitly; bit ledger shipped |
+| 4 | The sterile cross-brace row (exists ∧ hypercharge-neutral; tiered at the weaker leg) | **APPLIED as companion R-183, marked BANKED-PENDING-§8a** (RUL-104); tiered at the conjecture-conditioned leg 1; proposer credited |
+| 5 | Kikukawa failure-diagnosis cell split | **APPLIED (RUL-104)** — `I-SMG-3` split three ways: stance (proponent-side) / result-content (073B02's diagnosis citable in the obstruction half) / the genuine negatives, with an explicit non-collapse clause |
 | 6 | v2 FCNC script adopted; v1 preserved as record | DONE this session |
 | 7 | O10 S2-referent worry | ANSWERED (computed blast radius, primitives named) |
 | 8 | Fermi-point credit phrasing | ANSWERED (record already books it as exit-removal) |
 | 9 | Γ-round 3/5 independent read | DOCKETED (needs a round-4-naive reader) |
 | 10 | Possible FIFTH apparatus check: shipped-artifact `knowledge/` cites must resolve in the mirror or carry a not-shipped marker (mechanizes whichever way item 1 goes) | joins the apparatus pass |
+
+*Rows 2–5 applied 2026-08-24 in the warm-response follow-up batch; governing report `FOLLOWUP_BATCH_REPORT_2026-08-24.md`, ruling row RUL-104. Item 5 of §B.5 (the R-134 `N_tried` extract) also discharged, at `knowledge/audit/R134_NTRIED_EXTRACT_2026-08-24.md` — the deliverable is the honest negative: the telemetry was never kept.*
