@@ -16,9 +16,10 @@ than $2+2$, the space of
 $G$-invariant quartic polynomials is **one-dimensional**, spanned by $(k^2)^2$. Consequently, for
 *any* **scalar** dispersion kernel $K:\mathbb{R}^4\to\mathbb{R}$
 that is invariant under the $D_4$ point group and analytic at $k=0$, the quartic term of its
-derivative expansion is exactly rotationally invariant: there is no anisotropic $p^4$ term, and
-hence no anisotropic dimension-six Lorentz-violating operator, whatever the underlying dynamics.
-The leading rotational anisotropy is pushed to $p^6$, i.e. to **dimension eight**. This bound is
+derivative expansion is exactly $O(4)$-invariant: there is no anisotropic $k^4$ term for any kernel
+in that class — a statement about the group, not about one model of it — and hence, given the
+premises below and **(P-op)** in particular, no anisotropic dimension-six Lorentz-violating
+operator. The leading anisotropy is pushed to $k^6$, i.e. to **dimension eight**. This bound is
 *reached*, not merely an upper bound: the degree-6 invariant space is two-dimensional, containing
 the explicit anisotropic invariant
 $A(k) = 5k^2\sum_i k_i^4 - 4\sum_i k_i^6 - \tfrac54 (k^2)^3$, and the sixth bond moment of the
@@ -28,7 +29,8 @@ group $W(B_4)$ has invariant degrees $\{2,4,6,8\}$, admits a two-dimensional deg
 space containing $\sum_i k_i^4$, and its nearest-neighbour dispersion is direction-dependent already
 at quartic order (axis-to-diagonal ratio $4$).
 
-Three premises are load-bearing and are stated up front rather than in a footnote: **(P-an)**
+Four premises are load-bearing and are stated up front rather than in a footnote. Three of them
+condition the theorem itself. **(P-an)**
 analyticity in $k$, so that a derivative expansion exists at all; **(P-pg)** invariance under the
 *full* point group **including triality** — the reflection subgroup $W(D_4)$ of order $192$ has a
 *three*-dimensional degree-4 invariant space, and the second shell splits under it into **three**
@@ -38,13 +40,34 @@ three carry equal weight**; a coupling that weights triality-related orbits uneq
 restores dimension-six anisotropy. And **(P-sc)** the kernel is **scalar** — real-valued, carrying no
 internal indices. The theorem does not extend to matrix-valued (equivariant) kernels; the published
 dimension-six bounds quoted below are for photons, electrons and protons, none of which is a scalar
-field. See §8.3.
+field.
 
-We also state clearly what the result does **not** do. It closes the **anisotropic** channel only.
-The rotationally *invariant* dimension-six term is untouched: for the nearest-neighbour $D_4$ kernel
-it is present and computable, $\omega^2 \propto k^2 - \tfrac{1}{12}a^2 (k^2)^2 + O(a^4 k^6)$, with an
-$O(1)$ coefficient. Lorentz violation is not solved by this theorem; one of its two channels is
-closed, and the surviving channel is the one that carries the strongest published constraints.
+The fourth premise conditions not the theorem but its *transfer* to Lorentz-violation
+phenomenology, and the lattice mathematics below is untouched by it: **(P-op)** the symmetry
+operative on the sector the transfer speaks about is the full point group, and not the proper
+subgroup left intact by whatever singles out a rest frame. A medium that distinguishes an axis
+$e_4$ — a driven or dissipative steady state, a condensate, a cosmological rest frame — leaves
+operative only $\operatorname{Stab}_G(e_4)$, of order $48$, which restricts faithfully onto the
+full octahedral group $W(B_3)$ on the transverse 3-space; there the degree-4 invariant space is
+**two**-dimensional and an anisotropic *spatial* quartic is permitted. What protects the
+nearest-neighbour kernel at that reduced group is then not the reduced symmetry but the constancy
+of the coupling on the single full-group bond orbit. See §8.
+
+We also state clearly what the result does **not** do. It constrains the *tensor structure* of the
+quartic term and nothing else; the isotropic direction $(k^2)^2$ is available and, for the
+nearest-neighbour $D_4$ kernel, occupied with an $O(1)$ coefficient,
+$\omega^2 \propto k^2 - \tfrac{1}{12}a^2 (k^2)^2 + O(a^4 k^6)$. But that surviving term is built
+from the **four**-dimensional square, and so is not a boost violation either: granting the naive
+continuation of §7, a kernel that is a function of $k\cdot k$ alone continues to an exactly
+Lorentz-invariant dispersion relation, in which the $-\tfrac{1}{12}$ term is a mass
+renormalisation. An isotropic-but-boost-violating quartic would need $\lvert\mathbf k\rvert^4$,
+which is not invariant under the point group at all — nor even under the hypercubic one. The
+preferred frame that Lorentz-violation phenomenology presupposes must therefore come from
+somewhere other than the kernel. **That is this note's flagship caveat: the hard step is the
+passage from a Euclidean invariant-theoretic statement to a Lorentzian dispersion relation, and
+this note does not perform it.** Lorentz violation is not solved here; what is supplied is one
+exact statement about one of the structures a solution would have to use, and the premises under
+which that statement may be quoted as physics.
 
 Finally, on attribution: the *physical* content — that the $D_4$/$F_4$ lattice has an isotropic
 quartic while the hypercubic lattice does not — is older than this note by four decades. It is the
@@ -110,18 +133,49 @@ substrate coefficient overshoots the bounds by many orders of magnitude. This is
 Lorentz violation is the usual killer for lattice-substrate proposals: it is the lowest order at
 which a CPT-even substrate effect generically appears, and it is measured.
 
-It is worth separating two distinct things that both live at dimension six, because the theorem
-below touches only one of them:
+It is worth separating two distinct things that both live at dimension six, because they are
+constrained by different data:
 
-* the **anisotropic** part — a term such as $\sum_i p_i^4$ that depends on the orientation of $p$
-  relative to the substrate axes. This is the part that is manifestly a lattice artefact;
-* the **isotropic** part — a term $(p^2)^2$ that is rotationally invariant but still violates boost
-  invariance. This is what the bounds quoted above actually constrain: the caption of Liberati's
-  Table 2 specifies "rotational invariant" LIV operators. (Anisotropic coefficients are constrained
-  separately and are tabulated in the SME data tables [Kostelecký–Russell].)
+* the **anisotropic** part — a term such as $\sum_i p_i^4$ that depends on the orientation of
+  $\mathbf p$ relative to the substrate axes. This is the part that is manifestly a lattice
+  artefact; its coefficients are constrained by the directional and sidereal analyses tabulated in
+  the SME data tables [Kostelecký–Russell];
+* the **isotropic** part — a term $(\mathbf p^2)^2$ that is invariant under spatial rotations but
+  still violates boost invariance. This is what the bounds quoted above constrain: the caption of
+  Liberati's Table 2 specifies "rotational invariant" LIV operators.
 
-**The theorem in this note closes the first and says nothing whatever about the second.** That
-scoping is the single most important honesty point in what follows and it is restated in §8.
+Both descriptions presuppose a **preferred frame** — a split of the four momentum components into
+$E$ and $\mathbf p$ — and that is precisely what the theorem below does not have. The theorem lives
+on four Euclidean axes with no distinguished direction, and the quartic invariant it forces,
+$(k\cdot k)^2$, is built from the *four*-dimensional square. Two consequences follow, and together
+they are the honest framing of everything after this section.
+
+*First, the surviving quartic term does not by itself produce a dimension-six Lorentz violation of
+either kind.* Grant the naive continuation that §7 gestures at, $k\cdot k \to p_\mu p^\mu$. Then the
+pole condition $c_0 + c_2\,p_\mu p^\mu + c_4\,(p_\mu p^\mu)^2 = 0$ is a polynomial in $p_\mu p^\mu$
+alone, and its roots sit at *constant* $p_\mu p^\mu$: the dispersion relation is exactly
+$E^2 = \mathbf p^2 + m_{\rm phys}^2$, to all orders in the lattice spacing and not merely to the
+order computed. The $O(a^2)$ term is a mass renormalisation, contributing $\eta^{(4)} = 0$ rather
+than an $O(1)$ coefficient. This is what the Katz–Nogradi sentence quoted in §1.3 says — "at order
+$O(a^2)$ the correction is still **Lorentz** invariant" — and §5 sharpens it: every term below
+degree six is $O(4)$-invariant, so on this reading the first violation *of any kind* sits at
+dimension eight.
+
+*Second, an isotropic-but-boost-violating quartic has no invariant to sit on.* Such a term needs
+$\lvert\mathbf k\rvert^4 = (k_1^2+k_2^2+k_3^2)^2$, which is not $G$-invariant — nor even
+$W(B_4)$-invariant; any element exchanging $e_4$ with $e_1$ moves it. A substrate whose kernel is
+symmetric under the full four-dimensional point group supplies no structure on which a preferred
+frame could be built. **The preferred frame must come from somewhere other than the kernel, and
+locating it is the hard part.**
+
+**That is the flagship caveat of this note, and it replaces a weaker one: the difficult step is the
+passage from a Euclidean invariant-theoretic statement to a Lorentzian dispersion relation, and
+this note does not perform it.** What is proved below is a fact about a finite group acting on
+$\mathbb{R}^4$. Reading it as a statement about the spatial rotational invariance of a physical
+dispersion relation requires a distinguished axis, a continuation, and — because whatever supplies
+that axis generically *reduces the operative symmetry group* — the further premise (P-op) of §8.4.
+The bounds quoted above are given as motivation for caring about the question, not as quantities
+this theorem computes. The point is restated in §7, §8.4 and §8.5.
 
 ### 1.2 Statement of the result
 
@@ -141,10 +195,14 @@ one, the space of $G$-invariant quartics is one-dimensional, spanned by $(k^2)^2
 Because the argument is about the group rather than about a particular action, it applies to the
 tree-level kernel, to any radiative correction generated by a point-group-preserving regulator, and
 to any nearest-neighbour, next-nearest-neighbour or arbitrarily-improved discretisation, provided
-only that the couplings respect the full point group. There is no anisotropic dimension-six operator
-to fine-tune away, because there is no anisotropic quartic invariant for it to be built from.
+only that the couplings respect the full point group. There is no anisotropic quartic invariant for
+an anisotropic dimension-six operator to be built from — and hence, *for a sector on which the full
+point group is the operative symmetry*, no such operator to fine-tune away. That qualifier is
+premise (P-op) of §8.4 and it is not decorative: the same medium that supplies the preferred frame
+the phenomenological reading needs will generally leave only a subgroup of $G$ operative, and at
+that subgroup the anisotropic spatial quartic is permitted again.
 
-The leading anisotropy then sits at $p^6$: dimension eight. For a substrate at scale $\Lambda$, the
+The leading anisotropy then sits at $k^6$: dimension eight. For a substrate at scale $\Lambda$, the
 relative size of the leading anisotropic effect is $(E/\Lambda)^4$ rather than $(E/\Lambda)^2$.
 
 ### 1.3 Provenance and scope of the novelty claim
@@ -208,6 +266,15 @@ no internal (polarization, flavour, spinor) indices. A matrix-valued kernel $M_{
 *equivariance*, $M(Ak) = A\,M(k)\,A^{\mathsf T}$, not invariance, and lives in a larger
 invariant-theory object that the proof below never touches. §8.3 shows the restriction is
 load-bearing rather than decorative.
+
+**Assumption (P-op) — the operative symmetry.** *This one is a premise on the physical transfer,
+not on the theorem.* The mathematics of §3–§7 is a statement about the group $G$ of order $1152$
+and is untouched by (P-op): as invariant theory the theorem needs (P-an) and (P-pg) and nothing
+more. What (P-op) conditions is the *quotation* of that conclusion as a statement about the
+rotational anisotropy a physical substrate would exhibit. For that reading, the group whose
+invariants are counted must be the group operative on the sector the claim is about — and a medium
+that distinguishes a rest frame does not leave all of $G$ operative. §8.4 states the premise
+precisely, computes what the reduction costs, and gives its would-change-if.
 
 **EFT dictionary.** With a dispersion relation $E^2 = p^2 + m^2 + \sum_n \eta^{(n)} p^n/M^{n-2}$, a
 $p^n$ term originates in a mass-dimension-$(n+2)$ operator. We will use the two dictionary entries
@@ -368,12 +435,43 @@ $K(Ak) = K(k)$ over $A \in G$ and matching homogeneous components shows each $P_
 \mathbb{R}[k]^G_d$. By Lemmas 1–2, $\dim \mathbb{R}[k]^G_4 = 1$. Since $(k\cdot k)^2$ is a nonzero
 element of that space, $P_4 \in \mathbb{R}\,(k\cdot k)^2$. $\square$
 
+**Corollary (everything below degree six is $O(4)$-invariant).** *Under the same hypotheses,
+$P_1 = P_3 = P_5 = 0$ and $P_2 \in \mathbb{R}\,k^2$, so*
+
+$$
+K(k) \;=\; c_0 \;+\; c_2\,k^2 \;+\; c_4\,(k^2)^2 \;+\; P_6(k) \;+\; O(k^8),
+$$
+
+*with $P_6$ the first term the group permits to depart from full $O(4)$ symmetry.*
+
+*Proof.* $-\mathbb{1} \in W(D_4) \subset G$, so every $G$-invariant polynomial is even and all odd
+homogeneous components vanish. The table above gives $\dim\mathbb{R}[k]^G_2 = 1$, whence
+$P_2 \in \mathbb{R}\,k^2$, and $\dim\mathbb{R}[k]^G_4 = 1$ is the theorem. $\square$
+
+This costs nothing extra and is worth stating, because it is what the invariant degrees
+$\{2,6,8,12\}$ actually say: the first degree at which the group *permits* any departure from
+$O(4)$ symmetry is six. In particular the same one-line argument removes every odd power, CPT-odd
+$p^3$ terms (dimension five) included, and it does so for the whole class of kernels at once.
+
 **Corollary (no anisotropic dimension-six operator).** A dispersion relation derived from such a
-kernel has an $O(p^4)$ term of the form $c\,(p^2)^2$ with $c$ a single constant. There is no
-direction-dependent $p^4$ contribution, hence no anisotropic dimension-six LIV operator, for any
-choice of **scalar** couplings compatible with the full point group — premise (P-sc). That premise
-is load-bearing, not decorative, and the point group cannot close the matrix-valued sector. Here is
-the two-line reason. Take the pseudo-dipolar bond coupling, the natural $W(F_4)$-symmetric
+kernel has an $O(k^4)$ term of the form $c\,(k^2)^2$ with $c$ a single constant, and no
+direction-dependent $k^4$ contribution, for any choice of **scalar** couplings compatible with the
+full point group — premise (P-sc).
+
+Reading that as *"hence no anisotropic dimension-six LIV operator"* is a further step, and it
+carries two conditions that are not optional. The first is the passage from the Euclidean $k$ to an
+observer's $(E,\mathbf p)$: that step is not performed in this note (§1.1, §7), and within the
+four-dimensional invariant theory the statement above is neither about spatial rotations nor about
+boosts. The second is premise **(P-op)** of §8.4 — the group whose invariants have just been
+counted must be the group operative on the sector the LIV claim concerns. If the medium that
+supplies the observer's preferred frame leaves only a subgroup of $G$ intact, the relevant
+invariant space is that subgroup's, and it is larger: at the stabiliser of the distinguished axis
+the anisotropic *spatial* quartic is permitted, and what protects the nearest-neighbour kernel
+there is a property of the coupling rather than of the symmetry. The invariant-theoretic content
+above is exact; the phenomenological sentence is conditional on both steps.
+
+Premise (P-sc) is likewise load-bearing rather than decorative, because the point group cannot
+close the matrix-valued sector. Here is the two-line reason. Take the pseudo-dipolar bond coupling, the natural $W(F_4)$-symmetric
 symmetric-rank-2 kernel, $M_{\mu\nu}(k) = \sum_v v_\mu v_\nu\,\bigl(1-\cos(k\cdot v)\bigr)$; its
 four-derivative part is $T_{\mu\nu}(k) = \sum_v v_\mu v_\nu (k\cdot v)^4$ up to a constant. Contract
 with $k$:
@@ -512,7 +610,9 @@ acting on a four-dimensional momentum space. Reading the conclusion as a stateme
 rotational invariance of a Lorentzian dispersion relation requires a further step — a choice of
 distinguished axis and a continuation — which we do not perform here and which is not part of the
 theorem. What is proved is the invariant-theoretic statement; the phenomenological reading is offered
-as motivation, not as a corollary.)*
+as motivation, not as a corollary. This is the flagship caveat of §1.1, and the choice of
+distinguished axis carries a second cost as well: it reduces the operative symmetry group, which is
+premise (P-op) of §8.4.)*
 
 ---
 
@@ -554,7 +654,7 @@ $f(k)\log k^2$ with $f$ homogeneous of degree $4$ still requires $f$ itself to b
 $\log k^2$ is already invariant, and the analytic and log-multiplied parts cannot mix — so $f$ is
 forced to $(k^2)^2$ and the term is $(k^2)^2\log k^2$, isotropic. Logarithmic non-analyticity does
 not reopen the anisotropic channel; power-law and fractional non-analyticity, of the
-$|A|^{2/3}$ type above, does. This makes the loop-robustness claim at the end of §8.4 tighter than
+$|A|^{2/3}$ type above, does. This makes the loop-robustness claim at the end of §8.5 tighter than
 a bare appeal to "any $G$-preserving regulator" would be.
 
 ### 8.2 (P-pg) The full point group, including triality
@@ -629,23 +729,116 @@ dispersion kernel" will read the theorem as covering exactly the sector it does 
 restriction therefore travels with the result, on the same footing as (P-an) and (P-pg), and
 extending the statement to the equivariant case is open work this note does not do.
 
-### 8.4 What the theorem does **not** do
+### 8.4 (P-op) The operative symmetry
+
+The three premises above are premises on the *theorem*. This one is a premise on the *transfer* —
+on the step from "the invariant theory of $G$ forbids an anisotropic quartic" to "a substrate built
+on this lattice exhibits no anisotropic dimension-six Lorentz violation". **Nothing in §3–§7 depends
+on it.** As mathematics the theorem is a statement about the order-$1152$ group acting on
+$\mathbb{R}^4$, and it stands exactly as proved whether or not (P-op) holds; the lattice
+mathematics is untouched by this subsection.
+
+The transfer, however, needs the group being used to be the group *operative on the sector the
+claim is about*, and §1.1 already supplied the reason to doubt that it is. The theorem's own
+symmetry is too large to supply a preferred frame: a kernel invariant under all of $G$ has no
+structure on which $\lvert\mathbf k\rvert^4$, or any other frame-dependent object, could be built.
+So a substrate that exhibits Lorentz violation at all must obtain its frame from somewhere else —
+a driven or dissipative steady state, a condensate, a cosmological rest frame. Whatever does that
+singles out an axis, and the symmetry the medium leaves intact is then not $G$ but the stabiliser
+of that axis.
+
+Write the axis as $e_4$ and set $G_{48} := \operatorname{Stab}_G(e_4)$. Both facts we need are
+immediate from material already in this note.
+
+* **$|G_{48}| = 48$.** By §8.2 the second shell $\{\pm2e_i\}\cup(\pm1,\pm1,\pm1,\pm1)$ is a *single*
+  $G$-orbit, of size $24$; $2e_4$ lies in it; so the orbit–stabiliser theorem gives
+  $|\operatorname{Stab}_G(2e_4)| = 1152/24 = 48$, and $\operatorname{Stab}_G(e_4)$ is the same
+  subgroup. The $48$ signed permutations of the coordinates $k_1,k_2,k_3$ (acting trivially on
+  $k_4$) lie in $W(B_4)\subset G$ and fix $e_4$, so they exhaust it.
+* **$G_{48}$ restricts faithfully onto $W(B_3)$.** Each such element is block-diagonal; an element
+  fixing $e_4$ and acting trivially on $e_4^{\perp}$ is the identity, so the restriction to the
+  transverse 3-space is injective, and its image is all $48$ signed permutations of three
+  coordinates — the **full octahedral group** $W(B_3)$.
+
+$W(B_3)$ has invariant degrees $\{2,4,6\}$. Because $4$ *is* one of them, the space of degree-4
+invariants of the **spatial** variables is **two**-dimensional, spanned by $(\mathbf k^2)^2$ **and**
+$\sum_{i\le3}k_i^4$. So the anisotropic spatial quartic that $G$ forbids is *permitted* at
+$G_{48}$: the reduction to the stabiliser reinstates precisely the invariant that §7 identified as
+the hypercubic lattice's failure mode. Note what this means structurally. The two things the full
+point group excludes — a boost-violating isotropic quartic and an anisotropic spatial one — become
+available *together*, at the same group, by the same reduction. They are not independent, and a
+substrate cannot have the first without exposing itself to the second.
+
+**What carries the protection at the reduced group is then a property of the coupling, not of the
+reduced symmetry.** The $24$ bonds form a single $G$-orbit carrying equal weight, and that alone
+forces $\sum_v (k\cdot v)^4 = 12\,(k^2)^2$ identically in four variables (§4, contracting the
+fourth moment). An identity in four variables restricts to every 3-plane, so the *spatial* fourth
+moment of the nearest-neighbour set is exactly isotropic — full tensor, residual $0$ — whatever
+axis is singled out. The reduction therefore leaves a **permission that this kernel does not
+populate**, not a term that it does.
+
+It is worth recording the axis-specific decomposition of that fact, because it is easy to mistake
+for the mechanism. (The moments below are elementary consequences of §4's bond set, obtained by
+counting; unlike the rest of the note's numbers they are not separately computed in Appendix A,
+because they need no computation.) With $e_4$ singled out, the $24$ bonds split $12+12$: those with a nonzero
+$e_4$-component have spatial parts $\pm e_i$ ($i\le3$, four of each) and contribute
+$M_{1111}=4$, $M_{1122}=0$, spatial residual $+4$; those lying in the hyperplane $k_4 = 0$ have
+spatial parts $(\pm1,\pm1,0)$ and contribute $M_{1111}=8$, $M_{1122}=4$, spatial residual $-4$.
+The sums are $M_{1111} = 12$ and $M_{1122}=4$ — §4's isotropic pair — and the protection is the
+cancellation of the two halves. But that $\pm4$ split is a **sensitivity decomposition along the
+chosen axis, not the source of the isotropy**: at an axis that is not a symmetry direction of the
+lattice the $12+12$ split does not exist at all, and the isotropy persists regardless, because it
+descends from the full-orbit identity above.
+
+**Would change if.** Any coupling whose bond weights are invariant under the reduced group but are
+**not constant on the full $G$-orbit** breaks the cancellation and restores a dimension-six
+*spatial* anisotropy — which then faces directional and sidereal bounds rather than the isotropic
+ones. The concrete instance is the reweighting the reduced group permits and the full group does
+not: weight $w$ on the $12$ in-hyperplane bonds and $1$ on the $12$ others gives spatial
+$M_{1111} = 4 + 8w$ and $M_{1122} = 4w$, hence $M_{1111} - 3M_{1122} = 4(1-w)$, zero only at
+$w = 1$. This is the same *shape* of failure as (P-pg) — unequal weight on what the full group
+makes one orbit — but a weaker and more easily met condition triggers it, because $G_{48}$ no
+longer forces the orbit to carry constant weight in the first place.
+
+The honest statement is therefore: *the invariant theory forbids the anisotropic quartic at the
+full point group; at the group a frame-selecting medium leaves intact it does not, and what stands
+in its place is the requirement that the couplings remain constant on the full-group orbit.*
+Whether a given substrate's dressed couplings do is a dynamical question, and this note does not
+address it.
+
+### 8.5 What the theorem does **not** do
 
 This subsection is the one that must not be skimmed.
 
-**It closes anisotropy only.** The rotationally invariant dimension-six term is entirely untouched.
-The argument constrains the *tensor structure* of $P_4$, not its magnitude, and the isotropic
-direction $(k^2)^2$ is available and generically occupied. §4 exhibits it explicitly for the
-nearest-neighbour $D_4$ kernel with coefficient $-1/12$ — an $O(1)$ number. In LIV-EFT terms, a $D_4$
-substrate at scale $\Lambda$ still generically produces $\eta^{(4)} \sim (M_{\rm Pl}/\Lambda)^2$,
-which is exactly the quantity bounded at the $10^{-6}$–$10^{-8}$ level by the constraints quoted in
-§1.1. **The theorem does not help with that at all.** A reader who comes away with the impression
-that a $D_4$ substrate solves the Lorentz-violation problem has misread this note; what it removes is
-one of the two channels, and the surviving channel is the more strongly constrained one.
+**It does not perform the Euclidean-to-Lorentzian step, and that is the hard part.** The argument
+constrains the *tensor structure* of $P_4$, not its magnitude; the isotropic direction $(k^2)^2$ is
+available and generically occupied, and §4 exhibits it for the nearest-neighbour $D_4$ kernel with
+coefficient $-1/12$, an $O(1)$ number. What the theorem cannot say is whether that surviving term
+is a Lorentz violation at all, because the answer depends entirely on a step taken outside it. If
+the naive continuation of §7 is granted, $(k\cdot k)^2$ becomes $(p_\mu p^\mu)^2$, a Lorentz
+scalar; the pole sits at constant $p_\mu p^\mu$; the dispersion relation is exactly
+$E^2 = \mathbf p^2 + m_{\rm phys}^2$; and the $-1/12$ term is a mass renormalisation with
+$\eta^{(4)} = 0$. If it is *not* granted, then $\eta^{(4)}$ is not a quantity the theorem's setup
+can express, and the bounds of §1.1 are not being spoken to either. Either way **this note supplies
+no $\eta^{(4)}$**, and a reader who comes away with the impression that a $D_4$ substrate solves —
+or, for that matter, incurs — the Lorentz-violation problem has misread it. The frame-selecting
+structure that would decide the question is exactly what §8.4 shows must come from outside the
+kernel, and locating it is real work that is not done here.
 
-**It says nothing about dimension four or five.** Species-dependent limiting speeds (dimension four)
-and CPT-odd $p^3$ terms (dimension five) are separate questions with their own, much tighter,
-constraints. Nothing here addresses them.
+**Its physical reading is conditional on the operative symmetry.** Premise (P-op) of §8.4 is not a
+refinement to be quoted away: at the stabiliser of the axis a frame-selecting medium singles out,
+the anisotropic spatial quartic is permitted, and the protection is carried by the coupling's
+constancy on the full-group orbit rather than by the reduced symmetry. The mathematics is
+unaffected; the physical sentence is conditional.
+
+**It fixes no limiting speed.** Two nearby things are worth separating from that. The theorem
+*does* remove anisotropic dimension-four rotation breaking — but so does hypercubic symmetry, and
+that observation is not new here; it is the standard argument of the Lorentz-violation literature
+credited in §9(iii). It also removes CPT-odd $p^3$ terms and every other odd power at a stroke,
+since $-\mathbb{1}\in G$ (the first corollary of §5). What it does **not** fix is the *magnitude*
+of the isotropic dimension-four coefficient — the limiting speed $c_2$ in the expansion of §5 —
+which is a single free number per field, and species-dependent limiting speeds are precisely the
+tightly constrained quantity this note leaves entirely open.
 
 **It fixes no magnitude.** No coefficient is predicted, including the dimension-eight anisotropic
 coefficient whose *existence* §6 establishes. Its size depends on the dynamics.
@@ -656,8 +849,10 @@ Lorentz-violating cutoff, violations generically percolate to low-dimension oper
 unsuppressed coefficients. Our argument is partly robust to this and partly not, and the distinction
 matters. It *is* robust for the tensor structure: any counterterm generated by a regulator that
 preserves $G$ is itself $G$-invariant, so if it is analytic its quartic part is again isotropic — the
-anisotropy protection survives loops. It is *not* a response to the percolation problem itself, which
-concerns the magnitude of the isotropic coefficients — again, the channel we do not close.
+anisotropy protection survives loops. It is *not* a response to the percolation problem itself,
+which concerns the magnitudes of the low-dimension coefficients — again, exactly what this note
+does not address. And a regulator preserving only the *reduced* group of §8.4 preserves less: the
+loop-robustness statement inherits (P-op) along with everything else.
 
 **It does not argue that nature uses this lattice.** The result is conditional: *if* a substrate is
 $D_4$-symmetric with triality-symmetric analytic couplings, *then* its leading rotational anisotropy
@@ -797,13 +992,16 @@ the mechanism here keeps the lattice and buys two orders in $E/\Lambda$.
 * $\operatorname{Aut}(D_4) \cong W(F_4)$ has order $1152$ and invariant degrees $\{2,6,8,12\}$.
 * Consequently $\dim\mathbb{R}[k]^G_4 = 1$: the only invariant quartic is $(k^2)^2$. Any analytic,
   point-group-symmetric, **scalar** dispersion kernel therefore has an exactly isotropic quartic
-  term, and there is no anisotropic dimension-six Lorentz-violating operator *in that sector*.
+  term. More: since $-\mathbb{1}\in G$ and $\dim\mathbb{R}[k]^G_2 = 1$, the expansion reads
+  $K = c_0 + c_2k^2 + c_4(k^2)^2 + P_6(k) + O(k^8)$ — **everything below degree six is
+  $O(4)$-invariant**, odd terms included.
 * $\dim\mathbb{R}[k]^G_6 = 2$, with an explicit anisotropic invariant $A(k)$ taking both signs on the
   unit sphere, and the sixth bond moment is anisotropic. Dimension eight is therefore *reached*.
 * $\mathbb{Z}^4$ fails: $\dim\mathbb{R}[k]^{W(B_4)}_4 = 2$, $\sum_i k_i^4$ survives, and the
   nearest-neighbour dispersion is direction-dependent at quartic order by a factor of $4$. The result
   is an $F_4$ fact, not a four-dimensionality fact.
-* Three premises are load-bearing: **(P-an)** analyticity — and the loophole is non-empty,
+* Four premises are load-bearing. Three condition the theorem: **(P-an)** analyticity — and the
+  loophole is non-empty,
   $k^2 + \epsilon|A(k)|^{2/3}$ being a $G$-invariant kernel with an anisotropic degree-four part,
   though logarithmic non-analyticity is harmless since $f\log k^2$ still forces $f = (k^2)^2$;
   **(P-pg)** the full point group including triality — the second shell carries **three** $W(D_4)$
@@ -813,9 +1011,22 @@ the mechanism here keeps the lattice and buys two orders in $E/\Lambda$.
   kernels, and the simplest $W(F_4)$-symmetric one already splits polarizations
   direction-dependently at four derivatives, while the bounds of §1.1 are for photons, electrons and
   protons, none of them scalars.
-* **The theorem closes the anisotropic channel only.** The isotropic dimension-six term survives with
-  an $O(1)$ coefficient ($-1/12$ for the nearest-neighbour kernel) and is the more strongly
-  constrained one. Lorentz violation is not solved.
+* The fourth conditions the *transfer* to Lorentz-violation phenomenology and leaves the lattice
+  mathematics untouched: **(P-op)** the operative symmetry is the full point group and not the
+  subgroup a frame-selecting medium leaves intact. That subgroup is $\operatorname{Stab}_G(e_4)$,
+  of order $48$, restricting faithfully onto the full octahedral group $W(B_3)$ — invariant degrees
+  $\{2,4,6\}$ — where the degree-4 *spatial* invariant space is **two**-dimensional and
+  $\sum_{i\le3}k_i^4$ is permitted. What protects the nearest-neighbour kernel there is the
+  coupling's constancy on the single full-group bond orbit (which forces spatial isotropy on every
+  3-plane), not the reduced symmetry; the $\pm4$ split of the $12+12$ bonds about $e_4$ is the
+  axis-specific sensitivity decomposition of that protection, not its mechanism. Any weighting that
+  is not constant on the orbit restores dimension-six *spatial* anisotropy.
+* **The Euclidean-to-Lorentzian step is not performed here, and it is the hard part.** The theorem
+  constrains a tensor structure, not a magnitude; the surviving $(k^2)^2$ term is built from the
+  four-dimensional square and, under the naive continuation, is a mass renormalisation rather than
+  a boost violation, while an isotropic-but-boost-violating quartic has no point-group invariant to
+  sit on at all. The preferred frame must come from outside the kernel. Lorentz violation is not
+  solved here.
 
 ---
 
@@ -1387,7 +1598,8 @@ All entries below were checked against arXiv, Crossref or the publisher record. 
 
 Repairs applied on **2026-08-25** in response to an independent cold review of this note. Each was
 recomputed independently before application. The review, and the adjudication recording the
-computations together with the items that were **refuted** or held **proposed-but-not-applied**, are
+computations together with the items that were **refuted** — and the one bundle held **proposed**
+pending a decision, since applied as R16–R17 — are
 internal records, not shipped with this note
 (`knowledge/audit/standalone_reviews_2026-08-25/review_d4_01_24_08_2026.md` and
 `.../ADJUDICATION_D4_2026-08-25.md`).
@@ -1409,4 +1621,6 @@ internal records, not shipped with this note
 | R13 | Appendix A | Code robustness: $-0.0$ normalised before hashing group elements; $1-\cos x$ replaced by $2\sin^2(x/2)$ (recovers ~3 significant digits at the $10^{-2}$ sample points, against a $10^{-6}$ tolerance); the $G$-invariance check on $A(k)$ run over **all 1152** elements rather than the first 50 | 2026-08-25 |
 | R14 | Appendix A(7) | Remark (i)'s promise discharged: explicit checks that $G$ acts on the second shell, that shell 1 $\cup$ (shell 2)$/2$ is a genuine $48$-root system (reflection-closed, integral), and that its automorphism group, rebuilt independently, has order $1152$ | 2026-08-25 |
 | R15 | Appendix A(8),(9) | New numerical checks for (P-sc) and (P-an), as described in R2 and R10 | 2026-08-25 |
-| — | §8.3 → §8.4 | The former §8.3 ("What the theorem does not do") is renumbered **§8.4**; its content is **unchanged**. The review's central objection to it — that after continuation $(k\cdot k)^2$ is a Lorentz scalar, so the isotropic quartic is a mass renormalisation rather than a boost violation — is **not adjudicated in this pass** and no edit implementing it has been made. See the adjudication file | 2026-08-25 |
+| R16 | Abstract, §1.1, §1.2, §5, §7, §8.5, §10 | **The flagship caveat replaced.** The review's central objection is adjudicated and upheld: after the continuation of §7, $(k\cdot k)^2$ is a Lorentz scalar, the pole sits at constant $p_\mu p^\mu$, and the surviving isotropic quartic is a **mass renormalisation** with $\eta^{(4)} = 0$, not a boost violation; conversely an isotropic-but-boost-violating quartic would need $\lvert\mathbf k\rvert^4$, which is invariant under neither $G$ nor $W(B_4)$, so the preferred frame cannot come from the kernel. The former caveat ("it closes one of two channels, and the surviving channel is the more strongly constrained one") is **withdrawn** and replaced by the honest one: *the hard step is the Euclidean-to-Lorentzian passage, which this note does not perform.* Carried through every place the old caveat was stated — abstract, §1.1, §8.5 and §10 — since a caveat restated in four places is replaced in four places. Also **free strengthening**: $P_1 = P_3 = P_5 = 0$ and $P_2 \in \mathbb{R}k^2$ (so everything below degree six is $O(4)$-invariant) added as a corollary in §5; and §8.5's "it says nothing about dimension four or five" corrected — the framework *does* kill anisotropic dimension four (a standard result, credited in §9(iii)) and every odd power; what it does not fix is the **magnitude** of the isotropic dimension-four coefficient, the limiting speed | 2026-08-25 |
+| R17 | Abstract, §2, §5, §8.4 (new), §10 | **(P-op) added as a fourth load-bearing premise**, on the *transfer* rather than on the theorem — the lattice mathematics of §3–§7 is untouched by it and says so. The theorem is proved at the full point group, but a medium that supplies the preferred frame the phenomenological reading needs leaves operative only $\operatorname{Stab}_G(e_4)$, of order $48$ (orbit–stabiliser on the single $24$-element second shell), restricting faithfully onto the full octahedral group $W(B_3)$, whose degree-4 *spatial* invariant space is **two**-dimensional — so $\sum_{i\le3}k_i^4$ is permitted there. The protection that remains is carried by the coupling's **constancy on the single full-group bond orbit** (which forces $\sum_v (k\cdot v)^4 = 12(k^2)^2$ in four variables, descending to every 3-plane), **not** by the reduced symmetry; the $\pm4$ residual split of the $12+12$ bonds about $e_4$ is the axis-specific sensitivity decomposition of that protection, not its mechanism. Would-change-if: any weighting invariant at the reduced group but not constant on the orbit ($M_{1111}-3M_{1122} = 4(1-w)$) restores dimension-six *spatial* anisotropy. The physics transfer in §5's corollary is conditioned on the premise explicitly, and the premise count is updated from three to four throughout | 2026-08-25 |
+| — | §8.4 → §8.5 | "What the theorem does not do" is renumbered **§8.5** to make room for §8.4 (P-op); its cross-reference in §8.1 is updated. Its content is revised under R16 | 2026-08-25 |

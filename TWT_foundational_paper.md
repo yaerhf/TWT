@@ -101,7 +101,7 @@ follow from which premises, and at what status.
 Part B. The programme is **TWT-Core**, a family fixed by seven axioms and one refusal, together
 with a list of candidate members; this paper develops **V3**, the family's **first candidate
 instance** and the first one built down to numbers. Three consequences for a reviewer. (i) The
-picks are visible and reversible: eleven of them, each recorded with the menu it came from and
+picks are visible and reversible: eleven of them (two carrying recorded sub-choices), each recorded with the menu it came from and
 what un-picks it (§A.6.4) — the D4 arrangement and the `{J, D}` bond truncation among them, so
 two of the Opening's own premises are instance-level rather than axioms. (ii) Both already-measured
 exposures in the table below belong to V3, not to the family: they ride pinned choices, and the
@@ -1140,13 +1140,14 @@ and an endorsement is a preference, not an axiom.
 
 ### A.6.4 Instance V3 — the picks
 
-V3 buys its numbers with eleven pinned choices — twelve rows below, because one of them turned
-out to contain a second choice inside it. Each is a branch point: what the choice was picked
+V3 buys its numbers with eleven pinned choices — thirteen rows below, because two of them turned
+out to contain a second choice inside them. Each is a branch point: what the choice was picked
 *from* is recorded, and so is what un-picks it.
 
 | # | The pick | The menu it came from | What un-picks it, and what moves |
 |---|---|---|---|
 | V3-1 | Substrate arrangement = a **regular D4 lattice**, at the `G`-back-fit (Planckian) size (`A-1b`) | regular lattices (D4 and others) / irregular-discrete arrangements (causal-set-adjacent) / a continuum medium with a cell scale | Re-arrange or re-size: the dimension-six and dimension-eight numerics recompute and the `Λ_L` band's provenance goes with them; Layer-1 structure is untouched |
+| V3-1a | Drive-axis alignment = the advance axis is a **lattice symmetry axis** | aligned (the banked driven-group apparatus, stabilizer order 48) / misaligned-generic (trivial stabilizer; the spatial quartic permission opens to its full 15 dimensions) / lower-symmetry alignments | A misaligned member recomputes every driven-group count from its own stabilizer; the orbit-constancy failure channel is keyed axis-independently and survives |
 | V3-2 | Bond structure = the `{J, D}` **truncation** (`A-1c`) | the ten-constant bilinear menu allowed on D4 under the driven point group — `J`: 2, `D`: 2, `Γ`: 6 | Turn on the surviving `Γ` direction or the second `D` dial (§D.3.3): the numerical spine re-reads; the quadratic spine is conditionally protected, the amplitude identification is not |
 | V3-2a | DM support = the 12 `e_4`-bonds only | the two-dimensional allowed DM space — the `e_4`-bond coupling and a spatial-bond coupling of the same symmetry type, which no substrate argument separates | A non-zero second `D`: the amplitude identification behind `D/J` moves; the canting — and with it the chiral symmetry breaking — can switch off entirely on a cancellation line; and the `Γ` survivor's vanishing, a property of the vacuum's high-symmetry direction, is exposed with it |
 | V3-3 | `f_π` = the ANW **fitted** value | any cell-scale anchoring | Re-anchor: the hadron chain recalibrates |
@@ -1456,7 +1457,9 @@ The automorphism group of the D4 root system has order 1152 — it is `W(F4)`, w
 are `{2, 6, 8, 12}` — and its space of **degree-four** invariant polynomials is consequently
 *one-dimensional*, spanned by `(k²)²` alone. So for any dispersion kernel invariant under the
 lattice point group and analytic in `k`, there is no anisotropic quartic at all: the quartic term
-is forced isotropic by symmetry, whatever the dynamics turn out to be. The degree-six invariant
+is forced isotropic by symmetry, whatever the kernel — given the premises below, the operative-
+symmetry premise in particular, since the drive is itself a dynamics that reduces the operative
+group. The degree-six invariant
 space is two-dimensional, so an anisotropic sextic does exist, and the leading rotational
 anisotropy of the polarization-averaged dispersion therefore sits at **dimension eight** — reached,
 not merely bounded —
@@ -1465,26 +1468,33 @@ not merely bounded —
 `Σ v_i v_j = 12 δ_ij`, fourth moment exactly `4(δδ + δδ + δδ)` (`M_1111 = 12 = 3 M_1122`), sixth
 moment anisotropic. This is **not** generic to lattices: simple-cubic `Z⁴` has `N_1111 = 2` while
 `N_1122 = 0`, and its point group admits a two-dimensional degree-four invariant space containing
-`Σ k_i⁴`. Four premises carry the inference and are stated rather than buried: that a derivative
+`Σ k_i⁴`. Five premises carry the inference and are stated rather than buried: that a derivative
 expansion exists (a non-analytic driven-dissipative memory kernel — the #1 gap itself — is not
 covered by a polynomial-invariant argument); that the *full* point group including triality
 acts (the reflection subgroup `W(D4)` alone has a three-dimensional degree-four space, and the
 second shell's two sub-orbits are each anisotropic, cancelling only at equal weight — so a
 substrate coupling weighting triality-related orbits unequally would restore dimension-six
-anisotropy); that the symmetry **operative** on the sector the claim is quoted for is that full
+anisotropy); that the **ground state preserves the point group** (the §D.4.3 spiral vacuum
+breaks it: the species-universal `O(q²)` stiffness splitting is absorbed by the rescaling
+class, and the space-fixed — sidereal — residual is an open question the exposure ledger
+carries); that the symmetry **operative** on the sector the claim is quoted for is that full
 point group and not the **driven** subgroup — the theorem is proved in four Euclidean variables,
 while leading *rotational* anisotropy is a three-dimensional statement and the drive singles out
 the advance axis `e₄`. The stabilizer `Stab(e₄)` has order 48 and restricts faithfully onto the
 full octahedral group `W(B₃)`, whose invariant degrees are `{2,4,6}`: at the driven group the
 degree-four *spatial* invariant space is **two**-dimensional, spanned by `(k_sp²)²` and
 `Σ_{i≤3} k_i⁴`, so an anisotropic spatial quartic is **permitted** there. What carries the
-protection at the driven group is then not symmetry but interaction content — the 24-bond set's
-spatial fourth moment is computed exactly isotropic (residual 0), and it is so by *cancellation*
-between the twelve `e₄`-bearing bonds (`+4`) and the twelve in the `e₄ = 0` hyperplane (`−4`),
-not by a property of either half. Any driven-sector term populating the permitted invariant would
+protection at the driven group is then not the driven symmetry but a *full-group property of the
+coupling*: the 24 bonds form a single equal-weight orbit of the full point group, which forces
+`Σ_b (b·k)⁴ = 12(k²)²` identically in four variables, so the spatial fourth moment is exactly
+isotropic — full tensor, on every 3-plane. The `+4/−4` split between the twelve `e₄`-bearing
+bonds and the twelve in the `e₄ = 0` hyperplane is the advance-axis *sensitivity decomposition*
+of that protection, not its mechanism: at a generic axis no such split exists and the isotropy
+persists. Any driven-sector coupling whose bond weighting fails to be constant on the full
+orbit — invariant under the driven group but not the full one — would
 restore dimension-six spatial anisotropy, facing SME-type sidereal bounds rather than the
 isotropic ones; that is this premise's would-change-if, and it is the group-theoretic content of
-the arbitration the `Γ`-survivor pointer below dockets. And a fourth, implicit in "invariant
+the arbitration the `Γ`-survivor pointer below dockets. And a fifth, implicit in "invariant
 polynomials" and stated here: **the kernel is a
 scalar in the internal index** — the theorem governs the polarization-averaged dispersion. It does
 not cover internal-index-carrying (matrix-valued) kernels, and the point group cannot close that
@@ -3139,7 +3149,7 @@ Three scalar candidates are protected: (i) the rotor-norm direction, frozen by `
 (§B.6.4). None survives as a light propagating scalar — `γ = 1` is uncontaminated.
 
 The complementary rotational-anisotropy bound is closed by the D4 point group, which drives
-polarization-averaged anisotropy to dimension eight (R-165, given §B.1.5's four premises,
+polarization-averaged anisotropy to dimension eight (R-165, given §B.1.5's five premises,
 including the scalar-kernel premise and the operative-symmetry premise — the theorem is proved at
 the full point group, while the drive leaves only the order-48 stabilizer of `e₄`, at which an
 anisotropic spatial quartic is permitted and is absent by the bond set's computed zero spatial
@@ -3238,14 +3248,14 @@ does not go away, since the framework would then owe both `Λ` and `η⁽⁴⁾`
 imported as data under **I-19** (an inside-frame data bridge, sibling of I-6); strike that row and
 the exposure statement reverts to "uncomputed and untested", while the D4 dimension-eight anisotropy
 result is unaffected — its moment and invariant-dimension identities are pure lattice facts,
-though the dimension-eight *inference* they carry rides §B.1.5's four premises (P-op included). Both retirement handles are the same object: the
+though the dimension-eight *inference* they carry rides §B.1.5's five premises (P-op included). Both retirement handles are the same object: the
 §D.5 kernel.
 
 | Face | Order | Magnitude at `E = 10¹¹ GeV`, `Λ_L` across the ruled band (§B.6.2) | Status |
 |---|---|---|---|
 | dim-4 relative-boost LV between species | — | 0 (R-016, structural) | closed (tree-level, structural) / open (radiative, I-22) |
 | dim-4 rotational anisotropy | — | 0 on the point-group-symmetric bond set; the §D.4.3 spiral vacuum breaks the point group (premise P-gs), leaving a species-universal `O(q²)` splitting absorbable by the I-22 rescaling class | closed-conditional (P-gs ∧ I-22) |
-| dim-6 **anisotropy** | `(E/Λ)⁴` | `2.0 × 10⁻³¹` (loose corner `Λ_L = 0.39 M_Pl`) … `1.6 × 10⁻³²` (tight corner `Λ_L = 0.73 M_Pl`); pushed to dim-8 by D4 fourth-moment isotropy | structurally out of range for the polarization-averaged dispersion **given §B.1.5's four premises, P-op included** (at the driven subgroup the spatial quartic is *permitted*; it is empty by the bond set's computed zero spatial fourth moment, not by symmetry); a nonzero dressed Γ survivor (§D.5.7 assembly record, #1-gap-routed) would open a dim-6 polarization-splitting anisotropy facing SME-type sidereal bounds — coupled to the second-D exposure (family-tree V3-2a) |
+| dim-6 **anisotropy** | `(E/Λ)⁴` | `2.0 × 10⁻³¹` (loose corner `Λ_L = 0.39 M_Pl`) … `1.6 × 10⁻³²` (tight corner `Λ_L = 0.73 M_Pl`); pushed to dim-8 by D4 fourth-moment isotropy | structurally out of range for the polarization-averaged dispersion **given §B.1.5's five premises, P-op included** (at the driven subgroup the spatial quartic is *permitted*; it is empty because the coupling is constant on the full 24-bond orbit — full-orbit isotropy, with the `±4` split as the advance-axis sensitivity decomposition, R-185); a nonzero dressed Γ survivor (§D.5.7 assembly record, #1-gap-routed) would open a dim-6 polarization-splitting anisotropy facing SME-type sidereal bounds — coupled to the second-D exposure (family-tree V3-2a) |
 | dim-6 **isotropic** `c · p⁴/Λ²` (≡ `η⁽⁴⁾ p⁴/M²_Pl`) | `c (E/Λ)²` | `c` **uncomputed**; `c = 1` ⇒ `η⁽⁴⁾ ∈ [1.9, 6.7]`, excluded by 3–9 orders | **open exposure** |
 
 ### B.6.4 Sign positive — substrate stability ≡ spin-2 spectral positivity
@@ -7543,7 +7553,7 @@ typically unchanged. Seven representative items:
   invariance is *protected* against the radiative species-splitting that plagues generic
   emergent-LI programs — one fundamental field, not `N` independent ones. The protection is
   **dimension-four**; the lattice point group independently pushes rotational anisotropy of the
-  polarization-averaged dispersion to dimension eight (on §B.1.5's four premises — the
+  polarization-averaged dispersion to dimension eight (on §B.1.5's five premises — the
   scalar-kernel and operative-symmetry ones included); and the
   rotationally invariant dimension-six residual escapes both and is the framework's named open
   exposure (§B.1.5, §E.3.5(4)).

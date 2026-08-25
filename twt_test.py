@@ -3630,6 +3630,110 @@ def check_twt_cosmo():
     print("        ⇒ R-165: dim-4 boost CLOSED (R-016); anisotropy CLOSED HARDER than claimed (dim-8, D4-specific); "
           "the isotropic dim-6 term is the framework's sharpest standing empirical tension (N52).")
 
+    print("THE (P-op) GROUP THEORY MADE EXECUTABLE — R-185, the driven group's spatial invariant theory "
+          "(2026-08-25; §8a-repaired same day — verdicts at knowledge/audit/pop_banking_2026-08-25/):")
+    pw = driven_group_spatial_invariants_wb3()
+    _ck("FACT 1 — Stab_G(+e₄) [48] is block-diagonal and restricts FAITHFULLY and EXACTLY onto W(B₃) "
+        "(all 48 signed 3-permutations, set-equality both directions), with spatial invariant dims 1/2/3 "
+        "at degrees 2/4/6 = the free algebra on W(B₃)'s classical invariant degrees {2,4,6} "
+        "(Coxeter/Chevalley/Shephard–Todd — the check is banked, not the mathematics); the NEGATIVE "
+        "CONTROL runs in-process: the orientation-preserving half G24 restricts to a PROPER 24-element "
+        "subset ≠ W(B₃), so the exactness test is seen able to fail",
+        pw["driven_group_order"] == 48 and pw["full_group_order"] == 1152
+        and pw["block_diagonal"] is True and pw["restriction_faithful"] is True
+        and pw["restriction_is_exactly_WB3"] is True and pw["wb3_invariant_degrees"] == (2, 4, 6)
+        and "classical" in pw["wb3_degrees_credit"]
+        and (pw["invariant_dims"]["deg2_3var_spatial_WB3"],
+             pw["invariant_dims"]["deg4_3var_spatial_WB3"],
+             pw["invariant_dims"]["deg6_3var_spatial_WB3"]) == (1, 2, 3))
+    _ck("FACT 2 — the degree-4 SPATIAL invariant space at the driven group is 2-DIMENSIONAL (an anisotropic "
+        "spatial quartic is PERMITTED there, FORBIDDEN at the full group): dims 1 at G [1152] / 4 at G48 "
+        "(4-var) / 2 spatial, computed by TWO GENUINELY INDEPENDENT METHODS INSIDE THE PRIMITIVE and "
+        "asserted equal — symmetric-power traces AND the Reynolds-operator projector rank (the §8a "
+        "reviewer's repair: the previous cross-tie to R-165's count was the SAME Molien formula re-run and "
+        "is now labeled a CONSISTENCY TIE, which this check still keeps); witness Σ_{i≤3}k_i⁴ moved by "
+        f"{pw['witness_violations']['full_group']}/1152 full-group elements, 0/48 driven and 0/96 axis-group "
+        "— the 1056 is FORCED (= 1152 − 96, the witness's stabilizer is exactly G96); AXIS SUB-PREMISE "
+        "NAMED, not resolved: these numbers sit at the maximally symmetric axis (generic axis ⇒ trivial "
+        "stabilizer, permission dim 15) — an implicit V3 alignment commitment now recorded",
+        (pw["invariant_dims"]["deg4_4var_full_group_1152"],
+         pw["invariant_dims"]["deg4_4var_driven_group_48"],
+         pw["invariant_dims"]["deg4_3var_spatial_WB3"]) == (1, 4, 2)
+        and pw["invariant_dims_reynolds"] == {"deg4_4var_full_group_1152": 1,
+                                              "deg4_4var_driven_group_48": 4,
+                                              "deg4_3var_spatial_WB3": 2}
+        and abs(lv["invariant_poly_dims_deg_2_4_6"][4] - pw["invariant_dims"]["deg4_4var_full_group_1152"]) < 1e-6
+        and pw["witness_violations"] == {"driven_group": 0, "axis_group_G96": 0, "full_group": 1056}
+        and pw["anisotropic_spatial_quartic_permitted_at_driven_group"] is True
+        and "NAMED, NOT RESOLVED" in pw["axis_sub_premise"]
+        and "CONSISTENCY TIE" in pw["two_methods"])
+    _ck("FACT 3 — the 24-bond spatial fourth moment is EXACTLY isotropic at FULL TENSOR rank (residual 0.0; "
+        "the halves are each residual-4, opposite in the anisotropy scalar: +4 e₄-bearing / −4 hyperplane), "
+        "and the MECHANISM is keyed correctly (meta-observer F4 repair): full-orbit isotropy — one "
+        "equal-weight W(F4) orbit forces Σ_b(b·k)⁴ = 12(k²)² in FOUR variables, descending to EVERY "
+        "3-plane; the +4/−4 split is the e₄-axis SENSITIVITY DECOMPOSITION, not the mechanism. The "
+        "would-change-if is keyed AXIS-INDEPENDENTLY (a weighting G48-invariant but NOT constant on the "
+        f"orbit) and its exhibit runs in-process: w = 2 ⇒ anisotropy {pw['reweighting_demo']['anisotropy']:+.0f} ≠ 0 "
+        "— an EXHIBIT entailed by the ±4 integers, correctly not counted as a negative control",
+        pw["spatial_fourth_moment_full_tensor_residuals"] == {"total_24_bonds": 0.0,
+                                                              "e4_bearing_12_bonds": 4.0,
+                                                              "hyperplane_12_bonds": 4.0}
+        and pw["spatial_fourth_moment_anisotropy"] == {"e4_bearing_12_bonds": 4.0,
+                                                       "hyperplane_12_bonds": -4.0,
+                                                       "total_24_bonds": 0.0}
+        and abs(pw["reweighting_demo"]["anisotropy"]) > 1e-9
+        and "EXHIBIT" in pw["reweighting_demo"]["status"]
+        and "SENSITIVITY" in pw["mechanism"] and "descends" in pw["mechanism"]
+        and "NOT constant on the W(F4) orbit" in pw["would_change_if"])
+    _ck("SCOPE FENCE — NOTHING MOVES and COMPUTED ≠ DISCHARGED, said in the returned value: no value, tier "
+        "or count changes; (P-op) stays an OPEN assumption about the dressed driven dynamics; R-165's "
+        "asserts remain full-group statements; the §D.5.7 Γ-survivor arbitration stays OPEN (this primitive "
+        "supplies its group-theoretic content, does not resolve it); the R-165 premise literal's (P-op) "
+        "entry and this primitive agree on the ±4 split; and the tier carries the derived-vs-generic RIDER "
+        "(facts 1–2 are reflection-group generic, shared with Z⁴'s point group — the D4-specific content is "
+        "the forbidden/permitted CONTRAST and the full-orbit isotropy)",
+        "NOTHING MOVES" in pw["scope"] and "COMPUTED IS NOT DISCHARGED" in pw["scope"]
+        and "does not resolve it" in pw["scope"] and "OPEN" in pw["scope"]
+        and "+4/-4" in lv["anisotropy_premises"]["P-op"]
+        and "DERIVED-A" in pw["tier"] and "V3-1" in pw["tier"]
+        and "RIDER" in pw["tier"] and "GENERIC" in pw["tier"] and "Z4" in pw["tier"])
+
+    print("THE 24-BOND SCALAR DISPERSION QUARTIC — R-186, external-reviewer-proposed, three routes agree (2026-08-25):")
+    dq = d4_scalar_dispersion_quartic_coefficients()
+    _ck("AT ORBIT-CONSTANT COUPLING (r = J_p/J_a = 1) the scalar NN dispersion has c² = 1 and BOTH "
+        "degree-4 coefficients EXACTLY ZERO — through quartic order the symbol is a function of the 4D "
+        "invariant alone, ω² = k_sp² exactly, and the leading survivor is the degree-6 anisotropic "
+        "(1/90)[(k²)³ − Σk_i⁶] (dimension EIGHT). Closed forms c² = (1+2r)/3, iso (1−r)(5+4r)/108, "
+        "aniso −(1−r)/36 verified against the exact Fraction series at five rational r values, with "
+        "r = 1 the UNIQUE root of either coefficient — R-185's orbit-constancy condition carrying "
+        "BOTH loads at once",
+        dq["orbit_constant_point"] == {"r": 1, "c_squared": 1, "deg4_isotropic": 0,
+                                       "deg4_anisotropic": 0,
+                                       "leading_survivor": "(1/90)[(k_sp^2)^3 - Sum k_i^6] — "
+                                                           "anisotropic, dimension EIGHT"}
+        and "unique root" in dq["unique_root"].lower())
+    _ck("THE LIVE EDGE IS THE SUB-ORBIT EXTREME: at r = 0 (support on the 12 e₄-bearing bonds alone — "
+        "the V3-2a shape) the coefficients are 5/108 and −1/36, both order 10⁻² — lethal against the "
+        "3-to-9-order requirement if the dressed coupling sat there. The adjudicated reading is "
+        "carried IN the returned value: the conservative NN scalar part's natural value is ZERO at "
+        "orbit-constant coupling; the exposure concentrates in the orbit-splitting channel and the "
+        "driven-dissipative sector; whether the dressed couplings sit at r = 1 is the named OPEN "
+        "computation ({J, D} matrix-valued — the real object)",
+        dq["sub_orbit_extreme"]["deg4_isotropic"] == "5/108"
+        and dq["sub_orbit_extreme"]["deg4_anisotropic"] == "-1/36"
+        and "ZERO at orbit-constant" in dq["adjudicated_reading"]
+        and "OPEN" in dq["adjudicated_reading"])
+    _ck("THE MODEL RIDER IS MANDATORY AND TRAVELS IN THE VALUE: scalar NN toy, NOT the banked {J,D} "
+        "rotor; matrix-valued kernels outside the theorem (P-sc); non-analytic dissipative kernels "
+        "outside entirely (P-an); PROOF OF CONCEPT NOT DISCHARGE — VG-6/N52 unmoved. PROVENANCE "
+        "carried: proposed + first computed by the round-5 EXTERNAL reviewer, reproduced by two "
+        "internal routes the same day — the standing-external-recomputation datum",
+        "NOT the banked {J, D} rotor" in dq["model_rider"]
+        and "PROOF OF CONCEPT, NOT DISCHARGE" in dq["model_rider"]
+        and "VG-6/N52 unmoved" in dq["model_rider"]
+        and "EXTERNAL reviewer" in dq["provenance"]
+        and "DERIVED-A OF THE STATED MODEL" in dq["tier"])
+
     print("§21.6.1 TEXTURE METRIC — formula DERIVED-STRUCTURAL-CONDITIONAL (Schur uniqueness, gauge premise); dynamics CANDIDATE (2026-06-28):")
     tc = texture_metric_candidate()
     _ck("FORMULA DERIVED-STRUCTURAL-CONDITIONAL (Schur uniqueness engine-verified; conditional on gauge "

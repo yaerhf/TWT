@@ -5563,8 +5563,11 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
             d=6 → 2, d=8 → 3   [= F4's known invariant degrees {2, 6, 8, 12}]
           The degree-4 invariant space is ONE-dimensional — spanned by (k²)² alone. So for ANY
           dispersion kernel invariant under the lattice point group and analytic in k, there is no
-          anisotropic quartic AT ALL: the quartic term is forced isotropic by symmetry, whatever the
-          dynamics. The degree-6 space is TWO-dimensional, so an anisotropic sextic DOES exist and
+          anisotropic quartic AT ALL: the quartic term is forced isotropic by symmetry, whatever
+          the kernel — GIVEN the premises below ((P-op) in particular: the drive is a dynamics
+          that reduces the operative group, which is exactly why this cannot be said
+          dynamics-independently; wording repaired 2026-08-25, R-185 keeper O-3).
+          The degree-6 space is TWO-dimensional, so an anisotropic sextic DOES exist and
           the order is not merely bounded but LEADING — checked on both sides here (the 6th bond
           moment is anisotropic, residual 12). Consequence: leading rotational anisotropy sits at
           DIMENSION EIGHT, (E/Λ)⁴ ~ 7e-30 at the highest observed cosmic-ray energies — structurally
@@ -5602,11 +5605,13 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                    the degree-4 SPATIAL invariant space at the driven group is TWO-dimensional,
                    spanned by (k_sp²)² AND Σ_{i<=3} k_i⁴: an anisotropic spatial quartic is
                    PERMITTED there, though it is FORBIDDEN at the full group. What carries the
-                   protection at the driven group is therefore INTERACTION CONTENT, not symmetry —
-                   the 24-bond set's spatial fourth moment is exactly isotropic (residual 0), and
-                   it is so by CANCELLATION: the 12 e4-bearing bonds give spatial residual +4 and
-                   the 12 bonds in the e4=0 hyperplane give -4. A permission left unpopulated, not
-                   a forbidden term.
+                   protection at the driven group is therefore a FULL-GROUP PROPERTY OF THE
+                   COUPLING, not the driven symmetry: the 24 bonds are one equal-weight W(F4)
+                   orbit, forcing the spatial fourth moment exactly isotropic on every 3-plane
+                   (residual 0, full tensor); the 12 e4-bearing bonds give spatial residual +4
+                   and the 12 bonds in the e4=0 hyperplane -4, which is the e4-axis SENSITIVITY
+                   DECOMPOSITION of that protection, not its mechanism (R-185 re-key). A
+                   permission left unpopulated, not a forbidden term.
                    WOULD-CHANGE-IF: any driven-sector term populating that permitted invariant —
                    a coupling surviving at G48 but not at G, with nonzero spatial fourth moment
                    (equivalently any reweighting breaking the +4/-4 cancellation) — RESTORES
@@ -5617,6 +5622,16 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                    (P-an) and not (P-pg). NOTHING COMPUTED HERE MOVES — no value, tier or count
                    changes on this premise; it is a scope statement made explicit. This primitive's
                    own asserts remain full-group statements and are correct as such.
+                   CONTENT COMPUTED since 2026-08-25 at driven_group_spatial_invariants_wb3
+                   (R-185): the W(B3) restriction (faithful, exact), the invariant dimensions
+                   (two independent methods) and the +-4 split are engine-executed there.
+                   COMPUTED IS NOT DISCHARGED — (P-op) remains an open assumption about the
+                   dressed driven dynamics. R-185's §8a review also RE-KEYED the would-change-if
+                   axis-independently: the operative condition is a bond weighting that fails to
+                   be CONSTANT ON THE W(F4) ORBIT (G48-invariant but not G-invariant); the +4/-4
+                   split is the e4-axis SENSITIVITY DECOMPOSITION of the protection, not its
+                   mechanism (full-orbit isotropy descends to every 3-plane — at a generic axis
+                   the split does not exist and isotropy persists).
       (3) the ROTATIONALLY INVARIANT dim-6 residual η⁽⁴⁾ p⁴/M²_Pl — NOT PROTECTED BY EITHER.
           It is not a relative-boost observable (so (1) does not reach it) and it is not an
           anisotropy (so (2) does not reach it). At dim 6 a species-UNIVERSAL coefficient is NOT
@@ -5811,15 +5826,21 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                      "(1152), NOT the DRIVEN subgroup Stab_G(e4) (order 48, restricting faithfully and "
                      "exactly onto W(B3), invariant degrees {2,4,6}), whose degree-4 SPATIAL invariant "
                      "space is TWO-dimensional and PERMITS an anisotropic spatial quartic. At the driven "
-                     "group the protection is carried by INTERACTION CONTENT, not by symmetry: the "
-                     "24-bond spatial fourth moment is isotropic by a +4/-4 CANCELLATION between the "
-                     "e4-bearing and the in-hyperplane bonds -- a permission left unpopulated, not a "
+                     "group the protection is carried by a FULL-GROUP property of the coupling (constancy "
+                     "on the single equal-weight W(F4) bond orbit), not by the driven symmetry: the "
+                     "24-bond spatial fourth moment is exactly isotropic on every 3-plane, with the +4/-4 "
+                     "split between the e4-bearing and in-hyperplane bonds as the e4-axis SENSITIVITY "
+                     "DECOMPOSITION (R-185 re-key) -- a permission left unpopulated, not a "
                      "forbidden term. WOULD-CHANGE-IF: any driven-sector term populating that permitted "
                      "invariant (equivalently any reweighting breaking the +4/-4 cancellation) RESTORES "
                      "dimension-six SPATIAL anisotropy, facing SME-type SIDEREAL bounds rather than the "
                      "isotropic ones. Added 2026-08-25; see this docstring's (P-op) block for the full "
                      "statement and the SSD.5.7 Gamma-survivor arbitration pointer. NOTHING COMPUTED "
-                     "MOVES: this premise can only make the POSITIVE half weaker")},
+                     "MOVES: this premise can only make the POSITIVE half weaker. CONTENT COMPUTED at "
+                     "driven_group_spatial_invariants_wb3 (R-185, banked 2026-08-25; computed is NOT "
+                     "discharged — the premise stays an open assumption; its would-change-if is "
+                     "re-keyed there axis-independently to orbit-constancy of the bond weighting, "
+                     "with +4/-4 as the e4-axis sensitivity split)")},
         "dim6_isotropic_eta4": "GATED (#1 gap: substrate strain-mode dispersion; Cl41Wave().wave_speed_c raises)",
         "normalization": ("eta4 is the coefficient of p^4/M_Pl^2 (Liberati convention); the SUBSTRATE's "
                           "natural form is c*p^4/Lambda^2 with c = O(1), so eta4 = c*(M_Pl/Lambda)^2. "
@@ -5869,6 +5890,370 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                  "is not over-read) + "
                  "INPUT (published n=4 bounds, I-19) + GATED (the dim-6 isotropic coefficient itself)"),
         "recorded_as": "open exposure E.3.3 VG-6 / E.3.5(4) + negative N52 — NOT a falsifier row, NOT a passed test",
+    }
+
+
+def driven_group_spatial_invariants_wb3():
+    """[DERIVED-A — exact finite group theory + exact bond-moment integers; the (P-op)
+    premise's CONTENT made EXECUTABLE. R-185, banked 2026-08-25; §8a-reviewed same day,
+    verdicts at knowledge/audit/pop_banking_2026-08-25/ — the review's repairs are IN
+    this text, so read it as the post-consensus form.]
+
+    THE (P-op) GROUP THEORY, COMPUTED. Until this primitive, three facts lived only as
+    PROSE — in knowledge/audit/standalone_reviews_2026-08-25/ADJUDICATION_D4_2026-08-25.md
+    §1.4 and in the (P-op) block of d4_lattice_lorentz_violation_orders — while the R-165
+    tier literal NAMES (P-op) as a premise. A load-bearing premise named in a tier string
+    deserves an executable form (the bank-before-you-cite class one step removed, canon
+    §2); this primitive computes the premise's content. COMPUTED IS NOT DISCHARGED: (P-op)
+    remains an OPEN assumption about the dressed driven dynamics — what is banked here is
+    the group theory that states it, not a verdict on it. (The docket row's claim that
+    (P-op)'s sibling premises were already computed was FALSE and is not repeated:
+    (P-pg)'s own numbers — W(D4) order 192, degree-4 dim 3, shell-2 residuals +-32 — are
+    prose-only too, verified correct by this bank's reviewer; a follow-up bank of the
+    same shape is available there.)
+
+    FILE PLACEMENT (canon §6 consumption rule): consumes the D4 siting (V3-1) via
+    _gamma_bond_rig — CANDIDATE half, correctly.
+
+    THE THREE FACTS (each exact, each asserted in-process):
+      (1) THE RESTRICTION IS FAITHFUL AND EXACTLY W(B3). The driven group Stab_G(+e4) —
+          order 48, the same G48 that _gamma_bond_rig builds and asserts — is
+          BLOCK-DIAGONAL (every element fixes e4 exactly and preserves e4-perp), and its
+          restriction to the spatial 3-space is FAITHFUL (48 distinct 3x3 images) and is
+          EXACTLY the full octahedral group W(B3) = all 48 signed 3-permutations, checked
+          as set equality of exact matrix keys, both directions. Consistency: the spatial
+          invariant dimensions at degrees 2/4/6 come out 1/2/3 — exactly the free
+          polynomial algebra on W(B3)'s invariant degrees {2, 4, 6}, which are CLASSICAL
+          (Coxeter 1951; Chevalley 1955; Shephard-Todd 1954) — nothing here is claimed
+          as new mathematics; what is banked is the executable check.
+      (2) THE DEGREE-4 SPATIAL INVARIANT SPACE AT THE DRIVEN GROUP IS 2-DIMENSIONAL —
+          spanned by (k_sp^2)^2 and Sum_{i<=3} k_i^4 — so an ANISOTROPIC SPATIAL QUARTIC
+          IS PERMITTED at the driven group though FORBIDDEN at the full group. Dimensions
+          computed by TWO GENUINELY INDEPENDENT METHODS INSIDE THIS PRIMITIVE and
+          asserted equal (the §8a reviewer computed that the previous cross-tie to
+          d4_lattice_lorentz_violation_orders' count was the SAME Molien/Newton formula
+          re-run, not a second method — repaired here by adding the real second method):
+          (i) symmetric-power traces (group average of h_d(eigenvalues), Newton
+          recursion on power sums), and (ii) the REYNOLDS OPERATOR on the degree-d
+          monomial basis, with the invariant dimension read off as the rank (= trace) of
+          the averaged action matrix. Both give: degree-4 in FOUR variables: 1 at
+          G [1152], 4 at G48; degree-4 in the THREE spatial variables at the W(B3)
+          restriction: 2. The full-group value 1 also equals
+          d4_lattice_lorentz_violation_orders' count — a CONSISTENCY TIE across two
+          independently-cached group objects, not itself a second method. The witness
+          polynomial Sum_{i<=3} k_i^4 is verified invariant under ALL 48 driven-group
+          elements and NON-invariant under the full group (1056/1152 elements move it —
+          forced: 1056 = 1152 - 96, since the witness's stabilizer in G is exactly the
+          axis group G96), by exact coefficient transport, not sampling.
+          ★ AXIS SUB-PREMISE, NAMED (the §8a meta-observer's F1 finding): these numbers
+          are evaluated AT THE MAXIMALLY SYMMETRIC AXIS. e4 is a lattice symmetry
+          direction (an F4 short-root axis), which is why |Stab| = 48; a GENERIC drive
+          axis has trivial stabilizer and a degree-4 spatial permission of dimension 15
+          (all quartics). The banked corpus builds every driven-group object at
+          Stab(+e4), so the instance-level alignment "the advance axis is a lattice
+          symmetry axis" is an IMPLICIT V3 commitment this primitive now names — it is
+          recorded, not resolved, and the family-tree question (a V3-1 sub-node) is the
+          coordinator's. The would-change-if below is deliberately keyed
+          AXIS-INDEPENDENTLY so it does not inherit this parochiality.
+      (3) THE 24-BOND SPATIAL FOURTH MOMENT IS EXACTLY ISOTROPIC — FULL TENSOR, not just
+          one scalar: max deviation of the rank-4 spatial moment tensor from its best
+          isotropic form is 0.0 exactly (an UNDER-CLAIM repair from the §8a review; the
+          e4-bearing and in-hyperplane halves have full-tensor residuals 4 each, of
+          opposite sign in the anisotropy scalar M_1111 - 3*M_1122: +4 and -4).
+          THE MECHANISM, STATED CORRECTLY (the §8a meta-observer's F4 re-keying,
+          engine-arbitrated): the isotropy is NOT produced by the +4/-4 cancellation —
+          it is a FULL-ORBIT fact. The 24 bonds are a single W(F4) orbit with equal
+          weights, so the banked full-group degree-4 uniqueness forces
+          Sum_b (b.k)^4 = 12*(k^2)^2 identically in FOUR variables, and that isotropy
+          DESCENDS TO EVERY 3-PLANE — at a generic axis the 12+12 split does not even
+          exist and the spatial moment is still isotropic. What (P-op) adds is that AT
+          THE DRIVEN GROUP nothing forces this: G48 symmetry PERMITS the anisotropic
+          quartic, and the protection is carried by the interaction remaining CONSTANT
+          ON THE FULL W(F4) ORBIT — a full-group property of the coupling that the
+          driven symmetry does not enforce. The +4/-4 split is the e4-axis SENSITIVITY
+          DECOMPOSITION of that protection (how big the anisotropy gets per unit of
+          orbit-weighting imbalance at this axis), not the mechanism.
+
+    SCOPE — NOTHING MOVES (the same sentence the premise carries, kept executable): no
+    value, tier or count changes on this bank; R-165's own asserts remain full-group
+    statements and are correct as such; (P-op) can only make R-165's POSITIVE half
+    weaker, and its negative half (the isotropic dim-6 exposure) is untouched a
+    fortiori. The Γ-SURVIVOR ARBITRATION POINTER travels UNRESOLVED: the candidate
+    answer to "which premise does a nonzero driven-group Γ survivor evade" is (P-op) —
+    the §D.5.7 assembly record holds the arbitration and this primitive does not
+    resolve it; it supplies the arbitration's group-theoretic content as computation.
+
+    WOULD-CHANGE-IF, KEYED AXIS-INDEPENDENTLY (re-keyed at the §8a review): any
+    driven-sector coupling whose bond weighting FAILS TO BE CONSTANT ON THE W(F4)
+    ORBIT — i.e. is G48-invariant but not G-invariant — RESTORES dimension-six SPATIAL
+    anisotropy, facing SME-type sidereal bounds rather than the isotropic ones. At the
+    e4 axis the sensitivity is the +-4 pair: demonstrated in-process at hyperplane
+    weight w = 2 (a weighting constant on each of the two G48 sub-orbits but not on the
+    full orbit), leaving anisotropy -4, nonzero.
+
+    IN-PROCESS DEMONSTRATIONS, correctly labeled (the §8a reviewer's finding: only one
+    of these is a negative control): (a) the G24 restriction check IS a real negative
+    control — the orientation-preserving half restricts to a PROPER 24-element subset
+    of W(B3), so the exactness test is seen able to fail; (b) the w = 2 reweighting is
+    an EXECUTABLE WOULD-CHANGE-IF EXHIBIT, not a failure plant — its outcome is entailed
+    by the +-4 integers asserted above; it demonstrates the failure channel, it does not
+    test this primitive.
+
+    TIER RIDER (derived-vs-generic, canon §5 — R-184's exact-is-not-substrate-specific
+    class, owed here for rider parity): facts (1) and (2) are GENERIC finite-reflection-
+    group theory, NOT D4-specific — the keeper computed that Z4's point group W(B4) has
+    |Stab(e4)| = 48 restricting onto the SAME W(B3). What IS D4-specific: the
+    forbidden-at-G / permitted-at-G48 CONTRAST (Z4 permits the spatial quartic at both
+    levels), and the 24-bond full-orbit isotropy with its +-4 sensitivity split.
+
+    Records: knowledge/audit/standalone_reviews_2026-08-25/ADJUDICATION_D4_2026-08-25.md
+    §1.4 (source prose) · TRIAGE_2026-08-25.md §5.2 (the docket row) · R-165's (P-op)
+    premise text at d4_lattice_lorentz_violation_orders ·
+    knowledge/audit/pop_banking_2026-08-25/ (the three §8a verdicts + consensus INDEX)."""
+    import itertools
+    import numpy as np
+    rig = _gamma_bond_rig()
+    G = [np.asarray(g, float) for g in rig["groups"]["1152"]]
+    G48 = [np.asarray(g, float) for g in rig["groups"]["48"]]
+    G96 = [np.asarray(g, float) for g in rig["groups"]["96"]]
+    G24 = [np.asarray(g, float) for g in rig["groups"]["24"]]
+    bonds = rig["bonds"]
+
+    def mkey(m):
+        return tuple(np.round(np.asarray(m, float).ravel(), 9) + 0.0)
+
+    # ---- fact (1): block-diagonality + faithful, exact W(B3) restriction ----
+    block_diagonal = all(
+        np.allclose(g[3, :3], 0.0, atol=1e-12) and np.allclose(g[:3, 3], 0.0, atol=1e-12)
+        and abs(g[3, 3] - 1.0) < 1e-12 for g in G48)
+    restr = [g[:3, :3] for g in G48]
+    images = {mkey(r) for r in restr}
+    wb3 = set()
+    for p in itertools.permutations(range(3)):
+        for s in itertools.product((+1.0, -1.0), repeat=3):
+            M = np.zeros((3, 3))
+            for i, pi in enumerate(p):
+                M[i, pi] = s[i]
+            wb3.add(mkey(M))
+    faithful = (len(images) == 48)
+    exactly_wb3 = (images == wb3)
+    assert block_diagonal and faithful and exactly_wb3 and len(wb3) == 48, \
+        "(P-op) fact 1 failed: Stab_G(+e4) must restrict faithfully and exactly onto W(B3)"
+    # negative control (a), run in-process: the orientation-preserving half is NOT W(B3)
+    images24 = {mkey(g[:3, :3]) for g in G24}
+    assert len(images24) == 24 and images24 != wb3 and images24 < wb3, \
+        "negative control must fire: G24's restriction is a PROPER 24-element subset of W(B3)"
+
+    # ---- fact (2): invariant dimensions, TWO independent methods ----
+    # method (i): symmetric-power traces (Molien) — h_d of eigenvalues via Newton
+    # recursion on power sums p_k = tr(g^k)
+    def _sym_trace(g, d):
+        n = g.shape[0]
+        p = [0.0] * (d + 1)
+        M = np.eye(n)
+        for k in range(1, d + 1):
+            M = M @ g
+            p[k] = float(np.trace(M))
+        h = [1.0] + [0.0] * d
+        for k in range(1, d + 1):
+            h[k] = sum(p[i] * h[k - i] for i in range(1, k + 1)) / k
+        return h[d]
+
+    def inv_dim_traces(mats, d):
+        v = sum(_sym_trace(m, d) for m in mats) / len(mats)
+        assert abs(v - round(v)) < 1e-6, "invariant dimension must be an integer"
+        return int(round(v))
+
+    # method (ii): the REYNOLDS OPERATOR on the degree-d monomial basis — the averaged
+    # action matrix is a projector onto the invariants; its rank (= its trace) is the
+    # invariant dimension. Genuinely different route: builds the polynomial action
+    # explicitly, never touches eigenvalues or Newton's identities.
+    def _act_matrix(g, monos, idx, nvars):
+        n = len(monos)
+        M = np.zeros((n, n))
+        for j, mono in enumerate(monos):
+            terms = {(): 1.0}
+            for v in mono:
+                new = {}
+                for t, c in terms.items():
+                    for a in range(nvars):
+                        ga = g[a, v]
+                        if abs(ga) > 1e-12:
+                            tt = tuple(sorted(t + (a,)))
+                            new[tt] = new.get(tt, 0.0) + c * ga
+                terms = new
+            for t, c in terms.items():
+                M[idx[t], j] += c
+        return M
+
+    def inv_dim_reynolds(mats, nvars, d):
+        monos = list(itertools.combinations_with_replacement(range(nvars), d))
+        idx = {m: i for i, m in enumerate(monos)}
+        R = np.zeros((len(monos), len(monos)))
+        for g in mats:
+            R += _act_matrix(g, monos, idx, nvars)
+        R /= len(mats)
+        assert np.abs(R @ R - R).max() < 1e-9, "Reynolds average must be a projector"
+        rank = int(round(np.linalg.matrix_rank(R, tol=1e-8)))
+        trace = float(np.trace(R))
+        assert abs(trace - rank) < 1e-6, "projector rank must equal its trace"
+        return rank
+
+    dims = {"deg4_4var_full_group_1152": inv_dim_traces(G, 4),
+            "deg4_4var_driven_group_48": inv_dim_traces(G48, 4),
+            "deg4_3var_spatial_WB3": inv_dim_traces(restr, 4),
+            "deg2_3var_spatial_WB3": inv_dim_traces(restr, 2),
+            "deg6_3var_spatial_WB3": inv_dim_traces(restr, 6)}
+    dims_reynolds = {"deg4_4var_full_group_1152": inv_dim_reynolds(G, 4, 4),
+                     "deg4_4var_driven_group_48": inv_dim_reynolds(G48, 4, 4),
+                     "deg4_3var_spatial_WB3": inv_dim_reynolds(restr, 3, 4)}
+    for k, v in dims_reynolds.items():
+        assert dims[k] == v, "the two independent methods must agree at " + k
+    assert (dims["deg4_4var_full_group_1152"], dims["deg4_4var_driven_group_48"],
+            dims["deg4_3var_spatial_WB3"]) == (1, 4, 2), "(P-op) fact 2 failed"
+    assert (dims["deg2_3var_spatial_WB3"], dims["deg6_3var_spatial_WB3"]) == (1, 3), \
+        "spatial invariant dims must match the free algebra on W(B3) degrees {2,4,6}"
+
+    # the witness polynomial Sum_{i<=3} k_i^4 — exact coefficient transport under g
+    def _act_poly(g, coeff):
+        out = {}
+        for mono, c0 in coeff.items():
+            terms = {(): c0}
+            for v in mono:
+                new = {}
+                for t, c in terms.items():
+                    for a in range(4):
+                        ga = g[a, v]
+                        if abs(ga) > 1e-12:
+                            tt = tuple(sorted(t + (a,)))
+                            new[tt] = new.get(tt, 0.0) + c * ga
+                terms = new
+            for t, c in terms.items():
+                out[t] = out.get(t, 0.0) + c
+        return out
+
+    p_aniso = {(i, i, i, i): 1.0 for i in range(3)}
+
+    def _changed(g):
+        tg = _act_poly(g, p_aniso)
+        ks = set(tg) | set(p_aniso)
+        return any(abs(tg.get(k, 0.0) - p_aniso.get(k, 0.0)) > 1e-9 for k in ks)
+
+    viol_driven = sum(_changed(g) for g in G48)
+    viol_axis_group = sum(_changed(g) for g in G96)
+    viol_full = sum(_changed(g) for g in G)
+    assert viol_driven == 0 < viol_full, \
+        "Sum k_i^4 must be driven-group-invariant and full-group-NON-invariant"
+    assert viol_axis_group == 0 and viol_full == len(G) - len(G96), \
+        "the witness's stabilizer in G is exactly the axis group G96 (1056 = 1152 - 96)"
+
+    # ---- fact (3): full-tensor spatial isotropy + the +4/-4 sensitivity split ----
+    e4_bearing = [v for v in bonds if abs(v[3]) > 0.5]
+    hyperplane = [v for v in bonds if abs(v[3]) < 0.5]
+
+    def _spatial_m4(vs):
+        m4 = {}
+        for a, b, c, d in itertools.product(range(3), repeat=4):
+            m4[(a, b, c, d)] = sum(v[a] * v[b] * v[c] * v[d] for v in vs)
+        return m4
+
+    def _full_tensor_residual(m4):
+        # best isotropic form A(dd+dd+dd), A fixed by the mixed component
+        A = m4[(0, 0, 1, 1)]
+        dl = lambda p, q: 1 if p == q else 0
+        return max(abs(m4[(a, b, c, d)]
+                       - A * (dl(a, b) * dl(c, d) + dl(a, c) * dl(b, d) + dl(a, d) * dl(b, c)))
+                   for a, b, c, d in itertools.product(range(3), repeat=4))
+
+    def _aniso_scalar(vs):
+        m1111 = sum(v[0] ** 4 for v in vs)
+        m1122 = sum(v[0] ** 2 * v[1] ** 2 for v in vs)
+        return float(m1111 - 3.0 * m1122)
+
+    res_total = _full_tensor_residual(_spatial_m4(bonds))
+    res_e4 = _full_tensor_residual(_spatial_m4(e4_bearing))
+    res_hyp = _full_tensor_residual(_spatial_m4(hyperplane))
+    a_e4 = _aniso_scalar(e4_bearing)
+    a_hyp = _aniso_scalar(hyperplane)
+    assert len(e4_bearing) == len(hyperplane) == 12
+    assert res_total == 0.0 and (res_e4, res_hyp) == (4.0, 4.0), \
+        "(P-op) fact 3 failed: total spatial moment must be FULL-TENSOR isotropic, halves not"
+    assert (a_e4, a_hyp, a_e4 + a_hyp) == (4.0, -4.0, 0.0), "(P-op) fact 3 scalar split failed"
+    # the would-change-if EXHIBIT (entailed by the integers above, demonstrates the channel):
+    w_demo = 2.0
+    reweighted = a_e4 + w_demo * a_hyp
+    assert abs(reweighted) > 1e-9, "the reweighting exhibit must be nonzero"
+
+    return {
+        "driven_group_order": len(G48), "full_group_order": len(G),
+        "block_diagonal": block_diagonal,
+        "restriction_faithful": faithful,
+        "restriction_is_exactly_WB3": exactly_wb3,
+        "restriction_image": "W(B3) — all 48 signed 3-permutations, set-equality both directions",
+        "wb3_invariant_degrees": (2, 4, 6),
+        "wb3_degrees_credit": "classical invariant theory (Coxeter 1951; Chevalley 1955; "
+                              "Shephard-Todd 1954) — the executable check is what is banked, "
+                              "not the mathematics",
+        "invariant_dims": dims,
+        "invariant_dims_reynolds": dims_reynolds,
+        "two_methods": ("symmetric-power traces (Molien/Newton) AND the Reynolds-operator "
+                        "projector rank, computed IN THIS PRIMITIVE and asserted equal — the "
+                        "agreement with d4_lattice_lorentz_violation_orders' count is a "
+                        "CONSISTENCY TIE (same Molien formula, independently-cached group), "
+                        "not a second method (§8a reviewer repair, 2026-08-25)"),
+        "anisotropic_spatial_quartic_permitted_at_driven_group": True,
+        "axis_sub_premise": ("NAMED, NOT RESOLVED (meta-observer F1): all driven-group numbers "
+                             "are evaluated at the maximally symmetric axis — e4 is a lattice "
+                             "symmetry direction, |Stab| = 48; a generic drive axis has trivial "
+                             "stabilizer and spatial degree-4 permission dimension 15. The "
+                             "alignment 'advance axis = lattice symmetry axis' is an implicit "
+                             "V3 commitment (V3-1-adjacent), recorded here; family-tree "
+                             "disposition is the coordinator's. The would-change-if is keyed "
+                             "axis-independently and does not inherit this"),
+        "witness_polynomial": "Sum_{i<=3} k_i^4 — invariant at G48 (0/48) and at the axis group "
+                              f"G96 (0/96), moved by {viol_full}/{len(G)} full-group elements "
+                              "(forced: 1056 = 1152 - 96, the witness's stabilizer is G96)",
+        "witness_violations": {"driven_group": viol_driven, "axis_group_G96": viol_axis_group,
+                               "full_group": viol_full},
+        "spatial_fourth_moment_full_tensor_residuals": {"total_24_bonds": res_total,
+                                                        "e4_bearing_12_bonds": res_e4,
+                                                        "hyperplane_12_bonds": res_hyp},
+        "spatial_fourth_moment_anisotropy": {"e4_bearing_12_bonds": a_e4,
+                                             "hyperplane_12_bonds": a_hyp,
+                                             "total_24_bonds": a_e4 + a_hyp},
+        "mechanism": ("FULL-ORBIT ISOTROPY, correctly keyed (meta-observer F4 repair): the 24 "
+                      "bonds are one equal-weight W(F4) orbit, so full-group degree-4 uniqueness "
+                      "forces Sum_b (b.k)^4 = 12*(k^2)^2 in FOUR variables and isotropy descends "
+                      "to EVERY 3-plane — the +4/-4 split is the e4-axis SENSITIVITY "
+                      "DECOMPOSITION, not the mechanism (at a generic axis the split does not "
+                      "exist and isotropy persists). At the driven group nothing FORCES "
+                      "orbit-constancy: that is exactly (P-op)'s permission"),
+        "would_change_if": ("AXIS-INDEPENDENT KEYING: any driven-sector coupling whose bond "
+                            "weighting is G48-invariant but NOT constant on the W(F4) orbit "
+                            "restores dim-6 SPATIAL anisotropy (SME-type sidereal bounds); at "
+                            "the e4 axis the sensitivity is the +-4 pair"),
+        "reweighting_demo": {"w_hyperplane": w_demo, "anisotropy": reweighted,
+                             "status": "EXECUTABLE WOULD-CHANGE-IF EXHIBIT — entailed by the "
+                                       "asserted +-4 integers, demonstrates the failure channel; "
+                                       "the real negative control is the G24 proper-subset check"},
+        "scope": ("NOTHING MOVES: no value, tier or count changes on this bank; R-165's asserts "
+                  "remain full-group statements and are correct as such; (P-op) can only make the "
+                  "POSITIVE half weaker. COMPUTED IS NOT DISCHARGED — (P-op) stays an open "
+                  "assumption about the dressed driven dynamics. The §D.5.7 Γ-survivor "
+                  "arbitration stays OPEN — this primitive supplies its group-theoretic content "
+                  "and does not resolve it"),
+        "tier": ("DERIVED-A (exact finite group theory: closure-built Stab_G(+e4), set-equality "
+                 "onto W(B3), invariant dimensions by two independent methods, integer bond "
+                 "moments) — the executable form of premise (P-op) of R-165; consumes the D4 "
+                 "siting (V3-1). RIDER (canon §5, R-184's class): facts (1)-(2) are GENERIC "
+                 "reflection-group theory shared with Z4's point group (whose Stab(e4) also "
+                 "restricts onto W(B3)) — D4-specific content is the forbidden-at-G/"
+                 "permitted-at-G48 CONTRAST and the 24-bond full-orbit isotropy with its +-4 "
+                 "sensitivity split"),
+        "records": ("knowledge/audit/standalone_reviews_2026-08-25/ADJUDICATION_D4_2026-08-25.md §1.4 "
+                    "(source prose) · TRIAGE_2026-08-25.md §5.2 (the docket row) · R-165's (P-op) "
+                    "premise text at d4_lattice_lorentz_violation_orders · "
+                    "knowledge/audit/pop_banking_2026-08-25/ (§8a verdicts + consensus)"),
     }
 
 
@@ -13542,4 +13927,216 @@ def gamma_admixture_cross_functional_route() -> dict:
             "quoting 2.15% as a measured Gamma admixture; treating JD-6(b) as an "
             "independent fourth gap; any cross-functional carry of a calibrated ratio"),
         "record": "knowledge/audit/gamma_referent_2026-08-23/",
+    }
+
+
+# ======================================================================
+# THE 24-BOND SCALAR DISPERSION QUARTIC (2026-08-25) — R-186
+# ----------------------------------------------------------------------
+# Governing records: knowledge/audit/external_review_r5_2026-08-25/
+#   review_r5_02_opus_core_warm.md (the proposing computation, external)
+#   ADJUDICATION_R5_2026-08-25.md (the adjudicating entry + the model rider)
+# ======================================================================
+
+
+def d4_scalar_dispersion_quartic_coefficients():
+    """[DERIVED-A OF THE STATED MODEL + a MANDATORY MODEL RIDER — R-186, banked
+    2026-08-25. PROPOSED BY THE ROUND-5 EXTERNAL REVIEWER (Opus, warm return 02) and
+    INDEPENDENTLY REPRODUCED by the coordinator's own symbolic series the hour it
+    arrived; this primitive is the third, pure-rational route.]
+
+    THE MODEL (say it before the result — canon §3 model honesty): the SCALAR
+    nearest-neighbour lattice symbol on the 24 D4 kissing bonds,
+        F(k) = sum_b w_b [1 - cos(b.k)],
+    with weight J_a on the 12 e4-BEARING bonds and J_p on the 12 IN-HYPERPLANE
+    bonds — the two G48 sub-orbits of the single W(F4) bond orbit (R-185). The
+    dispersion is F = 0 continued to k4 = i*omega. Pairing the b4 = +-1 bonds gives
+    the exact closed form
+        F = 4*J_a*Sum_i (1 - cos k_i cosh w) + 4*J_p*Sum_{i<j} (1 - cos k_i cos k_j),
+    and omega^2(k) is solved as an exact rational power series, order by order, in
+    Fraction arithmetic — no floats, no truncation error.
+
+    THE RESULT (each fact asserted below; r := J_p/J_a):
+        c^2                      = (1 + 2r)/3
+        degree-4 isotropic  (k_sp^2)^2 coefficient : (1 - r)(5 + 4r)/108
+        degree-4 anisotropic Sum k_i^4 coefficient : -(1 - r)/36
+        at r = 1 (orbit-constant coupling): c^2 = 1 and BOTH degree-4 coefficients
+            are EXACTLY ZERO — through quartic order the symbol is a function of the
+            4D invariant alone, so omega^2 = k_sp^2 exactly; the leading survivor is
+            the degree-6 anisotropic (1/90)[(k_sp^2)^3 - Sum k_i^6] (dimension EIGHT).
+        at r = 0 (the e4-bearing sub-orbit alone): isotropic 5/108, anisotropic
+            -1/36 — both order 1e-2.
+        r = 1 is the UNIQUE root of either degree-4 coefficient: one condition,
+        both loads.
+
+    WHAT THIS MEANS AND DOES NOT MEAN (the adjudicated reading, R7-checked):
+      * The CONSERVATIVE nearest-neighbour scalar part of the dim-6 exposure has
+        natural value ZERO at orbit-constant coupling — not order one. The naive
+        c = 1 estimate in d4_lattice_lorentz_violation_orders sizes the DRIVEN-
+        DISSIPATIVE sector and the orbit-splitting channel, not this part.
+      * The failure channel is EXACTLY R-185's would-change-if: a coupling
+        G48-invariant but NOT constant on the W(F4) orbit (J_a != J_p). The live
+        instance edge is family-tree node V3-2a (support on the 12 e4-bearing
+        bonds is a SUB-ORBIT): at the r = 0 extreme both coefficients are ~1e-2
+        against a 3-to-9-order requirement. WHETHER a substrate argument pins
+        r = 1 for the dressed couplings is the named open computation (docketed;
+        the {J, D} matrix-valued version is the real object).
+      * MANDATORY MODEL RIDER (the proposing reviewer's own fences, kept verbatim
+        in kind): this is a scalar nearest-neighbour toy, NOT the banked {J, D}
+        rotor structure; a matrix-valued internal-index kernel is outside the
+        scalar theorem (R-165 premise (P-sc)); a non-analytic dissipative kernel
+        is outside it entirely (P-an). PROOF OF CONCEPT, NOT DISCHARGE — nothing
+        here closes VG-6/N52, and no banked exposure number moves.
+
+    PROVENANCE: proposed and first computed by the round-5 external reviewer
+    (review_r5_02, 2026-08-25); reproduced independently via sympy series
+    (coordinator, same day, round records); this primitive is a third route in
+    exact Fractions. Three computations, three implementations, one answer.
+
+    self-check: the series inversion reproduces the closed forms at five rational
+    r values; both degree-4 coefficients vanish IFF r = 1 (checked at r != 1);
+    the degree-6 survivor at r = 1 matches (1/90)[(K2)^3 - S6] coefficient-wise."""
+    from fractions import Fraction as Fr
+    import itertools
+
+    # polynomial dicts: {(a1,a2,a3): Fraction} over spatial monomials k1^a1 k2^a2 k3^a3
+    def pmul(p, q):
+        out = {}
+        for ea, ca in p.items():
+            for eb, cb in q.items():
+                e = (ea[0] + eb[0], ea[1] + eb[1], ea[2] + eb[2])
+                out[e] = out.get(e, Fr(0)) + ca * cb
+        return {e: c for e, c in out.items() if c != 0}
+
+    def padd(p, q, s=Fr(1)):
+        out = dict(p)
+        for e, c in q.items():
+            out[e] = out.get(e, Fr(0)) + s * c
+        return {e: c for e, c in out.items() if c != 0}
+
+    def trunc(p, deg):
+        return {e: c for e, c in p.items() if sum(e) <= deg}
+
+    ONE = {(0, 0, 0): Fr(1)}
+    K = [{(1, 0, 0): Fr(1)}, {(0, 1, 0): Fr(1)}, {(0, 0, 1): Fr(1)}]
+    DEG = 6
+
+    def cos_series(p, deg):
+        # cos(p) for a polynomial p with no constant term, truncated at total deg
+        out = dict(ONE)
+        term = dict(ONE)
+        sign = 1
+        n = 0
+        while True:
+            n += 1
+            term = trunc(pmul(pmul(term, p), p), deg)
+            if not term:
+                break
+            sign = -sign
+            fact = Fr(1)
+            for m in range(1, 2 * n + 1):
+                fact *= m
+            out = padd(out, {e: c / fact for e, c in term.items()}, Fr(sign))
+        return out
+
+    def solve_for(r):
+        # r = J_p/J_a; work in units J_a = 1
+        Ja, Jp = Fr(1), Fr(r)
+        # spatial-only part of F (the omega-independent piece):
+        # 4*Ja*Sum_i (1 - cos k_i) + 4*Jp*Sum_{i<j}(1 - cos k_i cos k_j)
+        P = {}
+        for i in range(3):
+            P = padd(P, padd(ONE, cos_series(K[i], DEG), Fr(-1)), 4 * Ja)
+        for i, j in itertools.combinations(range(3), 2):
+            cc = trunc(pmul(cos_series(K[i], DEG), cos_series(K[j], DEG)), DEG)
+            P = padd(P, padd(ONE, cc, Fr(-1)), 4 * Jp)
+        # omega-dependent piece: 4*Ja*Sum_i cos k_i (1 - cosh w); with u = w^2,
+        # cosh w - 1 = u/2 + u^2/24 + u^3/720 ; F = P - 4*Ja*(Sum_i cos k_i)*(cosh w - 1)
+        C = {}
+        for i in range(3):
+            C = padd(C, cos_series(K[i], DEG))
+        C = {e: 4 * Ja * c for e, c in C.items()}
+        # solve F = 0: P = C * (u/2 + u^2/24 + u^3/720) order by order for
+        # u = u2 + u4 + u6 (homogeneous spatial degrees 2, 4, 6 — u carries weight 2)
+        def homo(p, d):
+            return {e: c for e, c in p.items() if sum(e) == d}
+        # order 2: P|_2 = (C|_0/2) u2
+        c0 = C.get((0, 0, 0))
+        u2 = {e: c / (c0 / 2) for e, c in homo(P, 2).items()}
+        # order 4: P|_4 = (1/2)[C u2]|_4 + (1/24) c0 u2^2|... careful:
+        # C*(u/2 + u^2/24): order-4 terms = (1/2)(C|_2 u2 + c0 u4) + (1/24) c0 (u2^2)
+        rhs4 = padd(homo(P, 4), pmul({e: c / 2 for e, c in homo(C, 2).items()}, u2), Fr(-1))
+        rhs4 = padd(rhs4, pmul(u2, u2), Fr(-c0) / 24)
+        u4 = {e: c / (c0 / 2) for e, c in rhs4.items()}
+        # order 6: (1/2)(C|_4 u2 + C|_2 u4 + c0 u6) + (1/24)(C|_2 u2^2 + c0*2*u2*u4)
+        #          + (1/720) c0 u2^3  = P|_6
+        rhs6 = homo(P, 6)
+        rhs6 = padd(rhs6, pmul({e: c / 2 for e, c in homo(C, 4).items()}, u2), Fr(-1))
+        rhs6 = padd(rhs6, pmul({e: c / 2 for e, c in homo(C, 2).items()}, u4), Fr(-1))
+        rhs6 = padd(rhs6, pmul(pmul(homo(C, 2), u2), u2), Fr(-1, 24))
+        rhs6 = padd(rhs6, pmul(u2, u4), Fr(-c0) / 12)
+        rhs6 = padd(rhs6, pmul(pmul(u2, u2), u2), Fr(-c0) / 720)
+        u6 = {e: c / (c0 / 2) for e, c in rhs6.items()}
+        # extract c^2 (coefficient of k1^2 in u2), a (isotropic), b (anisotropic) from u4:
+        c2 = u2.get((2, 0, 0), Fr(0))
+        a_plus_b = u4.get((4, 0, 0), Fr(0))
+        two_a = u4.get((2, 2, 0), Fr(0))
+        a = two_a / 2
+        b = a_plus_b - a
+        return c2, a, b, u6
+
+    # ---- the closed forms, checked at five rational r values ----
+    for r in (Fr(1), Fr(0), Fr(1, 2), Fr(2), Fr(3, 7)):
+        c2, a, b, _ = solve_for(r)
+        assert c2 == (1 + 2 * r) / 3, ("c^2 closed form failed", r)
+        assert a == (1 - r) * (5 + 4 * r) / 108, ("isotropic closed form failed", r)
+        assert b == -(1 - r) / 36, ("anisotropic closed form failed", r)
+        if r != 1:
+            assert a != 0 and b != 0, "r = 1 must be the UNIQUE root (seen nonzero away from it)"
+
+    # ---- the r = 1 point: both zero, c^2 = 1, and the degree-6 survivor ----
+    c2_1, a_1, b_1, u6_1 = solve_for(Fr(1))
+    assert (c2_1, a_1, b_1) == (Fr(1), Fr(0), Fr(0)), "orbit-constant point must give (1, 0, 0)"
+    # (1/90)[(K2)^3 - S6] expanded:  K2^3 = sum over multinomials; compare coefficient-wise
+    K2 = {(2, 0, 0): Fr(1), (0, 2, 0): Fr(1), (0, 0, 2): Fr(1)}
+    K2c = pmul(pmul(K2, K2), K2)
+    S6 = {(6, 0, 0): Fr(1), (0, 6, 0): Fr(1), (0, 0, 6): Fr(1)}
+    target = padd({e: c / 90 for e, c in K2c.items()}, {e: c / 90 for e, c in S6.items()}, Fr(-1))
+    diff = padd(u6_1, target, Fr(-1))
+    assert not diff, "degree-6 survivor at r = 1 must equal (1/90)[(k^2)^3 - Sum k_i^6]"
+
+    r0 = solve_for(Fr(0))
+    return {
+        "model": ("SCALAR nearest-neighbour symbol on the 24 D4 kissing bonds; J_a on the 12 "
+                  "e4-bearing, J_p on the 12 in-hyperplane (the two G48 sub-orbits of the one "
+                  "W(F4) orbit, R-185); dispersion F = 0 at k4 = i*omega, exact Fraction series"),
+        "c_squared": "(1 + 2r)/3, r = J_p/J_a",
+        "deg4_isotropic_coefficient": "(1 - r)(5 + 4r)/108",
+        "deg4_anisotropic_coefficient": "-(1 - r)/36",
+        "orbit_constant_point": {"r": 1, "c_squared": 1, "deg4_isotropic": 0,
+                                 "deg4_anisotropic": 0,
+                                 "leading_survivor": "(1/90)[(k_sp^2)^3 - Sum k_i^6] — "
+                                                     "anisotropic, dimension EIGHT"},
+        "sub_orbit_extreme": {"r": 0, "deg4_isotropic": str(r0[1]), "deg4_anisotropic": str(r0[2]),
+                              "meaning": "both order 1e-2 — lethal against the 3-to-9-order "
+                                         "requirement if the dressed coupling sat there"},
+        "unique_root": "r = 1 is the unique root of EITHER degree-4 coefficient — one condition, "
+                       "both loads (the separator's own clause firing on R-185's orbit-constancy)",
+        "adjudicated_reading": ("the CONSERVATIVE NN scalar part of the dim-6 exposure has natural "
+                                "value ZERO at orbit-constant coupling; the exposure concentrates "
+                                "in the orbit-splitting channel (V3-2a's sub-orbit support is the "
+                                "live instance edge) and in the driven-dissipative sector (gated). "
+                                "Whether the dressed couplings sit at r = 1 is the named OPEN "
+                                "computation — the {J, D} matrix-valued version is the real object"),
+        "model_rider": ("MANDATORY: scalar NN toy, NOT the banked {J, D} rotor structure; "
+                        "matrix-valued internal-index kernels outside the theorem (P-sc); "
+                        "non-analytic dissipative kernels outside entirely (P-an). PROOF OF "
+                        "CONCEPT, NOT DISCHARGE — VG-6/N52 unmoved, no banked number changes"),
+        "tier": ("DERIVED-A OF THE STATED MODEL (exact rational series identities; three "
+                 "independent computations agree) + the mandatory model rider above. Consumes "
+                 "the D4 siting (V3-1) and reads on the V3-2/V3-2a truncation — CANDIDATE half"),
+        "provenance": ("proposed + first computed by the round-5 EXTERNAL reviewer (Opus, warm "
+                       "return 02, 2026-08-25); independently reproduced by sympy series the same "
+                       "hour; this primitive is the third route. Records: "
+                       "knowledge/audit/external_review_r5_2026-08-25/"),
     }
