@@ -70,8 +70,11 @@ substrate, not to replace SM phenomenology. Reporting that back as a criticism i
 error unless the paper claimed otherwise — it does not. Three qualifications, all checkable:
 
 - Its predictions are mostly **prohibitions**, and prohibitions are falsifiable: no magnetic
-  monopoles, no proton decay, no fourth generation, no top-quark hadrons, Dirac neutrinos, no
-  neutrinoless double-beta decay. §E.3 lists 16 named near-term falsifiers with current bounds;
+  monopoles, no proton decay, no fourth generation, Dirac neutrinos, no
+  neutrinoless double-beta decay. (*"No top-quark hadrons" was listed here and is struck: the top's
+  width exceeds the confinement scale, so the Standard Model forbids them too — it is a textbook
+  retrodiction, not a distinctive prohibition, and it is exactly the mislabel this note asks
+  reviewers to report.*) §E.3 lists 16 named near-term falsifiers with current bounds;
   **none currently sits at experimental limits**. The framework's sharpest *empirical* exposure is
   not a falsifier row at all but a standing tension: its dimension-six Lorentz-violation coefficient
   is gated on the open substrate dynamics, and the natural value is excluded by existing cosmic-ray
@@ -147,8 +150,11 @@ index row carries; nothing here is stronger than it is in the paper.
   unit and unknown integer windings, and it returns three free parameters. The equality's normalization is not fitted either:
   `Q_p + Q_e = 0` holds **identically in the charge normalization constant**, for every value of
   it, given four named structural premises (P4–P7) — so **hydrogen neutrality is a theorem of the
-  framework rather than a datum it consumes**, and the 10⁻²¹ neutrality measurement becomes a
-  falsification test (§C.2.7–C.2.8). The condition, stated once: the *assignment* of values across
+  framework rather than a datum it consumes** (§C.2.7–C.2.8). **It is NOT a discriminator, and the
+  paper says so at §2.1:** the incumbent's own anomaly structure protects the same sum, so passing
+  the 10⁻²¹ neutrality measurement separates nothing. What the two frameworks' charge assignments
+  differ on is the *neutron's* charge, which both leave free — closed here only under this family's
+  own sterile-hypercharge closure, and there predicted exactly zero. The condition, stated once: the *assignment* of values across
   the spectrum — which state carries `+2/3` — rides those premises plus an entered anchor, and is
   not itself computed from the substrate; the engine draws that line explicitly
   (`charge_sector_provenance`).
@@ -207,17 +213,21 @@ which is no longer a pick: the menu of three-dimensional `su(2)` hosts inside th
 grade-two rotation algebra is **computed closed** at three conjugacy classes, one of them the same
 assignment mirrored and one refuted by the weak-singlet character of the right-handed fermions, so
 what the sector costs is one endorsed premise (that weak isospin is hosted inside that algebra at
-all) plus one datum read from experiment rather than tuned; the absence of magnetic monopoles as a
-grade-structure fact; and a matter-stability triad —
+all) plus one datum read from experiment rather than tuned; the absence of magnetic monopoles — by the source
+identification rather than by algebra, the engine reporting the slot's dimension rather than its
+vanishing (the paper states it at that strength); and a matter-stability triad —
 no proton decay, Dirac neutrinos, no neutrinoless double-beta decay — falling out of one
 conservation law rather than three separate stipulations (§C.5).
 
-**Gravity has its sign, its form, and a Planckian magnitude bracket.** The induced-gravity sign
-is positive, locked to substrate stability; `γ = 1` (the Eddington parameter) is structural
-rather than tuned; the substrate cutoff lands Planckian within a factor of order unity. As of
-this revision both *tree-level* alternatives are closed by explicit computation, leaving the
-induced route as the only surviving one within the framework's own action class — a uniqueness
-result rather than a preference (§B.6).
+**Gravity: a sign and a form, and NO magnitude.** The induced-gravity sign is positive, locked to
+substrate stability, and `γ = 1` (the Eddington parameter) is structural rather than tuned. **The
+"Planckian magnitude bracket" this note previously claimed is struck** (2026-08-26, on an external
+finding): the grain's Planckian value is a **back-fit of the measured Newton constant**, not an
+intrinsic scale the framework earns — the framework's own count of earned dimensionful scales is
+**zero**, and the paper states at §4.4 that there are **no gravity results today**, every one of
+them riding a candidate pick. Both *tree-level* alternatives are closed by explicit computation,
+leaving the induced route the only survivor **within the framework's own banked action class** — a
+class-scoped uniqueness result, not a uniqueness result simpliciter (§B.6).
 
 **One structural advantage is worth flagging on its own.** Programs that make Lorentz invariance
 emergent from a preferred-frame substrate generically die on a radiative-naturalness problem:
