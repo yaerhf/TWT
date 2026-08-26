@@ -5640,33 +5640,71 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
           a symmetry here. Its value is set by the substrate strain-mode dispersion = the #1 gap
           (Cl41Wave().wave_speed_c RAISES); this primitive therefore returns NO prediction for it.
 
-    THE EXPOSURE (INPUT — inside-frame data; Import Registry I-19, dim-6 LV-EFT constraint bridge):
+    THE EXPOSURE (INPUT — inside-frame data; Import Registry I-19, dim-6 LV-EFT constraint bridge;
+    RE-TABLED 2026-08-26 at the round-5 E21-VERDICT on the primary-read bounds dossier,
+    knowledge/audit/external_review_r5_2026-08-25/BOUNDS_DOSSIER_V-C_2026-08-26.md — the old table
+    quoted conditional corners as if unconditional, and one corner was a PROJECTED bound):
     published n = 4 (= dim-6) limits, CMB frame — which the framework identifies with its own
-    τ₅-foliation/comoving frame (§B.4.5), so the frames agree:
-        photon    −1e-7 ≲ ξ⁽⁴⁾   ≲ 1e-8   (Liberati 2013 arXiv:1304.5795 eq. 77)
-        electron  −1e-7 ≲ η⁽⁴⁾   ≲ 1e-6   (ibid. eq. 77)
-        proton    −1e-3 ≲ η⁽⁴⁾_p ≲ 1e-6   (ibid. eq. 78, 99% CL, pure-proton composition)
-        equivalently δ^π_p < 4.5e-23 from the Auger spectrum above the GZK energy
-                                         (Stecker 2009 arXiv:0912.0500 eq. 18)
+    τ₅-foliation/comoving frame (§B.4.5), so the frames agree.
+    UNCONDITIONAL (no composition assumption, no unmet observation; superluminal branch — the one
+    the positive naive value sits on):
+        hadron    η⁽⁴⁾_p < 0.149  (η_π < 0.298), 5σ   (Auger 2022, model-independent; obtained by
+                  rigidity-rescaling the fitted n=0 result — the ONE unconditional analysis)
+        photon    |ξ⁽⁴⁾| < 6.2e6 superluminal          (Satunin 2021, Tibet-ASγ — no sub-unity
+                  reach at this operator dimension)
+        electron  none below ~1e6                      (Liberati 2013's own statement)
+    CONDITIONAL (the strong corners, each with its condition NAMED — never quote one without it):
+        proton    −1e-3 ≲ η⁽⁴⁾_p ≲ 1e-6, 99% CL       (Liberati 2013 eq. 78 / Maccione+2009:
+                  PURE-PROTON composition, which Auger 2022's own data disfavours; the −1e-3
+                  corner is a subluminal simulation-grid edge — inapplicable to the positive
+                  naive value either way)
+        photon    ξ⁽⁴⁾ ≲ 1e-8                          (Liberati 2013 eq. 77: the γ-decay line —
+                  a PROJECTED bound, "do not correspond to real constraints" in its authors' own
+                  words, contingent on a ~1e19 eV photon detection UNMET as of 2026; plus
+                  pure-proton GZK secondaries)
+        electron  −1e-7 ≲ η⁽⁴⁾ ≲ 1e-6                  (ibid.: same rectangle and conditions as
+                  the photon; corner assignment partially unresolved — dossier §b.6)
+        universal |η| ≲ 1.4e-6                          (Stecker 2009 eq. 18 via δ^π_p < 4.5e-23:
+                  proton-dominated GZK + species universality)
+        nuclei    the composition LADDER (Saveliev–Maccione–Sigl 2011; each rung requires that
+                  species observed at that energy): He at 1e20 eV: η ≲ 1e-4 (4.3–4.8 orders);
+                  O at 1e20 eV: η ≲ 3e-2 (still 1.8–2.4 orders — MORE than the unconditional
+                  bound); Fe at 1e20 eV: η ≲ 4 — the naive band STRADDLES it; Fe at 10^19.6 eV:
+                  NO exclusion. Auger 2022 reports near-zero PROTON fraction above 1e19 eV, not
+                  a species ID — composition is UNSETTLED and the conditional corners RE-ARM if
+                  it resolves adversely.
+    DOSSIER FLAGS CARRIED (E21 spec — named, not dropped): Galaverni & Sigl and Maccione &
+    Liberati 2008 UNREAD at primary (the likely GZK-photon-argument ancestry of the projected
+    corner); the published-CQG equation numbering unchecked (cite as eqs. 77–78 v1 = 75–76 v3);
+    Stecker's universal 1.4e-6 is the NON-reduced-M_Pl (conservative) reading — the reduced
+    reading is 5.6e-8, flagged unresolved in the dossier.
     NORMALIZATION — TWO CONVENTIONS, DO NOT CONFLATE (this is where the old text contradicted
     itself): η⁽⁴⁾ is by definition the coefficient of p⁴/M²_Pl (the Liberati convention, in which the
     bounds above are quoted). The SUBSTRATE's own natural form is c·p⁴/Λ² with c = O(1), since Λ is
     the substrate cutoff. The two are related by η⁽⁴⁾ = c·(M_Pl/Λ)². So "the substrate's natural
     coefficient is unity" means c = 1, NOT η⁽⁴⁾ = 1 — and c = 1 at the lattice scale Λ_L = 1/a gives
-    η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7] (central 3.47), EXCLUDED by 3 to 9 orders. The framework does NOT
-    claim that value (it cannot compute c); the number is reported here only to size the exposure.
+    η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7] (central 3.47) — positive, hence superluminal. THE EXCLUSION,
+    E21-RE-CUT: UNCONDITIONALLY ~1.1–1.7 orders (0.8–1.4 on the pion reading) from the single
+    Auger 2022 model-independent analysis; 6.3–6.8 orders CONDITIONAL on pure-proton composition;
+    8.3–8.8 only on the unmet photon-detection premise. THE HISTORICAL '3–9 ORDERS' IS RETIRED —
+    its 3-corner was the subluminal branch (inapplicable to a positive coefficient) and its
+    9-corner the projected γ-decay line. The framework does NOT
+    claim the naive value (it cannot compute c); the number is reported here only to size the exposure.
     WHICH-Λ RULING (coordinator, 2026-07-30): the dispersion denominator is Λ_L = 1/a — a Taylor
     expansion of a finite-range lattice kernel can only produce the bond length — with band
     [0.386, 0.735] M_Pl from OA-LF-ii's κ ∈ [1/2, 2] through the affine c_lat(κ). Λ_S = √(2π) M_Pl is a
     heat-kernel SCHEME variable carrying no substrate information and is NOT admissible here.
     History: 2026-07-28 the bracket was widened to [0.13, 2.5] M_Pl to span an apparent three-way
     c_reg disagreement; 2026-07-29 that resolved to ONE coefficient in three Λ-variables; the
-    widening's rationale died with it and the wide bracket is RETIRED. The exposure NARROWS and
-    SHARPENS: even the most favourable corner (η⁽⁴⁾ = 1.9) is ~3 orders above the loosest
-    published bound. The defect form
-    factor supplies (f_π/m_p)² ~ 1e-2, two orders where six are needed, and supplies NOTHING for the
+    widening's rationale died with it and the wide bracket is RETIRED. Against the E21 re-cut: the most
+    favourable corner (η⁽⁴⁾ = 1.9) is ~1.1 orders above the unconditional Auger bound and ~6.3
+    above the pure-proton-conditional one. The defect form factor supplies (f_π/m_p)² ~ 1e-2 for
+    the proton — MARGINAL against the ~1-order UNCONDITIONAL gap (clears by 1.18x at the upper
+    corner with the ANW f_π = 129 MeV, FAILS by 1.77x at the honest F_π = 186 MeV substitution),
+    far short of the 6-to-7-order conditional gap; its applicability to the strain-mode
+    coefficient is unbuilt regardless — and it supplies NOTHING for the
     photon, which §B.5.4 makes a BULK strain mode with no internal structure — the most exposed
-    sector, not the exempt one.
+    sector under the conditional corners, unconstrained below ~1e6 unconditionally.
 
     JURISDICTION HEDGE (canon §0 / the N49 shape; I-19 premise (e)): the published bounds are
     INSIDE-frame inferences about propagating particles, while the object they are taken to bound is
@@ -5846,7 +5884,7 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                           "natural form is c*p^4/Lambda^2 with c = O(1), so eta4 = c*(M_Pl/Lambda)^2. "
                           "'natural coefficient unity' means c = 1, NOT eta4 = 1"),
         "naive_eta4_at_c_equals_1": ((1.0 / lam_hi) ** 2, (1.0 / lam_lo) ** 2),
-        "naive_eta4_status": "NOT a prediction — excluded by published n=4 limits by 3-9 orders; sizes the exposure",
+        "naive_eta4_status": "NOT a prediction — sizes the exposure. E21-RE-CUT (2026-08-26, primary-read dossier): excluded UNCONDITIONALLY by ~1.1-1.7 orders (Auger 2022 model-independent hadronic, superluminal branch, one analysis) and by 6.3-6.8 orders ONLY under pure-proton composition (disfavoured by Auger itself); the historical 3-9-orders figure is RETIRED (wrong-branch 3-corner; projected never-triggered 9-corner)",
         "Lambda_bracket_used": {
             "bracket_M_Pl_nonreduced": (lam_lo, lam_hi),
             "meaning": "Lambda_L = 1/a, the inverse monad spacing — band from OA-LF-ii kappa in "
@@ -5864,15 +5902,17 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
         # (canon §2 bank-before-you-cite). c = eta4*(Lambda/M_Pl)^2, so the ceiling scales with BOTH the
         # species bound and the Lambda-bracket corner — it is a bracket, never a single figure.
         "implied_substrate_c_ceiling": {
-            "matter_eta4_1e-6": (1e-6 * lam_lo ** 2, 1e-6 * lam_hi ** 2),
-            "photon_eta4_1e-8": (1e-8 * lam_lo ** 2, 1e-8 * lam_hi ** 2),
-            "note": "survival needs |c| below these; across {species, Lambda-corner} the ceiling spans "
-                    "1.5e-9 .. 5.4e-7, i.e. a 6-to-9-order suppression of an O(1) substrate coefficient "
-                    "(re-cut by the 2026-07-30 which-Lambda ruling to the 1/a band; was 1.7e-10 .. 6.3e-6 "
-                    "under the retired [0.13, 2.5] bracket, 2.6e-10 .. 5.2e-7 under pre-2026-07-28)"},
+            "UNCONDITIONAL_hadron_eta4_0.149": (0.149 * lam_lo ** 2, 0.149 * lam_hi ** 2),
+            "CONDITIONAL_matter_eta4_1e-6": (1e-6 * lam_lo ** 2, 1e-6 * lam_hi ** 2),
+            "CONDITIONAL_photon_eta4_1e-8_PROJECTED": (1e-8 * lam_lo ** 2, 1e-8 * lam_hi ** 2),
+            "note": "survival needs |c| below these. E21-RE-CUT: the UNCONDITIONAL ceiling is "
+                    "2.2e-2 .. 8.0e-2 (a ~1-to-1.7-order suppression of an O(1) coefficient); the "
+                    "1.5e-9 .. 5.4e-7 band is CONDITIONAL (pure-proton; the photon row additionally "
+                    "PROJECTED on an unmet detection) and must carry those labels wherever quoted "
+                    "(2026-07-30 which-Lambda band; historical brackets in the git record)"},
         "published_n4_bounds_INPUT": {"photon_xi4": (-1e-7, 1e-8), "electron_eta4": (-1e-7, 1e-6),
                                       "proton_eta4": (-1e-3, 1e-6), "delta_pi_p_Stecker": 4.5e-23},
-        "form_factor_insufficient": "(f_pi/m_p)^2 ~ 1e-2 for the proton; NONE for the photon (bulk mode, B.5.4)",
+        "form_factor_insufficient": "(f_pi/m_p)^2 ~ 1e-2 for the proton — MARGINAL against the ~1-order unconditional gap (clears 1.18x at ANW f_pi, fails 1.77x at F_pi = 186), far short of the conditional 6-7 orders, applicability unbuilt; NONE for the photon (bulk mode, B.5.4)",
         "frame_inertial": "coefficients defined in the CMB frame = the tau5-foliation/comoving frame (B.4.5) "
                           "— frames agree; this closes the INERTIAL-frame question only",
         "frame_jurisdiction_HEDGE": ("the bounds are INSIDE-frame inferences; the object bounded is the "
@@ -6368,7 +6408,7 @@ def eom_constraint_class():
                        "implied_substrate_c_ceiling in the substrate's own normalization",
         "source": "IMPORT I-19 (published n=4 LV-EFT limits: Liberati 2013 eqs 77-78; Stecker 2009 eq 18)",
         "naive_value_status": "a coefficient of order unity (c = 1) gives eta4 = c_lat/(2*pi) in "
-                              "[1.9, 6.7] (central 3.47) — the NAIVE value, excluded by 3-9 orders. NOT "
+                              "[1.9, 6.7] (central 3.47) — the NAIVE value; E21-RE-CUT: ~1.1-1.7 orders unconditional (Auger 2022, superluminal), 6.3-6.8 conditional on pure-proton; the 3-9 figure is RETIRED. NOT "
                               "a TWT prediction: c is #1-gap GATED (Cl41Wave().wave_speed_c() raises). "
                               "[which-Lambda ruling 2026-07-30: dispersion consumers take "
                               "Lambda_L = 1/a, band [0.386, 0.734] M_Pl; the 2026-07-28 wide bracket "
@@ -13978,7 +14018,12 @@ def d4_scalar_dispersion_quartic_coefficients():
         G48-invariant but NOT constant on the W(F4) orbit (J_a != J_p). The live
         instance edge is family-tree node V3-2a (support on the 12 e4-bearing
         bonds is a SUB-ORBIT): at the r = 0 extreme both coefficients are ~1e-2
-        against a 3-to-9-order requirement. WHETHER a substrate argument pins
+        against the CONDITIONAL 6-to-7-order requirement. UNITS, corrected at the
+        contra-review: these are substrate-c values; converted through eta =
+        c*(M_Pl/Lambda)^2 (factor 1.85-6.69 across the ruled band) the isotropic
+        5/108 reads eta in [0.086, 0.310], which STRADDLES the unconditional Auger
+        bound 0.149 — allowed at the loose lattice corner, excluded ~2x at the tight
+        one; zero-vs-STRADDLE, not zero-vs-allowed. WHETHER a substrate argument pins
         r = 1 for the dressed couplings is the named open computation (docketed;
         the {J, D} matrix-valued version is the real object).
       * MANDATORY MODEL RIDER (the proposing reviewer's own fences, kept verbatim
@@ -14105,11 +14150,44 @@ def d4_scalar_dispersion_quartic_coefficients():
     diff = padd(u6_1, target, Fr(-1))
     assert not diff, "degree-6 survivor at r = 1 must equal (1/90)[(k^2)^3 - Sum k_i^6]"
 
+    # ---- scope fact (return-03 re-scope, 2026-08-25): the driven weight space is
+    # 3-DIMENSIONAL, not 2 — the pointwise stabilizer cannot flip the e4 sign, so the
+    # 24 bonds split 12 (hyperplane) + 6 (forward, b4 = +1) + 6 (backward, b4 = -1).
+    # This primitive's model is RECIPROCAL (cosine symbol, even), so it sees only
+    # J_f + J_b and the two-parameter (J_a, J_p) reading is COMPLETE for the
+    # conservative sector; the THIRD direction (J_f - J_b, non-reciprocal hopping) is
+    # odd in k4 — e.g. sum over the forward orbit of sin(b.k) = 2 sin(k4) * sum_i
+    # cos(k_i), surviving at order k4*k^2 — and is INVISIBLE to any even symbol and
+    # outside any polynomial-invariant argument on the even part. It is the
+    # driven-dissipative channel's lattice face, named here so the orbit-constancy
+    # question cannot be answered on the even sector alone and read as settling it.
+    _bonds = []
+    for i, j in itertools.combinations(range(4), 2):
+        for si in (1, -1):
+            for sj in (1, -1):
+                v = [0, 0, 0, 0]
+                v[i], v[j] = si, sj
+                _bonds.append(v)
+    _hyp = [v for v in _bonds if v[3] == 0]
+    _fwd = [v for v in _bonds if v[3] == 1]
+    _bwd = [v for v in _bonds if v[3] == -1]
+    assert (len(_hyp), len(_fwd), len(_bwd)) == (12, 6, 6), \
+        "driven-group bond-orbit split must be 12 + 6 + 6"
     r0 = solve_for(Fr(0))
     return {
         "model": ("SCALAR nearest-neighbour symbol on the 24 D4 kissing bonds; J_a on the 12 "
                   "e4-bearing, J_p on the 12 in-hyperplane (the two G48 sub-orbits of the one "
                   "W(F4) orbit, R-185); dispersion F = 0 at k4 = i*omega, exact Fraction series"),
+        "driven_weight_space": ("3-DIMENSIONAL (return-03 re-scope): the pointwise stabilizer "
+                                "splits the 24 bonds 12 + 6 + 6 (hyperplane / forward / "
+                                "backward — asserted in-process), so orbit-constancy under "
+                                "W(F4) opens to THREE driven weights. This RECIPROCAL model "
+                                "sees only J_f + J_b and is complete for the CONSERVATIVE "
+                                "sector; the third direction (J_f - J_b, non-reciprocal, odd "
+                                "in k4: 2*sin(k4)*Sum cos k_i on the forward orbit, order "
+                                "k4*k^2) is invisible to every even symbol — the "
+                                "driven-dissipative channel's lattice face. An 'r = 1' answer "
+                                "on the even sector does NOT settle the odd channel"),
         "c_squared": "(1 + 2r)/3, r = J_p/J_a",
         "deg4_isotropic_coefficient": "(1 - r)(5 + 4r)/108",
         "deg4_anisotropic_coefficient": "-(1 - r)/36",
@@ -14118,8 +14196,13 @@ def d4_scalar_dispersion_quartic_coefficients():
                                  "leading_survivor": "(1/90)[(k_sp^2)^3 - Sum k_i^6] — "
                                                      "anisotropic, dimension EIGHT"},
         "sub_orbit_extreme": {"r": 0, "deg4_isotropic": str(r0[1]), "deg4_anisotropic": str(r0[2]),
-                              "meaning": "both order 1e-2 — lethal against the 3-to-9-order "
-                                         "requirement if the dressed coupling sat there"},
+                              "meaning": "both order 1e-2 IN SUBSTRATE-c UNITS; converted (eta = c*(M_Pl/Lambda)^2, "
+                                         "factor 1.85-6.69) the isotropic 5/108 reads eta in [0.086, 0.310] — "
+                                         "STRADDLING the unconditional Auger bound 0.149 across the Lambda "
+                                         "band (allowed loose corner, excluded ~2x tight corner), and 4.7-5.5 "
+                                         "orders above the pure-proton-conditional corner (E21 + the "
+                                         "contra-review units fix — the first-pass inside-by-3x reading was a "
+                                         "c-vs-eta units error, caught contra-briefed)"},
         "unique_root": "r = 1 is the unique root of EITHER degree-4 coefficient — one condition, "
                        "both loads (the separator's own clause firing on R-185's orbit-constancy)",
         "adjudicated_reading": ("the CONSERVATIVE NN scalar part of the dim-6 exposure has natural "

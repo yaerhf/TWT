@@ -973,6 +973,29 @@ def check_twt_spectra():
     _ck(f"Foot angle theta = 45deg  (got {th:.3f})", abs(th - 45.0) < 0.05)
     _ck(f"DFT: K(r=1/sqrt2) = 2/3  (got {dft_K_from_r(1/math.sqrt(2)):.5f})",
         abs(dft_K_from_r(1/math.sqrt(2)) - 2/3) < 1e-12)
+    kb = koide_branch_restriction()
+    _ck("★ THE K = 2/3 IDENTITY IS BRANCH-RESTRICTED — R-187, external-reviewer-proposed (r5 warm "
+        "return 05), verified same-hour: the identity holds identically ONLY where all three "
+        "parametrization factors are positive (min_k cos > −1/√2), a set of exactly ONE QUARTER of "
+        "the phase circle (three π/6 arcs, edges at the centres ± π/12 — closed-form); off-branch "
+        f"the physical square root breaks it, down to K_min = {kb['off_branch_K_min']:.6f} (closed "
+        "form, matched by global scan). Nothing about K's tier moves — c = √2 stays the endorsed "
+        "INPUT; the primitive states the identity's DOMAIN",
+        abs(kb["on_branch_K"] - 2/3) < 1e-14
+        and 0.4093 < kb["off_branch_K_min"] < 0.4094
+        and "-1/sqrt(2)" in kb["branch_condition"]
+        and "1/4 of the circle" in kb["branch_structure"])
+    _ck("★ THE PHYSICAL PHASE SITS INSIDE THE BRANCH — AND NEAR ITS EDGE, carried as a NOTED "
+        f"NON-COINCIDENCE (canon move 5, no meaning assigned): at θ = 2/9 the minimum factor is "
+        f"+{kb['physical_phase']['min_factor']:.4f} and the margin to the π/12 edge is "
+        f"{kb['physical_phase']['margin_rad']:.4f} rad (~15% of the arc half-width); the reviewer's "
+        "framing — the arc-ratio reading should NAME the −1/√2 boundary; the branch condition as "
+        "candidate content for the geometric characterization — is carried CANDIDATE, not adopted",
+        kb["physical_phase"]["min_factor"] > 0
+        and abs(kb["physical_phase"]["margin_rad"] - 0.0395772) < 1e-6
+        and "NOTED" in kb["physical_phase"]["status"]
+        and "numerology guard" in kb["physical_phase"]["status"]
+        and "CANDIDATE" in kb["candidate_reading"] and "Not adopted" in kb["candidate_reading"])
 
     print("§19.5 the lepton angle delta_L from D/J = 0.79:")
     dL = math.degrees(delta_L_from_DoverJ(0.79))
@@ -3607,12 +3630,17 @@ def check_twt_cosmo():
     _ck("the ROTATIONALLY INVARIANT dim-6 residual η⁽⁴⁾ is NOT protected by either face and is #1-gap GATED — "
         "the engine returns NO prediction for it (Cl41Wave().wave_speed_c raises)",
         "GATED" in lv["dim6_isotropic_eta4"] and "NOT a prediction" in lv["naive_eta4_status"])
-    _ck("HONEST EXPOSURE recorded, not hidden: naive coefficient-1 value η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7] is EXCLUDED "
-        "by published n=4 limits by 3-9 orders; form factor gives only (f_π/m_p)² ~ 1e-2 and NOTHING for the photon "
-        "(bulk mode) ⇒ logged as E.3.3 VG-6 / E.3.5(4) + N52, NOT as a falsifier row and NOT as a passed test. "
-        "(which-Λ ruling 2026-07-30: dispersion consumers take Λ_L = 1/a, band [0.386, 0.734] M_Pl; the 2026-07-28 "
-        "wide bracket [0.13, 2.5] / η⁽⁴⁾ [0.16, 59] / 2-10 orders is RETIRED — the exposure NARROWED and SHARPENED)",
+    _ck("HONEST EXPOSURE recorded, not hidden — AND E21-RE-CUT IN BOTH DIRECTIONS (2026-08-26, the primary-read "
+        "bounds dossier): naive coefficient-1 value η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7] is excluded UNCONDITIONALLY by "
+        "~1.1–1.7 orders (Auger 2022's model-independent hadronic bound, superluminal branch — the one analysis) "
+        "and by 6.3–6.8 orders ONLY under pure-proton composition, which Auger's own data disfavours; the "
+        "historical '3-9 orders' is RETIRED (its 3-corner the wrong branch, its 9-corner a PROJECTED bound whose "
+        "triggering photon detection remains unmet). The favourable direction got the harder review: the re-cut "
+        "was contra-briefed per the round's own adopted warning ⇒ still logged as E.3.3 VG-6 / E.3.5(4) + N52, "
+        "NOT a falsifier row, NOT a passed test, and the EXISTENCE of the exposure is unchanged",
         1.8 < lv["naive_eta4_at_c_equals_1"][0] < 1.9 and 6.6 < lv["naive_eta4_at_c_equals_1"][1] < 6.8
+        and "E21-RE-CUT" in lv["naive_eta4_status"] and "RETIRED" in lv["naive_eta4_status"]
+        and "UNCONDITIONALLY by ~1.1-1.7 orders" in lv["naive_eta4_status"]
         and "NOT a falsifier row" in lv["recorded_as"] and "NONE for the photon" in lv["form_factor_insufficient"]
         and lv["Lambda_bracket_used"]["bracket_M_Pl_nonreduced"] == (0.3865, 0.7345)
         and "RULED" in lv["Lambda_bracket_used"]["status"])
@@ -3713,8 +3741,10 @@ def check_twt_cosmo():
                                                            "anisotropic, dimension EIGHT"}
         and "unique root" in dq["unique_root"].lower())
     _ck("THE LIVE EDGE IS THE SUB-ORBIT EXTREME: at r = 0 (support on the 12 e₄-bearing bonds alone — "
-        "the V3-2a shape) the coefficients are 5/108 and −1/36, both order 10⁻² — lethal against the "
-        "3-to-9-order requirement if the dressed coupling sat there. The adjudicated reading is "
+        "the V3-2a shape) the coefficients are 5/108 and −1/36 in SUBSTRATE-c units; converted "
+        "(η = c(M_Pl/Λ)², factor 1.85–6.69) the isotropic STRADDLES the unconditional Auger bound "
+        "across the Λ band and sits 4.7–5.5 orders above the conditional corner — the units "
+        "conversion is the contra-review's computed catch. The adjudicated reading is "
         "carried IN the returned value: the conservative NN scalar part's natural value is ZERO at "
         "orbit-constant coupling; the exposure concentrates in the orbit-splitting channel and the "
         "driven-dissipative sector; whether the dressed couplings sit at r = 1 is the named OPEN "
@@ -3733,6 +3763,16 @@ def check_twt_cosmo():
         and "VG-6/N52 unmoved" in dq["model_rider"]
         and "EXTERNAL reviewer" in dq["provenance"]
         and "DERIVED-A OF THE STATED MODEL" in dq["tier"])
+    _ck("★ RETURN-03 RE-SCOPE (same reviewer, verified in-process): the driven weight space is "
+        "3-DIMENSIONAL — the pointwise stabilizer splits the 24 bonds 12+6+6 (it cannot flip the e₄ "
+        "sign), so this RECIPROCAL model is complete for the CONSERVATIVE sector only; the third "
+        "direction (J_f − J_b, non-reciprocal, odd in k₄ — 2·sin k₄·Σcos k_i on the forward orbit) is "
+        "invisible to every even symbol and is the driven-dissipative channel's lattice face. An "
+        "'r = 1' answer on the even sector does NOT settle the odd channel — the orbit-constancy "
+        "docket row is scoped to say so",
+        "3-DIMENSIONAL" in dq["driven_weight_space"]
+        and "12 + 6 + 6" in dq["driven_weight_space"]
+        and "does NOT settle the odd channel" in dq["driven_weight_space"])
 
     print("§21.6.1 TEXTURE METRIC — formula DERIVED-STRUCTURAL-CONDITIONAL (Schur uniqueness, gauge premise); dynamics CANDIDATE (2026-06-28):")
     tc = texture_metric_candidate()
@@ -4257,11 +4297,15 @@ def check_twt_cosmo():
         and "CONDITIONAL" in ec["EMPIRICAL_boundary_conditional"]["bindingness_HEDGE"]
         and "zero anchor rank" in ec["EMPIRICAL_boundary_conditional"]["kind"]
         and "NAIVE" in ec["EMPIRICAL_boundary_conditional"]["naive_value_status"])
-    _ck("the substrate-normalization CEILING is a BANKED RETURNED FIELD, not a floating number: "
-        "implied_substrate_c_ceiling spans 1.5e-9 … 5.4e-7 across {species, Λ-corner}, so downstream text cites the "
-        "primitive rather than quoting an unbacked bracket (canon §2). (Re-cut 2026-07-30 by the which-Λ ruling to "
-        "the Λ_L = 1/a band [0.386, 0.734] M_Pl; was 1.7e-10 … 6.3e-6 under the retired [0.13, 2.5] bracket)",
-        (lambda d: abs(d["photon_eta4_1e-8"][0] - 1.49e-9) < 1e-11 and abs(d["matter_eta4_1e-6"][1] - 5.39e-7) < 1e-9)(
+    _ck("the substrate-normalization CEILING is a BANKED RETURNED FIELD, not a floating number — and E21-SPLIT "
+        "by conditioning: the UNCONDITIONAL ceiling (Auger η_p < 0.149) is 2.2e-2 … 8.0e-2 (a ~1-order suppression "
+        "of an O(1) coefficient); the old 1.5e-9 … 5.4e-7 band is CONDITIONAL (pure-proton; the photon leg "
+        "additionally PROJECTED on an unmet detection) and carries those labels in its field names, so downstream "
+        "text cannot quote it unconditioned (canon §2)",
+        (lambda d: abs(d["CONDITIONAL_photon_eta4_1e-8_PROJECTED"][0] - 1.49e-9) < 1e-11
+         and abs(d["CONDITIONAL_matter_eta4_1e-6"][1] - 5.39e-7) < 1e-9
+         and abs(d["UNCONDITIONAL_hadron_eta4_0.149"][0] - 0.149 * 0.3865 ** 2) < 1e-6
+         and abs(d["UNCONDITIONAL_hadron_eta4_0.149"][1] - 0.149 * 0.7345 ** 2) < 1e-6)(
             lv["implied_substrate_c_ceiling"]))
     _ck("INVARIANT/VARIANT partition + epistemics recorded: invariants (s=3, sin²θ_W=3/8, π₃, Z3-dichotomy, WEAK-EP) = "
         "DERIVABLE-by-class-invariance; variants (α,g,g_s,σ_QCD,masses,v,τ_mem,Θ_rel-value) = provably gated; "

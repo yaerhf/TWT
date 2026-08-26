@@ -72,8 +72,7 @@ is here computed, with the single-outcome mechanism and the Born distribution bo
 
 **The strongest objections, stated first by us.** Two already-measured exposures are named up
 front, and they are independent failures. The isotropic dimension-six Lorentz-violation
-coefficient's natural value at the substrate's own lattice scale is excluded by existing
-cosmic-ray and gamma-ray limits by three to nine orders of magnitude — and that coefficient is
+coefficient's natural value at the substrate's own lattice scale is excluded unconditionally by about one order of magnitude (a single model-independent cosmic-ray analysis, superluminal branch), and by six to seven orders only under a mass-composition assumption the same observatory's data disfavours (direct gamma-ray limits contribute nothing at this operator dimension) — and that coefficient is
 gated on the open dynamics (§E.3.5(4)). The electroweak crossing scale is not gated at all: the
 framework simply has no derivation of it, and its own lattice-scale reading lands a third below
 the measured `sin²θ_W(M_Z)` (§E.3.5(5), §C.4.5, N55). We regard these as the most likely routes
@@ -124,8 +123,7 @@ undone. The tier system, the executable suite, and the import registry exist to 
 imperfectly.
 
 **Our own strongest objection, stated first.** The framework's natural value for the isotropic
-dimension-six Lorentz-violation coefficient is excluded by existing limits by three to nine orders
-of magnitude, and we cannot presently compute the suppression that would be required. It heads the
+dimension-six Lorentz-violation coefficient is excluded unconditionally by about one order of magnitude (a single model-independent cosmic-ray analysis, superluminal branch), and by six to seven orders only under a mass-composition assumption the same observatory's data disfavours, and we cannot presently compute the suppression the conditional corner would require. It heads the
 table below, with the second already-measured exposure beside it.
 
 **Four checks, five minutes each.**
@@ -181,7 +179,7 @@ reaches every candidate.
 
 | The exposure | What it kills | Where it stands |
 |---|---|---|
-| **Already measured** — the isotropic dimension-six Lorentz-violation coefficient | any completed §D.5 dynamics that fails to deliver a suppression of three to nine orders — dead on arrival, not evolved | The coefficient is gated on the open dynamics, so the framework asserts no value for it; what existing cosmic-ray and gamma-ray limits exclude is its *naive* value at the substrate's own lattice scale, and they bind every future completion (§E.3.5(4), §E.3.3 VG-6) |
+| **Already measured** — the isotropic dimension-six Lorentz-violation coefficient | any completed §D.5 dynamics that fails to deliver a suppression of about one order unconditionally (six to seven under the disfavoured pure-proton conditioning) — historically quoted as three to nine orders — dead on arrival, not evolved | The coefficient is gated on the open dynamics, so the framework asserts no value for it; what existing cosmic-ray and gamma-ray limits exclude is its *naive* value at the substrate's own lattice scale, and they bind every future completion (§E.3.5(4), §E.3.3 VG-6) |
 | **Already measured** — `sin²θ_W(M_Z) = 0.2312` | the framework's own lattice-scale descent | Its one computable reading lands `0.154–0.158`, a third below the measured value; the four standard escape routes are computed and closed. Descent and closures alike ride the imported elementary-field RGE premise (`I-6`) for a gauge sector this candidate holds emergent / composite at `Λ_L`; were it to fail, the reading returns from refuted to gated (§E.3.5(5), §C.4.5, N55) |
 | Proton decay | topological protection of baryon number (`B ∈ π₃(S³) = ℤ`) — exact in the smooth sector; a grainy member carries a resolution condition (the winding rides the arrangement, deficit ∝ 1/ρ²) | Super-K, Hyper-K, DUNE. The framework's one distinctive forward bet: grand unification expects decay at *some* level, and this framework forbids it in the smooth sector — non-perturbative violation respects `ΔB = ΔL = 3` (§C.1.5, §C.5.6) |
 | Neutrinoless double beta decay | exact `B − L` conservation, and with it the Dirac neutrino character that conservation forces | KamLAND-Zen, LEGEND, nEXO, CUPID (§C.3.12, §C.5.6). What does *not* die with it: anomaly cancellation is a trace identity on the charge assignment, untouched by a broken conservation law (§C.5.4) |
@@ -3190,9 +3188,7 @@ Setting the substrate coefficient `c` to unity at the ruled lattice scale gives
 `η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7]`, central `3.5`. (The bracket's whole width is the `Λ_L` band's:
 `c_reg = 1/12` is a single coefficient written in three `Λ`-variables, not three rival values, so
 no wider `η⁽⁴⁾ ∈ [0.16, 59]`-class bracket is warranted.)
-**This is excluded by the published dimension-six limits by three to nine orders of magnitude**,
-sector by sector: photon `−10⁻⁷ ≲ ξ⁽⁴⁾ ≲ 10⁻⁸`, electron `−10⁻⁷ ≲ η⁽⁴⁾ ≲ 10⁻⁶` (Liberati 2013,
-eq. 77), proton `−10⁻³ ≲ η⁽⁴⁾_p ≲ 10⁻⁶` (Liberati 2013, eq. 78, 99% CL, pure-proton composition),
+**This is excluded — at full conditioning split: unconditionally by about one order (Auger 2022's model-independent hadronic bound, `η⁽⁴⁾_p < 0.149`, superluminal branch, the one analysis of that kind), and by six to seven orders only under pure-proton composition, which Auger's own data disfavours.** The conditional corners, each with its condition: photon `ξ⁽⁴⁾ ≲ 10⁻⁸` (a projected bound — "not real constraints" in its authors' words — contingent on a UHE-photon detection that has not occurred; plus pure-proton GZK secondaries), electron `−10⁻⁷ ≲ η⁽⁴⁾ ≲ 10⁻⁶` (the same pure-proton-conditioned rectangle; AT LEAST ONE side of it is the projected γ-decay line, and which sides is unresolved — Liberati 2013, eq. 77, v1 numbering = eq. 75 in v3), proton `−10⁻³ ≲ η⁽⁴⁾_p ≲ 10⁻⁶` (Liberati 2013, eq. 78, v1 numbering = eq. 76 in v3, 99% CL, pure-proton composition; the `−10⁻³` corner is a subluminal grid edge),
 and equivalently `δ^π_p < 4.5 × 10⁻²³` from the Auger spectrum above the GZK energy (Stecker 2009,
 eq. 18).
 
@@ -3204,7 +3200,7 @@ for the proton and does not apply to the photon at all, since §B.5.4 makes the 
 strain mode with no internal structure. (This is one of the places where the ANW *fitted* `f_π`
 of the Opening's input list feeds a *physical* estimate rather than an internal Skyrme relation.
 Substituting the physical decay constant in ANW's own normalization, `F_π ≈ 186 MeV`, moves the
-estimate by about a factor of two — immaterial against an exposure of three to nine orders, but
+estimate by about a factor of two — immaterial against the exposure's conditional span, but
 the substitution is the honest one to make here, and the estimate should not be read as though
 `129 MeV` were a measured input.) **This is recorded as an open exposure (§E.3.5(4), §E.3.3
 VG-6), not as a passed test.** Coefficients are defined in the substrate rest frame, which the
@@ -3256,7 +3252,7 @@ though the dimension-eight *inference* they carry rides §B.1.5's five premises 
 | dim-4 relative-boost LV between species | — | 0 (R-016, structural) | closed (tree-level, structural) / open (radiative, I-22) |
 | dim-4 rotational anisotropy | — | 0 on the point-group-symmetric bond set; the §D.4.3 spiral vacuum breaks the point group (premise P-gs), leaving a species-universal `O(q²)` splitting absorbable by the I-22 rescaling class | closed-conditional (P-gs ∧ I-22) |
 | dim-6 **anisotropy** | `(E/Λ)⁴` | `2.0 × 10⁻³¹` (loose corner `Λ_L = 0.39 M_Pl`) … `1.6 × 10⁻³²` (tight corner `Λ_L = 0.73 M_Pl`); pushed to dim-8 by D4 fourth-moment isotropy | structurally out of range for the polarization-averaged dispersion **given §B.1.5's five premises, P-op included** (at the driven subgroup the spatial quartic is *permitted*; it is empty because the coupling is constant on the full 24-bond orbit — full-orbit isotropy, with the `±4` split as the advance-axis sensitivity decomposition, R-185); a nonzero dressed Γ survivor (§D.5.7 assembly record, #1-gap-routed) would open a dim-6 polarization-splitting anisotropy facing SME-type sidereal bounds — coupled to the second-D exposure (family-tree V3-2a) |
-| dim-6 **isotropic** `c · p⁴/Λ²` (≡ `η⁽⁴⁾ p⁴/M²_Pl`) | `c (E/Λ)²` | `c` **uncomputed**; `c = 1` ⇒ `η⁽⁴⁾ ∈ [1.9, 6.7]`, excluded by 3–9 orders | **open exposure** |
+| dim-6 **isotropic** `c · p⁴/Λ²` (≡ `η⁽⁴⁾ p⁴/M²_Pl`) | `c (E/Λ)²` | `c` **uncomputed**; `c = 1` ⇒ `η⁽⁴⁾ ∈ [1.9, 6.7]`, excluded per the E21 split (~1 order unconditional / 6–7 conditional; §B.6.3) | **open exposure** |
 
 ### B.6.4 Sign positive — substrate stability ≡ spin-2 spectral positivity
 
@@ -7132,7 +7128,7 @@ The framework's open numerical values cluster on a small number of deep objects:
   above is a magnitude the gap fails to *deliver*; this one the gap must deliver *beneath an
   existing number*. At the substrate's natural coefficient — `c = 1`, a naive value the framework
   does not claim and cannot presently compute — it would read `η⁽⁴⁾ ∈ [1.9, 6.7]` (ruled `Λ_L`
-  band, §B.6.2), excluded by three to nine orders. It is therefore a **ceiling, not a target**: it can refute a candidate
+  band, §B.6.2), excluded unconditionally by about one order of magnitude (a single model-independent cosmic-ray analysis, superluminal branch), and by six to seven orders only under a mass-composition assumption the same observatory's data disfavours. It is therefore a **ceiling, not a target**: it can refute a candidate
   kernel outright, but supplies no equation and so adds nothing to the over-determination count
   below.
 
@@ -7394,7 +7390,7 @@ Each records the operational shape of an open commitment.
 | VG-3 | `1/T_2` substrate-decoherence rate | `Im χ` / WP-IX4 | A measured `1/T_2` above the symmetry-protected boundary would falsify the symmetry-protection result | §D.5.5 |
 | VG-4 | Dark-matter signatures | (Mostly) outside this paper's derivational scope; sterile-RH 3-prediction is structural | The 3 sterile RH neutrinos are structural; relic (sterile share) ~1.1% Ω_DM — 94× shortfall (active+sterile total ~2.1%/47×); remaining ~98% out of scope — the inter-front programme's target, not a standing scope fence. Laboratory detection of heavy sterile RH at Dodelson–Widrow `keV` window would falsify the `m_sterile = m_active ≲ 0.12 eV` Dirac-character prediction | §E.1.3 |
 | VG-5 | Gravitational-wave dispersion at high `E` | dim-6 dispersion correction once GW propagation scale identified | Concrete prediction once the induced-EH propagator's effective `Λ` for the GW sector is computed (Paper-2). The which-`Λ` split deliberately does **not** assign this sector — the graviton is an induced composite, so its effective scale is a property of the generating loop; §B.6.4's margin uses `Λ_L` illustratively only. **Not independent of VG-6:** per §B.6.4 the graviton's preferred-frame remnant is the same dimension-six coefficient in the tensor sector — one gated number, two sectors | §B.6.3, VG-6 |
-| VG-6 | Dimension-six isotropic LV coefficient `η⁽⁴⁾` | substrate strain-mode dispersion (#1 gap; `Cl41Wave().wave_speed_c()` raises) | Published n = 4 limits: photon `\|ξ⁽⁴⁾\| ≲ 10⁻⁸`, electron `≲ 10⁻⁶`, proton `−10⁻³ … +10⁻⁶`. **At the substrate's natural coefficient `c = 1` this reads `η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7]` (ruled `Λ_L = 1/a` band, §B.6.2) — excluded by 3–9 orders.** Survival requires either a substrate suppression to `\|η⁽⁴⁾\| ≲ 10⁻⁶` (the defect form factor supplies only `(f_π/m)² ~ 10⁻²` — quoted at the ANW fitted `f_π`, factor-of-two immaterial here, §B.6.3 — and none for the photon), or `Λ_LV ≳ 10³ M_Pl` for the matter rows (`≳ 10⁴ M_Pl` for the photon row, which has no form factor) decoupled from the Sakharov cutoff, or a substrate symmetry forcing the isotropic quartic dispersion coefficient to vanish. Riding the OPEN import I-3 for the `Λ_L` band and the inside-frame data import I-19 (whose premise (e) hedges the outside↔inside transfer). Sibling of VG-5: same coefficient, tensor sector | §B.6.3, §D.5 |
+| VG-6 | Dimension-six isotropic LV coefficient `η⁽⁴⁾` | substrate strain-mode dispersion (#1 gap; `Cl41Wave().wave_speed_c()` raises) | Published n = 4 limits: photon `\|ξ⁽⁴⁾\| ≲ 10⁻⁸`, electron `≲ 10⁻⁶`, proton `−10⁻³ … +10⁻⁶`. **At the substrate's natural coefficient `c = 1` this reads `η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7]` (ruled `Λ_L = 1/a` band, §B.6.2) — excluded unconditionally by ~1.1–1.7 orders (Auger 2022 model-independent, `η⁽⁴⁾_p < 0.149`, superluminal) and by 6.3–6.8 orders only under pure-proton composition; the photon `10⁻⁸` corner is a projected bound whose triggering detection has not occurred.** Survival requires either a substrate suppression to `\|η⁽⁴⁾\| ≲ 10⁻⁶` (the defect form factor supplies only `(f_π/m)² ~ 10⁻²` — quoted at the ANW fitted `f_π`, factor-of-two immaterial here, §B.6.3 — and none for the photon), or `Λ_LV ≳ 10³ M_Pl` for the matter rows (`≳ 10⁴ M_Pl` for the photon row, which has no form factor) decoupled from the Sakharov cutoff, or a substrate symmetry forcing the isotropic quartic dispersion coefficient to vanish. Riding the OPEN import I-3 for the `Λ_L` band and the inside-frame data import I-19 (whose premise (e) hedges the outside↔inside transfer). Sibling of VG-5: same coefficient, tensor sector | §B.6.3, §D.5 |
 
 ### E.3.4 Structural-coherence falsifiers
 
@@ -7451,9 +7447,8 @@ point-group-symmetric state* (P-gs — the spiral's space-fixed/sidereal residua
 question) *and at the full point group* (P-op — under the driven subgroup an anisotropic spatial
 quartic is permitted, and is absent by the bond set's computed zero spatial fourth moment rather
 than by symmetry; §B.1.5). What is not closed is the rotationally invariant dimension-six term, whose coefficient
-the framework cannot yet compute and whose *naive* value at `c = 1` is excluded by three to nine orders. This
-is the framework's sharpest empirical exposure that is not merely a pending detection: **the number
-is already measured, and the framework owes a coefficient that fits under it.** If the substrate
+the framework cannot yet compute and whose *naive* value at `c = 1` is excluded unconditionally by about one order of magnitude (a single model-independent cosmic-ray analysis, superluminal branch), and by six to seven orders only under a mass-composition assumption the same observatory's data disfavours. This
+is a measured exposure, not merely a pending detection: **a number is already measured, and the framework owes a coefficient that fits under it — under the unconditional bound today, and under the conditional corner if composition resolves against the family.** If the substrate
 dynamics deliver `η⁽⁴⁾ ~ O(1)`, the current formulation is dead — not evolved. And "the current
 formulation" is exact rather than a hedge: what dies is **this candidate instance**, killed at
 three pinned choices in series — a regular arrangement, its back-fit size, and one induced-gravity

@@ -45,7 +45,7 @@ a fourth output.
 
 **The exposures, stated by us and first.** Both belong to the first candidate, not to the family.
 The isotropic dimension-six Lorentz-violation coefficient's natural value at that candidate's own
-lattice scale is excluded by existing cosmic-ray and gamma-ray limits by three to nine orders of
+lattice scale — the value an order-one coefficient would give — is excluded unconditionally by about one order of magnitude (a single model-independent cosmic-ray analysis, superluminal branch), and by six to seven orders only under a mass-composition assumption the same observatory's data disfavours — a split this paper states wherever the number appears, because the stronger figure's conditions are its content; direct gamma-ray limits contribute nothing at this operator
 magnitude. The electroweak crossing scale is not derived at all, and the candidate's one computable
 reading of it lands a third below the measured `sin²θ_W(M_Z)`, with the four standard escape routes
 computed and closed — descent and closures alike inside an imported elementary-field
@@ -408,7 +408,14 @@ anchor exactly as the condition paragraph records, and `Q_n = 0` is input, not o
 native closure that anchor is **no longer consumed** — the normalization is derived rather than
 entered — and only then does **the neutron's charge become a prediction: exactly zero**, where the
 incumbent's surviving direction is closed by nothing but the measurement itself, a smallness its
-own literature calls a naturalness puzzle. A nonzero neutron
+own literature calls a naturalness puzzle. One distinction carries this whole claim and is stated
+so it can be checked: the closure is **structural, not read from experiment**. The sterile state's
+placement is derived — exact `B − L` forces the Dirac partner into the substrate's wave-decoupled
+ideal, whose decoupling is a property of the algebra, not an observation — so the substrate has no
+slot for a hypercharged singlet to occupy. Had the closure instead *read* the sterility off
+experiment, the incumbent would close its own flat direction by the same reading and the parity
+would return, exactly as it does for hydrogen. (The weak sector's right-handed-singlet *datum* is
+a separate consumption, made in §2.4, and this closure does not ride it.) A nonzero neutron
 charge at any level would therefore split the two frameworks; its bound today is at the `10⁻²¹`
 level, and this family's conditional prediction sits at exactly zero.
 
@@ -1123,7 +1130,7 @@ premise §2.5 names last is not a fence on the theorem but its operative case �
 drive leaves intact an anisotropic spatial quartic is *permitted*, and what excludes it there is a
 full-orbit property of the coupling rather than the driven symmetry, which is interaction content
 and not a group-theoretic consequence. §2.5 names all five premises. **Neither reaches the isotropic
-dimension-six residual, whose natural coefficient is excluded by existing limits by three to nine
+dimension-six residual, whose natural order-one coefficient is excluded unconditionally by about one order of magnitude (a single model-independent cosmic-ray analysis, superluminal branch), and by six to seven orders only under a mass-composition assumption the same observatory's data disfavours — a fact carried at full split, not as a range spanning the two
 orders.** The programme asserts no value there and cannot
 presently compute one, so what the data has fixed is a **ceiling its unbuilt dynamics must deliver
 beneath** — the harder position, since the rivals have nothing here a measurement could address, and
@@ -1668,7 +1675,7 @@ candidate's.
 **The dimension-six Lorentz-violation ceiling.** The rotationally invariant dimension-six coefficient
 escapes both protections of §2.5. Its coefficient is gated on the unbuilt dynamics, so the programme
 asserts no value for it; what existing cosmic-ray and gamma-ray limits exclude is its **natural**
-value at this candidate's own lattice scale, by three to nine orders of magnitude, and those limits
+value at this candidate's own lattice scale — unconditionally by about one order (one model-independent analysis, superluminal branch), and by six to seven orders only under the pure-proton composition assumption that observatory's own data disfavours; the once-quoted nine-order corner rested on a projected bound whose triggering observation has not occurred — and those limits
 bind every future completion — natural, not naive. A sharper statement of what "natural" means here
 is now computed, and it cuts both ways. For the **conservative scalar** nearest-neighbour part of
 the symbol the natural value is **zero**, not order one (scalar is load-bearing: the matrix-valued
@@ -1677,9 +1684,15 @@ orbit, *both* quartic coefficients — the isotropic and the anisotropic togethe
 identically, the emergent dispersion is exactly isotropic through that order, and the orbit-constant
 point is the unique root of either coefficient, one condition carrying both loads. What genuinely
 carries this exposure is therefore the orbit-*splitting* channel — the instance's chiral-bond
-support sits on a sub-orbit, and at that extreme the coefficients are of order `10⁻²`, still two
-to seven orders too large — together with the **driven-dissipative sector**, which no conservative
-computation reaches. Whether the dressed couplings sit at the orbit-constant point is a finite,
+support sits on a sub-orbit, and at that extreme the coefficients are of order `10⁻²` in the
+substrate's own normalization — converted to the bound's variable they *straddle* the
+unconditional limit across the lattice-scale band, and sit about five orders above the
+composition-conditional corner — together with the **driven-dissipative sector**, which no conservative
+computation reaches; its leading lattice face is now named: the drive's own one-way character
+permits a forward/backward asymmetry on the advance-axis bonds — a non-reciprocal channel, odd in
+the advance frequency, invisible to every even symbol and outside any polynomial-invariant
+argument on the even part — so the driven weight space is three-dimensional, and an even-sector
+answer alone does not settle it. Whether the dressed couplings sit at the orbit-constant point is a finite,
 named computation the programme owes — either outcome beats owing a mechanism in the abstract —
 and the suppression the limits demand remains owed in the dissipative sector regardless. **If the substrate dynamics deliver a coefficient of order one, this
 candidate is dead — not evolved.** And "this candidate" is exact rather than a hedge: what dies is

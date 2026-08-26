@@ -1792,6 +1792,8 @@ in the ledger/worklist as cited. Recorded here so the adjudication is not mistak
   exactly as it does the SD copy; what the body-ASD triple carries is an **OPEN** family-tree node).
 
 
+  **★ E21 RE-CUT (2026-08-26, round-5; `external_review_r5_2026-08-25/BOUNDS_DOSSIER_V-C_2026-08-26.md`; the adverse-claims sweep's founding case):** the EXCLUSION SIZE above is superseded — unconditionally ~1.1–1.7 orders (Auger 2022 model-independent hadronic, `η⁽⁴⁾_p < 0.149`, superluminal branch, one analysis); 6.3–6.8 orders ONLY under pure-proton composition (which conditions the photon and electron corners too — I-19 premise (d) widened); the photon `10⁻⁸` corner was a PROJECTED bound ("not real constraints" per its own authors; trigger unmet). The 3–9 figure is retired at the live sites (engine, papers, canon, ledgers, registry — swept and contra-reviewed 2026-08-26; the regenerated negatives INDEX carries this note); this entry's earlier spans stand as history. The negative itself is UNCHANGED — the exposure exists, a measured number binds, and the framework still owes a coefficient that fits under it.
+
 ## N64 — generation masses as mode-locking (Arnold-tongue) frequency ratios → REFUTED at first contact, exactly and kernel-free (2026-08-23, the tongues arc)
 
 - TRIED: the originator's gear-locking seed (generations = the three widest locking tongues of

@@ -4736,6 +4736,103 @@ def dft_K_from_r(r: float) -> float:
     (the same sqrt(2) as the §19.2 projection ratio — one geometric fact, two manifestations)."""
     return (1.0 + 2.0 * r * r) / 3.0
 
+def koide_branch_restriction():
+    """[DERIVED-A of the parametrization — R-187, banked 2026-08-26. PROPOSED BY THE
+    ROUND-5 EXTERNAL REVIEWER (warm return 05) and verified numerically the hour it
+    arrived; this primitive is the exact form.]
+
+    THE IDENTITY K = 2/3 IS BRANCH-RESTRICTED. In the Koide parametrization
+    sqrt(m_k) = M*(1 + sqrt(2)*cos(theta + 2*pi*k/3)), the identity
+    K = sum(m)/(sum sqrt(m))^2 = 2/3 holds identically in theta ONLY where all three
+    factors are positive — the physical square root is nonnegative, so off that domain
+    sum(sqrt(m)) picks up absolute values and K falls below 2/3. Exact statements,
+    each asserted below:
+      (1) THE BRANCH CONDITION: min_k cos(theta + 2*pi*k/3) > -1/sqrt(2). The allowed
+          set is THREE arcs of width pi/6 (centred on theta = 0 mod 2*pi/3), total
+          measure pi/2 — EXACTLY ONE QUARTER of the phase circle.
+      (2) ON-BRANCH: K = 2/3 identically (sum of the three cosines is zero and the
+          sum of their squares is 3/2 — both exact).
+      (3) OFF-BRANCH: K ranges down to its global minimum at the worst point
+          theta = pi, where the factors are |1 - sqrt(2)| and (1 + sqrt(2)/2) twice —
+          K_min = 6 / (|1-sqrt(2)| + 2 + sqrt(2))^2 = 0.40937 (closed form, matched
+          against a dense global scan below). The identity is a property of the
+          BRANCH, not of the parametrization.
+      (4) THE PHYSICAL FIT SITS INSIDE — AND NEAR THE EDGE, a NOTED NON-COINCIDENCE
+          (canon move 5: no meaning assigned): at the endorsed arc-ratio phase
+          theta = 2/9 rad the minimum factor is +0.0403 (inside), while the nearest
+          branch edge is at pi/12 = 0.2618 rad — a margin of pi/12 - 2/9 = 0.0396 rad,
+          about 15% of the arc's half-width. Recorded, not interpreted; the
+          numerology guard applies at full strength.
+
+    WHY IT MATTERS (the proposing reviewer's framing, adopted as CANDIDATE): if the
+    generation phase is read as a rational ARC RATIO (the endorsed delta_L = 2/9
+    reading), the arc HAS A BOUNDARY at -1/sqrt(2) which the reading should name —
+    and the branch condition is candidate content for the geometric characterization
+    the Koide row cites. Nothing here changes K's tier: c = sqrt(2) stays the
+    endorsed INPUT; this primitive states the identity's DOMAIN.
+
+    PROVENANCE: round-5 external reviewer, warm return 05
+    (knowledge/audit/external_review_r5_2026-08-25/review_r5_05_opus_core_warm.md);
+    verified numerically same-hour; banked as the exact form. The second
+    externally-proposed banked result (R-186 the first)."""
+    import numpy as np
+    s2 = math.sqrt(2.0)
+    # (2) on-branch identity, exact at rational test phases inside the branch
+    for th in (0.0, 0.1, 2.0 / 9.0, -0.2, 2.0 * math.pi / 3.0 + 0.05):
+        c = [math.cos(th + 2.0 * math.pi * k / 3.0) for k in range(3)]
+        f = [1.0 + s2 * ci for ci in c]
+        assert min(f) > 0.0, ("test phase must sit on-branch", th)
+        K = sum(fi * fi for fi in f) / sum(f) ** 2
+        assert abs(K - 2.0 / 3.0) < 1e-14, ("on-branch K must be 2/3", th, K)
+    # (1) the branch condition and its measure = exactly 1/4 of the circle
+    #     edges where min_k cos = -1/sqrt(2): analytic arcs (0 mod 2pi/3) +- pi/12
+    th = np.linspace(0.0, 2.0 * np.pi, 1440001)
+    cmin = np.min([np.cos(th + 2.0 * np.pi * k / 3.0) for k in range(3)], axis=0)
+    onb = cmin > -1.0 / s2
+    measure = onb.mean()
+    assert abs(measure - 0.25) < 1e-4, measure
+    for centre in (0.0, 2.0 * np.pi / 3.0, 4.0 * np.pi / 3.0):
+        for sign in (+1.0, -1.0):
+            edge = centre + sign * math.pi / 12.0
+            ce = min(math.cos(edge + 2.0 * math.pi * k / 3.0) for k in range(3))
+            assert abs(ce - (-1.0 / s2)) < 1e-12, ("edges sit at pi/12 around the centres", edge)
+    # (3) off-branch: K at the worst point theta = pi, exact closed form
+    f_worst = [abs(1.0 - s2), 1.0 + s2 / 2.0, 1.0 + s2 / 2.0]
+    K_min = sum(x * x for x in f_worst) / sum(f_worst) ** 2
+    Kg = np.array([  # dense global scan for the minimum
+        (lambda fv: (fv ** 2).sum() / np.abs(fv).sum() ** 2)(
+            1.0 + s2 * np.cos(t + 2.0 * np.pi * np.arange(3) / 3.0)) for t in th[::40]])
+    assert abs(Kg.min() - K_min) < 1e-6 and 0.4093 < K_min < 0.4094
+    # (4) the physical phase: inside, with the margin computed
+    th0 = 2.0 / 9.0
+    fmin0 = min(1.0 + s2 * math.cos(th0 + 2.0 * math.pi * k / 3.0) for k in range(3))
+    margin = math.pi / 12.0 - th0
+    assert fmin0 > 0.0 and abs(fmin0 - 0.040350) < 1e-5
+    assert abs(margin - 0.0395772) < 1e-6
+    return {
+        "branch_condition": "min_k cos(theta + 2*pi*k/3) > -1/sqrt(2)",
+        "branch_structure": "three arcs of width pi/6 centred on theta = 0 mod 2*pi/3; "
+                            "edges at the centres +- pi/12; total measure pi/2 = 1/4 of the circle",
+        "on_branch_K": 2.0 / 3.0,
+        "off_branch_K_min": K_min,
+        "physical_phase": {"theta": th0, "min_factor": fmin0,
+                           "nearest_edge": "pi/12 = 0.26180 rad",
+                           "margin_rad": margin,
+                           "status": "INSIDE the branch — and NEAR the edge: a NOTED "
+                                     "NON-COINCIDENCE (canon move 5), recorded without "
+                                     "assigned meaning; the numerology guard applies"},
+        "candidate_reading": ("CANDIDATE (the proposing reviewer's framing): the arc-ratio "
+                              "reading of the generation phase should NAME the branch boundary "
+                              "at -1/sqrt(2); the branch condition is candidate content for the "
+                              "Koide row's geometric characterization. Not adopted as a result"),
+        "tier": ("DERIVED-A of the parametrization (exact identity domain; the branch measure, "
+                 "edges and K_min are closed-form) — c = sqrt(2) stays the endorsed INPUT; "
+                 "nothing about K's tier or the fit's status moves"),
+        "provenance": ("round-5 external reviewer, warm return 05; verified same-hour; the "
+                       "second externally-proposed banked result"),
+    }
+
+
 def hierarchy_type(delta_L_deg: float) -> str:
     """[DERIVED] §19.4: critical angles. degeneracy at delta_L ≡ 0 (mod 60deg);
     mass-vanishing at delta_L ≡ 15deg (mod 120deg). The observed lepton pattern
