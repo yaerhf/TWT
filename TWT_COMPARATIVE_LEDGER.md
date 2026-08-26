@@ -1823,7 +1823,7 @@ nothing; they exist so that a reader meets both sides' structural inventories or
 | **↳ Of the SM's 19, pinned at their measured values** | — (they are its inputs) | 0 | **0 unconditional; 1 conditional** (the Gatto–Sartori–Tonin reading), **+2 only if the `δ_L` forward-derivation route — which §E.2.3 itself calls *currently refuted* — is repaired** *(corrected under contra-review C5: "up to 3 conditional" compressed favourably; **third occurrence of this role's conditionality-stripping class**)*. **TWT does not reproduce the nineteen from four**; the four buy a different and smaller set of outputs. *This row is not separable from the one above it* |
 | **Exact values read as one bit of information** | — | — | `c = √2 ⇔ K = 2/3` (one bit, not two); the right-handed-singlet datum |
 | **Counted structural premises** | not counted, by convention | — | `m = E₀` |
-| **Structural commitments, same basis** *(SURVEYED; see the individuation caveat)* | **~10 fine / ~6 coarse**: the gauge group; chirality assignment; the 15-Weyl rep content per generation; the hypercharge assignments; three generations; colour in the fundamental; one Higgs doublet; the sign of `μ²`; the dimension-≤4 truncation; 4D field theory on a fixed background. ***Three of these are components OF the rep content*** *(contra-review C4): the fine reading is the one that flatters the challenger, since a smaller incumbent column makes TWT's excess look larger — so both are stated* | **8**: seven axioms and one refusal | **+8 endorsements +12 pinned picks** (V3-1…V3-11, V3-2a) — **the largest structural inventory in the table, and it is recorded as such** |
+| **Structural commitments, same basis** *(SURVEYED; see the individuation caveat)* | **~10 fine / ~6 coarse**: the gauge group; chirality assignment; the 15-Weyl rep content per generation; the hypercharge assignments; three generations; colour in the fundamental; one Higgs doublet; the sign of `μ²`; the dimension-≤4 truncation; 4D field theory on a fixed background. ***Three of these are components OF the rep content*** *(contra-review C4): the fine reading is the one that flatters the challenger, since a smaller incumbent column makes TWT's excess look larger — so both are stated* | **8**: seven axioms and one refusal | **+8 endorsements +14 pinned picks** (V3-1…V3-11, plus the three recorded sub-choices V3-1a the drive-axis alignment, V3-2a the chiral-bond support, and V3-10a the cell-scale target space — the last two added as the assumptions they name were found unrecorded, which is the individuation caveat working rather than failing) — **the largest structural inventory in the table, and it is recorded as such** |
 | **Structural facts obtained rather than chosen** *(★ DECOMPOSED at §III.5a under contra-review C1/C2 — the first draft stamped this row AUDITED without decomposing it)* | **anomaly cancellation** constrains the hypercharges given the chosen rep content — **and, at equal depth, the accidental-symmetry earnings of renormalizability**: `B`, `L`, `B − L` hence proton stability at dim ≤ 4; no tree-level FCNC (GIM); custodial `ρ ≈ 1` given one doublet; asymptotic freedom given the gauge choice. ***Several of these sit on TWT's side of this row while being denied to the incumbent's cell — `DOUBLE-BILLED` pointed in our own favour, accepted in full*** (contra-review C3; ARGUED, textbook-level) | — | **Ten claimed (§E.2.3) → EIGHT distinct → TWO that pass the separator cleanly** (the charge arc; the weak arc, given A-P2 + the RH-singlet datum). Four pass with a stated weakening, two are partial or undecomposed, one collapses into another, and **one FAILS and is removed** — the Tsirelson bound, which the engine itself tiers **`FRAMING`** because it rides the tensor product (N53) and the singlet. Full grading at **§III.5a** |
 | **Earned dimensionful scales** | **1 of 5 scale-classes** (`Λ_QCD`, by dimensional transmutation) | **0** | **0** — `Λ` is a `G_N` back-fit, `f_π` a fit, the ratio between them neither derived nor protected |
 | **Load-bearing items on the books but outside the count** | the 19 exclude the structural column and the neutrino sector | — | **`A-2`** (the driven-dynamics placeholder, **HIGH**, finding 6) and the **grain→cell transfer** (**HIGH**, finding 13); plus the six uncounted endorsements of §III.4(d) |
@@ -2002,6 +2002,32 @@ output side.** Enacted in Core §3.1 and §3.2 in the round-4 §8a apply batch. 
 block and the separator returns to two clauses with "two pass cleanly", which is the state E-1
 found in unrelated contradiction with §4.1's own "no channel in which agreement would count as
 evidence".
+
+**★ THE SAME CAMPAIGN AS A TEST OF A REGISTERED PREDICTION — the third clause of the cross-wire,
+added 2026-08-26 under the restructured Core paper's forward-reference intake, because Core §3's
+input-side sentence carries THREE clauses and only two of them were checkable in this ledger.** The
+founding campaign was not only an instrument run; it was a **preregistered test.** The author's
+expectation was frozen before the audit began — *"The author expects TWT to come out ahead on debt
+structure"* (`knowledge/audit/external_review_2026-08-13/LEDGER_PREREGISTRATION.md`, dated 2026-08-13
+and not editable after the audit started) — and the campaign report records where it landed,
+verbatim: *"Was the instrument capable of refuting the expectation? Yes, and it did so on C4 and
+partially on C1"*
+(`knowledge/audit/philosopher_founding_audit_2026-08-16/FOUNDING_AUDIT_REPORT.md` §(iv)).
+**So the registered expectation was REFUTED on one line — C4 — and partially on a second, C1.**
+That is not a separate result: it is this ledger's standing outcome read against its own prediction
+— **`PARTIALLY SUPPORTED, NOT CONFIRMED`**, best-placed on 2 of 5 lines, mixed on 2, **behind
+empirically on C4**, with **C2** uninvoiced — and §III.1 and §III.7 both record that the sentence has
+not moved since, in either direction.
+
+*Label:* **SURVEYED on this pass** — restated, **not re-decomposed here**; the five-row landing table
+it restates is **AUDITED** (campaign report §(iv), over the AUDITED lines C1–C5), and **no line's
+AUDITED / SURVEYED label is changed by this amendment.**
+
+*Quoting fence, identical to the two clauses above.* What this records is that the instrument could
+fire against the party who commissioned it and did, and that **TWT is behind on C4.** **It is
+evidence for the programme on no line**, it does not move the outcome sentence, and it is not
+quoted apart from the outcome sentence it restates. **Revert:** strike this block; the two clauses
+above stand unchanged and nothing else moves.
 
 - **Pass clauses (i) and (ii) (2):** the charge arc (row 2) · the weak arc (row 7).
 - **Pass with a stated weakening (4):** generic-given-4D (3) · half-chosen (8) · conditional on a

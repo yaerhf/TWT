@@ -4757,8 +4757,13 @@ def koide_branch_restriction():
           K_min = 6 / (|1-sqrt(2)| + 2 + sqrt(2))^2 = 0.40937 (closed form, matched
           against a dense global scan below). The identity is a property of the
           BRANCH, not of the parametrization.
-      (4) THE PHYSICAL FIT SITS INSIDE — AND NEAR THE EDGE, a NOTED NON-COINCIDENCE
-          (canon move 5: no meaning assigned): at the endorsed arc-ratio phase
+      (4) THE PHYSICAL FIT SITS INSIDE, AND ITS NEARNESS TO THE EDGE IS NOT SUGGESTIVE —
+          the statistic refutes the suggestive reading (external follow-up 2026-08-26,
+          adopted): the normalized distance-to-nearest-edge is 0.151, and under a uniform
+          prior on the arc that quantity is uniform on [0,1], so 0.151 is unremarkable and
+          sits nearer the edge than the middle — it argues mildly AGAINST specialness.
+          Landing in the arcs at all is 1-in-4 and was found post hoc. Recorded as a plain
+          fact about where the physical phase sits: at the endorsed arc-ratio phase
           theta = 2/9 rad the minimum factor is +0.0403 (inside), while the nearest
           branch edge is at pi/12 = 0.2618 rad — a margin of pi/12 - 2/9 = 0.0396 rad,
           about 15% of the arc's half-width. Recorded, not interpreted; the
@@ -4771,10 +4776,15 @@ def koide_branch_restriction():
     the Koide row cites. Nothing here changes K's tier: c = sqrt(2) stays the
     endorsed INPUT; this primitive states the identity's DOMAIN.
 
-    PROVENANCE: round-5 external reviewer, warm return 05
-    (knowledge/audit/external_review_r5_2026-08-25/review_r5_05_opus_core_warm.md);
+    PROVENANCE: round-5 external RETURN 05 (Opus class, 2026-08-26;
+    knowledge/audit/external_review_r5_2026-08-25/review_r5_05_opus_core_warm.md);
     verified numerically same-hour; banked as the exact form. The second
-    externally-proposed banked result (R-186 the first)."""
+    externally-proposed banked result (R-186, from RETURN 02, the first).
+    ★ RE-KEYED 2026-08-26: credited to RETURN 05, NOT to a persisting reviewer identity.
+    The round's returns are distinct fresh instances of one class; identity across them
+    is NOT established, and the instance that produced the round's full report reported
+    having no memory of the earlier returns. Two externally-proposed results, two
+    returns -- not one reviewer twice."""
     import numpy as np
     s2 = math.sqrt(2.0)
     # (2) on-branch identity, exact at rational test phases inside the branch
@@ -4818,9 +4828,18 @@ def koide_branch_restriction():
         "physical_phase": {"theta": th0, "min_factor": fmin0,
                            "nearest_edge": "pi/12 = 0.26180 rad",
                            "margin_rad": margin,
-                           "status": "INSIDE the branch — and NEAR the edge: a NOTED "
-                                     "NON-COINCIDENCE (canon move 5), recorded without "
-                                     "assigned meaning; the numerology guard applies"},
+                           "normalized_distance_to_edge": 0.15117,
+                           "status": "INSIDE the branch. NOT a noted non-coincidence — the "
+                                     "SUGGESTIVE reading is REFUTED by its own statistic "
+                                     "(external follow-up, 2026-08-26, adopted): under a uniform "
+                                     "prior on the arc the normalized distance-to-nearest-edge is "
+                                     "uniform on [0,1], and 0.151 is unremarkable — if anything "
+                                     "NEARER the edge than the middle, so it argues mildly "
+                                     "AGAINST specialness. Landing in the arcs at all is 1-in-4 "
+                                     "and was found POST HOC. Recorded as a plain fact about "
+                                     "where the physical phase sits; the numerology guard fired "
+                                     "here in the direction it usually does not watch — against "
+                                     "a favourable-looking coincidence of OUR OWN making"},
         "candidate_reading": ("CANDIDATE (the proposing reviewer's framing): the arc-ratio "
                               "reading of the generation phase should NAME the branch boundary "
                               "at -1/sqrt(2); the branch condition is candidate content for the "
@@ -7115,10 +7134,26 @@ def bpst_charge_Q():
     return sp.simplify(Q)
 
 def bpst_selection_rule(N_gen: int = 3):
-    """[DERIVED] §23.8: index theorem gives, per generation, 3 quark zero modes (one per
+    """[DERIVED-given-I-2 — arithmetic OVER an imported index-theorem input, applied at the
+    EFFECTIVE (inside-frame) level, NOT a substrate derivation. Tier corrected 2026-08-26 to
+    match companion row R-088 and import-registry row I-2, whose own level field already read
+    "Effective (Dirac operator on the derived background)".]
+    §23.8: the index theorem gives, per generation, 3 quark zero modes (one per
     color) + 1 lepton zero mode. The 't Hooft vertex absorbs one each ⇒ ΔB=ΔL=1 per
     generation ⇒ ΔB=ΔL=N_gen=3. Δ(B-L)=0 (exact), Δ(B+L)=6. The ΔB=ΔL equality is
-    again 3×1/3=1 (baryonic = leptonic zero-mode count)."""
+    again 3×1/3=1 (baryonic = leptonic zero-mode count).
+
+    ★ WHAT THIS PRIMITIVE IS NOT (round-5 external finding F1, CONFIRMED 2026-08-26): it is
+    NOT obtained from the substrate's own topology. The zero-mode counts below are HARDCODED
+    inputs, not computed here; BPST is a self-dual configuration OF A GAUGE FIELD and the
+    index theorem counts zero modes of a Dirac operator COUPLED to that gauge field — and the
+    corpus argues elsewhere (the lattice chirality no-go, §2.4) that neither object has a
+    referent on the substrate. Both arguments cannot stand at once. The corpus's position is
+    the registry's: the import applies at the EFFECTIVE SM level, so what this returns is the
+    INCUMBENT'S OWN selection rule quoted and its arithmetic checked — the family says nothing
+    about the non-perturbative sector on its own account until the substrate structures the
+    theorem needs are exhibited (the standing research item; I-2's retirement handle is a
+    substrate-level mode count)."""
     quark_zero_modes = 3            # one per color
     lepton_zero_modes = 1
     dB_per_gen = quark_zero_modes * sp.Rational(1, 3)   # 3×1/3 = 1

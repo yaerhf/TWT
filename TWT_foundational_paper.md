@@ -100,7 +100,7 @@ follow from which premises, and at what status.
 Part B. The programme is **TWT-Core**, a family fixed by seven axioms and one refusal, together
 with a list of candidate members; this paper develops **V3**, the family's **first candidate
 instance** and the first one built down to numbers. Three consequences for a reviewer. (i) The
-picks are visible and reversible: eleven of them (two carrying recorded sub-choices), each recorded with the menu it came from and
+picks are visible and reversible: eleven of them (three carrying recorded sub-choices), each recorded with the menu it came from and
 what un-picks it (§A.6.4) — the D4 arrangement and the `{J, D}` bond truncation among them, so
 two of the Opening's own premises are instance-level rather than axioms. (ii) Both already-measured
 exposures in the table below belong to V3, not to the family: they ride pinned choices, and the
@@ -1138,7 +1138,7 @@ and an endorsement is a preference, not an axiom.
 
 ### A.6.4 Instance V3 — the picks
 
-V3 buys its numbers with eleven pinned choices — thirteen rows below, because two of them turned
+V3 buys its numbers with eleven pinned choices — fourteen rows below, because three of them turned
 out to contain a second choice inside them. Each is a branch point: what the choice was picked
 *from* is recorded, and so is what un-picks it.
 
@@ -1156,6 +1156,7 @@ out to contain a second choice inside them. Each is a branch point: what the cho
 | V3-8 | The vacuum carrier is **costed**, at `(k_c/2)²` | costed / costless / other densities | Rides the pairing re-pick |
 | V3-9 | Kernel branch = the **driven-hysteretic** class (§D.5.3) | the full kernel-class menu — this is the #1 gap itself | Free re-pick: no banked physics falls with it |
 | V3-10 | Hadron machinery = the **ANW/Skyrme semiclassical toolbox** | soliton-quantization toolboxes | The import's own excision row (companion Section 13) |
+| V3-10a | **Cell-scale target space = the same target as the grain state** (named 2026-08-26; the identification the Skyrmion sector rests on) | same target / the Goldstone coset of the grain vacuum / an unrelated emergent target | A surviving target of dimension < 3 has `π₃ = 0` — no Skyrmion and no hadron sector; a three-dimensional one licenses the Skyrme construction from below. Deciding computation docketed (surviving-manifold dimension + gap comparison, LSWT) |
 | V3-11 | Fermionic quantization = the **Finkelstein–Rubinstein** scheme (§B.3.5) | fermionic-quantization schemes for solitons; induced-term routes are the named alternative | The import's own excision row; a substrate-induced Wess–Zumino-class term would force the odd sector from the dynamics and retire the pick altogether |
 
 The full table — each node with the named result that required it, what rides it, and its complete

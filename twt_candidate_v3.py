@@ -14218,8 +14218,10 @@ def d4_scalar_dispersion_quartic_coefficients():
         "tier": ("DERIVED-A OF THE STATED MODEL (exact rational series identities; three "
                  "independent computations agree) + the mandatory model rider above. Consumes "
                  "the D4 siting (V3-1) and reads on the V3-2/V3-2a truncation — CANDIDATE half"),
-        "provenance": ("proposed + first computed by the round-5 EXTERNAL reviewer (Opus, warm "
-                       "return 02, 2026-08-25); independently reproduced by sympy series the same "
-                       "hour; this primitive is the third route. Records: "
-                       "knowledge/audit/external_review_r5_2026-08-25/"),
+        "provenance": ("proposed + first computed by the round-5 EXTERNAL return 02 (Opus class, "
+                       "2026-08-25); independently reproduced by sympy series the same hour; this "
+                       "primitive is the third route. RE-KEYED 2026-08-26: credited to RETURN 02, "
+                       "not to a persisting reviewer identity -- the round's returns are distinct "
+                       "fresh instances of one class and identity across them is NOT established. "
+                       "Records: knowledge/audit/external_review_r5_2026-08-25/"),
     }

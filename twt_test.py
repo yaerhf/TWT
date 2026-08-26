@@ -985,15 +985,19 @@ def check_twt_spectra():
         and 0.4093 < kb["off_branch_K_min"] < 0.4094
         and "-1/sqrt(2)" in kb["branch_condition"]
         and "1/4 of the circle" in kb["branch_structure"])
-    _ck("★ THE PHYSICAL PHASE SITS INSIDE THE BRANCH — AND NEAR ITS EDGE, carried as a NOTED "
-        f"NON-COINCIDENCE (canon move 5, no meaning assigned): at θ = 2/9 the minimum factor is "
+    _ck("★ THE PHYSICAL PHASE SITS INSIDE THE BRANCH, AND ITS NEARNESS TO THE EDGE IS NOT "
+        "SUGGESTIVE — the statistic refutes the suggestive reading (external follow-up, adopted): "
+        "normalized distance-to-edge 0.151 is unremarkable under a uniform prior (uniform on [0,1]) "
+        "and sits nearer the edge than the middle, so it argues mildly AGAINST specialness; landing "
+        f"in the arcs at all is 1-in-4 and was found post hoc. At θ = 2/9 the minimum factor is "
         f"+{kb['physical_phase']['min_factor']:.4f} and the margin to the π/12 edge is "
         f"{kb['physical_phase']['margin_rad']:.4f} rad (~15% of the arc half-width); the reviewer's "
         "framing — the arc-ratio reading should NAME the −1/√2 boundary; the branch condition as "
         "candidate content for the geometric characterization — is carried CANDIDATE, not adopted",
         kb["physical_phase"]["min_factor"] > 0
         and abs(kb["physical_phase"]["margin_rad"] - 0.0395772) < 1e-6
-        and "NOTED" in kb["physical_phase"]["status"]
+        and "REFUTED by its own statistic" in kb["physical_phase"]["status"]
+        and abs(kb["physical_phase"]["normalized_distance_to_edge"] - 0.15117) < 1e-4
         and "numerology guard" in kb["physical_phase"]["status"]
         and "CANDIDATE" in kb["candidate_reading"] and "Not adopted" in kb["candidate_reading"])
 
@@ -3756,14 +3760,19 @@ def check_twt_cosmo():
     _ck("THE MODEL RIDER IS MANDATORY AND TRAVELS IN THE VALUE: scalar NN toy, NOT the banked {J,D} "
         "rotor; matrix-valued kernels outside the theorem (P-sc); non-analytic dissipative kernels "
         "outside entirely (P-an); PROOF OF CONCEPT NOT DISCHARGE — VG-6/N52 unmoved. PROVENANCE "
-        "carried: proposed + first computed by the round-5 EXTERNAL reviewer, reproduced by two "
-        "internal routes the same day — the standing-external-recomputation datum",
+        "carried: proposed + first computed by round-5 EXTERNAL RETURN 02, reproduced by two "
+        "internal routes the same day — the standing-external-recomputation datum. ★ RE-KEYED "
+        "2026-08-26: the credit is to the RETURN, not to a persisting reviewer identity — the "
+        "round's returns are distinct fresh instances of one class and identity across them is "
+        "NOT established (self-reported by the round's report instance, adopted; the mathematics "
+        "was unaffected, the attribution was wrong)",
         "NOT the banked {J, D} rotor" in dq["model_rider"]
         and "PROOF OF CONCEPT, NOT DISCHARGE" in dq["model_rider"]
         and "VG-6/N52 unmoved" in dq["model_rider"]
-        and "EXTERNAL reviewer" in dq["provenance"]
+        and "EXTERNAL return 02" in dq["provenance"]
+        and "not to a persisting reviewer identity" in dq["provenance"]
         and "DERIVED-A OF THE STATED MODEL" in dq["tier"])
-    _ck("★ RETURN-03 RE-SCOPE (same reviewer, verified in-process): the driven weight space is "
+    _ck("★ RETURN-03 RE-SCOPE (round-5 return 03 — credited to the RETURN, identity across returns NOT established; verified in-process): the driven weight space is "
         "3-DIMENSIONAL — the pointwise stabilizer splits the 24 bonds 12+6+6 (it cannot flip the e₄ "
         "sign), so this RECIPROCAL model is complete for the CONSERVATIVE sector only; the third "
         "direction (J_f − J_b, non-reciprocal, odd in k₄ — 2·sin k₄·Σcos k_i on the forward orbit) is "
