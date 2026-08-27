@@ -48,7 +48,8 @@ Fetch files directly from `raw.githubusercontent.com/yaerhf/TWT/main/<path>`, or
 codeload tarball, or clone at a stated commit — these serve the branch as it is. Verify what
 you fetched against `MANIFEST.sha256` at the repository root (fetch that file raw too), and
 state the commit hash your review ran against: a review of a stale snapshot is a review of a
-different document.
+different document. (The manifest's hashes are over the stored blobs — line endings as committed —
+so verify against raw fetches or a checkout without line-ending conversion.)
 
 ```python
 import twt

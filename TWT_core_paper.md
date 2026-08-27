@@ -1291,8 +1291,12 @@ load-bearing: the matrix-valued internal-index sector is outside this computatio
 with the coupling constant on the full 24-bond orbit, *both* quartic coefficients — isotropic and
 anisotropic together — vanish identically, the emergent dispersion is exactly isotropic through that
 order, and the orbit-constant point is the unique root of either coefficient. What genuinely carries this
-exposure is therefore the orbit-*splitting* channel — the instance's chiral-bond support sits on a
-sub-orbit, and at that extreme the coefficients are of order `10⁻²` in the substrate's own normalization;
+exposure is therefore the orbit-*splitting* channel — and there the honest statement is that the
+lattice's geometric protection is **absent, not merely reduced**: the instance's chiral-bond support
+sits on a sub-orbit whose own spatial fourth moment carries no isotropic part at all — it is
+`4(k₁⁴ + k₂⁴ + k₃⁴)`, the same functional shape as the simple-cubic foil the isotropy theorem is
+constructed against — so in that channel the smallness of the net coefficients (order `10⁻²` in the
+substrate's own normalization) rides the coupling normalization, not the geometry;
 converted to the bound's variable they *straddle* the unconditional limit across the lattice-scale band,
 and sit about five orders above the composition-conditional corner — together with the
 **driven-dissipative sector**, which no conservative computation reaches. Its leading lattice face is
