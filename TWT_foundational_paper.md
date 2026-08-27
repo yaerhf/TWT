@@ -117,10 +117,15 @@ their discharge conditions at §E.2.2. Where prose register and tier label disag
 is the claim.
 
 **Development method, stated plainly.** This paper was produced with AI assistance under the
-protocol described in the Methodology section and companion Section 6. That protocol has a known
-failure mode: apparatus that carries the texture of rigour while load-bearing calculations remain
-undone. The tier system, the executable suite, and the import registry exist to counter it,
-imperfectly.
+protocol described in the Methodology section and companion Section 6. The magnitudes it does not
+deliver are gated for a stated reason of knowability rather than left undone: the exact microscopic
+kernel of a driven medium is underdetermined from inside the lock in principle, so what is reachable
+is a compatible effective kernel class with a small counted constant set, and the deliverable is a
+family of surviving candidates rather than one kernel — empirically bounded, because nothing in hand
+excludes the members that would also have worked. The risk the protocol actually carries is an
+instrument that generates findings about itself faster than the physics moves; the counter is the
+published ratio of premises interrogated to premises discharged, and the tier system, the executable
+suite and the import registry exist to keep both checkable rather than assertable.
 
 **Our own strongest objection, stated first.** The framework's natural value for the isotropic
 dimension-six Lorentz-violation coefficient is excluded unconditionally by about one order of magnitude (a single model-independent cosmic-ray analysis, superluminal branch), and by six to seven orders only under a mass-composition assumption the same observatory's data disfavours, and we cannot presently compute the suppression the conditional corner would require. It heads the
@@ -130,7 +135,7 @@ table below, with the second already-measured exposure beside it.
 
 1. `git clone https://github.com/yaerhf/TWT && cd TWT && pip install -r requirements.txt && python twt_test.py`
    *(The research apparatus itself — the rules, roles, gates and telemetry the programme runs
-   on — is published separately at https://github.com/yaerhf/research-ratchet; companion
+   on — is published in the same repository's `apparatus/` directory; companion
    Section 6.)*
    — expect `ALL CHECKS PASSED` (on Windows, set `PYTHONUTF8=1` first). The suite is executable
    and public.
@@ -183,7 +188,7 @@ reaches every candidate.
 | **Already measured** — `sin²θ_W(M_Z) = 0.2312` | the framework's own lattice-scale descent | Its one computable reading lands `0.154–0.158`, a third below the measured value; the four standard escape routes are computed and closed. Descent and closures alike ride the imported elementary-field RGE premise (`I-6`) for a gauge sector this candidate holds emergent / composite at `Λ_L`; were it to fail, the reading returns from refuted to gated (§E.3.5(5), §C.4.5, N55) |
 | Proton decay | topological protection of baryon number (`B ∈ π₃(S³) = ℤ`) — exact in the smooth sector; a grainy member carries a resolution condition (the winding rides the arrangement, deficit ∝ 1/ρ²) | Super-K, Hyper-K, DUNE. The framework's one distinctive forward bet: grand unification expects decay at *some* level, and this framework forbids it in the smooth sector — non-perturbative violation respects `ΔB = ΔL = 3` (§C.1.5, §C.5.6) |
 | Neutrinoless double beta decay | exact `B − L` conservation, and with it the Dirac neutrino character that conservation forces | KamLAND-Zen, LEGEND, nEXO, CUPID (§C.3.12, §C.5.6). What does *not* die with it: anomaly cancellation is a trace identity on the charge assignment, untouched by a broken conservation law (§C.5.4) |
-| A sterile neutrino at any mass far above the active scale | the Dirac-partner mass tie `m_sterile = m_active ≲ 0.12 eV` | KATRIN's kink search, extended into the keV range by the TRISTAN detector upgrade (§E.1.3, §E.3.3 VG-4) |
+| A sterile neutrino at any mass far above the active scale | the Dirac-partner mass tie `m_sterile = m_active` at the sub-tenth-eV cosmological scale (`≲ 0.12 eV` at the Planck + BAO bound, `≲ 0.064 eV` under ΛCDM at the current DESI bound, `≲ 0.16 eV` once the dark-energy equation of state is freed) | KATRIN's kink search, extended into the keV range by the TRISTAN detector upgrade (§E.1.3, §E.3.3 VG-4) |
 | A sector- or epoch-dependence of the observed propagation speed `c` against the lock rate `c_meta` | this candidate's identification of the observed `c` with the average lock rate (the `A-3`-downstream chain) — the axioms state no rate and no uniformity, so on a positive detection it is `c`, the emergent observer-side speed, that carries the non-uniform label, and the axioms stand | Precision multimessenger astronomy. An instance-level exposure: a candidate that pins the `c ↔ c_meta` identification differently re-derives or loses it, and the family's only total kill condition remains the foliation axiom (§E.3.5(3)) |
 
 Rows three and four are independent experiments but a single underlying derivation: in this
@@ -416,7 +421,7 @@ introduces it.
 | **SD** / **ASD** | Self-dual / anti-self-dual bivectors — the two chiral halves of `so(4) = su(2)_+ ⊕ su(2)_−` under the `I_4·` eigenvalue split | §C.4.2, §D.2.4 |
 | `𝒮 = Cl(4,0) · s_0` | Spinor minimal left ideal, real dimension 8 | §A.5.4 |
 | `s_0 = (1 + e_4)/2` | Primitive idempotent of `𝒮` | §A.5.4 |
-| `q_h(τ_5) = exp(m τ_5 û/2)` | Meta-time rotor of frequency `m = ω` (= mass); `û` simple unit element with `û² = −1` | §A.4 |
+| `q_h(τ_5) = exp(m τ_5 û/2)` | Meta-time rotor of frequency `m = ω` (= mass); `û` unit element with `û² = −1`. The simple (single-plane-angle) `û` is the leading ansatz; the general defect rotor carries two plane angles and is a product of two such exponentials | §A.4 |
 | `J`, `D`, `D/J` | Symmetric exchange / Dzyaloshinskii–Moriya couplings on D4 bonds; `D/J ≈ 0.79` calibrated to leptons | §D.3.3 |
 | `f_π ≈ 129 MeV` | Cell-scale mass; substrate condensate identification. The **ANW fitted** coupling (~30 % below the physical `F_π ≈ 186 MeV` in ANW's normalization), not the measured pion decay constant | §D.4.1, Opening inputs |
 | `Λ` | Substrate cutoff; Planckian within O(1) | §D.3.5 |
@@ -629,7 +634,10 @@ rotor `q_h(τ_5) = exp(m τ_5 û / 2)` of the ansatz. The wave-drive of A-2 oper
 frequency; the driven attractor whose invariant label is the winding integer is the one whose
 drive frequency equals the configuration's mass.
 
-**The two faces are not independent.** The spatial winding cycles in space at fixed meta-time;
+**The two faces are dynamically locked.** They remain separately parametrizable as algebraic
+observables — whether the lock is one-to-one is a question about the substrate's dynamics, not
+about the algebra (§A.4, §D.5) — but in matter neither varies freely of the other.
+The spatial winding cycles in space at fixed meta-time;
 the meta-time rotor cycles in meta-time at fixed spatial point; *they are one circular object read
 along orthogonal axes*, related by the `e_4` / `I_4` Hodge duality that interchanges the L-orbit
 spatial bivectors with the Q-orbit `e_4`-bearing bivectors (§A.5.3, §D.2). The spatial winding is
@@ -695,8 +703,31 @@ at §B.1 and §B.6.6.
 
 The half-angle convention `q_h = exp(m τ_5 û / 2)` is forced by spinor inheritance: under
 `τ_5 → τ_5 + 4π/m` the rotor returns to itself, with sign flip at `τ_5 + 2π/m` — the `SU(2)`
-double cover. Here `û` is a simple unit element with `û² = −1` — the meta-time rotor axis in the
-`ℍ` subalgebra of the native `Cl(4,0) + ℍ` formalism (§A.5.6). For the observer-visible mass phase
+double cover. Here `û` is a unit element with `û² = −1` — the meta-time rotor axis in the
+`ℍ` subalgebra of the native `Cl(4,0) + ℍ` formalism (§A.5.6) — and the **simple** (single
+plane angle) form written here is the *leading ansatz*, the one every computation in this
+dossier rides. It is not the general case. A defect's twist generator is in general a `Spin(4)`
+element carrying **two** plane angles: a transverse rate in the `e_4`-free `𝓛` planes and a
+wave-parallel rate in the `e_4`-bearing `𝓠` planes. The two are separately invariant because
+the drive axis `+e_4` distinguishes them — the wave's own axis is what lets a defect's two
+rotations be told apart, and without a pinned advance axis the split has no invariant referent
+at all. **This candidate adopts that drive-referenced two-rate form** — a pinned choice, stated
+relative to and standing or falling with the drive-axis alignment pick of §A.6.4, and recorded
+with the candidate's other choices in the programme's family tree; the ratio of the two rates is
+an open kernel-level quantity (§D.5). A two-rate generator
+`a·e_12 + b·e_34` squares to `−(a² + b²) + 2a b·I_4`, a pure scalar only when `a b = 0`, so a
+two-rate rotor is a **product** of exponentials — `exp(B_a ω τ_5 / 2) · exp(v Ω τ_5 / 2)` — and
+not a single simple `û`. The mass reading does not move under it: projecting the two-rotation
+history onto the observer's complex line returns the **first** plane angle exactly, for every
+choice of second axis, whether or not it commutes with the first — so `m = ω` stands as
+written, read as *the plane angle in the observer's own winding plane* rather than as the
+defect's only rate. The second rate is kinematically invisible to the mass; any dependence of
+`ω` on where that rate locks would have to be a dynamical coupling, and is #1-gap content
+(§D.5). The form does carry one exposure the simple one does not: a defect whose second rate
+is not locked to the drive modulates its matter-wave amplitude as `|cos(Ω τ / 2)|` — an
+amplitude beat, not an impurity of the phase — and the wavefront lock is expected to suppress
+it for a locked, hence stable, defect, but that suppression is asserted and not computed.
+For the observer-visible mass phase
 the axis is not free: projecting the rotor history onto the observer's forced complex line shows
 that only the defect's own winding direction — the transverse blade R-020 forces as the QM
 complex unit — reads as a propagating phase, while an `E`-carried front phase would leave the
@@ -737,7 +768,10 @@ winding (which the spin field carries) and the meta-time rotor (which mass measu
 faces of one circular geometric object related by the `I_4` Hodge map. The algebraic separability
 is what lets us *discuss* spin and mass as distinct observables on a fluctuation; the dynamical
 coupling is the substrate fact that for a defect, the spin field carries the topology and the
-meta-time rotor sustains it. **Two faces of one object, not two independent observables.**
+meta-time rotor sustains it. **Two faces of one object: algebraically independent and
+dynamically locked.** Whether that lock is one-to-one — whether the two rates are pinned to a
+single ratio — is a separate question, and it is a question about the substrate's dynamics
+(§D.5), not about the algebra.
 
 ### Meta-time and observable time
 
@@ -1138,14 +1172,15 @@ and an endorsement is a preference, not an axiom.
 
 ### A.6.4 Instance V3 — the picks
 
-V3 buys its numbers with eleven pinned choices — fourteen rows below, because three of them turned
-out to contain a second choice inside them. Each is a branch point: what the choice was picked
+V3 buys its numbers with eleven pinned choices — fifteen rows below, because three of them turned
+out to contain a further choice inside them, and one of those contains two. Each is a branch point: what the choice was picked
 *from* is recorded, and so is what un-picks it.
 
 | # | The pick | The menu it came from | What un-picks it, and what moves |
 |---|---|---|---|
 | V3-1 | Substrate arrangement = a **regular D4 lattice**, at the `G`-back-fit (Planckian) size (`A-1b`) | regular lattices (D4 and others) / irregular-discrete arrangements (causal-set-adjacent) / a continuum medium with a cell scale | Re-arrange or re-size: the dimension-six and dimension-eight numerics recompute and the `Λ_L` band's provenance goes with them; Layer-1 structure is untouched |
 | V3-1a | Drive-axis alignment = the advance axis is a **lattice symmetry axis** | aligned (the banked driven-group apparatus, stabilizer order 48) / misaligned-generic (trivial stabilizer; the spatial quartic permission opens to its full 15 dimensions) / lower-symmetry alignments | A misaligned member recomputes every driven-group count from its own stabilizer; the orbit-constancy failure channel is keyed axis-independently and survives |
+| V3-1b | Two-rate defect rotor, **drive-referenced** (§A.4): the twist generator is in general a `Spin(4)` element with a transverse and a wave-parallel plane rate, separately invariant only because V3-1a pins the advance axis; the candidate adopts the two-rate form, with the rate ratio an open kernel-level quantity (§D.5) | the simple one-rate restriction / the drive-referenced two-rate form / a free-standing two-rate form (no invariant referent without V3-1a) | Re-impose the simple restriction: §A.4 reverts to the single-`û` form, the bond-harmonic ceiling's premise re-becomes physical, and the amplitude-beat exposure closes; the node also un-picks automatically if V3-1a does |
 | V3-2 | Bond structure = the `{J, D}` **truncation** (`A-1c`) | the ten-constant bilinear menu allowed on D4 under the driven point group — `J`: 2, `D`: 2, `Γ`: 6 | Turn on the surviving `Γ` direction or the second `D` dial (§D.3.3): the numerical spine re-reads; the quadratic spine is conditionally protected, the amplitude identification is not |
 | V3-2a | DM support = the 12 `e_4`-bonds only | the two-dimensional allowed DM space — the `e_4`-bond coupling and a spatial-bond coupling of the same symmetry type, which no substrate argument separates | A non-zero second `D`: the amplitude identification behind `D/J` moves; the canting — and with it the chiral symmetry breaking — can switch off entirely on a cancellation line; and the `Γ` survivor's vanishing, a property of the vacuum's high-symmetry direction, is exposed with it |
 | V3-3 | `f_π` = the ANW **fitted** value | any cell-scale anchoring | Re-anchor: the hadron chain recalibrates |
@@ -2015,8 +2050,11 @@ entangled contexts no laboratory will ask about), F4 is R-021. **F2 is the one g
 substantive premise**, and it does *not* follow from the frame-equivalence of §B.3.1:
 covariance of the functional under substrate rotations is strictly weaker than independence of
 context, and an explicit covariant-but-contextual counterexample exists. F2 would be derivable
-from a Role-3 construction carrying the channel-pairwise drag structure sketched above; until
-that is built, the Born exponent is a theorem conditional on it.
+from a Role-3 construction carrying the channel-pairwise drag structure sketched above
+**together with an offset-measure class and a read-out class: the structure alone is
+demonstrably insufficient, since the naive single-fibre rule carries exactly that structure and
+still violates F2**. Until such a construction is built, the Born exponent is a theorem
+conditional on it.
 
 *A second road to the same conclusion, sharing no premise with the first.* Set combinatorics alone
 reach exponent 2 without Gleason and without F1–F4: for the three-slit inclusion–exclusion operator
@@ -2815,8 +2853,10 @@ rigidity, together with a cross-block weight that is itself open (the strong-sec
 the `8/3` that made `g` a genuine sibling). Scope: this concerns the *magnitude* source at the
 two-point level, never the running or asymptotic freedom, whose burden is unchanged (§C.5.2).
 
-This is the parameter-economy hook stated cleanly. The SM has 19 free parameters; TWT pins one of
-those magnitudes at their measured values (`sin²θ_W = 3/8` is a crossing-scale identity, §E.2.3), names the four EW couplings as one open
+This is the parameter-economy hook stated cleanly. The SM has 19 free parameters; TWT pins **none** of
+those magnitudes at their measured values — `sin²θ_W = 3/8` is a crossing-scale normalization
+identity whose only computable descent misses the measured angle by a third (§E.2.3) — names the
+four EW couplings as one open
 magnitude, and tags the rest of the open frontier explicitly. On the *structural* axis — what each
 parameter *is* — the framework's contribution is far larger than the magnitude count suggests. We
 return to the honest comparison at §E.2.
@@ -3292,7 +3332,7 @@ band's floor (`Λ_L = 0.39 M_Pl`, §B.6.2 — illustrative only: the GW sector's
 property of the induced-EH loop and remains VG-5-gated, deliberately unassigned in the which-`Λ`
 split) runs from `7.7 × 10⁻⁹¹` (LISA, `10⁻³` Hz) to
 `7.7 × 10⁻⁸¹` (LIGO, `10²` Hz) — more than sixty-five orders under the tightest dispersion
-constraint `|c_GW/c − 1| ≲ 10⁻¹⁵`, and the margin is insensitive to any remotely Planckian choice. (The band value is a *naturalness* estimate, not an upper bound
+constraint `|c_GW/c − 1|` of order `10⁻¹⁵`, and the margin is insensitive to any remotely Planckian choice. (The band value is a *naturalness* estimate, not an upper bound
 on `c`; the point is only that the margin is enormous even there.) The masslessness conclusion is
 structural and the dispersion margin is coefficient-insensitive; the coefficient itself remains open
 (§E.3.3 VG-6). For a stable medium, every physical propagating mode has
@@ -3607,7 +3647,7 @@ Two free wins inherited at the structural level, worth flagging in passing:
   is emergent over the D4 substrate — there is no such exact fundamental `T^{μν}` for the
   theorem to act on (compositeness per se is not the evasion; the premise failure is).
   Weinberg–Witten does not apply.
-- **GW170817 multimessenger consistency.** `|c_GW/c − 1| ≲ 10⁻¹⁵` is automatic for matter-loop
+- **GW170817 multimessenger consistency.** `|c_GW/c − 1|` of order `10⁻¹⁵` is automatic for matter-loop
   induced gravity riding the same wavefront — `c_GW = c_γ` structurally, not coincidentally.
 
 ---
@@ -4958,11 +4998,14 @@ spatial-bond `D`) therefore cannot create a third amplitude; they **repopulate**
 exist, `A = J + Σᵢ αᵢΓᵢ` on the parity-even side and `B = D + β·D_spatial` on the parity-odd
 side. So the *form* `δ_L = ⅓·arctan(B/A)` is robust to the truncation pick, and what the pick
 buys is the *identification* `B/A = D/J` — which holds exactly when every entry coefficient
-`αᵢ`, `β` vanishes. Those coefficients are dressed-level objects: at tree level every `ℤ_3`
-harmonic of the substrate's own orientation potential vanishes, `J`'s included, so the ratio
-that would decide them is `0/0` and no static computation reaches it. The question is held at
-§D.5 as a named piece of the kernel problem, and any claim that `Γ` does or does not enter `A`
-is a claim about that kernel.
+`αᵢ`, `β` vanishes. Whether a static computation reaches those coefficients turns on the
+defect's twist class. Restrict the twist to a single plane angle — or to two equal ones — and
+the bond-bilinear harmonic ceiling sits below the third harmonic, so every `ℤ_3` harmonic of the
+substrate's own orientation potential vanishes identically, `J`'s included, and the ratio that
+would decide them is `0/0`. The two-rate twist this candidate adopts (§A.4) is not so
+restricted, and a bond-bilinear determination of the `αᵢ` and `β` is open, owed and unbuilt
+(§D.5.7). Their **dressed** values remain kernel-level, so any claim that `Γ` does or does not
+enter `A` at dressed level is a claim about that kernel.
 
 ### C.3.8 Three generations from Frobenius
 
@@ -5056,14 +5099,19 @@ forward reference resolves here.
 
 The lepton sector calibrates `D/J ≈ 0.787` via Brannen `δ_L = 12.73°`. Independently, the baryon
 sector reads `D/J = √18 / e ≈ 0.778` from the Skyrme stabilizer with the ANW-historical
-`e ≈ 5.45` (matching the ANW fitted `f_π = 129 MeV`) (R-074). The two values agree to ~1.1%.
+`e ≈ 5.45` (matching the ANW fitted `f_π = 129 MeV`) (R-074). The two values agree to ~1.1%
+**at the pole mass definition; §C.3.3a sizes the inheritance, and the direction is favourable —
+under the one-loop pole→MS-bar estimate the lepton leg moves toward the unmoved baryon leg. That
+estimate is not banked, so the quoted figure stays 1.1%.**
 
 **What that agreement is, at earned strength (R-180, R-181).** Each leg measures a **ratio of
 totals** — a parity-odd bond amplitude over a parity-even one — and not a single-parameter
 measurement of `J` and `D`. By the exact channel→parity selection rule the numerator
 `B = D_{e₄} + β·D_spatial` is exactly `Γ`-clean and the denominator `A = J + Σᵢ αᵢΓᵢ` is exactly
 `D`-clean, with nothing else able to enter either (R-176, R-177); the admixture **sizes** are
-#1-gap-routed. Decisively, the two legs' parity-**even** totals belong to **different functionals**
+uncomputed, and the bond-bilinear route to them — closed by a harmonic ceiling while the defect's
+twist is restricted to one plane angle — is open under the two-rate rotor this candidate adopts
+(§A.4, §D.5.7), with dressed values still kernel-level (§D.5). Decisively, the two legs' parity-**even** totals belong to **different functionals**
 — the `ℤ₃` generation amplitude and the helix pitch — and are the same substrate number **only if
 the symmetric-traceless (`Γ`) bond admixture vanishes** (R-181, JD-6(b)). Indeed
 `e ≈ √18/(D/J) = cot q`, so the baryon leg **is** the pitch functional. The agreement is therefore
@@ -5893,7 +5941,11 @@ The 25-cell Skyrmion gives the inter-nucleon force hierarchy (R-091b):
 | Soliton core | `r ≈ 2 · ℓ_S ≈ 0.56 fm` | 25-cell body overlap |
 | Pion Yukawa | `r ≈ 5.2 · ℓ_S ≈ 1.46 fm` | π Goldstone exchange |
 
-The hard-core distance matches empirical 0.40–0.50 fm at 12% with no free parameter.
+The hard-core distance is `√2·ℓ_S ≈ 0.397 fm`, introducing no parameter beyond the counted `e` and
+`f_π`. Against the customary 0.40–0.50 fm range it sits 0.8% below the near edge and 21% below the
+far edge — **a range whose own width means the comparison discriminates little, and whose referent is
+a feature of particular NN-potential parametrizations rather than a directly measured length. No
+agreement figure is quoted, because a midpoint-referenced one would conceal that spread.**
 
 ### C.5.11 Mesons — topological status and identifications
 
@@ -6834,11 +6886,17 @@ ruled, so that a future assembly finds them all in one place. Two belong to the 
 potential has exactly two amplitudes, `A` (parity-even) and `B` (parity-odd), and §D.3.3's menu
 has more channels than `{J, D}` to fill them: `A = J + Σᵢ αᵢΓᵢ`, `B = D + β·D_spatial`. Whether
 the `αᵢ` and `β` vanish is precisely what decides whether the lepton calibration measures `D/J`
-or a combination. It cannot be settled statically: **at tree level every `ℤ_3` harmonic of the
-substrate's orientation potential vanishes — `J`'s included — so the ratio is `0/0`.** The
-coefficients are dressed-level quantities, sourced by the same kernel this section opens. Any
-statement that `Γ` does, or does not, enter `A` is therefore a claim *about the kernel*, and
-must be labelled as one. (Pointers: §C.3.7 and R-070 forward here; §D.3.3 states the menu.)
+or a combination. **Restrict the defect's twist to a single plane angle — or to two equal ones —
+and it cannot be settled at bond-bilinear order at all:** the harmonic ceiling is then two, below
+the third harmonic the `ℤ_3` amplitudes need, so every such harmonic vanishes identically, `J`'s
+included, and the ratio is `0/0`. That ceiling is a property of the twist class and not of
+bilinear order, and **the two-rate twist this candidate adopts (§A.4) is not subject to it**: a
+twist whose two plane angles stand in a three-to-one ratio reaches the third harmonic at the same
+bilinear order and at the same magnitude as the first, on the banked `J` coupling. So a
+bond-bilinear determination of the `αᵢ` and `β` is **open, owed and unbuilt** — it needs no
+kernel. What remains inside the kernel is their **dressed** values, and any statement that `Γ`
+does, or does not, enter `A` at dressed level is a claim *about the kernel* and must be labelled
+as one. (Pointers: §C.3.7 and R-070 forward here; §D.3.3 states the menu.)
 
 **Which single-`q` branch the driven dynamics selects.** §D.4.3's canted vacuum has two
 stationary branches — the coordinate-axis helix whose closed form the calibration rides, and a
@@ -6988,10 +7046,16 @@ right-handed partner is the sterile, wave-decoupled `S_-` mode (§C.3.12).
 
 **The relic contribution is ~1% of Ω_DM (sterile share).** With Dirac character tying
 `m_sterile = m_active` per generation, the sterile mass scale inherits the active scale
-`Σ m_ν ≲ 0.12 eV` (Planck + BAO). The thermal upper bound gives `Ω_{ν+s} h² ≤ 0.00255` for the
+`Σ m_ν ≲ 0.12 eV` (Planck + BAO, 95%) — and the cosmological bound has since tightened to
+`≲ 0.064 eV` under ΛCDM while relaxing to `≲ 0.16 eV` once the dark-energy equation of state is
+freed (DESI DR2, PRD 112, 083515 (2025)), so the shortfall below is quoted at the looser, older
+input and the tighter input roughly doubles it. The thermal upper bound gives
+`Ω_{ν+s} h² ≤ 0.00255` for the
 active+sterile **total** (~2.1% of Ω_DM; 47×); the standard relation `Ω_ν h² = Σm_ν/94 eV`
 already counts the active species, so the **sterile share is half: `Ω_s h² ≤ 0.00128`, ~1.1% of
-Ω_DM — a 94× shortfall** vs the needed dark-matter density (R-122). Sub-eV thermal Dirac fermions are independently
+Ω_DM — a 94×–176× shortfall depending on which cosmological bound is taken** vs the needed
+dark-matter density (R-122). **The larger figure is the ΛCDM one, so the current primary makes
+this scope-line worse rather than better; it is quoted as a range for that reason.** Sub-eV thermal Dirac fermions are independently
 hot-DM-excluded by free-streaming (Planck + LSS `f_HDM < 0.01`); the Dodelson–Widrow sterile
 window requires `m_s ~ keV`, four orders above TWT's tied-to-active scale. This is the *expected*
 first-cut outcome — sterile RH neutrinos are notoriously hard to make up all of dark matter — and
@@ -7054,7 +7118,11 @@ section's named structural premise — `f_π` (cell mass scale), `D/J` (chiralit
 gravitational anchor — both `Λ`
 scales are back-fits of `G` through the induced-gravity form and are not counted separately
 Plus `A` (lepton
-amplitude scale — cancels in ratios; not counted). **`c = √2` and `K = 2/3` are ONE counted bit,
+amplitude scale — cancels in ratios; not counted), **and `δ_L` (the generation phase — not counted
+separately, because `D/J := tan(3δ_L)` by definition, so `δ_L` and `D/J` are one piece of empirical
+information under two descriptions; counting both would double-count a single measurement, and the
+`D/J`-level agreement between them is a tautological restatement rather than a confirmation)**.
+**`c = √2` and `K = 2/3` are ONE counted bit,
 not two:** in the circulant parametrization the Koide relation *is* the statement that the
 modulation amplitude squared equals `1/2`, independently of the phase `δ` (§C.3.2, §C.3.3), so
 counting them separately would double-count a single piece of empirical information.
@@ -7140,7 +7208,7 @@ honest distance between the current text and a fully forward-derived spine:
 
 | Premise | What it conditions | What would discharge it |
 |---|---|---|
-| **F2** — statistical noncontextuality of the Role-3 selection functional | the Born exponent's theorem status (§B.3.3, R-160) | a Role-3 construction carrying the channel-pairwise drag structure |
+| **F2** — statistical noncontextuality of the Role-3 selection functional | the Born exponent's theorem status (§B.3.3, R-160) | a Role-3 construction carrying the channel-pairwise drag structure **and an offset-measure class and a read-out class — the structure alone is insufficient, computed** |
 | **P1b-DYN** — the mode determinant generates the induced term | fermionic Skyrmion quantization as *induced* rather than selected (§B.3.5, R-161) | the substrate computation of the induced term (#1-gap adjacent) |
 | **OA-LF-i / OA-LF-ii** — ground-state occupation; grain-scale covariant curvature coupling | the induced-gravity magnitude bracket (§B.6.2, R-163) | the kernel, or a curved-lattice band construction |
 | **cross-block rigidity** (+ an open cross-block weight) | folding `α_s` into the single-dial economy (§B.5b.3, R-162) | a kernel with the named universality across inequivalent Schur blocks |
@@ -7334,21 +7402,21 @@ table**: its dimension-six residual coefficient is gated on the #1 gap and is re
 
 | # | Falsifier | Channel / apparatus | Current bound | TWT prediction | What it kills | Origin |
 |---|---|---|---|---|---|---|
-| 1 | `c_GW ≠ c_γ` beyond `10⁻¹⁵` | GW + EM multimessenger (GW170817-class) | `\|c_GW/c − 1\| ≲ 10⁻¹⁵` | structural `c_GW = c_γ`, automatic for matter-loop-induced gravity riding the same wavefront | induced gravity riding the wave | §B.6.3 |
-| 2 | Proton decay (`p → e⁺π⁰` etc.) | Super-K, Hyper-K, DUNE | `τ/B > 2.4 × 10³⁴` yr, 90% CL (Super-K, 2020) | absolutely stable **in the smooth sector** (`B ∈ π_3 = ℤ`; a grainy member carries a resolution condition, deficit ∝ 1/ρ²; non-perturbative violation only as `ΔB = ΔL = 3`) | topological protection of `B` | §C.1.5, §C.5.6 |
-| 3 | `0νββ` detected | KamLAND-Zen, LEGEND, nEXO, CUPID | `T_{1/2}(¹³⁶Xe) > 3.8 × 10²⁶` yr, 90% CL (KamLAND-Zen, complete 800 dataset) | forbidden (Dirac neutrino forced by `B − L` conservation; Majorana requires `Δ(B−L) = −2`) | Dirac character of the neutrino | §C.3.12, §C.5.6 |
-| 4 | Finite Geneva-class influence speed found (Salart et al. 2008; Yin et al. 2013) | Bell-correlation timing in candidate preferred frames | `v_inf > 10⁴ c` | no finite influence speed — operationally, signaling does not exist | non-separability without signaling (`τ_5`-foliation = cosmological comoving) — **consistency check, not a discriminating falsifier**: a finite influence speed *would also be inconsistent with quantum mechanics' exact predictions*, so the experiment tests QM at least as much as it tests TWT — the framework is isomorphic to QM in this channel (§B.4, import I-11) and inherits the verdict either way | §B.4.5 |
+| 1 | `c_GW ≠ c_γ` beyond the multimessenger interval | GW + EM multimessenger (GW170817-class) | `−3 × 10⁻¹⁵ ≤ (c_GW − c)/c ≤ +7 × 10⁻¹⁶` (ApJL 848, L13 (2017) §4.1 — two-sided and asymmetric, conditional on the assumed emission-time offset and on `D = 26 Mpc`) | structural `c_GW = c_γ`, automatic for matter-loop-induced gravity riding the same wavefront | induced gravity riding the wave | §B.6.3 |
+| 2 | Proton decay (`p → e⁺π⁰`, the strongest channel; other channels ~3× weaker) | Super-K, Hyper-K, DUNE | `τ/B(p → e⁺π⁰) > 2.4 × 10³⁴` yr, 90% CL (Super-K, PRD 102, 112011 (2020)); the same collaboration's `p → μ⁺η` and `p → e⁺π⁰π⁰` limits sit near `7 × 10³³` yr | absolutely stable **in the smooth sector** (`B ∈ π_3 = ℤ`; a grainy member carries a resolution condition, deficit ∝ 1/ρ²; non-perturbative violation only as `ΔB = ΔL = 3`) | topological protection of `B` | §C.1.5, §C.5.6 |
+| 3 | `0νββ` detected | KamLAND-Zen, LEGEND, nEXO, CUPID | `T_{1/2}(¹³⁶Xe) > 3.8 × 10²⁶` yr, 90% CL (KamLAND-Zen, complete dataset — the 800 phase combined with the previous phase; PRL 135, 262501 (2025)) | forbidden (Dirac neutrino forced by `B − L` conservation; Majorana requires `Δ(B−L) = −2`) | Dirac character of the neutrino | §C.3.12, §C.5.6 |
+| 4 | Finite Geneva-class influence speed found (Salart et al. 2008; Yin et al. 2013) | Bell-correlation timing in candidate preferred frames | `v_inf > 10⁴ c`, conditional on the candidate frame's velocity relative to Earth staying below `10⁻³ c` (the primary's own stated condition) | no finite influence speed — operationally, signaling does not exist | non-separability without signaling (`τ_5`-foliation = cosmological comoving) — **consistency check, not a discriminating falsifier**: a finite influence speed *would also be inconsistent with quantum mechanics' exact predictions*, so the experiment tests QM at least as much as it tests TWT — the framework is isomorphic to QM in this channel (§B.4, import I-11) and inherits the verdict either way | §B.4.5 |
 | 5 | Bell-selection foliation ≠ cosmological comoving frame | precision Bell + cosmology cross-comparison | n/a (corollary of row 4) | identical | the `τ_5`-foliation = comoving identification — **the family's kill condition** (§A.6.2): the identification is a family-defining axiom, not a pick, so what a mismatch kills is every candidate at once, not this formulation. It remains a **consistency check rather than a discriminating falsifier** in the empirical sense — being row 4's own corollary it inherits row 4's QM-shared character, so the channel fires only where quantum mechanics also breaks, and agreement in it confirms nothing. Maximum downside, no matching upside; that is the price of naming the frame | §B.4.5 |
 | 6 | A sector- or epoch-dependence of the observed `c` against the lock rate `c_meta` | precision multimessenger astronomy | `c_meta = c` on average | structural identity globally | §A.4, §B.7 average-`c` identification — this candidate's `A-3`-downstream chain, an **instance-level** exposure: the axioms state no rate and no uniformity, so a detection labels the emergent `c` non-uniform while the axioms stand; what that does and does not settle is stated at "How to read the tables" above | §A.4 |
 | 7 | Optical-clock decoherence below Goldstone-symmetry floor | atom-interferometry, optical clocks | **no computed floor exists** (#1-gap gated; `Im χ` uncomputed) — this row is VG-3's operational face, kept here as a null-result check, **not** single-detection-away | rate bounded below by the Goldstone floor (Adler-zero protection) — floor value gated | symmetry-protected decoherence safety | §D.5.5, VG-3 |
-| 8 | Macromolecule-interferometry decoherence below `Im χ` floor | macromolecule interferometry | **no computed floor exists** (#1-gap gated) — VG-1's operational face, kept as a null-result check, **not** single-detection-away | substrate sits near KSS `η/s ≥ ℏ/4π` floor; bracketed KSS-to-GW170817 — floor value gated | the `Im χ` master dial (one dial, two windows) | §B.4.5 Bell-memory bridge, VG-1 |
+| 8 | Macromolecule-interferometry decoherence below `Im χ` floor | macromolecule interferometry | **no computed floor exists** (#1-gap gated) — VG-1's operational face, kept as a null-result check, **not** single-detection-away | substrate sits near the conjectured KSS `η/s ≥ ℏ/4π` floor; bracketed KSS-to-GW-propagation — floor value gated | the `Im χ` master dial (one dial, two windows) | §B.4.5 Bell-memory bridge, VG-1 |
 | 9 | CHSH violation `> 2√2` | quantum optics | bounded by Tsirelson | bounded by `2√2` | one-sided rotor half-angle structure | §B.4.1 |
 | 10 | Magnetic monopole detected | various | none observed | absent — the grade-3 slot exists (4 components) but the winding-as-source identification supplies nothing to fill it | the winding-as-source identification (**not** a pure algebraic forbiddance) | §B.5.2 |
 | 11 | Fractional charge outside `±1/3, ±2/3, ±1` | direct searches | none observed | forbidden (algebraic identity from the Clifford algebra's trivector content — the spectrum does not ride the lattice arrangement) | charge-spectrum algebraic identity | §C.2.2 |
 | 12 | Baryon containing a top quark | LHC | none observed | forbidden (`Γ_t · Θ_0 ≈ 7.2 ≫ 1`) | timescale-exclusion structural argument — **the one instance-level row in this table**: the kill number rides this candidate's fitted hadronic scale and its semiclassical inertia, so a re-anchored family member re-derives the timescale or loses it | §C.5.9 |
 | 13 | Fourth fermion generation | LHC + neutrino-oscillation precision | none observed | forbidden (`dim Λ²₋(ℝ⁴) = 3` — exactly three anti-self-dual planes in four dimensions, computed in-engine; Frobenius a structural remark via the associativity premise) | generic-given-4D count + `ℍ`-unit identification + associativity premise (conditional) | §C.3.8 |
 | 14 | Hierarchical CKM `θ_C` shown demonstrably independent of the `m_d, m_s` relation at sub-percent precision | high-precision CKM data | `\|V_us\|² ≈ 0.0503`; `m_d/m_s ≈ 0.0500` (~0.6% agreement) | frequency-ratio reading of the **Gatto–Sartori–Tonin** relation `\|V_us\|² = m_d/m_s` (GST 1968 — the relation is not TWT's; only the reading is) | the frequency-ratio reading of Cabibbo | §C.3.10 |
-| 15 | Tree-level FCNC observed | precision flavour physics | tight upper bounds | forbidden at tree level (weak = SD couples generation-blindly) | the §C.4.2 weak assignment, i.e. its structural premise or its empirical leg | §C.4.2 |
+| 15 | Tree-level FCNC observed | precision flavour physics | no tree-level signal; the `ΔS = 1` neutral-current decays sit at `B(K_L → μ⁺μ⁻) = (6.84 ± 0.11) × 10⁻⁹` and `B(K_L → e⁺e⁻) ≈ 9 × 10⁻¹²` — the smallest measured branching fraction of any particle decay — with `B(K_S → μ⁺μ⁻) < 2.1 × 10⁻¹⁰` at 90% CL (PDG 2025). These are measured rates that the incumbent generates at loop/long-distance level, so what they bound is the tree-level contribution on top of that | forbidden at tree level (weak = SD couples generation-blindly) | the §C.4.2 weak assignment, i.e. its structural premise or its empirical leg | §C.4.2 |
 | 16 | Proton–electron charge sum non-zero | neutrality-of-matter / bulk-matter charge tests | `\|Q_p + Q_e\|/e ≲ 10⁻²¹` | exactly zero, identically in the charge normalization `c` | the (P4–P7) premise set — the framework reverts to an empirical charge anchor | §C.2.7, §C.2.8 |
 
 Each row is a single positive detection away from falsification, or a null result still consistent
@@ -7386,10 +7454,10 @@ Each records the operational shape of an open commitment.
 
 | # | Falsifier handle | Gated on | Operational form | Origin |
 |---|---|---|---|---|
-| VG-1 | `Im χ` budget (one dial, three pillars) | `Im χ` (#1 gap) | KSS floor `η/s ≥ ℏ/4π`; GW170817 ceiling `η ≲ 10⁹-10¹⁰ Pa·s` derived via the standard viscous gravitational-wave damping rate `Γ ~ 16πGη/c²` from the multimessenger arrival-time bound; macromolecule decoherence floor. Bracket position (near KSS) is the framework's commitment. Same `Im χ` governs Bell decoherence (§B.4.5 Bell-memory bridge) | §B.4.5 + §D.5.4 |
+| VG-1 | `Im χ` budget (one dial, three pillars) | `Im χ` (#1 gap) | the **conjectured** KSS floor `η/s ≥ ℏ/4π` (its authors offer it as a bound that *may* hold, not as a theorem); a GW-propagation ceiling `η ≲ 10⁹–10¹⁰ Pa·s`, derived here via the standard viscous gravitational-wave damping rate `Γ ~ 16πGη/c²` from the requirement that the wave not be over-damped **across its observed propagation distance** — with the published cosmological-fluid bound of the same form (`η < 2.3 × 10⁹ Pa·s`, PRD 95, 103509 (2017), from GW150914 over 410 Mpc) sitting at the tight end of that band; macromolecule decoherence floor. Bracket position (near KSS) is the framework's commitment. Same `Im χ` governs Bell decoherence (§B.4.5 Bell-memory bridge) | §B.4.5 + §D.5.4 |
 | VG-2 | Cosmological-constant residual — **magnitude only**, present-epoch `ρ_vac ≈ 3Ω_Λ,0 M̄_Pl² H_0²` | `Im χ` (Volovik equilibrium is zero; residual is the drive signature) | **The epoch-law face is already closed, not pending:** the dynamical reading `ρ_vac ∝ H(t)²` at all epochs forces `Ω_vac(z) ≡ ν` and is excluded ≈34× by the Planck 2015 XIV early-DE bound, ≈33× in equivalent `ΔN_eff`, and outright by the absence of any deceleration→acceleration transition (N54, §E.1.1). What remains gated is the residual's magnitude with no epoch law attached; a magnitude inconsistent with the driven-dissipative deviation from Volovik equilibrium falsifies the structural identification | §E.1.1 |
 | VG-3 | `1/T_2` substrate-decoherence rate | `Im χ` / WP-IX4 | A measured `1/T_2` above the symmetry-protected boundary would falsify the symmetry-protection result | §D.5.5 |
-| VG-4 | Dark-matter signatures | (Mostly) outside this paper's derivational scope; sterile-RH 3-prediction is structural | The 3 sterile RH neutrinos are structural; relic (sterile share) ~1.1% Ω_DM — 94× shortfall (active+sterile total ~2.1%/47×); remaining ~98% out of scope — the inter-front programme's target, not a standing scope fence. Laboratory detection of heavy sterile RH at Dodelson–Widrow `keV` window would falsify the `m_sterile = m_active ≲ 0.12 eV` Dirac-character prediction | §E.1.3 |
+| VG-4 | Dark-matter signatures | (Mostly) outside this paper's derivational scope; sterile-RH 3-prediction is structural | The 3 sterile RH neutrinos are structural; relic (sterile share) ~1.1% Ω_DM — a 94×–176× shortfall depending on which cosmological Σm_ν bound is taken, the larger figure being the ΛCDM one (active+sterile total ~2.1%/47×, or ~88× at the tighter bound); remaining ~98% out of scope — the inter-front programme's target, not a standing scope fence. Laboratory detection of heavy sterile RH at Dodelson–Widrow `keV` window would falsify the `m_sterile = m_active` sub-tenth-eV Dirac-character prediction (`≲ 0.12 eV` at the Planck + BAO bound, `≲ 0.064 eV` under ΛCDM at the current DESI bound, `≲ 0.16 eV` under w₀wₐ) | §E.1.3 |
 | VG-5 | Gravitational-wave dispersion at high `E` | dim-6 dispersion correction once GW propagation scale identified | Concrete prediction once the induced-EH propagator's effective `Λ` for the GW sector is computed (Paper-2). The which-`Λ` split deliberately does **not** assign this sector — the graviton is an induced composite, so its effective scale is a property of the generating loop; §B.6.4's margin uses `Λ_L` illustratively only. **Not independent of VG-6:** per §B.6.4 the graviton's preferred-frame remnant is the same dimension-six coefficient in the tensor sector — one gated number, two sectors | §B.6.3, VG-6 |
 | VG-6 | Dimension-six isotropic LV coefficient `η⁽⁴⁾` | substrate strain-mode dispersion (#1 gap; `Cl41Wave().wave_speed_c()` raises) | Published n = 4 limits: photon `\|ξ⁽⁴⁾\| ≲ 10⁻⁸`, electron `≲ 10⁻⁶`, proton `−10⁻³ … +10⁻⁶`. **At the substrate's natural coefficient `c = 1` this reads `η⁽⁴⁾ = c_lat/(2π) ∈ [1.9, 6.7]` (ruled `Λ_L = 1/a` band, §B.6.2) — excluded unconditionally by ~1.1–1.7 orders (Auger 2022 model-independent, `η⁽⁴⁾_p < 0.149`, superluminal) and by 6.3–6.8 orders only under pure-proton composition; the photon `10⁻⁸` corner is a projected bound whose triggering detection has not occurred.** Survival requires either a substrate suppression to `\|η⁽⁴⁾\| ≲ 10⁻⁶` (the defect form factor supplies only `(f_π/m)² ~ 10⁻²` — quoted at the ANW fitted `f_π`, factor-of-two immaterial here, §B.6.3 — and none for the photon), or `Λ_LV ≳ 10³ M_Pl` for the matter rows (`≳ 10⁴ M_Pl` for the photon row, which has no form factor) decoupled from the Sakharov cutoff, or a substrate symmetry forcing the isotropic quartic dispersion coefficient to vanish. Riding the OPEN import I-3 for the `Λ_L` band and the inside-frame data import I-19 (whose premise (e) hedges the outside↔inside transfer). Sibling of VG-5: same coefficient, tensor sector | §B.6.3, §D.5 |
 
@@ -7430,7 +7498,7 @@ resolving computation is an explicit phason-coupled effective-action calculation
 
 **(3) `c_meta = c` on average — global identity vs differential breakdown.** §A.4 commits
 `c_meta = c` averaged across the wavefront. Local variations near mass concentrations are
-predicted (§B.6, §B.7), but the GW170817 multimessenger constraint `|c_GW − c_γ| < 10⁻¹⁵` is
+predicted (§B.6, §B.7), but the GW170817 multimessenger constraint `|c_GW − c_γ|/c ≲ 10⁻¹⁵` is
 already tight. A robust sector-dependent or time-varying difference between the observed `c` and the lock rate
 falsifies **this candidate's identification of the two**; the induced-gravity story rides on the
 average identity, so such a detection would break this candidate's unified-frame picture rather

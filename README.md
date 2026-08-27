@@ -61,6 +61,7 @@ Expected output: `ALL 87 COMPANION CHECKS PASSED across 7 modules.` — 584 chec
 | `TWT_COMPARATIVE_LEDGER.md` | The comparative ontological-debt ledger — the itemized accounting behind the Core paper's §3, including the entries that grade against this framework. |
 | `D4_lattice_quartic_isotropy.md` | A standalone lattice result (dimension-eight rotational anisotropy on D4), written to stand without TWT; self-contained reproduction script in its Appendix A. |
 | `COVER_NOTE.md` | What to check, in what order, and where the work is weakest. Its §0 is addressed to language models. |
+| `apparatus/` | **The research apparatus** — the rules, the roles with their deliberately different information diets, the manuals, and the gates and their generators (`bank.sh`, `check_records.py`, the telemetry, the render pipeline) as they actually run. The papers' methodology sections cite this directory; its own README carries the provenance (previously published standalone as `research-ratchet`, whose tag `twt-apparatus-20260827` preserves the cited historical state). |
 
 Every `(R-NNN)` marker in the dossier resolves to a row in the companion's Result Index, which
 names the result's tier, the engine primitive that checks it, and its dependencies. That chain —
