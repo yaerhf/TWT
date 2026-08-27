@@ -222,6 +222,12 @@ else
            pdf_unescape_pipes.lua render_paper.sh render_pdf.sh verify_pdf.py; do
     cp "scripts/$s" "$MIRROR/apparatus/scripts/$s"
   done
+  # MANIFEST (round-6 reviewer proposal, adopted 2026-08-27): a root checksum
+  # manifest so a reviewer can verify that what they fetched matches what was
+  # shipped — converts a stale-cache fetch from invisible to loud. Regenerated
+  # LAST, after every sync copy above, so it covers the shipped state.
+  ( cd "$MIRROR" && git ls-files --cached --others --exclude-standard \
+      | grep -v '^MANIFEST\.sha256$' | sort | xargs sha256sum > MANIFEST.sha256 )
   # Suite-count drift guard. The README QUOTES each harness's own pass line for a
   # reviewer to compare against their terminal, so the two lines are checked
   # SEPARATELY against their own harness — not against the combined total. (The

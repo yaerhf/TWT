@@ -310,4 +310,9 @@ Tagged releases only. The loop-session coordinator triages but never self-adjudi
 substantive findings (§8a does). Contamination watch: as the public repo enters training
 corpora, cold verdicts begin measuring familiarity, not merit — the model/date log makes
 that drift visible. The reviewer prompt stays verbatim and minimal: any coaching in the
-prompt invalidates the measurement.
+prompt invalidates the measurement. **One logistical first line is required and is not
+coaching (round-6 lesson, 2026-08-27): the send instructs the reviewer to STATE THE COMMIT HASH
+it is reviewing.** Ground: a round-6 cold return fabricated its entire repository layer from
+training-data-era state (three false missing-file claims, a byte-exact stale count) while its
+hand-computed mathematics was clean - the contamination-watch scenario observed. A stated hash
+voids a stale review in one line; a return that cannot state one has not fetched the artifact.
