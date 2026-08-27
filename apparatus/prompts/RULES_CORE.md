@@ -1,4 +1,4 @@
-# THE COMMON CORE — the 32 rules every agent holds without looking anything up
+# THE COMMON CORE — the 34 rules every agent holds without looking anything up
 
 **v1, 2026-08-19.** The role-split half of the rules architecture (`knowledge/audit/consolidation_2026-08-18/RULES_ARCHITECTURE_2026-08-19.md`), designed on the human coordinator's directive: *200 rules is too many for one agent to hold; split them into a small common core plus role packs; **the rules should not be enforced, but the SPIRIT of the rules should**.*
 

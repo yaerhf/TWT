@@ -7,7 +7,7 @@ because that is how an agent needs them — not by which document they happen to
 > pass; record `knowledge/audit/consolidation_2026-08-18/RULES_ARCHITECTURE_2026-08-19.md`).**
 > The human coordinator's directive was that 200 rules is too many for one agent to hold, so the
 > rules are now split **by role**, with each rule carrying **why it exists** and a class:
-> **`RULES_CORE.md`** (the 32 rules everyone holds) and **`RULES_BY_ROLE.md`** (nine role packs +
+> **`RULES_CORE.md`** (the 34 rules everyone holds — C-33 and C-34 added since the split) and **`RULES_BY_ROLE.md`** (nine role packs +
 > four activity blocks). **Read those two instead of §§1–8 below** — §§1–8 remain accurate and are
 > kept as the by-when-it-bites view, but the split is the current organization and no rule's
 > content changed in it.
@@ -16,16 +16,19 @@ because that is how an agent needs them — not by which document they happen to
 > this tree contradict each other — and it is deliberately not folded into the split. **It stays
 > the first thing to read before trusting any single source.**
 
-> **This is the distillate, not the inventory.** The complete enumeration — **200 distinct rules,
+> **This is the distillate, not the inventory.** The complete enumeration — **204 distinct rules,
 > every source cited, binding-vs-advice marked, enforcement column filled** — is
 > `knowledge/audit/consolidation_2026-08-18/RULE_INVENTORY_2026-08-19.md`. **That file is the
 > authority; this one is the working reference.** Where they disagree, the inventory and the canon
 > win. This file deliberately does **not** restate all 200: a second full copy would become a drift
 > pair, which is the failure this program keeps finding.
 >
-> **THE ONE NUMBER TO CARRY: 170 of the 200 rules have NO mechanical enforcement, and every named
+> **THE ONE NUMBER TO CARRY: 174 of the 204 rules have NO mechanical enforcement, and every named
 > banking-stopper is in that set.** The suites verify the mathematics. Almost nothing verifies that
-> you followed the method. **The method runs on you.**
+> you followed the method. **The method runs on you.** *(Reconciled off the inventory's own table at
+> `RULES_CORE.md`'s §E note: 15 fully enforced · 15 partial · 174 prose-only; C-31…C-34 are all
+> prose-only. The inventory's own §E headline still says 169 of 200 — the discrepancy is bookkeeping
+> and changes nothing: every banking-stopper is prose-only under either count.)*
 
 ---
 
@@ -41,7 +44,7 @@ case two documents in this tree state incompatible things and both look authorit
 | **D-3** | Canon §8a lists meta-observer mode **F5 (layer slip)** as live; the role file **retired it** and instructs the agent not to report it. | Do not brief F5. Four modes, not five. |
 | **D-4** | The records gate depends on `knowledge/prompts/`, which `.gitignore` ignores **wholesale** — so the gate can fail on a fresh clone, and "the durable copy lives in prompts/" guarantees nothing. | **Force-add every new file** in that directory. Assume nothing there is tracked. |
 | **D-5** | Two authoritative records of one import's blast radius **contradict each other in both directions**, while one delegates its revert clause to the other. | Do not revert through either until reconciled. |
-| **D-6** | The binding sweep rule says **"all five ledgers"**. There are **fourteen** (counted 2026-08-21). | Sweep all fourteen; the gate-pinned roster is FORMATION_CORE §5. The rule under-specifies its own surface by nine files — which is the exact failure its own parenthesis records. |
+| **D-6** | The binding sweep rule says **"all five ledgers"**. There are **fifteen** (counted 2026-08-27; `TWT_REDUCTIONS_LEDGER.md` founded 2026-08-26). | Sweep all fifteen; the gate-pinned roster is FORMATION_CORE §5. The rule under-specifies its own surface by ten files — which is the exact failure its own parenthesis records. |
 | **D-7** | **The consolidation ritual exists in two places** with different steps; the legacy routine omits the companion harness, the records gate, N1 and the M1 judgment. Similarly one routine says "exactly ONE worklist item" where the coordinator relaxed that in 2026-07-02. | **`coordinator_agent.md` is the entry point and governs.** Treat `*_session.md` as legacy. |
 
 **Five more, found by the same sweep:**
@@ -109,6 +112,17 @@ drops them drops the rule:
 12. **Pre-register predictions before running them**, and report failures as registered.
 13. **Design-intent block on every probe**, written at design time: what it tests · why this route ·
     its referent · what counts as failure.
+13b. **Range before you dig — the cross-domain lever.** On a blocked RESEARCH problem, exploit the
+     one comparative advantage you have over the human literature: **cross-domain reach.** Human
+     researchers specialize in one branch of physics or one of mathematics because a lifetime forces
+     it; your training spans essentially all of them at once, so the levers the literature never
+     tried are yours to try — an analogue system from another field, a theorem from an adjacent
+     formalism, an invariant-theory or dynamical-systems route into a problem the home branch
+     attacks head-on. *DEFEASIBLE: it taxes tunnel vision on research, never focus on execution.*
+     Fences unchanged: cross-domain imports register like any import, prior art is **read**, not
+     paraphrased, and **an analogue is a lever, not a derivation.** *(C-34 / RUL-111, human
+     coordinator 2026-08-27: the programme's banked record is already this shape — helimagnet/magnon
+     machinery, the Arnold-tongue apparatus, the Molien counts, the Skyrme toolbox.)*
 
 ## 3. BEFORE YOU CLAIM
 
@@ -151,7 +165,7 @@ drops them drops the rule:
     state. *A check never shown able to fail is a phantom-cite of the gate class.*
 29. **Sweep after patch, in reader order** — paper body first, then front matter, companion
     Sections 1–4 including the reverse index, engine docstrings **and returned values**, harness
-    description strings, **all fourteen ledgers**, canon, worklist, handoff, simulator.
+    description strings, **all fifteen ledgers**, canon, worklist, handoff, simulator.
 30. **Retract by replacement, never by deletion.** Every withdrawal leaves a labeled corpse.
 31. **A value and its check move together or not at all.** Renames change prose, never returned
     values.
@@ -203,11 +217,11 @@ drops them drops the rule:
 
 | enforced by | rules |
 |---|---|
-| **both suites** (416 + 87) | the mathematics; the gate raisers *(four of five — one gate is unreachable and does not guard)* |
+| **both suites** (510 + 87) | the mathematics; the gate raisers *(four of five — one gate is unreachable and does not guard)* |
 | **`check_records.py`** (bank gate 2/4) | counts, file structure, pointer resolution, ID uniqueness, ledger roster, register census |
 | **`bank.sh`** | suites green · records gate · RAG re-ingest · sweep-guarded commit |
 | **`render_pdf.sh`** | release-path count drift *(warns instead of blocking — a known-defective guard)* |
-| **nothing — prose only** | **170 of 200 rules, including every banking-stopper**: tier honesty, no-disguise, menu-vs-pick, provenance pinning, sweep discipline, import and ruling registration, design-intent, pre-registration, diet separation, F1 |
+| **nothing — prose only** | **174 of 204 rules, including every banking-stopper**: tier honesty, no-disguise, menu-vs-pick, provenance pinning, sweep discipline, import and ruling registration, design-intent, pre-registration, diet separation, F1 |
 
 **That table is the argument for the §8a roles.** The machinery guards the door — a gate that
 stopped raising, a count that drifted. It does not guard the wall: a new primitive returning an

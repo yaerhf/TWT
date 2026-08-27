@@ -1,7 +1,7 @@
 # Cover note for reviewers — Time-Wave Theory: the Core paper and its first candidate
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-08-13 · verification suite: 597 checks (510 main + 87 companion) · engine: 338 public primitives (274 main + 64 companion), the main engine split family/instance 172 CORE + 102 CANDIDATE
+Paper revision 2026-08-27 · verification suite: 623 checks (536 main + 87 companion) · engine: 342 public primitives (278 main + 64 companion), the main engine split family/instance 174 CORE + 104 CANDIDATE
 
 ---
 
@@ -37,7 +37,7 @@ What follows is not a plea for charity — it is a list of things you can **chec
 each of which the reference class reliably fails. Check them, then form your view.
 
 **1. Run the verification suite.** `python twt_test.py` should print
-`ALL 510 CHECKS PASSED across 10 modules.` and `python twt_companion_test.py` should print
+`ALL 536 CHECKS PASSED across 10 modules.` and `python twt_companion_test.py` should print
 `ALL 87 COMPANION CHECKS PASSED across 7 modules.` These are executable algebraic assertions on a Clifford-algebra
 engine — Dirac relations, the invariant decompositions, the charge spectrum, the Weinberg
 ratio — not prose. Falsify any of them and the corresponding claim falls; the paper's claims
@@ -48,12 +48,12 @@ are cross-indexed to the primitives that check them.
 return numbers, by design, because those magnitudes are not derived. A framework that fabricates
 results does not build guardrails against its own author.
 
-**3. Read the negatives ledger** (`TWT_NEGATIVES_LEDGER.md`): sixty-plus entries (N0–N57 with primed variants) recording what was
+**3. Read the negatives ledger** (`TWT_NEGATIVES_LEDGER.md`): seventy-plus entries (N0–N71 with primed variants) recording what was
 tried and **failed**, in `tried → failed because → would change if` form, including a negative
 banked the same week as this revision that killed one of the author's own favoured ideas.
 Pseudoscience does not maintain a failure archive.
 
-**4. Check the import registry** (companion Section 13): 19 external theorems the framework
+**4. Check the import registry** (companion Section 13): 32 registered external imports the framework
 leans on, each with its premises, the level it is applied at, and an explicit **revert clause**
 naming what falls back if the import is wrong. The framework is engineered to be *excised*
 cleanly, not defended.
@@ -78,7 +78,9 @@ error unless the paper claimed otherwise — it does not. Three qualifications, 
   **none currently sits at experimental limits**. The framework's sharpest *empirical* exposure is
   not a falsifier row at all but a standing tension: its dimension-six Lorentz-violation coefficient
   is gated on the open substrate dynamics, and the natural value is excluded by existing cosmic-ray
-  and gamma-ray limits by several orders (§E.3.5(4)); a second already-measured exposure — not
+  limits **unconditionally by about one to one-and-a-half orders**, and by six to seven orders only
+  under a pure-proton composition assumption the data itself disfavours (§E.3.5(4)); a second
+  already-measured exposure — not
   gated, simply underived — is the electroweak crossing scale (§E.3.5(5), §C.4.5). We name both
   rather than omit them.
 - `sin²θ_W = 3/8` is a derived normalization identity at unification (no GUT *group*; a
@@ -245,9 +247,11 @@ point-group-symmetric *analytic* kernel there is no anisotropic quartic at all, 
 anisotropy is pushed to dimension **eight**. But a third object escapes both — the rotationally
 invariant dimension-**six** dispersion term. It is not a relative-boost observable, so the
 one-field argument misses it; it is not an anisotropy, so the point-group theorem misses it. Its
-coefficient is gated on the open substrate dynamics, and at the natural size it would be excluded
-by existing cosmic-ray and gamma-ray limits by several orders. That is the tension named earlier in
-this note, and it is the honest boundary of the advantage claimed above (§B.6.3, §E.3.5(4)).
+coefficient is gated on the open substrate dynamics, and at the natural size it is excluded by
+existing cosmic-ray limits unconditionally by about one to one-and-a-half orders — and by six to
+seven orders only under a pure-proton composition assumption the data itself disfavours. That is
+the tension named earlier in this note, and it is the honest boundary of the advantage claimed
+above (§B.6.3, §E.3.5(4)).
 
 **Parameter economy.** Four counted substrate inputs plus the measured Newton constant, with one hadron-sector determination counted provisionally (paper §E.2.1), against the Standard Model's nineteen. The
 framework is explicit that most of those nineteen are not thereby derived — they are gated on a

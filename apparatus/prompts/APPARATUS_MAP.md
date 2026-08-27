@@ -154,13 +154,16 @@ knowledge/
 │   └── *_session.md               ⚠ LEGACY entry points — superseded by the coordinator routine
 │
 ├── corpus/                  THE ARTIFACT + THE ORACLE
-│   ├── TWT_foundational_paper.md            V3 · HISTORY-BLIND by ruling
+│   ├── TWT_core_paper.md                    ★ THE FRONT-FACING PAPER — the family, no R-numbers
+│   ├── TWT_foundational_paper.md            the V3 INSTANCE DOSSIER · HISTORY-BLIND by ruling
 │   ├── TWT_foundational_paper_companion.md  Result Index · dependency graph · dev log · imports
-│   ├── twt.py                MAIN engine — executable ground truth (~255 public)
-│   ├── twt_companion.py      COMPANION engine (~64 public; MAIN never calls it)
-│   └── twt_test.py · twt_companion_test.py   the two harnesses (422 + 87 as of 2026-08-21)
+│   ├── twt.py                MAIN engine FACADE — defines nothing; re-exports both halves
+│   ├── twt_core.py           MAIN/CORE — the FAMILY level (174 public); carries CORE_PROVENANCE
+│   ├── twt_candidate_v3.py   MAIN/CANDIDATE — everything consuming a V3 pick (102 public)
+│   ├── twt_companion.py      COMPANION engine (64 public; MAIN never calls it)
+│   └── twt_test.py · twt_companion_test.py   the two harnesses (510 + 87 as of 2026-08-26)
 │
-├── ledgers/                 THE 12 STANDING LEDGERS — all indexed by RAG
+├── ledgers/                 THE 15 STANDING LEDGERS — all indexed by RAG (roster gate-pinned in FORMATION_CORE §5)
 │   ├── TWT_RULING_REGISTER.md      rulings in force + GROUNDS + revert lists
 │   ├── TWT_FAMILY_TREE.md          Core vs Instance: the pick register
 │   ├── TWT_NEGATIVES_LEDGER.md     tried → failed because → would change if
@@ -169,12 +172,17 @@ knowledge/
 │   ├── TWT_EDIT_REACTION_LEDGER.md edit → external reaction history
 │   ├── TWT_worklist.md             ★ THE DOCKET + the do-not-compress meaning-notes region
 │   ├── TWT_STRATEGIC_MAP.md · TWT_EOM_MAP.md · TWT_DEFECT_CKM_GLUON.md · TWT_PHILOSOPHER_LOG.md
+│   ├── TWT_WINS_LEDGER.md            wins recorded AS wins (never upgrades a tier)
+│   ├── TWT_REVERSAL_LEDGER.md        positions the programme changed, and what changed them
+│   ├── TWT_NEGATIVES_INDEX.md        GENERATED — one line per negative, every would-change-if verbatim
+│   └── TWT_REDUCTIONS_LEDGER.md      the FORWARD object: if A then C1…Cn, by argument P (PROVED, not asserted)
 │
 ├── audit/                   GOVERNING RECORDS, dated  ⚠ NOT in the RAG index, BY DESIGN
 │   ├── SESSION_HANDOFF_*.md     ★ READ FIRST — live state; reachable ONLY via canon §9
 │   ├── pivot_2026-08-17/        the Core/Instance split + the CHARTER
 │   ├── external_review_2026-08-13/   round 1 + MERGE_PLAN + ACTION_PLAN
-│   └── consolidation_2026-08-18/     this arc's records
+│   ├── consolidation_2026-08-18/     the rules architecture + RULE_INVENTORY (the rules authority)
+│   └── consolidation_2026-08-25/     the latest consolidation's records
 │
 └── candidates/              CANDIDATE material — probes, memos, unadjudicated work
 
@@ -187,6 +195,12 @@ simulator/   the GA-native simulator subproject
 **Three structural facts worth seeing at once:**
 1. **`knowledge/prompts/` — the apparatus itself — is gitignored wholesale.** Files added there are
    invisible to git by default; five were found untracked on 2026-08-19. **Force-add every new one.**
+   **And it is PUBLISHED (RUL-112, 2026-08-27):** the apparatus's public home is the TWT mirror's
+   **`apparatus/`** directory, which `render_pdf.sh` re-syncs from these working copies at every
+   release, so an edit here reaches a public artifact at the next render. The papers' four
+   methodology citations point there. `research-ratchet` is now an INDEPENDENT project — the sync
+   practice to it is DEAD, its cited historical state is frozen at tag `twt-apparatus-20260827`, and
+   **`knowledge/prompts/` is authoritative for TWT.**
 2. **`knowledge/audit/` is deliberately outside RAG**, so governing records are reachable only by
    explicit pointer. The handoff's sole path is the canon §9 line. **Do not remove it.**
 3. **The engines are indexed and chunked per primitive** — so a primitive can be *queried* at ~8×

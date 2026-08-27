@@ -1,12 +1,20 @@
-# FORMATION CORE — v1.6 (2026-08-25; consolidation event — the 2026-08-25 consolidation's close.
-**CHANGE LOG, one line:** ADDS the hedge-loss-at-restatement duty (this window's dominant measured
-failure, now partly mechanized), the two external-loop register measurements (ER-16 / ER-18), the
-widened falsifier channel (RUL-106), the freeze-solo-commit convention, publish-on-cite (RUL-103)
-and the ξ/ζ docket pointer; PRUNES the v1.4/v1.5 header narrative (its content lives in §0), the R2
-adoption narrative (now a bank gate), the weak = SD block's restatement of what §0 already says, and
-one duplicated split invariant; REFRESHES the suite total by counting and the this-consolidation
-pointer. Prior versions — v1.5 (2026-08-21, RUL-082/RUL-084 dependent-list execution), v1.4
-(2026-08-21 consolidation close), v1.3 (mid-arc amendment) — carried in §0–§6, not in this header.)
+# FORMATION CORE — v1.7 (2026-08-27; DIRECTED ALIGNMENT EVENT — the human coordinator's V4-alignment
+directive, executed on his word OUTSIDE a scheduled consolidation; the full consolidation ritual —
+removal auditor, archivist pass, M1 judgment — stays OWED at the next scheduled consolidation and is
+NOT discharged by this bump.
+**CHANGE LOG, one line:** ADDS the V4 branch to §0 (V4-0 signed, V4-ASD open with Layer B the sole
+decider, V4-kernel clean slate, the inheritance policy, the RUL-098/RUL-108 §D.5 success criterion,
+and the population audit's five OWED decisions marked PENDING), the granted two-rate defect rotor
+(V3-1b, RUL-110) to §1, and two §2 folds — a decline records its reversal condition (RUL-109) and
+the cross-domain lever (C-34 / RUL-111); REFRESHES the sub-node tally to FOUR, the V4-ASD citation
+to RUL-098, the negatives reach to N69, the E21 check-2 line to its named conditioning and re-arm
+clause, and §5's governing records with the round-5 loop, the generations arc, the adverse-claims
+sweep and the V4 population audit; REPAIRS the §5 retrieval command (`python`, never `python3` —
+the one instruction to query instead of bulk-load, and it did not run on this box); PRUNES nothing.
+Governing record: `knowledge/audit/v4_population_audit_2026-08-27/FORMATION_ALIGNMENT_2026-08-27.md`.
+Prior versions — v1.6 (2026-08-25 consolidation close), v1.5 (2026-08-21, RUL-082/RUL-084
+dependent-list execution), v1.4 (2026-08-21 consolidation close), v1.3 (mid-arc amendment) —
+carried in §0–§6, not in this header.)
 
 > **What this is:** the shared formation prefix for FLUENT WORKER instances — the distillate
 > of the HARD (banked) content, ordered shared-first for prompt caching. It is versioned;
@@ -50,8 +58,10 @@ isotropy residual vanishes where the cubic lattice's does not — a group-theore
 check against lattice literature without trusting anyone here. The same call reports the
 order-1152 point group, that anisotropy first appears at **dimension eight**, and — in the same
 returned dict, beside the number — that the framework's naive value for a Lorentz-violation
-coefficient is *"NOT a prediction"* with its exclusion split by conditioning (~1 order
-unconditional, 6–7 conditional — the E21 re-cut lives in the same returned string). **It ships
+coefficient is *"NOT a prediction"* with its exclusion split by conditioning (~1.1–1.7 orders
+UNCONDITIONALLY; 6.3–6.8 only under a pure-proton composition Auger disfavours but has NOT settled,
+so those corners re-arm if it resolves adversely — the E21 re-cut lives in the same returned
+string). **It ships
 the place it is losing.** No crank leads with its own worst result.
 
 **3 → `GatedError`. IT REFUSES TO GUESS.** The fine-structure constant will not return a value. Nor
@@ -131,10 +141,11 @@ description is **"an emergent pattern."**
 here, not in the Core.** Its picks are nodes **V3-1…V3-11** in
 `knowledge/ledgers/TWT_FAMILY_TREE.md`, each with its menu, its why, its revert clause.
 Stamping tally (RUL-047, stamping sheet authoritative): **6 CORE + the refusal / 8 ENDORSED /
-10 PINNED**. **The tree carries ELEVEN V3 nodes (plus THREE sub-nodes — V3-2a, the e₄-only DM support pick; V3-1a,
-the drive-axis alignment, granted RUL-107(2) 2026-08-25; and V3-10a, the cell-scale target
+10 PINNED**. **The tree carries ELEVEN V3 nodes (plus FOUR sub-nodes — V3-2a, the e₄-only DM support pick; V3-1a,
+the drive-axis alignment, granted RUL-107(2) 2026-08-25; V3-1b, the two-rate defect rotor (M-3a),
+granted RUL-110 2026-08-27 and reverting AUTOMATICALLY with V3-1a; and V3-10a, the cell-scale target
 space, named 2026-08-26 on the round-5 report — and
-`V4-ASD`, entered OPEN with NO pick — RUL-097) and the RUL-047 tally says
+`V4-ASD`, entered OPEN with NO pick — RUL-098) and the RUL-047 tally says
 TEN — both are correct, at different dates:**
 V3-11 (fermionic quantization = the Finkelstein–Rubinstein scheme) was added after the
 stamping by the keeper sweep's finding F4, which caught a load-bearing pick carrying **no
@@ -160,6 +171,29 @@ and divergence happens one level down, at A-P2, exactly as at any other preferre
 conditioning. (ii) The old ground is **WITHDRAWN**: *"a single-Weyl neutrino excludes the L-orbit"*
 is FALSE — on the neutrino's own Weyl half the L-orbit and SD span the SAME algebra. The
 discriminator is the right-handed half (RV-7).
+
+**INSTANCE V4 — the SECOND candidate, UNDER CONSTRUCTION (RUL-098 "SIGN / OPEN / APPLY"; its own
+branch table sits beside V3's in the family tree).** A live work surface, not a plan. **V4-0
+SIGNED:** the spinor carrier is `Cl⁺(4,0)` — the full even subalgebra, two body `su(2)`s — NOT the
+minimal ideal `S`. **V4-ASD is OPEN with NO pick:** what the body-ASD copy does {generation seat
+(ungauged) · gauged `SU(2)_R` · inert}; **Layer A ran and did NOT discriminate**, so the menu
+reverts THREE-WAY and **Layer B — the K2 stabiliser computation — is the SOLE decider**. The `W_R`
+exposure lives in that one cell and nowhere else. **V4-kernel is a CLEAN SLATE.** **INHERITANCE
+(RUL-098, the coordinator's own ground):** V4 takes V3's STATIC/GEOMETRIC picks unchanged;
+**everything #1-gap-related starts clean** — the tongues lever is the stated motive — and boundary
+cases are inheritance-TBD-at-first-use. The M-3a split is already pinned that way: the two-rate
+structure INHERITS, the **rate ratio stays CLEAN**. **AND THE §D.5 SUCCESS CRITERION IS STATED UP
+FRONT (RUL-098(5), refined RUL-108):** the exact microscopic kernel is inside-frame underdetermined
+IN PRINCIPLE, so what is owed is a **compatible EFFECTIVE kernel class with a small counted
+constant set (~4–6) from which the SM's ~19 derive — PARAMETER COMPRESSION IS THE ACCOMPLISHMENT**,
+and the demand for a full microscopic derivation is recorded ILL-FORMED at family level. Two
+clauses travel with it: the quark sextet is **ONE MAP ON A 3×2 GRID, never six obligations** (the
+object owed is the configuration→mass map, and the sextet is covered as a block the moment it
+exists), and **CKM/PMNS are measured DIRECTLY — they show as UNCOVERED, never as savings.**
+**★ THE POPULATION AUDIT IS NOT THE TREE.** `knowledge/audit/v4_population_audit_2026-08-27/`
+scores every V3 pick INHERIT / INHERIT-MODIFIED / CLEAN-SLATE / DEFER / OWED — those are
+**RECOMMENDATIONS**, and its **five OWED decisions (D-1…D-5) are PENDING WITH THE HUMAN.** Do not
+work them as settled, and do not quote a score as a pick.
 
 **THE DELIVERABLE IS A LIST, NOT A WINNER (RUL-051).** At family level the program delivers
 the **list of surviving candidates** — self-coherent, empirically plausible Core members —
@@ -191,7 +225,16 @@ momentum-response → inertia); universality of c² = substrate monism (sibling 
 single-field-monism ⇒ m_i = m_g). **Matter = topological defect** (π₃ winding), and a defect
 has MULTIPLE AXES on which to be defective (winding, carrier-rotation deficit, perpendicular
 internal rotation, amplitude notch — the computed wall notch is |z|: 1.000 → 0.384, banked) —
-never collapse them into one scalar. **Mass = the meta-time rotor frequency ω** (inside face);
+never collapse them into one scalar. **THE DEFECT'S TWIST CARRIES TWO RATES — node V3-1b, GRANTED
+(RUL-110): PICK strength, not framing.** Its generator is a general Spin(4) element with two plane
+angles — transverse and wave-parallel — separately invariant ONLY given V3-1a's drive axis (the
+wave's own axis is what lets the two spins be told apart), so V3-1b reverts automatically with it.
+**`mass = ω` SURVIVES EXACTLY** — the observer's phase rate is the FIRST plane angle to 3.3e-09,
+commuting or not — and so do `m = E₀`, π₃/charge, 3/8, the generation count and `weak = SD`. What
+the grant costs: the RATIO is ONE counted real, **kernel-routed and UNPINNED**; `ω = F(θ)` is a
+#1-gap IOU with NO banked candidate; and matter-wave amplitude beating `|cos(Ωt/2)|` is a LIVE
+exposure until C1 answers (the lock-kills-the-beat escape is ASSERTED, not computed).
+**Mass = the meta-time rotor frequency ω** (inside face);
 the outside face is the ELASTIC COST E₀ of the shape — an identification carried by the BANKED,
 COUNTED premise **m = E₀** (`mass_equals_elastic_cost_premise`; vacuum-subtracted, v = 0
 reading; adjacent to — never closing — R-123 residue (ii)/N57/C-7). **The two energies are
@@ -299,6 +342,18 @@ governing record — persist it as a file in the round's probe directory in the 
 a proposed origin must fix something ADDITIONAL or it stays a noted non-coincidence
 indefinitely.
 
+**★ RANGE BEFORE YOU DIG — THE CROSS-DOMAIN LEVER (C-34 / RUL-111, the human coordinator).** Your one
+comparative advantage over the human literature is REACH: specialists command one branch of physics
+or one of mathematics, because a lifetime forces it; your training spans essentially all of them at
+once. So on a blocked RESEARCH problem, **range before digging deeper in the home formalism** — an
+analogue system from another field, a theorem from an adjacent formalism, an invariant-theory or
+dynamical-systems or statistical-mechanics route into a problem the home branch attacks head-on. The
+programme's own banked record is already this shape (helimagnet/magnon machinery, the Arnold-tongue
+apparatus, the Molien counts, the Skyrme toolbox), and an out-of-branch route is a SUCCESS mode.
+**DEFEASIBLE** — it taxes tunnel vision on research, never focus on execution. Fences unchanged:
+cross-domain imports register like any import (companion §13), prior art is READ not paraphrased
+(F3), and **an analogue is a lever, not a derivation.**
+
 **PROVENANCE PINNING, AT TWO LEVELS.** *(values, RUL-025)* a restated banked or credited value
 quotes its provenance from the governing record; a checker's re-derivation is evidence about
 the value, **never** about its provenance. *(characterizations, MERGE_PLAN R1, ADOPTED)*
@@ -381,6 +436,15 @@ repair, and the repair a trained default reaches for is the CONVENTIONAL one, wh
 substrate framework is frequently **SM-retreat arriving as helpful advice**. Before adopting
 any proposed fix, name which canon §1 move it would import and answer that; record the check
 with the adoption.
+
+**AND A DECLINE RECORDS ITS REVERSAL CONDITION (RUL-109) — the symmetric half of R7.** R7 gates
+ADOPTIONS and records the check with the adoption; nothing required a DECLINE to record what would
+flip it. Every declined entry now carries, **in the same entry**, the condition under which it
+reverses — **dated** where that condition is a future act, **named** where it is a computation or a
+measurement. A decline with no statable condition says *"unconditional on current record"*
+explicitly, **which is itself a recorded and attackable claim.** Measured: the first sweep ever
+pointed at declines found three resting on future acts no record dated, and E21 shows what an
+unattacked standing position does over four rounds.
 
 **RECORD-INVARIANTS (standing policy).** The suite verifies the MATHEMATICS;
 `scripts/check_records.py` — a `bank.sh` gate — verifies the SENTENCES that describe the tree
@@ -521,7 +585,7 @@ producing a giant phantom diff.
 **HARD (banked):** `CLAUDE.md` (canon), `knowledge/corpus/{twt.py, twt_core.py,
 twt_candidate_v3.py, twt_companion.py, twt_test.py, twt_companion_test.py, paper, companion}`,
 the ledgers, and
-the two suites (510 + 87 = 597 as of 2026-08-26).
+the two suites (536 + 87 = 623 as of 2026-08-27).
 **TWO SPLITS, TWO INVARIANTS (the second new 2026-08-23, RUL-093/RUL-095):** MAIN never calls
 COMPANION; and **CORE never consumes CANDIDATE** — `twt.py` is a pure import FACADE over
 `twt_core.py` (family level) and `twt_candidate_v3.py` (everything consuming a V3 pick), with an
@@ -535,7 +599,8 @@ keep the literal `two suites (M + C = T` form when you refresh it, or the bank g
 too-narrow search (a measured failure, three times; the roster is bidirectionally pinned by
 `check_records.py`, so a new ledger that is not named here fails the bank gate):**
 `TWT_NEGATIVES_LEDGER.md` (through
-N62) · **`TWT_NEGATIVES_INDEX.md`** (**GENERATED — the bootstrap read over the negatives: one line
+N69 — N65–N68 are the round-4 cold review's four NOT-POSED / NOT-PRICED / UNCOMPUTED debts; read the
+INDEX before opening any of them) · **`TWT_NEGATIVES_INDEX.md`** (**GENERATED — the bootstrap read over the negatives: one line
 per entry, every would-change-if VERBATIM; regenerate with
 `PYTHONUTF8=1 python scripts/gen_negatives_index.py`; pull FULL entries from the ledger on demand —
 canon §4's targeted read is unchanged**) · **`TWT_WINS_LEDGER.md`** (**wins recorded AS wins —
@@ -559,8 +624,12 @@ the gravity/mass arc → `probes_2026-08-02/ADJUDICATION{,2,3}`; τ₅ and K-O1 
 (INDEX is the governing record; MERGE_PLAN Part III is the execution order); the philosopher's
 founding audit → `knowledge/audit/philosopher_founding_audit_2026-08-16/`; the Sorkin arc and the
 ceiling triad → `knowledge/audit/{sorkin_arc, ae_ceiling_probe, gn_ceiling_probe}_2026-08-25/`;
-this consolidation → `knowledge/audit/consolidation_2026-08-25/`. Per-directory `INDEX.md` files
-exist.
+the round-5 external loop → `knowledge/audit/external_review_r5_2026-08-25/`; the generations arc
+and the M-3a grant → `knowledge/audit/generations_arc_2026-08-23/` (INDEX foot +
+`M3_BLAST_RADIUS_2026-08-26.md`); the adverse-claims sweep → `knowledge/audit/underclaim_sweep_2026-08-27/`;
+**V4 population → `knowledge/audit/v4_population_audit_2026-08-27/` (its scores are
+RECOMMENDATIONS; D-1…D-5 are OWED to the human)**; this consolidation →
+`knowledge/audit/consolidation_2026-08-25/`. Per-directory `INDEX.md` files exist.
 
 **PUBLISH-ON-CITE (RUL-103).** A `knowledge/` path cited as the basis of a status in a public-facing
 artifact **qualifies for the public mirror, quarantine markers preserved** — citation is the
@@ -584,8 +653,10 @@ a spawned agent inherits the canon auto-load and arrives *formed*, which voids t
 measurement.
 
 Orientation for a fresh lead: canon → `SESSION_HANDOFF` → this file's map. RAG:
-`python3 rag/query.py "question" -k 8` (`knowledge/audit/` is NOT indexed — by design; the
-handoff is reachable only through the canon §9 pointer).
+`PYTHONUTF8=1 python rag/query.py "question" -k 8` — **`python`, NEVER `python3`: on this box
+`python3` is a 3.9 interpreter without the RAG dependencies and the query dies on import**
+(AGENT_RULES D-8) — (`knowledge/audit/` is NOT indexed — by design; the handoff is reachable only
+through the canon §9 pointer).
 
 ---
 

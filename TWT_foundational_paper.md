@@ -569,12 +569,14 @@ The vacuum spinor is
 
 with `c_0` a normalization constant and `s_0 = (1 + e_4)/2` the primitive idempotent of the
 spinor minimal left ideal `𝒮` (§A.5.4). **This homogeneous form is the twist-gauge reference, not a
-claim that the ground state is featureless**: it is the rotating-frame representative in which the
+claim that the ordered state is featureless — nor that it is a ground state**: it is the rotating-frame representative in which the
 helimagnetic spiral is absorbed into a field redefinition, so the reference value carries no
-`x`-dependence — see the note on what "vacuum" means at §D.4.6. The substrate's ordered ground
+`x`-dependence — see the note on what "vacuum" means at §D.4.6. The substrate's ordered
 state is *canted*, not fully aligned — a small canting angle quantifies the chiral-symmetry
 breaking that the framework's hadronic-sector
-derivations rest on. (The numerical specifics — the `D/J` calibration, the
+derivations rest on. That ordered state is a **stationary point** of the bond energy and not
+a tree-level local minimum of it (§D.4.3); the chiral-symmetry-breaking statement is a
+short-distance one and is unaffected, but the state is a reference, never a ground state. (The numerical specifics — the `D/J` calibration, the
 Luttinger–Tisza spiral pitch — sit at §D.3 / §D.4.)
 
 **Matter is a defect** in the wavefront's rotor field — a configuration that fails to match the
@@ -1508,7 +1510,7 @@ covered by a polynomial-invariant argument); that the *full* point group includi
 acts (the reflection subgroup `W(D4)` alone has a three-dimensional degree-four space, and the
 second shell's two sub-orbits are each anisotropic, cancelling only at equal weight — so a
 substrate coupling weighting triality-related orbits unequally would restore dimension-six
-anisotropy); that the **ground state preserves the point group** (the §D.4.3 spiral vacuum
+anisotropy); that the **ordered state preserves the point group** (the §D.4.3 spiral vacuum
 breaks it: the species-universal `O(q²)` stiffness splitting is absorbed by the rescaling
 class, and the space-fixed — sidereal — residual is an open question the exposure ledger
 carries); that the symmetry **operative** on the sector the claim is quoted for is that full
@@ -2868,7 +2870,9 @@ return to the honest comparison at §E.2.
 In TWT, gravity is the induced general relativity of the rotor field as local Lorentz frame,
 structurally unified with the gauge sector (§C.5) through the same frame-connection mechanism.
 The case has three settled structural pillars: magnitude (Λ Planckian within `O(1)`), sign
-(positive — `1/G > 0` — locked to spin-2 spectral positivity, equivalently substrate stability),
+(positive — `1/G > 0` — locked to spin-2 spectral positivity, which is a unitarity statement
+about the matter sector and does **not** ride on the ordered phase being a global minimum — see
+§B.6.4, where the substrate-stability leg is carried separately and with its own bound),
 and form (`γ = 1` from matter-as-defect Lorentz protection). The texture-tetrad route to a full
 nonlinear Einstein–Hilbert coefficient is structurally closed conditional on one premise; the
 absolute coefficient remains the #1-gap output.
@@ -3295,7 +3299,7 @@ though the dimension-eight *inference* they carry rides §B.1.5's five premises 
 | dim-6 **anisotropy** | `(E/Λ)⁴` | `2.0 × 10⁻³¹` (loose corner `Λ_L = 0.39 M_Pl`) … `1.6 × 10⁻³²` (tight corner `Λ_L = 0.73 M_Pl`); pushed to dim-8 by D4 fourth-moment isotropy | structurally out of range for the polarization-averaged dispersion **given §B.1.5's five premises, P-op included** (at the driven subgroup the spatial quartic is *permitted*; it is empty because the coupling is constant on the full 24-bond orbit — full-orbit isotropy, with the `±4` split as the advance-axis sensitivity decomposition, R-185); a nonzero dressed Γ survivor (§D.5.7 assembly record, #1-gap-routed) would open a dim-6 polarization-splitting anisotropy facing SME-type sidereal bounds — coupled to the second-D exposure (family-tree V3-2a) |
 | dim-6 **isotropic** `c · p⁴/Λ²` (≡ `η⁽⁴⁾ p⁴/M²_Pl`) | `c (E/Λ)²` | `c` **uncomputed**; `c = 1` ⇒ `η⁽⁴⁾ ∈ [1.9, 6.7]`, excluded per the E21 split (~1 order unconditional / 6–7 conditional; §B.6.3) | **open exposure** |
 
-### B.6.4 Sign positive — substrate stability ≡ spin-2 spectral positivity
+### B.6.4 Sign positive — spin-2 spectral positivity
 
 The induced-gravity sign problem is famously delicate. The Sakharov-induced `1/G` comes from a
 quadratically divergent loop whose sign is regulator-sensitive in generic field theory, and a
@@ -3318,10 +3322,20 @@ channel comes in positive with coefficient `C_T > 0` (the central charge), posit
 in any consistent QFT. **The physical Newton constant is the spin-2 channel value, and it is
 positive.**
 
-The same physics in different language is **substrate stability**. The substrate's ordered phase
-is stable: linear spin-wave theory for the canted DM ground state gives `ω²(k) ≥ 0` across the
-Brillouin zone (no imaginary modes). The induced graviton is a collective fluctuation of this
-stable medium, and it is massless: matter couples covariantly through the spin connection, the
+The same physics in different language is **substrate stability**, and the ordered phase's stability
+is real but bounded, so the statement is made with its bound. Linear spin-wave theory about the
+canted reference state gives `ω²(k) ≥ 0` over the Brillouin zone **except in a small
+long-wavelength neighbourhood of the origin**, where the lowest band dips negative in a direction
+perpendicular to the helix wavevector — on both computed branches, and by an amount of order `10⁻⁶`
+of the band gap on the branch that lies lower (§D.4.3). The medium is therefore stable against every
+mode down to a long-wavelength threshold, and unstable to a reconstruction beyond it. **The
+positivity conclusion above does not rest on this.** `1/G` is fixed by the spin-2 channel and its
+sign by `C_T > 0`, a unitarity statement about the matter sector, not by the ordered phase being a
+global minimum; and the graviton's masslessness follows from diffeomorphism invariance of the
+induced action, likewise independent of it. What the residual instability does bear on is the
+identity of the state the collective fluctuation is a fluctuation *of*, which §D.4.3 leaves open
+and §D.5 routes to the kernel. Read that way, the induced graviton is a collective mode of this
+medium, and it is massless: matter couples covariantly through the spin connection, the
 induced action is diffeomorphism-invariant, and there is **no graviton mass term at all**. The only
 preferred-frame remnant is the dimension-six *dispersion* correction `c (k/Λ)²`, which vanishes as
 `k → 0` and therefore cannot produce the Yukawa suppression that graviton-mass bounds constrain —
@@ -3347,7 +3361,15 @@ integrating out matter against a hard cutoff with no medium underneath, the grav
 property of the loop scheme rather than of any physical fluctuation, and it floats. For some
 matter content and some regulators it comes out negative — the worry that motivated Adler's
 review. **TWT is not in that case.** It has a real stable ultraviolet completion — the ordered
-rotor phase — so the stability bound *applies*, and it forces `1/G > 0`. The same structural
+rotor phase — so the stability bound *applies*, and it forces `1/G > 0`. **The residual
+instability of §D.4.3 does not weaken this, and the reason is that it points the other way in
+scale**: it is an **infrared** effect, confined to wavelengths of order a thousand lattice
+spacings and above, whereas what the induced-gravity argument needs is stability of the phase at
+and below the lattice scale, which is exactly where the spectrum is positive and gapped. An
+ordered phase that is stable in the ultraviolet and reconstructs in the deep infrared is a
+different situation from a theory with no medium underneath, and it is the former the bound
+requires. What the infrared reconstruction can change is *which* ordered state the completion is,
+not whether there is one. The same structural
 property that distinguishes TWT (having a real substrate, not just a mathematical theory) is what
 makes the sign argument bite where it does not bite generically. Note also that the chiral fermion
 contributes positively to spin-2 (not just magnons), and the graviton is the *composite spin-2
@@ -3492,12 +3514,12 @@ about `η = diag(−1, 1, 1, 1)` while this section writes `g = δ₄ + h`. Thes
 backgrounds: consequence (ii) below *is* the map — whenever `g` is Lorentzian it reduces to
 `g = eᵀηe`, so §B.6.1's `η` is the tetrad frame of a finite-amplitude Lorentzian vacuum. What is
 owed is only that vacuum's *value*, which is exactly the named EOM residue (the signature pick).
-Relatedly, `Ω = 0` is not the physical expansion point either: per §D.4.6 the substrate ground state
+Relatedly, `Ω = 0` is not the physical expansion point either: per §D.4.6 the substrate ordered state
 is a helimagnet whose twist-gauge Maurer–Cartan form carries a *constant* background `Ω_vac ∝ q`.
 Two consequences are worth recording as leads, both **CANDIDATE**. A single-blade (planar) helix has
 exactly balanced SD/ASD content, so `texture_metric_candidate`'s P6 fact gives `h = 0` on it
 identically — only a chirally *imbalanced* `Ω_vac` can move the signature, and the blade content of
-the D4 ground state is not established here. (This is P6 alone; the baryon vanishing above needs the
+the D4 ordered state is not established here. (This is P6 alone; the baryon vanishing above needs the
 strictly stronger L×Q cancellation as well.) And about a nonzero `Ω_vac` the difference
 `h[Ω_vac + δΩ] − h[Ω_vac]` is *linear* in `δΩ` rather than quadratic — immediately, since `h` is
 bilinear — which is the one place a linear graviton could enter a construction that has none at
@@ -3616,11 +3638,16 @@ conditions for physical gravity on TWT-structural grounds:
 | condition | reduces to |
 |---|---|
 | magnitude Planckian (`Λ_S = √(2π) M_Pl`, `Λ_L = 1/a ∈ [0.39, 0.73] M_Pl`; `c_reg = 1/12`; which-`Λ` split at §B.6.2) | substrate spectral density and cutoff |
-| sign positive (`1/G > 0`) | substrate stability + spin-2 spectral positivity |
+| sign positive (`1/G > 0`) | spin-2 spectral positivity (`C_T > 0`, unitarity) |
 | Lorentz-invariant form (`γ = 1`) | matter-as-defect (covariant regulator) |
 
-All three reduce to substrate properties — stability, unitarity, single-light-cone matter — each
-independently established, the magnitude row through the registered spectral-sum import (I-3,
+All three reduce to substrate properties — unitarity, spectral density and cutoff,
+single-light-cone matter — each independently established. **The sign row no longer carries a
+substrate-stability leg**, and the change is a strengthening: it rides on `C_T > 0` alone, which
+is the narrower premise. Substrate stability is a separate question and is now a *bounded* one —
+the ordered phase is a genuine local minimum only against modes below a long-wavelength
+threshold (§D.4.3) — so it may not be quoted as an equivalent of the sign result. The magnitude
+row is established the magnitude row through the registered spectral-sum import (I-3,
 §B.6.2). **The conceptual core is settled, at that stated conditionality.** What remains is the explicit `C_T`
 computation, the `O(1)` spin-2 projection coefficient, and the substrate spectral sum on the
 single emergent light-cone — best carried out in the first-order (Cartan / spin-connection)
@@ -5759,7 +5786,45 @@ the dressed action *is* that action) and of a literature-known class (Pham–Tru
 dispersive sum rules). What it removes is the *wrong-sign risk* — conditional on
 I-13; what it does **not** deliver is asymptotic freedom itself: the sign's source is the
 additive `f²`-loop drift, not an antiscreening mechanism, and the full DGLAP structure and
-magnitude remain the §D.5 kernel's burden. Gated to Paper-2.
+magnitude remain the §D.5 kernel's burden. Gated to Paper-2. **And the sign is a sign, not a
+range:** the coefficient below is computed only inside the chiral window, some two e-folds above
+the cell scale, while the scaling violations this sector must eventually source are measured
+continuously to the TeV — about **seven** e-folds up. The **five-e-fold shortfall**, a factor of
+roughly two hundred in scale, is part of what the UV completion owes; nothing here claims the sign
+covers the range over which the falsifier lives.
+
+**One flow, two names, and both are needed.** The paragraph above calls this `β` *asymptotically
+free-signed*; the paragraph below calls the same `β` *infrared-free*. Both are correct and neither
+may stand alone, because they are **reciprocal-coupling conventions on one flow**. Read `λ_S = 1/e²`
+as the coupling — the coefficient the quartic operator actually carries — and it grows toward the
+infrared, which is the asymptotically-free direction. Read `e²` as the coupling — the standard
+Skyrme parameter — and the same flow is infrared-free, vanishing in the deep infrared and diverging
+at a **finite** ultraviolet scale. That divergence is not a separate fact: it sits at exactly the
+e-fold count quoted below as the running's reach, so the sector's headline *reach* and its
+ultraviolet *Landau pole* are one number under two names. What follows from it is stated plainly:
+the chiral description of this sector ends about two e-folds above the cell scale.
+
+**The one-loop flow, and what it does not buy (R-190).** The marginal quartic is the sector's only
+logarithmic runner, and its one-loop coefficient is computable independently of the dispersive
+package: identifying the quartic with the chiral `O(p⁴)` constant `l₂` (`λ_S ≡ 1/e² = 4l₂`, derived
+from the `su(2)` trace identity rather than matched) gives `μ d(1/e²)/dμ = −1/(6π²)`. Two things
+follow that the sign result alone does not deliver. First, **the flow is exact**: by chiral power
+counting no insertion of the quartic couplings can renormalize an `O(p⁴)` operator, so this
+β-function receives no correction at any order in the chiral expansion — a stronger statement than
+holds for the incumbent's own coupling. Its sign agrees with the dispersive result above by a route
+sharing none of that package's premises, so the two are an independent concordance and the
+magnitude carries none of I-13's conditionality (the sign result above still does, with its revert
+clause). Second, **the flow is infrared-free, hence infrared-anchored**: its free parameter sits at
+the measured hadronic end rather than at a microscopic one, so a hierarchy obtained this way would
+be read off a measured coupling rather than generated from an `O(1)` microscopic one. Quantitatively
+the reach is `λ_S(cell)/c = 4π²/(e²γ₂)`, about two e-folds at the sector's own dressed coupling,
+against the forty-odd separating the grain and cell scales — and the comparison is between two
+entered scales, the grain size being a back-fit of measured gravity and the cell scale a fit, so it
+is a structural tension and never a derived violation. What the running does control is the soliton
+core in units of the cell scale, `ℓ_S f_π = √λ_S`; it does not control the linearised relaxation
+lengths of the grain-layer bond model, and it is independent of `f_π` itself, so it cannot reach the
+grain-to-cell ratio at all. **The hierarchy question therefore routes back to the §D.5 kernel**,
+alongside the DGLAP structure and the magnitudes, rather than being answered by the running.
 
 ### C.5.3 The ⟨I_4⟩ parity-breaking condensate
 
@@ -6472,13 +6537,53 @@ branch. R-108's closed form therefore stands on both, with a re-interpreted refe
 "the canting angle `q`" names a *different geometric object* on each: four bonds at `q` on one,
 twelve bonds at a smaller common angle on the other.
 
+**The linearised response, and the reference state's own stability.** The second variation of the
+bond energy about either branch — the six-band stiffness of §D.4.4 — answers two further questions
+once it is continued to imaginary wavevector, where its poles are the static correlation lengths.
+
+*Healing lengths.* A perturbation in a **gapped** direction decays over a length `ξ`, and per
+direction and per branch, in units of the lattice coordinate spacing `a`, `ξ/a` has a measured
+minimum of `5.388` on the body-diagonal branch and `5.429` on the axis branch, a median over
+directions near `9`, and a ninety-fifth percentile near `26`. It **diverges** along each branch's
+own helix axis, where the state's gapless phason point lies, so a core exploring that direction
+does not heal exponentially at all. The estimate `√(12/g)` built from the isotropic stiffness and
+the branch gap is the **floor of this distribution, not its value**: it drops the antisymmetric
+coupling's odd-in-`k` term, which is comparable to `√(ρg)` on every spatial direction and vanishes
+identically only along the advance axis, and dropping it *under*-estimates `ξ`.
+
+*Neither branch is a local minimum.* The lowest stiffness band has **negative curvature at long
+wavelength on both branches**, in a mode perpendicular to the helix wavevector. On the axis branch
+this is the transverse second variation already recorded above, seen in the band structure. On the
+body-diagonal branch the unstable mode is **not of single-`q` type** and is essentially orthogonal
+to every direction the family scanned above can explore — which is why the minimality established
+there, correct within that family, does not extend past it. The instability is confined to long
+wavelength: the band is negative only below a threshold wavevector, so the state is a genuine local
+minimum against **every** mode of wavelength below roughly `773 a` on the body-diagonal branch and
+`227 a` on the axis branch, and the well is shallow — of order `10⁻⁶` of the gap on the first branch
+and `10⁻⁴` on the second. The healing lengths above therefore remain valid **short-distance**
+relaxation scales, one to two orders inside that window; they are not healing lengths back to a
+vacuum, because neither computed state is one.
+
+*What the soft channel supplies.* The negative curvature together with the band's positive quartic
+gives that channel an intrinsic modulation length — about `1094 a` on the body-diagonal branch and
+`322 a` on the axis branch — which is the longest length anywhere in the linearised theory. Placing
+a defect core at the hadronic cell scale would require a length of order `10¹⁹`–`10²⁰` lattice
+spacings. Both scales in that comparison are **entered** — the lattice spacing through the
+measured-`G_N` back-fit and the cell scale through its fit — and no computation carrying one into
+the other exists, so the shortfall is a **structural tension between two inputs**, never a derived
+violation.
+
 **Status, scope, and what is open.** Stationarity and the transverse second variation are exact
 identities; the body-diagonal branch's lower energy is a numerical result carrying the
 closed-form mechanism above, with an exact-arithmetic minimisation still owed; and every
 minimality claim here is made **within the single-`q` simple-bivector helical family** —
-multi-`q`, conical and non-simple-`B` states are unscanned. **Which branch the driven dynamics
-selects is open.** These are static energetics, and a driven steady state is not obliged to sit
-at the static minimum; the question is held at §D.5 as a named piece of the kernel problem.
+multi-`q`, conical and non-simple-`B` states are unscanned, and the long-wavelength instability
+just described lives in exactly those unscanned directions. **Both computed branches are
+stationary points of the bond energy, and neither is a tree-level local minimum of it.** Static
+energetics therefore select neither branch, and **which branch the driven dynamics selects is
+open**: these are static energetics, a driven steady state is not obliged to sit at a static
+minimum, and the question is held at §D.5 as a named piece of the kernel problem. What the
+reference state reconstructs into under its own long-wavelength instability is unscanned.
 
 **Prior art.** Selection between a coordinate axis and a body diagonal, split by a tiny residual
 anisotropy, is the standard phenomenology of cubic Dzyaloshinskii–Moriya helimagnets (Bak &
@@ -6610,7 +6715,37 @@ whose **isotropic idealization**
 
 — timelike in `τ_5`, four Euclidean spatial slices — is what **Part B's QM/SR spine consumes**:
 §B.2.1's Klein–Gordon (via Fourier reduction at `k_4 = m`), §B.3's Schrödinger, §B.4's Bell,
-§B.5's Maxwell. *Whether the `O(q²)` splitting reaches a wavefront-locked observer* is an open
+§B.5's Maxwell.
+
+**What the reference state's own instability does to this operator, stated plainly because the two
+numbers now live in the same section.** The reference state expanded about here is a stationary
+point of the bond energy and **not a tree-level local minimum of it** (§D.4.3): its lowest band
+turns negative at long wavelength. That matters *here* more than it matters for the induced-gravity
+argument, and in the opposite direction. Induced gravity is an **ultraviolet** object and the
+spectrum is positive and gapped at and below the lattice scale, so §B.6.4's sign conclusion is
+untouched. **Part B's linear face is the `k → 0` object** — it lives precisely where the band is
+soft. The stability window is wavelengths below `~773 a` on the body-diagonal branch and `~227 a`
+on the axis branch, while this candidate's own hadronic cell sits near `10¹⁹ a`: **the entire cell
+scale, and everything above it, lies about sixteen decades inside the region the same statics call
+unstable.**
+
+Three things follow, and the third is the honest position. *First*, the premise flagged above as
+mild — that the construction "needs only that the reference is a helix of a single `q`" — is now
+**load-bearing**, because the instability is precisely **non-single-`q`**. *Second*, the two
+branches fail in **two different sectors**, and the difference is computed: on the body-diagonal
+branch the soft polarization is `(e₁₂ − e₁₃ + e₂₃)/√3` — **entirely inside the L-orbit triple**, which
+is the very three-parameter sector §D.4.3's stated sector reduction uses and the one the multiplet
+statement above describes — while on the axis branch it is pure `e₁₄`, the known canting saddle,
+**outside** that triple. So the sector this section works in is exactly the sector that goes soft
+on the branch the candidate says lies lower. *Third*, and this is what the situation actually
+supports: **Part B's linear face is conditional on the unscanned reconstruction, not refuted by
+it.** What an instability of this kind bears on is the *identity of the state the fluctuation is a
+fluctuation of*, not the existence of a fluctuation operator. A chiral magnet with negative
+transverse stiffness reconstructs into a multi-`q` state which has its own positive spectrum and
+its own Goldstone modes, and Part B's operator is then the same construction computed about
+*that* state. Nothing in Part B is withdrawn and no tier moves; what is added is a named
+conditional — the reconstruction is unscanned, and which state the driven dynamics selects is
+kernel-routed at §D.5. *Whether the `O(q²)` splitting reaches a wavefront-locked observer* is an open
 projection question (the same outside↔inside leg as I-19 premise (e)); a species-universal
 splitting is additionally absorbable at leading order by the I-22 rescaling class, and the
 space-fixed (sidereal) question is SC-2's. R-112 is conditional on that projection: the spine's
@@ -6920,7 +7055,14 @@ candidate status before the gap closes.
   as working hypothesis.
 - **Magnitude pinning: open.** Θ_rel value, `Im χ` form, individual coupling magnitudes,
   individual mass scales — all gated.
-- **Linear face: structurally safe.** QM, SR, Bell, Maxwell content of Part B robust.
+- **Linear face: structurally safe — and the axis of that safety is named.** QM, SR, Bell,
+  Maxwell content of Part B is robust against **which kernel** the gap resolves to: that is
+  fork-independence, and it is what "structurally safe" establishes. It is **not**
+  state-independence. The linear operator is computed about a reference state that is not a
+  tree-level local minimum (§D.4.3, §D.4.6), and the third underwriter of the safety claim —
+  Goldstone/Adler-zero protection — is a property of the broken-symmetry pattern, which a
+  reconstruction would change. So the content is conditional on the unscanned reconstruction
+  and robust across the kernel fork; both halves travel together.
 
 The framework's posture on the #1 gap is the canonical "claim the structure, not the
 magnitudes." Part B's spine claims are not magnitude predictions; they are structural derivations
@@ -7176,7 +7318,8 @@ The framework's open numerical values cluster on a small number of deep objects:
   **Six magnitudes, one transport function.**
 - **Gated on `Θ_rel` (the FDT-violation residual):** colour-U(3) → SU(3) breaking, CKM
   hierarchy + Jarlskog, asymptotic-freedom DGLAP structure + magnitude (the *sign* face is
-  decided-conditional — the AF-signed branch `β_3 ≤ 0`, R-148 §C.5.2, conditional on the
+  decided-conditional — the AF-signed branch `β_3 ≤ 0` in the `λ_S = 1/e²` convention (the same
+  flow is infrared-free in the standard Skyrme coupling `e²`), R-148 §C.5.2, conditional on the
   registered dispersive import I-13), coupling-universality (a candidate route via SOC).
 - **Gated on absolute ω scale:** `f_π` absolute MeV, `M_0` baryon mass, `1/Θ_0`, `f_L` via
   L-orbit QCP scaling, same-composition mass split magnitudes, vector meson absolute masses — all read
@@ -7214,7 +7357,7 @@ honest distance between the current text and a fully forward-derived spine:
 | **cross-block rigidity** (+ an open cross-block weight) | folding `α_s` into the single-dial economy (§B.5b.3, R-162) | a kernel with the named universality across inequivalent Schur blocks |
 | **P4 / P5 / P6 / P7** — one universal charge functional; per-defect chirality-independence; proton = `uud` state identification; cross-sector weak-isospin alignment `T_3(e) = T_3(d) = −T_3(u)` | the proton–electron equality as theorem rather than anchor (§C.2.7, R-159) | an EM-sector construction fixing the functional's universality, plus a derivation of the doublet slot assignment |
 | **the ℍ-unit identification (+ the associativity premise)** | the three-generation count (§C.3.8; count itself generic-given-4D) | a substrate-dynamical selection of the generation triple, and a substrate reason for associativity (vs the octonionic route) |
-| **P-an / P-pg / P-gs / P-op** — analyticity of the dispersion kernel in `k`; the *full* point group including triality; the ground state preserving the point group (the §D.4.3 spiral breaks it; the residual is SC-2's sidereal question); and that the symmetry *operative* on the spatial anisotropy sector is that full point group rather than the **driven** subgroup — the order-48 stabilizer of the advance axis, which restricts onto `W(B₃)` and admits a two-dimensional degree-four spatial invariant space containing `Σ_{i≤3}k_i⁴` | the dimension-eight anisotropy result (§B.1.5, R-165) | a kernel shown analytic at grain scale (a non-analytic memory kernel — the #1 gap itself — escapes any polynomial-invariant argument), a substrate coupling shown to weight triality-related orbits equally (unequal weighting restores dimension-six anisotropy), either a point-group-symmetric vacuum or the sidereal residual computed (SC-2), and — for **P-op** — either a demonstration that the effective real-time kernel is invariant under the full point group and not merely the driven one, or the driven-sector spatial fourth moment shown to stay zero once dressed (at tree level it is zero, but by a `+4`/`−4` cancellation between the `e₄`-bearing and in-hyperplane bonds, not by symmetry) |
+| **P-an / P-pg / P-gs / P-op** — analyticity of the dispersion kernel in `k`; the *full* point group including triality; the ordered state preserving the point group (the §D.4.3 spiral breaks it; the residual is SC-2's sidereal question); and that the symmetry *operative* on the spatial anisotropy sector is that full point group rather than the **driven** subgroup — the order-48 stabilizer of the advance axis, which restricts onto `W(B₃)` and admits a two-dimensional degree-four spatial invariant space containing `Σ_{i≤3}k_i⁴` | the dimension-eight anisotropy result (§B.1.5, R-165) | a kernel shown analytic at grain scale (a non-analytic memory kernel — the #1 gap itself — escapes any polynomial-invariant argument), a substrate coupling shown to weight triality-related orbits equally (unequal weighting restores dimension-six anisotropy), either a point-group-symmetric vacuum or the sidereal residual computed (SC-2), and — for **P-op** — either a demonstration that the effective real-time kernel is invariant under the full point group and not merely the driven one, or the driven-sector spatial fourth moment shown to stay zero once dressed (at tree level it is zero, but by a `+4`/`−4` cancellation between the `e₄`-bearing and in-hyperplane bonds, not by symmetry) |
 
 Five of the seven route into the same place the value gates do — the driven-dissipative dynamics
 of §D.5 — which is the framework's central structural claim about its own incompleteness: not
@@ -7435,7 +7578,7 @@ and discharged by substrate-level structure (or shown to never have been a real 
 
 | # | What it would have killed | How TWT discharges | Engine | Origin |
 |---|---|---|---|---|
-| RF-1 | Wrong-sign / repulsive gravity from chiral matter loops | Spin-2 channel decomposition: apparent negative lives in the constrained trace channel; physical spin-2 channel is positive by `C_T > 0` (unitarity) ≡ substrate stability | `induced_G_sign_cross_check` | §B.6.4 |
+| RF-1 | Wrong-sign / repulsive gravity from chiral matter loops | Spin-2 channel decomposition: apparent negative lives in the constrained trace channel; physical spin-2 channel is positive by `C_T > 0` (unitarity) alone — the discharge does NOT ride on substrate stability, which §D.4.3 bounds separately | `induced_G_sign_cross_check` | §B.6.4 |
 | RF-2 | Catastrophic `ξ = 1/6` Sakharov cancellation | Maurer-Cartan shift-symmetry forces `ξ = 0` at leading order; `ξ R φ²` is shift-non-invariant. Residual `(f_π/Λ)² ~ 10⁻⁴⁰`-class (`2–8 × 10⁻⁴⁰` on the `Λ_L` band; reading-immaterial), not `1/6` | `sakharov_xi_minimal_coupling` | §B.6.5 |
 | RF-3 | Lepton-sector G-as-colour-Z_3 single-domain breakdown | Modus tollens: framework's commitment to spontaneous (not explicit) SSB on lepton mass operator is consistent with empirical Koide at `~10⁻⁵` **at pole masses** — ~5 orders inside the band (scheme-dependent: the one-loop pole→MS-bar conversion degrades the margin to ~2.7 orders; N57 flag) | `koide_modus_tollens_consistency` | §C.3.9 |
 | RF-4 | Cabibbo `f_perp` hypothesis | 0%-or-82% categorical fork, no few-percent branch. Closed NEGATIVE | `over_determination_scan` | §C.3.10 corollary |

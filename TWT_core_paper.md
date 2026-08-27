@@ -601,7 +601,7 @@ premises, each of which restores dimension-six anisotropy or voids the theorem i
  three-dimensional degree-four space, and the second shell's two sub-orbits are each anisotropic,
  cancelling only at equal weight, so a coupling weighting triality-related orbits unequally restores the
  anisotropy.
- (iii) *That the ground state preserves the point group.* The instance's canted vacuum breaks it, and
+ (iii) *That the ordered state preserves the point group.* The instance's canted vacuum breaks it, and
  what survives is a species-universal part absorbed by rescaling plus a space-fixed, sidereal residual
  that remains an open question.
  (iv) *That the kernel is a scalar in the internal index.* The theorem governs the polarization-averaged
@@ -1173,11 +1173,24 @@ body-diagonal branch against `0.4060 J` on the axis branch, about one and a half
 from this spectrum is never to be quoted without its branch label and that ratio**, and which branch a
 driven dynamics selects is a kernel question this candidate does not answer.
 
+That question is now sharper than a preference between two minima, because **neither computed branch is
+one**. Both are stationary points of the bond energy, and on both the lowest band turns negative at long
+wavelength in a direction perpendicular to the helix — on one branch this is a transverse instability the
+candidate already recorded, on the other it is a mode outside the family that was scanned. The effect is
+confined to wavelengths of order a thousand lattice spacings and beyond, and is shallow enough that the
+short-distance response is unaffected: continuing the same stiffness operator to imaginary wavevector
+gives the length over which a disturbance in a gapped direction heals, and it runs from about five lattice
+spacings to a few tens, diverging along each branch's own helix axis. So static energetics select neither
+branch, and what either reconstructs into is unscanned. Placing a defect core at the hadronic scale would
+need a length some eighteen orders larger than any of these — a tension between two *entered* scales,
+the lattice spacing and the fitted cell scale, with no computation carrying either into the other, and so
+not a derived contradiction.
+
 **Three conditions travel with that display.** The bilinear form is itself a class pick: taking a bond's
 energy to depend only on the *relative* frame of its two sites restricts a much larger space of
 couplings, so the exhaustiveness above is exhaustiveness *within* that restriction and never "at bilinear
 order" in general. The two-family truncation is pick 2, counted as one, with the discarded directions the
-live rework of §5.3. And these are **stiffnesses of a static energy** — an energy curvature about a
+live rework of §5.3. And these are **stiffnesses of a static energy** — an energy curvature about a reference state (and, per the paragraph above, not about a
 vacuum, not a dynamical kernel and not a Bogoliubov spectrum, which is a different operator; the memory
 kernel that would turn them into dynamics is pick 9, the unbuilt object itself. The display establishes
 that this candidate has written something down at grain level. It does not open the magnitude sector.

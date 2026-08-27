@@ -1947,7 +1947,10 @@ def sterile_rh_relic_check():
         active neutrino's mass by the Dirac character (one Dirac eigenvalue / generation).
 
     Empirical inputs (witnesses, NOT derived in TWT):
-      - Sigma m_nu < 0.12 eV  (Planck 2018 + BAO cosmology bound).
+      - Sigma m_nu < 0.12 eV  (Planck 2018 + BAO cosmology bound, 95% CL, LCDM) -- the banked
+        input. THE BOUND IS NOW MODEL-SPLIT AND MUST NOT BE RESTATED FLAT: DESI DR2 (PRD 112,
+        083515 (2025), arXiv:2503.14738) gives < 0.064 eV under LCDM but < 0.16 eV in the w0wa
+        model, LOOSER than 0.12. See COSMOLOGICAL_BOUND_IS_MODEL_SPLIT in the return dict.
       - Sigma m_nu > 0.06 eV  (oscillation data, normal ordering minimum).
       - Omega_DM h^2 = 0.120  (Planck 2018).
       - Relic formula (Dodelson "Modern Cosmology" eq. 3.55; Lesgourgues-Pastor review):
@@ -1962,6 +1965,10 @@ def sterile_rh_relic_check():
        2 * 0.12/94 = 0.00255 — about 2.1% of Omega_DM (shortfall ~47x). The standard relation
        Omega_nu h^2 = Sigma m_nu/94 already counts the active species, so the STERILE SHARE is
        exactly half: 0.00128 — 1.06% of Omega_DM, shortfall ~94x (E-6 relabel, 2026-07-31).
+       CONDITIONING: ~94x is the shortfall at the banked 0.12 eV input. The chain is LINEAR in
+       Sigma m_nu, so DESI DR2's LCDM bound (0.064 eV) gives ~176x — the tighter bound roughly
+       DOUBLES the shortfall, i.e. runs AGAINST the framework — while its w0wa bound (0.16 eV)
+       gives ~70x. Quote the range with the model named, never one figure alone.
        (This SHOULD NOT happen in TWT — sterile is wave-decoupled — but it bounds the case.)
 
     B) DODELSON-WIDROW oscillation production (the realistic scenario).
@@ -1979,7 +1986,8 @@ def sterile_rh_relic_check():
 
     Verdict. 3 sterile RH neutrinos at TWT-implied parameters CANNOT account for Omega_DM:
       - quantitative shortfall ~94x for the sterile share (~47x for the active+sterile total)
-        at the most optimistic thermal upper bound;
+        at the most optimistic thermal upper bound, on the banked 0.12 eV cosmological input —
+        ~176x / ~88x if DESI DR2's LCDM bound is taken instead, ~70x under its w0wa bound;
       - structural exclusion: sub-eV mass ⇒ hot DM ⇒ free-streaming excluded;
       - DW window mismatch: m_s ~ keV needed; TWT predicts <~ 0.1 eV (~4 orders too light).
 
@@ -1999,7 +2007,16 @@ def sterile_rh_relic_check():
     wave-train phase-defect)."""
     import math as _math
     # ---- inputs (witnesses) ----
-    Sigma_mnu_eV_upper = 0.12      # Planck 2018 + BAO
+    Sigma_mnu_eV_upper = 0.12      # Planck 2018 + BAO (95% CL, LCDM) -- the banked input
+    # The cosmological bound has since become MODEL-SPLIT and the corpus must not restate it
+    # flat. DESI DR2 (PRD 112, 083515 (2025), arXiv:2503.14738): Sigma m_nu < 0.064 eV under
+    # LCDM (95% CL, DESI BAO + CMB) but < 0.16 eV once the dark-energy equation of state is
+    # freed (w0wa) -- LOOSER than the banked 0.12. The banked chain below stays on 0.12 (no
+    # banked value moves); the DESI legs are computed ALONGSIDE it so the shortfall can be
+    # quoted as the model-conditional RANGE it actually is. The tighter LCDM input roughly
+    # DOUBLES the shortfall, i.e. it runs AGAINST the framework, which is why it is carried.
+    Sigma_mnu_eV_DESI_LCDM = 0.064
+    Sigma_mnu_eV_DESI_w0wa = 0.16
     Sigma_mnu_eV_lower = 0.06      # NH minimum from oscillation data
     Omega_DM_h2        = 0.120     # Planck 2018
     eV_per_relic       = 94.0      # Dodelson eq. 3.55 (Dirac active, relativistic decoupling)
@@ -2008,6 +2025,14 @@ def sterile_rh_relic_check():
     Omega_sterile_single  = Sigma_mnu_eV_upper / eV_per_relic
     Omega_sterile_doubled = 2.0 * Omega_sterile_single
     ratio_thermal_upper   = Omega_sterile_doubled / Omega_DM_h2
+
+    # The same linear chain re-run on the two DESI DR2 legs (nothing banked moves; these are
+    # reported so no site can restate the shortfall as a single unconditioned figure).
+    _sterile_shortfall_at = lambda S: round(Omega_DM_h2 / (S / eV_per_relic), 1)
+    _total_shortfall_at = lambda S: round(Omega_DM_h2 / (2.0 * S / eV_per_relic), 1)
+    shortfall_sterile_DESI_LCDM = _sterile_shortfall_at(Sigma_mnu_eV_DESI_LCDM)
+    shortfall_sterile_DESI_w0wa = _sterile_shortfall_at(Sigma_mnu_eV_DESI_w0wa)
+    shortfall_total_DESI_LCDM = _total_shortfall_at(Sigma_mnu_eV_DESI_LCDM)
 
     # Scenario B: DW mass-window mismatch
     m_s_DW_required_eV = 1.0e3     # 1 keV canonical DW sterile-DM scale
@@ -2021,6 +2046,13 @@ def sterile_rh_relic_check():
     return {
         # Inputs (witnesses, cited)
         "Sigma_m_nu_eV_upper_Planck18": Sigma_mnu_eV_upper,
+        "Sigma_m_nu_eV_upper_DESI_DR2_LCDM": Sigma_mnu_eV_DESI_LCDM,
+        "Sigma_m_nu_eV_upper_DESI_DR2_w0wa": Sigma_mnu_eV_DESI_w0wa,
+        "COSMOLOGICAL_BOUND_IS_MODEL_SPLIT": (
+            "the Sigma m_nu bound must NOT be restated flat. Planck 2018 + BAO gives < 0.12 eV "
+            "(95% CL, LCDM) and is the banked input here; DESI DR2 (PRD 112, 083515 (2025)) "
+            "gives < 0.064 eV under LCDM but < 0.16 eV in the w0wa model -- LOOSER than 0.12. "
+            "Quote the shortfall as a RANGE with the model named, never as one number"),
         "Sigma_m_nu_eV_lower_oscillation_NH": Sigma_mnu_eV_lower,
         "Omega_DM_h2_Planck18": Omega_DM_h2,
         "eV_per_relic_Dodelson_eq3_55": eV_per_relic,
@@ -2037,6 +2069,17 @@ def sterile_rh_relic_check():
         "sterile_only_share_h2": Omega_sterile_doubled / 2.0,
         "sterile_only_ratio_to_Omega_DM": ratio_thermal_upper / 2.0,
         "sterile_only_shortfall_factor": round(2.0 / ratio_thermal_upper, 1),
+        "sterile_only_shortfall_factor_DESI_LCDM": shortfall_sterile_DESI_LCDM,
+        "sterile_only_shortfall_factor_DESI_w0wa": shortfall_sterile_DESI_w0wa,
+        "total_shortfall_factor_DESI_LCDM": shortfall_total_DESI_LCDM,
+        "SHORTFALL_AS_A_CONDITIONED_RANGE": (
+            "sterile share: ~%.0fx at the banked Planck 2018 + BAO input (0.12 eV), ~%.0fx under "
+            "DESI DR2's LCDM bound (0.064 eV) and ~%.0fx under its w0wa bound (0.16 eV). The "
+            "ADVERSE direction is the LCDM one -- the tighter neutrino-mass bound roughly "
+            "DOUBLES the shortfall -- and it is carried for exactly that reason. Any restatement "
+            "must name which cosmological model it is conditioned on"
+            % (round(2.0 / ratio_thermal_upper, 1), shortfall_sterile_DESI_LCDM,
+               shortfall_sterile_DESI_w0wa)),
         # Scenario B: DW mass-window mismatch
         "DW_required_m_s_eV": m_s_DW_required_eV,
         "TWT_m_s_max_eV": m_s_TWT_eV_max,
@@ -2046,7 +2089,9 @@ def sterile_rh_relic_check():
         # Verdict + would-change-if
         "verdict": "FAILED-AS-CONJECTURED at first-cut TWT parameters",
         "reasons": [
-            "thermal upper bound ~2.1% of Omega_DM (shortfall ~47x)",
+            "thermal upper bound ~2.1% of Omega_DM (shortfall ~47x total / ~94x sterile share) "
+            "on the banked Planck 2018 + BAO 0.12 eV input; ~88x / ~176x under DESI DR2's LCDM "
+            "bound, ~70x under its w0wa bound -- the model must be named with the figure",
             "DW production needs m_s ~ keV; TWT m_s <~ 0.1 eV (~4 orders too light)",
             "sub-eV mass ⇒ hot DM ⇒ excluded as dominant DM by free-streaming",
         ],
@@ -2093,7 +2138,9 @@ def sterile_rh_substrate_production_via_L_theta():
         Each active neutrino produced by 𝓛_θ branches to sterile with probability ε². So
         Ω_sterile_from_Lθ ~ ε² · Ω_active_from_Lθ.
 
-    (4) The active side is bounded by Σ m_ν < 0.12 eV (Planck 2018+BAO); the sterile branching
+    (4) The active side is bounded by Σ m_ν < 0.12 eV (Planck 2018+BAO, the banked input;
+        tighter at 0.064 eV under DESI DR2's ΛCDM fit, looser at 0.16 eV under w₀wₐ — the
+        conclusion below is unchanged either way, and the ΛCDM leg makes it worse); the sterile branching
         is suppressed by ε² that EQUALS the sin²(2θ) factor in Dodelson-Widrow. So 𝓛_θ does NOT
         provide an independent enhancement: whatever it produces in S_+ is gated by the same ε²
         when transferring to S_-. The 47× shortfall does NOT close.
@@ -2116,7 +2163,8 @@ def sterile_rh_substrate_production_via_L_theta():
       Z1b: the active-sterile production overlap is DECOUPLED from the Dirac-mass-setting
            overlap (two distinct overlaps) — not in §19.8.3 as currently constructed.
       Z1c: the Dirac neutrino mass eigenvalue is at the ~keV scale rather than ~0.05 eV — in
-           tension with cosmological Σ m_ν < 0.12 eV bound.
+           tension with the cosmological Σ m_ν bound (< 0.12 eV Planck 2018+BAO; < 0.064 eV
+           DESI DR2 ΛCDM, < 0.16 eV w₀wₐ — the tension holds across the model split).
 
     Z2 (non-standard sterile mass scale) and Z3 (explicit DM-out-of-framework scope statement)
     from the original N30 are unaffected by this Z1 analysis.
@@ -2164,7 +2212,7 @@ def sterile_rh_substrate_production_via_L_theta():
         "would_change_if": [
             "Z1a: substrate channel creating pure-S_- L-pairs directly (requires breaking S_- wave-decoupling — in tension with §19.8.1 forced-handedness)",
             "Z1b: production overlap DECOUPLED from the Dirac-mass overlap (two distinct overlaps — not in §19.8.3)",
-            "Z1c: Dirac neutrino mass eigenvalue at ~keV rather than ~0.05 eV (in tension with cosmological Σm_ν < 0.12 eV)",
+            "Z1c: Dirac neutrino mass eigenvalue at ~keV rather than ~0.05 eV (in tension with the cosmological Σm_ν bound: < 0.12 eV Planck 2018+BAO, < 0.064 eV DESI DR2 ΛCDM, < 0.16 eV w₀wₐ)",
         ],
         # Tier + DM-V2-1 status
         "tier": "LOCATED-GAP-REFINED (CLAUDE.md §4)",
@@ -2279,7 +2327,14 @@ def qcd_uv_conformal_phaseCD() -> dict:
                                "OBSERVED object is APPROXIMATE (violated) scaling, whose deviation (D2) is unsourced.",
         "D2_AF_log_violations": "THE RESIDUAL = AF ITSELF. Only log-runner is the marginal-Skyrme β; σ-model running "
                                 "is power-law (wrong form); discreteness brackets but doesn't source. GENUINELY OPEN "
-                                "(4-deriv scalar can be AF) but UNMOTIVATED (no positive mechanism) + full DGLAP demanded.",
+                                "(4-deriv scalar can be AF) but UNMOTIVATED (no positive mechanism) + full DGLAP demanded. "
+                                "★ AND THE ONLY LOG-RUNNER DOES NOT TRANSMUTE (2026-08-27, R-190/N71, PROBE C): its "
+                                "one-loop β is EXACTLY ADDITIVE and EXACTLY ONE-LOOP at all orders in the chiral "
+                                "expansion (Weinberg counting), c = 1/(6 pi^2) computed and I-13-FREE with its sign "
+                                "independently corroborating R-148 — but the flow is IR-FREE, so it is IR-ANCHORED and "
+                                "its free parameter sits at the MEASURED hadronic end. Reach = lambda_S(cell)/c = 1.9937 "
+                                "e-folds against 36.68-42.00 required. THE MECHANISM APPLIES AND DOES NOT REACH — never "
+                                "'the mechanism is absent', which was refuted. See marginal_quartic_running_reach_to_cell_scale.",
         "D3_RG_consistency": f"sin²θ_W={weinberg_sin2()} EW-only/SU(5)-free/α_s-independent ⇒ DECOUPLING (gluon-free "
                              "strong sector doesn't spoil the EW prediction) — NOT positive AF support.",
         "Route_I": "CLOSED negative (B-screen, DERIVED): no charged spin-1 → no antiscreening; ℤ₃-discrete colour → no "
@@ -2324,8 +2379,35 @@ def beta3_sign_from_reflection_positivity() -> dict:
     (consistency of OS reconstruction along RG) requires 1/e²(μ) > 0 for
     all μ; this says 1/e²(μ) never crosses zero, NOT that its derivative
     has a particular sign. Both signs of β₃ are RP-compatible:
-      • β₃ < 0 (AF): 1/e² grows in IR, stays positive — consistent.
-      • β₃ > 0 (IR-free): 1/e² grows in UV, stays positive — consistent.
+      *** THE BRANCH TABLE NAMES ITS COUPLING (repaired 2026-08-27, keeper C-1). ***
+      This table was written before ANY value of β₃ existed and was never re-read against
+      one. R-190 computed the value, and two things had to change here. FIRST, the labels
+      are RECIPROCAL-COUPLING CONVENTIONS ON ONE FLOW, not two physical alternatives:
+      "AF" below reads λ_S = 1/e² as THE coupling (it grows toward the IR, as α_s does —
+      defensible, since λ_S/32 is the quartic operator's coefficient); "IR-free" reads e²
+      as THE coupling (the standard Skyrme parameter, and the engine's own banked
+      constant, E_PHYS). A site that says neither is ambiguous, and until 2026-08-27 no
+      site said either. SECOND, the "stays positive" qualifier is STRUCK on the realized
+      branch — see the falsification note below.
+      • β₃ < 0 [the REALIZED branch, R-148/R-190]: in the λ_S = 1/e² convention this is
+        the AF-SIGNED direction (λ_S grows toward the IR) — and the SAME flow, read in the
+        standard Skyrme coupling e², is IR-FREE WITH A UV LANDAU POLE. Both names are
+        correct; neither may be used bare.
+      • β₃ > 0: the mirror case, with the two names exchanged. Not realized.
+      *** "STAYS POSITIVE" IS FALSIFIED ON THE REALIZED BRANCH AND IS STRUCK. *** The
+      original text asserted of β₃ < 0 that 1/e² "grows in IR, STAYS POSITIVE". At the
+      framework's own banked coupling it does not: with c = 1/(6π²) and λ_S(cell) =
+      1/5.45² = 0.0336672, λ_S(t) = λ_S(cell) − c·t crosses ZERO at
+      t = 1.9936916558046005 e-folds above the cell scale and is −0.0169934 at t = 3.
+      ★ AND THAT ZERO IS NOT A NEW NUMBER: it is BIT-IDENTICAL to R-190's returned
+      E_available_at_banked_e — THE FRAMEWORK'S HEADLINE "REACH" AND THE UV LANDAU POLE OF
+      e² ARE THE SAME NUMBER, under two names. WHAT SURVIVES of the positivity claim is
+      what this docstring's own RP argument actually establishes: RP forces the BARE
+      coefficient sign, 1/e² > 0. Levering that into a bound on the MS-bar RENORMALIZED
+      LEC at every μ is a referent slip, and the real world violates it without pathology
+      — l₂ʳ(2 GeV) < 0 at the measured l̄₂. (R-190 supplies that reconciling physics; it
+      was written at R-190's site and is now written HERE, where the falsified sentence
+      lived.)
 
     EMPIRICAL ANALOGUES (both signs realized within RP). 2D O(N) σ-model:
     RP + AF (β<0). 4D φ⁴: RP + IR-free (β>0). RP is sign-agnostic on β.
@@ -2341,9 +2423,13 @@ def beta3_sign_from_reflection_positivity() -> dict:
              combined with a unitarity bound on the running quartic) were
              established. None currently known for the 4D Skyrme sector.
              [FIRED 2026-07-05, R-148 marginal_skyrme_beta3_sign_dispersive: the
-             KL/unitarity route delivered — beta_3 <= 0, the AF-SIGNED branch,
+             KL/unitarity route delivered — beta_3 <= 0, the AF-SIGNED branch
+             IN THE lambda_S = 1/e^2 CONVENTION (IR-FREE in e^2 — see the table above),
              DERIVED-conditional-GENERIC (I-13 dispersive package, registered;
-             revert clause: refusing the package restores THIS located gap).
+             revert clause NARROWED 2026-08-27, keeper C-2: refusing the package reverts
+             R-148's DISPERSIVE DERIVATION, but the SIGN PROPOSITION SURVIVES on R-190's
+             I-13-free chiral one-loop route (import I-32) for mu <~ Lambda_chi, so what a
+             revert restores is THIS located gap ABOVE THAT DOMAIN, not the sign itself).
              The sign face is decided-conditional; the running/DGLAP residual
              below stands. NOTE the first build was REFUTED for transplanting
              THIS docstring's EUCLIDEAN density into Minkowski machinery — N42.]
@@ -2356,6 +2442,24 @@ def beta3_sign_from_reflection_positivity() -> dict:
         "RP_forces_beta3_sign":     "NO: RP requires 1/e²(μ) > 0 at all μ, consistent with EITHER sign of d(1/e²)/dlnμ.",
         "ghost_status":             "Skyrme quartic has 4 derivs but ONE per field copy (L_μ = U†∂_μU) → second-order EL → NO Ostrogradski ghost at either sign.",
         "RP_analogues_both_signs":  "2D O(N) σ-model: RP + AF (β<0). 4D φ⁴: RP + IR-free (β>0). RP is sign-agnostic on β.",
+        "branch_labels_name_their_coupling": (
+            "REPAIRED 2026-08-27 (keeper C-1). 'AF' and 'IR-free' here are RECIPROCAL-COUPLING "
+            "CONVENTIONS ON ONE FLOW, not two physical alternatives: 'AF' reads lambda_S = 1/e^2 "
+            "as the coupling, 'IR-free' reads e^2 (the standard Skyrme parameter, the engine's "
+            "banked E_PHYS). The REALIZED branch beta_3 <= 0 is BOTH: AF-signed in lambda_S, "
+            "IR-free-with-a-UV-Landau-pole in e^2. NEITHER NAME MAY BE USED BARE."),
+        "stays_positive_STRUCK": (
+            "FALSIFIED AND WITHDRAWN. This table asserted that on beta_3 < 0 the quantity 1/e^2 "
+            "'stays positive'. At the banked coupling it does not: lambda_S = 1/e^2 crosses ZERO "
+            "at t = 1.9936916558046005 e-folds above the cell scale and is -0.0169934 at t = 3. "
+            "That zero is BIT-IDENTICAL to R-190's E_available_at_banked_e -- the headline REACH "
+            "and the e^2 LANDAU POLE are one number. WHAT SURVIVES: RP forces the BARE "
+            "coefficient 1/e^2 > 0; levering that into a bound on the RENORMALIZED LEC at every "
+            "mu is a referent slip, and l_2^r(2 GeV) < 0 in the real world with no pathology."),
+        "beta3_value_now_computed": (
+            "beta_3 = -1/(6 pi^2) = -0.0168869, R-190 marginal_quartic_running_reach_to_cell_scale "
+            "-- I-13-FREE (import I-32, Gasser-Leutwyler gamma_2). This table was written before "
+            "any value existed; the value is what falsified its qualifier."),
         "tried":                    "RP / Hamiltonian-boundedness / ghost-freedom on the marginal 4D-Skyrme bare action.",
         "failed_because":           "RP fixes the bare-coefficient sign (1/e² > 0) but does NOT constrain dln(1/e²)/dlnμ.",
         "would_change_if":          "a c/a-theorem analogue or Källén-Lehmann + unitarity bound on the running marginal-Skyrme coupling were established — none currently known.",
@@ -2476,9 +2580,13 @@ def over_determination_scan(V_us: float = 0.2243, f_pi: float = 129.0,
         derivation — both v and f_pi are absolute scales (gap-gated at the #1 gap; cf.
         q_l_stiffness_ratio_is_gap_gated). It passes as a consistency leg; it does not compute
         the hierarchy.
-      * OD1.2 — lepton<->baryon adjacent SCALE lead (A^2 ~ m_p/3 at 0.33%, the 2.43 f_pi
-        diagnostic): recorded as a [LEAD held lightly], NOT a passed test — the lepton amplitude
-        scale A is a FREE Koide calibration (no relation forces it from f_pi). Not recomputed here.
+      * OD1.2 — lepton<->baryon adjacent SCALE lead (A^2 ~ m_p/3 at 0.35% against the PROTON —
+        the stale 0.33% literal is retired and the figure is now COMPUTED in the returned
+        string; the 2.43 f_pi diagnostic): recorded as a [LEAD held lightly], NOT a passed test
+        — the lepton amplitude scale A is a FREE Koide calibration (no relation forces it from
+        f_pi). SAME OBJECT AS R-134: A^2 IS mu^2 = ((Sum sqrt m)/3)^2, and R-134's 0.28% is the
+        same 313.85 MeV against the NUCLEON AVERAGE instead of the proton — one fact, two
+        denominators, and the adverse booking governs.
       * f_pi ONE SHARED FLOOR: the single fitted mass scale serves leptons (amplitude scale),
         baryons (Skyrme M_0 = 36.47 f_pi/e) and the chiral condensate — a parameter-economy
         consistency (one scale, many roles), structural PASS.
@@ -2507,7 +2615,17 @@ def over_determination_scan(V_us: float = 0.2243, f_pi: float = 129.0,
     out["v/f_pi"], out["m_p/m_e"], out["OD1.3_pct"] = round(v_fpi, 1), round(mp_me, 1), round(vf_pct, 1)
     out["OD1.3_v_fpi_vs_mp_me"] = ("PASS (absolute-scale consistency cross-check, NOT a derivation; "
                                    "few-% convention-dependent)") if vf_pct <= 5.0 else "FAIL"
-    out["OD1.2_scale_lead"] = "LEAD (A^2~m_p/3 at 0.33%; lepton amplitude scale A is a FREE calibration; NOT a passed test)"
+    _A = (math.sqrt(M_E) + math.sqrt(M_MU) + math.sqrt(M_TAU)) / 3.0
+    _a2_pct = (_A * _A - mp / 3.0) / (mp / 3.0) * 100.0
+    out["OD1.2_scale_lead"] = (
+        "LEAD (A^2~m_p/3 at %.2f%%; lepton amplitude scale A is a FREE calibration; NOT a "
+        "passed test). SAME OBJECT AS R-134: Sum sqrt(m_i) = 3A in the circulant "
+        "parametrization, so A^2 IS mu^2 = ((Sum sqrt m)/3)^2 = %.2f MeV -- R-134's 0.28%% is "
+        "this same number against the NUCLEON AVERAGE, this row's figure against the PROTON. "
+        "ONE fact, two denominators; the adverse booking governs, per the trials factor (menu "
+        "of 172, ~0.6 expected chance matches vs 1 observed) and N57 (the same comparison "
+        "FAILS the 0.5%% criterion at MS-bar: +0.80%% at m_mu, -1.56%% at M_Z)"
+        % (_a2_pct, _A * _A))
     out["f_pi_one_shared_floor"] = "PASS (structural: one fitted scale serves leptons + baryons + chiral condensate)"
     # asserts: the scan structure
     assert lep_bar_pct <= 1.5, "lepton<->baryon D/J must agree to ~1.1% (PASS)"
@@ -3129,6 +3247,15 @@ def D4_DM_bond_bivectors_non_commuting():
 
 def canting_vacuum_branch_structure(J: float = 1.0) -> dict:
     """[DERIVED-numeric + closed-form mechanism | scope: the SINGLE-q SIMPLE-BIVECTOR
+
+    *** REFERENCE-STATE CONDITIONING (2026-08-27, N70 / R-189). *** The canted state named
+    below is NOT a tree-level local minimum of the banked bond energy, on EITHER branch --
+    the lowest band has negative curvature at long wavelength in a mode perpendicular to k0.
+    It IS a genuine local minimum against every mode of wavelength below ~773 a
+    (body-diagonal) / ~227 a (axis), so short-distance statements are unaffected; but
+    "vacuum" here names a REFERENCE STATE, not a ground state, and branch selection is
+    fully kernel-routed. See core_healing_length_canted_vacuum (R-189).
+
     HELICAL FAMILY] §D.4.3 — the branch structure of the canted vacuum.
 
     THE MODEL (frame-bilinear, 24 bonds, floats — no symbolic step):
@@ -3763,7 +3890,22 @@ def brannen_comb_commitment_dominance_and_dof_vacuity() -> dict:
         "with {0,1,2}^4 alone hitting all 81 (Z^4 -> D4*/3D4* is an isomorphism); got "
         f"{(len(cand), len(reps), len(nondeg), len(ireps))}")
 
-    # ---- 3. THE GLOBAL VACUUM (the subtraction the m = E0 premise requires) ------
+    # ---- 3. THE SUBTRACTION REFERENCE -- family-restricted, NOT 'the global vacuum'
+    #        *** REFERENT CONDITIONED 2026-08-27 (N70). ***  The free search below runs over
+    #        E_red(k), a 4-parameter search WITHIN the uniform single-q family. N70 establishes
+    #        that the family's lowest state is NOT a tree-level local minimum of the full
+    #        problem -- it is unstable against a non-single-q mode the family cannot see. So
+    #        this computes the lowest state OF THAT FAMILY. The search is correct; the name
+    #        'global' was not. THE NUMBERS DO NOT MOVE, and the error direction is recorded
+    #        because it runs AGAINST us: the true reference is LOWER, so by this primitive's
+    #        own logic (a higher reference INFLATES c = R/C) the banked c values are INFLATED.
+    #        Magnitude: the soft channel's condensation depth is -3.798e-07 J against a
+    #        reference of about -48.27 J and defect costs of order 1 J -- a relative shift
+    #        <= 1e-8, so no quoted digit of c_max_translation_closed (1.216468),
+    #        c_max_twisted_guarded (1.827129) or the twelve-digit sqrt(2) attainment moves.
+    #        `mass_equals_elastic_cost_premise` names 'the pure-carrier background', NOT 'the
+    #        global vacuum', so the counted m = E0 premise is UNTOUCHED: the collision was
+    #        entirely in this gloss chain. Records: knowledge/audit/probe_b_core_size_2026-08-27/
     t_st = 0.107096425089
     E_VAC_BANKED = (-24.0 - 12.0 * math.cos(t_st) ** 2 - 12.0 * math.cos(t_st)
                     - 2.0 * math.sqrt(6.0) * DJ * math.sin(t_st))
@@ -4170,9 +4312,11 @@ def brannen_comb_commitment_dominance_and_dof_vacuity() -> dict:
         "c_max_twisted_closed_nondegenerate": C_MAX_TWISTED_GUARDED,
         "c_max_twisted_guarded_live_witness": screw_guarded_live,
         "sqrt2_attained_on_closed_comb": True,
-        "subtraction": "global vacuum (never the ray minimum — m = E0's own referent)",
-        "global_vacuum_free_search": free_vac,
-        "global_vacuum_banked_body_diagonal": E_VAC_BANKED,
+        "subtraction": ("the LOWEST STATE OF THE UNIFORM SINGLE-q FAMILY (family-restricted; N70 -- never 'the global vacuum'), the subtraction the m = E0 premise requires — never the ray minimum, and NEVER 'the global vacuum': N70 shows this family's lowest state is not a tree-level local minimum of the full problem"),
+        "subtraction_referent_conditioned_2026_08_27": (
+            "family-restricted (N70). The numbers DO NOT MOVE: the true reference is LOWER by a relative <= 1e-8 (soft-channel depth -3.798e-07 J against about -48.27 J), so the banked c values are INFLATED, not deflated — the error runs AGAINST us, which is why it is recorded. The counted m = E0 premise is untouched (it names the pure-carrier background)."),
+        "family_restricted_min_free_search": free_vac,
+        "family_restricted_min_banked_body_diagonal": E_VAC_BANKED,
         "axis_lambda1_global_subtracted_cross_check": axis_lam1_global,
         "cross_check_note": ("the corrected axis lam=1 ray value EQUALS the exhaustive "
                              "translation-closed maximum, because g = (0,0,2,0) IS an "
@@ -4422,7 +4566,21 @@ def brannen_comb_commitment_dominance_and_dof_vacuity() -> dict:
                                   "row 1 is the live ceiling; if no, row 4 stands and needs a "
                                   "family-tree branch node (CORE-touching, RUL-048). NOT "
                                   "ruled here — RUL-030 class 3."),
-        "m3_ruling_would_decide": ("a single M-3 ruling — does the meta-time generation phase "
+        "m3_ruling_would_decide": ("★ TAG: this is M-3c, the STEP-FORM question, and it is MOOT "
+                                   "after RUL-099(1) + the estate closure — NOT M-3a, the "
+                                   "second-independent-RATE commitment, which is the live one "
+                                   "and which THIS primitive's own would-change-if rides on "
+                                   "being FALSE (non-isoclinic, counterexample asserted at "
+                                   "|c3|=|c1|=6.00). ★★ STATUS 2026-08-27: M-3a IS NOW GRANTED "
+                                   "(RUL-110, family-tree node V3-1b — the drive-referenced "
+                                   "two-rate defect rotor), so it is no longer the open live "
+                                   "question; M-3c stays MOOT and M-3b is NOT granted, and the "
+                                   "'UNBANKED M-3 commitment' this primitive's finding is "
+                                   "dominated by is the CELL-phase -> GRAIN-configuration "
+                                   "channel (M-3b), which the grant does NOT touch. "
+                                   "Disambiguated 2026-08-27; menu and blast "
+                                   "radius at generations_arc_2026-08-23/. The original "
+                                   "wording follows: a single M-3 ruling — does the meta-time generation phase "
                                    "act on the helix as a pure translation, or may it carry a "
                                    "spatial rotation (a screw)? — selects between rows 1 and 4 "
                                    "and therefore between 'no ceiling below sqrt2' and "
@@ -4573,6 +4731,14 @@ def magnon_stiffness_bands_canted_vacuum(J: float = 1.0) -> dict:
     CANTED VACUUM.
 
     *** STIFFNESS, NOT BOGOLIUBOV — the name carries the F2 caution. ***
+
+    *** REFERENCE-STATE CONDITIONING (2026-08-27, N70 / R-189). *** The canted state this
+    primitive is computed about is NOT a tree-level local minimum of the banked bond energy,
+    on EITHER branch: the lowest band has negative curvature at long wavelength in a mode
+    perpendicular to k0. It IS a genuine local minimum against every mode of wavelength
+    below ~773 a (body-diagonal) / ~227 a (axis), so short-distance statements are
+    unaffected; but the word "vacuum" here names a REFERENCE STATE, not a ground state, and
+    branch selection is fully kernel-routed. See core_healing_length_canted_vacuum (R-189).
     This is the six-band magnon STIFFNESS (Hessian) spectrum of the canted vacuum.
     It is NOT a Bogoliubov spectrum: bosonic Bogoliubov problems are PARAUNITARY,
     diagonalised against a tau_3 metric (Shindou, Matsumoto, Murakami & Ohe, PRB 87,
@@ -4742,6 +4908,496 @@ def magnon_stiffness_bands_canted_vacuum(J: float = 1.0) -> dict:
     }
 
 
+def core_healing_length_canted_vacuum(J: float = 1.0) -> dict:
+    """[DERIVED-numeric (the healing lengths xi/a, BRANCH- and DIRECTION- and D/J-LABELLED;
+    the k = +-k0 gapless points; the F1 reference-state curvature; the F2 turnover length)
+    + DERIVED-A (L(e4) = 0 identically; the reduction to xi = sqrt(rho/g) when L = 0)
+    + DERIVED-structural (the naive sqrt(12/g) is the FLOOR, not the value)
+    + FRAMING (the comparison with the cell scale -- conditional on two INPUT scales)]
+    §D.4.3 / §D.5 -- THE TREE-LEVEL LINEARISED HEALING LENGTH OF THE CANTED REFERENCE STATE.
+
+    *** THE REFERENCE STATE IS NOT A VACUUM. READ THIS BEFORE QUOTING ANY NUMBER. ***
+    These are relaxation lengths computed ABOUT A STATE THAT IS LINEARLY UNSTABLE AT LONG
+    WAVELENGTH ON BOTH BRANCHES. On the AXIS branch that is N62's banked index-2 saddle,
+    seen here in the band structure (the lowest-band curvature reproduces N62's closed
+    form 4J(cos q + 3)(cos q - 1)/cos q to seven significant figures). On the
+    BODY-DIAGONAL branch -- N62's own SURVIVOR, and a local minimum WITHIN the uniform
+    single-q family -- there is a further NON-SINGLE-Q instability that the uniform family
+    cannot see: curvature -0.02305291 in a mode PERPENDICULAR to k0 with only 0.000936
+    overlap with any within-family direction. That is N70, and it fired N62's own
+    would-change-if (1) ("multi-q, conical, or non-simple-B states -- all unscanned").
+    CONSEQUENCE, and it is the load-bearing one: NO computed vacuum branch is a tree-level
+    local minimum, so branch selection is FULLY kernel-routed (§D.5) -- static energetics
+    cannot select either branch, and a driven medium need not settle at a static minimum.
+
+    WHY THE LENGTHS SURVIVE THAT, and the domain of validity is MEASURED not assumed: the
+    band is negative ONLY for |k| below k_c, so the state is a genuine local minimum
+    against EVERY mode of wavelength below 773 a (body-diagonal) / 227 a (axis), and the
+    healing lengths (xi/a ~ 5 to 30) sit one to two orders INSIDE that window. So xi is a
+    valid SHORT-DISTANCE relaxation length. It is NOT a "healing length back to the
+    vacuum" -- the state is not one -- and that wording must not return.
+
+    WHAT IS COMPUTED.
+      (1) xi/a PER GAPPED DIRECTION, PER BRANCH, from R-174's own Bloch stiffness
+          continued to imaginary wavevector: the poles of the static propagator,
+          det H(i*kappa*nhat) = 0, xi = 1/Re(kappa). Solved as a quadratic eigenvalue
+          problem on H0 - kappa*L + (kappa^2/2)*S. This is the standard
+          Ginzburg-Landau / chiral-magnet static correlation length (C-34 names the
+          analogue; the analogue licenses nothing -- every number runs on the banked
+          operator).
+      (2) THE MEASURED MINIMUM is xi/a = 5.38834 (body-diagonal) / 5.42909 (axis).
+          ★ THIS IS A MEASURED MINIMUM OVER SAMPLED DIRECTIONS, NOT A DERIVED BOUND.
+      (3) THE NAIVE READING sqrt(12/g) IS THE FLOOR, NOT THE VALUE. It drops the odd
+          (DM / Lifshitz) term L, which is comparable to sqrt(rho*g) on every spatial
+          direction and vanishes identically ONLY along e4. Dropping L UNDER-estimates
+          xi (the Schur downfold -L_gG rho_GG^-1 L_gG^T is negative semi-definite, so the
+          effective gap is REDUCED), so the correction runs AGAINST the tension and the
+          tension survives it. Median xi/a is ~1.7x the floor; p95 is ~5x.
+      (4) THE k = +-k0 GAPLESS POINTS -- THEIR EXISTENCE IS NOT NEW AND IS NOT CLAIMED
+          HERE. `spectral_branch_symmetry_class_filter` (KC-1) already records that "the
+          gapless set is exactly [Gamma, +-k_0], the helimagnet Goldstone triplet", and
+          THAT RECORD HAS PRIORITY. WHAT THIS PRIMITIVE ADDS IS THE ATTRIBUTION, MOVED
+          FROM ASSERTED TO COMPUTED: KC-1 names them "the helimagnet Goldstone triplet"
+          without exhibiting the symmetry map. Here the twisted images of the six global
+          so(4) generators, e^(i k0.x) Fourier component, are constructed and shown to
+          span EXACTLY the null space of H(k0) -- projections 1.0 in BOTH directions on
+          BOTH branches, with H(2k0) gapped. So the +-k0 zeros ARE the same symmetry at
+          shifted momentum (2 at Gamma + 2 at +k0 + 2 at -k0 accounts for all six broken
+          global generators), not additional broken generators, and
+          n_goldstone_canted_FM's N_G = 2 (a Gamma count) is UNTOUCHED. This is R-174's
+          own upgrade pattern -- a LICENCE raised to a computation -- applied to KC-1's
+          sentence.
+      (5) THE SOFT CHANNEL SUPPLIES A LENGTH, and the earlier claim that it could not is
+          WITHDRAWN: the band's negative curvature plus positive quartic has an intrinsic
+          modulation length 2*pi/|k*| = 1093.96 a (body-diagonal) / 321.89 a (axis).
+
+    THE COMPARISON, and the framing is LOAD-BEARING at every site: placing a defect core
+    at the hadronic cell scale needs a length of order 1e19-1e20 grain spacings. Both
+    tree-level lengths here are of order 1e0.7 to 1e3. This is a STRUCTURAL TENSION
+    CONDITIONAL ON TWO INPUT SCALES -- the grain size is a G_N back-fit, f_pi is fitted,
+    and no grain->cell transfer computation exists (the audited C7 record) -- and it is
+    NEVER a derived violation. No bare order-count is returned outside that framing.
+
+    UNITS: xi/a with a = the D4 COORDINATE unit. §B.6.2 fixes the D4 nearest-neighbour
+    distance as sqrt(2)*a, so a IS the coordinate unit; the positive control
+    xi/a = sqrt(12/m) holds in it.
+
+    SCOPE, stated once: this is the STATIC HESSIAN's linearised healing scale. NOT
+    Bogoliubov (paraunitary, tau_3 metric -- R-174's F2 caution stands and this does not
+    discharge either standing Bogoliubov IOU). NOT a nonlinear soliton profile. It is the
+    TRANSVERSE-k = 0 (planar) reading -- the on-axis ray k = i*kappa*nhat -- which is the
+    right object for a planar perturbation and an approximation for a localised core.
+
+    tier, per component -- DERIVED-numeric for the lengths, the +-k0 zeros, the F1
+    curvature and the F2 turnover (all branch-labelled); DERIVED-A for L(e4) = 0 and for
+    the L = 0 reduction; DERIVED-structural for floor-not-value; FRAMING for the cell-scale
+    comparison.
+
+    self-checks: the positive control sqrt(12/m) EXACTLY (with its scope note -- on the
+    D = 0 operator L is identically zero, so this control pins the machinery and NOT the
+    L-handling); the negative controls (no forward root on a gapless operator; four
+    kappa = 0 roots; the helix axis gapless); the branch-swap identity; J-independence;
+    the SHIPPED FAILURE MODE that the naive reading is SEEN TO FAIL; the F3 symmetry test;
+    and F1 asserted so the instability cannot be silently removed.
+
+    governing record: knowledge/audit/probe_b_core_size_2026-08-27/ --
+    PREREGISTRATION_FROZEN.md (frozen before any script), PROBE_B_L1_2026-08-27.md
+    (incl. its §11 post-review section), VERDICT_REVIEWER_B_2026-08-27.md (incl. §9
+    consensus close), probe_b_script.py."""
+    import numpy as np
+    from scipy.optimize import minimize_scalar, minimize, brentq
+
+    rig = _estate_d4_magnon_rig(J)
+    biv_, E_uniform = rig["biv"], rig["E_uniform"]
+    hessian_parts, T, rod = rig["hessian_parts"], rig["T"], rig["rod"]
+    D0 = 0.787
+    NGEN = 6
+
+    # ---- R-174's own two branch vacua ---------------------------------------------
+    t_star = float(minimize_scalar(
+        lambda t: E_uniform(np.array([t, t, t, 0.0]), biv_([1, 1, 1]), D0 * J),
+        bounds=(0.0, 1.2), method="bounded", options=dict(xatol=1e-13)).x)
+    q_star = float(minimize_scalar(
+        lambda q: E_uniform(np.array([q, 0.0, 0.0, 0.0]), biv_([1, 0, 0]), D0 * J),
+        bounds=(0.0, 1.2), method="bounded", options=dict(xatol=1e-13)).x)
+    VAC = {"body-diagonal": (np.array([t_star] * 3 + [0.0]), biv_([1, 1, 1])),
+           "axis": (np.array([q_star, 0.0, 0.0, 0.0]), biv_([1, 0, 0]))}
+    HELIX_AXIS = {"body-diagonal": [1, 1, 1, 0], "axis": [1, 0, 0, 0]}
+
+    _pcache = {}
+
+    def pieces(label):
+        if label not in _pcache:
+            k0, B0 = VAC[label]
+            _pcache[label] = hessian_parts(k0, B0, D0 * J)
+        return _pcache[label]
+
+    def H_real(kvec, on, bvec, Rs):
+        ph = np.exp(1j * (bvec @ np.asarray(kvec, float)))
+        H = (on.astype(complex) + np.einsum('n,nij->ij', ph, Rs)
+             + np.einsum('n,nij->ij', np.conj(ph), np.transpose(Rs, (0, 2, 1))))
+        return 0.5 * (H + H.conj().T)
+
+    def taylor(nhat, on, bvec, Rs):
+        """H(i*kappa*n) = H0 - kappa*L + (kappa^2/2)*S ; rho = -S/2 is the k^2 stiffness."""
+        s = bvec @ np.asarray(nhat, float)
+        RT = np.transpose(Rs, (0, 2, 1))
+        return (on + Rs.sum(axis=0) + RT.sum(axis=0),
+                np.einsum('n,nij->ij', s, Rs - RT),
+                np.einsum('n,nij->ij', s * s, Rs + RT))
+
+    def kappa_roots(nhat, on, bvec, Rs, tol=1e-6):
+        H0, L, S = taylor(nhat, on, bvec, Rs)
+        C1 = np.block([[np.zeros((NGEN, NGEN)), np.eye(NGEN)], [-H0, L]])
+        C2 = np.block([[np.eye(NGEN), np.zeros((NGEN, NGEN))],
+                       [np.zeros((NGEN, NGEN)), 0.5 * S]])
+        import scipy.linalg as _sla
+        v = np.array([x for x in _sla.eig(C1, C2, right=False) if np.isfinite(x)])
+        return (len([x for x in v if abs(x) < tol]),
+                sorted((1.0 / x.real for x in v if abs(x) >= tol and x.real > tol),
+                       reverse=True))
+
+    def xi_of(nhat, on, bvec, Rs):
+        n0, xs = kappa_roots(nhat, on, bvec, Rs)
+        return (xs[0] if xs else float("inf")), xs, n0
+
+    def xi_naive(nhat, on, bvec, Rs, g):
+        """The PRE-REGISTERED form, kept as the comparator the failure mode fires on."""
+        _, _, S = taylor(nhat, on, bvec, Rs)
+        return math.sqrt(float(np.mean(-0.5 * np.linalg.eigvalsh(0.5 * (S + S.T)))) / g)
+
+    def curvature(nhat, on, bvec, Rs, g):
+        """F1 / N70. The GAPLESS band's curvature matrix by degenerate 2nd-order
+        perturbation on the null block: K = rho_GG - L_Gg L_Gg^T / g. A NEGATIVE
+        eigenvalue is a linear instability of the reference state. Built from the SAME
+        coupling L_gG that produces the Schur gap-shift -- the gap reduction and the band
+        softening are two faces of one object."""
+        H0, L, S = taylor(nhat, on, bvec, Rs)
+        _, V = np.linalg.eigh(0.5 * (H0 + H0.T))
+        G, gg = V[:, :2], V[:, 2:]
+        LGg = G.T @ L @ gg
+        K = G.T @ (-0.5 * S) @ G - (LGg @ LGg.T) / g
+        return float(np.linalg.eigvalsh(0.5 * (K + K.T)).min())
+
+    DIRS = [("e1", [1, 0, 0, 0]), ("e2", [0, 1, 0, 0]), ("e3", [0, 0, 1, 0]),
+            ("e4", [0, 0, 0, 1]), ("(1,1,0,0)", [1, 1, 0, 0]),
+            ("(1,-1,0,0)", [1, -1, 0, 0]), ("(1,1,1,0)", [1, 1, 1, 0]),
+            ("(1,1,-1,0)", [1, 1, -1, 0]), ("(1,1,1,1)", [1, 1, 1, 1]),
+            ("(1,0,0,1)", [1, 0, 0, 1]), ("(2,1,0,0)", [2, 1, 0, 0]),
+            ("(3,1,1,0)", [3, 1, 1, 0])]
+
+    # ---- the Gamma gaps, read from R-174's own object ------------------------------
+    GAP = {}
+    for label in VAC:
+        on, bvec, Rs = pieces(label)
+        w = np.linalg.eigvalsh(H_real(np.zeros(4), on, bvec, Rs))
+        GAP[label] = float(np.mean([x for x in w if abs(x) >= 1e-9]))
+
+    xi_tab, xi_stats, naive_tab, f1, f2, gapless, sym = {}, {}, {}, {}, {}, {}, {}
+    for label in VAC:
+        on, bvec, Rs = pieces(label)
+        g = GAP[label]
+        row = {}
+        for dn, d in DIRS:
+            nh = np.asarray(d, float) / np.linalg.norm(d)
+            h, xs, _ = xi_of(nh, on, bvec, Rs)
+            row[dn] = h
+        xi_tab[label] = row
+        naive_tab[label] = {dn: xi_naive(np.asarray(d, float) / np.linalg.norm(d),
+                                         on, bvec, Rs, g) for dn, d in DIRS}
+        rng = np.random.default_rng(11)
+        slow = []
+        for _ in range(2000):
+            v = rng.normal(size=4)
+            v /= np.linalg.norm(v)
+            h, xs, _ = xi_of(v, on, bvec, Rs)
+            if xs:
+                slow.append(xs[0])
+        sl = np.array(slow)
+        xi_stats[label] = {"measured_minimum": float(min(row[dn] for dn, _ in DIRS)),
+                           "sweep_median": float(np.median(sl)),
+                           "sweep_p95": float(np.percentile(sl, 95)),
+                           "n_sampled": len(sl)}
+
+        # ---- F1 / N70: the reference state is not a local minimum -------------------
+        def negf(x):
+            v = np.asarray(x, float)
+            return curvature(v / np.linalg.norm(v), on, bvec, Rs, g)
+
+        best = (1e9, None)
+        for s in range(6):
+            r0 = np.random.default_rng(s).normal(size=4)
+            res = minimize(negf, r0 / np.linalg.norm(r0), method="Nelder-Mead",
+                           options=dict(xatol=1e-11, fatol=1e-13, maxiter=3000))
+            if res.fun < best[0]:
+                best = (float(res.fun), res.x / np.linalg.norm(res.x))
+        k0v = np.asarray(VAC[label][0], float)
+        k0h = k0v / np.linalg.norm(k0v)
+        f1[label] = {"min_band_curvature": best[0],
+                     "soft_direction": [float(x) for x in best[1]],
+                     "abs_cos_to_k0": float(abs(best[1] @ k0h)),
+                     "is_unstable": bool(best[0] < 0.0)}
+
+        # ---- the stability window (the measured domain of validity of xi) -----------
+        nh = best[1]
+
+        def band(t):
+            return float(np.linalg.eigvalsh(H_real(t * nh, on, bvec, Rs))[0])
+
+        hi = next(t for t in np.linspace(0.005, 0.5, 2000) if band(t) > 0)
+        kc = float(brentq(band, 0.006 if label == "body-diagonal" else 0.02, hi,
+                          xtol=1e-14))
+        f1[label]["k_c"] = kc
+        f1[label]["stable_below_wavelength"] = 2 * math.pi / kc
+
+        # ---- F2: the soft channel's intrinsic modulation length --------------------
+        bb = (1e9, None)
+        for s in range(6):
+            rg = np.random.default_rng(100 + s)
+            v = rg.normal(size=4)
+            v /= np.linalg.norm(v)
+            seed = (nh if s == 0 else v) * (kc * 0.6 if s == 0 else rg.uniform(1e-3, 0.05))
+            r = minimize(lambda k: float(np.linalg.eigvalsh(H_real(k, on, bvec, Rs))[0]),
+                         seed, method="Nelder-Mead",
+                         options=dict(xatol=1e-13, fatol=1e-18, maxiter=20000))
+            if r.fun < bb[0]:
+                bb = (float(r.fun), r.x)
+        km = float(np.linalg.norm(bb[1]))
+        f2[label] = {"min_band": bb[0], "k_star": km,
+                     "modulation_wavelength": 2 * math.pi / km,
+                     "abs_cos_to_k0": float(abs(bb[1] @ k0h / km))}
+
+        # ---- the +-k0 gapless points, and the F3 symmetry attribution --------------
+        ev = np.linalg.eigvalsh(H_real(k0v, on, bvec, Rs))
+        evm = np.linalg.eigvalsh(H_real(-k0v, on, bvec, Rs))
+        gapless[label] = {"k0": [float(x) for x in k0v],
+                          "H_k0_two_lowest": [float(ev[0]), float(ev[1])],
+                          "H_minus_k0_two_lowest": [float(evm[0]), float(evm[1])],
+                          "n_zero_modes": int(sum(1 for x in ev if abs(x) < 1e-9))}
+        _, V = np.linalg.eigh(H_real(k0v, on, bvec, Rs))
+        null = V[:, :2]
+        B0 = VAC[label][1]
+        NTH = 64   # exact: phi(theta) carries harmonics 0, +-1, +-2 only
+        th = 2 * np.pi * np.arange(NTH) / NTH
+        cols = []
+        for a in range(NGEN):
+            c = np.zeros((NTH, NGEN), complex)
+            for n_, t_ in enumerate(th):
+                R_ = rod(t_, B0)
+                phi = R_.T @ T[a] @ R_
+                for b_ in range(NGEN):
+                    c[n_, b_] = 0.5 * np.trace(phi.T @ T[b_])
+            hat = (c * np.exp(-1j * th)[:, None]).mean(axis=0)
+            if np.linalg.norm(hat) > 1e-10:
+                cols.append(hat)
+        Msp = np.array(cols).T
+        rk = int(np.linalg.matrix_rank(Msp, tol=1e-9))
+        Q, _ = np.linalg.qr(Msp)
+        Q = Q[:, :rk]
+        sym[label] = {
+            "null_dim": int(null.shape[1]), "symmetry_span_dim": rk,
+            "proj_null_onto_span": [float(np.linalg.norm(Q.conj().T @ null[:, i]))
+                                    for i in range(null.shape[1])],
+            "proj_span_onto_null": [float(np.linalg.norm(null.conj().T @ Q[:, i]))
+                                    for i in range(rk)],
+            "H_2k0_two_lowest": [float(x) for x in
+                                 np.linalg.eigvalsh(H_real(2 * k0v, on, bvec, Rs))[:2]],
+        }
+
+    # ---- CONTROL 1: the positive/analytic control, and its SCOPE NOTE ---------------
+    on0, bvec0, Rs0 = hessian_parts(np.zeros(4), biv_([1, 0, 0]), 0.0)
+    pos_err, L_on_control = 0.0, 0.0
+    for m in (0.412121, 0.405987, 1.0, 0.1, 3.0):
+        onm = on0 + m * J * np.eye(NGEN)
+        for d in ([1, 0, 0, 0], [0, 0, 0, 1], [1, 1, 1, 0], [1, 1, 1, 1]):
+            nh = np.asarray(d, float) / np.linalg.norm(d)
+            h, _, _ = xi_of(nh, onm, bvec0, Rs0)
+            pos_err = max(pos_err, abs(h - math.sqrt(12.0 / m)))
+            L_on_control = max(L_on_control,
+                               float(np.abs(taylor(nh, onm, bvec0, Rs0)[1]).max()))
+
+    # ---- CONTROL 2: the negative controls -------------------------------------------
+    neg_forward = 0
+    for d in ([1, 0, 0, 0], [1, 1, 1, 0], [1, 1, 1, 1]):
+        nh = np.asarray(d, float) / np.linalg.norm(d)
+        neg_forward += len(xi_of(nh, on0, bvec0, Rs0)[1])
+    zero_counts, axis_forward = {}, {}
+    for label in VAC:
+        on, bvec, Rs = pieces(label)
+        zs = []
+        for dn, d in DIRS:
+            nh = np.asarray(d, float) / np.linalg.norm(d)
+            zs.append(kappa_roots(nh, on, bvec, Rs)[0])
+        zero_counts[label] = sorted(set(zs))
+        nh = np.asarray(HELIX_AXIS[label], float)
+        nh /= np.linalg.norm(nh)
+        axis_forward[label] = len(xi_of(nh, on, bvec, Rs)[1])
+
+    # ---- CONTROL 3: the branch-swap identity ----------------------------------------
+    nh = np.asarray([1, 1, 1, 0], float) / math.sqrt(3.0)
+    xic = {}
+    for label in VAC:
+        xic[label] = xi_of(nh, on0 + GAP[label] * J * np.eye(NGEN), bvec0, Rs0)[0]
+    swap_ratio = xic["body-diagonal"] / xic["axis"]
+    swap_pred = math.sqrt(GAP["axis"] / GAP["body-diagonal"])
+
+    # ---- the SHIPPED FAILURE MODE: the naive reading must be SEEN TO FAIL -----------
+    naive_ratio_bond = {lab: naive_tab[lab]["(1,1,0,0)"] / xi_tab[lab]["(1,1,0,0)"]
+                        for lab in VAC}
+    naive_ratio_e4 = {lab: naive_tab[lab]["e4"] / xi_tab[lab]["e4"] for lab in VAC}
+    naive_on_gapless_axis = {lab: naive_tab[lab][{"body-diagonal": "(1,1,1,0)",
+                                                  "axis": "e1"}[lab]] for lab in VAC}
+
+    # ---- asserts -------------------------------------------------------------------
+    assert pos_err < 1e-9, (
+        "POSITIVE CONTROL: on H(k) = 12*J*ktilde^2 + m*J the method must return "
+        f"xi/a = sqrt(12/m) EXACTLY; worst error {pos_err:.3e}")
+    assert L_on_control == 0.0, (
+        "the C1 SCOPE NOTE is itself checked: on the D = 0 control operator L must be "
+        f"IDENTICALLY zero (so C1 pins the machinery, NOT the L-handling); got "
+        f"{L_on_control:.3e}")
+    assert neg_forward == 0, (
+        "NEGATIVE CONTROL (a): a gapless operator (D = 0, no gap) must return NO forward "
+        f"root on any direction; got {neg_forward}")
+    for label in VAC:
+        assert zero_counts[label] == [4], (
+            f"NEGATIVE CONTROL (b) on the {label} branch: the 2 Gamma Goldstones must give "
+            f"exactly FOUR kappa = 0 roots (a QUADRATIC Goldstone band is a DOUBLE zero of "
+            f"a quadratic pencil, so four is the correct count, not two); got "
+            f"{zero_counts[label]}")
+        assert axis_forward[label] == 0, (
+            f"NEGATIVE CONTROL (c): the {label} branch's own helix axis "
+            f"{HELIX_AXIS[label]} carries the vacuum's gapless point and must return NO "
+            f"forward root (no exponential healing); got {axis_forward[label]}")
+        assert gapless[label]["n_zero_modes"] == 2, (
+            f"the {label} branch must have exactly 2 zero modes at k = k0; got "
+            f"{gapless[label]['n_zero_modes']}")
+        assert all(abs(p - 1.0) < 1e-6 for p in sym[label]["proj_null_onto_span"]) \
+            and all(abs(p - 1.0) < 1e-6 for p in sym[label]["proj_span_onto_null"]) \
+            and sym[label]["null_dim"] == sym[label]["symmetry_span_dim"] == 2 \
+            and min(sym[label]["H_2k0_two_lowest"]) > 0.1, (
+            f"the F3 SYMMETRY TEST licenses the +-k0 attribution and must be COMPLETE on "
+            f"the {label} branch: the e^{{ik0.x}} twisted images of the six global so(4) "
+            f"generators must span EXACTLY the null space of H(k0), projections 1.0 in "
+            f"BOTH directions, with H(2k0) gapped; got {sym[label]}")
+        assert f1[label]["is_unstable"] and f1[label]["abs_cos_to_k0"] < 1e-6, (
+            f"F1/N70 must be SEEN: the {label} reference state is NOT a tree-level local "
+            f"minimum -- the lowest band's curvature must be NEGATIVE in a mode "
+            f"PERPENDICULAR to k0. If this ever passes as stable, the healing lengths' "
+            f"conditioning has been silently removed; got {f1[label]}")
+        assert f2[label]["min_band"] < 0.0 and f2[label]["modulation_wavelength"] > 100.0, (
+            f"F2: the soft channel DOES supply a length on the {label} branch (the claim "
+            f"that it could not is WITHDRAWN); got {f2[label]}")
+        assert naive_ratio_bond[label] < 0.60, (
+            "★ SHIPPED FAILURE MODE -- THE NAIVE READING MUST BE SEEN TO FAIL. The "
+            "pre-registered sqrt(rho/g) form drops L and UNDER-estimates xi on every "
+            f"spatial direction; on (1,1,0,0) [{label}] the ratio must be < 0.60, got "
+            f"{naive_ratio_bond[label]:.5f}")
+        assert 0.002 < abs(naive_ratio_e4[label] - 1.0) < 0.01, (
+            "the e4 clause must MEASURE the residual O(kappa^3) truncation, not assert a "
+            "structural zero (L is identically zero on e4, so a tight tolerance there "
+            f"would be vacuous -- the canon's own tell); got "
+            f"{abs(naive_ratio_e4[label] - 1.0):.5f} on {label}")
+        assert naive_on_gapless_axis[label] < 10.0, (
+            "★ AND THE DECISIVE CLAUSE: the pre-registered form returns a FINITE number "
+            f"on the {label} branch's GAPLESS helix axis "
+            f"({naive_on_gapless_axis[label]:.5f}) where the truth is infinity -- it FAILS "
+            "the pre-registration's own negative control, which is why the declared "
+            "deviation was obligatory rather than merely permissible")
+    assert abs(swap_ratio - swap_pred) < 1e-9, (
+        "BRANCH-SWAP CONTROL: at COMMON stiffness the two branches' xi must differ by "
+        f"exactly sqrt(g_axis/g_body) = {swap_pred:.9f}; got {swap_ratio:.9f}")
+    assert abs(xi_tab["body-diagonal"]["e4"] - 5.38834) < 1e-4 \
+        and abs(xi_tab["axis"]["e4"] - 5.42909) < 1e-4 \
+        and abs(xi_tab["body-diagonal"]["e4"] - xi_tab["axis"]["e4"]) > 1e-3, (
+        "BRANCH-LABEL GUARD (R-174's 6J pattern -- assert VALUES, not a float !=): "
+        f"xi/a(e4) = 5.38834 (body-diagonal) vs 5.42909 (axis); got "
+        f"{xi_tab['body-diagonal']['e4']:.6f} vs {xi_tab['axis']['e4']:.6f}")
+    assert abs(np.abs(taylor(np.array([0.0, 0.0, 0.0, 1.0]),
+                             *pieces("body-diagonal"))[1]).max()) == 0.0, (
+        "L(e4) must be IDENTICALLY zero (exactly 0.0 in IEEE), which is what makes the "
+        "naive reading exact on that one direction")
+
+    return {
+        "tier": ("DERIVED-numeric (the healing lengths, the +-k0 zeros, the F1 curvature "
+                 "and the F2 turnover -- ALL branch-labelled) + DERIVED-A (L(e4) = 0; the "
+                 "L = 0 reduction to sqrt(rho/g)) + DERIVED-structural (the naive "
+                 "sqrt(12/g) is the FLOOR, not the value) + FRAMING (the cell-scale "
+                 "comparison)"),
+        "object": ("the STATIC HESSIAN's linearised healing length of the GAPPED sector, "
+                   "transverse-k = 0 (planar) reading -- NOT a Bogoliubov spectrum "
+                   "(paraunitary, tau_3 metric: a different operator, R-174's F2 caution) "
+                   "and NOT a nonlinear soliton profile"),
+        "units": ("xi/a with a = the D4 COORDINATE unit; §B.6.2 fixes the D4 "
+                  "nearest-neighbour distance as sqrt(2)*a"),
+        "D_over_J": D0,
+        "gamma_gap": GAP,
+        "xi_by_direction": xi_tab,
+        "xi_statistics": xi_stats,
+        "xi_naive_by_direction": naive_tab,
+        "naive_is_the_floor_not_the_value": True,
+        "measured_minimum_not_a_derived_bound": True,
+        "reference_state_is_not_a_vacuum": (
+            "LOAD-BEARING CONDITIONING -- these are relaxation lengths about a state that "
+            "is LINEARLY UNSTABLE at long wavelength on BOTH branches. AXIS: N62's banked "
+            "index-2 saddle, seen in the band structure. BODY-DIAGONAL: N70, a NON-SINGLE-Q "
+            "instability invisible to the uniform family, which fired N62's own "
+            "would-change-if (1). CONSEQUENCE: no computed branch is a tree-level local "
+            "minimum, so branch selection is FULLY kernel-routed (§D.5)."),
+        "f1_reference_state_instability": f1,
+        "f2_soft_channel_length": f2,
+        "gapless_points_at_k0": gapless,
+        "symmetry_attribution_of_k0_zeros": sym,
+        "N_G_untouched": ("n_goldstone_canted_FM's N_G = 2 is a GAMMA count and is "
+                          "UNTOUCHED: the +-k0 zeros are the SAME six broken global so(4) "
+                          "generators at shifted momentum (2 at Gamma + 2 at +k0 + 2 at "
+                          "-k0), computed here, not argued"),
+        "prior_art_within_the_corpus": (
+            "THE EXISTENCE of the +-k0 gapless points is NOT new and is NOT claimed here: "
+            "spectral_branch_symmetry_class_filter (KC-1) already records 'the gapless set "
+            "is exactly [Gamma, +-k_0], the helimagnet Goldstone triplet' and HAS "
+            "PRIORITY. What is new is the ATTRIBUTION MOVED FROM ASSERTED TO COMPUTED -- "
+            "the explicit symmetry map and its two-way projection test (F3)."),
+        "controls": {"positive_worst_error": pos_err,
+                     "positive_control_scope_note": (
+                         "on the D = 0 control operator L is IDENTICALLY zero, so this "
+                         "control pins the ROOT-FINDING MACHINERY and the rho = 12 "
+                         "identity and pins NOTHING about the L-handling that is the whole "
+                         "content of the method; the L-handling is validated by the "
+                         "negative controls and by the independent lattice-transfer and "
+                         "real-space routes"),
+                     "negative_forward_roots_on_gapless_operator": neg_forward,
+                     "kappa_zero_root_counts": zero_counts,
+                     "forward_roots_on_helix_axis": axis_forward,
+                     "branch_swap_predicted": swap_pred,
+                     "branch_swap_measured": swap_ratio},
+        "shipped_failure_modes": (
+            "(1) the naive sqrt(rho/g) UNDER-estimates xi by >40% on a spatial bond "
+            "direction; (2) on e4 the difference MEASURES the O(kappa^3) truncation "
+            "rather than a structural zero; (3) DECISIVELY, the naive form returns a "
+            "FINITE number on the gapless helix axis where the truth is infinity, so it "
+            "fails the pre-registration's own negative control; (4) F1 is asserted, so "
+            "the reference-state instability cannot be silently removed"),
+        "tension_statement": (
+            "STRUCTURAL TENSION CONDITIONAL ON TWO INPUT SCALES, NEVER A DERIVED "
+            "VIOLATION: placing a defect core at the hadronic cell scale requires a "
+            "length of order 1e19-1e20 grain spacings; both tree-level lengths computed "
+            "here (the gapped healing length ~5-30 a, and the soft channel's modulation "
+            "length ~3e2-1e3 a) fall far short. The grain size is a G_N BACK-FIT and "
+            "f_pi is FITTED, and NO grain->cell transfer computation exists (the audited "
+            "C7 record), so this is a tension between two ENTERED scales and not a "
+            "derived result about either."),
+        "does_not_discharge": ("the two banked 'exact 6-band Bogoliubov structure "
+                               "UN-BANKED' IOUs at n_goldstone_canted_FM and "
+                               "induced_G_from_linear_face_band -- they name a PARAUNITARY "
+                               "object this is not (F2)"),
+        "governing_record": ("knowledge/audit/probe_b_core_size_2026-08-27/ -- "
+                             "PREREGISTRATION_FROZEN.md, PROBE_B_L1_2026-08-27.md (incl. "
+                             "§11 post-review), VERDICT_REVIEWER_B_2026-08-27.md (incl. §9 "
+                             "consensus close), probe_b_script.py"),
+    }
+
+
 def spectral_branch_symmetry_class_filter(J: float = 1.0) -> dict:
     """[DERIVED-numeric (the four measurements, BRANCH- and D/J-labelled) + CANDIDATE
     (the filter as a kernel constraint); the real-class ASSIGNMENT explicitly flagged
@@ -4759,7 +5415,15 @@ def spectral_branch_symmetry_class_filter(J: float = 1.0) -> dict:
     test (an actual zero of det H at generic k with a rank-3 Jacobian and a non-zero
     Chern number) is still required, and the banked substrate fails THAT one
     independently of any kernel: the gapless set is exactly {Gamma, +-k_0}, the
-    helimagnet Goldstone triplet. The earlier "iff" was an over-claim against the
+    helimagnet Goldstone triplet. *** THAT ATTRIBUTION IS NOW COMPUTED, NOT ASSERTED
+    (2026-08-27): core_healing_length_canted_vacuum (R-189) check [9] constructs the
+    e^(i k0.x) Fourier components of the twisted images of the six global so(4) generators
+    and shows they span EXACTLY the null space of H(k0) -- projections 1.0 in BOTH
+    directions on BOTH branches, with H(2k0) gapped. This line owns the EXISTENCE of the
+    gapless set and has priority; R-189 owns the symmetry attribution. Note the counting
+    convention differs and is consistent: "triplet" counts gapless POINTS (Gamma, +k0,
+    -k0), while R-189's accounting counts MODES (2 + 2 + 2 = the six broken global
+    generators). n_goldstone_canted_FM's N_G = 2 is a GAMMA count and is untouched. *** The earlier "iff" was an over-claim against the
     probe's own would-change-if and is withdrawn.
 
     *** "ESCAPE (a) MEASURED EMPTY" IS A MIS-TRANSCRIPTION AND IS WITHDRAWN. ***
@@ -5579,7 +6243,7 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
           has a TWO-dimensional degree-4 invariant space — Σk_i⁴ exists there. Dim-8 is an F4/D4
           fact, not a 4-dimensionality fact.
           PREMISES, NAMED (do not drop them — the inference is conditional, not absolute; the
-          paper carries two further ones this docstring does not restate, (P-gs) the ground state
+          paper carries two further ones this docstring does not restate, (P-gs) the ordered state
           preserving the point group and the scalar-in-internal-index premise — see §B.1.5):
             (P-an) ANALYTICITY in k, i.e. a derivative expansion exists. A driven-dissipative memory
                    kernel — the #1 gap itself — need not be analytic, and a non-analytic kernel is
@@ -5854,7 +6518,7 @@ def d4_lattice_lorentz_violation_orders(E_GeV: float = 1.0e11):
                     "invariant space, and the shell-2 sub-orbits {±2e_i} and (±1,±1,±1,±1) are each "
                     "anisotropic (residual 32 apiece), cancelling ONLY at equal weight — unequal weighting "
                     "of triality-related orbits RESTORES dim-6 anisotropy (N52 risk note)",
-            "P-gs": ("the GROUND STATE PRESERVES THE POINT GROUP. The SSD.4.3 spiral vacuum BREAKS it; "
+            "P-gs": ("the ORDERED STATE PRESERVES THE POINT GROUP. The SSD.4.3 spiral vacuum BREAKS it; "
                      "what is left is a species-universal O(q^2) splitting absorbable by the I-22 "
                      "rescaling class, plus a space-fixed/sidereal residual that is SC-2's open "
                      "question. Carried in the paper SSE premise register since 2026-07-31; entered "
@@ -7306,9 +7970,18 @@ def sterile_rh_z2_separate_mass_scale_check():
 
 def n_goldstone_canted_FM() -> dict:
     """[DERIVED-A] §16.6: number of broken Goldstone modes on the canted FM
-    ground state = dim(SU(2)_L / U(1)_canting) = dim(SU(2)) − dim(U(1)) = 3 − 1 = 2.
 
-    Closed dimensional identity given §16.6's ground-state manifold structure
+    *** REFERENCE-STATE CONDITIONING (2026-08-27, N70 / R-189). *** The canted state named
+    below is NOT a tree-level local minimum of the banked bond energy, on EITHER branch --
+    the lowest band has negative curvature at long wavelength in a mode perpendicular to k0.
+    It IS a genuine local minimum against every mode of wavelength below ~773 a
+    (body-diagonal) / ~227 a (axis), so short-distance statements are unaffected; but
+    "vacuum" here names a REFERENCE STATE, not a ground state, and branch selection is
+    fully kernel-routed. See core_healing_length_canted_vacuum (R-189).
+
+    ordered state = dim(SU(2)_L / U(1)_canting) = dim(SU(2)) − dim(U(1)) = 3 − 1 = 2.
+
+    Closed dimensional identity given §16.6's ordered-state manifold structure
     ℳ_GS = 8 × S¹ ⊂ Spin(3) = S³ (the residual U(1) is the Hopf S¹ fiber of
     the Hopf fibration S¹ → S³ → S²):
       * Symmetry broken: SU(2)_L ≅ S³ (the L-orbit rotor target, dim = 3).
@@ -7372,7 +8045,7 @@ def n_goldstone_canted_FM() -> dict:
         "dim_coset_SU2_over_U1": dim_coset,
         "N_Goldstone": N_Goldstone,
         "coset_geometry": "SU(2)_L / U(1)_canting = S^2 (Hopf base of S^1 -> S^3 -> S^2)",
-        "ground_state_manifold": "M_GS = 8 x S^1 in Spin(3) = S^3 (§16.6)",
+        "ordered_state_manifold": "M_GS = 8 x S^1 in Spin(3) = S^3 (§16.6)",
         "cross_ref_K_c": "canting_critical_stiffness_at_DJ Lead A: K_c = N_G * sin^2(q) * J",
         "tier": "DERIVED-A",
     }
@@ -7390,7 +8063,7 @@ def Kc_magnon_stiffness_canted_FM_at_DJ(J: float = 1.0):
     Effective planar Hamiltonian (canon §10.3.1):
        H = -J Σ_{NN bonds} cos(θ_i - θ_j)
            -D Σ_{e4-DM bonds} σ_b sin(θ_i - θ_j)
-    Canon ground-state energy per unit cell on the uniform spiral θ_i = q·x_i^1:
+    Canon ordered-state energy per unit cell on the uniform spiral θ_i = q·x_i^1:
        E(q) = -12 J cos q  -  12 J  -  2 D √2 sin q
     Minimization gives tan q* = √2/6  =>  sin²q* = 1/19, cos²q* = 18/19 at D=J
     (analytically verified; engine-cross-checked via canting_cos_q).
@@ -7477,7 +8150,7 @@ def Kc_magnon_stiffness_canted_FM_at_DJ(J: float = 1.0):
     Cross-reference: canting_critical_stiffness_at_DJ (the asserted K_c value),
     canting_cos_q (sin²q* = 1/19 at D=J), canting_pitch_q_rad (q* = atan(√2/6))."""
     q, D_sym, J_sym = sp.symbols('q D J', real=True, positive=True)
-    # Canon §10.3.1 ground-state energy per unit cell on the spiral:
+    # Canon §10.3.1 ordered-state energy per unit cell on the spiral:
     E_sym = -12*J_sym*sp.cos(q) - 12*J_sym - 2*D_sym*sp.sqrt(2)*sp.sin(q)
     dE = sp.diff(E_sym, q)
     d2E = sp.diff(E_sym, q, 2)
@@ -7512,7 +8185,7 @@ def Kc_magnon_stiffness_canted_FM_at_DJ(J: float = 1.0):
     is_kc_static_LSWT_identity = False     # the engine-checked negative result
     return {
         "method": "direct LSWT on canted spiral at D=J, planar (XY) reduction of §10.3.1 H",
-        "ground_state_pitch_q_star": "atan(sqrt(2)/6)",
+        "ordered_state_pitch_q_star": "atan(sqrt(2)/6)",
         "sin_squared_q_star": float(sp.sin(q_star)**2),    # = 1/19
         "cos_squared_q_star": float(sp.cos(q_star)**2),    # = 18/19
         "K_long_over_J_symbolic": "sqrt(38)",
@@ -11196,6 +11869,8 @@ def full_field_b2_below_threshold_sc1_datum() -> dict:
 
 def marginal_skyrme_beta3_sign_dispersive():
     """[R-148 — P2-3 SIGN FACE: beta_3 <= 0 — the marginal-Skyrme quartic runs AF-SIGNED
+    IN THE lambda_S = 1/e^2 CONVENTION (and IR-FREE in the standard Skyrme coupling e^2 —
+    ONE flow, two reciprocal-coupling names; R-190/keeper C-1, neither usable bare)
     under the dispersive package, DERIVED-conditional-GENERIC; 2026-07-05. CORRECTION
     HISTORY (binding record): the FIRST build of this result was REFUTED by adversarial
     review — it transplanted R-085's EUCLIDEAN action density -(1/32e^2)Tr([L,L]^2) into
@@ -11250,6 +11925,9 @@ def marginal_skyrme_beta3_sign_dispersive():
         two-term action (ONE quartic coupling) the channel's polynomial piece is
         w (1/e^2(mu)) with w > 0. Therefore 1/e^2(mu) is monotone NON-INCREASING in mu:
             beta_3 = mu d(1/e^2)/dmu <= 0 — THE AF-SIGNED BRANCH of R-085's table
+        IN THE lambda_S = 1/e^2 CONVENTION. THE SAME FLOW, READ IN e^2, IS IR-FREE WITH A UV
+        LANDAU POLE (R-190; R-085's table now names its coupling and its "stays positive"
+        qualifier is struck as falsified). Neither name may be used bare.
         (1/e^2 grows toward the IR). GENERIC-HONESTY (the tag's load): this is the
         standard dispersive-running statement obeyed by ANY two-term chiral action —
         the substrate-specific content is only that TWT's banked dressed sector IS that
@@ -11261,6 +11939,16 @@ def marginal_skyrme_beta3_sign_dispersive():
         - DECIDED (conditional-generic): the SIGN. The dressed marginal quartic runs
           AF-SIGNED — the wrong-sign risk for the qcd-UV arc is REMOVED; P2-3's Class-1
           "(sign, possibly)" face closes POSITIVE-conditional-generic.
+        - SCOPE, ADDED 2026-08-27 (keeper L-1, computed): THE CLAIM IS A SIGN, NOT A
+          RANGE. R-190 supplies the range over which this sector's only log-runner is a
+          statement about anything: the chiral route is valid for at most ln(4 pi) = 2.531
+          e-folds and the flow reaches its own zero at 1.9937 e-folds above the cell scale.
+          N6 records colour physics persisting into the AF band MEASURED CONTINUOUSLY TO
+          THE TeV = ln(1 TeV / Lambda_cell) = 7.260 e-folds up (ln(M_Z/Lambda_cell) =
+          4.865). SHORTFALL TO THE TeV END: 5.266 e-folds, a factor ~194 in scale. The
+          sign result is UNWEAKENED -- its own fence already routes the UV completion above
+          Lambda_cell to the kernel -- but NO RESTATEMENT MAY READ THE SIGN AS COVERING THE
+          ARC'S MEASURED RANGE.
         - NOT DECIDED (stays N7 / Class 2): asymptotic freedom itself. The sign's SOURCE
           here is the ADDITIVE, f^2-loop-driven drift (the O(p^2) unitarity cut), NOT a
           self-coupling antiscreening mechanism; the full DGLAP structure, the "small
@@ -11287,8 +11975,29 @@ def marginal_skyrme_beta3_sign_dispersive():
     WOULD CHANGE IF: a new operator class with FORWARD-surviving weight enters the
     dressed action at matching (re-runs the combination — l1 does not qualify, it
     vanishes forward); the (P-disp) package fails inside-frame; the one-loop coefficient
-    vanishes in this channel (weakens strict to non-strict); R-085's convention is
+    vanishes in this channel (weakens strict to non-strict) [★ THIS CONDITION IS NOW
+    DISCHARGED BY COMPUTATION, 2026-08-27: R-190 computes it NON-ZERO, -1/(6 pi^2) =
+    -0.0168869, so the strict reading stands]; R-085's convention is
     re-anchored (relabels only, does not flip the physics).
+
+    [DOWNSTREAM, 2026-08-27 — R-190 / N71, PROBE C. THE SIGN BANKED HERE WAS THE DOCKET'S
+    ONE INGREDIENT FOR THE HIERARCHY, AND IT DOES NOT CARRY IT. The one-loop MAGNITUDE is
+    now computed by an I-13-FREE route (Gasser-Leutwyler gamma_2 = 2/3, read at primary,
+    hypotheses checked): beta_lambda_S = mu d(1/e^2)/dmu = -1/(6 pi^2), whose SIGN AGREES
+    with beta_3 <= 0 above — a genuine two-route agreement, since that route uses none of
+    (P-disp)'s premises, so the MAGNITUDE does NOT inherit I-13's conditionality while THIS
+    result still does (revert clause unchanged). Clause (4)'s ADDITIVE-not-antiscreening
+    observation HAS PRIORITY and is credited as such in R-190; what R-190 adds is the
+    exactness PROOF (chiral counting: beta_{l_2} carries no power of l_1 or l_2 at any
+    order — exactly one-loop, STRONGER than QCD's own beta, which takes two-loop
+    corrections while this one does not), the RATE, and the e-fold count. The reach to the
+    cell scale is 1.9937 e-folds against 36.68-42.00 required: THE MECHANISM APPLIES AND
+    DOES NOT REACH. ALSO RELEVANT TO THIS ROW'S OWN WOULD-CHANGE-IF: gamma_1 != gamma_2,
+    so the pure-Skyrme ray l_1 = -l_2 is NOT RG-stable (d(l1+l2)/dlnmu = -1/(16 pi^2)) —
+    the one-coupling reading is a statement AT A SCALE, not along the flow. The
+    forward-channel fence above still covers the SIGN face (l_1 multiplies t^2, vanishing
+    forward), and beta_{l_1} is itself exactly additive, so no transmutation channel opens
+    there either.]
 
     self-checks below (sympy, numeric-first series — fast)."""
     import itertools
@@ -11468,7 +12177,7 @@ def marginal_skyrme_beta3_sign_dispersive():
         "channel_map": ("A_Skyrme(s,t,u) = -(s^2/2 + t*u)/(2 e^2 f^4); forward weight "
                         "w = +1/(2 f^4) > 0; tree-level forward positivity SATISFIED by "
                         "the banked sign (c2 = w/e^2 > 0)"),
-        "sign": ("beta_3 = mu d(1/e^2)/dmu <= 0 — AF-SIGNED (1/e^2 grows toward the IR; "
+        "sign": ("beta_3 = mu d(1/e^2)/dmu <= 0 — AF-SIGNED IN THE lambda_S = 1/e^2 CONVENTION, and IR-FREE with a UV Landau pole at 1.9937 e-folds in the standard Skyrme coupling e^2 (ONE flow, two reciprocal-coupling names — R-190/keeper C-1; neither usable bare). (1/e^2 grows toward the IR; "
                  "R-085's AF branch) — DERIVED-conditional-GENERIC; the wrong-sign risk "
                  "for the qcd-UV arc is REMOVED"),
         "p2_3_status": ("Class-1 sign face CLOSED POSITIVE-conditional-generic; NOT AF "
@@ -11482,6 +12191,292 @@ def marginal_skyrme_beta3_sign_dispersive():
         "would_change_if": ("a new operator class with forward-surviving weight (re-runs "
                             "the combination); the package fails inside-frame; one-loop "
                             "coefficient zero in this channel; convention re-anchored"),
+    }
+
+
+
+
+def marginal_quartic_running_reach_to_cell_scale():
+    """[R-190 -- PROBE C. DERIVED-A (the Skyrme->(l1,l2) identification from the trace
+    identity; the no-quadratic-part series result; the chiral-power-counting exactness
+    theorem; the gamma_2-cancellation vacuity demonstration) + DERIVED-numeric (the rate
+    c = 1/(6 pi^2) given the READ Gasser-Leutwyler gamma_2, and the e-fold reach) +
+    FRAMING (the cell-scale comparison, inheriting R-189's conditional framing verbatim).
+    2026-08-27.]
+
+    §C.5.2 / §D.5 -- DOES THE MARGINAL SKYRME QUARTIC'S RUNNING CARRY THE CORE SCALE TO
+    THE HADRONIC CELL SCALE BY DIMENSIONAL TRANSMUTATION?
+
+    *** THE HEADLINE, AND IT IS THE CORRECTED ONE: THE MECHANISM APPLIES AND DOES NOT
+    REACH. *** The first build of this result asserted the opposite -- that an additive
+    beta has no pole, so the transmutation formula does not apply at all. THAT INFERENCE
+    WAS REFUTED by the contra-briefed section 8a review and the refutation is wired into
+    the checks below: EVERY one-loop beta is additive in the INVERSE coupling (QCD's
+    d(1/alpha_s)/dlnmu is a constant), and in the natural Skyrme variable e^2 = 1/lambda_S
+    this same flow reads beta(e^2) = +c e^4 with a genuine pole at
+    Lambda_inv = mu exp(lambda_S/c). The transmutation SHAPE is present. What fails is the
+    REACH. (Correction history recorded per the N42 pattern: the refuted claim is named so
+    it cannot return.)
+
+    THE COUPLING, DERIVED NOT ENTERED (the N42 guard). From the su(2) trace identity
+    Tr([A,B][C,D]) = -8(a.c b.d - a.d b.c), the banked quartic reduces to the two
+    Gasser-Leutwyler structures as Tr([L_mu,L_nu][L^mu,L^nu]) = 2 Y.Y - 2 X^2, so at the
+    banked Minkowski sign (R-148's static-energy anchor E_4 > 0)
+        l_1 = -1/(4 e^2),  l_2 = +1/(4 e^2),  hence  lambda_S := 1/e^2 = 4 l_2.
+    Configuration-independent, verified on HELD-OUT configurations at THREE index ranges.
+
+    THE RATE, AND IT IS I-13-FREE. Gasser-Leutwyler SU(2): l_i^r(mu) =
+    (gamma_i/(32 pi^2))(lbar_i + ln(M^2/mu^2)) with gamma_1 = 1/3, gamma_2 = 2/3, so
+        beta_lambda_S = mu d(1/e^2)/dmu = -4 gamma_2/(16 pi^2) = -1/(6 pi^2) = -0.0168869
+        c := -beta_lambda_S = 1/(6 pi^2),   1/c = 6 pi^2 = 59.2176
+    -- a pure number, no free parameter, and NO dependence on f_pi (which is exactly why
+    gamma_2 is a pure number, and is load-bearing at leg L-B). The import's hypotheses are
+    checked against the banked action one by one; five match and the SIXTH DOES NOT (see
+    L-D). SIGN CONCORDANCE WITH R-148: beta_lambda_S <= 0 agrees with R-148's banked
+    beta_3 <= 0, by a route that uses NONE of I-13's premises (no analyticity, no
+    crossing, no subtraction count, no optical theorem) -- so this is a genuine two-route
+    agreement and the MAGNITUDE does not inherit I-13's conditionality. R-148's docstring
+    clause (4) has PRIORITY on the additive-not-self-coupling observation; the delta here
+    is the power-counting PROOF of exactness, the computed RATE, and the e-fold count.
+
+    THE EXACTNESS THEOREM [DERIVED-A]. Weinberg chiral counting D = 2 + 2L + sum(d_i - 2):
+    L >= 2 gives D >= 6; one O(p^4) insertion gives D >= 6. So D = 4 is reached ONLY at
+    one loop with zero O(p^4) vertices, and beta_{l_2} carries NO power of l_1 or l_2 at
+    any order in the chiral expansion -- exactly additive, exactly one loop. This is
+    STRONGER than QCD's own beta, which takes two-loop corrections while this one does
+    not. beta_{l_1} is likewise exactly additive, so the two-coupling sector is TWO
+    ADDITIVE FLOWS and the RG-generated second invariant (gamma_1 != gamma_2, so the
+    pure-Skyrme ray l_1 = -l_2 is NOT RG-stable) opens no transmutation channel.
+
+    *** WHY IT DOES NOT REACH -- FOUR RANKED LEGS. ***
+    (L-A) [PRIMARY, numerical, empirically anchored] THE FLOW IS IR-FREE, SO THE FREE
+        PARAMETER SITS AT THE MEASURED END. In a UV-free flow the dial is at the
+        UNMEASURED UV end and the hierarchy is an OUTPUT (alpha_s(UV) -> 0 buys unbounded
+        e-folds). Here the flow is IR-ANCHORED: the reach is E = lambda_S(cell)/c with
+        lambda_S(cell) a MEASURED/BANKED number, so the hierarchy would be READ OFF, not
+        generated. At the engine's own banked e = 5.45 the reach is 1.9937 e-folds against
+        the 36.68-42.00 required (about 5 percent of the exponent). A cell-end coupling
+        that WOULD work exists and is O(1) -- lambda_S = 0.619-0.709, e = 1.19-1.27,
+        g^2 = e^2 = 1.41-1.61, INSIDE the pre-registration's own [0.3, 3] window -- and is
+        excluded NOT because no value works but because it conflicts with the banked
+        e = 5.45 by 21x and with the measured ChPT value by 95x, with the measured value
+        running the WRONG WAY. E is NORMALIZATION-INVARIANT (= 4 pi^2/(e^2 gamma_2)), so
+        this leg does not use the lambda_S = 4 l_2 identification at all.
+    (L-B) [THE REFERENT -- the strongest leg] The running controls ell_S * f_pi =
+        sqrt(lambda_S) (Derrick balance of the two-term static energy), BOTH ENDS ALREADY
+        AT THE CELL SCALE. It controls NEITHER the R-189 healing length (a GRAIN-layer
+        static-Hessian object built from bond parameters J, D -- no map from lambda_S to
+        (rho, g) exists in the corpus, and that missing map IS the absent grain->cell
+        transfer computation) NOR the a-to-f_pi ratio, because the running is
+        f_pi-INDEPENDENT. And the map is ANTI-transmuting: an exponential hierarchy is
+        reachable near the flow's zero only at a ~1-part-in-1e35 tuning of the SCALE --
+        the exact inverse of what transmutation is for.
+    (L-C) [SELF-CONSISTENCY] THE WORKING VALUE IS OUTSIDE THE DOMAIN OF THE BETA THAT
+        PRODUCED IT: required l_2 = 0.1549-0.1773 against the loop-counting size
+        1/(16 pi^2) = 6.333e-03 (24.5-28.0x) and against the measured l_2^r(770 MeV)
+        (83-95x).
+    (L-D) [VALIDITY FENCE ON THE IMPORT -- ranked BELOW L-A/L-B, not co-equal] The
+        imported gamma_2 is a chiral-EFT statement for mu <~ Lambda_chi ~ 4 pi F_pi: at
+        most ~2.5 e-folds of headroom, not ~40. This blocks the EXTRAPOLATION OF THIS
+        IMPORT, not the mechanism.
+
+    *** A VACUITY DEMONSTRATION, WIRED IN SO IT CANNOT RETURN. *** The first build filed a
+    third "control" claiming that Lambda_inv = mu exp(lambda_S/c), fed the empirical
+    coupling and landing on Lambda_chi, CORROBORATED THE MAGNITUDE OF c. It does not:
+    gamma_2 cancels IDENTICALLY, and so do the identification factor 4 and the reference
+    scale mu, leaving Lambda_inv = M_pi exp(lbar_2/2) -- a function of lbar_2 ALONE. That
+    claim is WITHDRAWN. What survives is an NDA-level consistency (lbar_2 = 4.3 against
+    its natural size 2 ln(Lambda_chi/M_pi) = 4.233), resting on an lbar_2 NOT READ AT
+    PRIMARY, and Lambda_inv is the zero-crossing of a SCHEME-DEPENDENT renormalized LEC,
+    not a physical breakdown scale (l_2^r(2 GeV) < 0 in the real world with no pathology,
+    so R-085's BARE-coefficient positivity must not be levered into a cap at every mu).
+
+    *** THE FROZEN CONDITIONAL FRAMING, and it travels with every returned tension
+    statement: *** the grain size a is a G_N BACK-FIT and f_pi is FITTED, and NO
+    grain->cell transfer computation exists, so the target ratio is a ratio between TWO
+    ENTERED SCALES and is NEVER a derived violation. R-189's own conditioning travels too:
+    the anchoring lengths are branch- and direction-labelled, the floor is a MEASURED
+    MINIMUM over sampled directions and not a derived bound, and they are computed about a
+    state that is NOT a tree-level local minimum on either branch (N70) -- whose
+    instability is INFRARED while everything here is ULTRAVIOLET-anchored. Nothing here
+    settles the infrared question.
+
+    MASS SCOPE (canon 5): no quark or hadron mass is predicted. Every object is a length,
+    a scale ratio, or a dimensionless coupling.
+
+    NUMEROLOGY GUARD: no significance is claimed for the proximity of any exponent to 44,
+    to ln(10^19), or to any round number. Every coupling is COMPUTED, never matched.
+
+    OUTCOME CLASS (iii) BLOCKED, and a MISFIT is recorded against the pre-registration
+    itself: its outcome classes assumed a UV-anchored asymptotically-free sector with a
+    microscopic dial. This sector is IR-anchored, so "the required microscopic g^2" is not
+    a well-formed question here, and by the LETTER of the frozen classes the required g^2
+    lands in outcome (i)'s window. What excludes (i) is L-A/L-B/L-C, not the value.
+
+    governing record: knowledge/audit/probe_c_transmutation_2026-08-27/ --
+    PREREGISTRATION_FROZEN.md (frozen before any script -- READ ERRATA_2026-08-27.md
+    BESIDE IT: the frozen file carries a wrong positive-control ratio and an outcome-class
+    MISFIT under which a reader reconstructs outcome (i)), PROBE_C_L1_2026-08-27.md (REV 2,
+    incl. its section 12 per-finding disposition), VERDICT_REVIEWER_C_2026-08-27.md,
+    VERDICT_KEEPER_C_2026-08-27.md, DESIGN_INTENT_2026-08-27.md, probe_c_script.py.
+    Negatives ledger: N71."""
+    import math as _m
+
+    GAMMA_1, GAMMA_2 = 1.0 / 3.0, 2.0 / 3.0
+    c_rate = 4.0 * GAMMA_2 / (16.0 * _m.pi ** 2)          # = 1/(6 pi^2)
+    lam_cell = 1.0 / E_PHYS ** 2                           # the banked ANW dressed coupling
+    E_avail = lam_cell / c_rate
+
+    # ---- the target, read from the engine, never retyped ---------------------------
+    _g = induced_G_only_monad_scale_enters()
+    hier_MPl = float(_g["hierarchy_Lambda_x_ellS"])        # M_Pl * ell_S
+    _band = induced_G_from_linear_face_band()
+    a_over_lPl = _m.sqrt(6.0 * float(_band["c_lat"]) / (12.0 * _m.pi))
+    target = hier_MPl / a_over_lPl
+
+    # ---- E_req per anchoring, BRANCH-LABELLED, read from R-189 ----------------------
+    _hl = core_healing_length_canted_vacuum()
+    _st, _f2 = _hl["xi_statistics"], _hl["f2_soft_channel_length"]
+    E_req = {}
+    for _br in ("body-diagonal", "axis"):
+        for _nm, _v in (("xi_floor", float(_st[_br]["measured_minimum"])),
+                        ("xi_median", float(_st[_br]["sweep_median"])),
+                        ("xi_p95", float(_st[_br]["sweep_p95"])),
+                        ("soft_channel", float(_f2[_br]["modulation_wavelength"]))):
+            E_req["%s [BRANCH: %s]" % (_nm, _br)] = _m.log(target / _v)
+    Es = sorted(E_req.values())
+
+    # ---- the empirical ChPT reading (lbar_2 NOT READ AT PRIMARY) --------------------
+    LBAR_2, M_PI, MU_REF, F_PI_PHYS = 4.3, 0.13957, 0.770, 0.0922
+
+    def _lam_emp(g2=GAMMA_2, mu=MU_REF):
+        return 4.0 * (g2 / (32.0 * _m.pi ** 2)) * (LBAR_2 + _m.log(M_PI ** 2 / mu ** 2))
+
+    lam_emp = _lam_emp()
+    need = [c_rate * E for E in Es]
+
+    return {
+        "tier": ("DERIVED-A (the Skyrme->(l1,l2) identification; the no-quadratic-part "
+                 "series result; the chiral-counting exactness theorem; the gamma_2 "
+                 "vacuity demonstration) + DERIVED-numeric (c = 1/(6 pi^2) given the READ "
+                 "gamma_2; the e-fold reach) + FRAMING (the cell-scale comparison)"),
+        "HEADLINE": ("THE MECHANISM APPLIES AND DOES NOT REACH. The transmutation SHAPE is "
+                     "present -- in the variable e^2 the flow is beta(e^2) = +c e^4 with a "
+                     "genuine pole -- but the flow is IR-FREE, so its free parameter sits "
+                     "at the MEASURED hadronic end, and at the banked coupling the reach "
+                     "is %.4f e-folds against the %.2f-%.2f required."
+                     % (E_avail, min(Es), max(Es))),
+        "REFUTED_AND_MUST_NOT_RETURN": (
+            "'an additive beta has no pole and cannot be dialled, so the transmutation "
+            "formula does not apply' -- REFUTED by the contra-briefed review: every "
+            "one-loop beta is additive in the INVERSE coupling, QCD's included. Also "
+            "REFUTED: 'no coupling value works' -- one does, and lands in the "
+            "pre-registration's own [0.3, 3] window."),
+        "beta_lambda_S": -c_rate,
+        "c_rate_closed_form": "1/(6 pi^2)",
+        "one_over_c": 1.0 / c_rate,
+        "gamma_1_gamma_2": (GAMMA_1, GAMMA_2),
+        "beta_l1_also_additive": -GAMMA_1 / (16.0 * _m.pi ** 2),
+        "skyrme_ray_not_RG_stable": -(GAMMA_1 + GAMMA_2) / (16.0 * _m.pi ** 2),
+        "lambda_S_identification": "lambda_S := 1/e^2 = 4 l_2 ; l_1 = -l_2 (DERIVED, not entered)",
+        "R148_sign_concordance": (-c_rate <= 0.0),
+        "I13_dependence_of_this_magnitude": (
+            "NONE -- an explicit one-loop computation, not a dispersive one (import I-32, "
+            "REGISTERED; call-closure disjoint from R-148's, AST-verified). R-148's OWN "
+            "DERIVATION remains CONDITIONAL ON I-13. *** BUT THE REVERT CLAUSE IS NARROWED "
+            "(keeper C-2): a revert reverts R-148's DISPERSIVE DERIVATION, and the SIGN "
+            "PROPOSITION SURVIVES here for mu <~ Lambda_chi (leg L-D) -- so what a revert "
+            "restores is the located gap ABOVE THAT DOMAIN, not the sign itself. *** The "
+            "two routes are NOT redundant: the dispersive one claims a sign at ALL mu, this "
+            "one only within the chiral window. The SIGN agreement is evidence, not "
+            "restatement."),
+        "R148_priority": ("*** THREE CLAUSES OF R-148 HAVE PRIORITY, AND THE THIRD IS A "
+                          "NOVELTY OVER-CLAIM OF THIS PRIMITIVE'S OWN, SELF-CAUGHT AND "
+                          "WITHDRAWN (keeper O-3, 2026-08-27). *** (a) clause (4) already "
+                          "records the drift as ADDITIVE and NOT a self-coupling "
+                          "antiscreening mechanism; (b) anchor (0')(a) already "
+                          "series-extracted the eps^4 leading order; and (c) *** STEP (3)'S "
+                          "CORROBORATION CLAUSE ALREADY RECORDED THIS EXACT ROUTE *** -- "
+                          "verbatim: 'in one-loop ChPT the forward coefficient of this "
+                          "channel is pure l2 ... and Gamma_2 > 0 makes l2^r decrease toward "
+                          "the UV -- the same direction' (witness, not load-bearing). So THE "
+                          "CONCORDANCE IS NOT NEW: R-148 has priority on it, and the earlier "
+                          "framing that presented 'a genuine two-route agreement' as this "
+                          "primitive's finding OVER-STATED THE DELTA. What is true and "
+                          "unchanged: the two-route agreement is REAL, and R-190 PROMOTES "
+                          "R-148's witness FROM A NAMED DIRECTION TO A COMPUTED RATE. THE "
+                          "ACTUAL DELTA, untouched by this correction: the exactness PROOF "
+                          "(chiral counting, all orders), the RATE, the e-fold count and its "
+                          "normalization-invariance, and the hypothesis check that found the "
+                          "domain failure (leg L-D). Precedent for this self-catch: R-189's "
+                          "own KC-1 novelty withdrawal, one commit earlier, same discipline."),
+        "TARGET_ell_S_over_a": target,
+        "E_req_by_anchoring_BRANCH_LABELLED": E_req,
+        "E_req_range": (min(Es), max(Es)),
+        "E_available_at_banked_e": E_avail,
+        "E_available_closed_form": "lambda_S(cell)/c = 4 pi^2/(e^2 gamma_2)",
+        "fraction_of_exponent_delivered": (E_avail / max(Es), E_avail / min(Es)),
+        "required_lambda_S_cell": (min(need), max(need)),
+        "required_e": (1.0 / _m.sqrt(max(need)), 1.0 / _m.sqrt(min(need))),
+        "required_g2_equals_e2": (1.0 / max(need), 1.0 / min(need)),
+        "required_is_INSIDE_the_prereg_window": all(0.3 <= 1.0 / n <= 3.0 for n in need),
+        "conflict_with_banked_e": max(need) / lam_cell,
+        "conflict_with_measured_ChPT": max(need) / lam_emp,
+        "L_C_required_l2_over_loop_size": (min(need) / 4.0 * 16.0 * _m.pi ** 2,
+                                           max(need) / 4.0 * 16.0 * _m.pi ** 2),
+        "L_D_headroom_efolds": _m.log(4.0 * _m.pi),
+        "REFERENT": (
+            "the running controls ell_S * f_pi = sqrt(lambda_S) (Derrick balance) and "
+            "NOTHING ELSE: NOT the R-189 healing length (grain-layer static Hessian, no "
+            "map from lambda_S to (rho, g) exists -- that missing map IS the absent "
+            "grain->cell transfer), and NOT the a-to-f_pi ratio (the running is "
+            "f_pi-INDEPENDENT). Both ends of the chain it DOES control already sit at the "
+            "cell scale, and the map is ANTI-transmuting."),
+        "tension_statement": (
+            "STRUCTURAL TENSION CONDITIONAL ON TWO INPUT SCALES, NEVER A DERIVED "
+            "VIOLATION: the grain size a is a G_N BACK-FIT, f_pi is FITTED, and no "
+            "grain->cell transfer computation exists. The anchoring lengths are R-189's, "
+            "branch- and direction-labelled, computed about a state that is NOT a "
+            "tree-level local minimum on either branch (N70) -- an INFRARED instability, "
+            "while everything here is ULTRAVIOLET-anchored; nothing here settles it."),
+        "vacuity_demonstration": (
+            "Lambda_inv = mu exp(lambda_S/c) = M_pi exp(lbar_2/2): gamma_2, the factor 4 "
+            "and mu ALL CANCEL. The first build's claim that this 'corroborates the "
+            "MAGNITUDE of c' is WITHDRAWN. What survives is an NDA consistency (lbar_2 = "
+            "%.1f vs 2 ln(Lambda_chi/M_pi) = %.3f) resting on an lbar_2 NOT READ AT "
+            "PRIMARY. *** AND Lambda_inv IS NOT AN EARNED SCALE (keeper L-2): it is "
+            "M_pi * exp(lbar_2/2) = 1.198 GeV, built from TWO MEASURED INPUTS and a "
+            "SCHEME-DEPENDENT LEC zero-crossing, not a physical breakdown scale. "
+            "'Earned dimensionful scales' stays at 0 -- what this primitive earns is a "
+            "dimensionless RATE and a dimensionless E-FOLD COUNT, no scale. If a future "
+            "arc fixes lbar_2 FROM STRUCTURE (N71 handle (5), HLS/VMD), the comparative "
+            "ledger's finding 20 is the first place to re-check the scale-class count. ***"
+            % (LBAR_2, 2.0 * _m.log(4.0 * _m.pi * F_PI_PHYS / M_PI))),
+        "outcome_class": ("(iii) BLOCKED. MISFIT RECORDED AGAINST THE PRE-REGISTRATION: "
+                          "its classes assumed a UV-anchored AF sector with a microscopic "
+                          "dial; this sector is IR-anchored, so by the LETTER of the "
+                          "frozen classes the required g^2 lands in outcome (i)'s window. "
+                          "What excludes (i) is L-A/L-B/L-C, not the value."),
+        "mass_scope": "no quark or hadron mass is predicted; every object is a length, a ratio or a coupling",
+        "numerology_guard": "no significance claimed for proximity to 44 or any round number; g^2 is COMPUTED",
+        "governing_record": ("knowledge/audit/probe_c_transmutation_2026-08-27/ -- "
+                             "PREREGISTRATION_FROZEN.md, PROBE_C_L1_2026-08-27.md (REV 2), "
+                             "VERDICT_REVIEWER_C_2026-08-27.md, DESIGN_INTENT_2026-08-27.md, "
+                             "probe_c_script.py; negatives ledger N71"),
+        "would_change_if": (
+            "(1) PRIMARY HANDLE: the banked e = 5.45 is displaced by a dressed-sector "
+            "value near 1.2 (lambda_S ~20x larger, or c ~20x smaller) INSIDE the domain "
+            "where its own beta is computable -- recorded direction: the ChPT LEC reading "
+            "moves it FURTHER AWAY; (2) the UV completion above Lambda_cell is a theory in "
+            "which f is GENERATED rather than entered (the technicolor shape); (3) the "
+            "grain->cell transfer computation is built; (4) R-148's I-13 revert fires (does "
+            "not rescue the mechanism -- the block is numerical and referential -- but "
+            "removes the ingredient the docket counted on); (5) ARGUED POINTER, NOT A "
+            "RESULT, unverified at primary: hidden local symmetry / vector-meson dominance "
+            "-- the rho saturates lbar_2 and the HLS gauge coupling IS a marginal coupling "
+            "WITH a propagator and a quadratic beta. STRUCK AS MISDIAGNOSED: 'a marginal "
+            "operator with a non-vanishing quadratic part' -- the quadratic part is not "
+            "the discriminator."),
     }
 
 
@@ -12787,6 +13782,16 @@ def bond_invariant_menu_frame_bilinear() -> dict:
     (16 + 18 = 34 vs 10). That is the check that the residue tests COMMUTATION, not the
     lattice, and it is SEEN TO FIRE.
 
+    ★★ DOWNSTREAM NOTE 2026-08-27 (RUL-110 / family-tree node V3-1b — M-3a GRANTED, the
+    drive-referenced two-rate defect rotor). NOTHING IN THIS PRIMITIVE MOVES: the ladder, the
+    1+6+9 split and the exhaustiveness are properties of the driven group and of the
+    relative-frame bilinear ansatz, and consume no twist-generator class. What changed is
+    downstream — bond_harmonic_ceiling_by_generator_class (R-178) rode on the twist being
+    SIMPLE or ISOCLINIC, that premise is now false in the adopted physical case, its
+    conclusion is retired-where-used, and JD-6 therefore OPENS to a bond-bilinear computation
+    that runs on THIS menu. Record:
+    knowledge/audit/generations_arc_2026-08-23/M3_BLAST_RADIUS_2026-08-26.md.
+
     Cross-refs: canting_vacuum_branch_structure, D4_spatial_bond_isotropy,
     D4_DM_bond_bivectors_non_commuting (the banked construction this reads);
     bond_channel_parity_exclusivity (G2, the durable result);
@@ -12961,7 +13966,12 @@ def bond_channel_parity_exclusivity() -> dict:
           generated by a unit SIMPLE bivector*. On a helix generated by a non-simple
           bivector with plane angles (1,3) the even part is not a single (1-cos q) —
           computed, see bond_harmonic_ceiling_by_generator_class. The parity/exclusivity
-          half above is UNAFFECTED and stays general.
+          half above is UNAFFECTED and stays general. ★★ AND THE CONDITION NOW BITES:
+          2026-08-27, RUL-110 / family-tree node V3-1b grants M-3a (the drive-referenced
+          two-rate defect rotor), so the ADOPTED defect twist is NON-simple and the
+          "exactly two amplitudes" reading does not cover the adopted physical case. The
+          SELECTION RULE (Gamma even-only, D_spatial the sole odd channel) is untouched —
+          it needs no helix, no simple bivector and not even a rotor.
       (ii) **"JD-5 HALF-DISCHARGED" IS WITHDRAWN AS A LABEL.** JD-5's RECORDED scope
           (`TWT_worklist.md`) is *the cos/sin parity assignment OF THE Z3 AMPLITUDES*. The
           pitch statement is true and, at trace-pairing strength, trivial — but it is a fact
@@ -13050,7 +14060,10 @@ def bond_channel_parity_exclusivity() -> dict:
         "exactly_two_amplitudes": (
             "CLASS-CONDITIONED (RUL-049): true only within single-q families generated by "
             "a unit SIMPLE bivector. See bond_harmonic_ceiling_by_generator_class for the "
-            "(1,3) counterexample."),
+            "(1,3) counterexample. ★★ 2026-08-27 (RUL-110 / V3-1b): M-3a granted, so the "
+            "ADOPTED twist is NON-simple and this reading does NOT cover the adopted "
+            "physical case. The parity SELECTION RULE is untouched — it needs no simple "
+            "bivector and not even a rotor."),
         "JD5_status": (
             "STANDS, UNDISCHARGED, on its recorded Z3 scope. 'Half-discharged' is "
             "WITHDRAWN as a label. RUL-071(vi)'s conditioning of 0.79 on JD-5 is UNCHANGED. "
@@ -13113,6 +14126,22 @@ def bond_harmonic_ceiling_by_generator_class() -> dict:
 
     FAILURE MODE SHIPPED WITH THE PRIMITIVE: the (1,3) counterexample IS the failure mode.
     The primitive ASSERTS a nonzero m3 there and asserts the m3 floor under simple/SD/ASD.
+
+    ★★ THE WOULD-CHANGE-IF HAS FIRED (2026-08-27, RUL-110 / family-tree node V3-1b —
+    M-3a GRANTED, the drive-referenced two-rate defect rotor). The premise above — a SIMPLE
+    or ISOCLINIC twist generator — is now FALSE IN THE ADOPTED PHYSICAL CASE, so:
+      * THE CONCLUSION IS **RETIRED WHERE USED**: the bilinear-order Z3-harmonic vanishing,
+        and with it JD-6's tree-level 0/0, no longer describes the adopted instance.
+      * THE ALGEBRA STANDS EXACTLY AS IT ALWAYS DID — this primitive is, and always was, a
+        CONDITIONAL identity, and nothing computed here changes. The (1,3) counterexample is
+        still asserted nonzero (|c3| = |c1| = 6.00 on the banked J); what changed is that it,
+        rather than the ceiling, is now the case the corpus commits to.
+      * ⇒ **JD-6 IS OPEN TO COMPUTATION at bond-bilinear order** (blast radius UNLOCK-2): the
+        non-isoclinic escape reaches m = 3 on the banked J at an order the engine already
+        reaches — no kernel and no new machinery. JD-6 is no longer 0/0-closed.
+    The grant is a PICK (one counted real: the rate ratio, kernel-routed and unpinned), never
+    a derivation; reverting node V3-1b un-fires this clause and un-retires the conclusion.
+    Record: knowledge/audit/generations_arc_2026-08-23/M3_BLAST_RADIUS_2026-08-26.md.
 
     Cross-refs: bond_channel_parity_exclusivity (G2's class-conditioned "two amplitudes");
     DoverJ_calibration_referent (G5); worklist JD-6; negatives ledger N62."""
@@ -13220,7 +14249,20 @@ def bond_harmonic_ceiling_by_generator_class() -> dict:
         "would_change_if": (
             "the generation circle is implemented by a non-isoclinic SO(4) twist "
             "(plane-angle ratio reaching 3), where m = 3 appears at O(|c1|) at the same "
-            "bilinear order — the shipped counterexample IS that world"),
+            "bilinear order — the shipped counterexample IS that world. ★★ FIRED 2026-08-27 "
+            "(RUL-110 / V3-1b): M-3a granted, so the adopted defect rotor IS non-isoclinic "
+            "and this world IS the physical case"),
+        "m3a_grant_2026_08_27": (
+            "RUL-110 / family-tree V3-1b — M-3a GRANTED (the drive-referenced two-rate "
+            "defect rotor). The SIMPLE/ISOCLINIC premise is FALSE in the adopted physical "
+            "case: the conclusion (bilinear-order Z3-harmonic vanishing, and JD-6's tree-"
+            "level 0/0) is RETIRED-WHERE-USED, while the algebra stands unchanged as the "
+            "conditional identity it always was — no computation and no assert in this "
+            "primitive moves. ⇒ JD-6 is OPEN TO COMPUTATION at bond-bilinear order (blast "
+            "radius UNLOCK-2: m = 3 at |c3| = |c1| = 6.00 on the banked J), no longer "
+            "0/0-closed. The grant is a PICK (one counted real: the rate ratio, kernel-"
+            "routed, unpinned), not a derivation; reverting V3-1b un-fires this clause. "
+            "Record: generations_arc_2026-08-23/M3_BLAST_RADIUS_2026-08-26.md"),
         "does_not_license": (
             "'no bilinear-order computation, however refined, can compute alpha_i or beta' "
             "— withdrawn as a bare necessity claim (RUL-049)"),
@@ -13672,9 +14714,15 @@ def DoverJ_calibration_referent() -> dict:
     e_required = math.sqrt(18.0) / dj_exact
     e_anw = 5.45
     e_gap = (e_anw - e_required) / e_anw * 100.0
-    assert e_gap > 1.0, ("the e-test's 1.06% DEVIATION must be asserted, not softened -- the "
-                         "number is reported plainly; per RUL-100(2) it is NOT called a failure, "
-                         "because the historical e's own literature spread exceeds it")
+    assert abs(e_gap - 1.0646) < 0.01, (
+        "the e-test's DEVIATION must be present and reported plainly, not softened -- but the "
+        "assert may NOT hard-lock it above 1%: RUL-100(2)'s own discharge condition is a "
+        "determination at or below ~1%, so an assert at e_gap > 1.0 breaks the suite on exactly "
+        "the event the ruling commissions. The 1.0 threshold corresponds to e_ANW <= 5.4464, "
+        "0.066% below the standing 5.45. This assert therefore PINS the computed value at the "
+        "standing e_ANW = 5.45 (1.0646%, tolerance 0.01) so the check still MEASURES and still "
+        "fails if the arithmetic moves; the DISCRIMINATING/NOT-DISCRIMINATING call belongs in "
+        "the returned STATUS string, which is computed below from e_gap, not in this assert")
 
     return {
         "tier": ("PART 1 routing theorem: DERIVED-conditional (frame-bilinear class pick, "
@@ -13786,7 +14834,15 @@ def DoverJ_calibration_referent() -> dict:
                 "baryon_e_test": {
                     "e_required": e_required, "e_ANW_historical": e_anw,
                     "percent_low": e_gap,
-                    "STATUS": "NOT YET DISCRIMINATING (1.1% deviation < historical literature spread of e)",
+                    "STATUS": (
+                        ("NOT YET DISCRIMINATING (%.2f%% deviation < the historical literature "
+                         "spread of e, which runs ~4.1-5.45 across determinations; per "
+                         "RUL-100(2) a determination at or below ~1%%, read from primaries, "
+                         "makes this test discriminating)" % e_gap)
+                        if e_gap > 1.0 else
+                        ("DISCRIMINATING -- a determination at %.2f%% has arrived; RUL-100(2)'s "
+                         "discharge condition is MET and the row must be re-adjudicated, not "
+                         "auto-passed" % e_gap)),
                     "note": ("stated as plainly as a success would be. Either e_ANW is "
                              "~1.06% high of what the substrate demands, or the two legs' "
                              "J_eff differ by that much.")},
@@ -13848,6 +14904,15 @@ def gamma_admixture_cross_functional_route() -> dict:
       and the dressed Z3 harmonic — and the three coincide ONLY if the Gamma admixture
       vanishes. **WOULD CHANGE IF** the dressed Gamma couplings are pinned, or an argument
       fixes the substrate Gamma to zero.
+
+    ★★ CONDITIONING NOTE, 2026-08-27 (RUL-110 / family-tree node V3-1b — M-3a GRANTED, the
+    drive-referenced two-rate defect rotor). R-178's simple/isoclinic premise is FALSE in the
+    adopted physical case, so its conclusion is retired-where-used and the PARENT gap JD-6 is
+    now OPEN TO COMPUTATION at bond-bilinear order (blast radius UNLOCK-2). This corollary is
+    unchanged in content and its own four conditioning items are untouched — what changes is
+    that "GR-2 is empty if JD-6's coefficients vanish" becomes a COMPUTABLE question rather
+    than a kernel-gated one. Nothing here is discharged by that. Record:
+    knowledge/audit/generations_arc_2026-08-23/M3_BLAST_RADIUS_2026-08-26.md.
 
     ★ THE FENCE, WIDENED at consensus from the submitted form. The submitted report said
     *"never combine D/J with an independently-fixed J such as f_pi^2 = 8J/a"* and placed

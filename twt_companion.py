@@ -2369,7 +2369,7 @@ def d4_langevin_calibration_gate():
     driven-dissipative sim (RTX 4090): the N31 canted-D4 planar statics reduce EXACTLY to a 1D planar-rotor
     chain with per-bond energy
         e(dtheta) = -A cos(dtheta) - B sin(dtheta),   A = 12 J,  B = 2*sqrt(2)*D,
-    whose ground-state spiral tan q* = B/A = sqrt(2) D/(6 J) reproduces (at D=J) q* = atan(sqrt(2)/6) AND
+    whose ordered-state spiral tan q* = B/A = sqrt(2) D/(6 J) reproduces (at D=J) q* = atan(sqrt(2)/6) AND
     the longitudinal stiffness K_long = (1/2) d2E/dq2 = sqrt(38) J -- BOTH of N31's banked statics. This is
     the model the driven sim runs (drive along the DM/e4 channel; overdamped Langevin with damping gamma +
     noise Tn NOT tied by FDT, per C1/I-12). No dynamics is believed until this gate passes (R-143/R-144
@@ -2413,7 +2413,7 @@ def d4_langevin_calibration_gate():
     J = sp.Integer(1); D = sp.Integer(1)                 # D = J (the QCP)
     A = 12 * J; B = 2 * sp.sqrt(2) * D
     q = sp.symbols('q', real=True)
-    # ground-state pitch of the per-bond energy e(q) = -A cos q - B sin q:
+    # ordered-state pitch of the per-bond energy e(q) = -A cos q - B sin q:
     q_star = sp.atan(B / A)                              # tan q* = B/A = sqrt(2)/6
     K_long = sp.simplify((A * sp.cos(q_star) + B * sp.sin(q_star)) / 2)   # (1/2) d2e/dq2 at q*
     K_c = sp.Rational(2, 19) * J
@@ -2480,7 +2480,7 @@ def static_susceptibility_sumrule_and_kss_channel_mismatch():
       - OPERATOR : the L-orbit magnon PHASE θ (the canted order-parameter twist / spin-wave).
       - CHANNEL  : order-parameter (longitudinal/transverse magnon) static response.
       - LAYER    : CELL-layer QCP phenomenology (the LSWT is computed on D4 bonds, but the
-                   chirality-balance / canted ground state is cell-scale collective, NOT a
+                   chirality-balance / canted ordered state is cell-scale collective, NOT a
                    Planckian-grain excitation — §D.3.2 naming note, §D.4.3).
       - FREQUENCY: ω -> 0 static (KK-safe; NOT a finite-drive reactive ratio).
 
@@ -2629,7 +2629,7 @@ def stress_tensor_shear_channel_static_moment():
     kernel-gated.
 
     THE MOVE (brief A3 / N43 wci (i)): compute 'a static moment in the STRESS-TENSOR / shear channel'
-    on the canted-D4 ground state -- which WOULD be channel-matched to kss_gw_bracket and could lift the
+    on the canted-D4 ordered state -- which WOULD be channel-matched to kss_gw_bracket and could lift the
     count from 1 to 2. The N31/N43 LSWT machinery is the tool.
 
     THE COMPUTATION (DERIVED-A). A medium shear strain u^1 = eps*x^2 carries the spiral theta = q*X^1
@@ -3151,8 +3151,24 @@ def ckm_arc_channel_identity_and_verdict():
     [UNDEFINED]; the dynamical merge (one Θ_rel sources BOTH colour-breaking and CKM property P) is
     [CANDIDATE]; the exhaustiveness (Θ_rel the unique source of P) is [ASSERTED]; the magnitudes additionally
     need F3 (the √(mᵢ/mⱼ)/Λ suppression). The derived structure predicts the WRONG CKM — |V_us|/|V_cb|≈1
-    (democratic) vs ≈5.49 (data) — the near-falsifying tension at FULL WEIGHT. self-check: I₄=e₁₂₃·e₄; data
-    ratio ≈5.49 vs democratic O(1)."""
+    (democratic) vs ≈5.49 (data) — the near-falsifying tension at FULL WEIGHT.
+
+    ★★ THE EXHAUSTIVENESS CLAIM IS WEAKENED, 2026-08-27 (RUL-110 / family-tree node V3-1b —
+    M-3a GRANTED, the drive-referenced two-rate defect rotor). "Θ_rel is the unique source of P"
+    was already recorded [ASSERTED], never computed. Under the adopted two-rate form a SECOND
+    CANDIDATE SOURCE-SLOT now exists: the blast radius (UNLOCK-4) computes that the ONLY
+    directions which both break ℤ₃-equivariance (property P's defining requirement) and stay
+    BLIND to weak isospin (leaving the weak-sector arc intact) are the ASD directions OFF the
+    (1,1,1) generation axis — the banked central carrier E is provably not one of them (central
+    ⇒ ℤ₃-equivariant ⇒ circulant ⇒ democratic). This is a WEAKENING of the exhaustiveness claim
+    and is recorded as such, NOT a win: it shows WHERE such a source could live, not that the
+    two-rate form SUPPLIES one, and the magnitude remains Θ_rel / #1-gap. ★ THE AXIS PICK IS
+    NOT GRANTED — putting the second rotation on a pure-ASD off-(1,1,1) direction is a FURTHER
+    choice (recorded CANDIDATE at node V3-1b, not picked); nothing here licenses it. Reverting
+    V3-1b evaporates the slot and restores the single-candidate reading. Record:
+    knowledge/audit/generations_arc_2026-08-23/M3_BLAST_RADIUS_2026-08-26.md.
+
+    self-check: I₄=e₁₂₃·e₄; data ratio ≈5.49 vs democratic O(1)."""
     assert _blade_mul((1, 2, 3), (4,)) == (1, (1, 2, 3, 4))
     ratio = 0.2252 / 0.0410
     assert 5.0 < ratio < 6.0
@@ -3165,6 +3181,18 @@ def ckm_arc_channel_identity_and_verdict():
                             "up/down difference, sourced by the I₄/§9.6 Θ_rel channel",
         "shared_with_colour": "the SAME Θ_rel residual as colour-U(3) — CKM is the SECOND arc to terminate there "
                               "(channel identity DERIVED; dynamical merge [CANDIDATE]; exhaustiveness [ASSERTED])",
+        "exhaustiveness_weakened_2026_08_27": (
+            "RUL-110 / family-tree V3-1b (M-3a GRANTED — the drive-referenced two-rate defect rotor). "
+            "'Θ_rel is the UNIQUE source of P' was always [ASSERTED], never computed, and it is now "
+            "WEAKER: under the adopted two-rate form a SECOND CANDIDATE SOURCE-SLOT exists — the ASD "
+            "directions OFF the (1,1,1) generation axis, the only ones that both break ℤ₃-equivariance "
+            "(property P's requirement) and stay blind to weak isospin (blast radius UNLOCK-4). The "
+            "banked central E is provably not one of them (central ⇒ ℤ₃-equivariant ⇒ circulant ⇒ "
+            "democratic). Recorded as a WEAKENING, not a win: it locates where such a source COULD "
+            "live, not that the two-rate form supplies one, and the magnitude stays Θ_rel / #1-gap. "
+            "★ THE AXIS PICK IS NOT GRANTED — a pure-ASD off-(1,1,1) second rotation is a FURTHER "
+            "choice, recorded CANDIDATE at node V3-1b and NOT picked. Reverting V3-1b evaporates the "
+            "slot. Record: generations_arc_2026-08-23/M3_BLAST_RADIUS_2026-08-26.md"),
         "magnitude_gate": "additionally needs F3 (√(mᵢ/mⱼ)/Λ suppression)",
         "tension": f"predicts WRONG CKM: |V_us|/|V_cb|≈1 (democratic) vs {ratio:.2f} (data) — FULL WEIGHT",
         "does_not": "close CKM / predict any observable / fit (democratic found, not patched) / un-gate the "

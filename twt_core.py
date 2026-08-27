@@ -4736,6 +4736,123 @@ def dft_K_from_r(r: float) -> float:
     (the same sqrt(2) as the §19.2 projection ratio — one geometric fact, two manifestations)."""
     return (1.0 + 2.0 * r * r) / 3.0
 
+
+def charge_orbit_boost_invariance():
+    """[DERIVED-A — exact, with the cost named. R-188, banked 2026-08-26.
+    COMMISSIONED BY an external objection (round-5 consolidated review §3.2, which held that
+    the charge functional's boost behaviour was untested and predicted it would FAIL);
+    the objection's PREMISE was right — no primitive tested it — and its CONCLUSION is
+    refuted here.]
+
+    THE OBJECTION, stated fairly: the trivector charge functional Y[T] := <T~ e4 T> is built
+    from e4, boosts do not preserve grade (boost_projection_leak_identity), so the 3+1
+    trivector split behind Y_lep/Y_Q = -3 was said not to be manifestly boost-invariant --
+    while the weak sector HAS its analogous invariance argument (R-172's body-frame /
+    associativity result) and the charge orbit had none. The adjacent family-tree exposure
+    E-1 was offered as evidence the disease was present next door.
+
+    THE RESULT: the functional is EXACTLY boost-invariant. For B = exp(zeta*e_a/2) with a in
+    {1,2,3} (the banked grade-one hyperbolic generator, NOT a Spin(4) rotor), acting on a
+    trivector T by T -> B T B:
+        (i)  e4 anticommutes with e_a for every spatial a, and B~ = B, so B e4 B = e4;
+        (ii) hence <(BTB)~ e4 (BTB)> = <T~ (B e4 B) T> = <T~ e4 T> = Y[T].
+    MEASURED over 80 randomized (axis, rapidity) pairs on all four trivectors: worst
+    deviation 3.6e-15, and the off-e4 leakage is EXACTLY 0.0 -- the value domain is
+    boost-CLOSED, not merely boost-covariant.
+
+    ★ WHAT IT COSTS, NAMED (this is the honest half and it must travel): the invariance is
+    bought by holding e4 FIXED -- i.e. by the preferred foliation. It is NOT a generic
+    invariance of the construction. The planted violation demonstrates exactly that: take
+    the same functional with a SPATIAL reference vector and boost along that same axis, and
+    it moves by 8.2 (the reference must ANTICOMMUTE with the boost generator; e1 does not
+    anticommute with e1). So this result DISCHARGES the charge-orbit objection completely
+    and discharges the frame-equivalence fence NOT AT ALL -- the two are different questions
+    and this primitive settles only the first.
+
+    ★ THE E-1 ANALOGY IS A CATEGORY ERROR, and the corpus already forbids the transfer:
+    E-1 concerns LEFT MULTIPLICATION on the spinor module (L_{e1}(S+) subset S-), this is
+    CONJUGATION on the algebra. Different action, different object; the objection's
+    'same disease, adjacent organ' does not carry.
+
+    self-check: invariance on all four trivectors over randomized boosts; off-e4 leakage
+    exactly zero; the spatial-reference planted violation SEEN to fire; and the orthogonal-
+    axis control silent (a spatial reference IS invariant under boosts along other axes --
+    so the plant isolates the anticommutation, not the choice of e4 as such)."""
+    import math
+    import random
+    rng = random.Random(20260826)
+
+    def _boost(axis, zeta):
+        return MV({(): math.cosh(zeta / 2.0)}) + e(axis) * math.sinh(zeta / 2.0)
+
+    def _probe(ref_axis, boost_axis, zeta, T):
+        B = _boost(boost_axis, zeta)
+        Tp = B * T * B
+        v0 = (T.reverse() * e(ref_axis) * T).as_dict()
+        v1 = (Tp.reverse() * e(ref_axis) * Tp).as_dict()
+        key = (ref_axis,)
+        dY = abs(v1.get(key, 0.0) - v0.get(key, 0.0))
+        leak = max([abs(v) for k, v in v1.items() if k != key] or [0.0])
+        return dY, leak
+
+    trivectors = [e(1, 2, 4), e(1, 3, 4), e(2, 3, 4), e(1, 2, 3)]
+
+    worst_dY = 0.0
+    worst_leak = 0.0
+    for _ in range(80):
+        ba = rng.choice([1, 2, 3])
+        z = rng.uniform(-2.0, 2.0)
+        for T in trivectors:
+            dY, leak = _probe(4, ba, z, T)
+            worst_dY = max(worst_dY, dY)
+            worst_leak = max(worst_leak, leak)
+    assert worst_dY < 1e-11 and worst_leak == 0.0, \
+        ("the charge functional must be exactly boost-invariant with zero leakage",
+         worst_dY, worst_leak)
+
+    # PLANTED VIOLATION (R2): spatial reference, boost along the SAME axis -> must fire
+    worst_bad = 0.0
+    for z in (0.4, 0.9, 1.4):
+        for T in trivectors:
+            dY, leak = _probe(1, 1, z, T)
+            worst_bad = max(worst_bad, dY, leak)
+    assert worst_bad > 1.0, ("the planted violation must fire", worst_bad)
+
+    # CONTROL: spatial reference, ORTHOGONAL boost axis -> silent
+    worst_ctl = 0.0
+    for z in (0.4, 0.9):
+        for T in trivectors[:2]:
+            dY, leak = _probe(1, 2, z, T)
+            worst_ctl = max(worst_ctl, dY, leak)
+    assert worst_ctl < 1e-11, ("the orthogonal-axis control must stay silent", worst_ctl)
+
+    return {
+        "claim": "Y[T] = <T~ e4 T> is EXACTLY invariant under the banked grade-one boosts",
+        "worst_deviation": worst_dY,
+        "off_e4_leakage": worst_leak,
+        "domain": "boost-CLOSED (leakage exactly 0.0), not merely boost-covariant",
+        "proof": ("e4 anticommutes with every spatial e_a and B~ = B, so B e4 B = e4; "
+                  "hence <(BTB)~ e4 (BTB)> = <T~ e4 T>"),
+        "planted_violation": {"setup": "spatial reference e1, boost along e1 (reference does "
+                                       "NOT anticommute with the generator)",
+                              "deviation": worst_bad, "fires": worst_bad > 1.0},
+        "control_orthogonal_axis": {"deviation": worst_ctl, "silent": worst_ctl < 1e-11},
+        "cost_named": ("the invariance is bought by holding e4 FIXED -- the preferred "
+                       "foliation. NOT a generic invariance: it discharges the charge-orbit "
+                       "objection completely and the frame-equivalence question NOT AT ALL"),
+        "E1_analogy_refused": ("E-1 is LEFT MULTIPLICATION on the spinor module; this is "
+                               "CONJUGATION on the algebra -- different action, different "
+                               "object, and the corpus already forbids the transfer"),
+        "tier": ("DERIVED-A (exact identity, randomized over boosts, planted violation seen "
+                 "to fire, control silent) -- with the cost clause mandatory in every "
+                 "restatement"),
+        "provenance": ("commissioned by round-5 consolidated external review §3.2, whose "
+                       "PREMISE (untested) was correct and whose CONCLUSION (not invariant) "
+                       "is refuted here; independently re-verified by the coordinator before "
+                       "banking"),
+    }
+
+
 def koide_branch_restriction():
     """[DERIVED-A of the parametrization — R-187, banked 2026-08-26. PROPOSED BY THE
     ROUND-5 EXTERNAL REVIEWER (warm return 05) and verified numerically the hour it
@@ -6842,13 +6959,23 @@ def im_chi_falsifier_budget_KSS_GW_macromolecule():
 
       KSS floor:    η/s ≥ ℏ/(4π) — the medium cannot be dissipationless; the framework
                     POSITS (default ansatz, consistent with KSS) that the substrate sits
-                    near this floor.
+                    near this floor. CONDITIONING: KSS is a CONJECTURE, not a theorem —
+                    its own authors give evidence that the value "may serve as a lower
+                    bound". It must not be restated as a hard floor.
       GW170817 ceiling: η ≲ 10^9 – 10^10 Pa·s — substrate viscosity must not over-damp GW
                     over the ~130 Mly observed propagation. The standard viscous GW damping
                     scaling Γ ~ 16πGη/c² (attribution dropped 2026-07-28: the commonly-cited
                     Hawking 1966 source could not be obtained, so the relation is used as the
                     textbook result it is rather than credited to an unverified paper)
-                    gives an order-of-magnitude ceiling at the cell-level layer.
+                    gives an order-of-magnitude ceiling at the cell-level layer. The input is
+                    the TRAVEL TIME over the propagation distance, NOT the 1.74 s arrival-time
+                    offset (that offset constrains the SPEED, a different falsifier row).
+                    A published bound of the same form sits at the tight end of this band:
+                    η < 2.3e9 Pa·s for the cosmological fluid, from GW150914 over 410 Mpc
+                    (Goswami, Chakravarty, Mohanty & Prasanna, PRD 95, 103509 (2017),
+                    arXiv:1603.02635) — cited as an empirical witness, not imported as a
+                    theorem; the corpus's η is the SUBSTRATE and theirs the cosmological
+                    fluid, so the channel match is stated and not assumed.
       Macromolecule-interferometry floor: a viscous substrate implies an intrinsic
                     decoherence rate for matter superpositions; current macromolecule-
                     interferometry bounds (KDTL/OTIMA series, current limits + planned
@@ -6875,13 +7002,14 @@ def im_chi_falsifier_budget_KSS_GW_macromolecule():
         "pillars": {
             "KSS_floor": {
                 "bound": "η/s ≥ ℏ/(4π)",
-                "type": "imported QFT bound",
+                "type": "imported QFT bound -- a CONJECTURE (its authors: the value 'may serve as a lower bound'), not a theorem",
                 "framework_commitment": "substrate sits NEAR this floor (default ansatz, consistent with KSS)",
             },
             "GW170817_ceiling": {
                 "bound": "η ≲ 1e9-1e10 Pa·s (at cell-level layer)",
                 "type": "empirical ceiling from GW170817 propagation over ~130 Mly",
-                "scaling": "standard viscous GW damping Γ ~ 16πGη/c² (no personal attribution — source unverified)",
+                "scaling": "standard viscous GW damping Γ ~ 16πGη/c² (no personal attribution — source unverified); the input is the TRAVEL TIME over the propagation distance, NOT the arrival-time offset (which constrains the SPEED instead)",
+                "published_bound_of_same_form": "η < 2.3e9 Pa·s (cosmological fluid, GW150914 over 410 Mpc; Goswami et al., PRD 95, 103509 (2017)) — ~2.8x tighter than the corpus's own reproduced 6.5e9, i.e. the literature squeezes the Im χ budget harder than this row states; the framework's commitment is the bracket POSITION near the KSS floor, so a tighter ceiling narrows the end it does not occupy",
             },
             "macromolecule_interferometry_floor": {
                 "bound": "current bounds set a floor on predicted intrinsic decoherence rate",
@@ -14446,9 +14574,14 @@ def born_exponent_gleason_closure():
                   "the exponent claim is fixed on finite-dim sectors of dim >= 3); the chirality "
                   "even-power argument survives as INDEPENDENT SUPPORT, no longer load-bearing"),
         "would_change_if": ("F2 becomes DERIVED **IF** Role 3's accumulate-to-fire law is built "
-                            "WITH the channel-pairwise drag-coupling structure SSB.3.3 sketches "
-                            "(stated conditionally on the construction, not on the mere existence "
-                            "of a Role-3 build) — then the chain upgrades to DERIVED-structural "
+                            "with ALL THREE of: the channel-pairwise drag-coupling structure "
+                            "SSB.3.3 sketches, AND the offset-measure class, AND the read-out "
+                            "class. THE STRUCTURE ALONE IS INSUFFICIENT AND THIS IS COMPUTED, "
+                            "NOT ARGUED: the naive single-fibre rule HAS exactly the "
+                            "channel-pairwise drag structure and VIOLATES F2 by 0.10-0.13 "
+                            "(m = 2 fails by 0.128). Stated conditionally on the construction, "
+                            "not on the mere existence "
+                            "of a Role-3 build — then the chain upgrades to DERIVED-structural "
                             "with no assumed physics premises; two derivation routes already "
                             "FAILED: frame-equivalence gives only covariance (identity (iii) is "
                             "the counterexample), and linear-face linearity does not constrain "

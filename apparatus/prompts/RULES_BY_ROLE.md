@@ -14,15 +14,15 @@
 
 | role | reads | pack rules | + blocks |
 |---|---|---|---|
-| THE FLUENT WORKER | core (30) + pack + blocks | 53 | BANK · PAPER · SIM |
-| THE AI COORDINATOR | core (30) + pack + blocks | 35 | BANK · PAPER · CHECK |
-| THE ADVERSARIAL REVIEWER | core (30) + pack + blocks | 0 | CHECK |
-| THE META-OBSERVER | core (30) + pack + blocks | 3 | CHECK |
-| THE COHERENCE KEEPER | core (30) + pack + blocks | 4 | CHECK |
-| THE PHILOSOPHER | core (30) + pack + blocks | 19 | CHECK · PAPER |
-| THE ARCHIVIST | core (30) + pack + blocks | 13 | BANK |
-| THE REMOVAL AUDITOR (N1) | core (30) + pack + blocks | 1 | — |
-| THE EXTERNAL-LOOP OPERATOR | core (30) + pack + blocks | 19 | PAPER |
+| THE FLUENT WORKER | core (34) + pack + blocks | 53 | BANK · PAPER · SIM |
+| THE AI COORDINATOR | core (34) + pack + blocks | 35 | BANK · PAPER · CHECK |
+| THE ADVERSARIAL REVIEWER | core (34) + pack + blocks | 0 | CHECK |
+| THE META-OBSERVER | core (34) + pack + blocks | 3 | CHECK |
+| THE COHERENCE KEEPER | core (34) + pack + blocks | 4 | CHECK |
+| THE PHILOSOPHER | core (34) + pack + blocks | 19 | CHECK · PAPER |
+| THE ARCHIVIST | core (34) + pack + blocks | 13 | BANK |
+| THE REMOVAL AUDITOR (N1) | core (34) + pack + blocks | 1 | — |
+| THE EXTERNAL-LOOP OPERATOR | core (34) + pack + blocks | 19 | PAPER |
 
 | activity block | taken when | rules |
 |---|---|---|
@@ -30,6 +30,14 @@
 | PAPER — whoever edits the paper, the front matter or the release path | see below | 20 |
 | CHECK — reviewer, meta-observer, keeper, philosopher-as-checker | see below | 8 |
 | SIM — binding INSIDE a campaign only (currently DORMANT) | see below | 7 |
+
+> **Count note (2026-08-27).** The **core count is refreshed by counting** — `RULES_CORE.md` carries
+> **34** `C-` rules (C-33 added 2026-08-23, C-34 / RUL-111 added 2026-08-27; both are folded into the
+> worker pack's head below). **The PACK and BLOCK sizes above are as of the 2026-08-19 split and have
+> NOT been recounted since** — the four rules added since are core, so the packs are unlikely to have
+> moved, but the numbers are carried, not verified. Recounting them means re-deriving the role
+> assignment off `RULE_INVENTORY_2026-08-19.md` (204 rows); it is an archivist pass, docketed, not
+> done here.
 
 ---
 

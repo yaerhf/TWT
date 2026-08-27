@@ -204,6 +204,24 @@ else
      knowledge/ledgers/TWT_COMPARATIVE_LEDGER.md \
      knowledge/reviewer_package/COVER_NOTE.md \
      "$MIRROR/"
+  # APPARATUS SYNC (RUL-112, 2026-08-27): research-ratchet is dissociated into an
+  # independent project; the apparatus's public home is the mirror's apparatus/
+  # directory and the papers' methodology citations point there. Synced every
+  # release from the working programme's authoritative copies (tracked prompts
+  # only — the ephemeral session briefs in knowledge/prompts/ are gitignored and
+  # git ls-files skips them by construction), so the citation cannot rot.
+  mkdir -p "$MIRROR/apparatus/prompts" "$MIRROR/apparatus/scripts"
+  git ls-files knowledge/prompts/ | while read -r f; do
+    rel="${f#knowledge/prompts/}"
+    mkdir -p "$MIRROR/apparatus/prompts/$(dirname "$rel")"
+    cp "$f" "$MIRROR/apparatus/prompts/$rel"
+  done
+  for s in bank.sh check_records.py gen_negatives_index.py gen_twt_worker_agent.py \
+           generate_engine_paper_map.py honesty_telemetry.py init_repo.sh \
+           pdf_balance_tables.lua pdf_center_equations.lua pdf_header.tex \
+           pdf_unescape_pipes.lua render_paper.sh render_pdf.sh verify_pdf.py; do
+    cp "scripts/$s" "$MIRROR/apparatus/scripts/$s"
+  done
   # Suite-count drift guard. The README QUOTES each harness's own pass line for a
   # reviewer to compare against their terminal, so the two lines are checked
   # SEPARATELY against their own harness — not against the combined total. (The
