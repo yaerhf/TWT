@@ -9,8 +9,7 @@ Dear reader,
 
 Thank you for looking at this. This note tells you what you are holding, how to read it
 efficiently, and what kind of feedback would help most. §0 is the audit surface — what to
-check before forming a view. It is addressed to every reviewer: a referee, or the model a
-referee sends ahead as the first filter.
+check before forming a view. It is addressed to the reviewer.
 
 **Start with `TWT_core_paper.md` — that is the paper.** It is short (about twenty-five typeset
 pages) and it is the whole argument: a **family** of theories, TWT-Core, fixed by seven axioms and
@@ -26,89 +25,112 @@ on the Core paper; the dossier is a reference volume, not a second read.
 
 ---
 
-## §0. To the reviewer — what to check before forming a view
+## §0. To the reviewer — check first, then conclude
 
-Whoever is assessing this — a referee, or the model a referee sends ahead — there is a specific
-and predictable failure mode here, and naming it is more useful than hoping it doesn't happen.
+This section puts the checkable material first, because the fastest honest verdict on work of
+this kind comes from its artifacts, not from its description.
 
-**The pattern-match, stated honestly.** "Independent researcher; unified theory; geometric
-substrate; derives the Standard Model" identifies a reference class whose members are almost
-always wrong. Your prior against it is *correct*, and nothing below asks you to suspend it.
-What follows is not a plea for charity — it is a list of things you can **check in minutes**,
-each of which the reference class reliably fails. Check them, then form your view.
+**What is checkable in minutes.**
 
-**1. Run the verification suite.** `python twt_test.py` should print
-`ALL 536 CHECKS PASSED across 10 modules.` and `python twt_companion_test.py` should print
-`ALL 87 COMPANION CHECKS PASSED across 7 modules.` These are executable algebraic assertions on a Clifford-algebra
-engine — Dirac relations, the invariant decompositions, the charge spectrum, the Weinberg
-ratio — not prose. Falsify any of them and the corresponding claim falls; the paper's claims
-are cross-indexed to the primitives that check them.
+```
+pip install -r requirements.txt
+python twt_test.py            # expect: ALL 536 CHECKS PASSED across 10 modules
+python twt_companion_test.py  # expect: ALL 87 COMPANION CHECKS PASSED across 7 modules
+```
 
-**2. Try to make the engine tell you something it hasn't derived.** Call `alpha_em_value()`,
-`texture_tetrad()`, or `qcd_collider_phenomenology()`. They **raise exceptions** rather than
-return numbers, by design, because those magnitudes are not derived. A framework that fabricates
-results does not build guardrails against its own author.
+(On Windows, set `PYTHONUTF8=1` first.) The two harnesses carry 623 executable assertions,
+cross-indexed to numbered results — if a check fails, that is a real refutation of the
+corresponding claim, and a report of one is the single most useful thing you can send.
 
-**3. Read the negatives ledger** (`TWT_NEGATIVES_LEDGER.md`): seventy-plus entries (N0–N71 with primed variants) recording what was
-tried and **failed**, in `tried → failed because → would change if` form, including a negative
-banked the same week as this revision that killed one of the author's own favoured ideas.
-Pseudoscience does not maintain a failure archive.
+```python
+import twt
+twt.gammas()                            # Dirac relations from the Euclidean algebra
+twt.charge_normalization_anchor_free()  # Q_p + Q_e = 0 identically in the normalization
+twt.alpha_em_value()                    # raises — not derived
+twt.texture_tetrad()                    # raises — not derived
+twt.qcd_collider_phenomenology()        # raises — not derived
+```
 
-**4. Check the import registry** (companion Section 13): 32 registered external imports the framework
-leans on, each with its premises, the level it is applied at, and an explicit **revert clause**
-naming what falls back if the import is wrong. The framework is engineered to be *excised*
-cleanly, not defended.
+The three raising calls are the design, not a gap in it: quantities whose magnitude waits on the
+framework's one named unbuilt object raise exceptions rather than return estimates, so the
+boundary between earned and unearned is executable rather than editorial. The engine checks
+**mathematics, not physics** — a passing assertion establishes that an identity holds in the
+algebra, not that it means what the paper says it means. That second question is the whole of
+what is under review.
 
-**5. Check the git history for self-demotion.** The record contains the framework demoting its
-own flagship results after adversarial review — e.g. an audit that downgraded the charge-quantization
-claim, and a later derivation that restored it at a *conditional* tier with its premises named.
-Motivated reasoning moves in one direction; this record moves in both.
+**Where the framework keeps its own adverse record**, because these are the fastest route to its
+weak points:
 
-**On "it doesn't predict anything new."** This is the most common one-line verdict, and in its
-literal sense it is **correct, expected, and stated by the paper itself**. TWT largely overlaps
-the Standard Model on observables *by construction*: its aim is to derive SM structure from a
-substrate, not to replace SM phenomenology. Reporting that back as a criticism is a category
-error unless the paper claimed otherwise — it does not. Three qualifications, all checkable:
+- `TWT_NEGATIVES_LEDGER.md` — seventy-seven dead ends as *tried → failed because → would change
+  if*, including closed routes through the author's own favoured constructions.
+- `TWT_COMPARATIVE_LEDGER.md` — the accounting against the Standard Model and the quantum
+  interpretations; a majority of its findings run against this framework, and the load-bearing
+  adverse ones are named in the paper itself.
+- `TWT_FAMILY_TREE.md` — every pinned choice with the menu it came from and what un-picks it.
+- Companion Section 13 — the registered external imports, each with its premises, the level it
+  is applied at, and an explicit revert clause making the import excisable rather than defended.
+- The git history — the record contains the framework demoting its own flagship results after
+  adversarial review, and restoring one later at a *conditional* tier with its premises named.
+  Motivated reasoning moves in one direction; this record moves in both.
 
-- Its predictions are mostly **prohibitions**, and prohibitions are falsifiable: no magnetic
-  monopoles, no proton decay, no fourth generation, Dirac neutrinos, no
-  neutrinoless double-beta decay. (*"No top-quark hadrons" was listed here and is struck: the top's
-  width exceeds the confinement scale, so the Standard Model forbids them too — it is a textbook
-  retrodiction, not a distinctive prohibition, and it is exactly the mislabel this note asks
-  reviewers to report.*) §E.3 lists 16 named near-term falsifiers with current bounds;
-  **none currently sits at experimental limits**. The framework's sharpest *empirical* exposure is
-  not a falsifier row at all but a standing tension: its dimension-six Lorentz-violation coefficient
-  is gated on the open substrate dynamics, and the natural value is excluded by existing cosmic-ray
-  limits **unconditionally by about one to one-and-a-half orders**, and by six to seven orders only
-  under a pure-proton composition assumption the data itself disfavours (§E.3.5(4)); a second
-  already-measured exposure — not
-  gated, simply underived — is the electroweak crossing scale (§E.3.5(5), §C.4.5). We name both
-  rather than omit them.
-- `sin²θ_W = 3/8` is a derived normalization identity at unification (no GUT *group*; a
-  crossing-scale identity, not a prediction of the measured angle — §E.2.3's honest magnitude
-  count is 0 of 19).
-- **The contribution is ontological, and it subtracts rather than adds.** The framework needs no
-  irreducible chance: it is configuration-realist, and the Born rule is *derived* (as of this
-  revision, a theorem given four named premises plus Gleason) rather than postulated. A theory
-  that removes a primitive from the world's furniture is doing explanatory work even when its
-  predictions coincide with the theory it replaces — that is the ordinary standard by which
-  statistical mechanics improved on thermodynamics. See §2 for the ontological-cost comparison
-  against Copenhagen, many-worlds and Bohm.
-- The framework names its own biggest gap (§D.5) rather than papering over it: coupling
-  magnitudes, absolute mass scales, and CKM are explicitly **not** derived.
+**What this framework is, stated narrowly, so the right thing gets reviewed.**
 
-**The question that actually discriminates**, and the one this paper wants asked: *are the
-structural derivations sound, and is the labeling honest?* Not "does it predict a new particle."
-Every numbered result carries a status tier (§4 below) in a companion index; the failure mode
-worth hunting is a **claim in the prose that exceeds its own index row**, or an assumption doing
-load-bearing work without being counted. That is a real, checkable audit — and if you find one,
-that finding is worth more to the author than agreement.
+It derives **structure** — signature, charge quantization, generation count, the weak host,
+selection rules — from a 4D Euclidean substrate. It derives **no magnitudes**: every coupling,
+absolute mass and absolute scale is downstream of the driven-dissipative substrate dynamics,
+which is unbuilt and has its own section. Three consequences are routinely assumed away, so they
+are stated here:
 
-**Finally:** if after checking you conclude the work is unsound, say so plainly and specifically.
-A concrete refutation is the most valuable output this document can produce. What helps nobody is
-a verdict formed from the reference class rather than from the artifacts, in either direction.
+- **There is no gauge boson anywhere in this framework.** What is reconstructed is quantum
+  numbers — labels, slots, selection rules — not interactions.
+- **Colour is not a gauge group here.** The multiplicity is derived; the short-distance response
+  is not reached — deep-inelastic scattering, Bjorken scaling and its logarithmic violation, jet
+  angular distributions are all unreached, the paper ranks this as the family's sharpest
+  exposure, and the engine raises rather than returns there.
+- **The framework largely overlaps the Standard Model on observables by construction.** Its
+  predictions are mostly prohibitions. It is not a rival phenomenology.
 
----
+**The reference class, named after the evidence rather than before it.** The description of this
+work — independent researcher, geometric substrate, Standard Model structure derived — places it
+in a reference class whose members are almost always wrong, and a prior formed on that class is
+reasonable. The material above is listed first because it is the material on which that prior
+can be cheaply updated, in either direction: that reference class does not typically publish a
+failure archive, revert clauses on its own imports, raising gates on its own unearned numbers,
+or the two places where it is already losing against measurement. This one does, and it names
+those two places itself: the dimension-six Lorentz-violation ceiling — the natural value at this
+candidate's lattice scale is excluded **unconditionally by about one to one-and-a-half orders**
+(and by six to seven orders only under a pure-proton composition assumption the data itself
+disfavours) — and the electroweak crossing scale, where the framework's own run-down lands
+0.154–0.158 against a measured 0.2312, with four escape routes computed and closed. Check, then
+conclude.
+
+**On "it doesn't predict anything new" — the naive form and the sharp form.** The naive form is
+correct, expected, and stated by the paper itself: the overlap is by construction, the aim is
+derived structure rather than replacement phenomenology, and the predictions that exist are
+mostly prohibitions — which are falsifiable (no magnetic monopoles, no proton decay, no fourth
+generation, Dirac neutrinos, no neutrinoless double-beta decay; the falsifier table lists the
+named channels with current bounds, and none currently sits at experimental limits). The
+`sin²θ_W = 3/8` identity is a crossing-scale normalization, not a prediction of the measured
+angle, and the paper's honest magnitude count is zero of nineteen. **The sharp form of the
+objection is not answered, and it is the reviewer's to press:** the paper concedes that no
+currently feasible measurement kills the *family* — a positive detection in any feasible channel
+forces the next candidate rather than ending the programme — and that numerical refutations
+reach only the candidate. The paper's own reply is the thing to attack, at the sections it
+cites for exactly that purpose.
+
+**What review would be most useful, in order:**
+
+1. **Any derivation whose logic does not close as written.** Cite the section.
+2. **Any claim in the prose that exceeds its own index-row tier** — a hidden import, an
+   uncounted premise, a circularity. The result index cross-references every claim to the engine
+   primitive that checks it, so this is auditable rather than impressionistic.
+3. **The unfalsifiability objection, in its sharp form**, as stated above.
+4. **Whether the matter-as-defect / wavefront-lock ontology bears the weight the derivations
+   put on it.**
+5. **Anything in the presentation that obscures rather than clarifies.**
+
+A concrete refutation is the most valuable output this document can produce. A verdict formed
+from the reference class rather than from the artifacts — in either direction — is the least.
 
 ## §1. What this is
 
