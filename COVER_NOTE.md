@@ -42,6 +42,11 @@ python twt_companion_test.py  # expect: ALL 87 COMPANION CHECKS PASSED across 7 
 cross-indexed to numbered results — if a check fails, that is a real refutation of the
 corresponding claim, and a report of one is the single most useful thing you can send.
 
+**Fetch what was actually shipped.** Clone at a stated commit, or fetch the codeload tarball or
+the `raw.githubusercontent.com` endpoints — rendered-page mirrors can lag behind the branch.
+`MANIFEST.sha256` at the repository root lets you verify that what you fetched matches what was
+shipped, and a review is worth more when it states the commit hash it was run against.
+
 ```python
 import twt
 twt.gammas()                            # Dirac relations from the Euclidean algebra
