@@ -42,10 +42,13 @@ python twt_companion_test.py  # expect: ALL 87 COMPANION CHECKS PASSED across 7 
 cross-indexed to numbered results — if a check fails, that is a real refutation of the
 corresponding claim, and a report of one is the single most useful thing you can send.
 
-**Fetch what was actually shipped.** Clone at a stated commit, or fetch the codeload tarball or
-the `raw.githubusercontent.com` endpoints — rendered-page mirrors can lag behind the branch.
-`MANIFEST.sha256` at the repository root lets you verify that what you fetched matches what was
-shipped, and a review is worth more when it states the commit hash it was run against.
+**Fetch what was actually shipped — do not rely on the rendered github.com pages.** Depending
+on how you reach them, the rendered pages may be served from a stale cache that looks current.
+Fetch files directly from `raw.githubusercontent.com/yaerhf/TWT/main/<path>`, or take the
+codeload tarball, or clone at a stated commit — these serve the branch as it is. Verify what
+you fetched against `MANIFEST.sha256` at the repository root (fetch that file raw too), and
+state the commit hash your review ran against: a review of a stale snapshot is a review of a
+different document.
 
 ```python
 import twt
