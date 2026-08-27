@@ -43,6 +43,8 @@ python twt_companion_test.py
 
 Expected output: `ALL 87 COMPANION CHECKS PASSED across 7 modules.` — 584 checks in total.
 
+> **The research OS this programme runs on is published generically at [github.com/yaerhf/research-ratchet](https://github.com/yaerhf/research-ratchet) — instantiable in one paste.**
+
 ## What is in here
 
 | File | Contents |
