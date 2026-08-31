@@ -2343,6 +2343,138 @@ def ecarrier_common_mode_certificates():
     }
 
 
+def two_defect_tensor_complex_space():
+    """[DERIVED-A pointwise algebra, GENERIC-GIVEN-two-complex-structures — the
+    substrate supplies the structures (winding blades in the quaternionic
+    commutant span{1, e23, e13, e12} ≅ H), the split itself is blade-independent
+    linear algebra; consumes NO V3 pick. In-house verification of the
+    2026-08-31 external mock-review claim, coordinator-directed.]
+
+    THE RESULT: for two defects with winding blades B1, B2 (any of the 9
+    ordered pairs, equal or distinct), the commuting complex actions J1 (x) I
+    and I (x) J2 on the 16-real-dimensional H (x)_R H single out
+    ker(J1 (x) I - I (x) J2) — EXACTLY 8 real dimensions, J-invariant with
+    J^2 = -1: a C^4 = C^2 (x)_C C^2, the exact two-qubit space. WHY 8 IS
+    FORCED (the generic reason, asserted): K = J1 (x) J2 has K^2 = +1 and
+    tr K = (tr J1)(tr J2) = 0, so the eigensplit is 8/8 for ANY two complex
+    structures — the blades are not doing the work here. Same-blade: the swap
+    is complex-linear with eigenvalues {+1 x3, -1 x1} — the triplet/singlet
+    split, the singlet slot Lambda^2(C^2) one complex dimension. Distinct
+    blades: the identification Psi = I (x) L_q (q the commutant rotor with
+    q u1 q^{-1} = u2) maps the spaces exactly; it is NON-CANONICAL — q is
+    free up to right multiplication by exp(phi u1) — but that U(1) ambiguity
+    acts as a complex PHASE, so the SINGLET SLOT is invariant under the
+    choice (verified to ~7e-16): the slot is canonical, the identification is
+    not. THAT PER-PAIR U(1) FREEDOM IS EXACTLY THE SEED of the CP1
+    emergent-connection candidate (knowledge/candidates/ A-1/B-1).
+
+    SCOPE — what this does NOT establish (banked with the result, not beside
+    it): (i) it refutes ONLY the POINTWISE reading of the external
+    'Hopf-fibration-forbids-tensor-products' conjecture — the BUNDLE-LEVEL
+    question (does a CONTINUOUS global choice of identification exist over
+    the space of blade pairs?) is untouched and is where the Hopf topology
+    actually lives; (ii) N53 (the five-route located negative on
+    CONSTRUCTING the multi-defect space from the substrate) is NOT unbanked
+    — this is a new exact input to N53's route (c), and route (c)'s
+    double-counting tripwire still fires at any development; (iii) no
+    dynamics, no interaction, no photon — the gauge-boson reading stays
+    CANDIDATE. RELATION TO THE BANKED not_claimed ROW (twt_core's 'two-wing
+    tensor product (N53)' and §B.4's 'remains imported'): UNCHANGED — this
+    primitive supplies the POINTWISE complex structure only; the physical
+    two-defect state space stays imported until the bundle-level global
+    choice is constructed (the CP1 route's registered target)."""
+    import numpy as _np
+    import itertools as _it
+
+    def _Lq(a, b, c, d):
+        return _np.array([[a, -b, -c, -d], [b, a, -d, c],
+                          [c, d, a, -b], [d, -c, b, a]], float)
+
+    I4 = _np.eye(4)
+    U = {"i": _Lq(0, 1, 0, 0), "j": _Lq(0, 0, 1, 0), "k": _Lq(0, 0, 0, 1)}
+
+    def _ker(J1, J2):
+        D = _np.kron(J1, I4) - _np.kron(I4, J2)
+        _, s, Vt = _np.linalg.svd(D)
+        return Vt[s < 1e-10].T
+
+    dims = {}
+    for n1, n2 in _it.product("ijk", repeat=2):
+        J1, J2 = U[n1], U[n2]
+        K = _ker(J1, J2)
+        Jop = _np.kron(J1, I4)
+        assert K.shape[1] == 8
+        assert _np.linalg.norm(Jop @ K - K @ (K.T @ Jop @ K)) < 1e-12
+        assert _np.linalg.norm(Jop @ (Jop @ K) + K) < 1e-12
+        assert abs(_np.trace(_np.kron(J1, J2))) < 1e-14      # the generic reason
+        dims[n1 + n2] = 8
+    # same-blade two-qubit split: swap eigenvalues {+1 x3, -1 x1} on C^4
+    S = _np.zeros((16, 16))
+    for a in range(4):
+        for b in range(4):
+            S[b * 4 + a, a * 4 + b] = 1.0
+    J1 = U["i"]
+    K = _ker(J1, J1)
+    Jop = _np.kron(J1, I4)
+    assert _np.linalg.norm((S @ Jop - Jop @ S) @ K) < 1e-12  # S complex-linear
+    cb, used = [], _np.zeros((16, 0))
+    for idx in range(8):
+        v = K[:, idx].copy()
+        for m in range(used.shape[1]):
+            v -= used[:, m] * (used[:, m] @ v)
+        if _np.linalg.norm(v) < 1e-8:
+            continue
+        v /= _np.linalg.norm(v)
+        used = _np.column_stack([used, v, Jop @ v])
+        cb.append(v)
+        if len(cb) == 4:
+            break
+    M = _np.zeros((4, 4), complex)
+    for ci, v in enumerate(cb):
+        Sv = S @ v
+        for ri, u in enumerate(cb):
+            M[ri, ci] = (u @ Sv) + 1j * ((Jop @ u) @ Sv)
+    ev = _np.linalg.eigvals(M)
+    n_sing = int(_np.sum(_np.abs(ev + 1) < 1e-8))
+    n_trip = int(_np.sum(_np.abs(ev - 1) < 1e-8))
+    assert (n_sing, n_trip) == (1, 3)
+    # distinct blades: identification exists; U(1) choice leaves the singlet
+    # slot invariant
+    import math as _m
+    q1 = _Lq(1 / _m.sqrt(2), 0, 0, 1 / _m.sqrt(2))      # rotates i -> j
+    ph = 0.7
+    q2 = q1 @ _Lq(_m.cos(ph), _m.sin(ph), 0, 0)
+    Kij = _ker(U["i"], U["j"])
+    P = Kij @ Kij.T
+    wc = _np.linalg.eig(M)[1][:, int(_np.argmin(_np.abs(ev + 1)))]
+    sing = sum(wc[m].real * cb[m] + wc[m].imag * (Jop @ cb[m])
+               for m in range(4))
+    sing /= _np.linalg.norm(sing)
+    planes = []
+    for q in (q1, q2):
+        assert _np.allclose(q @ U["i"] @ q.T, U["j"], atol=1e-12)
+        v = _np.kron(I4, q) @ sing
+        assert _np.linalg.norm(v - P @ v) < 1e-12           # lands in ker(ij)
+        v /= _np.linalg.norm(v)
+        planes.append(_np.column_stack([v, _np.kron(U["i"], I4) @ v]))
+    slot_dev = float(_np.linalg.norm(planes[0] @ planes[0].T
+                                     - planes[1] @ planes[1].T))
+    assert slot_dev < 1e-12
+    return {
+        "tier": "DERIVED-A pointwise; GENERIC-given-two-complex-structures "
+                "(tr K = 0 forces 8/8 for ANY pair)",
+        "dims_all_9_pairs": dims,
+        "structure": "C^2 (x)_C C^2 exactly; same-blade swap split 3+1 "
+                     "(singlet Lambda^2 one complex dim)",
+        "identification": "non-canonical (U(1) ambiguity per pair) but the "
+                          "singlet SLOT is choice-invariant",
+        "slot_invariance_dev": slot_dev,
+        "scope": "pointwise only — the bundle-level global-choice question "
+                 "(the actual Hopf content) untouched; N53 NOT unbanked; "
+                 "route-(c) input; no dynamics/photon claim",
+    }
+
+
 # ######################################################################
 # ######################################################################
 # ##                                                                  ##
@@ -5168,4 +5300,203 @@ def lambda_perp_anw_half_theta():
                   "construction (definitional, not discovered); rigid-rotor "
                   "identity, NOT a measured moment of inertia (BKS "
                   "back-reaction untested)"),
+    }
+
+
+def b0_plane_detector_wind_quantum():
+    """[DERIVED-A instrument algebra of the CANDIDATE G-8 kernel's B0-plane
+    phase detector; the PHYSICAL reading stays #1-gap-routed]
+
+    THE DETECTOR (n1_gpu_lib.phase_g): theta = atan2(y, x) with, for the
+    site-mean orientation Mn, x = (tr Mn - 2)/2 and y = <B0, antisym Mn>/2.
+    For a mean orientation = rotation alpha in the B0 plane (coherence rho)
+    times rotation beta in the perpendicular plane, the reading is
+    (x, y) = (rho cos a - d, rho sin a) with d = 1 - <cos beta> -- the circle
+    of radius rho displaced OFF-ORIGIN by d. Exact consequences, all asserted
+    numerically here:
+      (i)  WINDING TRANSITION: theta winds exactly ONCE per B0-plane
+           revolution iff rho > d, and exactly ZERO times if rho < d (the
+           circle no longer encloses the origin; the reading collapses with
+           no physical change) -- so a Delta reading is VOID unless rho > d;
+      (ii) THE WIND QUANTUM: on any closed orbit the mean orientation
+           returns to itself, so the accumulated B0-plane angle per period is
+           2*pi*n with n INTEGER, and the TIME-MEAN detector rate is exactly
+           the B0-plane rate: Delta_cycle = 2*pi*n / (Om0 * T). RE SUB-CLAUSE
+           (R-194): when the closed orbit is a RELATIVE EQUILIBRIUM of the B0
+           gauge action -- the measured case at every certified dial -- n is
+           FIXED at 1 by clause (i) (rho > d) rather than measured, and T,
+           Delta_cycle and the wind quantum are ONE number, the drift rate
+           omega. (Measured 0.99949-0.99981 x 2pi on three runs, two cells:
+           g8_n2d_bandhost_2026-08-30);
+      (iii) THE BAND MIDPOINT IS A BIASED ESTIMATOR: (rate_min+rate_max)/2
+           equals the time-mean only as d/rho -> 0; at the branch scan's own
+           measured d/rho = 0.57 the bias is ~ +48 percent (asserted >= 1.4
+           below). Quote the CYCLE-AVERAGE (total wind / total time), never
+           a midpoint.
+      (iv) THE CLOSURE AS A RELAXATION DETECTOR (re-labelled at R-194: on a
+           settled RE the closure is an IDENTITY -- Om0 and T cancel in the
+           estimator -- so a non-closing value detects a STILL-RELAXING
+           state, never certifies an attractor): REF 6.2784 (-0.08 percent
+           from 2*pi, settled); the defect-seeded element D 6.3057 (+0.36
+           percent, still relaxing; transient-vs-attractor OPEN).
+    PRIOR ART (named): the 2*pi-per-beat-period slip of a driven phase system
+    beyond its locking range is Adler-class physics (Adler 1946,
+    doi:10.1109/jrproc.1946.229930); the off-origin-protophase artifact and
+    its removal are Kralemann-Rosenblum-Pikovsky, PRE 77, 066205 (2008),
+    doi:10.1103/physreve.77.066205. The off-origin offset here is PREDICTED,
+    not fitted: A/B = 1/(R_max*R_min) with zero free parameters (REF 0.00825
+    predicted vs 0.00833 measured; D 0.5656 vs 0.5616).
+    Instrument duty (standing): every Delta from phase_g ships with
+    (rho, d) and the margin rho/d; VOID if rho <= d (RUL-116). Fixed-
+    projection trackers are NOT clocks (RUL-118: |a_k| periods VOID when
+    |c0| <= |c+|+|c-|, the modulus-folding wall); the word "cycle" requires
+    the RUL-119 RE residual first."""
+    import numpy as _np
+
+    def _wind_and_mean(rho, d, n_t=200001):
+        a = _np.linspace(0.0, 2 * _np.pi, n_t)
+        x = rho * _np.cos(a) - d
+        y = rho * _np.sin(a)
+        th = _np.unwrap(_np.arctan2(y, x))
+        wind = (th[-1] - th[0]) / (2 * _np.pi)
+        rate = _np.diff(th) / _np.diff(a)          # d theta / d alpha
+        return wind, rate
+
+    # (i) the winding transition, either side, incl. the round's own (rho, d)
+    for rho, d, expect in ((0.99285, 0.56625, 1.0), (0.99275, 0.00825, 1.0),
+                           (0.90, 0.89, 1.0), (0.90, 0.91, 0.0)):
+        w, _ = _wind_and_mean(rho, d)
+        assert abs(w - expect) < 1e-9, (rho, d, w)
+    # (ii) time-mean rate = B0-plane rate exactly (n = 1 branch)
+    for rho, d in ((1.0, 0.57), (1.0, 0.0083), (0.9, 0.6)):
+        w, rate = _wind_and_mean(rho, d)
+        assert abs(rate.mean() - 1.0) < 1e-6      # mean d theta/d alpha = 1
+    # (iii) the midpoint bias at the measured geometry
+    _, rate = _wind_and_mean(1.0, 0.57)
+    midpoint_over_mean = 0.5 * (rate.min() + rate.max()) / rate.mean()
+    assert midpoint_over_mean >= 1.4, midpoint_over_mean
+    # (iv) the measured closure on the committed branch-scan data
+    ref_closure = 0.013004 * 14.0 * 34.485
+    d_closure = 0.012888 * 14.0 * 34.950
+    assert abs(ref_closure / (2 * _np.pi) - 1.0) < 2e-3     # REF closes
+    assert abs(d_closure / (2 * _np.pi) - 1.0) > 3e-3       # D does not
+    return {
+        "tier": "DERIVED-A (instrument algebra; physical reading #1-gap-routed)",
+        "winding_transition": "wind/rev = 1 iff rho > d, 0 iff rho < d; "
+                              "reading VOID at rho <= d",
+        "wind_quantum": "Delta_cycle = 2*pi*n/(Om0*T), n integer; measured "
+                        "n = 1 (0.99949-0.99981 x 2pi, three runs, two cells)",
+        "midpoint_bias_at_d_over_rho_0.57": midpoint_over_mean,
+        "closure_REF": ref_closure, "closure_D": d_closure,
+        "duty": "every Delta ships with (rho, d) and margin rho/d; "
+                "cycle-average only, never a band midpoint",
+    }
+
+
+def g8_opB_gauge_torus_relative_equilibrium():
+    """[DERIVED-A algebra + labelled sim provenance; CANDIDATE section -- it
+    concerns the G-8 kernel's op-B flow. Banked at R-194 BEFORE the row cites
+    it (bank-before-you-cite).]
+
+    THE 2-TORUS (exact): the centralizer of B0 in SO(4) is generated by B0
+    and its Hodge dual starB0 -- [B0u, starB0u] = 0 (asserted < 1e-15) and
+    exp(2*pi*B0u) = I (asserted < 1e-12) -- so ops B and C, whose torque is
+    built from bond invariants, are EXACTLY EQUIVARIANT under the whole
+    torus: a global R in the torus commutes with the flow map. Consequences,
+    asserted here:
+      (a) RELATIVE EQUILIBRIA EXIST GENERICALLY and are indistinguishable
+          from limit cycles to every fixed-projection instrument: the state
+          evolves as R(omega*t) U*, so ANY fixed projection is an exact
+          finite Fourier function of the gauge phase -- for a rank-2
+          generator a_k(phi) = c0 + c+ e^{i phi} + c- e^{-i phi} (three
+          terms; asserted on a synthetic frozen profile);
+      (b) THE MODULUS-FOLDING THRESHOLD: |a_k(phi)| has one extremum pair
+          per period iff |c0| > |c+| + |c-|; below the wall a second pair
+          appears and a mean-of-spacings estimator reports EXACTLY T/2 with
+          the closure halved (asserted numerically both sides of the wall)
+          -- the RUL-118 ground;
+      (c) THE RE RESIDUAL TEST (the RUL-119 instrument): on a state of the
+          form dU/dt = omega*B0u*U the single-state residual
+          ||RHS - omega*B0u*U||/||RHS|| vanishes; its measured
+          discrimination on the N3 round's committed states (labelled sim
+          provenance, g8_n3_tongues_2026-08-31/n3_inhouse.log): developed
+          dials 2.0e-06..8.3e-05 vs negative controls 1.000 (seeded) and
+          0.578 (undeveloped) -- asserted as recorded constants.
+    A relative equilibrium is a CLOSED ORBIT but NOT a limit cycle: the
+    gauge translates are distinct closed orbits of identical period
+    (non-isolation measured at R-194: min over the drift circle 0.62-0.74
+    against a translate residual 1.8e-14)."""
+    import numpy as _np
+    import itertools as _it
+    import math as _m
+    from scipy.linalg import expm as _expm
+
+    # THE KERNEL'S B0, CONSTRUCTED IN-PLACE (portability fix 2026-08-31, caught
+    # by the public-mirror sync: the first version SOURCED B0 from an audit
+    # directory that ships with the working tree but NOT with the mirror, so the
+    # primitive raised on a clean clone. It is the normalized simple bivector
+    # n^e4 with n = (e1+e2+e3)/sqrt(3) -- a SIMPLE (non-isoclinic) generator,
+    # which is exactly why its centralizer is a 2-torus rather than a U(2).)
+    _n = _np.array([1.0, 1.0, 1.0, 0.0]) / _m.sqrt(3.0)
+    _e4 = _np.array([0.0, 0.0, 0.0, 1.0])
+    B0m = _np.outer(_n, _e4) - _np.outer(_e4, _n)
+    # cross-check against the kernel code's own B0 when it is importable (the
+    # working tree); never a dependency.
+    try:
+        import sys as _sys, os as _os
+        _sys.path.insert(0, _os.path.join(_os.path.dirname(
+            _os.path.abspath(__file__)), "..", "audit",
+            "g8_n2_defect_2026-08-30"))
+        from n2_lib import B0 as _B0eng
+        assert _np.abs(_np.asarray(_B0eng, float) - B0m).max() < 1e-12
+    except ImportError:
+        pass
+    B0u = B0m / _m.sqrt(_np.trace(B0m.T @ B0m) / 2.0)
+    eps4 = _np.zeros((4, 4, 4, 4))
+    for p in _it.permutations(range(4)):
+        s, q = 1, list(p)
+        for i in range(4):
+            for j in range(i + 1, 4):
+                if q[i] > q[j]:
+                    s = -s
+        eps4[p] = s
+    Bp = 0.5 * _np.einsum('ijkl,kl->ij', eps4, B0m)
+    Bpu = Bp / _m.sqrt(_np.trace(Bp.T @ Bp) / 2.0)
+    comm = float(_np.abs(B0u @ Bpu - Bpu @ B0u).max())
+    period = float(_np.abs(_expm(2 * _np.pi * B0u) - _np.eye(4)).max())
+    assert comm < 1e-15 and period < 1e-12
+    # (a) three-term Fourier of a fixed projection along the gauge orbit
+    rng = _np.random.default_rng(11)
+    Ustar = _np.linalg.qr(rng.standard_normal((4, 4)))[0]
+    proj = rng.standard_normal((4, 4))
+    phis = _np.linspace(0, 2 * _np.pi, 64, endpoint=False)
+    vals = _np.array([_np.sum(proj * (_expm(ph * B0u) @ Ustar))
+                      for ph in phis])
+    F = _np.fft.fft(vals) / len(vals)
+    tail = float(_np.abs(_np.concatenate([F[2:-1]])).max())
+    assert tail < 1e-12 * max(1.0, float(_np.abs(F).max()))   # 3 terms only
+    # (b) the folding threshold, both sides
+    for c0, doubled in ((3.0, False), (0.5, True)):
+        sig = _np.abs(c0 + 1.2 * _np.cos(phis) + 0.4 * _np.sin(phis))
+        n_max = int(_np.sum((sig > _np.roll(sig, 1))
+                            & (sig > _np.roll(sig, -1))))
+        assert (n_max >= 2) == doubled or (n_max == 1) != doubled
+    # (c) the recorded discrimination constants (labelled sim provenance)
+    RE_RESID = {"developed_min": 2.0e-06, "developed_max": 8.3e-05,
+                "neg_control_seeded": 1.000, "neg_control_undeveloped": 0.578}
+    assert RE_RESID["developed_max"] < 1e-3 < RE_RESID["neg_control_undeveloped"]
+    return {
+        "tier": "DERIVED-A (torus + folding algebra) + labelled sim "
+                "provenance (the residual discrimination)",
+        "torus": "centralizer of B0 = 2-torus {B0, starB0}; comm %.1e, "
+                 "exp(2 pi B0u)=I %.1e" % (comm, period),
+        "re_vs_limit_cycle": "closed orbit but NON-ISOLATED: gauge "
+                             "translates are distinct orbits of identical "
+                             "period -- 'limit cycle' is a MISLABEL for op "
+                             "B's developed state (R-194)",
+        "folding_wall": "|c0| <= |c+|+|c-| => T/2 read; RUL-118",
+        "re_residual": RE_RESID,
+        "duty": "the word 'cycle' requires the RUL-119 RE residual + "
+                "negative control first; on a passing state the dial-space "
+                "observable is omega -- one number, not three",
     }

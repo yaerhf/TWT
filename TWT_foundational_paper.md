@@ -650,10 +650,19 @@ frame-appearances; the substrate fact is the defect itself.
 ### Stability is topological
 
 The winding cannot be continuously deformed to the homogeneous vacuum without passing through a
-higher-energy state, regardless of whether the defect is read as a static defect (the drive-zero
-limit) or as a driven attractor (the ontological register under A-2). For baryons the winding is
-the degree of `U: S³ → S³`, an integer in `π_3(S³) = ℤ`; for leptons it is the analogous L-orbit
-Hopf winding with `H = 1` (R-006).
+higher-energy state — a **continuum** statement, about configurations the target space resolves.
+On the discrete substrate itself the protection is **smooth-sector only**: a lattice field is not
+a continuous map, its degree is well-defined only above a representability window (measured on
+the kernel probe's lattice: a core needs a radius of at least about two lattice sites to carry a
+winding at all — R-143's lattice-π₃ premise in quantitative form), and a core driven below that
+window unwinds with no barrier — measured both as flow-level unwinding events under
+charge-non-conserving flow (R-144) and as barrier-free monotone descent of a seeded texture on
+the driven kernel probe, in both its static and driven registers. The
+condition costs the framework nothing for real matter: matter is a cell-scale object and the
+smooth-sector condition is met there by roughly nineteen orders of magnitude in the two entered
+scales. For baryons the winding is the degree of `U: S³ → S³`, an integer in `π_3(S³) = ℤ` —
+the discreteness itself is a homotopy fact about the continuum target and is untouched by the
+lattice qualification; for leptons it is the analogous L-orbit Hopf winding with `H = 1` (R-006).
 
 At the substrate level, the topological label is the *invariant* of the driven attractor —
 preserved under drive variation while the attractor exists. The static Skyrmion of §C.1 is the
@@ -4401,9 +4410,18 @@ framework already banks at R-142, `V_eff(λ) = E_static(λ) + N²/(2Θ(λ))` (ba
 background; the scaling structure is the same), whose second term supplies a rescaling contribution
 a purely static energy does not have. Stated at its true strength: this **removes the no-go, it
 does not by itself exhibit a stabiliser** — Derrick's scaling test is a necessary condition, not a
-sufficient one — and R-142's own `E_static = E_2 λ + E_4/λ` keeps the quartic in place. In the
-drive-zero register of §A.3 the §C.1.1 quartic is what holds the size; the driven-attractor
-functional that would replace it lives at the §D.5 gap.
+sufficient one — and R-142's own `E_static = E_2 λ + E_4/λ` keeps the quartic in place. Setting
+the quartic to zero in that same banked form makes the point sharply: `V_eff = E_2λ + N²/(2Θ_0λ^p)`
+has a unique stationary point `λ* = (pN²/2E_2Θ_0)^{1/(p+1)}` with `V_eff'' > 0` for every `p > 0`
+— at `p = 3`, `λ* ∝ √N` — a strict scale minimum in the breathing family with no quartic anywhere
+(the in-house prediction a probe of the internally rotating, *charge-conserving* register would
+test: it is a statement at fixed conserved `N`, so a relaxational first-order flow, in which no
+such charge exists, cannot reach it; necessary, not sufficient, exactly as above). And the driven-kernel probe supplies the other half of the sharpening: a bare quadratic
+DM coupling in the bond energy measurably does not stabilize a static texture there, so
+any route by which the DM coupling supplies the Skyrme term goes through an induced higher-order
+term — a derivation the framework does not yet have. In the drive-zero register of §A.3 the
+§C.1.1 quartic is what holds the size; the driven-attractor functional that would replace it
+lives at the §D.5 gap.
 
 The L-orbit **stiffness** scale comes out of QCP (quantum critical point) scaling near the
 chirality balance `D = J`. At leading order
@@ -7043,7 +7061,94 @@ canting plane, the geometric referent of "the canting angle `q`", and the exposu
 survivor, which vanishes on both high-symmetry branches but not on a generic wavevector — stays
 conditional. (Pointers: §D.4.3 forward here; negatives ledger N62.)
 
-Both pieces are candidates by construction: nothing routed through this gap may harden past
+**The first kernel-class candidate, and what the symmetry-class filter says about it (R-191).**
+The candidate kernel class under examination is a driven-dissipative envelope equation on the
+rotor field — drive plus D4 elasticity plus saturating dissipation plus noise — whose
+linearization about the drive-locked canted reference state has the form
+`L(k) = −(G + c·ad_{B₀})H(k) + Ω₀·ad_{B₀}` (an operationalization adopted for the test, not a
+derived flow). Run through the symmetry-class filter of §D.4.6's estate, the verdict is **not
+decisive**: this is the first kernel measured to get *past* the filter's necessary condition —
+its strict `Ω⁻¹H` form leaves the real class at fixed `k` on both vacuum branches and on both
+of its dials — so the filter no longer closes the spectral-node alternative for this kernel,
+while three independent legs still block it: the drive-free sector's exact zero-set transfer
+(`det L = det(−A)·det H`, so the generator's zeros remain exactly the Goldstone set), the
+fermionic-microstructure door, and the equivalence-principle door. The same computation closes
+the filter's own recorded soft spot: the inversion operator is exhibited — it is the L/Q
+grading involution the corpus already owns — making the substrate's real-class assignment an
+exact identity rather than evidence. Two structural facts fall out for the branch-selection
+question above: **one positivity condition** (the dissipation positive-definite on the drive
+bivector's centralizer) simultaneously governs the zero-set transfer and whether the drive-free
+kernel inherits the reference state's instability, its violation giving both failures at once;
+and **the frame-drive term can stabilize the canted reference state at linear order all the way
+to the long-wavelength limit** — so the reference state is a live candidate for the
+kernel-selected state, not an exclusion, and selection is a measurable partition of the kernel's
+dials (the reactive dial destabilizes; the drive stabilizes). The sufficiency side — whether any
+dial region of a non-Hermitian generator supports a stable topological charge — is a named open
+question with a working instrument.
+
+**The linear stability partition of the candidate kernel's dials (R-192).** The linear
+analysis above extends to a complete partition of the kernel's dial space, and the
+partition is exactly two-dimensional: the damping rate is a pure clock scale, so
+everything depends on the two ratios (reactive/damping, drive/damping). Its structure:
+the reference state is linearly stable only above a drive-to-damping threshold (0.0181
+body-diagonal / 0.0613 axis, bisected on the true softest ray, with the parabolic
+closed form a labeled truncation); only the aligned reactive channel — reactive and
+drive senses matching — destabilizes, through a stationary face-diagonal finite-k
+pattern instability, while the anti-aligned channel carries no reactive boundary at
+all (a statement conditional on the dissipation commuting with the substrate's parity
+involution — a saturating, state-dependent dissipation generically breaks it, so this
+chirality structure does not transfer to the nonlinear regime without re-derivation);
+and on the drive bivector's dual direction the slow dynamics is exactly the DM-free
+isotropic relaxation — the D = 0 stiffness identity surviving at finite DM on one
+exact direction, proven, which supplies the re-seating law's constants in closed
+form. In the window between the two branches' thresholds the driven kernel linearly
+selects the very branch static energetics rejects — the kernel-routed selection made
+concrete in a computed parameter window, still conditional on the reference-state
+caveats above.
+
+**The homogeneous-cell nonlinear attractor, and the operationalization menu it exposed
+(R-193).** Integrating the candidate kernel beyond its linear threshold on homogeneous
+supercells, the first nonlinear structure is a mechanism, and it is exact at its core:
+a shift of the drive-lock phase — the drive-phase Goldstone, along which the energy is
+exactly flat — need not be a symmetry of the operationalized *flow*. In the
+left-mobility operationalization the shift inserts a rotation into the mobility (the
+complex mobility rotates as `(γ ± ic) → (γ ± ic)e^{∓iη}` on the drive bivector's
+eigenplanes), and the beyond-threshold instability then resolves as a one-shot
+excitable spike: the unstable mode charges at the linear rate, fires once, pumps the
+phase along the mobility circle until the growth rate crosses zero, and permanently
+latches — permanence being analytic (the endpoint spectrum is stable and the phase is
+a neutral coordinate), with the measured post-latch decay matching the rotated-dial
+prediction to six figures. The proven slow block of the linear partition is exactly
+invariant under this rotation, so the latch lives entirely in the fast reactive
+planes. The latch regime is bounded, and the failure is early termination, not
+runaway: the spike's own self-limiting closes the fired mode's entry–exit balance,
+and when that happens before the full spectrum has been carried to stability — at
+strong reactive coupling, where small-wavevector face-diagonal modes are still
+unstable at the endpoint — the event cannot latch and the system enters a tonic
+phase-slip regime whose step-frequency deficit is `Δ = −η_step/(T·Ω₀)`. At the drive
+ratio studied the latch holds from threshold to roughly three times the critical
+reactive coupling; the endpoint's stability margin closes like the square of the
+smallest resolved wavevector, so latch permanence is strict on a finite cell and
+marginal in the continuum, and whether the saturating dissipation arrests the tonic
+regime nonlinearly is open. And the mechanism itself exposed a menu the
+linear theory cannot see: placing the same torque as a left generator, a right
+generator (the gradient flow), or a space-frame left generator reproduces the same
+linear operator everywhere, yet gives three different nonlinear vacua — the one-shot
+latch; a persistent saturated pattern that is steady in a co-rotating frame — a rigidly
+drifting frozen profile whose uniform collective drift rate is the frequency
+deficit (R-194); the same pattern with the opposite frequency shift.
+The dissipativity structure discriminates them physically (only the left placement's
+damping channel can pump energy), but the placement is an open pick of the family,
+registered as such; and the seeded-defect stages, run on both placements, return no
+surviving localized object under either — what distinguishes them is the aftermath
+the medium settles into. The excitable
+class itself is known physics — phase slips in optically injected lasers, with the
+termination rule the entry–exit rule of slow-passage theory; the contribution here is
+its exhibition, with an exact algebraic core, on this substrate. Frequency-deficit
+tables from this phase are raw dynamical data; no mass, generation, ladder or count
+reading rides them.
+
+All pieces here are candidates by construction: nothing routed through this gap may harden past
 candidate status before the gap closes.
 
 ### D.5.8 Status summary

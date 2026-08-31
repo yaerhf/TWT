@@ -7452,7 +7452,9 @@ def eom_compatible_field_forks():
         (fading→finite ~[3,380]; hysteretic→e^{S/ħ}, secures §11.6 QM/measurement). OPEN, LEANS hysteretic
         (needed for τ_mem≫τ_wave). s=3 decoherence is SAFE in BOTH branches (super-Ohmic, T-independent).
       • Fork B — NESS DYNAMICAL character (`theta_rel_universality_located`; N11/U1): {genuine CRITICAL point
-        (SOC), Floquet LIMIT-CYCLE}. SETS whether SOC-universality can fix the couplings (α,g,g_s). OPEN,
+        (SOC), Floquet LIMIT-CYCLE}. NOT EXHAUSTIVE (R-194: the first concrete candidate's beyond-c*
+        attractor is a RELATIVE EQUILIBRIUM unlocked to the drive — a third slot; lean undisturbed,
+        count not closed). SETS whether SOC-universality can fix the couplings (α,g,g_s). OPEN,
         LEANS limit-cycle (N9: the periodic e₄-drive oscillates, not a clean fixed point) — which would
         DISFAVOR the coupling-universality route (an honest tension, not a wish).
       • Fork C — Z3 of the NESS (`theta_rel_z3_isotropy_dichotomy` + `theta_rel_pinnability_from_data`; N10).

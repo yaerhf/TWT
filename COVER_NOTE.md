@@ -1,7 +1,7 @@
 # Cover note for reviewers — Time-Wave Theory: the Core paper and its first candidate
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-08-27 · verification suite: 623 checks (536 main + 87 companion) · engine: 342 public primitives (278 main + 64 companion), the main engine split family/instance 174 CORE + 104 CANDIDATE
+Paper revision 2026-08-27 · verification suite: 636 checks (546 main + 90 companion) · engine: 348 public primitives (281 main + 67 companion), the main engine split family/instance 174 CORE + 107 CANDIDATE
 
 ---
 
@@ -34,11 +34,11 @@ this kind comes from its artifacts, not from its description.
 
 ```
 pip install -r requirements.txt
-python twt_test.py            # expect: ALL 536 CHECKS PASSED across 10 modules
-python twt_companion_test.py  # expect: ALL 87 COMPANION CHECKS PASSED across 7 modules
+python twt_test.py            # expect: ALL 546 CHECKS PASSED across 10 modules
+python twt_companion_test.py  # expect: ALL 90 COMPANION CHECKS PASSED across 7 modules
 ```
 
-(On Windows, set `PYTHONUTF8=1` first.) The two harnesses carry 623 executable assertions,
+(On Windows, set `PYTHONUTF8=1` first.) The two harnesses carry 636 executable assertions,
 cross-indexed to numbered results — if a check fails, that is a real refutation of the
 corresponding claim, and a report of one is the single most useful thing you can send.
 

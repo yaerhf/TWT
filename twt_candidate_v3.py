@@ -4766,6 +4766,12 @@ def magnon_stiffness_bands_canted_vacuum(J: float = 1.0) -> dict:
           where ktilde^2(k) = (1/6) sum over the 24 D4 roots of (1 - cos k.b).
           `induced_G_from_linear_face_band` STEP 1 currently only LICENSES the shared
           band from WP-LV1 (`Substrate().dim4_isotropy`); here it is an identity.
+          *** EXTENDED TO FINITE DM (R-192, 2026-08-28, gate-2 keeper O-1): at
+          D/J = 0.787 the identity SURVIVES on one exact direction -- the slow block
+          of the G-8 kernel analysis is diagonal in the fixed {B0, *B0} basis and
+          <*B0|H(k)|*B0> = 12*J*ktilde^2(k) EXACTLY at every k, on BOTH branches
+          (residual ~2e-15 over thousands of BZ points; `g8_gate2_linear_partition`).
+          The DM-free stiffness does NOT need D = 0; it needs the *B0 direction. ***
 
     BRANCH SCOPE, stated once and load-bearing: the banked `n_goldstone_canted_FM`
     N_G = 2 is explicitly scoped to the AXIS branch ("this coset count is a statement
@@ -5473,12 +5479,40 @@ def spectral_branch_symmetry_class_filter(J: float = 1.0) -> dict:
     sites are annotated rather than silently overwritten; nothing about L1's verdict (no
     Weyl node on this substrate) moves.
 
-    *** THE SOFT SPOT, which must travel with this primitive. *** The real-class
-    ASSIGNMENT is STRONG COMPUTED EVIDENCE, NOT A THEOREM. The inversion operator M was
-    never built explicitly and `M H(-k) M^-1 = H(k)` was never verified matrix-wise;
-    what is exhibited is two exact isospectralities plus two real-class consequences.
-    Exhibiting M is the cheapest computation that would close it, and it is owed.
-    `inversion_operator_exhibited` is returned False so no consumer can forget.
+    *** THE SOFT SPOT IS CLOSED (2026-08-28, R-191 g8_kernel_kc1_gate). *** The
+    inversion operator IS exhibited, in PLAIN form: M = Ad(diag(1,1,1,-1)), the improper
+    e4-flip, satisfies M H(-k) M^T = H(k) at EXACTLY 0.0 (IEEE) on BOTH branches, and
+    the fixed-k antiunitary M K -- M H(k)* M^T = H(k) -- verifies at 0.0. Mutation-
+    tested: M is diagonal (+1,+1,-1,+1,-1,-1) in the E_ij basis and every single-sign
+    flip fails at O(1); the exactness is structural (+-1 diagonal, bit-identical
+    arithmetic). CORPUS PRIORITY (keeper O-1): on grade 2 this M is BIT-IDENTICAL to
+    Ad(diag(-1,-1,-1,1)) -- the banked 3-space parity -- i.e. it IS the banked
+    `L_orbit_even_Q_orbit_odd_I4_odd` involution (DERIVED-A), the one R-143's
+    iota-mechanism runs on; the delta banked in R-191 is that this involution is a
+    symmetry of THIS Hessian composed with k -> -k. The bridge: the L/Q grading is
+    exactly the reality structure of the bond couplings. So the real-class assignment
+    for H is no longer evidence-not-theorem -- it is an exhibited exact identity.
+    SCOPE FENCE: exhibited FOR THE BANKED HESSIAN H ONLY. For a composite kernel
+    L = -(G + c ad_B0)H + Om0 ad_B0 with c != 0 or Om0 != 0 there is NO fixed-k
+    antiunitary (R-191: the charpoly at fixed k is not real) -- only the
+    drive-reversal pairing M L^(c,Om0)(-k) M^T = L^(-c,-Om0)(k), for M-invariant G.
+    ANNOTATION to PROBE_SPECTRAL_NODE SS1.4: its composed operator (proper pi-rotation
+    + x -> -x) verifies in the k-ROTATED form M H(-R_pi k) M^T = H(k) but gives no
+    fixed-k antiunitary off the R_pi-invariant set; the improper flip does, and is
+    simpler. External prior art for the mechanism (inversion x conjugation => real
+    Bloch matrix => codim 2): von Neumann-Wigner (1929); Herring, Phys. Rev. 52, 365
+    (1937); Zhao & Wang, PRL 110, 240404 (2013); Fang, Chen, Kee & Fu, PRB 92, 081201
+    (2015) -- nothing here claims the mechanism, only its exhibition on this substrate.
+
+    *** DOMAIN SENTENCE, extended (2026-08-28, keeper C-3 -- name the reading). ***
+    The banked filter's fixed-k real-class test is applied to Omega^-1 H for ANY
+    Omega^-1, symplectic or dissipative; what it certifies for a NON-HERMITIAN
+    generator is the ABSENCE OF THE FIXED-K ANTIUNITARY, not an Altland-Zirnbauer
+    class assignment. TONGUES_L2 SS4.5's recommended "real generator" rewording is
+    DECLINED (RUL-109 reversal condition in the R-191 round record: the decline flips
+    if a genuinely symplectic/paraunitary #1-gap kernel is banked); under that
+    declined reading the same G-8 kernel would PASS (L(k)* = L(-k) exact) -- the
+    OPPOSITE surface verdict -- so every consumer must name which reading it applies.
 
     FRAME JURISDICTION (N49 axis, checked explicitly): CLEAN. This is substrate-internal
     end to end — a Hessian of the D4 bond energy, a symmetry class, a Jacobian rank, a
@@ -5663,6 +5697,27 @@ def spectral_branch_symmetry_class_filter(J: float = 1.0) -> dict:
         "the synthetic REAL-class control must reproduce the SUBSTRATE's signature — a "
         f"collapsed sphere gap; got gaps {gap_real}, chern {ch_real}")
 
+    # ---- the EXHIBITED inversion operator (soft spot closed 2026-08-28, R-191) -----
+    Tb = rig["T"]
+    Rflip = np.diag([1.0, 1.0, 1.0, -1.0])
+    M_inv = np.zeros((6, 6))
+    for b_ in range(6):
+        Cm = Rflip @ Tb[b_] @ Rflip.T
+        for a_ in range(6):
+            M_inv[a_, b_] = 0.5 * float(np.sum(Tb[a_] * Cm))
+    r5 = np.random.default_rng(41)
+    m_dev = max(float(np.abs(M_inv @ H(-k) @ M_inv.T - H(k)).max())
+                for k in r5.uniform(-math.pi, math.pi, (10, 4)))
+    m_anti = max(float(np.abs(M_inv @ H(k).conj() @ M_inv.T - H(k)).max())
+                 for k in r5.uniform(-math.pi, math.pi, (10, 4)))
+    M_bad = M_inv.copy(); M_bad[2, 2] = -M_bad[2, 2]
+    m_bad = float(np.abs(M_bad @ H(-np.array([1.0, 0.3, -0.7, 0.2]))
+                         @ M_bad.T - H(np.array([1.0, 0.3, -0.7, 0.2]))).max())
+    assert m_dev == 0.0 and m_anti == 0.0 and m_bad > 1.0, (
+        "the exhibited M = Ad(e4-flip) (= the banked L/Q grading involution) must give "
+        "M H(-k) M^T = H(k) and the fixed-k antiunitary EXACTLY, and a single-sign "
+        f"mutation must FAIL at O(1): {m_dev:.1e}, {m_anti:.1e}, {m_bad:.1e}")
+
     return {
         "tier": ("DERIVED-numeric (the four measurements, branch- and D/J-labelled) + "
                  "CANDIDATE (the filter as a kernel constraint); the real-class ASSIGNMENT "
@@ -5701,18 +5756,34 @@ def spectral_branch_symmetry_class_filter(J: float = 1.0) -> dict:
         "sphere_gap_real_class_control": [float(g) for g in gap_real],
         "sphere_radius": R_SPHERE,
         "weyl_control_fails_real_class_test": weyl_herm_dev,
-        "inversion_operator_exhibited": False,
-        "soft_spot": ("the real-class ASSIGNMENT is strong computed evidence, not a theorem: "
-                      "the inversion operator M was never built and M H(-k) M^-1 = H(k) was "
-                      "never verified matrix-wise. Exhibiting M is the cheapest closing "
-                      "computation and it is OWED."),
-        "escape_a_status": ("UNMEASURED / KERNEL-GATED — never 'empty'. What was measured "
-                            "empty is a SUB-CLASS: four modifications of the time-derivative "
-                            "structure and of the hopping (dissipative real Gamma, gyroscopic "
-                            "Gamma, uniform Peierls phase, real antisymmetric hopping), each "
-                            "exactly zero, with only a genuinely complex hopping firing. The "
-                            "Omega/metric escape itself was never touched; Omega is #1-gap "
-                            "content and unbanked."),
+        "inversion_operator_exhibited": True,
+        "inversion_operator": ("M = Ad(diag(1,1,1,-1)) = the banked L/Q grading involution "
+                               "L_orbit_even_Q_orbit_odd_I4_odd (corpus priority, keeper O-1); "
+                               "M H(-k) M^T = H(k) EXACT (IEEE 0.0) on both branches, "
+                               "mutation-tested, fixed-k antiunitary M K verified -- FOR H "
+                               "ONLY: no fixed-k antiunitary exists for a composite "
+                               "-(G + c ad_B0)H + Om0 ad_B0 off c = Om0 = 0 (R-191)"),
+        "soft_spot": ("CLOSED 2026-08-28 (R-191 g8_kernel_kc1_gate): M exhibited in plain "
+                      "form and checked inline below; the real-class assignment for H is an "
+                      "exhibited exact identity, no longer evidence-not-theorem."),
+        "escape_a_first_order_precessional": (
+            "MEASURED-AND-FIRES (2026-08-28, R-191): G-8, the first concrete kernel "
+            "candidate, is first-order/precessional and its strict Omega^-1 H form LEAVES "
+            "the real class at fixed k on BOTH branches and on BOTH dials (c and Om0) -- "
+            "the charpoly at fixed k is not real. KC-1 no longer closes the spectral "
+            "branch for G-8; the branch stays closed on the Om0-free zero-set transfer "
+            "plus the fermionic and R-016 doors, with sufficiency live as KG-2."),
+        "escape_a_paraunitary_tau3": (
+            "UNMEASURED / KERNEL-GATED -- unchanged. The tau_3-metric/paraunitary disjunct "
+            "was NOT touched by R-191 (G-8's Omega is dissipative, not paraunitary); "
+            "import I-29's retirement handle (exhibit a paraunitary Omega with genuinely "
+            "complex entries and re-run KC-1) is UNDISCHARGED. The two fields exist "
+            "because escape (a) is a DISJUNCTION a scalar cannot carry -- this phrase "
+            "drifted three times as a scalar (keeper C-4)."),
+        "escape_a_subclass_history": (
+            "the 2026-08-23 sub-class measurement stands: dissipative real Gamma, "
+            "gyroscopic Gamma, uniform Peierls phase, real antisymmetric hopping each "
+            "exactly zero; genuinely complex hopping fires."),
         "frame_jurisdiction_N49": ("CLEAN — substrate-internal end to end; no inside-frame "
                                    "observed rate, bound or constancy is used to bound an "
                                    "outside-frame kernel property, so no N33-1-class hedge is "
@@ -10999,7 +11070,14 @@ def d4_lattice_instanton_access_and_dm_background_neutrality() -> dict:
         carried by the explicit constructive family (background neutral by
         (1) + fluctuation of unit winding by (3c)), i.e. the standard
         continuum-limit/smooth-sector identification -- not by a local
-        operator at strong twist.
+        operator at strong twist. [N73 tooling note, 2026-08-30 (keeper
+        U-2/U-3): the N2 round's NON-SURJECTIVITY CERTIFICATE (D*theta < pi
+        => degree exactly 0; one-sided, alignment-free;
+        g8_n2_defect_2026-08-30/n2_certificate.py) is the first corpus
+        instrument that can PROVE one side of this premise -- it does not
+        discharge it -- and the measured representability window (a core
+        needs r >~ 2 lattice sites to carry a winding at all) is the
+        premise's quantitative form.]
 
     WHAT THIS DOES NOT CLAIM (the honest fence, R-140's inherited): no
     instanton SOLUTION (no minimizer, no action VALUE, no size rho_*, no
@@ -11516,7 +11594,11 @@ def full_field_b2_below_threshold_sc1_datum() -> dict:
     two recorded unwinding events -- under-resolved core, and Adam's
     vacuum-noise pathology -- make the charge-guard + resolution discipline
     load-bearing for ANY lattice flow on the substrate; the flow-level face
-    of R-143's LATT-pi3 caveat)] -- SC-1's full-3D second datum: the R-135
+    of R-143's LATT-pi3 caveat; N73 (2026-08-30) corroborates from a second
+    code -- barrier-free unwinding of a seeded texture on the driven kernel
+    probe, certificate-proved -- and supplies the reusable one-sided
+    degree-0 certificate as the charge-guard's natural companion
+    instrument)] -- SC-1's full-3D second datum: the R-135
     below-threshold conclusion survives ANSATZ-FREEDOM, and R-135's
     would-change-if (c) FIRED as predicted (the full field KEEPS the binding
     -- deepening at N = 96 same-grid, 3.06% vs 1.89%; the N = 64 same-grid
@@ -15289,4 +15371,1125 @@ def d4_scalar_dispersion_quartic_coefficients():
                        "not to a persisting reviewer identity -- the round's returns are distinct "
                        "fresh instances of one class and identity across them is NOT established. "
                        "Records: knowledge/audit/external_review_r5_2026-08-25/"),
+    }
+
+
+def g8_kernel_kc1_gate() -> dict:
+    """[DERIVED-numeric (all measurements BRANCH- and D/J-labelled; body-diagonal
+    D/J = 0.787 primary, axis where stated) + DERIVED-A-by-inspection (the Omega0-free
+    factorization) + exact identities with conditioning classes (the pairing; the
+    exhibited involution) + CANDIDATE (the G-8 kernel itself; its linear form here is
+    the PROBE'S OWN operationalization, not a banked nonlinear flow)] SD.5 -- KERNEL
+    PROGRAMME GATE 1 (R-191): KC-1 RUN ON G-8, THE CGL-CLASS KERNEL CANDIDATE.
+
+    THE OBJECT. G-8 (CANDIDATE): the driven-dissipative envelope equation on the SO(4)
+    rotor, shape {c, Omega0, J, D/J, rho_sat, gamma}, linearized about the drive-locked
+    canted reference state in the twisted co-rotating frame:
+
+        L(k) = -(G + c*ad_B0) H(k) + Omega0*ad_B0
+
+    H(k) = the banked 6x6 Bloch Hessian; ad_B0 = the adjoint action of the drive
+    bivector on so(4) (real antisymmetric, rank 4; kernel = the centralizer
+    span{B0, *B0}, dim 2); G = the linearized saturating dissipation (real sym PSD).
+
+    *** GATE VERDICT: NOT DECISIVE -- G-8 IS THE FIRST KERNEL MEASURED TO PASS KC-1's
+    NECESSARY CONDITION. *** In the strict banked form Omega^-1 H with
+    Omega^-1 = -(G + c*ad_B0), the kernel LEAVES the real (orthogonal) class at fixed k
+    for every c != 0, and the additive frame term does the same for every Omega0 != 0:
+    the characteristic polynomial at fixed k is NOT real (both branches, both dials;
+    the analytic one-liner: tr(L^2) contains tr(Hermitian x anti-Hermitian), purely
+    imaginary). So the spectral probe's escape (a) FIRST DISJUNCT
+    (first-order/precessional) is MEASURED-AND-FIRES for this kernel class. KC-1 is
+    only-if, so firing does not reopen the spectral branch; it removes KC-1 as the
+    closer for G-8. THE FIRST WRITE-UP RECORDED THE OPPOSITE (PASSED-CONSISTENT) by
+    measuring the real-GENERATOR property L(k)* = L(-k) (a k-inversion statement, exact
+    at 0.0) and reporting it under the real-CLASS name (a fixed-k statement) -- refuted
+    by the contra-briefed review, accepted, and re-hung on the honest legs.
+
+    *** THE TWO READINGS OF KC-1's DOMAIN, NAMED (keeper C-3 -- do not collapse). ***
+    (1) THE BANKED READING (applied here): the fixed-k real-class test applies to
+    Omega^-1 H for ANY Omega^-1, symplectic or dissipative; for a non-Hermitian
+    generator it certifies the absence of the fixed-k antiunitary, not an
+    Altland-Zirnbauer class. Under it G-8 LEAVES the real class = gets PAST the
+    necessary condition. (2) TONGUES_L2 SS4.5's RECOMMENDED "real generator" reading
+    (DECLINED, RUL-109 reversal condition recorded in the round): under it the test is
+    L(k)* = L(-k), which G-8 PASSES at exactly 0.0 -- the OPPOSITE surface verdict.
+    Both readings yield "not decisive" here; they mean different things; every
+    downstream consumer must name which it uses. DECLINE FLIPS IF a #1-gap kernel
+    candidate is banked whose Omega is genuinely symplectic/paraunitary.
+
+    WHAT STILL BLOCKS THE SPECTRAL BRANCH UNDER G-8 (conditioning classes, RUL-049):
+      (i)  THE ZERO-SET TRANSFER, Omega0-free sector: L = -A H with A k-independent,
+           so det L = det(-A) det H BY INSPECTION (determinant multiplicativity -- NO
+           tolerance quoted; quoting one was this arc's third vacuity tell, struck).
+           For A invertible the generator's zeros are EXACTLY the banked {Gamma, +-k0}:
+           no Fermi point at generic k. INVERTIBILITY IS c-DEPENDENT (consensus round
+           2): c != 0 -> iff ker G INTERSECT ker(ad_B0) = {0}; c = 0 -> G
+           positive-definite OUTRIGHT (G = P_ker is the computed c = 0 counterexample,
+           and c = 0 is the re-seating headline dial). The CHARGE half does not
+           transfer (at +k0 the generator already carries |Im lambda| ~ 0.8).
+      (ii) With Omega0 != 0 the gapless set CONTRACTS {Gamma, +-k0} -> {Gamma}: +-k0
+           lifted ~28 orders (Omega0-monotone), Gamma exactly preserved (the joint
+           kernel of H(Gamma) and ad_B0 is annihilated by the full generator). The
+           driven node question is OPEN at Gamma.
+      (iii) SUFFICIENCY (non-Hermitian degeneracy taxonomy) UNMEASURED = KG-2; the
+           review demonstrated a tracking-free discriminant instrument and located a
+           codim-2 EP surface at one dial setting. A positive KG-2 moves the S4-REAL
+           node's RESOLUTION column, not just its would-change-if.
+
+    *** ONE CONDITION, TWO CONSEQUENCES (keeper O-2 -- the bank's parsimony). ***
+    F2b's invertibility condition and the N70-inheritance strictness condition are THE
+    SAME condition: G positive-definite on ker(ad_B0). The soft mode lies EXACTLY in
+    ker(ad_B0) as k -> 0 (both branches), so at the single boundary "G vanishing on
+    ker(ad_B0)" the zero-set transfer fails AND the N70 inheritance fails
+    SIMULTANEOUSLY -- and the boundary is exact: |max Re lambda| <= 4e-17 at every
+    sampled k with G = P_range, not an epsilon-extrapolation.
+
+    THE N70 SPLIT (rides N70's CONDITIONAL tier -- N70's would-change-if (1), the
+    from-scratch supercell evaluation, is UNMET; this run is a SECOND READING ON THE
+    SAME RIG (_estate_d4_magnon_rig) and does NOT discharge (1). NOTE, gate-2 keeper
+    L-3: the run-level curvature reproduction is R-192's, done with an NM-maximized
+    direction search; THIS primitive's own 300-draw soft-ray idiom lands ~2.9x
+    stiffer than the true softest ray and must never be quoted as reproducing N70's
+    curvatures):
+      (a) DRIVE-FREE (Omega0 = 0): dE/dt = -(H phi)^dagger G (H phi) exactly (the
+          c-term cancels identically -- an algebraic identity; NONLINEAR
+          EXTENSION, N2R keeper U-1 2026-08-30: <F,[B0,F]> = 0 for the FULL
+          nonlinear force at every configuration, by trace cyclicity -- so the
+          reactive channel can never supply energy anywhere), giving <= 0;
+          instability of the N70 saddle needs the Chetaev strictness step = the ONE
+          CONDITION above. On its boundary the soft mode is EXACTLY MARGINAL at every
+          k. Negatives row N72.
+      (b) DRIVEN (Omega0 != 0): WHOLE-BZ linear re-seating measured at (gamma=0.05,
+          c=0, Omega0=0.7), AND IT SURVIVES THE k -> 0 LIMIT. *** SUPERSEDED IN
+          PRECISION AND EXPLANATION BY R-192's PROVEN IDENTITY (gate-2 keeper C-1,
+          2026-08-28): the saturated law is EXACTLY max Re lambda_slow =
+          -gamma*12*J*ktilde^2(k) (the starB0 eigenvalue of P0 H P0 -- see
+          g8_gate2_linear_partition); the -0.5995 first banked here is the reading at
+          x = Om0/gamma = 14, 0.087 percent BELOW saturation (the Schur tail is
+          O(gamma^2/Om0)); the ratio to the undriven rate is 12*J*ktilde^2/|lam_min(H)|
+          -> 12/|curv| = 520.5 (body) / 44.15 (axis) -- twelve over N70's own banked
+          curvature, gamma-independent. The earlier "Omega0-saturated ... constant
+          ratio ~516" wording was FALSE in its four-digit-agreement clause and quoted
+          the noisiest point of a monotone sequence as its limit -- struck. *** The
+          drive REMOVES the unstable direction outright; the earlier "runs through the
+          ~0.1 percent leakage, delicate" mechanism is REFUTED (leakage -> 0 exactly,
+          stabilization persists). THE DESTABILIZING DIAL IS THE **ALIGNED** REACTIVE
+          CHANNEL c*Omega0 > 0 (gate-2 keeper C-2 re-cut: the anti-aligned half
+          carries NO reactive boundary at all, stable to |c| = 100 -- an unqualified
+          "the dial is c" was forbidden by this primitive's OWN drive-reversal
+          pairing and is struck; measured: gamma=0.05, c=+2, Om0=+0.7 unstable while
+          c=-2, Om0=+0.7 and c=+2, Om0=-0.7 are stable). Robust across gamma in [0.001, 3], both branches -- a
+          citable non-generic case of the dissipation-induced-instability theorems
+          (Kelvin-Tait-Chetaev; Krechetnikov & Marsden, RMP 79, 519 (2007) -- cited as
+          prior-art context, every number computed directly). N70's would-change-if
+          (3) ("the driven kernel selects a state that is not a static minimum") has
+          FIRED -- first concrete instance; the reference state is a CANDIDATE for the
+          kernel-selected state, not an exclusion. R-189's reference-state
+          conditioning travels with every restatement, and the Omega0*ad_B0 frame term
+          is the probe's own operationalization -- labeled, always.
+
+    THE SOFT MODE, both referents named (keeper C-1 -- the banking-stopper this row
+    exists to prevent recurring): at k -> 0 (the Schur-downfolded object R-189/N70
+    quote) the L-orbit fraction is EXACTLY 1.000000 (body-diagonal) / 0.000000 (axis)
+    -- R-189's "100 percent" is EXACT and is NOT requoted; at this run's finite
+    k_soft ~ 4e-3 the full six-band eigenvector reads 0.9994 / 0.0108 -- a property of
+    where the run looked. Drive-blindness (fraction in ker(ad_B0)) -> 1.000000 on BOTH
+    branches in the limit: exact and branch-generic (keeper U-2).
+
+    THE INVOLUTION, priority credited (keeper O-1): M = Ad(diag(1,1,1,-1)) on grade 2
+    is BIT-IDENTICAL to Ad(diag(-1,-1,-1,1)) (Ad(-1) = id on bivectors) -- the corpus's
+    own banked L/Q grading involution `L_orbit_even_Q_orbit_odd_I4_odd` (DERIVED-A),
+    the same involution R-143's iota-mechanism runs on. THE DELTA BANKED HERE: this
+    banked involution is a symmetry of the D4 canted-vacuum Hessian composed with
+    k -> -k -- M H(-k) M^T = H(k) at exactly 0.0 (IEEE), BOTH branches, mutation-tested
+    (all six single-sign flips fail at O(1)) -- so the fixed-k antiunitary is M K,
+    closing KC-1's owed soft spot FOR H. The bridge: the L/Q grading is exactly the
+    reality structure of the bond couplings. For the composite L with c != 0 or
+    Omega0 != 0 there is NO fixed-k antiunitary -- only the drive-reversal pairing
+    M L^(c,Om0)(-k) M^T = L^(-c,-Om0)(k), exact FOR M-INVARIANT G (M G M^T = G; fails
+    at O(10) for generic PSD G -- the conditioning class is load-bearing).
+
+    EXTERNAL PRIOR ART: inversion x conjugation => real Bloch matrix => codim 2 => no
+    Weyl node is von Neumann-Wigner (1929) / Herring, Phys. Rev. 52, 365 (1937);
+    modern: Zhao & Wang, PRL 110, 240404 (2013); Fang, Chen, Kee & Fu, PRB 92, 081201
+    (2015). Nothing here claims that mechanism -- only its exhibition on this
+    substrate.
+
+    GOVERNING RECORD: knowledge/audit/g8_kc1_gate_2026-08-28/ (frozen prereg 1f27ea2;
+    L1 REV 2 incl. keeper corrections; reviewer verdict + round-2 consensus;
+    meta-observer verdict; keeper verdict; four probe scripts).
+
+    self-checks: the charpoly-reality firing (strict form leaves the real class, both
+    branches, drive term alone too; drive-free control real); the c-dependent
+    invertibility boundary (P_ker singular at c = 0, invertible at c != 0; P_range +
+    c*adB singular at every c); the Gamma-preserving Omega0-lift; the pairing for
+    M-invariant G AND its asserted failure for generic G; the energy identity; the
+    one-condition boundary (strict-G inherits / P_range exactly marginal); the
+    re-seating at finite k AND at |k| = 1e-3, 1e-4 on the soft ray (the k -> 0
+    survival, with the c-dial destabilization asserted); the soft-mode limit fractions
+    on BOTH branches (body -> L-orbit, axis -> NOT L-orbit, both -> ker(ad_B0)); and
+    M's exactness with its mutation failure."""
+    import numpy as np
+    from scipy.optimize import minimize_scalar
+
+    rig = _estate_d4_magnon_rig(1.0)
+    biv, E_uniform = rig["biv"], rig["E_uniform"]
+    hessian_parts, H_of = rig["hessian_parts"], rig["H_of"]
+    T, NG = rig["T"], rig["NG"]
+    D0 = 0.787
+
+    def branch(n, kdir):
+        B0 = biv(n)
+        t = float(minimize_scalar(lambda t: E_uniform(t * kdir, B0, D0),
+                  bounds=(0.0, 1.2), method="bounded", options=dict(xatol=1e-13)).x)
+        on, bv, Rs = hessian_parts(t * kdir, B0, D0)
+        return B0, t, (lambda k: H_of(k, on, bv, Rs))
+
+    B0d, td, Hd = branch([1, 1, 1], np.array([1., 1., 1., 0.]))
+    B0a, ta, Ha = branch([0, 0, 1], np.array([0., 0., 1., 0.]))
+
+    def ad_m(B0):
+        A = np.zeros((NG, NG))
+        for b in range(NG):
+            C = B0 @ T[b] - T[b] @ B0
+            for a in range(NG):
+                A[a, b] = 0.5 * float(np.sum(T[a] * C))
+        return A
+    adBd, adBa = ad_m(B0d), ad_m(B0a)
+    ks = np.random.default_rng(61).uniform(-3.0, 3.0, (10, 4))
+
+    # [1] the firing (charpoly reality), both branches + drive term alone + control
+    def im_cp(Lf):
+        return max(float(np.abs(np.poly(Lf(k)).imag).max()
+                         / np.abs(np.poly(Lf(k))).max()) for k in ks)
+    fire_b = im_cp(lambda k: -(np.eye(NG) + 0.5 * adBd) @ Hd(k))
+    fire_a = im_cp(lambda k: -(np.eye(NG) + 0.5 * adBa) @ Ha(k))
+    fire_om = im_cp(lambda k: -Hd(k) + 0.7 * adBd)
+    ctrl = im_cp(lambda k: -Hd(k))
+    assert ctrl < 1e-12 and min(fire_b, fire_a, fire_om) > 1e-4, (
+        "escape (a)'s first disjunct MUST FIRE (strict form, both branches; drive "
+        f"term alone) with the drive-free control real: {ctrl:.1e}, {fire_b:.1e}, "
+        f"{fire_a:.1e}, {fire_om:.1e}")
+
+    # [2] c-dependent invertibility boundary (NO det-multiplicativity tolerance -- C-6)
+    u6 = np.linalg.svd(adBd)[0]
+    P_range = u6[:, :4] @ u6[:, :4].T
+    P_ker = np.eye(NG) - P_range
+    smin = lambda A: float(np.linalg.svd(A, compute_uv=False)[-1])
+    assert smin(P_ker) < 1e-12 and smin(P_ker + 0.5 * adBd) > 1e-3 \
+        and smin(P_range + 0.5 * adBd) < 1e-12, (
+        "invertibility is c-DEPENDENT: P_ker (PD on ker adB) is singular at c = 0 yet "
+        "invertible at c != 0; P_range (vanishing on ker adB) is singular at c != 0")
+
+    # [3] the Omega0-lift contracts the gapless set to {Gamma}
+    A005 = 0.05 * np.eye(NG)
+    k0v = td * np.array([1., 1., 1., 0.])
+    d_g = abs(np.linalg.det(-A005 @ Hd(np.zeros(4)) + 0.7 * adBd))
+    d_k = abs(np.linalg.det(-A005 @ Hd(k0v) + 0.7 * adBd))
+    d_kf = abs(np.linalg.det(-A005 @ Hd(k0v)))
+    assert d_g < 1e-20 and d_k > 1e6 * max(d_kf, 1e-30), (
+        f"drive contracts the gapless set to {{Gamma}}: {d_g:.1e}, {d_k:.1e}, {d_kf:.1e}")
+
+    # [4] M exact + mutation failure; pairing conditioned on M-invariance
+    def Ad_m(Rot):
+        A_ = np.zeros((NG, NG))
+        for b in range(NG):
+            C = Rot @ T[b] @ Rot.T
+            for a in range(NG):
+                A_[a, b] = 0.5 * float(np.sum(T[a] * C))
+        return A_
+    M = Ad_m(np.diag([1., 1., 1., -1.]))
+    M3p = Ad_m(np.diag([-1., -1., -1., 1.]))
+    assert float(np.abs(M - M3p).max()) == 0.0, (
+        "O-1 priority: Ad(e4-flip) IS the banked 3-space parity on grade 2 (the L/Q "
+        "grading involution)")
+    m_dev = max(float(np.abs(M @ Hf(-k) @ M.T - Hf(k)).max())
+                for Hf in (Hd, Ha) for k in ks[:6])
+    Mbad = M.copy(); Mbad[2, 2] = -Mbad[2, 2]
+    m_bad = max(float(np.abs(Mbad @ Hd(-k) @ Mbad.T - Hd(k)).max()) for k in ks[:3])
+    assert m_dev == 0.0 and m_bad > 1.0, (
+        f"M H(-k) M^T = H(k) exactly on BOTH branches and a mutated M fails at O(1): "
+        f"{m_dev:.1e}, {m_bad:.1e}")
+
+    def LG(k, G, c, Om0, adB=adBd, Hf=Hd):
+        return -(G + c * adB) @ Hf(k) + Om0 * adB
+    k1 = ks[0]
+    pair_ok = float(np.abs(M @ LG(-k1, np.eye(NG), 0.5, 0.7) @ M.T
+                           - LG(k1, np.eye(NG), -0.5, -0.7)).max())
+    Wr = np.random.default_rng(11).standard_normal((NG, NG))
+    G_gen = 0.5 * (Wr @ Wr.T) / NG + 0.1 * np.eye(NG)
+    pair_bad = float(np.abs(M @ LG(-k1, G_gen, 0.5, 0.7) @ M.T
+                            - LG(k1, G_gen, -0.5, -0.7)).max())
+    assert pair_ok < 1e-12 and pair_bad > 1.0, (
+        f"the pairing needs M G M^T = G: {pair_ok:.1e}, {pair_bad:.1e}")
+
+    # [5] energy identity (Omega0 = 0)
+    G1 = 0.3 * np.eye(NG)
+    r = np.random.default_rng(9)
+    Hk = Hd(ks[1]); Lk = -(G1 + 0.5 * adBd) @ Hk
+    e_dev = 0.0
+    for _ in range(8):
+        phi = r.standard_normal(NG) + 1j * r.standard_normal(NG)
+        dE = float(np.real(phi.conj() @ Hk @ Lk @ phi
+                           + (Lk @ phi).conj() @ Hk @ phi)) / 2.0
+        e_dev = max(e_dev, abs(dE + float(np.real((Hk @ phi).conj() @ G1
+                                                  @ (Hk @ phi)))))
+    assert e_dev < 1e-10, f"dE/dt = -(H phi)^+ G (H phi) exactly: {e_dev:.1e}"
+
+    # [6] the one-condition boundary + the k -> 0 re-seating survival + dial attribution
+    soft_dir = None
+    best = 0.0
+    r2 = np.random.default_rng(55)
+    for _ in range(300):
+        d = r2.standard_normal(4); d[3] *= 0.3; d /= np.linalg.norm(d)
+        lam = float(np.linalg.eigvalsh(Hd(0.005 * d))[0])
+        if lam < best:
+            best, soft_dir = lam, d
+    assert best < -1e-9, "the N70 soft direction must be found"
+    k_soft = 0.005 * soft_dir
+    inh = float(np.linalg.eigvals(LG(k_soft, 0.3 * np.eye(NG), 0.5, 0.0)).real.max())
+    # gate-2 keeper C-5 re-cut (2026-08-28): the old `abs(marg) < 1e-12` half was
+    # VACUOUS -- with G = P_range both terms of (G + c adB) annihilate ker(adB), so L
+    # has a RANK-FORCED 2-plane of exact zeros for every k, c, H (the marginal plane
+    # is H^-1 ker(adB), substrate-free). The informative content is (i) the rank
+    # statement, failure-demonstrated, and (ii) that the OTHER four eigenvalues are
+    # strictly damped with margin O(0.4) -- the half that CAN fail.
+    for c_ in (0.0, 0.5, -3.7):
+        sv_ = np.linalg.svd(P_range + c_ * adBd, compute_uv=False)
+        assert sv_[-2] < 1e-12, "rank(P_range + c adB) = 4 for every c"
+    sv_pert_ = np.linalg.svd(P_range + 0.01 * np.eye(NG) + 0.5 * adBd,
+                             compute_uv=False)
+    assert sv_pert_[-1] > 1e-3, "a G that is PD on ker(adB) restores rank 6"
+    re_marg = np.sort(np.linalg.eigvals(LG(k_soft, P_range, 0.5, 0.0)).real)
+    assert inh > 1e-12 and re_marg[3] < -0.3, (
+        "strict-G inherits the N70 instability; on the PSD boundary the four "
+        "non-rank-forced modes are strictly damped with O(0.4) margin: "
+        f"{inh:.1e}, {re_marg[3]:.3f}")
+    seats = [float(np.linalg.eigvals(LG(amp * soft_dir, 0.05 * np.eye(NG), 0.0, 0.7)
+                                     ).real.max()) for amp in (0.005, 1e-3, 1e-4)]
+    undriven = [0.05 * abs(float(np.linalg.eigvalsh(Hd(amp * soft_dir))[0]))
+                for amp in (1e-3, 1e-4)]
+    destab = float(np.linalg.eigvals(LG(k_soft * 12.0, 0.05 * np.eye(NG), 2.0, 0.7)
+                                     ).real.max())
+    assert max(seats) < 0.0 and destab > 1e-6, (
+        "the drive re-seats at finite k AND survives toward k -> 0 on the soft ray, "
+        f"while the c-dial destabilizes: {seats}, {destab:.1e}")
+    assert seats[1] < -100.0 * undriven[0] and seats[2] < -100.0 * undriven[1], (
+        "the k -> 0 law: the stabilized rate stays >= O(100) x the undriven "
+        "instability rate (closed form 12/|curv| = 520.5 body / 44.15 axis on the "
+        "TRUE softest ray, R-192; this check's own 300-draw ray is 2.9x stiffer, so "
+        f"its ratios ~700 differ from the closed form -- gate-2 keeper L-3): "
+        f"{seats}, {undriven}")
+
+    # [7] the soft-mode LIMIT fractions, both branches (C-1: referents pinned)
+    spat = np.zeros(NG); spat[[0, 1, 3]] = 1.0
+    def fr(Hf, adB, direction, amp=1e-4):
+        ev, V = np.linalg.eigh(Hf(amp * direction))
+        v = V[:, 0]
+        uu = np.linalg.svd(adB)[0]
+        kerP = uu[:, 4:] @ uu[:, 4:].T
+        return (float(np.real(v.conj() @ kerP @ v)),
+                float(np.real(v.conj() @ np.diag(spat) @ v)))
+    fb = fr(Hd, adBd, soft_dir)
+    besta, dira = 0.0, None
+    r3 = np.random.default_rng(56)
+    for _ in range(300):
+        d = r3.standard_normal(4); d[3] *= 0.3; d /= np.linalg.norm(d)
+        lam = float(np.linalg.eigvalsh(Ha(0.005 * d))[0])
+        if lam < besta:
+            besta, dira = lam, d
+    fa = fr(Ha, adBa, dira)
+    assert fb[0] > 0.9999 and fb[1] > 0.9999 and fa[0] > 0.9999 and fa[1] < 1e-3, (
+        "IN THE LIMIT: both branches -> ker(ad_B0) exactly (drive-blind, "
+        "branch-generic); body -> the L-orbit triple (R-189's 1.0000 EXACT, never "
+        f"requoted); axis -> NOT L-orbit: {fb}, {fa}")
+
+    return {
+        "tier": ("DERIVED-numeric (branch- and D/J-labelled) + "
+                 "DERIVED-A-by-inspection (the factorization) + exact identities "
+                 "with conditioning classes + CANDIDATE (the kernel; the linear form "
+                 "is the probe's own operationalization)"),
+        "gate_verdict": ("NOT DECISIVE -- G-8 is the first kernel measured to PASS "
+                         "KC-1's necessary condition; escape (a)'s first-order/"
+                         "precessional disjunct MEASURED-AND-FIRES for this class "
+                         "(both branches, both dials); KC-1 no longer closes the "
+                         "spectral branch for G-8; the branch stays closed on the "
+                         "Omega0-free zero-set transfer + the fermionic and R-016 "
+                         "doors, with sufficiency (KG-2) live"),
+        "kc1_domain_readings": ("BANKED (applied): fixed-k real-class on Omega^-1 H "
+                                "for any Omega -- G-8 LEAVES it. SS4.5 real-generator "
+                                "(declined, reversal condition recorded): G-8 PASSES "
+                                "it at 0.0. Name the reading at every consumer."),
+        "escape_a_first_order_precessional": ("MEASURED-AND-FIRES (G-8 class, "
+                                              "2026-08-28, both branches)"),
+        "escape_a_paraunitary_tau3": ("UNMEASURED / KERNEL-GATED -- import I-29's "
+                                      "retirement handle UNDISCHARGED"),
+        "one_condition": ("G positive-definite on ker(ad_B0): grants BOTH the "
+                          "zero-set transfer (A invertible, c != 0) AND the "
+                          "drive-free N70 inheritance (Chetaev strictness); its "
+                          "violation gives both failures at once, exactly (N72)"),
+        "reseating_k_to_0_law": ("SATURATED CLOSED FORM (R-192, supersedes the "
+                                 "constants first banked here): max Re lambda_slow = "
+                                 "-gamma*12*J*ktilde^2(k) exactly; the -0.5995 was "
+                                 "the x = 14 reading, 0.087 percent below saturation; "
+                                 "ratio to the undriven rate = 12/|curv| = 520.5 "
+                                 "(body) / 44.15 (axis) -- survives the limit"),
+        "destabilizing_dial": ("the ALIGNED reactive channel c*Omega0 > 0 (the "
+                               "anti-aligned half has no reactive boundary at all -- "
+                               "R-192; an unqualified 'c' was forbidden by this "
+                               "primitive's own pairing and is struck)"),
+        "soft_mode_referents": {"k_to_0_downfolded": "L-orbit 1.000000 body / "
+                                                     "0.000000 axis (R-189 EXACT)",
+                                "finite_k_full_hessian": "0.9994 / 0.0108 at "
+                                                         "k_soft ~ 4e-3",
+                                "ker_adB0_limit": "1.000000 BOTH branches"},
+        "inversion_operator": ("M = the banked L/Q grading involution "
+                               "(L_orbit_even_Q_orbit_odd_I4_odd; corpus priority "
+                               "O-1); M H(-k) M^T = H(k) exact 0.0 both branches, "
+                               "mutation-tested; fixed-k antiunitary M K for H ONLY "
+                               "-- none exists for the composite L off c = Om0 = 0"),
+        "n70_conditionality": ("rides N70's conditional tier: would-change-if (1) "
+                               "(supercell) UNMET -- this run is a second reading on "
+                               "the SAME rig and does not discharge it; "
+                               "would-change-if (3) has FIRED (stamped)"),
+        "governing_record": "knowledge/audit/g8_kc1_gate_2026-08-28/",
+    }
+
+
+def g8_gate2_linear_partition() -> dict:
+    """[DERIVED-GENERIC (the clock-scaling reduction -- degree-1 homogeneity, zero
+    substrate content, re-tiered per review) + DERIVED-A-adjacent (the PROVEN
+    slow-block structure and the marginal-set identity -- exact operator facts at
+    every k / every dial) + DERIVED-numeric (the boundaries; BRANCH- and D/J-labelled
+    at D/J = 0.787) + FIT (the c* ~ 2.2 sqrt(gamma Om0) trend, labeled, worst
+    residual +19 percent at x = 0.7) + CANDIDATE (the G-8 kernel; its linear form is
+    the probe's own operationalization AT THE KERNEL-CLASS LEVEL ONLY -- R-193's
+    computed mobility-frame menu shows all three frame placements {body-left,
+    body-right/gradient, spatial-left} reproduce THIS SAME L(k), so the linear
+    partition is ROBUST ACROSS THE FRAME MENU, a licensed strengthening)] SD.5 --
+    KERNEL PROGRAMME GATE 2, LINEAR (R-192): THE STABILITY PARTITION OF THE G-8
+    DIALS. FORWARD POINTER (R-193, the round's O-1 convention): the proven
+    slow-block identity of boundary (4) EXTENDS to P0 L_eta P0 = -gamma P0 H P0 at
+    EVERY drive-phase shift eta (g8_n1_lock_phase_rotation) -- the slow block is
+    exactly invariant along the eta-circle, which is a path through this
+    partition's own 2-D dial plane.
+
+    OBJECT: L(k) = -(gamma*1 + c*ad_B0) H(k) + Om0*ad_B0 about the canted reference
+    state. 'Stable' = no strictly positive rate in the BZ, the soft branch
+    approaching zero from below, the symmetry-marginal set excluded -- and that set
+    is an IDENTITY: Gamma's kernel is annihilated exactly at every dial, and
+    L|_{ker H(+-k0)} = -+i*Om0*IDENTITY exactly for every (gamma, c) (ker H(+-k0)
+    is exactly ad_B0-invariant with ad_B0|_ker = -+i). Exhaustiveness honestly
+    scoped: no OTHER marginal locus found in 3e4 BZ samples + a nodal-surface probe.
+    Rides N70's conditional tier (would-change-if (1) unmet, same rig).
+
+    THE PARTITION IS TWO-DIMENSIONAL [DERIVED-GENERIC]: L(g,c,Om0) = g*L(1,c/g,Om0/g)
+    is a matrix identity (degree-1 joint homogeneity -- it holds for ANY (H, A), the
+    "2" is dials-minus-one). Organizing, not a discovery. Every k-space object is a
+    function of (c/gamma, Om0/gamma) alone. The informative test is the boundary
+    collapse -- a DETECTOR CALIBRATION (independent-rig rel dev 3.0e-16).
+
+    THE BOUNDARIES:
+      (1) DRIVE THRESHOLD [DERIVED-numeric, ONE instrument]: stable requires
+          x = Om0/gamma > x* -- BISECTED roots on the true softest ray at amp 1e-4:
+          x*_body = 0.01806, x*_axis = 0.06127 (k->0 ~ 0.01807 +- 1e-5; ratio 3.392,
+          no integer claimed). The form sqrt(|curv|/a2) is a PARABOLIC TRUNCATION
+          (measured quartic: 0.06 percent body / 0.7 percent axis), never "exact,
+          analytic". |curv| = N70's banked curvatures, reproduced in-suite. The
+          governing direction is the TRUE SOFTEST RAY by direction-sphere
+          MAXIMIZATION (a2(d) near direction-independent, so the softest ray wins by
+          monotonicity -- reviewer's strengthening). Prior art: the
+          Kelvin-Tait-Chetaev / Kapitza-averaging class (Krechetnikov & Marsden RMP
+          79, 519 (2007); Levi & Weckesser SIAM Rev 37, 219 (1995); Blekhman 2000)
+          -- the delta is exhibition on this substrate. THE FIRST-PASS 0.0152 WAS 18
+          PERCENT LOW (mis-sampled direction) and REV 1 quoted three inconsistent
+          pairs -- both owned; the C-k control caught them in-house.
+      (2) CHIRALITY -- CONDITIONAL ON M-INVARIANT G (M G M^T = G; R-191's banked
+          load-bearing conditioning, gate-2 keeper C-3: satisfied by G = gamma*1
+          and any G diagonal in the T-basis; the Re-spec pairing FAILS at O(1e-2)
+          for generic PSD G, and a saturating Gamma(R, rho_sat) is generically NOT
+          M-invariant -- see the nonlinear fence below): the drive-reversal
+          PAIRING is exact and doubly forced
+          (spec L(-k;-c,-Om0) = spec L(k;c,Om0) bit-identical; Re spec pointwise
+          equal in k). The ASYMMETRY is measured with the strong detector: aligned
+          c*Om0 > 0 unstable (S = +3.734e-02 at the reference dial, quadrant pairs
+          equal at 0.0); anti-aligned = the marginal floor -- and the anti-aligned
+          half has NO reactive boundary AT ALL (stable to |c| = 100, reviewer's
+          extension). RELATIVE orientation only, never absolute -- the invariant
+          of the pair is c*Om0 because both dials carry the SAME B0: the same
+          B0-orientation structure as the GA note's J-B0 pairing, two faces,
+          bridged not merged (keeper O-3). REV 1's quadrant magnitudes were
+          sampling-detector artifacts, struck.
+      (3) REACTIVE BOUNDARY [DERIVED-numeric (continuation) + FIT]:
+          c* = gamma*h(Om0/gamma), h at seven points (1.55 @ 0.7 ... 12.08 @ 30),
+          CONFIRMED FROM BELOW by the reviewer's independent detector (rel 2e-5).
+          FIT c* ~ 2.2*sqrt(gamma*Om0), residuals +19/-0.3 percent worst-first;
+          range x in [0.7, 30], NOT applicable near the strip. Onset: EXACTLY the
+          (1,-1,0,0) face-diagonal class (off-axis components 1e-7), k perp k0,
+          type-I_s STATIONARY finite-k (the base state is modulated; "Turing"
+          withdrawn) -- the reality is FORCED ON THE RAY (two eigenvalues of L
+          exactly real on <110>-type rays and the k0 ray at EVERY dial), so the
+          load-bearing fact is that the first crossing LIES on that ray. Branch
+          note: generic k perp k0 is real on the axis branch, NOT on the body.
+      (4) THE SLOW-BLOCK STRUCTURE -- PROVEN, with the identity/decoupling SPLIT
+          stated (keeper R-2): ad_B0 real antisymmetric => ker perp range =>
+          P0*ad_B0 = 0 EXACTLY => P0 L P0 = -gamma * P0 H(k) P0 -- AN IDENTITY AT
+          EVERY DIAL, drive or no drive; what strong drive buys is the DECOUPLING
+          (Schur O(gamma^2/Om0)), i.e. whether the identity governs the observed
+          rate. AND: the slow block is DIAGONAL in the fixed {B0, starB0} basis
+          with <starB0|H(k)|starB0> = 12*J*ktilde^2(k) EXACTLY at every k, BOTH
+          branches (1e-15-class over thousands of BZ points) -- AN EXTENSION OF A
+          BANKED DERIVED-A IDENTITY (the D = 0 operator identity of
+          magnon_stiffness_bands_canted_vacuum, which needs not D = 0 but the
+          starB0 direction; keeper O-1, pointer installed there) -- the identity
+          eigenvector purely spatial/L-orbit at 1.000000 on BOTH branches (keeper
+          O-2). THIS ONE IDENTITY SUPPLIES IN CLOSED FORM BOTH CONSTANTS R-191
+          BANKED UNEXPLAINED (keeper C-1, superseded there in the same pass):
+          A/gamma = 12 exactly at saturation (R-191's -0.5995 was the x = 14
+          reading, 0.087 percent below), and the undriven-rate ratio 12/|curv| =
+          520.5 (body) / 44.15 (axis). THE READING IS SCOPED: "the drive erases
+          the DM effect" holds only where the starB0 eigenvalue is the SMALLER
+          slow stiffness -- ~99 percent (body) / ~86 percent (axis) OF A UNIFORM
+          BZ-BOX SAMPLE (N = 2000; axis sample-dependent 85-88 -- keeper R-1);
+          THE LOAD-BEARING PART IS THE FAILURE LOCUS: along k || k0 (body) the
+          OTHER slow stiffness -- the B0 (e4-bearing) diagonal entry -- governs
+          (ratio 0.994313, scale-invariant).
+      (5) THE RANK STATEMENT, WITH ITS THREE-FACT BRIDGE (keeper C-4 -- two facts
+          with one conclusion, never one fact under two names): (i) with
+          G = P_range, (G + c*ad_B0) has rank EXACTLY 4 for every c, so L has a
+          rank-forced 2-plane of exact zeros for EVERY k, c, H -- and that plane
+          is H^-1 ker(ad_B0), SUBSTRATE-FREE (survives for random symmetric H; at
+          generic k the softest H-mode overlaps it only 0.18-0.72); (ii) N72's
+          SUBSTRATE fact: the soft mode coincides with ker(ad_B0) in the k -> 0
+          LIMIT, where the two objects meet; (iii) what forbids growth at every k
+          is the energy identity dE/dt <= 0, which carries N72's conclusion.
+          VACUITY COUNT, corrected (keeper C-6): the struck P4(d) was the
+          programme's SIXTH vacuity-class instance in TWO days (two in R-190's
+          arc, three in R-191's, one here) and a SEVENTH -- the same tolerance
+          live in R-191's check [6] -- was found by the gate-2 keeper and struck
+          in this same banking pass.
+
+    THE LINEAR-SELECTION YIELD, BOTH scope conditions in the headline: in the strip
+    x in (0.01806, 0.06127) AND with the reactive dial inside its small admissible
+    window (anti-aligned side, or |c| < c*(x)), the body-diagonal branch is the only
+    linearly stable OF THE TWO COMPUTED BRANCHES (the multi-q/conical family is
+    UNSCANNED -- N70 would-change-if (2)). For aligned c above c*(x) BOTH branches
+    are unstable inside the strip. Independently verified at an unused dial
+    (gamma = 0.5). ** THE SHARP SENTENCE (keeper O-4): in this computed dial
+    window the driven kernel linearly selects THE VERY BRANCH STATIC ENERGETICS
+    REJECTS -- N70's would-change-if (3) not merely fired but LOCALIZED TO A
+    PARAMETER WINDOW, the concrete content of "branch selection is fully
+    kernel-routed" -- riding, in THIS sentence as everywhere, N70's UNMET
+    would-change-if (1) (keeper L-4). ** Priority, complete (keeper O-5): N62's
+    static ordering (outside the kernel programme, retired by N70) and R-191's
+    F6b (inside it: the partition EXISTS as a dial-space object) both precede;
+    gate 2's first is the first REGION WHERE THE BRANCHES DIFFER -- "the first
+    computed selection structure IN THE KERNEL PROGRAMME" carries that credit.
+
+    DETECTOR RECORD (the C-k lesson, completed by review): three c* generations
+    (1.318 -> 1.584 -> 0.4102) from TWO causes -- the ~1e-5-of-BZ island AND the
+    +-k0 marginal modes starving NM seeding; the absolute S > 1e-8 cut breaks the
+    exact gamma-scaling at small gamma. GATE-3 / NONLINEAR-PHASE PRESCRIPTION
+    (binding, FOUR fences): (1) work at gamma = 1 in (c/gamma, Om0/gamma) with
+    RELATIVE cuts; (2) mask {Gamma, +-k0} before seed-sorting; (3) keeper L-1:
+    M-invariance of G is a PRECONDITION of the chirality partition -- a saturating
+    Gamma(R, rho_sat) is generically NOT M-invariant (pairing failure 1.08e-2), so
+    the aligned/anti-aligned structure does not transfer to the nonlinear phase
+    without re-derivation; (4) keeper L-2: nonlinear tongues in DIAL SPACE
+    (mode-locking regions of (c/gamma, Om0/gamma)) are UNBARRED, but any tongue
+    result read as a mass LADDER is governed by T2-prime's frozen prereg (killed
+    on both batches) and read as a COUNT by N64 (separately killed) -- the
+    worklist G-FLAG fence says so.
+
+    GOVERNING RECORD: knowledge/audit/g8_gate2_linear_2026-08-28/ (prereg 46d5cd7;
+    L1 REV 2; reviewer + meta-observer + keeper verdicts; four scripts, three JSONs).
+
+    self-checks: the scaling consequence (threshold linearity across gammas); the
+    soft-direction optimizer landing on N70's curvatures (else INVALID); bisected
+    thresholds at their banked values, both branches; the pairing (bit-identical
+    spectra) + the measured signs with the strong seeded detector + anti-aligned
+    stability at |c| = 30; P0*ad_B0 = 0 exactly; the starB0 = 12*ktilde^2 identity
+    at random k on BOTH branches with the eigenvector's L-orbit fraction asserted;
+    the k0-block identity at arbitrary dials; the rank statement (and that a
+    PERTURBED G restores rank 6 -- the check can fail); the strip with the
+    c-window; the island found-by-template/missed-by-sampling demonstration."""
+    import numpy as np
+    from scipy.optimize import minimize, minimize_scalar
+
+    rig = _estate_d4_magnon_rig(1.0)
+    biv, E_uniform = rig["biv"], rig["E_uniform"]
+    hessian_parts, H_of = rig["hessian_parts"], rig["H_of"]
+    T, NG = rig["T"], rig["NG"]
+    BONDS = rig["BONDS"]
+    D0 = 0.787
+
+    def mk(n, kdir):
+        B0 = biv(n)
+        t = float(minimize_scalar(lambda t: E_uniform(t * kdir, B0, D0),
+                  bounds=(0.0, 1.2), method="bounded", options=dict(xatol=1e-13)).x)
+        on, bv, Rs = hessian_parts(t * kdir, B0, D0)
+        Hf = lambda k: H_of(k, on, bv, Rs)
+        A = np.zeros((NG, NG))
+        for b in range(NG):
+            C = B0 @ T[b] - T[b] @ B0
+            for a in range(NG):
+                A[a, b] = 0.5 * float(np.sum(T[a] * C))
+        return Hf, A, t
+
+    Hd, adBd, td = mk([1, 1, 1], np.array([1., 1., 1., 0.]))
+    Ha, adBa, ta = mk([0, 0, 1], np.array([0., 0., 1., 0.]))
+
+    def L(Hf, adB, k, g, c, Om0):
+        return -(g * np.eye(NG) + c * adB) @ Hf(k) + Om0 * adB
+    def mre(Hf, adB, k, g, c, Om0):
+        return float(np.linalg.eigvals(L(Hf, adB, k, g, c, Om0)).real.max())
+    def kt2(k):
+        return float(np.sum(1.0 - np.cos(BONDS @ np.asarray(k, float)))) / 6.0
+
+    # [1] softest directions land on N70's banked curvatures (else INVALID)
+    def softest(Hf, seed):
+        r = np.random.default_rng(seed)
+        best = (1e9, None)
+        for _ in range(1200):
+            d = r.standard_normal(4); d /= np.linalg.norm(d)
+            cv = float(np.linalg.eigvalsh(Hf(1e-3 * d))[0])
+            if cv < best[0]:
+                best = (cv, d)
+        res = minimize(lambda d: float(np.linalg.eigvalsh(Hf(1e-3 * np.asarray(d)
+                       / np.linalg.norm(d)))[0]), best[1], method="Nelder-Mead",
+                       options=dict(xatol=1e-12, fatol=1e-18, maxiter=1200))
+        return res.x / np.linalg.norm(res.x)
+    dd, da = softest(Hd, 90), softest(Ha, 90)
+    cv_d = float(np.linalg.eigvalsh(Hd(1e-4 * dd))[0]) / 1e-8
+    cv_a = float(np.linalg.eigvalsh(Ha(1e-4 * da))[0]) / 1e-8
+    assert abs(cv_d + 0.0230502) < 2e-4 and abs(cv_a + 0.2718009) < 2e-3, (
+        f"soft-direction optimizer must reproduce N70's curvatures: {cv_d}, {cv_a}")
+
+    # [2] bisected thresholds (amp 1e-4), banked values; scaling consequence
+    def f_dir(Hf, adB, x, d, amp=1e-4):
+        lam = np.linalg.eigvals(L(Hf, adB, amp * d, 1.0, 0.0, x))
+        idx = np.argsort(np.abs(lam))[:2]
+        return -float(lam[idx].real.max()) / amp ** 2
+    xs = {}
+    for lbl, (Hf, adB, d) in {"body": (Hd, adBd, dd), "axis": (Ha, adBa, da)}.items():
+        lo, hi = 0.0, 0.3
+        for _ in range(40):
+            mid = 0.5 * (lo + hi)
+            if f_dir(Hf, adB, mid, d) > 0:
+                hi = mid
+            else:
+                lo = mid
+        xs[lbl] = hi
+    assert abs(xs["body"] - 0.01806) < 3e-4 and abs(xs["axis"] - 0.06127) < 6e-4, (
+        f"the banked bisected thresholds (amp 1e-4): {xs}")
+    for g in (0.1, 1.0):
+        lam = np.linalg.eigvals(L(Hd, adBd, 1e-4 * dd, g, 0.0, g * xs["body"] * 1.2))
+        idx = np.argsort(np.abs(lam))[:2]
+        assert float(lam[idx].real.max()) < 0, "Om0* = x* gamma at every gamma"
+
+    # [3] pairing bit-identical; strong-detector signs; anti-aligned to |c| = 30
+    r = np.random.default_rng(21)
+    for _ in range(6):
+        k = r.uniform(-3.14, 3.14, 4)
+        e1 = np.sort_complex(np.linalg.eigvals(L(Hd, adBd, -k, 0.31, -0.8, -1.7)))
+        e2 = np.sort_complex(np.linalg.eigvals(L(Hd, adBd, k, 0.31, 0.8, 1.7)))
+        assert float(np.abs(e1 - e2).max()) < 1e-11, "the pairing is exact"
+    def S_strong(Hf, adB, g, c, Om0, seed=13):
+        r2 = np.random.default_rng(seed)
+        best = (-1e9, None)
+        for _ in range(300):
+            k = r2.uniform(-3.14, 3.14, 4)
+            s = mre(Hf, adB, k, g, c, Om0)
+            if s > best[0]:
+                best = (s, k)
+        for d3 in ((1, -1, 0), (1, 0, -1), (0, 1, -1)):
+            dv = np.array([d3[0], d3[1], d3[2], 0.0]) / math.sqrt(2.0)
+            for amp in np.linspace(0.05, 0.8, 20):
+                s = mre(Hf, adB, amp * dv, g, c, Om0)
+                if s > best[0]:
+                    best = (s, amp * dv)
+        res = minimize(lambda k: -mre(Hf, adB, k, g, c, Om0), best[1],
+                       method="Nelder-Mead",
+                       options=dict(xatol=1e-9, fatol=1e-13, maxiter=400))
+        return max(best[0], -res.fun)
+    s_al = S_strong(Hd, adBd, 0.05, 2.0, 0.7)
+    s_an = S_strong(Hd, adBd, 0.05, -2.0, 0.7)
+    # the NEGATIVE claim ships with its MATCHED POSITIVE CONTROL (reviewer round-3
+    # instrument caution): the SAME detector at |c| = 30 must find the aligned
+    # instability and find nothing anti-aligned -- seen to return both answers.
+    s_al30 = S_strong(Hd, adBd, 0.05, 30.0, 0.7)
+    s_an30 = S_strong(Hd, adBd, 0.05, -30.0, 0.7)
+    assert s_al > 1e-2 and s_an < 1e-12 and s_al30 > 1e-6 and s_an30 < 1e-12, (
+        f"aligned unstable at |c| = 2 AND 30 (a strictly positive rate FOUND at "
+        f"matched |c| -- the detector returns both answers; the |c| = 30 island "
+        f"sits elsewhere in k, so the found rate is smaller); anti-aligned stable "
+        f"at both: {s_al:.2e}, {s_an:.2e}, {s_al30:.2e}, {s_an30:.2e}")
+
+    # [4] the PROVEN slow-block structure, in the STRONGEST (round-3) form:
+    # the 2x2 slow block is DIAGONAL in the FIXED, k-independent basis {B0, starB0},
+    # with <starB0|H(k)|starB0> = 12 J ktilde^2(k) identically.
+    spat = np.zeros(NG); spat[[0, 1, 3]] = 1.0
+    for adB, Hf, lbl in ((adBd, Hd, "body"), (adBa, Ha, "axis")):
+        u6 = np.linalg.svd(adB)[0]
+        kerb = u6[:, 4:]
+        P0 = kerb @ kerb.T
+        assert float(np.abs(P0 @ adB).max()) < 1e-14, "P0 ad_B0 = 0 exactly"
+        # construct the fixed kernel members from the spatial projector's 2x2
+        # restriction (SVD hands back an arbitrary rotation of the pair):
+        # starB0 = the eigenvalue-1 member (purely spatial/L-orbit), B0 = the
+        # eigenvalue-0 member (purely e4-bearing)
+        M2 = kerb.T @ np.diag(spat) @ kerb
+        w2, V2 = np.linalg.eigh(M2)
+        v_B0 = kerb @ V2[:, 0]
+        v_star = kerb @ V2[:, 1]
+        assert w2[1] > 1 - 1e-10 and w2[0] < 1e-10, (
+            f"the kernel splits EXACTLY into a purely spatial member (starB0) and "
+            f"a purely e4-bearing member (B0): eigenvalues {w2} ({lbl})")
+        for _ in range(12):
+            k = r.uniform(-3.14, 3.14, 4)
+            Hk = Hf(k)
+            tgt = 12.0 * kt2(k)
+            diag_star = complex(v_star @ Hk @ v_star).real
+            offd = abs(complex(v_star @ Hk @ v_B0))
+            assert abs(diag_star - tgt) + offd < 1e-9 * max(tgt, 1.0), (
+                f"the slow block is DIAGONAL in the fixed {{B0, starB0}} basis with "
+                f"<starB0|H|starB0> = 12 ktilde^2 identically ({lbl}): "
+                f"{diag_star} vs {tgt}, offd {offd:.1e}")
+
+    # [5] the k0-block identity at arbitrary dials
+    k0v = td * np.array([1., 1., 1., 0.])
+    w0, V0 = np.linalg.eigh(Hd(k0v))
+    U = V0[:, np.abs(w0) < 1e-9]
+    for (g, c, Om0) in [(0.7, 3.3, 0.41), (2.5, -1.2, 1.9)]:
+        blk = U.conj().T @ L(Hd, adBd, k0v, g, c, Om0) @ U
+        assert float(np.abs(blk - (-1j * Om0) * np.eye(blk.shape[0])).max()) < 1e-12, (
+            "L on ker H(+k0) = -i Om0 * identity for every (gamma, c)")
+
+    # [6] the rank statement -- and a perturbed G restores rank 6 (the check can fail)
+    u6 = np.linalg.svd(adBd)[0]
+    P_range = u6[:, :4] @ u6[:, :4].T
+    for c in (0.0, 0.5, -3.7):
+        sv = np.linalg.svd(P_range + c * adBd, compute_uv=False)
+        assert sv[-2] < 1e-12, "rank exactly 4 for every c (two exact zeros of L)"
+    sv_pert = np.linalg.svd(P_range + 0.01 * np.eye(NG) + 0.5 * adBd,
+                            compute_uv=False)
+    assert sv_pert[-1] > 1e-3, "a perturbed G restores rank 6 -- the check can fail"
+
+    # [7] the strip WITH the c-window
+    x_in = 0.5 * (xs["body"] + xs["axis"])
+    fb = f_dir(Hd, adBd, x_in, dd)
+    fa = f_dir(Ha, adBa, x_in, da)
+    assert fb > 0 and fa < 0, f"the strip is body-only at c = 0: {fb}, {fa}"
+    s_body_al = S_strong(Hd, adBd, 1.0, 2.0, x_in)   # aligned c above tiny c*(x)
+    assert s_body_al > 1e-8, (
+        "inside the strip with aligned c above c*(x) the body branch is ALSO "
+        f"unstable -- the c-window is load-bearing: {s_body_al:.2e}")
+
+    # [8] the island demonstration
+    isl = np.array([0.626, -0.465, 0.626, 0.0]); isl /= np.linalg.norm(isl)
+    S_isl = max(mre(Hd, adBd, amp * isl, 0.05, 1.4, 0.7)
+                for amp in np.linspace(0.15, 0.3, 12))
+    r5 = np.random.default_rng(5)
+    S_rand = max(mre(Hd, adBd, r5.uniform(-3.14, 3.14, 4), 0.05, 1.4, 0.7)
+                 for _ in range(150))
+    assert S_isl > 1e-2 and S_rand < 0.5 * S_isl, (
+        f"island found by template, missed by sampling: {S_isl:.2e}, {S_rand:.2e}")
+
+    return {
+        "tier": ("DERIVED-GENERIC (clock scaling) + DERIVED-A-adjacent (the proven "
+                 "slow-block structure; the marginal-set identity; the rank "
+                 "statement) + DERIVED-numeric (boundaries, branch- and "
+                 "D/J-labelled) + FIT (the 2.2 sqrt trend, worst residual +19 "
+                 "percent) + CANDIDATE (the kernel; the linear form is the probe's "
+                 "own)"),
+        "partition_2d": "(c/gamma, Om0/gamma) exactly -- gamma is a clock scale",
+        "x_star_bisected": {"body": xs["body"], "axis": xs["axis"],
+                            "amp": 1e-4, "parabola": "labeled truncation"},
+        "chirality": ("CONDITIONAL ON M-INVARIANT G (R-191's banked conditioning; "
+                      "fails at O(1e-2) for generic PSD G): pairing exact; aligned "
+                      "c*Om0 > 0 unstable; anti-aligned has NO reactive boundary "
+                      "(stable to |c| = 100); relative orientation only -- the "
+                      "invariant is c*Om0, the same B0-orientation structure as "
+                      "the GA note's J-B0 pairing"),
+        "c_boundary": ("c* = gamma h(x), continuation, confirmed from below; FIT "
+                       "~2.2 sqrt(gamma Om0), residuals +19..-0.3 percent; onset "
+                       "type-I_s stationary, exact face-diagonal ray, "
+                       "forced-real on the ray at every dial"),
+        "slow_block_proven": ("P0 ad_B0 = 0 => P0 L P0 = -gamma P0 H P0 -- an "
+                              "IDENTITY at every dial (the drive buys the "
+                              "DECOUPLING); slow block diagonal in the fixed "
+                              "{B0, starB0} basis, <starB0|H|starB0> = 12 J "
+                              "ktilde^2 EXACTLY at every k, both branches -- an "
+                              "extension of the banked DERIVED-A D=0 identity; "
+                              "supplies R-191's constants in closed form "
+                              "(A/gamma = 12; ratio 12/|curv| = 520.5/44.15); "
+                              "the 'erases DM' reading holds on ~99/~86 percent "
+                              "of a uniform BZ-box sample and FAILS along "
+                              "k || k0 (body), where the B0 diagonal entry "
+                              "governs"),
+        "marginal_set_identity": ("L|ker H(+-k0) = -+i Om0 * 1 for every gamma, c; "
+                                  "Gamma annihilated exactly; exhaustiveness: no "
+                                  "other locus in 3e4 samples + nodal probe"),
+        "selection_strip": ("x in (0.01806, 0.06127) AND the c-window: body-only "
+                            "OF THE TWO COMPUTED BRANCHES (multi-q unscanned); "
+                            "'first computed selection structure IN THE KERNEL "
+                            "PROGRAMME'"),
+        "n72_rank_form": ("THREE-FACT BRIDGE (C-4): (i) rank(P_range + c ad_B0) "
+                          "= 4 for every c -- a rank-forced zero 2-plane = "
+                          "H^-1 ker(ad_B0), SUBSTRATE-FREE, not the soft mode at "
+                          "generic k; (ii) N72's substrate fact: the soft mode "
+                          "meets ker(ad_B0) at k -> 0; (iii) the energy identity "
+                          "carries N72's no-growth conclusion. Never quote one as "
+                          "another"),
+        "gate3_prescription": ("gamma = 1 frame, relative cuts, mask {Gamma, "
+                               "+-k0} before seed-sorting; M-invariance of G is a "
+                               "PRECONDITION of the chirality partition (a "
+                               "saturating Gamma(R, rho_sat) generically breaks "
+                               "it); dial-space tongues unbarred, deficit-space "
+                               "ladder/count readings governed by T2-prime and "
+                               "N64"),
+        "governing_record": "knowledge/audit/g8_gate2_linear_2026-08-28/",
+    }
+
+
+def g8_n1_lock_phase_rotation() -> dict:
+    """[DERIVED-A-adjacent (the mobility-rotation identity and the slow-block
+    latch-invariance -- exact operator facts at every k, eta, dial) +
+    DERIVED-numeric (the fired-mode eigen-facts; the latch criterion; the
+    latch/tonic boundary map, SAMPLING-labelled) + SIM-PROVENANCE (the latch
+    event constants -- CF16-projected AND op-A-scoped, from the checkpointed N1
+    production run) + CANDIDATE (the G-8 kernel; and the OPERATIONALIZATION
+    PICK IS OPEN -- see op_menu)] SD.5 -- NONLINEAR PHASE RUN N1 (R-193): THE
+    HOMOGENEOUS-CELL ATTRACTOR -- THE EXCITABLE SPIKE-LATCH, ITS EXACT ALGEBRAIC
+    CORE, AND THE OPERATIONALIZATION MENU.
+
+    THE IDENTITY -- TWO FACTS, SPLIT (keeper C-4): (i) ALGEBRAIC, family-wide
+    (no op label, no ceiling, no rho_sat in it): the eta-shifted mobility
+    operator  L_eta(k) = -(gamma*1 + c*ad_B0) e^{-eta ad_B0} H(k) + Om0*ad_B0
+    acts on the ad_B0 = +-i eigenplanes as the scalar
+    (gamma +- i c) -> (gamma +- i c) e^{-+ i eta} -- equivalently, on those
+    planes L_eta at dials (gamma, c) IS L_0 at the rotated dials
+    (gamma cos eta + c sin eta, c cos eta - gamma sin eta): the eta-circle is
+    a PATH THROUGH R-192's own 2-D dial plane. (ii) DYNAMICAL, op A ONLY: the
+    FLOW moves the system along that circle -- pulling the driven flow to the
+    shifted body frame inserts the rotation into the mobility BECAUSE the
+    left-body placement breaks eta-equivariance; in op B/C the flow is
+    EXACTLY eta-equivariant (1.2e-14 over 2000 steps) and the dynamics never
+    leaves L_0. Seven instruments agree on (i)+(ii) in op A (GPU batch, CPU
+    trajectory, eta*(c) prediction, decay closure, the reviewer's independent
+    12x12 generator extraction at 2e-5, the meta-observer's rho-free
+    predictor at 1.5 percent, the direct numeric check here). AND THE PROVEN
+    SLOW BLOCK IS EXACTLY LATCH-INVARIANT (algebraic, family-wide):
+    P0 L_eta P0 = -gamma * P0 H(k) P0 at EVERY eta, c, k (P0 ad_B0 = 0 and
+    [P0, e^{-eta ad_B0}] = 0) -- the entire latch lives in the +-i fast
+    planes; R-192's gate-2 identity (and P3's law) cannot be touched by it.
+
+    THE MECHANISM [SIM-PROVENANCE: CF16-projected, op A]: beyond the
+    cell-projected c* the aligned-channel instability resolves as a ONE-SHOT
+    EXCITABLE SPIKE: integrate at the linear rate -> fire one stereotyped
+    spike -> pump eta (slaved, eta_dot ~ |a|^2, constant drifting 11.4-17.8)
+    -> the rotation carries the mode out of its unstable region (crossing
+    eta*(c)) -> terminate EARLY of the delayed-bifurcation entry-exit (area)
+    rule int_0^{eta_f} lambda(eta) d eta = 0, which is an UPPER BOUND on
+    eta_f (overpredicts +16.6 percent at CF16 c=12 and +102 percent at CF24
+    c=20, where the directly measured endpoint is 0.3203 = 1.35 eta*; the
+    once-quoted sqrt(c - c*) law is STRUCK, exponent 0.72 -> 0.44)
+    -> LATCH: permanence is ANALYTIC (lambda(eta_f) < 0 and eta is a neutral
+    direction of L_eta at every eta), and the DURABLE law is
+    lambda(eta_f) = the post-latch decay: -0.265242 vs -0.265243 at CF16
+    (eta_f = 0.174058, six figures) and -0.0950/-0.0951 vs
+    -0.09501/-0.09506 at CF24 (eta_f = 0.3203, a second dial). Endpoint
+    rho_sat-INDEPENDENT (<= 1 percent CF16; 5e-5 spread CF24).
+    PRIOR ART (the delta is exhibition on this substrate): excitable phase
+    slips in optically-injected lasers (Adler 1946; Wieczorek, Krauskopf &
+    Lenstra PRL 88, 063901 (2002); Kelleher et al. Opt. Lett. 34, 440 (2009));
+    the area rule is Mandel-Erneux / Baer-Erneux-Rinzel / Neishtadt
+    slow-passage theory.
+
+    THE OPERATIONALIZATION MENU (computed -- the round's banking-stopper S1
+    closed the C-32 way; the pin 'F conjugate to the banked H(k)' fixes F, NOT
+    the frame F acts in): op A body-torque-LEFT (as run) / op B
+    body-torque-RIGHT (the gradient flow) / op C spatial-torque-LEFT. All
+    three reproduce R-192's L(k) (0.4478/0.4482/0.4482 vs 0.44827) -- no gate
+    the run ran discriminates them. The dichotomy is exact: left B0-shifts are
+    an EXACT flow symmetry of B and C (1.2e-14 over 2000 steps; every bond
+    rotor commutes with exp(eta B0)) and BROKEN by A (4.8e-2) -- the latch
+    exists in op A ONLY -- and the left-B0 symmetry is one generator of the
+    EXACT 2-TORUS centralizer of B0 in SO(4) (generated by B0 AND starB0,
+    [B0u, starB0u] = 2.9e-18, exp(2*pi*B0u) = I to 5.5e-16): ops B and C are
+    equivariant under the WHOLE torus, which is WHY op B admits exact
+    relative equilibria, and the starB0 generator is the branch scan's
+    marginal coordinate -- the two banked halves of one fact (R-194).
+    Beyond c* the three members give THREE uniform-cell
+    phenomenologies: A = one-shot LATCH (Delta <= 7e-11); B = a rho-capped
+    pattern whose developed state is a RELATIVE EQUILIBRIUM -- a frozen
+    profile drifting rigidly along B0 at rate omega (T = 2*pi/|omega| ~ 34.5
+    tu at the reference dial; NOT a limit cycle, the closed orbits are
+    non-isolated gauge translates; steady in the co-rotating frame; the
+    CYCLE-AVERAGE Delta = 2*pi/(Om0*T) = omega/Om0 = +1.301e-2 and T are ONE
+    measurement; the once-quoted +1.2947e-2 is ONE CYCLE PHASE -- quote the
+    cycle-average with the period, never a point value and never a band
+    midpoint, a biased estimator, +48 percent at d/rho = 0.57; the apparent
+    intra-cycle band is >=96 percent DETECTOR GEOMETRY, the B0-plane phase
+    detector's off-origin-circle response to perpendicular-plane content,
+    physical slip modulation bounded <~1e-5 in Delta; N2D + branch scan +
+    N3/R-194, RE residual 1.1e-06 vs negative control 1.000)
+    (MEASURED ON CF16 -- the BAND-HOSTING cell, long-axis k_min = 0.278 = the
+    drive-fed band peak at this dial; cycle periods transverse-size-
+    independent on the fattened CFW16; on band-excluding cubic cells the same
+    dial/op has a deep-stable background, -5.78 cell-projected on C8, and no
+    pattern forms -- N2R keeper C-5; the numbers are the background's OWN
+    slip, never a defect frequency); C = persistent pattern with a frequency
+    SURPLUS Delta = -1.4009e-2 (NOT CYCLE-CHECKED AND NOT GEOMETRY-CHECKED --
+    a single-phase sample of an uncalibrated detector, by the same tail
+    method op B's re-cut invalidated; its (rho, d) were never measured).
+    GOVERNING RECORD adds n2d_branchscan*, n2d_branchscan_inhouse*, the
+    branch-scan review scripts and n2d_starkick* (2026-08-31).
+    Measured physical discriminators lean toward B/C (op A's gamma-channel
+    PUMPS energy at eta >~ 1.8 -- suspect for a dissipation channel; B/C keep
+    gamma strictly dissipative and the c-channel zero-work, matching R-192's
+    dissipative/reactive designations) but op A may be defended as the
+    drive/space-frame placement. THE PICK IS OPEN: branch node registered in
+    TWT_FAMILY_TREE.md. N2 (2026-08-30) RAN A and B: no defect survived in
+    either (the seeded static pi3 texture collapses at every dial -- N73), so
+    the survival observable does not discriminate; op C -- the one member with
+    a core-localized generator (Fsp = U F U^T, site-dependent exactly at the
+    core) -- UNTESTED; the live discriminator candidates are op C at a shared
+    dial and the rotating-core round. In op B the N1 prereg's registered-P4
+    phenomenology (a persistent pattern) exists and its registered-P5 deficit
+    is denied -- an UNREGISTERED finding of the N1 round (keeper C-3 re-cut).
+
+    THE LATCH CRITERION AND THE TONIC WINDOW (op A; rho-free at the
+    linear-predictor level; instrument n1_tonic_map.py, keeper-corrected):
+    LATCH iff eta_f >= eta_stab, where eta_f is the FIRED (pumping) mode's
+    entry-exit endpoint and eta_stab is the first eta with the FULL spectrum
+    quiet (max_k Re spec L_eta(k) <= 0); the failure at large c is
+    TERMINATION BEFORE FULL-SPECTRUM STABILITY (the fired-mode area closes
+    while a small-|k| face-diagonal mode is still unstable), never runaway
+    firing. The complement is the TONIC/PHASE-SLIP window with the
+    step-deficit formula Delta = -eta_step/(T * Om0) (op A; sign pinned by
+    the measured discharge: eta_dot < 0 gives Delta_inst > 0; firing EVENTS
+    are discrete, the INCREMENT is continuous -- 'quantized' applies to the
+    count only). THE MAP at x = 14, on mode sets resolving the small-|k|
+    face-diagonal channel: the latch holds from c* through c/c* ~ 2.7
+    (c = 25; three instruments agree -- meta-observer F1, keeper, and the
+    committed n1_tonic_map) and FAILS by c/c* ~ 3.3-4.4 (meta-observer and
+    keeper break at c = 30, n1_tonic_map at c = 40 -- the boundary is
+    quoted as this instrument-sensitive BOUND range because the fired-mode
+    selection is ambiguous in the multi-unstable regime; breaker channel
+    k ~ (0, 0.07-0.10, -0.07-0.10, 0)). THE PRODUCTION LATCH AT c = 12 IS
+    REAL ON THE INFINITE LATTICE (the earlier 'c_tonic(x=14) = 11.65 /
+    cell-protected / predicted tonic' reading is WITHDRAWN: an artifact of
+    integrating lambda_max, which is pinned at -O(k_min^2) beyond eta* by
+    the softest mode and cannot close on any set with a soft channel --
+    demonstrated in n1_tonic_map.log [D]). CAVEAT THAT TRAVELS: at the
+    endpoint lambda_max -> 0- as k_min -> 0 (the soft channel is O(k^2)),
+    so latch permanence is strict on a finite cell and MARGINAL in the
+    continuum limit, where the soft channel and the nonlinearity decide;
+    whether Gamma_sat arrests the tonic regime nonlinearly is OPEN. Every
+    eta*-derived number is CELL-PROJECTED (5.4x CF16 vs continuum at the
+    centerpiece dial).
+
+    FENCES: RUL-114 clause 3 honoured -- Delta tables are RAW dynamical data;
+    no mass, generation, ladder or count reading rides this primitive.
+    GOVERNING RECORD (the limit-cycle re-cut of the op-B row):
+    knowledge/audit/g8_n2d_bandhost_2026-08-30/.
+    GOVERNING RECORD: knowledge/audit/g8_n1_homogeneous_2026-08-28/ (prereg
+    c26c264; L1 REV 2; reviewer + meta-observer verdicts + the adjudication
+    with every decisive computation independently reproduced and persisted).
+
+    self-checks: the +-i-plane scalar rotation (both readings: eigenvector
+    action and the rotated-dial equality on the complex eigenplanes); the
+    slow-block latch-invariance at random (k, eta, c); the fired-mode
+    eigen-facts at the centerpiece dial (fires at eta = 0, stable at the
+    measured eta_f -- the latch criterion demonstrated on the fired mode);
+    the bond-rotor commutation root of the equivariance dichotomy."""
+    import numpy as np
+    from scipy.linalg import expm
+    from scipy.optimize import minimize_scalar
+
+    rig = _estate_d4_magnon_rig(1.0)
+    biv, E_uniform = rig["biv"], rig["E_uniform"]
+    hessian_parts, H_of = rig["hessian_parts"], rig["H_of"]
+    T, NG = rig["T"], rig["NG"]
+    D0 = 0.787
+    B0 = biv([1, 1, 1])
+    kdir = np.array([1., 1., 1., 0.])
+    t0 = float(minimize_scalar(lambda t: E_uniform(t * kdir, B0, D0),
+               bounds=(0.0, 1.2), method="bounded", options=dict(xatol=1e-13)).x)
+    on, bv, Rs = hessian_parts(t0 * kdir, B0, D0)
+    Hf = lambda k: H_of(np.asarray(k, float), on, bv, Rs)
+    adB = np.zeros((NG, NG))
+    for b in range(NG):
+        C = B0 @ T[b] - T[b] @ B0
+        for a in range(NG):
+            adB[a, b] = 0.5 * float(np.sum(T[a] * C))
+
+    def L_eta(k, eta, g, c, Om0):
+        return -(g * np.eye(NG) + c * adB) @ expm(-eta * adB) @ Hf(k) \
+            + Om0 * adB
+
+    # [1] the +-i-plane scalar rotation, both readings
+    w, V = np.linalg.eig(adB)
+    for i in range(NG):
+        if abs(w[i] - 1j) < 1e-9 or abs(w[i] + 1j) < 1e-9:
+            s = 1.0 if abs(w[i] - 1j) < 1e-9 else -1.0
+            v = V[:, i]
+            for (g, c, eta) in ((1.0, 12.0, 0.3), (0.7, -2.1, -0.9)):
+                lhs = (g * np.eye(NG) + c * adB) @ expm(-eta * adB) @ v
+                rhs = (g + s * 1j * c) * np.exp(-s * 1j * eta) * v
+                assert float(np.abs(lhs - rhs).max()) < 1e-12, (
+                    "the mobility prefactor rotates as the scalar "
+                    "(gamma +- ic) e^{-+ i eta} on the ad = +-i planes")
+                gp = g * math.cos(eta) + c * math.sin(eta)
+                cp = c * math.cos(eta) - g * math.sin(eta)
+                rhs2 = (gp * np.eye(NG) + cp * adB) @ v
+                assert float(np.abs(lhs - rhs2).max()) < 1e-12, (
+                    "on the +-i planes L_eta(g,c) is L_0 at the rotated dials")
+
+    # [2] slow-block latch-invariance at random (k, eta, c)
+    u6 = np.linalg.svd(adB)[0]
+    P0 = u6[:, 4:] @ u6[:, 4:].T
+    r = np.random.default_rng(11)
+    worst = 0.0
+    for _ in range(40):
+        k = r.normal(size=4) * 1.2
+        Hk = Hf(k)
+        for eta in (0.0, 0.17, -0.9, 1.3):
+            for c in (0.0, 12.0, -20.0):
+                Le = -(np.eye(NG) + c * adB) @ expm(-eta * adB) @ Hk + 14.0 * adB
+                worst = max(worst, float(np.abs(P0 @ Le @ P0
+                                                + P0 @ Hk @ P0).max()))
+    assert worst < 1e-11, (
+        f"P0 L_eta P0 = -gamma P0 H P0 at every eta, c, k: worst {worst:.2e}")
+
+    # [3] the fired-mode eigen-facts (centerpiece dial: CF16 c=12, x=14, op A)
+    k_f = np.array([-math.pi / 16.0, math.pi / 16.0, 0.0, 0.0])
+    eta_f = 0.174058
+    lam0 = float(np.linalg.eigvals(L_eta(k_f, 0.0, 1.0, 12.0, 14.0)).real.max())
+    lamf = float(np.linalg.eigvals(L_eta(k_f, eta_f, 1.0, 12.0, 14.0)).real.max())
+    assert abs(lam0 - 0.4482666) < 1e-4 and abs(lamf + 0.2652433) < 1e-4, (
+        f"fired-mode facts: lam(0) = {lam0}, lam(eta_f) = {lamf}")
+    assert lam0 > 0.0 > lamf, "the latch criterion, demonstrated on the fired mode"
+
+    # [4] the bond-rotor commutation root of the equivariance dichotomy
+    rod_ = lambda th: expm(th * B0)
+    assert float(np.abs(rod_(0.37) @ rod_(t0 * 1.3)
+                        - rod_(t0 * 1.3) @ rod_(0.37)).max()) < 1e-13, (
+        "every bond rotor exp((k0.b) B0) commutes with exp(eta B0) -- the root "
+        "of E/F left-invariance, hence of op B/C's exact equivariance")
+
+    return {
+        "tier": ("DERIVED-A-adjacent (the mobility-rotation identity; the "
+                 "slow-block latch-invariance) + DERIVED-numeric (fired-mode "
+                 "facts; latch criterion; boundary map, SAMPLING-labelled) + "
+                 "SIM-PROVENANCE (latch constants, CF16-projected, op-A-scoped) "
+                 "+ CANDIDATE (the kernel; the operationalization pick OPEN)"),
+        "identity": ("ALGEBRAIC half (family-wide, no rho_sat in it): "
+                     "L_eta(k) = -(gamma + c ad_B0) e^{-eta ad_B0} H(k) + "
+                     "Om0 ad_B0 acts as (gamma +- ic) -> (gamma +- ic) "
+                     "e^{-+ i eta} on the +-i planes -- the eta-circle is a "
+                     "path through R-192's 2-D dial plane. DYNAMICAL half "
+                     "(op A ONLY): the flow moves along that circle; op B/C "
+                     "are exactly eta-equivariant and do not"),
+        "slow_block_latch_invariance": ("P0 L_eta P0 = -gamma P0 H P0 at EVERY "
+                                        "eta, c, k -- the latch lives in the "
+                                        "+-i fast planes; extends R-192's "
+                                        "gate-2 identity"),
+        "fired_mode": {"k": [-math.pi / 16.0, math.pi / 16.0, 0.0, 0.0],
+                       "lam0": lam0, "eta_f": eta_f, "lam_eta_f": lamf,
+                       "decay_closure": "-0.265242 measured vs -0.265243 "
+                                        "predicted (six figures)"},
+        "op_menu": {
+            "pick": "OPEN",
+            "members": {
+                "A": "body-torque-LEFT (as run): equivariance BROKEN 4.8e-2; "
+                     "gamma-channel PUMPS at eta >~ 1.8; one-shot LATCH, "
+                     "Delta <= 7e-11",
+                "B": "body-torque-RIGHT (gradient flow): equivariance exact "
+                     "1.2e-14; gamma dissipative everywhere, c zero-work; the "
+                     "developed state is a RELATIVE EQUILIBRIUM (a rotating "
+                     "wave): a frozen profile drifting rigidly along the "
+                     "exact B0 gauge direction at omega = -0.182084, so the "
+                     "trajectory closes at T = 2*pi/|omega| = 34.507 tu -- "
+                     "but NOT a limit cycle: the closed orbits are "
+                     "NON-ISOLATED (the starB0-translate is a distinct "
+                     "closed orbit of identical period, O(1) away; min over "
+                     "the drift circle 0.62-0.74). STEADY in the co-rotating "
+                     "frame and in EVERY gauge-invariant observable. T, the "
+                     "CYCLE-AVERAGE Delta = 2*pi/(Om0*T) = +1.301e-2 "
+                     "(DEFICIT) and the wind quantum are ONE measurement "
+                     "(omega) wearing three hats; n = 1 is fixed by rho > d "
+                     "(detector clause (i)), not measured. QUOTE THE "
+                     "CYCLE-AVERAGE (total wind / total time) WITH THE "
+                     "PERIOD -- never a point value, and never a band "
+                     "MIDPOINT (a BIASED estimator: unbiased only as "
+                     "d/rho -> 0, +48 percent at d/rho = 0.57). The earlier "
+                     "point sample +1.2947e-2 is ONE CYCLE PHASE. The "
+                     "apparent intra-cycle band is >=96 percent DETECTOR "
+                     "GEOMETRY -- the B0-plane phase detector reads an "
+                     "off-origin circle, offset d = 1 - <cos beta>, radius "
+                     "rho; physical slip modulation bounded at <~1e-5 in "
+                     "Delta. RE residual certified 1.1e-06 vs negative "
+                     "control 1.000 (RUL-119). FENCE: omega is the uniform "
+                     "BACKGROUND's collective drift rate -- not a defect "
+                     "frequency, not a meta-time rotor frequency; no "
+                     "layer-crossing to mass = omega is licensed (L2-1) "
+                     "(N2D + branch scan + N3/R-194)",
+                "C": "spatial-torque-LEFT: equivariance exact 1.2e-14; gamma "
+                     "dissipative, c zero-work; persistent pattern, "
+                     "Delta = -1.4009e-2 (SURPLUS) -- NOT RE-CHECKED, "
+                     "NOT CYCLE-CHECKED AND "
+                     "NOT GEOMETRY-CHECKED: same 8-tu tail method that op "
+                     "B's re-cut invalidated, and its (rho, d) were never "
+                     "measured, so treat it as a single-phase sample of an "
+                     "uncalibrated detector until op C is continued (N2D + "
+                     "branch scan)"},
+            "linear_gate": "all three reproduce R-192's L(k) -- no run gate "
+                           "discriminates; the latch exists in op A ONLY",
+            "branch_node": "TWT_FAMILY_TREE.md (RUL-048 pattern); N2 "
+                           "(2026-08-30) ran A and B: no defect survived in "
+                           "either (N73), survival does not discriminate; "
+                           "op C untested -- the core-localized-generator "
+                           "member; live discriminators: op C at a shared "
+                           "dial, or the rotating-core round"},
+        "latch_criterion": ("(op A) LATCH iff eta_f >= eta_stab: eta_f = the "
+                            "FIRED mode's entry-exit endpoint "
+                            "(int_0^eta_f lam_fired = 0), eta_stab = first "
+                            "eta with max_k Re spec L_eta(k) <= 0; failure = "
+                            "termination before full-spectrum stability, "
+                            "never runaway; complement = the "
+                            "TONIC/PHASE-SLIP window; instrument "
+                            "n1_tonic_map.py (the lambda_max-integrand "
+                            "variant is degenerate and WITHDRAWN)"),
+        "deficit_formula": ("(op A) Delta = -eta_step/(T*Om0), sign pinned by "
+                            "the measured discharge (eta_dot < 0 => Delta > "
+                            "0); events discrete, increment continuous"),
+        "latch_window": ("at x = 14 the latch holds from c* through c/c* ~ "
+                         "2.7 (c = 25, three instruments) and fails by c/c* "
+                         "~ 3.3-4.4 (an instrument-sensitive BOUND range: "
+                         "meta-observer/keeper break at c = 30, n1_tonic_map "
+                         "at c = 40; small-|k| face-diagonal breaker). THE "
+                         "c = 12 PRODUCTION LATCH IS REAL ON THE INFINITE "
+                         "LATTICE -- the 'c_tonic = 11.65 / cell-protected' "
+                         "reading is WITHDRAWN as a lambda_max-integrand "
+                         "artifact; endpoint stability is MARGINAL in the "
+                         "continuum limit (soft channel O(k^2)); Gamma_sat "
+                         "arrest OPEN"),
+        "area_rule": ("entry-exit rule is an UPPER BOUND on eta_f, not the "
+                      "value: overpredicts +16.6 percent at CF16 c=12 and +102 "
+                      "percent at CF24 c=20 (measured endpoint 0.3203 = 1.35 "
+                      "eta*, ADJ stage-B run) -- termination is early, the "
+                      "spike's self-limiting breaks exact slaving; the durable "
+                      "law is lambda(eta_f) = the post-latch decay (six figures "
+                      "at CF16, four at CF24); 'eta_f ~ 2 eta*' fails the same "
+                      "way; sqrt(c-c*) law STRUCK (exponent 0.72 -> 0.44)"),
+        "prior_art": ("Adler 1946; Wieczorek/Krauskopf/Lenstra PRL 88 063901 "
+                      "(2002); Kelleher et al. Opt. Lett. 34 440 (2009); "
+                      "Mandel-Erneux 1987; Baer-Erneux-Rinzel 1989; Neishtadt "
+                      "-- the delta is exhibition on this substrate"),
+        "fences": ("RUL-114 clause 3: Delta tables are RAW dynamical data; no "
+                   "mass, generation, ladder or count reading rides this"),
+        "governing_record": "knowledge/audit/g8_n1_homogeneous_2026-08-28/",
     }

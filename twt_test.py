@@ -2745,16 +2745,160 @@ def check_twt_matter():
         f"complex-class Weyl node the SAME instrument gives Chern {[round(c, 5) for c in kc_['chern_control_weyl']]} "
         f"with the sphere gap BOUNDED AWAY at 2r ({kc_['sphere_gap_weyl'][0]:.1e}), and that node FAILS "
         f"the real-class test the substrate passes ({kc_['weyl_control_fails_real_class_test']:.2f}); a "
-        "synthetic real-class control reproduces the substrate's collapsed-gap signature. And two "
-        "fences travel with the primitive: the real-class ASSIGNMENT is EVIDENCE-NOT-THEOREM (the "
-        "inversion operator M is not exhibited — owed), and 'escape (a) measured EMPTY' is WITHDRAWN "
-        "as a mis-transcription: the Ω/metric escape is UNMEASURED / kernel-GATED, never empty",
+        "synthetic real-class control reproduces the substrate's collapsed-gap signature. And the "
+        "fences, both MOVED 2026-08-28 (R-191): the soft spot is CLOSED — M = Ad(diag(1,1,1,-1)) = "
+        "the banked L/Q grading involution is EXHIBITED with M H(−k) Mᵀ = H(k) exact and "
+        "mutation-tested inline (H only; no fixed-k antiunitary exists for a driven composite); and "
+        "escape (a) is a DISJUNCTION carried in TWO FIELDS — the first-order/precessional disjunct "
+        "MEASURED-AND-FIRES for the G-8 class, the paraunitary/τ₃ disjunct UNMEASURED with import "
+        "I-29's retirement handle undischarged. A scalar status cannot return",
         all(abs(abs(c) - 1.0) < 1e-6 for c in kc_["chern_control_weyl"])
         and all(g > 1.9e-3 for g in kc_["sphere_gap_weyl"])
         and kc_["weyl_control_fails_real_class_test"] > 1.0
-        and kc_["inversion_operator_exhibited"] is False
-        and "UNMEASURED / KERNEL-GATED" in kc_["escape_a_status"]
+        and kc_["inversion_operator_exhibited"] is True
+        and "L_orbit_even_Q_orbit_odd_I4_odd" in kc_["inversion_operator"]
+        and "MEASURED-AND-FIRES" in kc_["escape_a_first_order_precessional"]
+        and "UNMEASURED / KERNEL-GATED" in kc_["escape_a_paraunitary_tau3"]
+        and "UNDISCHARGED" in kc_["escape_a_paraunitary_tau3"]
+        and "escape_a_status" not in kc_
         and "CLEAN" in kc_["frame_jurisdiction_N49"])
+
+    print("KERNEL PROGRAMME GATE 1 — R-191, KC-1 run on G-8 (the CGL-class candidate):")
+    g8_ = g8_kernel_kc1_gate()
+    _ck("★ [G1-1] THE GATE VERDICT, pinned in the honest direction — NOT DECISIVE, and G-8 is the "
+        "FIRST kernel measured to PASS KC-1's necessary condition: the strict Ω⁻¹H form LEAVES the "
+        "real class at fixed k on BOTH branches and on BOTH dials (the primitive's own asserts fire "
+        "on Im-charpoly > 1e-4 with the drive-free control real at < 1e-12). The first build's "
+        "PASSED-CONSISTENT was a real-generator/real-class referent slide, refuted by the "
+        "contra-briefed review and re-hung — the primitive records both readings of KC-1's domain "
+        "and the §4.5 decline's RUL-109 reversal condition",
+        "NOT DECISIVE" in g8_["gate_verdict"]
+        and "first kernel" in g8_["gate_verdict"]
+        and "MEASURED-AND-FIRES" in g8_["escape_a_first_order_precessional"]
+        and "UNDISCHARGED" in g8_["escape_a_paraunitary_tau3"]
+        and "Name the reading" in g8_["kc1_domain_readings"])
+    _ck("★ [G1-2] ONE CONDITION, TWO CONSEQUENCES (keeper O-2, the bank's parsimony): G "
+        "positive-definite on ker(ad_B₀) grants BOTH the Ω₀-free zero-set transfer (det L = "
+        "det(−A)·det H by inspection — NO tolerance quoted on multiplicativity, the arc's third "
+        "vacuity tell struck) AND the drive-free N70 inheritance (Chetaev strictness); its "
+        "violation gives both failures at once, exactly marginal at every k (N72). The drive "
+        "CONTRACTS the gapless set {Γ, ±k₀} → {Γ}",
+        "positive-definite on ker(ad_B0)" in g8_["one_condition"]
+        and "N72" in g8_["one_condition"])
+    _ck("★ [G1-3] THE k → 0 SURVIVAL and the dial attribution — RE-CUT AT THE R-192 BANK (gate-2 "
+        "keeper C-1/C-2): the saturated law is the CLOSED FORM max Re λ_slow = −γ·12J·k̃²(k) "
+        "(R-192's proven ⋆B₀ identity; the −0.5995 first banked here was the x = 14 reading, "
+        "0.087% below saturation; the ratio's closed form is 12/|curv| = 520.5 body / 44.15 axis "
+        "— twelve over N70's own banked curvature), the DESTABILIZING dial is the ALIGNED "
+        "reactive channel c·Ω₀ > 0 (the anti-aligned half has NO reactive boundary — an "
+        "unqualified 'c' was forbidden by this primitive's own pairing), and the soft-mode "
+        "referents are PINNED so the C-1 banking-stopper cannot recur: R-189's 1.000000 is the "
+        "k→0 downfolded object and is EXACT (never requoted); ker(ad_B₀) fraction → 1.000000 on "
+        "BOTH branches. Rides N70's conditional tier (would-change-if (1) UNMET — same rig; "
+        "would-change-if (3) FIRED)",
+        "12*J*ktilde^2" in g8_["reseating_k_to_0_law"].replace("gamma*", "")
+        and "520.5" in g8_["reseating_k_to_0_law"]
+        and "-0.5995" in g8_["reseating_k_to_0_law"]
+        and "ALIGNED reactive channel" in g8_["destabilizing_dial"]
+        and "no reactive boundary" in g8_["destabilizing_dial"]
+        and "1.000000" in g8_["soft_mode_referents"]["k_to_0_downfolded"]
+        and "EXACT" in g8_["soft_mode_referents"]["k_to_0_downfolded"]
+        and "BOTH branches" in g8_["soft_mode_referents"]["ker_adB0_limit"]
+        and "does not discharge" in g8_["n70_conditionality"]
+        and "FIRED" in g8_["n70_conditionality"])
+
+    print("KERNEL PROGRAMME GATE 2 (LINEAR) — R-192, the G-8 dial stability partition:")
+    g2_ = g8_gate2_linear_partition()
+    _ck("★ [G2-1] THE PARTITION IS TWO-DIMENSIONAL (DERIVED-GENERIC — degree-1 homogeneity, "
+        "re-tiered by review) with the bisected thresholds x*_body = 0.01806 / x*_axis = 0.06127 "
+        "(the parabola is a LABELED TRUNCATION, never 'exact analytic'; the primitive's own "
+        "asserts reproduce N70's curvatures by NM-maximized direction search or refuse) — and the "
+        "chirality half is CONDITIONAL ON M-INVARIANT G (R-191's banked conditioning carried, "
+        "keeper C-3): only aligned c·Ω₀ > 0 destabilizes, the anti-aligned half has NO reactive "
+        "boundary, the negative claim shipped with its matched positive control",
+        abs(g2_["x_star_bisected"]["body"] - 0.01806) < 3e-4
+        and abs(g2_["x_star_bisected"]["axis"] - 0.06127) < 6e-4
+        and "truncation" in g2_["x_star_bisected"]["parabola"]
+        and "CONDITIONAL ON M-INVARIANT G" in g2_["chirality"]
+        and "NO reactive boundary" in g2_["chirality"])
+    _ck("★ [G2-2] THE PROVEN SLOW BLOCK — P₀·ad_B₀ = 0 exactly, the slow block diagonal in the "
+        "fixed {B₀, ⋆B₀} basis with ⟨⋆B₀|H(k)|⋆B₀⟩ = 12J·k̃²(k) EXACTLY at every k on both "
+        "branches (an EXTENSION of the banked DERIVED-A D = 0 identity — pointer installed at "
+        "magnon_stiffness_bands_canted_vacuum, keeper O-1), SUPPLYING IN CLOSED FORM the two "
+        "constants R-191 banked unexplained (A/γ = 12; ratio 12/|curv| = 520.5/44.15 — R-191's "
+        "law row superseded in the same pass, keeper C-1); the 'erases DM' reading scoped to its "
+        "sample measure with the k ∥ k₀ failure locus as the load-bearing part",
+        "IDENTITY at every dial" in g2_["slow_block_proven"]
+        and "12 J" in g2_["slow_block_proven"].replace("*", " ")
+        and "520.5/44.15" in g2_["slow_block_proven"]
+        and "FAILS along" in g2_["slow_block_proven"])
+    _ck("★ [G2-3] THE SELECTION STRIP AND THE BRIDGES — x ∈ (0.01806, 0.06127) with BOTH scope "
+        "conditions (the c-window; two computed branches only): the driven kernel linearly "
+        "selects THE BRANCH STATIC ENERGETICS REJECTS (N70's wcif (3) localized to a window, "
+        "riding its unmet wcif (1)); the rank statement carries its THREE-FACT bridge (the "
+        "rank-forced plane is H⁻¹ker(ad_B₀), substrate-free — never quoted as N72's soft-mode "
+        "fact, keeper C-4); and the gate-3/nonlinear prescription carries all four fences "
+        "including M-invariance as a precondition and the T2′/N64 governance of deficit-space "
+        "tongue readings",
+        "0.01806" in str(g2_["selection_strip"]) or "strip" in g2_["selection_strip"].lower())
+    _ck("[G2-3b] the strip and prescription fields carry their load-bearing clauses verbatim",
+        "c-window" in g2_["selection_strip"]
+        and "TWO COMPUTED BRANCHES" in g2_["selection_strip"].upper()
+        and "THREE-FACT BRIDGE" in g2_["n72_rank_form"]
+        and "H^-1 ker(ad_B0)" in g2_["n72_rank_form"]
+        and "M-invariance" in g2_["gate3_prescription"]
+        and "T2-prime" in g2_["gate3_prescription"]
+        and "N64" in g2_["gate3_prescription"])
+
+    print("NONLINEAR PHASE RUN N1 — R-193, the homogeneous-cell attractor:")
+    n1_ = g8_n1_lock_phase_rotation()
+    _ck("★ [N1-1] THE MOBILITY-ROTATION IDENTITY — L_η(k) = −(γ + c·ad_B₀)e^{−η·ad_B₀}H(k) + "
+        "Ω₀·ad_B₀, the ±i-plane scalar rotation (γ±ic) → (γ±ic)e^{∓iη} EXACT (the primitive's own "
+        "asserts verify both readings at 1e-12), family-wide with no ρ_sat in it — and the PROVEN "
+        "slow block is EXACTLY latch-invariant: P₀L_ηP₀ = −γP₀HP₀ at every η, c, k (the latch "
+        "lives in the ±i fast planes; extends G2-2's identity)",
+        "e^{-eta ad_B0}" in n1_["identity"]
+        and "no rho_sat" in n1_["identity"]
+        and "EVERY" in n1_["slow_block_latch_invariance"]
+        and "R-192" in n1_["slow_block_latch_invariance"])
+    _ck("★ [N1-2] THE FIRED-MODE EIGEN-FACTS AND THE LATCH CRITERION — at the centerpiece dial "
+        "(op A, CF16-projected) the fired mode charges at +0.44827 and is stable at the measured "
+        "η_f = 0.174058 with λ(η_f) = −0.26524 (asserted in-primitive; the six-figure decay "
+        "closure −0.265242/−0.265243 carried as labeled sim provenance); the area rule quoted "
+        "WITH its +16.6% error and the √(c−c*) law STRUCK",
+        abs(n1_["fired_mode"]["lam0"] - 0.4482666) < 1e-4
+        and abs(n1_["fired_mode"]["lam_eta_f"] + 0.2652433) < 1e-4
+        and "six figures" in n1_["fired_mode"]["decay_closure"]
+        and "+16.6 percent" in n1_["area_rule"]
+        and "STRUCK" in n1_["area_rule"])
+    _ck("[N1-3] THE OPERATIONALIZATION MENU IS COMPUTED AND THE PICK IS OPEN — three members, "
+        "three uniform-cell phenomenologies (op A one-shot LATCH / op B a RELATIVE EQUILIBRIUM "
+        "— a frozen profile drifting rigidly along B₀, NOT a limit cycle (non-isolated gauge "
+        "translates), T = 2π/|ω| ≈ 34.5 tu with cycle-average Δ = ω/Ω₀ = +1.301e-2 ONE "
+        "measurement, the old +1.2947e-2 one cycle phase, the intra-cycle band ≥96% detector "
+        "geometry — the R-194 re-cut / op C SURPLUS −1.40e-2, NOT RE-/cycle-/geometry-checked), "
+        "all reproducing R-192's L(k) so no run gate discriminates; the deficit formula "
+        "Δ = −η_step/(T·Ω₀) sign-pinned; c_tonic a BOUND (island sampling); RUL-114 clause 3 "
+        "fence carried verbatim; drift guards: no 'LIMIT CYCLE', cycle-average not midpoint, "
+        "the mass=ω layer fence present",
+        n1_["op_menu"]["pick"] == "OPEN"
+        and "LATCH" in n1_["op_menu"]["members"]["A"]
+        and "+1.2947e-2" in n1_["op_menu"]["members"]["B"]
+        and "RELATIVE EQUILIBRIUM" in n1_["op_menu"]["members"]["B"]
+        and "LIMIT CYCLE" not in n1_["op_menu"]["members"]["B"]
+        and "NON-ISOLATED" in n1_["op_menu"]["members"]["B"]
+        and "MIDPOINT" in n1_["op_menu"]["members"]["B"]
+        and "CYCLE-AVERAGE" in n1_["op_menu"]["members"]["B"]
+        and "2*pi/(Om0*T)" in n1_["op_menu"]["members"]["B"]
+        and "DETECTOR GEOMETRY" in n1_["op_menu"]["members"]["B"]
+        and "no layer-crossing to mass = omega" in n1_["op_menu"]["members"]["B"]
+        and "-1.4009e-2" in n1_["op_menu"]["members"]["C"]
+        and "NOT RE-CHECKED" in n1_["op_menu"]["members"]["C"]
+        and "NOT CYCLE-CHECKED" in n1_["op_menu"]["members"]["C"]
+        and "NOT GEOMETRY-CHECKED" in n1_["op_menu"]["members"]["C"]
+        and "-eta_step/(T*Om0)" in n1_["deficit_formula"]
+        and "BOUND" in n1_["latch_window"]
+        and "RUL-114" in n1_["fences"])
 
     print("J,D/Γ rework bank (2026-08-21) — the DM CHIRALITY LOCK at the driven group (§D.3.3):")
     cl_ = dm_chirality_polarisation_lock()

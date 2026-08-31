@@ -315,4 +315,9 @@ coaching (round-6 lesson, 2026-08-27): the send instructs the reviewer to STATE 
 it is reviewing.** Ground: a round-6 cold return fabricated its entire repository layer from
 training-data-era state (three false missing-file claims, a byte-exact stale count) while its
 hand-computed mathematics was clean - the contamination-watch scenario observed. A stated hash
-voids a stale review in one line; a return that cannot state one has not fetched the artifact.
+voids a stale review in one line; a return that cannot state one has not fetched the artifact. **CORRECTED SAME DAY (the human coordinator): the cache is not conditional - web-based
+instances hit it FOR SURE, so the rendered github.com pages are the guaranteed-stale path and
+the raw endpoints are the PRIMARY route, not a fallback. Consequence: the in-repo fetch guidance
+is itself unreachable through the cached path, so THE SEND PROMPT CARRIES THE INSTRUCTION - the
+send tells the reviewer to fetch via raw.githubusercontent.com or the codeload tarball, verify
+against MANIFEST.sha256, and state the hash. This is logistics, not coaching.**

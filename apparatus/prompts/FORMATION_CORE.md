@@ -585,7 +585,7 @@ producing a giant phantom diff.
 **HARD (banked):** `CLAUDE.md` (canon), `knowledge/corpus/{twt.py, twt_core.py,
 twt_candidate_v3.py, twt_companion.py, twt_test.py, twt_companion_test.py, paper, companion}`,
 the ledgers, and
-the two suites (536 + 87 = 623 as of 2026-08-27).
+the two suites (546 + 90 = 636 as of 2026-08-31).
 **TWO SPLITS, TWO INVARIANTS (the second new 2026-08-23, RUL-093/RUL-095):** MAIN never calls
 COMPANION; and **CORE never consumes CANDIDATE** — `twt.py` is a pure import FACADE over
 `twt_core.py` (family level) and `twt_candidate_v3.py` (everything consuming a V3 pick), with an

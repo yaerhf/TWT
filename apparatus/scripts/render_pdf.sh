@@ -222,12 +222,7 @@ else
            pdf_unescape_pipes.lua render_paper.sh render_pdf.sh verify_pdf.py; do
     cp "scripts/$s" "$MIRROR/apparatus/scripts/$s"
   done
-  # MANIFEST (round-6 reviewer proposal, adopted 2026-08-27): a root checksum
-  # manifest so a reviewer can verify that what they fetched matches what was
-  # shipped — converts a stale-cache fetch from invisible to loud. Regenerated
-  # LAST, after every sync copy above, so it covers the shipped state.
-  ( cd "$MIRROR" && git ls-files --cached --others --exclude-standard \
-      | grep -v '^MANIFEST\.sha256$' | sort | xargs sha256sum > MANIFEST.sha256 )
+  # (MANIFEST regeneration moved below the git add — see the round-7 note there.)
   # Suite-count drift guard. The README QUOTES each harness's own pass line for a
   # reviewer to compare against their terminal, so the two lines are checked
   # SEPARATELY against their own harness — not against the combined total. (The
@@ -245,6 +240,16 @@ else
     echo "WARNING: mirror README quotes $CCOUNT companion checks, harness prints $CHECKSC — fix README before pushing."
   fi
   git -C "$MIRROR" add -A
+  # MANIFEST (round-6 proposal, adopted 2026-08-27; LINE-ENDING FIX round 7, same
+  # day: the first generation hashed WORKING-TREE files, so 20 CRLF files
+  # mismatched on every Linux clone and the alarm was always-on — the round-7
+  # reviewer's finding). Hash the STORED BLOBS from the index instead: that is
+  # byte-identical to what raw.githubusercontent serves and to a checkout
+  # without line-ending conversion, which §0 names as the verification surface.
+  ( cd "$MIRROR" && : > MANIFEST.sha256 && git ls-files --cached \
+      | grep -v '^MANIFEST\.sha256$' | sort | while IFS= read -r f; do
+        printf '%s  %s\n' "$(git cat-file blob ":$f" | sha256sum | cut -d' ' -f1)" "$f"
+      done > MANIFEST.sha256 && git add MANIFEST.sha256 )
   if git -C "$MIRROR" diff --cached --quiet; then
     echo "Mirror already current — nothing to push."
   else

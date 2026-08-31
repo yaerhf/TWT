@@ -32,7 +32,7 @@ pip install -r requirements.txt
 python twt_test.py
 ```
 
-Expected output: `ALL 536 CHECKS PASSED across 10 modules.` (On Windows, set `PYTHONUTF8=1` first.)
+Expected output: `ALL 546 CHECKS PASSED across 10 modules.` (On Windows, set `PYTHONUTF8=1` first.)
 
 The engine is split in two. `twt_test.py` above runs the **main** harness; the deep-dive layer
 has its own:
@@ -41,7 +41,7 @@ has its own:
 python twt_companion_test.py
 ```
 
-Expected output: `ALL 87 COMPANION CHECKS PASSED across 7 modules.` — 584 checks in total.
+Expected output: `ALL 90 COMPANION CHECKS PASSED across 7 modules.` — 636 checks in total.
 
 > **The research OS this programme runs on is published generically at [github.com/yaerhf/research-ratchet](https://github.com/yaerhf/research-ratchet) — instantiable in one paste.**
 
@@ -176,5 +176,19 @@ Open an issue or email the address above.
 This is a framework under construction, and it says so throughout. The open frontier — the
 driven-dissipative substrate dynamics that gates every coupling magnitude — has its own section
 in the dossier (§D.5), and the named structural premises on which otherwise-derived results still
-rest are tabulated at §E.2.2. Citation verification against primary sources is in progress
+rest are tabulated at §E.2.2.
+
+That frontier is where the current work is. A first concrete candidate kernel is being run
+against preregistered questions, and its beyond-threshold state has been characterised: it is a
+**relative equilibrium** — a frozen pattern drifting rigidly along an exact gauge direction of the
+flow, steady in the co-rotating frame and in every gauge-invariant observable — so its whole
+dial-space content is one number, the drift rate. Three findings from that work are worth a
+reader's attention because they are the kind this repository exists to make checkable: the
+candidate exhibits **no mode-locking** anywhere it has been mapped (the well-posed question turned
+out to be a drift bifurcation, not an Arnold tongue); a seeded topological defect **does not
+survive** on it, statically or rotationally, which is a recorded negative and not a pending
+result; and two measurement instruments the programme had trusted were found to be reading their
+own geometry rather than the physics, which is now guarded by executable rules rather than by
+prose. None of this is a claim about nature — the kernel is a candidate, its layer is the lattice
+grain, and every number carries that label in the ledgers. Citation verification against primary sources is in progress
 at this revision; the dossier flags the affected citations in place.

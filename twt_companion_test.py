@@ -18,6 +18,38 @@ _check = _ck
 
 # ---- twt_algebra (companion blocks) ----------------------------------------
 def check_twt_algebra():
+    re_ = g8_opB_gauge_torus_relative_equilibrium()
+    _ck("★ THE op-B GAUGE TORUS AND THE RELATIVE EQUILIBRIUM (R-194, 2026-08-31): the centralizer "
+        "of B₀ in SO(4) is an exact 2-torus {B₀, ⋆B₀} (comm < 1e-15; exp(2πB₀u) = I < 1e-12) under "
+        "which ops B/C are exactly equivariant — so relative equilibria exist generically and are "
+        "indistinguishable from limit cycles to every fixed-projection instrument (three-term "
+        "Fourier asserted); the modulus-folding wall |c₀| ≤ |c₊|+|c₋| forces a T/2 read (RUL-118 "
+        "ground); the RE residual discriminates developed (2e-6…8e-5) from control (1.000/0.578) "
+        "states (RUL-119 instrument); 'limit cycle' is a MISLABEL — closed but NON-ISOLATED orbits",
+        "2-torus" in re_["torus"]
+        and "MISLABEL" in re_["re_vs_limit_cycle"]
+        and "NON-ISOLATED" in re_["re_vs_limit_cycle"]
+        and "RUL-118" in re_["folding_wall"]
+        and re_["re_residual"]["developed_max"] < 1e-3
+        and re_["re_residual"]["neg_control_seeded"] >= 0.99
+        and "RUL-119" in re_["duty"])
+
+    wq = b0_plane_detector_wind_quantum()
+    _ck("★ THE B0-PLANE DETECTOR WIND QUANTUM (branch-scan bank 2026-08-31, DERIVED-A instrument "
+        "algebra): phase_g reads an off-origin circle (radius ρ, offset d = 1−⟨cos β⟩) — winding "
+        "transition wind/rev = 1 iff ρ > d else 0 (reading VOID at ρ ≤ d); on a limit cycle "
+        "Δ_cycle = 2πn/(Ω₀T) with n INTEGER (measured n = 1, three runs/two cells) so the slip is "
+        "a period and an integer, not a free number; the band MIDPOINT is a biased estimator "
+        "(≥1.4× at d/ρ = 0.57 — quote cycle-averages only); measured closure: REF 6.2784 passes, "
+        "D 6.3057 does not (transient-vs-attractor OPEN). Adler 1946 / Kralemann–Rosenblum–"
+        "Pikovsky 2008 prior-art anchored",
+        wq["midpoint_bias_at_d_over_rho_0.57"] >= 1.4
+        and "n integer" in wq["wind_quantum"]
+        and "VOID" in wq["winding_transition"]
+        and abs(wq["closure_REF"] - 6.2784) < 1e-3
+        and abs(wq["closure_D"] - 6.3057) < 1e-3
+        and "never a band midpoint" in wq["duty"])
+
     srp = single_relaxation_family_exclusion_probe()
     _ck("★ Phase B / B2 — the SINGLE-RELAXATION FAMILY-EXCLUSION PROBE (the 'unspent 2b move', spent) "
         "[FRAMING/CANDIDATE-family-exclusion]: the simplest causal kernel χ(ω)=χ₀/(1−iωτ) (Debye) is a "
@@ -88,6 +120,22 @@ def check_twt_algebra():
 
 # ---- twt_observer_qm (companion blocks) ----------------------------------------
 def check_twt_observer_qm():
+    td = two_defect_tensor_complex_space()
+    _ck("★ TWO-DEFECT TENSOR COMPLEXIFICATION (2026-08-31, DERIVED-A pointwise / generic-given-two-"
+        "complex-structures): all 9 winding-blade pairs give ker(J₁⊗I − I⊗J₂) exactly 8-real-dim = "
+        "ℂ²⊗ℂ² (the two-qubit space; tr K = 0 forces the 8/8 split for ANY pair — the blades don't do "
+        "the work); same-blade swap splits 3+1 with the singlet Λ² one complex dim; distinct-blade "
+        "identification NON-CANONICAL (U(1) per pair — the CP¹-candidate connection seed) yet the "
+        "singlet SLOT is choice-invariant (~7e-16). SCOPE banked with it: pointwise only — the "
+        "bundle-level global-choice (Hopf) question untouched; N53 NOT unbanked; no photon claim",
+        all(v == 8 for v in td["dims_all_9_pairs"].values())
+        and len(td["dims_all_9_pairs"]) == 9
+        and "singlet Lambda^2 one complex dim" in td["structure"]
+        and "choice-invariant" in td["identification"]
+        and td["slot_invariance_dev"] < 1e-12
+        and "N53 NOT unbanked" in td["scope"]
+        and "GENERIC" in td["tier"])
+
     tun = tunneling_evanescent_decay_constant()
     _ck("★ WP-TUN-1 RESOLVED — the §B.3.6 tunneling decay constant [DERIVED-A]: the forbidden-region "
         "recovery of κ = √(2m(V−E))/ℏ is EXACT in the non-relativistic (Schrödinger) limit (0%, NOT 5% — "
