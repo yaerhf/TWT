@@ -1,4 +1,7 @@
-# FORMATION CORE — v1.7 (2026-08-27; DIRECTED ALIGNMENT EVENT — the human coordinator's V4-alignment
+# FORMATION CORE — v1.8.1 (2026-09-22; DIRECTED — the coordinator's word, the paper sync: the ENDORSED count at every site, §0 only — NINE standing, S5-LOCAL added; nothing else changed; the consolidation ritual stays OWED.) v1.8 (2026-09-15/16; DIRECTED — the human coordinator's energy-face rule **COST ≠ ROTOR RATE**
+(RUL-133; the inside face's word and the bare-'rate' ban approved 2026-09-16), executed on his word outside a scheduled consolidation: §1 gains the two words and §4 the
+trap, nothing pruned; the consolidation ritual stays OWED. Prior header, kept verbatim:)
+# v1.7 (2026-08-27; DIRECTED ALIGNMENT EVENT — the human coordinator's V4-alignment
 directive, executed on his word OUTSIDE a scheduled consolidation; the full consolidation ritual —
 removal auditor, archivist pass, M1 judgment — stays OWED at the next scheduled consolidation and is
 NOT discharged by this bump.
@@ -15,6 +18,14 @@ Governing record: `knowledge/audit/v4_population_audit_2026-08-27/FORMATION_ALIG
 Prior versions — v1.6 (2026-08-25 consolidation close), v1.5 (2026-08-21, RUL-082/RUL-084
 dependent-list execution), v1.4 (2026-08-21 consolidation close), v1.3 (mid-arc amendment) —
 carried in §0–§6, not in this header.)
+
+> **THE PROGRAMME'S NAME IS *THEORY OF WAVE-TIME* (TWT) — coordinator-directed 2026-09-06.** Read the
+> name as its own first sentence: the noun is TIME and the modifier is WAVE, in the shape of *spacetime* —
+> a proposal about what time IS, which is §1's opening line, "Time is an advancing wave." It is NOT a
+> theory of "time-waves" (a kind of wave propagating somewhere): that older word order named a thing and
+> invited the wrong reading, and it is being swept out of the live prose (worklist DOCKET #0; archives and
+> dated records keep the name they were written under). The acronym is unchanged, so every identifier —
+> `twt`, `TWT_*`, the directories, the mirror `yaerhf/TWT` — stays exactly where it is.
 
 > **What this is:** the shared formation prefix for FLUENT WORKER instances — the distillate
 > of the HARD (banked) content, ordered shared-first for prompt caching. It is versioned;
@@ -151,11 +162,12 @@ V3-11 (fermionic quantization = the Finkelstein–Rubinstein scheme) was added a
 stamping by the keeper sweep's finding F4, which caught a load-bearing pick carrying **no
 stamp at all**; it has since been **stamped PINNED (RUL-063)**. Quote the tally as *at
 stamping* and the node count as *current*.
-ENDORSED = preferred directions family members may diverge on — **eight as stamped, EIGHT as now
-standing, with ONE SUBSTITUTION** (grain discreteness · Skyrmion-class defects · carrier structure ·
+ENDORSED = preferred directions family members may diverge on — **eight as stamped, NINE as now
+standing, with ONE SUBSTITUTION and ONE ADDITION** (grain discreteness · Skyrmion-class defects · carrier structure ·
 measured-`G` anchor practice · Koide `c = √2` · `m = E₀` · generations = ℍ-triple + associativity ·
 **`A-P2`, the weak-hosting premise — stamped ENDORSED 2026-08-21, RUL-084, into the slot `weak = SD`
-vacated**).
+vacated** · **the site as an active element, S5-LOCAL — stamped ENDORSED 2026-09-17, RUL-135, its
+limit-cycle-engine scope promoted by RUL-139(a): an ADDITION, not a substitution**).
 **★ weak = SD WAS THE EIGHTH AND IS PROMOTED OUT (RUL-082 — C-32's first live case).** Do not carry
 it as an endorsement. The complete menu of 3-dim `su(2)` hosts inside grade-2 `so(4)` is **COMPUTED
 closed at three conjugacy classes** {SD, ASD, the diagonal `so(3)` class of which the L-orbit is one
@@ -210,7 +222,11 @@ consequence is the pivot's motivating error. **Promoting a menu item to a load-b
 requires (RUL-048, the COMMITMENT BUDGET):** (i) a named result that needs it, (ii) a
 same-pass BRANCH NODE in the family tree (menu + revert clause), and (iii) for CORE-touching
 picks, the human coordinator's **plain-language** sign-off *before* the pick — the standing
-translation duty: a ruling the coordinator cannot parse is not a presented ruling. A silent
+translation duty: a ruling the coordinator cannot parse is not a presented ruling; and (RUL-136, 2026-09-18) every
+coordinator-facing report ends with a `[PLAIN TERM SUMMARY]` whose lines open **Good news:** / **Bad news:** (the
+rest **Next:** / **Needed from you:**) — a point that is both is two points, 'Bad news: none' is said out loud, no artificial
+doubt is manufactured to provoke the coordinator's intervention (he intervenes when he sees fit), and a claim's real
+conditioning class and tier stay. A silent
 load-bearing pick is a banking-stopper of the unregistered-import class.
 
 ---
@@ -234,11 +250,15 @@ commuting or not — and so do `m = E₀`, π₃/charge, 3/8, the generation cou
 the grant costs: the RATIO is ONE counted real, **kernel-routed and UNPINNED**; `ω = F(θ)` is a
 #1-gap IOU with NO banked candidate; and matter-wave amplitude beating `|cos(Ωt/2)|` is a LIVE
 exposure until C1 answers (the lock-kills-the-beat escape is ASSERTED, not computed).
-**Mass = the meta-time rotor frequency ω** (inside face);
-the outside face is the ELASTIC COST E₀ of the shape — an identification carried by the BANKED,
+**Mass = the meta-time rotor frequency ω** (inside face — the ROTOR RATE);
+the outside face is the ELASTIC COST E₀ of the shape (the COST) — an identification carried by the BANKED,
 COUNTED premise **m = E₀** (`mass_equals_elastic_cost_premise`; vacuum-subtracted, v = 0
 reading; adjacent to — never closing — R-123 residue (ii)/N57/C-7). **The two energies are
-different objects, and BOTH have laws under motion:** the observer's γ-scaling lives in the
+different objects, and BOTH have laws under motion — SAY WHICH ONE, ALWAYS (RUL-133, COST ≠ ROTOR RATE): the
+outside-frame energy is the COST (bond energy and its excess: E_exc, E_int, E_PN, E₀, the 3-slice cost),
+the inside-frame energy is the ROTOR RATE (ω, the RE rates ω_B₀/ω_⋆B₀, the observer's phase rate); a bare
+"energy" is not a claim word and neither is a bare "rate" (a growth / decay / drift / hop rate says which it is), a sentence that crosses the faces names the m = E₀ bridge and whether it
+reaches the object, and a flat COST never implies a flat RATE:** the observer's γ-scaling lives in the
 dispersion of solutions (banked mass shell, R-017/R-132 with named conditions (P)/(I)); the
 outside 3-slice cost of the tilted-worldtube family obeys **E(v) = E₀·√(1+v²)** (slice-measure
 identity, R-169 — the Euclidean sibling of γ; the co-rotated slice is the E = E₀ tautology and
@@ -478,6 +498,8 @@ move, not a rejection), and no verdict-level degradation followed from being rul
 one finding neither class conceded was the one whose evidence could not be reached.** Fact-register
 answers work exactly as far as the facts are reachable, and no further; stance-register answers fail.
 
+**THE APPARATUS TOOLS EVERY AGENT USES (ported from research-ratchet 2026-09-17 on the coordinator's word; each gate-checked with planted demonstrations):** (1) **THE DISPATCH LOG** `knowledge/ledgers/DISPATCH_LOG.tsv` — whoever dispatches a checker appends ONE ROW BEFORE the dispatch (utc, role, checker class, author class, claim, the verdict word to be filled, the verdict path it will write); UNKNOWN counts as SAME-class; the path is a pointer, never a copy; the gate refuses a verdict file with no row. (2) **THE CROSS-CLASS SIGNAL** — telemetry signal 5 reads that log at every bank (reports, never gates; an empty log prints UNMEASURED): RUL-045/065 is measured there, not asserted. (3) **THE PATHS LEDGER** `knowledge/ledgers/TWT_PATHS_LEDGER.md` — what was SEEN and not taken, ranked per FORK, every LIVE row with the condition under which it becomes first choice; **THE DEATH TRIGGER**: a pass that banks a negative (FALLS, RETURNED, REFUTED, CLOSED) re-ranks that negative's fork in the same pass. (4) **THE DESIGN-REVIEW VOCABULARY** (RUL-134 as amended): a design verdict carries exactly one of APPROVED-AS-IS / APPROVED-WITH-AMENDMENTS / RETURNED, opens with the three questions, constrains rather than designs, and a RETURNED instrument ships showing it can fail on the null; and every registered analytic, floor, bar, expected value and comparandum in a design is computed through the instrument's own pipeline before the freeze, with the call printed and the independent analytic registered beside it (the yardstick clause, 2026-09-18) (5) **THE APPARATUS COMPARISON** `knowledge/audit/apparatus_compare_2026-09-17/` records what was ported, what was declined and why.
+
 **CROSS-CLASS IS REQUIRED FOR INTERNAL CHECKING (RUL-045 as scope-corrected by RUL-065).** The
 §8a roles run on a **different class than whoever AUTHORED the work** — keyed on authorship, not
 on who dispatches — because **self-preference is real and same-class review is close to useless**
@@ -543,9 +565,15 @@ with the binding rider that the hook's cheapness is **borrowed against two unbui
 
 ## 4. TRAPS AND CONVENTIONS (each cost real time)
 
-**THE FREEZE IS A SOLO COMMIT.** A probe's pre-registration is committed **ALONE — before any script
-exists and before any empirical fetch** — so the witness is cryptographic instead of a filesystem
-mtime the author can set at will (two clean outings: `3bef8a6`, `7e162d5`). **And the freeze covers
+**THE FREEZE IS A SOLO COMMIT.** A probe's pre-registration is committed **ALONE — before the REAL
+CASE'S OUTPUT exists and before any empirical fetch** — so the witness is cryptographic instead of a filesystem
+mtime the author can set at will (two clean outings: `3bef8a6`, `7e162d5`). **The property, not the proxy
+(2026-09-18, the yardstick clause):** 'before any script exists' protected one thing — that the author has not seen
+the real case's outcome — and the proxy is retired: a pipeline MUST exist and run on the controls, plants and
+comparanda before the freeze, every registered analytic / floor / bar / expected value / comparandum carries the
+pipeline CALL that produced it (a number with no call is [UNPIPELINED]), and the independent analytic is registered
+beside the pipeline's value with their gap explained (the t = 60 read's D-21: a correct instrument failed a bare
+yardstick — a FALSE FAIL, the class this apparatus under-weights). **And the freeze covers
 the CITATIONS, not only the tests:** the Geiger–Nuttall probe's one leak was a licence line the
 frozen file got right and the reporting memo dropped.
 `PYTHONUTF8=1 bash scripts/bank.sh "msg"` — no backticks in messages (the shell eats the
@@ -564,7 +592,9 @@ keys = {12,13,14,23,24,34}; boosts `B = exp(ζe₁/2)` are hyperbolic, mixed-par
 rotors, and conjugation by them leaks grade-2 → grade-1 on ALL THREE e₁-blades (banked
 identity: `|g₂(BAB⁻¹)|² = |A_⊥|² + cosh²ζ|A_∥|²`). **Equal-weight angular quadrature is a
 trap** — the 14-point (6 axis + 8 diagonal) rule needs Lebedev weights 1/15 and 3/40 (equal
-weights bit the quartic sector ~25% at c₄*). **A 3-slice cost, a co-rotated-slice cost, and
+weights bit the quartic sector ~25% at c₄*). **COST ≠ ROTOR RATE (RUL-133): "energy" bare is a
+trap, and so is "rate" bare (the ROTOR rate is the inside face; growth / decay / drift / hop rates are kinematic) — a K2 of 2026-09-15 read E_exc flat through a burst and offered it as excluding an inside-frame
+exchange while the rate ω had never been read; name the face, every time.** **A 3-slice cost, a co-rotated-slice cost, and
 the 4-volume action are THREE different integrals** — name which one before quoting any
 invariance or velocity law. Suite/primitive counts are refreshed by COUNTING, never
 incrementing. Hand-chosen profiles (`π·e^{−r}`) are witnesses, not solutions — quantitative
@@ -585,7 +615,7 @@ producing a giant phantom diff.
 **HARD (banked):** `CLAUDE.md` (canon), `knowledge/corpus/{twt.py, twt_core.py,
 twt_candidate_v3.py, twt_companion.py, twt_test.py, twt_companion_test.py, paper, companion}`,
 the ledgers, and
-the two suites (546 + 90 = 636 as of 2026-08-31).
+the two suites (547 + 121 = 668 as of 2026-09-22).
 **TWO SPLITS, TWO INVARIANTS (the second new 2026-08-23, RUL-093/RUL-095):** MAIN never calls
 COMPANION; and **CORE never consumes CANDIDATE** — `twt.py` is a pure import FACADE over
 `twt_core.py` (family level) and `twt_candidate_v3.py` (everything consuming a V3 pick), with an
@@ -607,7 +637,7 @@ canon §4's targeted read is unchanged**) · **`TWT_WINS_LEDGER.md`** (**wins re
 twelve ledgers recorded failure and none recorded a result; a row here NEVER upgrades a tier, tiers
 live in the companion**) · `TWT_STRATEGIC_MAP.md` · `TWT_worklist.md` (docket + the **meaning-notes region**,
 coordinator-endorsed, never to be compressed) · `TWT_RULING_REGISTER.md` (rulings in force +
-revert lists) · `TWT_CHECKER_CALIBRATION.md` · `TWT_EDIT_REACTION_LEDGER.md` ·
+revert lists) · `TWT_CHECKER_CALIBRATION.md` · `TWT_PATHS_LEDGER.md` (what was SEEN and not taken, ranked per FORK with a promotion condition per LIVE row; the DEATH TRIGGER: a banked negative re-ranks its fork in the same pass; ported from research-ratchet 2026-09-17) · `DISPATCH_LOG.tsv` (one row per checker dispatch, appended at dispatch; the cross-class telemetry's source) · `TWT_EDIT_REACTION_LEDGER.md` ·
 `TWT_COMPARATIVE_LEDGER.md` · `TWT_FAMILY_TREE.md` · `TWT_PHILOSOPHER_LOG.md` ·
 `TWT_REVERSAL_LEDGER.md` (**positions the programme changed and what changed them — read it early; it is the fastest way to learn how this programme actually corrects itself**) ·
 `TWT_EOM_MAP.md` (**missed for a whole sweep round once — include it**) ·

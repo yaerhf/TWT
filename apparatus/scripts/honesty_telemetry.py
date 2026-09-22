@@ -326,7 +326,72 @@ def sig_prereg():
 FIELDS = ["verdicts", "rounds", "repeat_claims", "deleted_verdicts",
           "rul_force", "rul_covered", "rul_self", "rul_offsite", "rul_ground",
           "refut_w0", "refut_w1", "refut_w2", "neg_last", "neg_days", "calib_30d",
-          "reversals", "prereg_strict", "prereg_any", "stake_rounds"]
+          "reversals", "prereg_strict", "prereg_any", "stake_rounds",
+          "xc_checks", "xc_same", "xc_same_clear", "xc_unattr"]
+
+
+
+# ---- SIGNAL 5 — CROSS-CLASS (ported from research-ratchet 2026-09-17; RUL-045/065) ------
+DISPATCH_LOG = ROOT / "knowledge" / "ledgers" / "DISPATCH_LOG.tsv"
+CLEAR_WORDS = ("HOLDS", "CLEAR", "COHERENT", "APPROVED")
+
+
+def _same_class(checker, author):
+    """UNKNOWN counts as SAME-class: an unattributable dispatch is not evidence of
+    independence (the ratchet's fence; its own first implementation scored 1/3 where
+    the honest answer was 2/3 — the metric built to catch flattery flattering itself)."""
+    c, a = (checker or "").strip().lower(), (author or "").strip().lower()
+    return (not c) or (not a) or c == "unknown" or a == "unknown" or c == a
+
+
+def crossclass_from_rows(rows):
+    n = same = same_clear = unattr = 0
+    for r in rows:
+        n += 1
+        if _same_class(r.get("checker"), r.get("author")):
+            same += 1
+            if any(w in (r.get("verdict") or "").upper() for w in CLEAR_WORDS):
+                same_clear += 1
+        if (r.get("checker") or "").strip().upper() in ("", "UNKNOWN") or (r.get("author") or "").strip().upper() in ("", "UNKNOWN"):
+            unattr += 1
+    return dict(xc_checks=n, xc_same=same, xc_same_clear=same_clear, xc_unattr=unattr)
+
+
+def _dispatch_rows(text):
+    rows = []
+    for line in (text or "").splitlines():
+        if not line.strip() or line.startswith("#") or line.startswith("utc\t"):
+            continue
+        f = line.split("\t")
+        if len(f) < 7:
+            continue
+        rows.append(dict(utc=f[0], role=f[1], checker=f[2], author=f[3], claim=f[4], verdict=f[5], path=f[6]))
+    return rows
+
+
+def sig_crossclass():
+    """Reports at every bank and never gates. An empty or missing log prints UNMEASURED,
+    never a healthy-looking zero."""
+    if not DISPATCH_LOG.exists():
+        return {}, [" 5 CROSS-CLASS       RUL-065 is UNMEASURED — no dispatch log (knowledge/ledgers/DISPATCH_LOG.tsv)"]
+    rows = _dispatch_rows(DISPATCH_LOG.read_text(encoding="utf-8"))
+    if not rows:
+        return {}, [" 5 CROSS-CLASS       RUL-065 is UNMEASURED — the dispatch log has no rows"]
+    v = crossclass_from_rows(rows)
+    frac = v["xc_same"] / max(v["xc_checks"], 1)
+    lines = [f" 5 CROSS-CLASS       {v['xc_checks']} dispatches logged; SAME-class (UNKNOWN counts as same) {v['xc_same']} "
+             f"({100 * frac:.0f} %), of which CLEAR/HOLDS {v['xc_same_clear']} (no information, RUL-065); unattributed {v['xc_unattr']}",
+             "    a same-class CLEAR is never recorded as a passed review; a rising same-class fraction is the signal"]
+    return v, lines
+
+
+def self_test():
+    """the planted demo (2B): opus/UNKNOWN must score SAME-class; opus/fable must not."""
+    rows = [dict(checker="opus", author="fable", verdict="HOLDS"), dict(checker="opus", author="UNKNOWN", verdict="CLEAR"),
+            dict(checker="fable", author="fable", verdict="REFUTED")]
+    v = crossclass_from_rows(rows); ok = v == dict(xc_checks=3, xc_same=2, xc_same_clear=1, xc_unattr=1)
+    print(f"  TELEMETRY SELF-TEST: {'OK ' if ok else 'FAIL'} opus/UNKNOWN scored same-class, opus/fable cross-class: {v}")
+    sys.exit(0 if ok else 1)
 
 
 def append_log(vals, asof):
@@ -343,7 +408,11 @@ def append_log(vals, asof):
                 "# Consecutive runs with identical values collapse to one row. Do not hand-edit.\n"
                 "date\thead\t" + "\t".join(FIELDS) + "\n", encoding="utf-8")
             prev = []
-        tail = [l for l in prev if l and not l.startswith("#")]
+        hdr = "date\thead\t" + "\t".join(FIELDS)
+        hi = next((k for k, l in enumerate(prev) if l.startswith("date\thead")), None)
+        if hi is not None and prev[hi] != hdr:            # new columns: rewrite the header; old rows keep fewer cells
+            prev[hi] = hdr; LOG.write_text("\n".join(prev) + "\n", encoding="utf-8")
+        tail = [l for l in prev if l and not l.startswith("#") and not l.startswith("date\thead")]
         if tail and tail[-1].split("\t")[2:] == row[2:]:
             return "unchanged"
         with LOG.open("a", encoding="utf-8") as fh:
@@ -357,14 +426,17 @@ def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("--no-log", action="store_true", help="emit only; do not append history")
     ap.add_argument("--asof", default=None, help="YYYY-MM-DD; moves the rolling windows")
+    ap.add_argument("--self-test", action="store_true", help="the planted cross-class demo; exits")
     a = ap.parse_args()
+    if a.self_test:
+        self_test()
     try:
         asof = _dt.date.fromisoformat(a.asof) if a.asof else _dt.date.today()
     except ValueError:
         asof = _dt.date.today()
 
     vals, lines = {}, []
-    for fn in (sig_verdicts, sig_grounds, lambda: sig_refutation(asof), sig_prereg):
+    for fn in (sig_verdicts, sig_grounds, lambda: sig_refutation(asof), sig_prereg, sig_crossclass):
         try:
             v, l = fn()
         except Exception as e:                       # never let a signal break the bank

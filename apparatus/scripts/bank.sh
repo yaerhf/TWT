@@ -47,6 +47,9 @@ echo "[2/4] record-invariants gate (prose vs tree; policy 2026-08-13)..."
 # tree mutation (the mode is pure text predicates by construction).
 # The pass line is matched COUNT-AGNOSTICALLY (N/N, not 15/15) so adding a
 # demonstration never breaks the gate — the mode is designed to grow.
+if ! python scripts/honesty_telemetry.py --self-test; then
+  echo ">>> TELEMETRY SELF-TEST FAILED - the cross-class predicate did not behave (scripts/honesty_telemetry.py self_test); fix before banking."; exit 1
+fi
 if ! st_out="$(python scripts/check_records.py --self-test 2>&1)"; then
   echo "$st_out" | tail -30
   echo ">>> APPARATUS SELF-TEST FAILED — a record-invariants check could not be shown to fire"

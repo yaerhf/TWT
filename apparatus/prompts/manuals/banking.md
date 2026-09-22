@@ -145,3 +145,7 @@ If a **§8a round has not closed** on a banking-bound claim: nothing.
 **And the standing one:** a finding not written to a file did not happen — *and one written to a
 file git ignores also did not happen.* `knowledge/prompts/` is gitignored wholesale; **force-add
 anything new there.**
+
+## 7 · THE DEATH TRIGGER (ported 2026-09-17, research-ratchet 2C)
+
+A pass that banks a NEGATIVE — a FALLS, a RETURNED, a REFUTED, a CLOSED route — re-ranks that negative's FORK in `knowledge/ledgers/TWT_PATHS_LEDGER.md` in the SAME pass (the fork header's `last re-ranked` date moves; the dead row's status changes; the row that is now first says so in its promotion cell). A rank that was not good enough becomes the best choice the moment the path above it dies; the bank is the moment the look is forced.

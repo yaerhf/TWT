@@ -1,7 +1,7 @@
-# Cover note for reviewers — Time-Wave Theory: the Core paper and its first candidate
+# Cover note for reviewers — Theory of Wave-Time: the Core paper and its first candidate
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-08-27 · verification suite: 636 checks (546 main + 90 companion) · engine: 348 public primitives (281 main + 67 companion), the main engine split family/instance 174 CORE + 107 CANDIDATE
+Paper revision 2026-08-27 · verification suite: 668 checks (547 main + 121 companion) · engine: 360 public primitives (281 main + 79 companion), the main engine split family/instance 174 CORE + 107 CANDIDATE
 
 ---
 
@@ -34,11 +34,11 @@ this kind comes from its artifacts, not from its description.
 
 ```
 pip install -r requirements.txt
-python twt_test.py            # expect: ALL 546 CHECKS PASSED across 10 modules
-python twt_companion_test.py  # expect: ALL 90 COMPANION CHECKS PASSED across 7 modules
+python twt_test.py            # expect: ALL 547 CHECKS PASSED across 10 modules
+python twt_companion_test.py  # expect: ALL 121 COMPANION CHECKS PASSED across 9 modules
 ```
 
-(On Windows, set `PYTHONUTF8=1` first.) The two harnesses carry 636 executable assertions,
+(On Windows, set `PYTHONUTF8=1` first.) The two harnesses carry 659 executable assertions,
 cross-indexed to numbered results — if a check fails, that is a real refutation of the
 corresponding claim, and a report of one is the single most useful thing you can send.
 
@@ -143,7 +143,7 @@ from the reference class rather than from the artifacts — in either direction 
 
 ## §1. What this is
 
-Time-Wave Theory (TWT) attempts to derive the *structure* of known physics — Lorentzian
+Theory of Wave-Time (TWT) attempts to derive the *structure* of known physics — Lorentzian
 signature, the quantum postulates, the Standard Model's gauge group, charges, and generation
 count — from a single substrate: a 4D Euclidean material medium carrying a wave, with observers as
 wavefront-locked configurations and matter as topological defects. It is a framework

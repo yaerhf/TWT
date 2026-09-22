@@ -1,6 +1,6 @@
 # TWT verification engine
 
-Papers and executable verification suite for **Time-Wave Theory (TWT)** — a structural-derivation
+Papers and executable verification suite for **Theory of Wave-Time (TWT)** — a structural-derivation
 programme deriving Standard-Model *structure* (signature, quantum postulates, gauge content,
 charges, generation count) from a four-dimensional Euclidean Clifford substrate carrying a wave,
 with one named unbuilt object gating every magnitude in it.
@@ -32,7 +32,7 @@ pip install -r requirements.txt
 python twt_test.py
 ```
 
-Expected output: `ALL 546 CHECKS PASSED across 10 modules.` (On Windows, set `PYTHONUTF8=1` first.)
+Expected output: `ALL 547 CHECKS PASSED across 10 modules.` (On Windows, set `PYTHONUTF8=1` first.)
 
 The engine is split in two. `twt_test.py` above runs the **main** harness; the deep-dive layer
 has its own:
@@ -41,7 +41,7 @@ has its own:
 python twt_companion_test.py
 ```
 
-Expected output: `ALL 90 COMPANION CHECKS PASSED across 7 modules.` — 636 checks in total.
+Expected output: `ALL 121 COMPANION CHECKS PASSED across 9 modules.` — 668 checks in total.
 
 > **The research OS this programme runs on is published generically at [github.com/yaerhf/research-ratchet](https://github.com/yaerhf/research-ratchet) — instantiable in one paste.**
 

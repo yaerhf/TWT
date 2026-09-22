@@ -5635,8 +5635,10 @@ def generation_z3_is_metatime_phase():
     distinct masses → the hierarchy. So the GENERATION operator is the meta-time phase; the
     library's spatial G_generator is the COLOUR ℤ₃, NOT the generation operator. The prior
     identification of the generation operator with spatial G produced the fake-negative. RIGOROUS
-    core: 'spatial G ≠ generation operator, because mass-blind'; '= colour' is the natural
-    identification (well-motivated, a further step).
+    core: 'spatial G ≠ generation operator, because mass-blind'; '= colour' is DERIVED on the positive
+    ground R-072 names - G is the cyclic interchange of the three Q-orbit trivectors {e124, e134, e234} (the colour
+    cycle, G_cycles_generations / G_generator) - not by elimination; the earlier 'a further step' gloss is
+    withdrawn (keeper GENPASS 2026-09-04, in the row's favour).
     NOTE (2026-06-28): the meta-time-phase ℤ₃ here and the matter-as-defect 'protected sub-harmonic
     windows' reading are COMPATIBLE, not rival — the windows land Z3-SYMMETRIC for leptons (ε=0,
     DERIVED-structural-conditional via √m=r²+τ=0; the Koide VALUE K=2/3⟺c=√2 is INPUT, unforced) and
@@ -5675,7 +5677,10 @@ def why_three_generation_triple():
     e14+e23} (I₄·u = −u, verified below) span an su(2) = the 3 ℍ imaginary units = the 3
     generations. COUNT: computed below as dim Λ²₋(ℝ⁴) = 3 — GENERIC-GIVEN-4D (C-1, 2026-07-31);
     Frobenius is a structural remark, NOT the operative exclusion. Each carries ONE spatial + ONE
-    e4 blade, so the e4-dip (the epicycle's source) is INTRINSIC to the generation triple; the
+    e4 blade, so the e4-dip (the epicycle's source) is INTRINSIC to the generation triple - a PROPERTY of
+    the triple, NOT a selector: the self-dual triple {e12-e34, e13+e24, e14-e23} has the identical blade
+    structure, so e4-mixing distinguishes the meta-time phase from the purely spatial (colour) rotations, never
+    ASD from SD - that selection is centralization of the weak host (paper C.3.9, keeper GENPASS 2026-09-04); the
     ℤ₃-about-(1,1,1) permutes the three. This connects 'three generations at 120° on the orbit'
     to the triple; the FULL identification — a map orbit-phase(φ_n) → ℍ-unit(u_n) — is the
     located step (outcome (ii)). (Duality sign corrected from 'self-dual' to ANTI-self-dual per

@@ -8,7 +8,7 @@ Code session on `Deepseek`. This is a long, fan-out session — let it use subag
 
 ---
 
-You are an EXTERNAL, SKEPTICAL PEER REVIEWER evaluating whether Time-Wave Theory is real physics. You
+You are an EXTERNAL, SKEPTICAL PEER REVIEWER evaluating whether the Theory of Wave-Time is real physics. You
 are NOT a member of the program and you do NOT trust its record. Specifically:
 
 - **IGNORE THE TIER TAGS.** A `[DERIVED]` tag means nothing to you until you have re-derived the

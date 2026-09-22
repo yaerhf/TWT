@@ -64,6 +64,166 @@ def _read(rel):
     return p.read_text(encoding="utf-8") if p.exists() else None
 
 
+# ---------------------------------------------------------------------------
+# APPARATUS PORTS 2026-09-17 (from research-ratchet, on the coordinator's word): pure text
+# predicates, each with a planted FIRE case and a silent CONTROL in self_test().
+DISPATCH_LOG_REL = "knowledge/ledgers/DISPATCH_LOG.tsv"
+DESIGN_WORDS = ("APPROVED-AS-IS", "APPROVED-WITH-AMENDMENTS", "RETURNED")
+
+
+
+def _roster_missing(fc_text, on_disk_names):
+    """11 (2D demo, 2026-09-17): the standing-ledger roster in FORMATION_CORE must name every
+    ledger file on disk — a roster is protective only while complete (TWT_EOM_MAP was
+    missed for a whole sweep round). Pure: names vs text."""
+    return [n for n in on_disk_names if n not in (fc_text or "")]
+
+
+def _census_read(text):
+    """9 (2D demo): the pinned register census '<n> ruling rows + <m> adjudication fences'
+    as a (n, m) pair, or None when the pin is absent."""
+    mm = re.search(r"(\d+) ruling rows \+ (\d+) adjudication\s+fences", text or "")
+    return (int(mm.group(1)), int(mm.group(2))) if mm else None
+
+
+
+# ENDORSEMENT COUNT (2026-09-22, the paper-sync keeper's item 17 — a drift class caught at the sync: the Core
+# paper's §1.3 said nine after S5-LOCAL's stamp while seven other live sites still said eight). The truth is the
+# number of items in the Core paper's §1.3 list; every live count site must carry the same number.
+_NUMWORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
+             "ten": 10, "eleven": 11, "twelve": 12}
+ENDORSE_SITES = [
+    ("knowledge/corpus/TWT_core_paper.md", r"(\w+) further commitments are endorsed as highly plausible", "Core §1.3"),
+    ("knowledge/corpus/TWT_core_paper.md", r"one refusal, (\w+) preferred directions,", "Core price paragraph"),
+    ("knowledge/corpus/TWT_core_paper.md", r"\*\*plus (\w+) preferred directions,", "Core comparison table"),
+    ("knowledge/corpus/TWT_foundational_paper.md", r"(\w+) further commitments are endorsed as highly plausible", "dossier §A.6.3"),
+    ("knowledge/corpus/TWT_foundational_paper.md", r"the (\w+) preferred directions \(endorsements, not", "dossier Part A summary"),
+    ("knowledge/corpus/TWT_foundational_paper_companion.md", r"Eight as stamped, (\w+) as now standing", "companion ENDORSED bullet"),
+    ("knowledge/ledgers/TWT_FAMILY_TREE.md", r"eight directions as stamped, (\w+) standing", "family tree PREFERRED DIRECTIONS"),
+    ("knowledge/prompts/FORMATION_CORE.md", r"eight as stamped, (\w+) as now\s+standing", "formation core §0"),
+]
+
+
+def _num(w):
+    w = (w or "").strip().lower()
+    return int(w) if w.isdigit() else _NUMWORDS.get(w)
+
+
+def _core_endorsement_items(core_text):
+    """the number of ' · '-separated items in the Core paper's §1.3 blockquote list, or None."""
+    m = re.search(r"is still a member of the family:\s*\n((?:>.*\n?)+)", core_text or "")
+    if not m: return None
+    body = " ".join(ln.lstrip("> ").strip() for ln in m.group(1).splitlines())
+    return len([x for x in body.split(" · ") if x.strip()])
+
+
+def _endorsement_count_defects(texts, truth):
+    """texts: {rel: text}; returns the sites whose count word is missing or differs from truth. Pure."""
+    bad = []
+    for rel, pat, label in ENDORSE_SITES:
+        m = re.search(pat, texts.get(rel) or "")
+        got = _num(m.group(1)) if m else None
+        if got != truth: bad.append(f"{label}: {m.group(1) if m else 'MISSING'} vs {truth}")
+    return bad
+
+def _census_ok(got, n_rul, n_adj, tol):
+    return got is not None and abs(got[0] - n_rul) <= tol and abs(got[1] - n_adj) <= tol
+
+
+def _dispatch_log_rows(log_text):
+    """rows of the dispatch log as dicts (the ratchet header: utc role checker_model
+    author_model claim_id verdict verdict_path); comment and header lines skipped."""
+    rows = []
+    for line in (log_text or "").splitlines():
+        if not line.strip() or line.startswith("#") or line.startswith("utc\t"):
+            continue
+        f = line.split("\t")
+        if len(f) < 7:
+            continue
+        rows.append(dict(utc=f[0], role=f[1], checker=f[2], author=f[3], claim=f[4],
+                         verdict=f[5], path=f[6].strip()))
+    return rows
+
+
+def _dispatch_log_missing(log_text, verdict_paths, opened="2026-09-16"):
+    """2A: every persisted verdict file dated on/after the log's opening date must
+    have a row whose verdict_path points at it (a pointer, never a copy)."""
+    logged = {r["path"].replace("\\", "/") for r in _dispatch_log_rows(log_text)}
+    missing = []
+    for rel in verdict_paths:
+        m = re.search(r"(\d{4}-\d{2}-\d{2})", Path(rel).name)
+        if not m or m.group(1) < opened:
+            continue
+        if rel.replace("\\", "/") not in logged:
+            missing.append(rel)
+    return missing
+
+
+def _design_verdict_word_defect(text):
+    """2F: a design-review verdict carries EXACTLY ONE of the three registered words
+    (RUL-134 / C-37-bis), read from its TITLE line and its VERDICT lines — the earliest word on
+    each such line is that line's word (so "APPROVED-WITH-AMENDMENTS ... not RETURNED" reads
+    as one word); a defect iff no such line carries a word, or the lines disagree."""
+    lines = (text or "").splitlines()
+    # a VERDICT line is one that BEGINS with the word (after markdown bold / heading / quote marks); a prose line that merely
+    # mentions "verdict" is not a candidate (2026-09-18: a design review's prose "why this is not APPROVED-AS-IS" fired the gate)
+    cands = ([lines[0]] if lines else []) + [l for l in lines[1:] if l.lstrip(" *#>_").upper().startswith("VERDICT")]
+    words = set()
+    for l in cands:
+        hits = [(l.find(w), w) for w in DESIGN_WORDS if w in l]
+        if hits:
+            words.add(min(hits)[1])
+    return len(words) != 1
+
+
+def _paths_ledger_defects(text):
+    """2C: every FORK header carries a 'last re-ranked YYYY-MM-DD'; every LIVE row has a
+    non-empty 'becomes first choice if' cell that is a condition, not a mood word."""
+    defects = []
+    fork = None
+    for line in (text or "").splitlines():
+        if line.startswith("## FORK"):
+            fork = line
+            if not re.search(r"last re-ranked \d{4}-\d{2}-\d{2}", line):
+                defects.append("fork without a last-re-ranked date: " + line[:60])
+            continue
+        if line.startswith("|") and "| LIVE " in line + " ":
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            if len(cells) < 6:
+                defects.append("LIVE row with too few cells: " + line[:60]); continue
+            cond = cells[-1]
+            if not cond or re.fullmatch(r"(less promising|later|someday|tbd|-|—)\.?", cond, re.I):
+                defects.append("LIVE row without a promotion condition: " + cells[0][:40])
+    # ---- the three predicates promoted 2026-09-20 (the closure keeper's K14; the class fired three times in prose):
+    # (1) within a fork the non-empty ranks are a permutation of 1..n (no duplicates, no gaps);
+    # (2) a row whose status cell contains LANDED carries rank '—' (a landed path is not ranked);
+    # (3) every P<n>.<m> token in a fork header or in a promotion cell has a row in that fork.
+    fork = None; forks = {}
+    for line in (text or "").splitlines():
+        if line.startswith("## FORK"):
+            fork = line; forks[fork] = dict(header=line, ids=set(), ranks=[], rows=[]); continue
+        if fork is None or not line.startswith("| P"): continue
+        m = re.match(r"\| (P\d+\.\d+[a-z]?) \|", line)
+        if not m: continue
+        rid = m.group(1); forks[fork]["ids"].add(rid)
+        mm = re.search(r" \| (—|\d+) \| ([ABC]) \| ", line)   # the rank | grade | status triple, located by its shape (the path cell may itself contain '|')
+        if not mm: defects.append("row without a rank|grade|status triple: " + rid); continue
+        rank = mm.group(1); status = line[mm.end():].split(" | ", 1)[0]
+        if rank != "—": forks[fork]["ranks"].append((rid, int(rank)))
+        if "LANDED" in status and rank != "—": defects.append("a LANDED row carries a rank: " + rid + " rank " + rank)
+        promo = line.strip().strip("|").split("|")[-1]
+        forks[fork]["rows"].append((rid, promo))
+    for fk, d in forks.items():
+        rs = sorted(r for _, r in d["ranks"])
+        if rs and rs != list(range(1, len(rs) + 1)):
+            defects.append("ranks are not a permutation of 1..n in " + fk[:40] + ": " + str([(i, r) for i, r in d["ranks"]]))
+        fk_id = re.search(r"FORK (F\d+)", fk); fk_id = fk_id.group(1) if fk_id else ""
+        toks = set(re.findall(r"\b(P" + re.escape(fk_id[1:]) + r"\.\d+[a-z]?)\b", d["header"])) if fk_id else set()
+        for rid, promo in d["rows"]: toks |= set(re.findall(r"\b(P" + re.escape(fk_id[1:]) + r"\.\d+[a-z]?)\b", promo)) if fk_id else set()
+        for tk in sorted(toks - d["ids"]): defects.append("a path token without a row in its fork: " + tk + " in " + fk[:30])
+    return defects
+
+
 # ---- PENDING HUMAN-APPLIED CANON DIFFS (instituted 2026-08-23, RUL-095 execution) ----
 # CANON EDITS ARE HUMAN-ONLY. So a structural change to the tree (the engine's family split
 # is the motivating case) necessarily leaves CLAUDE.md's count-bearing lines stale until the
@@ -348,6 +508,15 @@ LITERAL_SITES = [
 LITERAL_PRESENCE = [
     ("Core §2.1 states the residue normalization once, for the whole section",
      "knowledge/corpus/TWT_core_paper.md", "3 × 1/3 = 1", "Y_lep / Y_Q = −3"),
+    # RUL-133 (coordinator 2026-09-15): the two energy faces carry their own words, COST
+    # (outside-frame elastic cost) and RATE (inside-frame rotor rate), so that "energy"
+    # cannot drift between them again. Pinned at the three sites that define the rule.
+    ("canon §5 carries the COST ≠ RATE energy-face rule with its ruling id",
+     "CLAUDE.md", "COST ≠ ROTOR RATE", "RUL-133"),
+    ("the formation core §1 names both energy faces by their words (RUL-133)",
+     "knowledge/prompts/FORMATION_CORE.md", "COST ≠ ROTOR RATE", "RUL-133"),
+    ("the ruling register carries the RUL-133 row naming COST and RATE",
+     "knowledge/ledgers/TWT_RULING_REGISTER.md", "| RUL-133 |", "COST ≠ ROTOR RATE"),
 ]
 
 
@@ -495,6 +664,49 @@ def _mirror_divergences(pairs, exempt=()):
     return out
 
 
+def _rul128_offenders(py_files, has_validation_artifact):
+    """RUL-128 / RUL-122 cl. 7c predicate over ONE post-fix g8 round: py_files = {name: text}. Fires on any import or call of the
+    DEFECTIVE geometric names (min_image3, seed_hedgehog_gen, far_mask_gen, q_expected_gen without the _exact suffix) and on a
+    round that touches a geometric instrument (any *_exact name or an INSTRUMENT_VALIDATION reference) without shipping an
+    INSTRUMENT_VALIDATION* artifact. Pure; self-tested with a planted round."""
+    bad = []
+    touches_geometry = False
+    for name, text in py_files.items():
+        # a DELIBERATE call of a defective name (a failure demonstration, the clause-7c comparison) is allowed when the
+        # line carries the marker RUL-128-DELIBERATE; every other occurrence fires
+        unmarked = "\n".join(ln for ln in text.splitlines() if "RUL-128-DELIBERATE" not in ln)
+        if re.search(r"\b(min_image3|seed_hedgehog_gen|far_mask_gen|q_expected_gen)\b(?!_exact)", unmarked):
+            bad.append("%s: imports/calls a DEFECTIVE geometric name (unmarked)" % name)
+        if re.search(r"\b(min_image3_exact|far_mask_gen_exact|seed_hedgehog_gen_exact|half_diagonal3)\b", text):
+            touches_geometry = True
+    if touches_geometry and not has_validation_artifact:
+        bad.append("round touches a geometric instrument and ships no INSTRUMENT_VALIDATION* artifact")
+    return bad
+
+
+def _min_image_geometry_probe():
+    """RUL-128: run both min-image functions on the two CFW cells and return the maxima against the half-diagonals.
+    Imports n2d_lib from its audit directory; returns ok=False (and the gate FAILS) if the library cannot be imported."""
+    import sys as _sys
+    out = {"ok": False, "exact_max": (0.0, 0.0), "defective_max": (0.0, 0.0), "bound": (0.0, 0.0), "n_wrong": (0, 0)}
+    try:
+        _p = os.path.join(str(ROOT), "knowledge", "audit", "g8_n2d_bandhost_2026-08-30")
+        if _p not in _sys.path: _sys.path.insert(0, _p)
+        import n2d_lib as _NL
+        from n1_lib import Cell as _Cell
+        em, dm, bd, nw = [], [], [], []
+        for M in (_NL.CFW16, _NL.CFW16W):
+            import warnings as _w
+            c = _Cell(M); _, r_e = _NL.min_image3_exact(c); b = _NL.half_diagonal3(c)
+            with _w.catch_warnings():
+                _w.simplefilter("ignore"); _, r_d = _NL.min_image3(c)          # the DEFECTIVE one, called on purpose
+            em.append(float(r_e.max())); dm.append(float(r_d.max())); bd.append(float(b)); nw.append(int((r_d > r_e + 1e-9).sum()))
+        out.update(ok=True, exact_max=tuple(em), defective_max=tuple(dm), bound=tuple(bd), n_wrong=tuple(nw))
+    except Exception as e:
+        out["error"] = repr(e)[:200]
+    return out
+
+
 def self_test():
     """DEMONSTRATED FAILURE MODES for the five checks of the 2026-08-24
     apparatus pass (R2: a check never SHOWN able to fail is a phantom cite of
@@ -519,6 +731,20 @@ def self_test():
               f"({'fired' if fired else 'did not fire'}; expected "
               f"{'fire' if expect else 'no fire'})")
         trials.append(ok)
+
+    # --- 0. RUL-128 / RUL-122 cl. 7c: the geometric-instrument predicate (2026-09-06) ----
+    trial("RUL-128: a planted round importing the DEFECTIVE min_image3 fires",
+          bool(_rul128_offenders({"run.py": "from n2d_lib import min_image3, Cell"}, True)))
+    trial("RUL-128: a planted round using min_image3_exact WITHOUT an INSTRUMENT_VALIDATION artifact fires",
+          bool(_rul128_offenders({"run.py": "from n2d_lib import min_image3_exact"}, False)))
+    trial("RUL-128 control: a DELIBERATE defective call marked RUL-128-DELIBERATE on its line does NOT fire",
+          bool(_rul128_offenders({"recon.py": "_, r_def = NL.min_image3(c)   # RUL-128-DELIBERATE: the clause-7c comparison\nfrom n2d_lib import min_image3_exact"}, True)), expect=False)
+    trial("RUL-128: the same defective call WITHOUT the marker fires",
+          bool(_rul128_offenders({"recon.py": "_, r_def = NL.min_image3(c)\nfrom n2d_lib import min_image3_exact"}, True)))
+    trial("RUL-128 control: exact names + the validation artifact do NOT fire",
+          bool(_rul128_offenders({"run.py": "from n2d_lib import min_image3_exact, far_mask_gen_exact"}, True)), expect=False)
+    trial("RUL-128 control: a round with no geometry at all does NOT fire",
+          bool(_rul128_offenders({"run.py": "import numpy as np"}, False)), expect=False)
 
     # --- 1. named-premise coverage -------------------------------------
     papers = "the family states the result with no condition anywhere."
@@ -686,6 +912,70 @@ def self_test():
           "working-tree source)",
           bool(_mirror_divergences([("knowledge/audit/ghost.md", b"x", None)],
                                    MIRROR_KNOWLEDGE_EXEMPT)))
+
+    # --- 13. APPARATUS PORTS 2026-09-17 -----------------------------------------------
+    _lg = "# utc\trole\tchecker_model\tauthor_model\tclaim_id\tverdict\tverdict_path\n" \
+          "2026-09-17T18:03\treviewer\topus\tfable\tC4D1\tHOLDS\tknowledge/audit/x/X_VERDICT_REVIEWER_2026-09-17.md\n"
+    trial("2A dispatch log: a verdict file with no pointer row fires",
+          bool(_dispatch_log_missing(_lg, ["knowledge/audit/x/Y_VERDICT_META_2026-09-17.md"])))
+    trial("2A control: the logged verdict file does NOT fire",
+          bool(_dispatch_log_missing(_lg, ["knowledge/audit/x/X_VERDICT_REVIEWER_2026-09-17.md"])), expect=False)
+    trial("2A control: a verdict dated before the log opened does NOT fire",
+          bool(_dispatch_log_missing(_lg, ["knowledge/audit/x/OLD_VERDICT_KEEPER_2026-09-10.md"])), expect=False)
+    trial("2F design verdict: prose with none of the three words fires",
+          _design_verdict_word_defect("The design looks sound; proceed with care."))
+    trial("2F design verdict: two VERDICT lines with different words fires",
+          _design_verdict_word_defect("# a design" + chr(10) + "VERDICT: RETURNED" + chr(10) + "..." + chr(10) + "VERDICT (revised): APPROVED-AS-IS"))
+    trial("2F control: one VERDICT line naming a second word in negation does NOT fire",
+          _design_verdict_word_defect("# a design" + chr(10) + "**VERDICT: APPROVED-WITH-AMENDMENTS. Not RETURNED: the structure is right.**"), expect=False)
+    trial("2F control: a PROSE line mentioning the verdict and a second word in negation does NOT fire (2026-09-18)",
+          _design_verdict_word_defect("# a design: **APPROVED-WITH-AMENDMENTS**" + chr(10) + "VERDICT: APPROVED-WITH-AMENDMENTS" + chr(10) + "the adverse verdict beside this claim is why this is not APPROVED-AS-IS."), expect=False)
+    trial("2F control: exactly one word on the VERDICT line does NOT fire",
+          _design_verdict_word_defect("# a design" + chr(10) + "VERDICT: APPROVED-WITH-AMENDMENTS (A1, A2)"), expect=False)
+    _pl_bad = "## FORK F9 — a fork (last re-ranked 2026-09-17)" + chr(10) + "| P9.1 | a path | 1 | B | LIVE | not taken because X | less promising |" + chr(10)
+    _pl_ok = "## FORK F9 — a fork (last re-ranked 2026-09-17)" + chr(10) + "| P9.1 | a path | 1 | B | LIVE | not taken because X | the t = 60 read prints THIRD-ASYMPTOTE |" + chr(10)
+    _pl_nodate = "## FORK F9 — a fork" + chr(10) + _pl_ok.split(chr(10), 1)[1]
+    trial("2C paths ledger: a LIVE row whose promotion cell is a mood word fires", bool(_paths_ledger_defects(_pl_bad)))
+    trial("2C paths ledger: a fork header without a last-re-ranked date fires", bool(_paths_ledger_defects(_pl_nodate)))
+    trial("2C control: a dated fork with a conditioned LIVE row does NOT fire", bool(_paths_ledger_defects(_pl_ok)), expect=False)
+    # the three promoted predicates (2026-09-20), each with a planted demonstration
+    _pl_dup = "## FORK F9 — a fork (last re-ranked 2026-09-20)" + chr(10) + "| P9.1 | a path | 1 | B | LIVE | not taken because X | the read prints Y |" + chr(10) + "| P9.2 | a path | 1 | B | LIVE | not taken because X | the read prints Z |" + chr(10)
+    _pl_gap = "## FORK F9 — a fork (last re-ranked 2026-09-20)" + chr(10) + "| P9.1 | a path | 1 | B | LIVE | not taken because X | the read prints Y |" + chr(10) + "| P9.2 | a path | 3 | B | LIVE | not taken because X | the read prints Z |" + chr(10)
+    _pl_landed = "## FORK F9 — a fork (last re-ranked 2026-09-20)" + chr(10) + "| P9.1 | a path | 1 | B | **LANDED 2026-09-20** the words | not taken because X | the read prints Y |" + chr(10)
+    _pl_tok = "## FORK F9 — a fork (last re-ranked 2026-09-20: P9.7 is first)" + chr(10) + "| P9.1 | a path | 1 | B | LIVE | not taken because X | it becomes first if P9.3 lands |" + chr(10)
+    _pl_ok3 = "## FORK F9 — a fork (last re-ranked 2026-09-20: P9.1 is first)" + chr(10) + "| P9.1 | a path with a | in it | 1 | B | LIVE | not taken because X | it becomes first if P9.2 lands |" + chr(10) + "| P9.2 | a path | — | A | **LANDED 2026-09-20** the words | tried | landed |" + chr(10) + "| P9.3 | a path | 2 | C | LIVE | not taken | the read prints Q |" + chr(10)
+    trial("2C paths ledger: duplicate ranks in a fork fire", any("permutation" in d for d in _paths_ledger_defects(_pl_dup)))
+    trial("2C paths ledger: a gap in the ranks fires", any("permutation" in d for d in _paths_ledger_defects(_pl_gap)))
+    trial("2C paths ledger: a LANDED row with a rank fires", any("LANDED row carries a rank" in d for d in _paths_ledger_defects(_pl_landed)))
+    trial("2C paths ledger: a path token without a row fires", any("without a row" in d for d in _paths_ledger_defects(_pl_tok)))
+    trial("2C control: a fork with a permutation of ranks, an unranked LANDED row and only rowed tokens does NOT fire", bool(_paths_ledger_defects(_pl_ok3)), expect=False)
+
+    # --- 2D (2026-09-17), first batch: record checks never seen to fire ----------------
+    trial("11 roster: a ledger on disk that FORMATION_CORE does not name fires",
+          bool(_roster_missing("... `TWT_A.md` · `TWT_B.md` ...", ["TWT_A.md", "TWT_C.md"])))
+    trial("11 roster control: every on-disk ledger named does NOT fire",
+          bool(_roster_missing("... `TWT_A.md` · `TWT_B.md` ...", ["TWT_A.md", "TWT_B.md"])), expect=False)
+    trial("9 census: a pinned count drifted beyond the tolerance fires",
+          not _census_ok(_census_read("the register: 131 ruling rows + 4 adjudication fences"), 135, 4, 2))
+    trial("9 census: a missing pin fires",
+          _census_read("the register has many rows") is None)
+    trial("9 census control: a pin within the tolerance does NOT fire",
+          not _census_ok(_census_read("134 ruling rows + 4 adjudication fences"), 135, 4, 2), expect=False)
+
+    # --- the endorsement-count invariant (2026-09-22, the paper-sync keeper's item 17) ----------
+    _core_ok = "a member of the family:" + chr(10) + "> a · b · c" + chr(10) + chr(10) + "Three further commitments are endorsed as highly plausible"
+    trial("endorsement count: the Core list's item count is read from its blockquote", _core_endorsement_items("is still a member of the family:" + chr(10) + "> a · b ·" + chr(10) + "> c" + chr(10)) == 3)
+    _txt = {rel: "" for rel, _, _ in ENDORSE_SITES}
+    _good = {"knowledge/corpus/TWT_core_paper.md": "Nine further commitments are endorsed as highly plausible; one refusal, nine preferred directions, and **plus 9 preferred directions,",
+             "knowledge/corpus/TWT_foundational_paper.md": "Nine further commitments are endorsed as highly plausible; the nine preferred directions (endorsements, not",
+             "knowledge/corpus/TWT_foundational_paper_companion.md": "Eight as stamped, nine as now standing",
+             "knowledge/ledgers/TWT_FAMILY_TREE.md": "eight directions as stamped, nine standing",
+             "knowledge/prompts/FORMATION_CORE.md": "eight as stamped, NINE as now" + chr(10) + "standing"}
+    trial("endorsement count control: every site at nine against a nine-item list does NOT fire", bool(_endorsement_count_defects(_good, 9)), expect=False)
+    _bad = dict(_good); _bad["knowledge/ledgers/TWT_FAMILY_TREE.md"] = "eight directions as stamped, eight standing"
+    trial("endorsement count: ONE site left at eight fires", bool(_endorsement_count_defects(_bad, 9)))
+    _miss = dict(_good); _miss["knowledge/corpus/TWT_foundational_paper.md"] = "the list was rewritten"
+    trial("endorsement count: a site whose count sentence vanished fires", bool(_endorsement_count_defects(_miss, 9)))
 
     print("-" * 70)
     if all(trials):
@@ -958,6 +1248,8 @@ def main():
         total_sites = [
             ("CLAUDE.md",
              r"ALL CHECKS PASSED\" \((\d+) as of", (m_,), "canon §6 main total"),
+            ("CLAUDE.md",
+             r"ALL COMPANION CHECKS PASSED\" \((\d+) as of", (c_,), "canon §6 companion total (R-198 orphan 2: was ungated)"),
             ("knowledge/reviewer_package/COVER_NOTE.md",
              r"(\d+) checks \((\d+) main \+ (\d+) companion\)",
              (t_, m_, c_), "COVER_NOTE totals"),
@@ -1177,6 +1469,343 @@ def main():
     for reg in ("TWT_RULING_REGISTER.md", "TWT_CHECKER_CALIBRATION.md"):
         _ck(f"CLAUDE.md Pointers block names {reg}", reg in pointers_block)
 
+    # ---- 8b. RUL-120 CLAUSE 2 (2026-09-01): EVERY NUMERIC LITERAL IN A ROUND
+    # RECORD'S "REGISTERED CONDITION" COLUMN MUST APPEAR IN THAT ROUND'S FROZEN
+    # PREREGISTRATION.
+    # The measured case that forced this: N3b's prereg froze control (c) at
+    # 1e-6; every script coded 1e-5; and the L1's own control table printed
+    # 1e-5 in the *registered condition* column, inside a section asserting
+    # "thresholds as frozen, none moved". A moved bar described as unmoved is
+    # invisible to every other gate here — but it is exactly mechanisable, and
+    # this is the cheap half of RUL-120.
+    print("RUL-120 cl.2 — registered-condition literals vs the frozen prereg:")
+    import glob as _glob
+    _lit = re.compile(r"\d+(?:\.\d+)?[eE][-+]?\d+")
+    _rounds = 0
+    _bad = []
+    for _pre in _glob.glob("knowledge/audit/*/PREREGISTRATION_FROZEN.md"):
+        _dir = os.path.dirname(_pre)
+        _pretext = _read(_pre) or ""
+        for _l1 in _glob.glob(os.path.join(_dir, "*L1*.md")):
+            _txt = _read(_l1) or ""
+            _in_tbl = False
+            _col = None
+            for _line in _txt.splitlines():
+                if "|" not in _line:
+                    _in_tbl = False
+                    continue
+                _cells = [c.strip() for c in _line.strip().strip("|").split("|")]
+                _low = [c.lower() for c in _cells]
+                if any("registered condition" in c for c in _low):
+                    _in_tbl = True
+                    _col = next(i for i, c in enumerate(_low)
+                                if "registered condition" in c)
+                    _rounds += 1
+                    continue
+                if _in_tbl and _col is not None and len(_cells) > _col:
+                    for _m in _lit.findall(_cells[_col]):
+                        if _m not in _pretext:
+                            _bad.append("%s: %r not in the frozen prereg"
+                                        % (os.path.basename(_l1), _m))
+    _ck("every 'registered condition' literal appears in its frozen prereg "
+        "(%d tables scanned; offenders: %s)"
+        % (_rounds, "; ".join(_bad[:4]) or "none"), not _bad)
+
+    # ---- 8c. RUL-122 CLAUSE 2 (2026-09-01): EVERY REGISTERED CONTROL SHIPS A
+    # DEMONSTRATED FAILURE MODE, OR THE ROUND RECORDS IT VOID.
+    # Six vacuous checks in six rounds. N3d's own frozen prereg carried the
+    # prose clause "any control whose response is fixed by an identity is not a
+    # control" and the round then built its Q1 discriminator in violation of
+    # it. The prose half of this guard has now demonstrably failed once at the
+    # only moment it mattered; this is the executable half. Enforcement is
+    # opt-in by registration so that stopped rounds predating the ruling are
+    # not retro-broken -- future rounds append to the set.
+    print("RUL-122 cl.2 - demonstrated failure modes for registered controls:")
+    _RUL122_ROUNDS = ["knowledge/audit/g8_n3d_bank_2026-09-01",
+                      "knowledge/audit/g8_n3e_generic_2026-09-01",
+                      "knowledge/audit/g8_n3f_shortwave_2026-09-02"]
+    _fm_bad = []
+    for _rd_ in _RUL122_ROUNDS:
+        _logs = [f for f in (os.listdir(_rd_) if os.path.isdir(_rd_) else [])
+                 if f.endswith(".log")]
+        _all = "".join((_read(os.path.join(_rd_, f)) or "") for f in _logs)
+        # RUL-122 cl.2 (generalised at R-197): the round must carry, in a committed log,
+        # EITHER an exhibited failure mode ("CAN FAIL: True" / "FAILURE MODE EXHIBITED")
+        # for its controls OR a VOID accounting for a control that has none.
+        if not _logs:
+            _fm_bad.append("%s: no committed *.log at all" % _rd_)
+            continue
+        _fm = ("CAN FAIL: True" in _all) or ("FAILURE MODE EXHIBITED" in _all)
+        _void = "VOID" in _all
+        if not (_fm or _void):
+            _fm_bad.append("%s: no exhibited failure mode and no VOID accounting "
+                           "in any committed log" % _rd_)
+    _ck("every RUL-122 round ships a demonstrated failure mode or a VOID "
+        "record (%d round(s); offenders: %s)"
+        % (len(_RUL122_ROUNDS), "; ".join(_fm_bad) or "none"), not _fm_bad)
+
+    # ---- 8d. RUL-122 CLAUSE 3 (2026-09-02, post-R-197): THE FOUR-FIELD CONTROL
+    # TEMPLATE. N3f banked its headline through a control whose two arms were vacuous
+    # by construction (accept-arm coefficients exactly zero; reject arm fixed by
+    # dimension counting) and read back a dt rule that was a constant of the dial.
+    # Clause 3 makes every registered control name four fields. The checker is
+    # self-tested on a planted complete and a planted incomplete block, so an empty
+    # enforcement set cannot make this gate vacuous; enforcement is by glob on N4+
+    # rounds that carry a frozen prereg (a scoping directory is not yet a round).
+    print("RUL-122 cl.3 - four-field control template (self-tested; enforced on frozen g8_n4_* preregs):")
+    _T_FIELDS = ("ACCEPT ARM", "REJECT ARM", "VACUITY CONSTRUCTION", "IN-RUN FAILURE MODE")
+    def _rul122_template(text):
+        blk = text.find("CONTROLS (RUL-122 template)")
+        if blk < 0:
+            return False, ["no 'CONTROLS (RUL-122 template)' block"]
+        body = text[blk:]
+        miss = [f for f in _T_FIELDS if f not in body]
+        return not miss, miss
+    _good = "## CONTROLS (RUL-122 template)\n- C1 x\n  ACCEPT ARM: a\n  REJECT ARM: b\n  VACUITY CONSTRUCTION: c\n  IN-RUN FAILURE MODE: d"
+    _bad = "## CONTROLS (RUL-122 template)\n- C1 x\n  ACCEPT ARM: a\n  REJECT ARM: b"
+    _ck("cl.3 checker accepts the planted complete block", _rul122_template(_good)[0])
+    _ck("cl.3 checker rejects the planted incomplete block (missing %s)" % _rul122_template(_bad)[1],
+        not _rul122_template(_bad)[0])
+    _ck("cl.3 template file exists (knowledge/audit/PREREG_CONTROL_TEMPLATE.md)",
+        (ROOT / "knowledge/audit/PREREG_CONTROL_TEMPLATE.md").exists())
+    _t_bad = []
+    for _d in sorted(_glob.glob(os.path.join(str(ROOT), "knowledge", "audit", "g8_n4_*"))):
+        _pre = [f for f in os.listdir(_d) if f.startswith("PREREGISTRATION")]
+        if not _pre:
+            continue
+        # RUL-122 clause 4 (R-198): PER FILE - every PREREGISTRATION* file (freeze or amendment)
+        # must itself carry the block; an amendment that re-cuts a control cannot inherit the
+        # freeze's fields by concatenation.
+        for f in _pre:
+            _ok, _miss = _rul122_template(_read(os.path.join("knowledge/audit", os.path.basename(_d), f)) or "")
+            if not _ok:
+                _t_bad.append("%s/%s: %s" % (os.path.basename(_d), f, _miss))
+    _ck("every frozen N4+ prereg carries the four-field template (offenders: %s)" % (_t_bad or "none"),
+        not _t_bad)
+
+    # ---- 8e. RUL-122 CLAUSE 5 (2026-09-03, R-199): an amendment that DEFERS / DELETES / DROPS a dial
+    # named in a frozen control's arms must restate that control inside its own CONTROLS block.
+    # (Track 2's Amendment 1 deferred m5 = 3, the arm C4's reject arm ran on, unnoticed.)
+    print("RUL-122 cl.5 - deferred dials named in frozen control arms are restated (self-tested):")
+    def _arm_tokens(frozen_text):
+        blk = frozen_text.find("CONTROLS (RUL-122 template)")
+        if blk < 0:
+            return {}
+        out = {}; cur = None
+        for line in frozen_text[blk:].splitlines():
+            s = line.strip()
+            m = re.match(r"- (C\d+)\b", s)
+            if m:
+                cur = m.group(1); continue
+            if cur and ("ACCEPT ARM" in s or "REJECT ARM" in s):
+                for tok in re.findall(r"(?:m\u2085|m5|\u03c1|rho|\u03b3_d|gd|c|\u03a9\u2080|Om0)\s*=\s*[0-9.]+", s):
+                    out.setdefault(re.sub(r"\s+", "", tok), set()).add(cur)
+        return out
+    def _cl5_check(frozen_text, amend_text):
+        bad = []
+        if not re.search(r"DEFER|DELET|DROP", amend_text, re.I):
+            return bad
+        blk = amend_text.find("CONTROLS (RUL-122 template)"); ablk = amend_text[blk:] if blk >= 0 else ""
+        for tok, ctrls in _arm_tokens(frozen_text).items():
+            # the dial must match as a NUMBER, not as a prefix ("rho=1" is not "rho=1e6" - the false positive
+            # this gate fired on Track 1a's Amendments 2/3, whose control arms were explicitly UNCHANGED)
+            if re.search(re.escape(re.sub(r"\s+", "", tok)) + r"(?![0-9.eE])", re.sub(r"\s+", "", amend_text)):
+                for cname in ctrls:
+                    if not re.search(r"- %s\b" % cname, ablk):
+                        bad.append("%s (dial %s) not restated" % (cname, tok))
+        return bad
+    _fz = "## CONTROLS (RUL-122 template)\n- C4 x\n  ACCEPT ARM: a\n  REJECT ARM: the m5 = 3 arm must scale\n  VACUITY CONSTRUCTION: c\n  IN-RUN FAILURE MODE: d"
+    _am_bad = "the m5 = 3 arm is DEFERRED\n## CONTROLS (RUL-122 template)\nfields as frozen"
+    _am_good = "the m5 = 3 arm is DEFERRED\n## CONTROLS (RUL-122 template)\n- C4 x\n  REJECT ARM: re-cut to the m5 = 1 arm"
+    _ck("cl.5 checker flags the planted amendment that defers a control's dial without restating it (%s)" % _cl5_check(_fz, _am_bad), bool(_cl5_check(_fz, _am_bad)))
+    _ck("cl.5 checker accepts the planted amendment that restates the control", not _cl5_check(_fz, _am_good))
+    _c5_bad = []
+    for _d in sorted(_glob.glob(os.path.join(str(ROOT), "knowledge", "audit", "g8_n4_*"))):
+        _fzp = os.path.join(_d, "PREREGISTRATION_FROZEN.md")
+        if not os.path.exists(_fzp):
+            continue
+        _fzt = _read(os.path.join("knowledge/audit", os.path.basename(_d), "PREREGISTRATION_FROZEN.md")) or ""
+        for f in sorted(os.listdir(_d)):
+            if f.startswith("PREREGISTRATION_AMENDMENT"):
+                _b = _cl5_check(_fzt, _read(os.path.join("knowledge/audit", os.path.basename(_d), f)) or "")
+                # Track 2's Amendment 1 is the EXHIBITED failure of this class: recorded VOID at R-199, not re-cut
+                if _b and not (os.path.basename(_d) == "g8_n4_track2_2026-09-03" and f == "PREREGISTRATION_AMENDMENT_1.md"):
+                    _c5_bad.append("%s/%s: %s" % (os.path.basename(_d), f, _b))
+    _ck("no N4+ amendment defers a dial named in a frozen control's arms without restating it (the Track 2 Amendment 1 exhibit excepted; offenders: %s)" % (_c5_bad or "none"), not _c5_bad)
+
+    # ---- 8f. RUL-122 CLAUSE 6 (2026-09-04, R-200): every numeric bar in an ACCEPT/REJECT ARM line of a
+    # frozen prereg names its source and regime as "(bar: ...)", and the IN-RUN field is never "none"/"n/a".
+    # Enforced on rounds whose directory date is AFTER 2026-09-04 (five bars mis-set in the Branch B freeze).
+    print("RUL-122 cl.6 - numeric bars in control arms carry a (bar: ...) grounding; IN-RUN never 'none' (self-tested):")
+    def _cl6_check(frozen_text):
+        bad = []; blk = frozen_text.find("CONTROLS (RUL-122 template)")
+        if blk < 0:
+            return bad
+        cur = None
+        for line in frozen_text[blk:].splitlines():
+            s = line.strip(); m = re.match(r"- (C\d+)\b", s)
+            if m:
+                cur = m.group(1); continue
+            if cur and (s.startswith("ACCEPT ARM") or s.startswith("REJECT ARM")):
+                if re.search(r"[<>\u2264\u2265]\s*[0-9]|\bwithin\b|\bat least\b|\bat most\b", s) and "(bar:" not in s:
+                    bad.append("%s: %s has a numeric bar with no (bar: ...) grounding" % (cur, s.split(":")[0]))
+            if cur and s.startswith("IN-RUN FAILURE MODE") and re.match(r"IN-RUN FAILURE MODE:\s*(none|n/a|-)\b", s, re.I):
+                bad.append("%s: IN-RUN FAILURE MODE reads none" % cur)
+        return bad
+    _fz6_bad = "## CONTROLS (RUL-122 template)\n- C1 x\n  ACCEPT ARM: drift <= 1e-9 over 1 tu\n  REJECT ARM: rises > 0\n  VACUITY CONSTRUCTION: c\n  IN-RUN FAILURE MODE: none"
+    _fz6_good = "## CONTROLS (RUL-122 template)\n- C1 x\n  ACCEPT ARM: drift <= 1e-9 over 1 tu (bar: R-199 C1 at dt 2e-4, same cell, same cadence)\n  REJECT ARM: rises > 0 (bar: any rise; the force placement exhibits 10 per 0.1 tu at c = 12)\n  VACUITY CONSTRUCTION: c\n  IN-RUN FAILURE MODE: a rise flags INVALID"
+    _ck("cl.6 checker flags the planted ungrounded bar and the 'none' IN-RUN field (%s)" % _cl6_check(_fz6_bad), len(_cl6_check(_fz6_bad)) == 2)
+    _ck("cl.6 checker accepts the planted grounded block", not _cl6_check(_fz6_good))
+    _c6_bad = []
+    for _d in sorted(_glob.glob(os.path.join(str(ROOT), "knowledge", "audit", "g8_n4_*"))):
+        _dm = re.search(r"_(\d{4}-\d{2}-\d{2})$", os.path.basename(_d))
+        if not _dm or _dm.group(1) < "2026-09-04" or os.path.basename(_d) == "g8_n4_track2b_2026-09-04":
+            continue                                                       # rounds frozen before the clause are exempt (Branch B, frozen the same day before the clause, by name)
+        for f in sorted(os.listdir(_d)):
+            if f.startswith("PREREGISTRATION_FROZEN"):
+                _b = _cl6_check(_read(os.path.join("knowledge/audit", os.path.basename(_d), f)) or "")
+                if _b:
+                    _c6_bad.append("%s/%s: %s" % (os.path.basename(_d), f, _b))
+    _ck("every prereg frozen after 2026-09-04 grounds its numeric bars and names an in-run failure (offenders: %s)" % (_c6_bad or "none"), not _c6_bad)
+
+    # ---- 8g. RUL-122 CLAUSE 7 (2026-09-06, R-201): (i) a prereg frozen from 2026-09-07 on carries an INVARIANCE record
+    # (every criterion observable tested under the flow's banked symmetry group); (ii) "R_half ... rad" is refused in the
+    # corpus and ledgers (R_half is a radius in lattice units; the class recurred at R-198, R-199 and the Track 1b freeze).
+    print("RUL-122 cl.7 - invariance record on new freezes; R_half is not an angle:")
+    _c7_bad = []
+    for _d in sorted(_glob.glob(os.path.join(str(ROOT), "knowledge", "audit", "g8_n4_*"))):
+        _dm = re.search(r"_(\d{4}-\d{2}-\d{2})$", os.path.basename(_d))
+        if not _dm or _dm.group(1) < "2026-09-06":
+            continue
+        for f in sorted(os.listdir(_d)):
+            if f.startswith("PREREGISTRATION_FROZEN"):
+                _ft = _read(os.path.join("knowledge/audit", os.path.basename(_d), f)) or ""
+                if "CONTROLS (RUL-122 template)" in _ft and "INVARIANCE" not in _ft:
+                    _c7_bad.append("%s/%s: no INVARIANCE record" % (os.path.basename(_d), f))
+                if "CONTROLS (RUL-122 template)" in _ft:
+                    _blk = _ft[_ft.find("CONTROLS (RUL-122 template)"):]
+                    _nc = len(re.findall(r"^- C\d+\b", _blk, re.M)); _nr = len(re.findall(r"^\s*REFERENT:", _blk, re.M))
+                    if _nr < _nc:
+                        _c7_bad.append("%s/%s: %d controls but %d REFERENT lines (RUL-127)" % (os.path.basename(_d), f, _nc, _nr))
+    _ck("every prereg frozen from 2026-09-06 on carries an INVARIANCE record and a REFERENT line per control (RUL-122 cl. 7 / RUL-127; offenders: %s)" % (_c7_bad or "none"), not _c7_bad)
+    _rh_bad = []
+    for _rel in ("knowledge/corpus/TWT_foundational_paper.md", "knowledge/corpus/TWT_core_paper.md", "knowledge/corpus/TWT_foundational_paper_companion.md") + tuple("knowledge/ledgers/" + x for x in os.listdir(os.path.join(str(ROOT), "knowledge", "ledgers")) if x.endswith(".md")):
+        _tx = _read(_rel) or ""
+        for _m in re.finditer(r"R_half.{0,40}?\brad\b", _tx):
+            if "unit corrected" not in _tx[_m.start():_m.end() + 80] and "not rad" not in _tx[_m.start():_m.end() + 80]:
+                _rh_bad.append("%s: %r" % (_rel, _tx[_m.start():_m.end()]))
+    _ck("no corpus/ledger sentence calls R_half an angle ('rad' within 40 chars; offenders: %s)" % (_rh_bad[:3] or "none"), not _rh_bad)
+
+    # ---- 8h. RUL-128 (2026-09-06, R-202): GEOMETRIC INSTRUMENTS SHIP A PLANTED-GEOMETRY CHECK. (i) the recorded
+    # defect is re-measured at every bank: n2d_lib.min_image3 (DEFECTIVE, kept for reproducibility) must still exceed the
+    # half-diagonal on CFW16W while min_image3_exact must not - the demonstration that the check can fail is the defect
+    # itself; (ii) no g8 round directory dated 2026-09-07 or later may import the defective name.
+    print("RUL-128 - planted-geometry check on the min-image instrument; new rounds use the exact function:")
+    _g = _min_image_geometry_probe()
+    _ck("min_image3_exact stays within the half-diagonal on CFW16 and CFW16W (max %.2f / %.2f vs bounds %.2f / %.2f)"
+        % (_g["exact_max"][0], _g["exact_max"][1], _g["bound"][0], _g["bound"][1]),
+        _g["ok"] and _g["exact_max"][0] <= _g["bound"][0] + 1e-9 and _g["exact_max"][1] <= _g["bound"][1] + 1e-9)
+    _ck("the DEFECTIVE min_image3 still fires the check on both cells (max %.2f / %.2f > the bounds; %d / %d sites too large) - the recorded defect is re-measured, not remembered"
+        % (_g["defective_max"][0], _g["defective_max"][1], _g["n_wrong"][0], _g["n_wrong"][1]),
+        _g["ok"] and _g["defective_max"][0] > _g["bound"][0] and _g["defective_max"][1] > _g["bound"][1])
+    _c8_bad = []
+    for _d in sorted(_glob.glob(os.path.join(str(ROOT), "knowledge", "audit", "g8_*"))):
+        _dm = re.search(r"_(\d{4}-\d{2}-\d{2})$", os.path.basename(_d))
+        if not _dm or _dm.group(1) < "2026-09-06" or os.path.basename(_d) in ("g8_n4_track1b2_2026-09-06",):
+            continue                      # rounds frozen BEFORE the fix (round 2 imports the defective names legitimately; frozen)
+        _files = {f: (_read(os.path.join("knowledge/audit", os.path.basename(_d), f)) or "") for f in sorted(os.listdir(_d)) if f.endswith(".py")}
+        _has_val = any(f.startswith("INSTRUMENT_VALIDATION") for f in os.listdir(_d))
+        _c8_bad += ["%s/%s" % (os.path.basename(_d), b) for b in _rul128_offenders(_files, _has_val)]
+    _ck("no g8 round frozen after the fix (2026-09-06 on, round 2 excepted) imports a DEFECTIVE geometric name, and every such round touching a geometric instrument ships INSTRUMENT_VALIDATION* (RUL-128 / RUL-122 cl. 7c; offenders: %s)" % (_c8_bad or "none"), not _c8_bad)
+
+    # ---- 8i. DOCKET #0b (coordinator-directed 2026-09-06, executed 2026-09-07): THE CORE PAPER CARRIES CONDITIONS, NOT
+    # CONFESSIONS. Measured motivation: about nine in ten external critiques open with "by the paper's own admission" quoting
+    # a caveat without the condition that came with it. The pass rewrote every self-critique-register sentence of
+    # TWT_core_paper.md as a condition attached, in the same sentence, to the claim it qualifies (companion G.17 lists them
+    # verbatim). This clause keeps it from drifting back: a short pattern list of the register, and "remains open" is refused
+        # unless the same sentence carries its conditioning ("given" / "rides" / "conditional on"). Self-tested on a planted pair.
+    # WHEN THIS FIRES: a refused sentence is RE-CAST as a condition on the claim it qualifies, never deleted; companion G.17
+    # records any sentence removed rather than re-cast (the keeper's latent item L1, 2026-09-07 - the cheapest way to satisfy
+    # a red gate is to delete the condition, and that is the one move the docket forbids).
+    print("DOCKET #0b - the Core paper carries conditions, not confessions (self-tested):")
+    _CONF_PATTERNS = ("we have not", "is a weakness", "we do not claim", "the honest", "honestly", "by our own admission",
+                      "by the paper's own admission", "not a hedge", "we would rather", "this paper does not claim",
+                      "said at its truest", "worth naming")
+    _COND_WORDS = ("given", "rides", "riding", "conditional on")
+    def _confessions(text):
+        txt = re.sub(r"`[^`]*`", " CODE ", text or ""); txt = re.sub(r"\*+", "", txt)
+        out = []
+        for s in re.split(r"(?<=[.!?])\s+(?=[A-Z\"'(])|\n\s*\n|\n(?=[-|#>])", txt):
+            low = " ".join(s.split()).lower()
+            if not low:
+                continue
+            if any(p in low for p in _CONF_PATTERNS) or ("remains open" in low and not any(c in low for c in _COND_WORDS)):
+                out.append(low[:90])
+        return out
+    _ck("#0b checker fires on the planted confession ('we have not derived the count of three; it remains open')",
+        bool(_confessions("We have not derived the count of three; it remains open.")))
+    _ck("#0b checker accepts the same fact as a condition ('the count of three rides the identification ... remains open given it')",
+        not _confessions("The count of three rides the generation-is-a-quaternion-unit identification, and its dynamical selection remains open given that identification."))
+    _c0b = _confessions(_read("knowledge/corpus/TWT_core_paper.md") or "")
+    _ck("no sentence of TWT_core_paper.md is in the self-critique register (DOCKET #0b gate; offenders: %s)" % (_c0b[:3] or "none"), not _c0b)
+
+
+    # ---- 8j. GS-3 (2026-09-09, the keeper's item 11 - a drift class caught at THREE banked sites): the canted vacuum's
+    # Gamma-gapped modes are NOT gapped modes - "two Goldstone modes and four gapped" / "(2 gapless + 4 gapped)" is a
+    # twisted-frame Gamma count read as a mode count; the lab frame has six exact Goldstones (R-189 [9]). Any such sentence
+    # must carry the frame qualifier (Gamma / Gamma / twisted) or the six-count in the same sentence. Self-tested. ----------
+    print("GS-3 drift class - 'Gamma-gapless vs Goldstone' (self-tested):")
+    _GG_PAT = re.compile(r"\b(two|2)\s+(goldstone\s+modes?|gapless)\b[^.\n|]{0,80}\b(four|4)\s+gapped\b", re.I)
+    def _gamma_goldstone_slips(text):
+        out = []
+        for m in _GG_PAT.finditer(text or ""):
+            s = text[max(0, m.start() - 160): m.end() + 160]
+            if not re.search(r"Γ|Gamma|twisted|six|SIX|6 exact|six exact", s):
+                out.append(m.group(0)[:70])
+        return out
+    _ck("GS-3 checker fires on the planted 'the canted vacuum's two Goldstone modes and four gapped ones soften it'",
+        bool(_gamma_goldstone_slips("The value is an idealization; the canted vacuum's two Goldstone modes and four gapped ones soften it.")))
+    _ck("GS-3 checker accepts the qualified form ('2 Gamma-gapless + 4 Gamma-gapped in the twisted frame - six Goldstones')",
+        not _gamma_goldstone_slips("The count is 2 Gamma-gapless + 4 Gamma-gapped in the twisted frame - six Goldstones in the lab frame."))
+    _gg = []
+    for _f in ("knowledge/corpus/TWT_foundational_paper.md", "knowledge/corpus/TWT_core_paper.md", "knowledge/corpus/TWT_foundational_paper_companion.md", "knowledge/corpus/twt_candidate_v3.py", "knowledge/corpus/twt_core.py"):
+        _gg += ["%s: %s" % (_f.split("/")[-1], x) for x in _gamma_goldstone_slips(_read(_f) or "")]
+    _ck("no banked sentence reads the canted vacuum's Gamma count as a Goldstone count without the frame qualifier (offenders: %s)" % (_gg[:3] or "none"), not _gg)
+
+        # ---- 8k. GS-6 (2026-09-09, coordinator-directed - THE STATIC-FACE TRAP): the canted vacuum's anisotropy sentences
+    # (the stiffness split / ratio / birefringence / sidereal residual read off the static Hessian) must carry the FACE word
+    # ('static face' / 'driven face' / 'static reading' / 'STATIC-FACE') within the sentence's neighbourhood, because on the
+    # driven face the carrier detunes the hybridization behind them (GS-6a). Anchored on twelve banked sites (four at GS-6a, eight more from the face sweep). Self-tested. ----
+    print("GS-6 drift class - 'static face vs driven face' (self-tested):")
+    _FACE_SITES = [("knowledge/corpus/TWT_foundational_paper.md", r"What the canting changes[^\n]{0,400}?the shape of the six soft branches"),
+                   ("knowledge/corpus/TWT_foundational_paper.md", r"up to 68 % in the squared speed along a lattice axis"),
+                   ("knowledge/corpus/TWT_foundational_paper.md", r"the canted spiral's space-fixed residual"),
+                   ("knowledge/corpus/TWT_foundational_paper_companion.md", r"GS-4 RIDER \(2026-09-09, keeper item 14"),
+                   ("knowledge/corpus/TWT_foundational_paper.md", r"spread from about 4 to about 12\.3"),
+                   ("knowledge/corpus/TWT_foundational_paper.md", r"The quadratic order, stated honestly"),
+                   ("knowledge/corpus/TWT_foundational_paper.md", r"stiffness splitting is polarization-dependent"),
+                   ("knowledge/corpus/TWT_foundational_paper_companion.md", r"\| R-174 \| \*\*THE SIX-BAND MAGNON STIFFNESS SPECTRUM"),
+                   ("knowledge/corpus/TWT_foundational_paper_companion.md", r"K_long = √38·J ≠ K_⊥` on the canted vacuum"),
+                   ("knowledge/corpus/TWT_foundational_paper_companion.md", r"reproduces textbook spiral linear spin-wave theory"),
+                   ("knowledge/ledgers/TWT_NEGATIVES_LEDGER.md", r"## N70 — "),
+                   ("knowledge/corpus/twt_candidate_v3.py", r"def induced_G_from_linear_face_band")]
+    def _face_slips(text, pat):
+        out = []
+        for m in re.finditer(pat, text or ""):
+            s = text[max(0, m.start() - 250): m.end() + 350]
+            if not re.search(r"static face|driven face|static reading|STATIC-FACE|STATIC face", s, re.I): out.append(m.group(0)[:60])
+        return out
+    _ck("GS-6 checker fires on the planted 'the split is up to 68 % in the squared speed along a lattice axis, an exposure'",
+        bool(_face_slips("The canting sets the split: up to 68 % in the squared speed along a lattice axis, an exposure of the framework.", r"up to 68 % in the squared speed along a lattice axis")))
+    _ck("GS-6 checker accepts the labelled form ('... along a lattice axis, on the static face of the linear problem')",
+        not _face_slips("up to 68 % in the squared speed along a lattice axis, on the static face of the linear problem", r"up to 68 % in the squared speed along a lattice axis"))
+    _fs = []
+    for _f, _pat in _FACE_SITES:
+        _txt = _read(_f) or ""
+        if not re.search(_pat, _txt): _fs.append("%s: anchor missing (%s)" % (_f.split("/")[-1], _pat[:40]))
+        _fs += ["%s: %s" % (_f.split("/")[-1], x) for x in _face_slips(_txt, _pat)]
+    _ck("every banked canted-vacuum anisotropy site carries its face word (offenders: %s)" % (_fs[:3] or "none"), not _fs)
+
     # ---- 9. REGISTER CENSUS (keeper S-2, under the RUL-024 policy): row counts in the
     # ruling register vs the count-bearing prose sites ------------------------------
     print("register census:")
@@ -1190,12 +1819,11 @@ def main():
         ("knowledge/audit/SESSION_HANDOFF_2026-07-27.md", "handoff register counts"),
     ]:
         text = _read(rel) or ""
-        mm = re.search(r"(\d+) ruling rows \+ (\d+) adjudication\s+fences", text)
-        if not mm:
+        got = _census_read(text)
+        if got is None:
             _ck(f"{label}: pattern found in {rel}", False)
             continue
-        got = (int(mm.group(1)), int(mm.group(2)))
-        ok = abs(got[0] - n_rul) <= DRIFT_TOL and abs(got[1] - n_adj) <= DRIFT_TOL
+        ok = _census_ok(got, n_rul, n_adj, DRIFT_TOL)
         _ck(f"{label}: {got} vs tree ({n_rul}, {n_adj}) (tol ±{DRIFT_TOL})", ok)
 
     # ---- 10. RECORD-ID UNIQUENESS ---------------------------------------
@@ -1348,7 +1976,7 @@ def main():
     print("standing-ledger roster (FORMATION_CORE §5 list vs knowledge/ledgers/):")
     fc = _read("knowledge/prompts/FORMATION_CORE.md") or ""
     on_disk = sorted(p.name for p in (ROOT / "knowledge/ledgers").glob("*.md"))
-    missing = [n for n in on_disk if n not in fc]
+    missing = _roster_missing(fc, on_disk)
     _ck(f"every ledger in knowledge/ledgers/ is named in FORMATION_CORE "
         f"({len(on_disk)} files; unnamed: {missing or 'none'})", not missing)
 
@@ -1857,6 +2485,37 @@ def main():
                   f"release (scripts/check_records.py --release): {open_rows}")
         else:
             print("  [OK ] no OPEN blockers (release path clear)")
+
+    # ---- 13. APPARATUS PORTS 2026-09-17 (2A the dispatch log; 2C the paths ledger; 2F the
+    # design-verdict vocabulary) — each predicate has a planted demo in self_test() ------
+    print("apparatus ports (2A/2C/2F):")
+    _log = _read(DISPATCH_LOG_REL) or ""
+    _PORT_GLOBS = ["knowledge/candidates/probes_*", "knowledge/audit/*"]
+    _VNAME = re.compile(r"VERDICT|ADJUDICATION|CONTRA_REVIEW", re.I)
+    _pdirs = [_d for _g in _PORT_GLOBS for _d in sorted(ROOT.glob(_g)) if _d.is_dir()]
+    _vpaths = []
+    for _d in _pdirs:
+        for _f in sorted(_d.iterdir()):
+            if _f.is_file() and _f.suffix == ".md" and _VNAME.search(_f.name):
+                _vpaths.append(_f.relative_to(ROOT).as_posix())
+    _miss = _dispatch_log_missing(_log, _vpaths)
+    _ck(f"2A dispatch log: every verdict file since the log opened has a pointer row "
+        f"({len(_vpaths)} verdict files, {len(_dispatch_log_rows(_log))} rows; missing {_miss[:3]})",
+        not _miss and bool(_log))
+    _bad = []
+    for _d in _pdirs:
+        for _f in sorted(_d.glob("*DESIGN_VERDICT*.md")):
+            if _design_verdict_word_defect(_f.read_text(encoding="utf-8", errors="replace")):
+                _bad.append(_f.name)
+    _ck(f"2F design verdicts carry exactly one of {DESIGN_WORDS} (offenders {_bad[:3]})", not _bad)
+    _pl = _read("knowledge/ledgers/TWT_PATHS_LEDGER.md")
+    _pd = _paths_ledger_defects(_pl) if _pl else ["paths ledger missing"]
+    _ck(f"2C paths ledger: fork headers dated, LIVE rows carry a promotion condition ({_pd[:2]})", not _pd)
+
+    _et = {rel: _read(rel) for rel, _, _ in ENDORSE_SITES}
+    _truth = _core_endorsement_items(_et.get("knowledge/corpus/TWT_core_paper.md"))
+    _ed = _endorsement_count_defects(_et, _truth) if _truth else ["the Core paper's §1.3 list not found"]
+    _ck(f"endorsement count: every live site carries the Core §1.3 list's {_truth} items ({_ed[:3]})", not _ed)
 
     # ---- verdict ---------------------------------------------------------
     print("-" * 70)

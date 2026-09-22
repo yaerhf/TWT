@@ -1,4 +1,4 @@
-"""TWT — the Time-Wave Theory math: the MAIN engine FACADE (family split 2026-08-23).
+"""TWT — the Theory of Wave-Time math: the MAIN engine FACADE (family split 2026-08-23).
 
 THE ENGINE IS FOUR FILES. Two splits, on two different axes:
 

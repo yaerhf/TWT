@@ -2314,6 +2314,37 @@ def check_twt_matter():
         mb_["D0_identity_max_dev"] < 1e-12
         and mb_["D0_identity_wrong_factor_6J_dev"] > 1.0
         and mb_["D0_operator_identity"] == "H(k) = 12 * J * ktilde^2(k) * 1_6")
+    # GS-3 keeper item 5 (2026-09-09): the FRAME CAUTION as a live check - the ad_{B0} eigenvectors with eigenvalue +-i
+    # (the modes rotating about B0) are exact null vectors of H at twisted momentum -+k0 (six Goldstones, not two), at two D/J values;
+    # the control: the same vectors are NOT null at Gamma (the Gamma gap is a twisted-frame stiffness, never a mass).
+    from twt_candidate_v3 import _estate_d4_magnon_rig as _rig_fn
+    from scipy.optimize import minimize_scalar as _mins
+    import numpy as _npg
+    _rig = _rig_fn(1.0); _T6 = _npg.array(_rig["T"]); _B0 = _rig["biv"]([1, 1, 1]); _kd = _npg.array([1.0, 1.0, 1.0, 0.0])
+    _adB = _npg.zeros((6, 6))
+    for _b in range(6):
+        _Cm = _B0 @ _T6[_b] - _T6[_b] @ _B0
+        for _a in range(6): _adB[_a, _b] = 0.5 * float(_npg.sum(_T6[_a] * _Cm))
+    _w, _V = _npg.linalg.eig(_adB); _rot = [(_V[:, _i], float(_w[_i].imag)) for _i in range(6) if abs(_w[_i].imag) > 0.5]
+    _worst_null, _worst_ctrl, _worst_other, _worst_spec = 0.0, 1e9, 1e9, 0.0; _rngg = _npg.random.default_rng(7)
+    for _D in (0.1, 0.787):
+        _t = float(_mins(lambda _x: _rig["E_uniform"](_x * _kd, _B0, _D), bounds=(0.0, 1.2), method="bounded", options=dict(xatol=1e-13)).x)
+        _k0 = _t * _kd; _on, _bv, _rs = _rig["hessian_parts"](_k0, _B0, _D)
+        for _v, _lam in _rot:
+            _kn = -_lam * _k0   # GS-4 (keeper items 1-2): the -i sector is null at +k0 and the +i sector at -k0 (q_lab = k_twisted + lambda k0 = 0), NOT at the other point
+            _worst_null = max(_worst_null, _npg.linalg.norm(_rig["H_of"](_kn, _on, _bv, _rs) @ _v))
+            _worst_other = min(_worst_other, _npg.linalg.norm(_rig["H_of"](-_kn, _on, _bv, _rs) @ _v) / (48.0 * _t * _t))   # relative to 12 J |2 k0|^2, the uncanted stiffness at the other point
+            _worst_ctrl = min(_worst_ctrl, _npg.linalg.norm(_rig["H_of"](_npg.zeros(4), _on, _bv, _rs) @ _v) / ((2.0 / 3.0) * _D ** 2))   # relative to the Gamma stiffness (2/3) D^2 J
+        for _ in range(20):
+            _kr = _rngg.normal(size=4)
+            _worst_spec = max(_worst_spec, float(_npg.max(_npg.abs(_npg.linalg.eigvalsh(_rig["H_of"](-_kr, _on, _bv, _rs)) - _npg.linalg.eigvalsh(_rig["H_of"](_kr, _on, _bv, _rs))))))
+    _ck("GS-3/GS-4 (2026-09-09) FRAME CAUTION as a check, SECTOR-RESOLVED: the ad_{B0} eigenvectors with eigenvalue -i are EXACT null vectors of H at "
+        f"twisted momentum +k0 and the +i ones at -k0 (worst |H v| {_worst_null:.1e}) and NOT at the other point (min |H v| / 12J|2k0|^2 = {_worst_other:.3f}) "
+        f"nor at Gamma (min |H v| / Gamma stiffness {_worst_ctrl:.3f}) at D/J = 0.1 and 0.787 - all SIX Goldstones sit at LAB momentum zero "
+        f"(q_lab = k_twisted + lambda k0; 2 at Gamma + 2 at each of +-k0); the Gamma gap is a stiffness, not a mass; and spec H(-k) = spec H(k) "
+        f"identically (real bond blocks; worst dev {_worst_spec:.1e} over 20 random k) - no +-k0 asymmetry exists in the static stiffness",
+        _worst_null < 1e-10 and _worst_other > 0.5 and _worst_ctrl > 0.5 and len(_rot) == 4 and _worst_spec < 1e-9)
+
     _ck("at Γ the spectrum is 2 GAPLESS + 4 EXACTLY FOURFOLD-DEGENERATE gapped on BOTH single-q "
         f"branches — body-diagonal {[round(x, 6) for x in mb_['gamma_spectrum']['body-diagonal']]}, "
         f"axis {[round(x, 6) for x in mb_['gamma_spectrum']['axis']]} — so the 2+4 SPLIT is "
@@ -2874,7 +2905,7 @@ def check_twt_matter():
     _ck("[N1-3] THE OPERATIONALIZATION MENU IS COMPUTED AND THE PICK IS OPEN — three members, "
         "three uniform-cell phenomenologies (op A one-shot LATCH / op B a RELATIVE EQUILIBRIUM "
         "— a frozen profile drifting rigidly along B₀, NOT a limit cycle (non-isolated gauge "
-        "translates), T = 2π/|ω| ≈ 34.5 tu with cycle-average Δ = ω/Ω₀ = +1.301e-2 ONE "
+        "translates; the neutral family is 3-PARAMETER — gauge 2-torus PLUS phason, R-195), T = 2π/|ω| ≈ 34.5 tu with cycle-average Δ = ω/Ω₀ = +1.301e-2 ONE "
         "measurement, the old +1.2947e-2 one cycle phase, the intra-cycle band ≥96% detector "
         "geometry — the R-194 re-cut / op C SURPLUS −1.40e-2, NOT RE-/cycle-/geometry-checked), "
         "all reproducing R-192's L(k) so no run gate discriminates; the deficit formula "

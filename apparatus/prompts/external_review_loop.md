@@ -220,7 +220,7 @@ reliably. The held-out model read is the cheap proxy, not the real gate.
 ## Standing A/B items (first iterations)
 
 - **Subtitle variants** (measure classification rate per variant): lead candidate
-  "Time-Wave Theory: Standard-Model structure from a single wave medium"; no-subtitle
+  "Theory of Wave-Time: Standard-Model structure from a single wave medium"; no-subtitle
   control; coordinator alternates. Title changes ride a release gate with keeper sweep of
   identity sites (TOC, mirror README, cover note).
 - **The who-dies-from-what panel** (front matter). **SHIPPED in round 1, but not as

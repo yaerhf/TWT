@@ -8,7 +8,7 @@ Replace <DATE> with the audit's date.
 
 ---
 
-You are remediating Time-Wave Theory against a global coherence audit at
+You are remediating the Theory of Wave-Time against a global coherence audit at
 knowledge/reports/coherence_audit_<DATE>.md. Replace the <DATE> based filname with the most recent audit's filename. That report is a set of skeptical referee CLAIMS — treat
 each as a PROPOSAL to adjudicate, NOT gospel; a finding can be wrong. Your job: convert the SURVIVING
 findings into honest edits with the engine staying green. The audit's own verdict is "make the

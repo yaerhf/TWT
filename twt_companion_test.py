@@ -34,6 +34,148 @@ def check_twt_algebra():
         and re_["re_residual"]["neg_control_seeded"] >= 0.99
         and "RUL-119" in re_["duty"])
 
+    ph_ = g8_opB_phason_neutral_manifold()
+    _ck("\u2605 THE NEUTRAL MANIFOLD IS 3-DIMENSIONAL AND THE THIRD DIRECTION IS THE PHASON "
+        "(R-195, 2026-09-01): R-194's exact 2-torus is UNTOUCHED and no theorem is refuted, but the "
+        "op-B relative equilibrium carries one further EXACT neutral direction \u2014 translation "
+        "along the hosted k. 'Spatial translation Goldstone' is wrong twice: a lattice has no "
+        "continuous translation symmetry to break, and FIVE non-period lattice vectors act as the "
+        "IDENTITY on this state (exact arithmetic here; measured 7.8e-16), so only motion along k "
+        "moves it. The corpus's own word is PHASON. Established by the continuous translation "
+        "generator projecting into the null space at 1.000000 (gauge overlaps 0.0/3.1e-5), by "
+        "sigma_3 tracking the FD floor as h^2 beside two THEOREM zeros while sigma_4 sits immobile "
+        "at 1.1400e-2, and by nu = 0 to 1e-14 over ~2.2 lattice steps \u2014 NOT by the void "
+        "exponent scan. NO PEIERLS-NABARRO BARRIER at this state, with the scope condition named "
+        "(shorter wavelength TESTED at 1.58x, R-197: NOT restored; larger amplitude UNTESTED)",
+        ph_["neutral manifold dimension"] == 3
+        and ph_["R-194 untouched (exact 2-torus centralizer)"] is True
+        and "PHASON" in ph_["the third direction"]
+        and ph_["transverse lattice vectors acting as the identity (exact)"] == 5
+        and abs(ph_["continuous translation generator -> nullspace projection"] - 1.0) < 1e-9
+        and ph_["pattern_phase_mode -> nullspace projection"] < 0.9
+        and "NONE" in ph_["PEIERLS-NABARRO barrier at this state"]
+        and "UNTESTED" in ph_["where the barrier should return"])
+
+    _ck("\u2605 THE EXPONENT-DIFFERENCE DISCRIMINATOR IS VOID \u2014 THE RUL-122 GROUND (R-195): "
+        "N3d registered 'the DIFFERENCE OF EXPONENTS, which no identity can fix'. Closed form: for "
+        "r(eps) = sqrt((L eps)^2 + (Q eps^2/2)^2) the fitted log-log slope depends on L/Q ALONE "
+        "(verified invariant under rescaling both), so it tends to 2 for a true symmetry (L = 0) "
+        "AND for a non-symmetry with L/Q = 1e-7 \u2014 both 2.000 here \u2014 while a stiff "
+        "direction gives 1.000. It carries NO symmetry information. Measured on the flow: a "
+        "direction 1.07e6 x sigma_soft \u2014 provably not a symmetry \u2014 scanned at 1.987. "
+        "SIXTH vacuous check of the arc, built INSIDE the prose clause written against the fifth",
+        "VOID" in ph_["exponent-difference discriminator"]
+        and abs(ph_["closed-form slopes (symmetry / non-symmetry / stiff)"][0] - 2.0) < 1e-6
+        and abs(ph_["closed-form slopes (symmetry / non-symmetry / stiff)"][1] - 2.0) < 1e-3
+        and abs(ph_["closed-form slopes (symmetry / non-symmetry / stiff)"][2] - 1.0) < 1e-3)
+
+    _ck("\u2605 THE ONSET IS A TWO-TERM STUART-LANDAU NORMAL FORM, AND THE SINGLE g WAS MIS-STATED "
+        "(R-195): refitting the five recorded (A, c*) points gives c* - c_lin = 10.4410 A^2 + "
+        "42.01 A^4, cutting the residual 791x against one term. g_eff is STRICTLY MONOTONE, five "
+        "of five ordered \u2014 so the previously quoted '10.45403 +- 0.01353, constant to 0.349%' "
+        "reported a fully resolved amplitude dependence as scatter, and the number banked as the "
+        "Stuart-Landau coefficient is NOT it: the cubic coefficient is the A->0 limit g0. CREDIT: "
+        "the five-point table, the nine-sig-fig non-circularity ground and the first two-term "
+        "value are the N3c REVIEWER's, not the round's",
+        abs(ph_["Stuart-Landau g0 (cubic, the A->0 limit)"] - 10.4410) < 2e-3
+        and 40.0 < ph_["Stuart-Landau g2 (quintic)"] < 44.0
+        and ph_["residual reduction, one-term -> two-term"] > 700.0
+        and ph_["g_eff strictly monotone (5 of 5)"] is True
+        and "REVIEWER" in ph_["credit for the five-point table and the two-term value"]
+        and "SECANT" in ph_["engaged-ceiling dlnT/ddg = +1.018"]
+        and "RUL-114" in ph_["fence"])
+
+    ec_ = g8_engaged_ceiling_convex_not_derivative()
+    _ck("★ THE ENGAGED-CEILING RELATION IS CONVEX, SO R-195's dlnT/d(delta g) = +1.018 "
+        "IS A CHORD, NOT A DERIVATIVE (R-196, 2026-09-02): R-195 measured ONE engaged rho_sat "
+        "and wrote a secant in derivative notation. Four engaged states (rel 5.5e-13..9.2e-13) "
+        "give successive secants +0.4400/+1.2616/+2.0621/+3.1714 — STRICTLY MONOTONE "
+        "INCREASING, spread 157%%, and the chord across R-195's own interval reproduces +1.018 "
+        "to four figures while the local slope varies 4.69x WITHIN it (the 7.21x first written "
+        "in the L1 wrongly spanned a secant BEYOND that interval — self-corrected at the "
+        "ceremony). Only the SIGN survives, which is all R-194's sign-withdrawal required, so "
+        "that withdrawal stands untouched. NON-VACUOUS: the same test on a log-linear synthetic "
+        "returns NOT-convex, discriminating by >1e8. UNDER-CLAIM adopted: |omega| extrapolates "
+        "to a DRIFT BIFURCATION at delta g* ~ 0.84-1.15 — WINDOW-DEPENDENT, hence a "
+        "can-fail prediction two continuation points away, never a measurement",
+        ec_["strictly monotone increasing (CONVEX)"] is True
+        and abs(ec_["chord over R-195's interval [0, 0.48345]"] - 1.018) < 5e-3
+        and abs(ec_["local-slope variation WITHIN that interval"] - 4.69) < 0.05
+        and ec_["negative control (log-linear synthetic) is NOT convex"] is True
+        and ec_["T = 2*pi/|omega| identically"] is True
+        and len(ec_["and it is WINDOW-DEPENDENT (all5/last4/last3/last2)"]) == 4
+        and "SIGN only" in ec_["what survives of R-195"]
+        and "RUL-114" in ec_["fence"])
+
+    in_ = g8_track2_inertial_face_and_charge()
+    _ck("\u2605 THE INERTIAL FACE HAS AN EXACT CANONICAL CHARGE THAT BUYS NO BARRIER (R-199, Phase N4 "
+        "Track 2, 2026-09-03; conditional on V4-m5): the reactive term placed as a force is not Lyapunov "
+        "(sign-indefinite <V,[B0,F]>), placed as a Coriolis term it is work-free and variational, with the "
+        "Noether charge Q_can conserved to 1.9e-8 at c = 12 where the kinetic half drifts 46 percent; the drive "
+        "is a frame rotation c -> c - m5 Om0; the m5 -> 0 limit op B' is an ANISOTROPIC mobility "
+        "(1/gd on ker ad_B0, 1/sqrt(gd^2+c^2) on the planes), not a placement of the kernel; op B' holds the "
+        "hedgehog 31x longer (3.18 vs 0.103) - LESS than the 36.6x reparametrisation of the same collapse - and "
+        "NEGATIVE on the plateau condition; the same-charge uniform carrier lies 2172.6 below the charged seed "
+        "(0.4 percent of the defect's excess): N73 (f2) attacked and not reached; inertia UNDECIDED 0/18.",
+        "not a placement" in in_["exact_clauses"]
+        and in_["charge drifts (c = 12, Om0 = 0, gd = 0, 0.3 tu)"]["Q_kin_c12"] > 0.3
+        and in_["no-centrifugal-barrier (keeper)"]["charge_cost_frac_c12_m5_1_upper_bound_at_U_eq_I"] < 0.05
+        and "attacked and not reached" in in_["verdicts"]
+        and "conditional on V4-m5" in in_["tier"])
+
+    aw_ = g8_track1b_active_window_balance_and_zero_work_identity()
+    _ck("R-201 (Track 1b): |G|^2 = gamma_eff^2|F|^2 + c^2|[B0,F]|^2 exactly on random fields (worst rel %.1e) and the check FAILS on a reactive channel that does work ([B0,F] + 0.3 F) (rel %.2f > 0.05: it can fail); the banked passive kernel admits no non-vacuum steady state at zero drive; the active window's balanced localized state recorded, not asserted" % (aw_["worst_rel_on_random_fields"], aw_["failure_mode_rel_working_reactive_channel"]),
+        aw_["worst_rel_on_random_fields"] < 1e-12 and aw_["failure_mode_rel_working_reactive_channel"] > 0.05)
+    ro_ = g8_track1b2_root_offset_balance_identity()
+    _ck("R-202 (Track 1b round 2) + R-203 exact form: a balanced window state sits ABOVE the lower root by dx = (L/S)/sqrt(a^2-4b) to O((L/S)^2) over %d random windows (second-order ratio to the derived b eps^2/D^1.5: %.3f < 1.5); the EXACT identity <delta>_w = (|G|/S)/sqrt(D) + (b/sqrt(D))<delta^2>_w holds to 1e-10 on random cores (the wrong root breaks it at O(1)); the balance |G_core| = L is the separate assumption; and the check FAILS where it must: a^2 < 4b has no root and no real balance, and at the UPPER root the offset flips sign (W2 branch)"
+        % (ro_["trials"], ro_["worst_second_order_constant"]),
+        ro_["worst_second_order_constant"] < 1.5 and ro_["trials"] > 50 and abs(ro_["lower_root_W1"] - 0.5) < 1e-15 and ro_["exact_second_order_identity_worst_rel"] < 1e-10 and abs(ro_["witness_CFW16_HW1"]["balance_predicted"] - 0.710839) < 2e-6)
+    fl2_ = g8_track2b_fixed_charge_floor_is_configuration_independent()
+    _ck("R-200 (Branch B): the fixed-charge kinetic floor is configuration-independent at c = 0 - Gram = N diag(a^2, a*^2) on random SO(4) fields, K_min identical across fields and equal to the closed form to 1e-13, and the SAME check FAILS on a site-weighted metric (rel %.3f > 0.05: it can fail); N73 (f2) excluded by construction at c = 0 on V4-m5's realization" % fl2_["failure_mode_rel_on_site_weighted_metric"],
+        fl2_["failure_mode_rel_on_site_weighted_metric"] > 0.05 and (max(fl2_["K_min_fields"]) - min(fl2_["K_min_fields"])) / fl2_["closed_form"] < 1e-13)
+    lim_ = g8_track1a_saturation_is_a_limiter()
+    _ck("\u2605 THE SATURATION TERM IS A LIMITER, NOT A GAIN (R-198, Phase N4 Track 1a, 2026-09-03): "
+        "g_eff = \u03b3(1+|F|\u00b2/\u03c1\u00b2) \u2265 \u03b3 for every \u03c1_sat, equality iff |F| = 0 (DERIVED-A), "
+        "so the banked kernel's only nonlinearity can never supply CQ-CGL gain; on the CFW16 band-hosting "
+        "cell the linear-profile hedgehog is certified degree-0 at t = 0.105 / 0.070 / 0.020 / 0.005 (op B) "
+        "for t = 0 seed dampings 1 / 4 / 31 / 301 \u2014 the ceiling clamps the core to |F| ~ 2\u03c1 within "
+        "0.005 tu (measured 5.9 / 5.6 / 5.0, not 4 / 31 / 301) and in its own clock the core unwinds SLOWER; "
+        "13/13 frozen-criterion elements NO EXISTS, the drive band grew \u2264 1.048\u00d7 over any defect's "
+        "life (band-as-gain UNTESTED, not refuted); op C differs from op B on the defect-side strain "
+        "(C/B 0.46\u20130.91 at 6/6) but not on the verdict observables \u2014 a located gap, N73 (f3)(f).",
+        "DERIVED-A" in lim_["exact_clause"]
+        and lim_["seed_arithmetic_k0 (t = 0, NOT a realised regime)"][33.8] > 3.99
+        and lim_["measured engagement at t = 0.005 (op B / op C)"]["B"][3.38] < 5.0
+        and lim_["certified degree-0 UPPER BOUNDS by k0, 0.005-tu cadence (op B / op C)"]["B"][1] == 0.105
+        and lim_["certified degree-0 UPPER BOUNDS by k0, 0.001-tu cadence dt-converged (op B), five-point ladder"][27954] == 0.001
+        and "did not run" in lim_["frozen-criterion elements"]
+        and "not selection" in lim_["op C vs op B"]
+        and "N73 (f3)(f)" in lim_["tier"])
+
+    tr_ = g8_travelling_re_short_wavelength()
+    _ck("\u2605 A TRAVELLING RELATIVE EQUILIBRIUM AT 1.58\u00d7 SHORTER WAVELENGTH, AND ITS PHASON IS NOT "
+        "PINNED EITHER (R-197, 2026-09-02): at k = (\u03c0/16)(\u22122,\u22121,0,0) the three lattice "
+        "vectors that fixed R-195's state now MOVE it (phase \u22123\u03c0/16, exact arithmetic) and the "
+        "drift lies along [1,\u22121,0,0], off the k-axis \u2014 which is why the round's third residual "
+        "column, pattern_phase_mode, could not see it and the L1 wrongly reported NOT an RE. Exact "
+        "generators: 0.2908 \u2192 9.57e-4; relaxed to 2.1e-5 (R-194's band); Newton 1.2e-12 and, on "
+        "the advective residual, 8.4e-15. The Jacobian done right has EXACTLY three exact zeros "
+        "(gauge 2-torus + one phason \u2014 a single-k pattern is a one-parameter phase family) with "
+        "\u03c3\u2084 = 0.325 immobile; the washboard is null to ~5e-4. RUL-119 as banked is ONE-SIDED "
+        "and re-cut to exact generators + Newton; \u03c9 is border-convention-dependent here (gauge "
+        "overlap 0.5276 vs 0.000000 at R-195). R-195's wavelength disjunct: MEASURED, NOT CONFIRMED; "
+        "amplitude disjunct UNTESTED; two states are not a genericity claim",
+        tr_["measured exact zeros at R-197"] == 3
+        and tr_["expected neutral-manifold dimension (both k)"] == 3
+        and tr_["continuous translation symmetries (both k)"] == 1
+        and tr_["residuals on the committed attractor"]["exact_generators"] < 1e-3
+        and tr_["residuals on the committed attractor"]["newton_advective"] < 1e-10
+        and "NOT detected" in tr_["Peierls-Nabarro barrier at 1.58x"]
+        and "UNTESTED" in tr_["R-195 would-change-if"]
+        and "ONE generator" in tr_["RUL-119 as banked"]
+        and "genericity" in tr_["NOT claimed"]
+        and "RUL-114" in tr_["fence"])
+
     wq = b0_plane_detector_wind_quantum()
     _ck("★ THE B0-PLANE DETECTOR WIND QUANTUM (branch-scan bank 2026-08-31, DERIVED-A instrument "
         "algebra): phase_g reads an off-origin circle (radius ρ, offset d = 1−⟨cos β⟩) — winding "
@@ -419,6 +561,54 @@ def check_twt_spectra():
     print("        ⇒ N22: the physical measure is covariant (Q=0) ⇒ N21's measure sub-route CLOSED (the 2D-curvature loophole defused via cyclic-θ ⇒ soft 1/R); the generation VALUES are a sharpened 2-way FORK (conservative monad-INPUT vs dissipative Im-χ-GATED), the STRUCTURE derived. NOT a flat input, NOT DERIVED. The #1 gap stands, localized to the R→0 conservative-vs-dissipative discriminator.")
 
 
+    lr_ = g8_linear_response_operator_twisted_vacuum()
+    _ck("★ THE LINEAR-RESPONSE OPERATOR OF THE G-8 FLOW ABOUT ITS TWISTED VACUUM (2026-09-15, the keeper's Q2 spec; "
+        "at Ω₀ = 0, body-diagonal branch, D/J = 0.787): check 1 — <⋆B₀|H(k)|⋆B₀> = 12 J k̃²(k) EXACTLY on 3 directions × "
+        "3 magnitudes (R-192's identity, worst rel %.1e)" % lr_["check1_starB0_identity_worst_rel"],
+        lr_["check1_starB0_identity_worst_rel"] < 1e-10)
+    _ck("   PLANTED FAILURES of check 1: the 6J label-form misses by ≥ 40 %% (%.2f) and the continuum 12|k|² misses "
+        "by ≥ 0.2 %% at 2π/8 (%.3f) and ≥ 10 %% at (2π/8)(1,1,1) (%.3f) — the stiffness is the full lattice dispersion"
+        % (lr_["check1_planted_6J_min_miss"], lr_["check1_planted_continuum_min_miss"],
+           lr_["check1_planted_continuum_miss_at_(2pi/8)(1,1,1)"]),
+        lr_["check1_planted_6J_min_miss"] > 0.4 and lr_["check1_planted_continuum_min_miss"] > 0.002
+        and lr_["check1_planted_continuum_miss_at_(2pi/8)(1,1,1)"] > 0.1)
+    _ck("   check 2 — L(0): EXACTLY 2 zero modes + 4 at −g(1 ± i C12), Im/Re = 12 to 1e-4, g = 12|k₀|² to 1 %% "
+        "(%.5f vs %.5f); the UNTWISTED world returns 6 zero modes (%d) — the 2 + 4 split is the twist's"
+        % (lr_["check2_g_vs_12k0sq"][0], lr_["check2_g_vs_12k0sq"][1], lr_["check2_planted_untwisted_zero_modes"]),
+        lr_["check2_L0_zero_modes"] == 2 and len(lr_["check2_L0_gapped"]) == 4
+        and lr_["check2_planted_untwisted_zero_modes"] == 6)
+    _ck("   check 3 — ξ = 1/|k₀|: the inverse pitch reproduces R-189's measured-minimum healing length on the same "
+        "branch to 0.1 %% (%.4f vs %.4f)" % (lr_["check3_xi_inverse_pitch"], lr_["check3_xi_R189_measured_min"]),
+        abs(lr_["check3_xi_inverse_pitch"] - lr_["check3_xi_R189_measured_min"]) / lr_["check3_xi_R189_measured_min"] < 1e-3)
+    _ck("   check 4 — THE SELECTION RULE IS A PLANE: [H(k), ad_B₀] = 0 to 1e-12 on span{k̂₀, e₄} (along k₀ at three "
+        "magnitudes, along e₄, three interpolations; worst %.1e) and > 0.01 for every k OFF the plane (min %.2f, the "
+        "control); identically 0 in the untwisted world" % (max(lr_["check4_commutator_in_plane"].values()),
+                                                            min(lr_["check4_commutator_off_plane (control)"].values())),
+        max(lr_["check4_commutator_in_plane"].values()) < 1e-12
+        and min(lr_["check4_commutator_off_plane (control)"].values()) > 0.01
+        and lr_["check4_untwisted_world_commutator_max"] < 1e-12)
+    _ck("   PROVENANCE TIE: the operator reproduces the deposited 32³ delta-plant stencil of gr1_linear_response_step2 "
+        "(D_B0, D_⋆B0 at 2π/32; L(0)'s gapped pair; the 32³-raster max Re / min |eig|) to 1e-3 (worst %.1e) and the "
+        "steady state is DAMPED (max Re eig < 0: driven, not variational — keeper UNDER-CLAIM 5)"
+        % lr_["provenance_tie_to_step2_stencil"]["worst_rel"],
+        lr_["provenance_tie_to_step2_stencil"]["worst_rel"] < 1e-3
+        and lr_["provenance_tie_to_step2_stencil"]["engine"]["K5_max_re"] < 0.0)
+    pc_ = lr_["perp_stiffness_channels"]
+    _ck("   THE CHANNEL SPLIT (2026-09-17, the L48/K-INV-2e keeper's COLLISION 1, confirmed on the developer's own route): "
+        "perpendicular to the pitch the Schur-reduced smooth sector SPLITS — the B₀ channel saturates POSITIVE (%.4f; "
+        "65:1 against the pitch %.3f) and the ⋆B₀ channel NEGATIVE (%.5f = N70's banked −0.02305291 to 5e-4), off-diagonal "
+        "%.1e; the withdrawn 'D_perp saturates at 0.080' was their MEAN (%.4f) — a banked instability hidden in an average; "
+        "along the pitch ⋆B₀ reads %.6f (R-192)"
+        % (pc_["B0_perp"], pc_["B0_pitch"], pc_["starB0_perp"], abs(pc_["offdiag_perp"]),
+           pc_["mean_perp (the withdrawn '0.080')"], pc_["starB0_pitch"]),
+        pc_["B0_perp"] > 0.1 and abs(pc_["starB0_perp"] - (-0.02305291)) < 5e-4 and abs(pc_["offdiag_perp"]) < 1e-6
+        and abs(pc_["mean_perp (the withdrawn '0.080')"] - 0.080) < 1e-3 and abs(pc_["starB0_pitch"] - 12.0) < 1e-3
+        and pc_["B0_pitch"] / pc_["B0_perp"] > 60)
+    print("        ⇒ the linearized G-8 kernel at Ω₀ = 0 is in the engine: L(k) = −(1 + C12 ad_B₀) H(k); the ⋆B₀ stiffness "
+          "is R-192's identity, the Γ gap is 12|k₀|², ξ = 1/|k₀|, and the smooth→satellite null is an exact symmetry "
+          "on the canting PLANE. No far-field law, no drift, no driven-face statement is claimed here.")
+
+
 # ---- twt_matter (companion blocks) ----------------------------------------
 def check_twt_matter():
     sc = same_composition_baryons_pin_internal_mode()
@@ -689,11 +879,53 @@ def check_twt_cosmo():
         and "RUL-035" in ko["ruling"])
 
 
+def check_twt_jd7_quartic():
+    print("R-206 JD-7 leg B — the two readings of the bond COST differ at O(X^4) by exactly the Pfaffian channel:")
+    r = g8_jd7_quartic_pfaffian_channel_identity(n_trials=20, seed=20260821)
+    _ck("per-bivector identity <X^4>_0 = 1/2 Tr(M^4) + 6 Pf(M)^2 and Tr(M^4) = 1/2 Tr(M^2)^2 - 4 Pf^2 [DERIVED-A; max rel dev < 1e-12]",
+        r["identity_max_rel_dev"] < 1e-12)
+    cf = r["frame_coeffs_S1_S2_S3"]; cr = r["rotor_coeffs_S1_S2_S3"]
+    _ck("frame-bilinear 24-bond sum = 8 S1 + 4 S2 exactly (S3 coefficient 0; residual < 1e-10)",
+        abs(cf[0] - 8) < 1e-8 and abs(cf[1] - 4) < 1e-8 and abs(cf[2]) < 1e-8 and r["frame_residual_3ch"] < 1e-10)
+    _ck("rotor-linear 24-bond sum = 4 S1 + 2 S2 + 6 sum_b Pf(X_b)^2 exactly (residual < 1e-10)",
+        abs(cr[0] - 4) < 1e-8 and abs(cr[1] - 2) < 1e-8 and abs(cr[2] - 6) < 1e-8 and r["rotor_residual_3ch"] < 1e-10)
+    _ck("the two-channel fit of the rotor reading is NOT exact (the JD-7 run's 0.148-class residual > 0.03: an artifact of the incomplete basis, never a constant of the theory)",
+        r["rotor_residual_2ch_the_artifact"] > 0.03)
+    _ck("planted failure: a Pfaffian coefficient of 5 instead of 6 leaves a residual > 1e-3 (the check can fail)",
+        r["planted_failure_pf_coeff_5_residual"] > 1e-3)
+    print("        => LS-Z2 discriminator (1) at O(X^4) is an IDENTITY (the pseudoscalar channel), not a fraction; the e-propagation stays BLOCKED at the dressed sector.")
+
+def check_twt_z3_gauge_gain_band():
+    print("R-207 the Z^3 generator's left-torus gauge identity + the W1 gain-band identity:")
+    r = g8_z3_left_torus_gauge_identity(L=4, n_states=2)
+    _ck("[B0, V_i] = [*B0, V_i] = 0 for all 18 bond twists and [B0, *B0] = 0 [DERIVED-A; < 1e-14]",
+        r["comm_B0_V_max"] < 1e-14 and r["comm_SB0_V_max"] < 1e-14 and r["comm_B0_SB0"] < 1e-14)
+    _ck("G(RU) = G(U) for a uniform LEFT rotation in B0, in *B0 and in their product (max dev < 1e-10 against |G| ~ 1e2)",
+        max(r["dev_left_B0"], r["dev_left_SB0"], r["dev_left_torus_product"]) < 1e-10 and r["gen_scale"] > 10)
+    _ck("the Lie-midpoint stepper is left-equivariant: step(RU) = R step(U) (< 1e-12)", r["dev_step_equivariance"] < 1e-12)
+    _ck("planted: e13 does not commute with the twists (> 1e-2) and a LEFT e13 rotation changes G (> 1)",
+        r["planted_comm_e13_V_max"] > 1e-2 and r["dev_planted_left_e13"] > 1.0)
+    _ck("planted: a RIGHT B0 rotation is not a covariance of G (> 1): the K_i do not commute with B0 and are not needed to",
+        r["dev_planted_right_B0"] > 1.0 and r["comm_B0_K_max_not_needed"] > 1e-2)
+    w = g8_w1_gain_band_identity()
+    lo, hi = w["band_exact"]
+    _ck("W1 gain band exactly (rho/sqrt2, rho sqrt(3/2)): g_eff = 0 at both edges (< 1e-12), the grid band agrees (< 1e-3 rel)",
+        abs(w["exact"]["g_at_lo"]) < 1e-12 and abs(w["exact"]["g_at_hi"]) < 1e-12
+        and abs(w["band_grid"][0] / lo - 1) < 1e-3 and abs(w["band_grid"][1] / hi - 1) < 1e-3)
+    _ck("min g_eff = 1 - a^2/4b = -1/3 exactly, at |F| = rho (< 1e-12; grid argmin at rho)",
+        abs(w["exact"]["min_formula"] + 1/3) < 1e-12 and abs(w["exact"]["g_at_rho"] + 1/3) < 1e-12 and abs(w["argmin_grid"] / 36.877546 - 1) < 1e-4)
+    p = w["planted_quartic_moved"]
+    _ck("planted: the quartic weight moved to 3/2 misses both edges (> 1e-2) and the minimum (> 0.1 off -1/3)",
+        abs(p["g_at_lo"]) > 1e-2 and abs(p["g_at_hi"]) > 1e-2 and abs(p["min"] + 1/3) > 0.1)
+    _ck("planted: a rho1 mismatch between (a, b) and the x normalization breaks the -1/3 at rho (> 1e-2)",
+        abs(w["planted_rho1_mismatch"]["g_at_rho"] + 1/3) > 1e-2)
+    print("        => a uniform LEFT drive's mean is an exact frame rotation (carrier entrainment by it void for every Omega0); the W1 band is rho-exact, rho1-free.")
+
 def main():
     print("="*70)
     print("  TWT companion engine — self-check (the deep-dive layer's harness)")
     print("="*70)
-    checks=[check_twt_algebra, check_twt_observer_qm, check_twt_spectra, check_twt_matter, check_twt_weak, check_twt_hadrons, check_twt_cosmo]
+    checks=[check_twt_algebra, check_twt_observer_qm, check_twt_spectra, check_twt_matter, check_twt_weak, check_twt_hadrons, check_twt_cosmo, check_twt_jd7_quartic, check_twt_z3_gauge_gain_band]
     import io, contextlib
     total=0; ok=True
     for fn in checks:

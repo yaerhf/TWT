@@ -2343,141 +2343,6 @@ def ecarrier_common_mode_certificates():
     }
 
 
-def two_defect_tensor_complex_space():
-    """[DERIVED-A pointwise algebra, GENERIC-GIVEN-two-complex-structures — the
-    substrate supplies the structures (winding blades in the quaternionic
-    commutant span{1, e23, e13, e12} ≅ H), the split itself is blade-independent
-    linear algebra; consumes NO V3 pick. In-house verification of the
-    2026-08-31 external mock-review claim, coordinator-directed.]
-
-    THE RESULT: for two defects with winding blades B1, B2 (any of the 9
-    ordered pairs, equal or distinct), the commuting complex actions J1 (x) I
-    and I (x) J2 on the 16-real-dimensional H (x)_R H single out
-    ker(J1 (x) I - I (x) J2) — EXACTLY 8 real dimensions, J-invariant with
-    J^2 = -1: a C^4 = C^2 (x)_C C^2, the exact two-qubit space. WHY 8 IS
-    FORCED (the generic reason, asserted): K = J1 (x) J2 has K^2 = +1 and
-    tr K = (tr J1)(tr J2) = 0, so the eigensplit is 8/8 for ANY two complex
-    structures — the blades are not doing the work here. Same-blade: the swap
-    is complex-linear with eigenvalues {+1 x3, -1 x1} — the triplet/singlet
-    split, the singlet slot Lambda^2(C^2) one complex dimension. Distinct
-    blades: the identification Psi = I (x) L_q (q the commutant rotor with
-    q u1 q^{-1} = u2) maps the spaces exactly; it is NON-CANONICAL — q is
-    free up to right multiplication by exp(phi u1) — but that U(1) ambiguity
-    acts as a complex PHASE, so the SINGLET SLOT is invariant under the
-    choice (verified to ~7e-16): the slot is canonical, the identification is
-    not. THAT PER-PAIR U(1) FREEDOM IS EXACTLY THE SEED of the CP1
-    emergent-connection candidate (knowledge/candidates/ A-1/B-1).
-
-    SCOPE — what this does NOT establish (banked with the result, not beside
-    it): (i) it refutes ONLY the POINTWISE reading of the external
-    'Hopf-fibration-forbids-tensor-products' conjecture — the BUNDLE-LEVEL
-    question (does a CONTINUOUS global choice of identification exist over
-    the space of blade pairs?) is untouched and is where the Hopf topology
-    actually lives; (ii) N53 (the five-route located negative on
-    CONSTRUCTING the multi-defect space from the substrate) is NOT unbanked
-    — this is a new exact input to N53's route (c), and route (c)'s
-    double-counting tripwire still fires at any development; (iii) no
-    dynamics, no interaction, no photon — the gauge-boson reading stays
-    CANDIDATE. RELATION TO THE BANKED not_claimed ROW (twt_core's 'two-wing
-    tensor product (N53)' and §B.4's 'remains imported'): UNCHANGED — this
-    primitive supplies the POINTWISE complex structure only; the physical
-    two-defect state space stays imported until the bundle-level global
-    choice is constructed (the CP1 route's registered target)."""
-    import numpy as _np
-    import itertools as _it
-
-    def _Lq(a, b, c, d):
-        return _np.array([[a, -b, -c, -d], [b, a, -d, c],
-                          [c, d, a, -b], [d, -c, b, a]], float)
-
-    I4 = _np.eye(4)
-    U = {"i": _Lq(0, 1, 0, 0), "j": _Lq(0, 0, 1, 0), "k": _Lq(0, 0, 0, 1)}
-
-    def _ker(J1, J2):
-        D = _np.kron(J1, I4) - _np.kron(I4, J2)
-        _, s, Vt = _np.linalg.svd(D)
-        return Vt[s < 1e-10].T
-
-    dims = {}
-    for n1, n2 in _it.product("ijk", repeat=2):
-        J1, J2 = U[n1], U[n2]
-        K = _ker(J1, J2)
-        Jop = _np.kron(J1, I4)
-        assert K.shape[1] == 8
-        assert _np.linalg.norm(Jop @ K - K @ (K.T @ Jop @ K)) < 1e-12
-        assert _np.linalg.norm(Jop @ (Jop @ K) + K) < 1e-12
-        assert abs(_np.trace(_np.kron(J1, J2))) < 1e-14      # the generic reason
-        dims[n1 + n2] = 8
-    # same-blade two-qubit split: swap eigenvalues {+1 x3, -1 x1} on C^4
-    S = _np.zeros((16, 16))
-    for a in range(4):
-        for b in range(4):
-            S[b * 4 + a, a * 4 + b] = 1.0
-    J1 = U["i"]
-    K = _ker(J1, J1)
-    Jop = _np.kron(J1, I4)
-    assert _np.linalg.norm((S @ Jop - Jop @ S) @ K) < 1e-12  # S complex-linear
-    cb, used = [], _np.zeros((16, 0))
-    for idx in range(8):
-        v = K[:, idx].copy()
-        for m in range(used.shape[1]):
-            v -= used[:, m] * (used[:, m] @ v)
-        if _np.linalg.norm(v) < 1e-8:
-            continue
-        v /= _np.linalg.norm(v)
-        used = _np.column_stack([used, v, Jop @ v])
-        cb.append(v)
-        if len(cb) == 4:
-            break
-    M = _np.zeros((4, 4), complex)
-    for ci, v in enumerate(cb):
-        Sv = S @ v
-        for ri, u in enumerate(cb):
-            M[ri, ci] = (u @ Sv) + 1j * ((Jop @ u) @ Sv)
-    ev = _np.linalg.eigvals(M)
-    n_sing = int(_np.sum(_np.abs(ev + 1) < 1e-8))
-    n_trip = int(_np.sum(_np.abs(ev - 1) < 1e-8))
-    assert (n_sing, n_trip) == (1, 3)
-    # distinct blades: identification exists; U(1) choice leaves the singlet
-    # slot invariant
-    import math as _m
-    q1 = _Lq(1 / _m.sqrt(2), 0, 0, 1 / _m.sqrt(2))      # rotates i -> j
-    ph = 0.7
-    q2 = q1 @ _Lq(_m.cos(ph), _m.sin(ph), 0, 0)
-    Kij = _ker(U["i"], U["j"])
-    P = Kij @ Kij.T
-    wc = _np.linalg.eig(M)[1][:, int(_np.argmin(_np.abs(ev + 1)))]
-    sing = sum(wc[m].real * cb[m] + wc[m].imag * (Jop @ cb[m])
-               for m in range(4))
-    sing /= _np.linalg.norm(sing)
-    planes = []
-    for q in (q1, q2):
-        assert _np.allclose(q @ U["i"] @ q.T, U["j"], atol=1e-12)
-        v = _np.kron(I4, q) @ sing
-        assert _np.linalg.norm(v - P @ v) < 1e-12           # lands in ker(ij)
-        v /= _np.linalg.norm(v)
-        planes.append(_np.column_stack([v, _np.kron(U["i"], I4) @ v]))
-    slot_dev = float(_np.linalg.norm(planes[0] @ planes[0].T
-                                     - planes[1] @ planes[1].T))
-    assert slot_dev < 1e-12
-    return {
-        "tier": "DERIVED-A pointwise; GENERIC-given-two-complex-structures "
-                "(tr K = 0 forces 8/8 for ANY pair)",
-        "dims_all_9_pairs": dims,
-        "structure": "C^2 (x)_C C^2 exactly; same-blade swap split 3+1 "
-                     "(singlet Lambda^2 one complex dim)",
-        "identification": "non-canonical (U(1) ambiguity per pair) but the "
-                          "singlet SLOT is choice-invariant",
-        "slot_invariance_dev": slot_dev,
-        "scope": "pointwise only — the bundle-level global-choice question "
-                 "(the actual Hopf content) untouched; N53 NOT unbanked; "
-                 "route-(c) input; no dynamics/photon claim",
-    }
-
-
-# ######################################################################
-# ######################################################################
-# ##                                                                  ##
 # ##   SECTION CANDIDATE — V3-INSTANCE COMPANION PRIMITIVES           ##
 # ##                                                                  ##
 # ######################################################################
@@ -5500,3 +5365,1580 @@ def g8_opB_gauge_torus_relative_equilibrium():
                 "negative control first; on a passing state the dial-space "
                 "observable is omega -- one number, not three",
     }
+
+def g8_opB_phason_neutral_manifold():
+    """[DERIVED-A algebra + DERIVED-numeric refit + labelled sim provenance;
+    CANDIDATE section -- the G-8 kernel's op-B flow. Banked at R-195 BEFORE
+    the row cites it (bank-before-you-cite).]
+
+    R-194 banked the EXACT 2-torus centralizer of B0 and is untouched. What
+    R-195 adds is that the op-B relative equilibrium's NEUTRAL MANIFOLD IS
+    3-DIMENSIONAL: the two gauge generators PLUS one further exact neutral
+    direction, which is the PHASON of the modulation -- translation along the
+    hosted wavevector k. R-194 never claimed to exhaust the flow's neutral
+    directions, so no theorem is refuted; but no sentence may say the RE family
+    is the 2-parameter gauge orbit, and "linearly stable" may not stand
+    unqualified.
+
+    (a) TRANSVERSE UNIFORMITY IS EXACT ARITHMETIC, not a measurement. For a
+        single-band state whose only spatial dependence is through exp(i k.x)
+        with k = (pi/16)(1,-1,0,0), any lattice shift with k.shift = 0 (mod
+        2 pi) acts as the IDENTITY. Five vectors that are NOT cell periods do
+        so -- [1,1,0,0], [1,1,1,1], [1,1,-1,-1], [0,0,1,1], [0,0,1,-1] --
+        asserted here in exact arithmetic, and measured at 7.8e-16 / 5.0e-16.
+        So "spatial translation Goldstone" is TWICE wrong: only motion along k
+        moves the state, and a lattice has no continuous translation symmetry
+        to be the Goldstone OF. The corpus's own word is PHASON.
+
+    (b) ** THE RUL-122 GROUND: AN EXPONENT-DIFFERENCE SCAN CANNOT
+        DISCRIMINATE A SYMMETRY FROM A NON-SYMMETRY. ** N3d registered "the
+        DIFFERENCE OF EXPONENTS, which no identity can fix" as its
+        discriminator. It is fixed by the SELECTION. For a direction with
+        linear coefficient L and quadratic coefficient Q the residual is
+        r(eps) = sqrt((L eps)^2 + (Q eps^2 / 2)^2) and the fitted log-log
+        slope over eps in [e0, e1] tends to 2 whenever L << Q e0 / 2 -- a
+        condition on the RATIO, containing NO information about whether the
+        direction is a symmetry. Asserted here in closed form on a synthetic
+        model, and measured on the flow: a direction v = soft + alpha*stiff
+        with ||J v|| up to 1.07e6 x sigma_soft -- provably NOT a symmetry --
+        still scans at exponent 1.987. THE SCAN IS VOID and banks nothing.
+        The 3-dimensionality rests instead on three instruments that are not
+        it (see (c)).
+
+    (c) WHAT DOES ESTABLISH IT (labelled sim provenance, in-house reproductions
+        n3d_adjudicate*.py in g8_n3d_bank_2026-09-01):
+          - the band-limited CONTINUOUS TRANSLATION GENERATOR projects into the
+            Jacobian's 3-dim null space at 1.000000, with overlaps 0.000000 /
+            0.000031 on the two gauge modes (transverse to the torus);
+          - sigma_3 TRACKS THE FINITE-DIFFERENCE FLOOR AS h^2 in lock-step with
+            sigma_1, sigma_2 -- which are THEOREM zeros -- (1.566e-7, 1.544e-9,
+            3.183e-10 at h = 1e-4, 1e-5, 1e-6) while sigma_4 never leaves
+            1.1400e-02: an exact zero contaminated by truncation, NOT a gap;
+          - re-solving at frozen position returns nu = 0 to 1e-14 over ~2.2
+            lattice steps with omega constant to twelve digits.
+        The instrument itself CAN FAIL (n3d_failure_modes.log): projection
+        0.883212 for pattern_phase_mode, 0.034 / 0.054 for random tangents,
+        0.000000 for the stiff singular vector.
+
+    (d) ** NO PEIERLS-NABARRO BARRIER AT THIS STATE. ** Lattice discretisation
+        generically GAPS and pins the translation mode; here it does not, to
+        the solver's floor. Scope condition, and where it should return: the
+        state is transversally uniform and resolved by 32 sites per wavelength,
+        harmonics falling ~a decade per order to 7.8e-7 at Nyquist. AT SHORTER
+        HOSTED WAVELENGTH OR LARGER AMPLITUDE THE BARRIER SHOULD REAPPEAR --
+        untested, and the obvious place this fails.
+
+    (e) THE ONSET IS A TWO-TERM NORMAL FORM, refitted here from the five
+        recorded (A, c*) points: c* - c_lin = g0 A^2 + g2 A^4 with
+        g0 = 10.4410 and g2 = 42.01, cutting the residual ~700x against the
+        one-term model. The single g is NOT constant -- g_eff is STRICTLY
+        MONOTONE, five of five ordered -- so the previously quoted
+        "10.45403 +- 0.01353, constant to 0.349%" described a fully resolved
+        amplitude dependence as scatter. The Stuart-Landau CUBIC coefficient is
+        the A -> 0 limit, g0. CREDIT: the five-point table, the nine-sig-fig
+        non-circularity ground and the first two-term value are the N3c
+        REVIEWER's, not the round's.
+
+    PRIOR ART (the delta is the exhibition on this substrate, never the
+    methods): Stuart JFM 4 (1958) 10.1017/s0022112058000276; Stuart/Watson JFM
+    9 (1960) 10.1017/s0022112060001171, 10.1017/s002211206000116x; Newell &
+    Whitehead JFM 38 (1969) 10.1017/s0022112069000176; Cross & Hohenberg RMP
+    65, 851 (1993) 10.1103/RevModPhys.65.851 -- the home review for BOTH the
+    amplitude equation and the phason of a periodic pattern; Aubry, J Phys C
+    16, 1593 (1983) 10.1088/0022-3719/16/9/005 for pinning of a commensurate
+    modulation; Beyn & Thummler SIADS 3(2) 85 (2004) 10.1137/030600515;
+    Farrell, Birkisson & Funke SISC 37(4) A2026 (2015) 10.1137/140984798.
+
+    FENCES: CANDIDATE kernel - GRAIN layer - op B - CF16, ONE hosted
+    wavevector - gamma = 1 - RUL-114 cl.3: omega is the uniform BACKGROUND's
+    collective drift rate, NOT a defect frequency and NOT a meta-time rotor
+    frequency; no layer-crossing to mass = omega (L2-1)."""
+    import math as _m
+    import numpy as _np
+
+    # ---- (a) transverse uniformity: EXACT arithmetic ----------------------
+    kv = _np.array([1.0, -1.0, 0.0, 0.0]) * (_m.pi / 16.0)
+    transverse = [[1, 1, 0, 0], [1, 1, 1, 1], [1, 1, -1, -1],
+                  [0, 0, 1, 1], [0, 0, 1, -1]]
+    moving = [[1, 0, 1, 0], [2, 0, 0, 0], [4, 0, 0, 0]]
+    for s in transverse:
+        assert abs((_np.array(s, float) @ kv) % (2 * _m.pi)) < 1e-14
+    ks_move = [float((_np.array(s, float) @ kv) % (2 * _m.pi)) for s in moving]
+    for v in ks_move:
+        assert v > 1e-3
+    assert abs(ks_move[0] - _m.pi / 16) < 1e-14
+    assert abs(ks_move[1] - _m.pi / 8) < 1e-14
+
+    # ---- (b) the exponent scan cannot discriminate: CLOSED FORM -----------
+    eps = _np.array([1e-3, 3e-3, 1e-2, 3e-2, 1e-1])
+    def _slope(L, Q):
+        r = _np.sqrt((L * eps) ** 2 + (0.5 * Q * eps ** 2) ** 2)
+        return float(_np.polyfit(_np.log(eps), _np.log(r), 1)[0])
+    Q = 1.0
+    sym_slope = _slope(0.0, Q)                  # a true symmetry: L = 0
+    non_slope = _slope(1e-7 * Q, Q)             # NOT a symmetry, L/Q = 1e-7
+    lin_slope = _slope(1e3 * Q, Q)              # stiff: linear term dominates
+    assert abs(sym_slope - 2.0) < 1e-9
+    assert abs(non_slope - 2.0) < 1e-3          # indistinguishable from a symmetry
+    assert abs(lin_slope - 1.0) < 1e-3
+    # the fitted slope depends on L/Q ALONE -- rescaling both leaves it fixed --
+    # so it carries no information about symmetry.
+    assert abs(_slope(1e-7 * 5.0, 5.0) - non_slope) < 1e-12
+
+    # ---- (e) the two-term Stuart-Landau refit ----------------------------
+    A = _np.array([0.0300, 0.0200, 0.0120, 0.0080, 0.0050])
+    cs = _np.array([10.767370600, 10.762122753, 10.759444028,
+                    10.758608041, 10.758200687])
+    c_lin = 10.757939628
+    d = cs - c_lin
+    g_eff = d / A ** 2
+    assert all(g_eff[i] > g_eff[i + 1] for i in range(4))     # STRICTLY monotone
+    M = _np.vstack([A ** 2, A ** 4]).T
+    g0, g2 = _np.linalg.lstsq(M, d, rcond=None)[0]
+    r1 = float(_np.sqrt((((d - g_eff.mean() * A ** 2)) ** 2).mean()))
+    r2 = float(_np.sqrt(((d - M @ _np.array([g0, g2])) ** 2).mean()))
+    assert abs(g0 - 10.4410) < 2e-3 and 40.0 < g2 < 44.0
+    assert r1 / r2 > 700.0
+    assert abs(g_eff.mean() - 10.45404) < 1e-4          # the mis-stated number
+    assert abs(g_eff.mean() - g0) / g0 > 1e-3           # and it is NOT g0
+
+    return {
+        "R-194 untouched (exact 2-torus centralizer)": True,
+        "neutral manifold dimension": 3,
+        "the third direction": "the PHASON of the modulation (translation "
+                               "along k) -- NOT a 'spatial translation "
+                               "Goldstone': no continuous symmetry to break, "
+                               "and transverse translations act as the identity",
+        "transverse lattice vectors acting as the identity (exact)": len(transverse),
+        "k.shift for the moving vectors (rad)": [round(v, 6) for v in ks_move],
+        "measured transverse identity": "7.77e-16 / 5.00e-16",
+        "continuous translation generator -> nullspace projection": 1.000000,
+        "gauge overlaps of that generator": (0.000000, 0.000031),
+        "pattern_phase_mode -> nullspace projection": 0.883212,
+        "sigma_3 tracks the FD floor as h^2 beside two THEOREM zeros": True,
+        "sigma_4 (immobile in h)": 1.1400e-02,
+        "nu at frozen position over ~2.2 lattice steps": "0 to 1e-14",
+        "PEIERLS-NABARRO barrier at this state": "NONE, to the solver's floor",
+        "where the barrier should return": "shorter hosted wavelength or larger amplitude -- R-197: the WAVELENGTH disjunct is "
+                                           "MEASURED AND NOT CONFIRMED at 1.58x (a travelling RE at "
+                                           "14.31 sites/wl, three exact zeros, washboard null); the "
+                                           "AMPLITUDE disjunct is UNTESTED; levers beyond 1.58x to be named",
+        "exponent-difference discriminator": "VOID -- the fitted slope depends "
+                                             "on L/Q alone and carries no "
+                                             "symmetry information (RUL-122)",
+        "closed-form slopes (symmetry / non-symmetry / stiff)":
+            (round(sym_slope, 6), round(non_slope, 6), round(lin_slope, 6)),
+        "Stuart-Landau g0 (cubic, the A->0 limit)": round(float(g0), 4),
+        "Stuart-Landau g2 (quintic)": round(float(g2), 2),
+        "residual reduction, one-term -> two-term": round(r1 / r2, 1),
+        "g_eff strictly monotone (5 of 5)": True,
+        "the previously quoted single g": "10.45404 -- an amplitude-weighted "
+                                          "mean of a drifting coefficient, NOT "
+                                          "the Stuart-Landau coefficient",
+        "credit for the five-point table and the two-term value": "the N3c REVIEWER",
+        "engaged-ceiling dlnT/ddg = +1.018": "a TWO-POINT SECANT in derivative "
+                                             "notation; the SIGN and the +63.6% "
+                                             "rise are robust, the derivative "
+                                             "VALUE is not (one rho_sat only)",
+        "fence": "CANDIDATE kernel; GRAIN layer; op B; CF16; one hosted k; "
+                 "gamma = 1; RUL-114 cl.3 -- omega is the uniform background's "
+                 "collective drift rate, no mass = omega crossing (L2-1)",
+    }
+
+
+def g8_engaged_ceiling_convex_not_derivative():
+    """[DERIVED-numeric on recorded data; CANDIDATE section -- the G-8 kernel's
+    op-B flow. Banked at R-196 BEFORE the row cites it.]
+
+    ** R-195's dlnT/d(delta g) = +1.018 IS NOT A DERIVATIVE. IT IS A CHORD. **
+
+    R-195 measured ONE engaged rho_sat (0.35, delta g = 0.4835) and wrote a
+    secant in derivative notation. N3e measured four, all converged at
+    rel 5.5e-13..9.2e-13 (g8_n3e_generic_2026-09-01/n3e_run.log):
+
+        rho_sat     omega          T          delta g
+        1e6      -0.182083923   34.5071      0.00000
+        0.60     -0.163065122   38.5318      0.25070
+        0.45     -0.139695911   44.9776      0.37331
+        0.35     -0.111311638   56.4468      0.48345
+        0.28     -0.084786608   74.1059      0.56928
+
+    (a) THE SUCCESSIVE SECANTS ARE STRICTLY MONOTONE INCREASING --
+        +0.4400, +1.2616, +2.0621, +3.1714 -- so the relation is CONVEX and a
+        single slope does not describe it. Within R-195's own chord interval
+        [0, 0.4835] the local slope varies 4.69x (NOT the 7.2x first written
+        here, which wrongly included the fourth secant, lying BEYOND that
+        interval -- self-corrected at the R-196 ceremony).
+    (b) THE CHORD REPRODUCES R-195's NUMBER: ln(T(0.48345)/T(0)) / 0.48345
+        = +1.018 to four figures. So +1.018 is exactly the chord of a curve
+        whose local slope runs 0.44 -> 2.06 across the very interval it spans.
+        ** Only the SIGN survives -- which is all R-194's sign-withdrawal ever
+        required, so that withdrawal stands untouched. **
+    (c) ** THE UNDER-CLAIM, surfaced by the R-196 review and adopted: the four
+        points extrapolate to omega = 0 at delta g ~ 0.8-0.9 -- an approaching
+        DRIFT BIFURCATION. ** Since T = 2*pi/|omega| identically, the convexity
+        IS omega -> 0 showing through. This is a can-fail prediction two
+        continuation points away, and it is the cheapest open target on this
+        kernel.
+
+    NON-VACUITY (RUL-122): the monotonicity test is run against a NEGATIVE
+    CONTROL -- a synthetic log-linear relation, for which it must return
+    NOT-convex. A test never shown to return the other answer is not a test.
+
+    FENCES: CANDIDATE kernel; GRAIN layer; op B; CF16, one hosted k; gamma = 1;
+    RUL-114 cl.3 -- omega is the uniform background's collective drift rate,
+    not a defect frequency and not a meta-time rotor frequency; no mass = omega
+    crossing (L2-1)."""
+    import math as _m
+    import numpy as _np
+
+    dg = _np.array([0.0, 0.25070, 0.37331, 0.48345, 0.56928])
+    T = _np.array([34.5071, 38.5318, 44.9776, 56.4468, 74.1059])
+    om = _np.array([-0.182083923, -0.163065122, -0.139695911,
+                    -0.111311638, -0.084786608])
+    # T = 2*pi/|omega| identically -- the round's own consistency check
+    assert _np.max(_np.abs(T - 2 * _m.pi / _np.abs(om))) < 1e-3
+
+    def _secants(x, y):
+        return [(_m.log(y[i + 1] / y[i])) / (x[i + 1] - x[i])
+                for i in range(len(x) - 1)]
+
+    sec = _secants(dg, T)
+    assert all(sec[i] < sec[i + 1] for i in range(len(sec) - 1))   # CONVEX
+    spread = (max(sec) - min(sec)) / abs(_np.mean(sec))
+    assert spread > 1.0                                            # 157%
+    # the chord across R-195's interval reproduces its number
+    chord = _m.log(T[3] / T[0]) / dg[3]
+    assert abs(chord - 1.018) < 5e-3
+    # variation WITHIN that interval (the self-correction)
+    within = sec[2] / sec[0]
+    assert abs(within - 4.69) < 0.05
+    assert abs(sec[3] / sec[0] - 7.21) < 0.05      # the figure first misquoted
+
+    # ---- NEGATIVE CONTROL: the same test on a genuinely log-linear relation
+    dg_n = _np.linspace(0.0, 0.6, 5)
+    T_n = 34.5071 * _np.exp(1.018 * dg_n)
+    sec_n = _secants(dg_n, T_n)
+    spread_n = (max(sec_n) - min(sec_n)) / abs(_np.mean(sec_n))
+    assert spread_n < 1e-9                          # flat: NOT convex
+    assert not all(sec_n[i] < sec_n[i + 1] for i in range(len(sec_n) - 1))
+    # the instrument therefore discriminates: it separates these two by >1e8
+    assert spread / max(spread_n, 1e-300) > 1e8
+
+    # ---- the drift bifurcation, by linear extrapolation of |omega| in delta g.
+    # |omega| is CONVEX-down, so a linear extrapolation is a LOWER bound and the
+    # estimate DRIFTS with the fitting window. That drift is the honest content:
+    # it makes this a PREDICTION WITH A RANGE, never a pinned number.
+    wins = {}
+    for lbl, sl in (("all 5", slice(0, 5)), ("last 4", slice(1, 5)),
+                    ("last 3", slice(2, 5)), ("last 2", slice(3, 5))):
+        x, y = dg[sl], _np.abs(om)[sl]
+        A = _np.vstack([x, _np.ones_like(x)]).T
+        m_, b_ = _np.linalg.lstsq(A, y, rcond=None)[0]
+        wins[lbl] = float(-b_ / m_)
+    vals = [wins[k] for k in ("all 5", "last 4", "last 3", "last 2")]
+    assert all(vals[i] > vals[i + 1] for i in range(3))    # drifts monotonically
+    assert 0.80 < min(vals) < 0.90 and 1.10 < max(vals) < 1.20
+    assert max(vals) - min(vals) > 0.25                    # NOT pinned
+    dg_star = wins["last 3"]
+
+    return {
+        "R-195's +1.018": "a CHORD, not a derivative",
+        "successive secants": [float(round(s, 4)) for s in sec],
+        "strictly monotone increasing (CONVEX)": True,
+        "spread": round(float(spread), 3),
+        "chord over R-195's interval [0, 0.48345]": round(float(chord), 4),
+        "local-slope variation WITHIN that interval": round(float(within), 2),
+        "the 7.21x first written here": "WRONG as stated -- it spans the fourth "
+                                        "secant, which lies BEYOND R-195's "
+                                        "interval; the correct figure is 4.69x",
+        "what survives of R-195": "the SIGN only -- and R-194's sign-withdrawal "
+                                  "needed nothing more, so it stands untouched",
+        "negative control (log-linear synthetic) is NOT convex": True,
+        "discriminating power (spread ratio)": ">1e8",
+        "T = 2*pi/|omega| identically": True,
+        "extrapolated drift bifurcation delta g*": round(dg_star, 3),
+        "and it is WINDOW-DEPENDENT (all5/last4/last3/last2)":
+            [round(wins[k], 3) for k in ("all 5", "last 4", "last 3", "last 2")],
+        "status of that extrapolation": "CAN-FAIL PREDICTION, two continuation "
+                                        "points away -- not a measurement",
+        "fence": "CANDIDATE kernel; GRAIN layer; op B; CF16; one hosted k; "
+                 "gamma = 1; RUL-114 cl.3 -- no mass = omega crossing (L2-1)",
+    }
+
+
+def g8_travelling_re_short_wavelength():
+    """[DERIVED-A arithmetic (the symmetry count) + labelled sim provenance
+    (the certified state and its spectra); CANDIDATE section -- the G-8 kernel's
+    op-B flow. Banked at R-197 BEFORE the row cites it.]
+
+    ** AT 1.58x SHORTER WAVELENGTH THE FLOW FORMS A TRAVELLING RELATIVE
+    EQUILIBRIUM, AND ITS PHASON IS NOT PINNED EITHER. **
+
+    (a) THE ARITHMETIC THAT LICENSES ONE PHASON COLUMN AT R-195's k AND FORBIDS
+        IT HERE. For a single-k modulation, a lattice vector d acts as the phase
+        exp(i k.d). At R-195's k = (pi/16)(1,-1,0,0) the five non-period vectors
+        [1,1,0,0], [1,1,1,1], [1,1,-1,-1], [0,0,1,1], [0,0,1,-1] have k.d = 0
+        EXACTLY -- the state is transversally uniform, and the ONE phason lies
+        along k. At R-197's k = (pi/16)(-2,-1,0,0) the first three have
+        k.d = -3pi/16 and MOVE the state (measured 0.7255) while the last two
+        still fix it; the drift is along [1,-1,0,0], k.d = -pi/16, NOT parallel
+        to k. Asserted here in exact arithmetic. The number of continuous
+        translation symmetries is nevertheless ONE at both k (a single-k pattern
+        is a one-parameter phase family; measured: 32 distinct phases over 128
+        sites, within-phase deviation 8.9e-16 vs CF16's 7.8e-16), so the
+        neutral-manifold dimension expected on both states is 2 + 1 = 3.
+
+    (b) THE INSTRUMENT DEFECT THAT PRODUCED THE ROUND'S NEGATIVE, AND ITS
+        DEMONSTRATED FAILURE MODE (RUL-122). N3f's third residual column was
+        pattern_phase_mode(k) -- the single-band phase generator at 0.883
+        null-space projection whose own docstring says never to quote it as the
+        translation mode -- which cannot see a drift off the k-axis. Measured on
+        the committed (Om0=60, c=48) attractor: {B0u} 0.96326 (RUL-119 as
+        banked, ONE generator); {B0u, sB0u, pattern_phase_mode} 0.29078;
+        {B0u, sB0u} + exact band-limited translations over the full shift set
+        9.5715e-4 (meta-observer route 1, matched to five figures). Relaxed
+        under the validated op-B stepper: 2.1e-5 at t = 3, inside R-194's
+        developed band. Newton with the drift border orthogonalised against the
+        gauge borders: 1.217e-12 in two steps; on the advective residual:
+        8.4e-15. The arc's own banked resid on that state (keeper): 1.7e-12;
+        random field 1.0076. ** So RUL-119 as banked is ONE-SIDED: passing =>
+        RE is sound, failing => nothing. No banked pass moves. **
+
+    (c) Q3, BRANCH A -- NO PEIERLS-NABARRO BARRIER AT 14.31 SITES/WL. The
+        Jacobian must be that of the ADVECTIVE residual at its own solution --
+        freezing the translation generator lifts every singular value (sigma_1
+        1.90 with |J.B0u| = 48.3, a theorem-zero violation, in two independent
+        codes). Done right (theorem zeros 4.5e-6, the FD floor): sigma_1..3
+        track h^2 to the floor (1.4e-6 -> 1.4e-8 -> 2.5e-10), sigma_4 = 0.325
+        immobile (ratio 1.000, the positive control). EXACTLY THREE exact
+        zeros, as at R-195. The lattice-crossing washboard on the travelling
+        state (7.79/tu) is null to ~5e-4 relative on two instruments.
+        R-195's would-change-if: WAVELENGTH disjunct MEASURED AND NOT CONFIRMED
+        at 1.58x; AMPLITUDE disjunct UNTESTED (confounded); two states are not a
+        genericity claim.
+
+    (d) OMEGA IS BORDER-CONVENTION-DEPENDENT HERE. The translation generator
+        overlaps B0u at 0.5276 (0.000000 at R-195's k), so one drift field
+        decomposes as omega = -13.84 (one generator) / -44.66 (non-orthogonalised)
+        / -13.83 (orthogonalised); the invariant is the total drift field.
+        R-194's "one number" carries this scope clause from R-197 on.
+
+    NOT CLAIMED: genericity of the no-barrier property; "structurally
+    restricted"; "intrinsically frictionless"; anything beyond the dials
+    measured. Prior art credited in the round: Beyn & Thummler 2004 (freezing);
+    Farrell et al. 2015 (deflation, tried and failed); Cross & Hohenberg 1993.
+
+    FENCES: CANDIDATE kernel; GRAIN layer; op B; the 128-site commensurate cell
+    [[16,0,0,0],[2,-4,0,0],[0,0,2,0],[0,0,0,2]]; gamma = 1; RUL-114 cl.3 --
+    omega is the uniform background's collective drift rate, not a defect
+    frequency and not a meta-time rotor frequency; no mass = omega crossing
+    (L2-1)."""
+    import math as _m
+    import numpy as _np
+
+    k195 = (_m.pi / 16) * _np.array([1.0, -1.0, 0.0, 0.0])
+    k197 = (_m.pi / 16) * _np.array([-2.0, -1.0, 0.0, 0.0])
+    five = [[1, 1, 0, 0], [1, 1, 1, 1], [1, 1, -1, -1], [0, 0, 1, 1], [0, 0, 1, -1]]
+    def _ph(k, d):
+        return float((_np.array(d, float) @ k) % (2 * _m.pi))
+    # R-195's k: all five fix the state (phase 0 exactly)
+    for d in five:
+        assert abs(_ph(k195, d)) < 1e-14
+    # R-197's k: the first three MOVE it (-3pi/16), the last two still fix it
+    for d in five[:3]:
+        assert abs(_ph(k197, d) - (2 * _m.pi - 3 * _m.pi / 16)) < 1e-12
+    for d in five[3:]:
+        assert abs(_ph(k197, d)) < 1e-14
+    # the drift direction is NOT parallel to k at R-197 (it is at R-195)
+    drift = _np.array([1.0, -1.0, 0.0, 0.0])
+    cos197 = abs(drift @ k197) / (_np.linalg.norm(drift) * _np.linalg.norm(k197))
+    cos195 = abs(drift @ k195) / (_np.linalg.norm(drift) * _np.linalg.norm(k195))
+    assert abs(cos195 - 1.0) < 1e-14 and cos197 < 0.5
+    # wavelength ratio in one convention
+    ratio = _np.linalg.norm(k197) / _np.linalg.norm(k195)
+    assert abs(ratio - 1.58) < 0.01
+
+    # recorded constants (labelled sim provenance, g8_n3f_shortwave_2026-09-02)
+    res = {"1gen_banked": 0.96326, "3gen_pattern_phase_mode": 0.29078,
+           "exact_generators": 9.5715e-4, "relaxed_t3": 2.09e-5,
+           "newton_orth": 1.217e-12, "newton_advective": 8.4e-15, "arc_resid_keeper": 1.7e-12}
+    assert res["exact_generators"] < 1e-3 < res["3gen_pattern_phase_mode"] < res["1gen_banked"]
+    assert res["relaxed_t3"] <= 8.3e-5                       # inside R-194's developed band
+    sweep = {"1e-4": [1.371e-6, 1.878e-6, 6.535e-6, 3.251e-1],
+             "1e-6": [2.487e-10, 8.201e-10, 1.548e-9, 3.251e-1]}
+    rat = [sweep["1e-6"][i] / sweep["1e-4"][i] for i in range(4)]
+    assert all(r < 0.05 for r in rat[:3]) and abs(rat[3] - 1.0) < 0.01   # 3 zeros + immobile gap
+    n_zero = sum(1 for r in rat if r < 0.05)
+    assert n_zero == 3                                       # == 2 gauge + 1 phason, as at R-195
+    gauge_overlap = {"R-195": 0.000000, "R-197": 0.5276}
+    assert gauge_overlap["R-197"] > 0.5 and gauge_overlap["R-195"] < 1e-5
+    # THREE OF THREE (retest 89e531e, n3f_adjudicate_dials.log): every saturated Om0=60 dial
+    # meets the frozen prereg's EXISTS criterion (exact residual <= 1e-3 AND Newton <= 1e-10
+    # AND amp >= 1e-3), with the banked ONE-generator residual run inline as the control that
+    # must read LARGE on a travelling RE (its known false-reject) - it read 0.963 on all three.
+    dials = {"46.5": {"amp": 2.004, "ctrl_1gen": 0.9630, "exact": 1.399e-5, "newton": 8.753e-15},
+             "48.0": {"amp": 2.057, "ctrl_1gen": 0.9633, "exact": 2.09e-5,  "newton": 1.217e-12},   # relaxed (raw 9.57e-4)
+             "50.5": {"amp": 2.132, "ctrl_1gen": 0.9630, "exact": 7.953e-6, "newton": 8.049e-11}}
+    for _d in dials.values():
+        assert _d["exact"] <= 1e-3 and _d["newton"] <= 1e-10 and _d["amp"] >= 1e-3   # EXISTS
+        assert _d["ctrl_1gen"] > 0.9                                              # the control fired
+
+    return {
+        "the state at 14.31 sites/wl": "a TRAVELLING relative equilibrium, drift along [1,-1,0,0]",
+        "phase per non-period vector at R-195's k (first three)": 0.0,
+        "phase per non-period vector at R-197's k (first three)": "-3pi/16 (they MOVE the state)",
+        "continuous translation symmetries (both k)": 1,
+        "expected neutral-manifold dimension (both k)": 3,
+        "measured exact zeros at R-197": n_zero,
+        "first immobile singular value at R-197": 3.251e-1,
+        "residuals on the committed attractor": res,
+        "dials certified (Om0 = 60; three of three)": dials,
+        "RUL-119 as banked": "ONE generator; one-sided (sound accepting, silent rejecting); no banked pass moves",
+        "coherent instrument": "exact-generator residual GATED BY Newton convergence",
+        "Peierls-Nabarro barrier at 1.58x": "NOT detected: three exact zeros; washboard null to ~5e-4",
+        "R-195 would-change-if": "WAVELENGTH disjunct measured and not confirmed at 1.58x; AMPLITUDE disjunct UNTESTED",
+        "omega convention-dependence": gauge_overlap,
+        "wavelength ratio |k197|/|k195|": round(float(ratio), 3),
+        "NOT claimed": "genericity; structurally restricted; intrinsically frictionless",
+        "fence": "CANDIDATE kernel; GRAIN layer; op B; 128-site cell; gamma = 1; RUL-114 cl.3 -- no mass = omega crossing (L2-1)",
+    }
+
+def g8_track1a_saturation_is_a_limiter():
+    """[DERIVED-A clause + DERIVED-numeric recorded values; CANDIDATE kernel, GRAIN layer;
+    Phase N4 Track 1a, R-198; NEGATIVE of the frozen question - a located gap, N73 (f3)(f)]
+
+    THE EXACT CLAUSE (DERIVED-A, on the banked kernel form G = gam*(1+|F|^2/rho^2)*F + c[B0,F]):
+        g_eff(|F|) = gam * (1 + |F|^2 / rho_sat^2)  >=  gam   for every rho_sat > 0,
+        with equality iff |F| = 0.
+    So the saturation term is an AMPLITUDE LIMITER - a loss that grows with amplitude - and can
+    never supply the intermediate-amplitude GAIN the cubic-quintic CGL dissipative-soliton class
+    requires; this closes the rho_sat knob as a gain source for EVERY rho_sat, seed, cell and op
+    (keeper Q1 / APPLY 8; the meta-observer's under-claim). With the reactive channel zero-work by
+    identity (R-191/N72), the banked kernel's only energy source is the drive band.
+
+    RECORDED VALUES (DERIVED-numeric, labelled sim provenance; ONE cell, CFW16 band-hosting, 2048
+    sites; ONE seed class, the linear-profile winding-+1 hedgehog r_core = 2.4 with |F|_0 = 58.52 (a RUN-BUILDER normalization constant, not the
+    hedgehog's peak strain: the builder's DEFECTIVE min-image radius left 26 of 114 core-region sites at the vacuum, RUL-128 at R-202;
+    a seam-free build reads 41.663206 on every cell, and the passive op-B collapse re-verified from it certifies at the same t = 0.110);
+    gam = 1, Om0 = 14, c in {7.5, 12}; ops B and C; initial-value route only, the co-moving RE/RPO
+    search Q2 did NOT run - the finite-basin caveat of N73 stands):
+      * k0 = 1 + |F|_0^2/rho^2 is a t = 0 SEED arithmetic (meta-observer re-cut 6), 4.00 / 30.9 /
+        300.7 at rho = 33.8 / 10.7 / 3.38. The MEASURED engagement at the first resolved instant
+        (t = 0.005 tu) is 5.89 / 5.59 / 4.98 under op B and 4.54 / 9.93 / 4.81 under op C: the flow
+        clamps the core to |F| ~ 2 rho, a 75x design spread collapsing to 1.2x (op B); engagement
+        (g_eff,max > 1.5) is gone by t <= 0.035 at every rho. The registered control C4 read NOT
+        engaged at every snapshot (cadence 0.25): "rho engaged" is core-only and transient, and it
+        does NOT discharge N74's background handle (b) nor O-1 (background g_eff - 1 <= 2.5e-4).
+      * degree 0 is CERTIFIED (the one-sided certificate D*theta_max < pi; N73's instrument) - an
+        UPPER BOUND on the death time AT ITS CADENCE (reviewer re-cut 8) - at 0.005-tu cadence:
+        t = 0.105 / 0.070 / 0.020 / 0.005 (op B) and 0.100 / 0.060 / 0.015 / 0.005 (op C) for
+        k0 = 1 / 4 / 31 / 301; at 0.001-tu cadence, dt-converged (spread 0.0000 over production,
+        dt/2 and 2x substeps; reviewer attack B): 0.103 / 0.066 / 0.020 / 0.003, and 0.001 at the
+        frozen dial rho = 0.35 (k0 = 27,954) that Amendment 1 had DELETED on an extrapolated cost and
+        the reviewer RESTORED (828 s; reviewer G) - a FIVE-POINT MONOTONE LADDER. In the ceiling's own
+        clock (d tau = g_eff dt) the k0 = 4 and 31 cores take LONGER to unwind (tau = 0.141, 0.134 vs
+        0.105): the lab-time shortening is the damping prefactor (meta-observer re-cut 3). The
+        time-integrated ceiling share of the energy removed before the certificate is 0.4455 /
+        0.8676 / 0.9901 (k0 = 4 / 31 / 301) vs 0.0000 at the control - the one instrument in the
+        round that returns "engaged" (reviewer B). At k0 = 4 the core strain first GROWS (58.5 ->
+        74.8 at t = 0.005, op B) before decaying - the engagement self-amplifies before it
+        self-extinguishes (keeper collision 3); at k0 = 31 and 301 it falls from t = 0.
+      * op C vs op B: the SAME NEGATIVE OUTCOME (certificate at the first snapshot at every element)
+        but NOT the same dynamics - |F|max at the first snapshot systematically LOWER under op C at 6
+        of 6 defect elements (C/B = 0.463-0.911; up to 79 percent over the trace) against <= 1.03e-3
+        on the defect-free references in the same stages (keeper collision 1); at 0.001 cadence
+        max|U_B - U_C| = 1.295 with certificate 0.066 (B) vs 0.060 (C) at rho = 33.8 (reviewer C).
+        Agreement is of outcome, not of trajectory. Discrimination is NOT selection: the
+        V4-kernel-OP pick stays open.
+      * the drive band grew <= 1.048x over any defect's life at c = 12 (1/Re L = 2.2308 tu, ONE dial);
+        at c = 7.5 every mode decays (full 2048-class k-set max Re L = -0.975738, reviewer D): the
+        drive-band-as-gain route was UNTESTED at every element, not refuted; its requirement is a
+        seed surviving >~ 2.2 tu.
+      * 13 of 13 frozen-criterion defect elements NO EXISTS (certificate silent through t >= 2.5 AND
+        R_half plateau AND near/far contrast >= 2x), plus the restored rho = 0.35 element (14 of 14);
+        the near/far ratio of the defect elements is 1.015-1.067 (> 1) against a plane-wave geometric
+        null of 1.2598 (a run-partition constant - exact-partition 1.2520 / 1.2312, RUL-128; the null's sign unchanged) - NO history imprint is claimed (the L1's first reading had the sign inverted,
+        reviewer H). RUL-123's trigger (spin-down := no element meets the frozen EXISTS criterion) is
+        satisfied on a CERTIFICATE - no rotation rate of any kind was measured.
+    NOT a theorem about the object: the death times are data, asserted ORDERED, never as a law.
+    Library fact found in review: n1_lib.torque is exactly -2 grad E (the Track 2 recon's alpha = 0.5).
+    Records: knowledge/audit/g8_n4_track1a_2026-09-02/ (prereg 31873ff + three amendments, each a
+    solo commit; N4A_L1_2026-09-03.md REV 2; the three verdicts; n4a_results.json;
+    n4a_analysis_transient(.json / _opC.json)).
+    """
+    gam = 1.0; F0 = 58.52
+    # (1) the exact clause, on a grid and at the boundary, for every rho tested and the placeholder
+    for rho in (33.8, 10.7, 3.38, 1e6):
+        for F in (0.0, 0.1, 1.0, F0, 200.0):
+            g = gam * (1.0 + F * F / rho ** 2)
+            assert g >= gam
+            assert (g == gam) == (F == 0.0), "equality iff |F| = 0"
+    # (2) the t = 0 seed arithmetic and the measured clamp
+    k0 = {rho: 1.0 + F0 ** 2 / rho ** 2 for rho in (33.8, 10.7, 3.38)}
+    assert abs(k0[33.8] - 4.00) < 0.01 and abs(k0[10.7] - 30.9) < 0.1 and abs(k0[3.38] - 300.7) < 0.5
+    meas_B = {33.8: 5.89, 10.7: 5.59, 3.38: 4.98}
+    meas_C = {33.8: 4.54, 10.7: 9.93, 3.38: 4.81}
+    assert k0[3.38] / k0[33.8] > 70.0 and max(meas_B.values()) / min(meas_B.values()) < 1.3
+    # (3) certified degree-0 times = UPPER BOUNDS at their cadence, ORDERED (data, not a law)
+    death_B_005 = {1: 0.105, 4: 0.070, 31: 0.020, 301: 0.005}          # 0.005-tu cadence, op B
+    death_C_005 = {1: 0.100, 4: 0.060, 31: 0.015, 301: 0.005}          # 0.005-tu cadence, op C
+    death_B_001 = {1: 0.103, 4: 0.066, 31: 0.020, 301: 0.003, 27954: 0.001}   # 0.001-tu, dt-converged (reviewer)
+    for d in (death_B_005, death_C_005):
+        assert d[1] > d[4] > d[31] > d[301]
+    assert death_B_001[1] > death_B_001[4] > death_B_001[31] > death_B_001[301] > death_B_001[27954]
+    k0_035 = 1.0 + F0 ** 2 / 0.35 ** 2; assert abs(k0_035 - 27954) < 5
+    tau_B = {1: 0.105, 4: 0.141, 31: 0.134}
+    assert tau_B[4] > tau_B[1] and tau_B[31] > tau_B[1]
+    share = {4: 0.4455, 31: 0.8676, 301: 0.9901, 1: 0.0000}          # time-integrated ceiling share
+    assert share[1] == 0.0 and share[4] < share[31] < share[301] < 1.0
+    # (4) the k0 = 4 growth phase; no band gain acted; the op-C defect-side discrimination band
+    assert 74.8 > F0                               # strain grew before decaying at k0 = 4 (op B)
+    assert 1.048 < 1.05 and -0.975738 < 0.0        # max band growth at c = 12; every mode decays at c = 7.5
+    assert 0.463 <= 0.911 < 1.0 and 1.03e-3 < 0.01  # C/B strain ratio band vs the reference floor
+    assert 1.015 < 1.2598 and 1.067 < 1.2598       # near/far of the defect elements BELOW the plane-wave null: no imprint (1.2598 is a run-partition constant; exact-partition 1.2520 / 1.2312 - RUL-128) (1.2598 is a run-partition constant; exact-partition 1.2520 / 1.2312 - RUL-128)
+    return {
+        "exact_clause": "g_eff = gam*(1+|F|^2/rho^2) >= gam for every rho_sat > 0; equality iff |F| = 0 (DERIVED-A)",
+        "consequence": "the saturation term is an amplitude LIMITER - it cannot supply CQ-CGL gain for any rho, seed, cell or op",
+        "seed_arithmetic_k0 (t = 0, NOT a realised regime)": {**k0, 0.35: k0_035},
+        "measured engagement at t = 0.005 (op B / op C)": {"B": meas_B, "C": meas_C},
+        "certified degree-0 UPPER BOUNDS by k0, 0.005-tu cadence (op B / op C)": {"B": death_B_005, "C": death_C_005},
+        "certified degree-0 UPPER BOUNDS by k0, 0.001-tu cadence dt-converged (op B), five-point ladder": death_B_001,
+        "time-integrated ceiling share of the energy removed before the certificate, by k0": share,
+        "ceiling-clock times tau (op B)": tau_B,
+        "band growth over a defect's life, max (c = 12 only; every mode decays at c = 7.5)": 1.048,
+        "frozen-criterion elements": "13 of 13 NO EXISTS (+ the restored rho = 0.35: 14 of 14); Q2 (co-moving RE/RPO) did not run",
+        "op C vs op B": "same OUTCOME, not the same dynamics: DEFECT-SIDE |F|max lower under op C at 6/6 (C/B 0.463-0.911), max|U_B-U_C| = 1.295 - discrimination, not selection",
+        "tier": "DERIVED-A (the clause) + DERIVED-numeric labelled sim provenance (the values); CANDIDATE kernel; a located gap N73 (f3)(f)",
+        "fence": "one cell, one seed class, one Om0, initial-value route; RUL-114 cl.3; RUL-092; no mass/generation/count reading",
+    }
+
+
+def g8_track2_inertial_face_and_charge():
+    """[DERIVED-A clauses + DERIVED-numeric recorded values; CANDIDATE kernel, GRAIN layer,
+    CONDITIONAL ON V4-m5; Phase N4 Track 2, R-199 - NEGATIVE of the frozen Q1', Q1 UNDECIDED]
+
+    THE INERTIAL FACE (V4-m5's realization): U' = Om0 B0 U + U (V - Om0 B0),
+    m5 V' = g_eff F + c [B0, V] - gd V,  V the body-frame antisymmetric velocity, F = -2 grad E.
+    EXACT CLAUSES (DERIVED-A, on the 4x4 antisymmetric algebra; checked here):
+      (1) FORCE placement (m5 V' = G(U) - gd V with G = g_eff F + c[B0,F]) is NOT Lyapunov at
+          c != 0:  d/dt [E + (m5/2)<V,V>] = c <V,[B0,F]> - gd <V,V>, and <V,[B0,F]> is not
+          sign-definite (random-tensor check below); measured 22-27 rises per 0.5 tu at c = 12.
+      (2) CORIOLIS placement is work-free: <V,[B0,V]> = 0 identically (cyclicity), so with
+          Om0 = 0 the same functional decreases whenever gd > 0 (measured: zero rises in 12
+          recon arms and in every gd = 1 production element). At Om0 != 0 the drive does work
+          through the twisted frame (5.7e-4, dt-independent): the clause is CONDITIONED on Om0 = 0.
+      (3) The Coriolis form is VARIATIONAL: the Euler-Poincare equation of the left-invariant
+          Lagrangian L = sum_s [(m5/2)<V_s,V_s> + c<B0,V_s>] - E(U); body momentum m5 V + c B0.
+          Its Noether charge along B0u (Om0 = 0, gd = 0) is the CANONICAL momentum
+              Q_can = m5 sum_s <A_s,V_s> + c sum_s <B0,A_s>,  A_s = U_s^T B0u U_s,
+          measured conserved to 1.9e-8 (dt = 5e-5) -> 4.8e-9 (dt/2) and 1.6e-10 (keeper) at c = 12;
+          the KINETIC half alone drifts 31-46 percent, dt-INDEPENDENT. (The freeze registered the
+          kinetic half - a definitional error; the meta-observer's 'the placement annihilates the
+          charge' is overturned by this clause.) The left symmetry is the 2-torus {B0, *B0} =
+          R-194's gauge torus; the *B0 charge drift: the *B0 charge (post-hoc item 11, 0352f13): Q = -366.46, drift 6.81e-9 at dt and 1.83e-9 at dt/2 (ratio 3.7, second order) - R-194's gauge torus carries TWO exact charges at Om0 = 0, gd = 0.
+      (4) THE DRIVE IS A FRAME ROTATION for this flow: substituting the rotating frame maps
+          Om0 onto c -> c - m5 Om0 (residual 5.4e-5 vs a 7.8e-2 control, meta-observer); at m5 = 0
+          the two drive arms are gauge-identical (the identical 3.18 tu certificates).
+      (5) The m5 -> 0 limit is op B' : V = (gd - c ad_B0)^-1 g_eff F (first order in m5: 1.8e-3 /
+          5.0e-4 / 6.3e-5). ad_B0 on so(4) has a 2-dim kernel {B0, *B0} and +-i on the rest, so
+          (gd - c ad)^-1 acts as 1/gd on the kernel and (gd + c ad)/(gd^2 + c^2) on the rotating
+          planes - an ANISOTROPIC mobility, NOT a uniform rescaling of (gam, c): op B' is not a
+          placement of the banked kernel and does not reproduce R-192's L(k) (reactive boundary
+          c* = 68.16 vs op B's 8.479 at Om0 = 14; keeper). It is the Landau-Lifshitz form of a
+          Gilbert-form flow (Gilbert 2004; Kikuchi 1956 for the 1 + c^2/gd^2 factor).
+    RECORDED VALUES (DERIVED-numeric; ONE cell CFW16, ONE seed class |F|0 = 58.5 (a run-builder constant, RUL-128; seam-free 41.66), c = 12, rho = 1e6):
+      * op B' certifies the winding degree-0 (one-sided certificate) at t = 3.18 tu at gd = 1 (both
+        Om0: one system computed twice) against op B's 0.103 - a 31x lab-time dilation that is LESS
+        than the rate-matched energy-clock dilation of the same collapse, 36.6x (meta-observer): a
+        reparametrisation, not a new object; op B' certifies at HIGHER defect energy (dE 161 vs 120).
+        At gd = 0.1 it is silent through 4 tu. NEGATIVE on the frozen plateau condition (both routes).
+        op B at Om0 = 0 certifies at op B at Om0 = 0 (post-hoc item 13, 0352f13): t_c = 0.104 against 0.103 at Om0 = 14 - the drive is not what kills the hedgehog under op B; it is the descent (post-hoc; the ladder's first rung).
+      * inertia at Om0 = 0, gd = 1: 3.18 (m5 = 0) -> 3.39-3.46 (0.1) -> silent through 4 (1): a
+        heavier core relaxes more slowly; with the drive on m5 = 0.1 SHORTENS the life (2.94-3.01)
+        and m5 = 1 splits by seed. The frozen inertial question was UNDECIDED (0 of 18 elements:
+        its baseline 10 t_c(B') = 31.8 tu exceeded the window - a design flaw, recorded).
+      * the flagged weak-friction elements (1 / 23 / 19 Lyapunov rises) are PHYSICS: the background
+        is linearly unstable there (+0.1233 / +0.1375; keeper's pencil) and the rises are
+        dt-independent (6 / 6 at dt and dt/2, first at t = 0.27, max 0.448; post-hoc). R_half is
+        nonzero in all 36 elements; two hot-seed elements (m5 = 1, gd = 0.1, K(0) = 12.4x the
+        defect's excess) met the R_half-plateau SUB-clause only (contrast 0.73 / 1.61 < 2, route R False; re-computed at Branch B, R-200) and were discarded unevaluated - not claimed
+        as objects (dE doubled, |F|max(end) 53.9 fails the relaxation witness), owed a re-look.
+      * NO CENTRIFUGAL BARRIER (keeper): the same-charge uniform carrier (a k = 0 rotation,
+        omega = -0.088 at m5 = 1 - R-193's Goldstone) lies 2172.6 BELOW the charged seed, costing
+        AT MOST 0.40 percent of the defect's excess at c = 12 (an upper bound at U = I; optimised over uniform carriers 0.255 percent; at c = 0 the BARRIER defect-floor minus vacuum-floor is EXACTLY zero for every configuration - R-200, g8_track2b_fixed_charge_floor_is_configuration_independent) and at most 12 percent at m5 = 0.1: the background carries the
+        charge for free, so R-142's fixed-N scale minimum protects nothing at cell-scale inertia.
+        N73 (f2): attacked and NOT reached; entry point c = 0, gd -> 0, fixed N.
+      * Track 2 supplies NO evidence on the drive-band-as-gain route (linearly passive at gd = 1,
+        both Om0; e-fold 135.6 tu at gd = 0.1); an engaged rho_sat breaks the charge at O(1/rho^2).
+    Fences: the kernel-parameter <-> tau5 identification is an OPEN named map (nothing here makes
+    e5 spatial; nothing here banks the identification); gd is a second counted constant; the
+    'inertial evasion is closed' sentence of the freeze is STRUCK - a withheld question closes
+    nothing; RUL-114 cl.3; RUL-092; no mass/generation/count reading.
+    """
+    import numpy as _np
+    rng = _np.random.default_rng(199)
+    def asym():
+        X = rng.normal(size=(4, 4)); return X - X.T
+    def ip(A, B): return 0.5 * float(_np.trace(A.T @ B))
+    B0 = _np.zeros((4, 4)); B0[0, 1] = 1.0; B0[1, 0] = -1.0          # a simple unit bivector
+    comm = lambda X, Y: X @ Y - Y @ X
+    # (2) work-free: <V,[B0,V]> = 0 identically; (1) <V,[B0,F]> not sign-definite
+    signs = set()
+    for _ in range(200):
+        V = asym(); F = asym()
+        assert abs(ip(V, comm(B0, V))) < 1e-12
+        signs.add(_np.sign(ip(V, comm(B0, F))))
+    assert signs == {1.0, -1.0}
+    # (5) ad_B0 on so(4): eigenvalues 0 (x2) and +-i (x4); kernel = span{B0, *B0}
+    basis = []
+    for a in range(4):
+        for b in range(a + 1, 4):
+            E = _np.zeros((4, 4)); E[a, b] = 1.0; E[b, a] = -1.0; basis.append(E)
+    M = _np.array([[ip(basis[i], comm(B0, basis[j])) for j in range(6)] for i in range(6)])
+    ev = _np.sort_complex(_np.linalg.eigvals(M))
+    assert sum(abs(ev) < 1e-12) == 2 and sum(abs(abs(ev) - 1.0) < 1e-12) == 4
+    # the anisotropic inverse: (gd - c ad)^-1 = 1/gd on the kernel, (gd + c ad)/(gd^2 + c^2) on the planes
+    gd, c = 1.0, 12.0
+    Minv = _np.linalg.inv(gd * _np.eye(6) - c * M)
+    B0v = _np.array([ip(basis[i], B0) for i in range(6)])
+    assert _np.allclose(Minv @ B0v, B0v / gd)                      # kernel component: mobility 1/gd
+    w = _np.linalg.eigvals(Minv); mags = sorted(set(_np.round(abs(w), 9)))
+    assert _np.isclose(mags[0], 1.0 / _np.sqrt(gd ** 2 + c ** 2)) and _np.isclose(mags[-1], 1.0 / gd)
+    assert abs(1.0 / _np.sqrt(gd ** 2 + c ** 2) - 1.0 / gd) > 0.9    # not a uniform rescaling
+    # recorded values, asserted ORDERED with their provenance (data, never a law)
+    cert = {"opB_Om14": 0.103, "opBp_gd1": 3.18, "m5_0.1_Om0_gd1": (3.39, 3.46), "m5_1_Om0_gd1": None}
+    assert cert["opB_Om14"] < cert["opBp_gd1"] < cert["m5_0.1_Om0_gd1"][0]
+    assert 3.18 < 3.315 and 3.18 / 0.103 < 36.6                     # under the registered AND the rate-matched baselines
+    drift = {"Q_kin_c12": 0.4615, "Q_can_c12_dt": 1.86e-8, "Q_can_c12_dt_half": 4.82e-9, "Q_can_keeper": 1.6e-10}
+    assert drift["Q_can_c12_dt"] / drift["Q_can_c12_dt_half"] > 3.0 and drift["Q_kin_c12"] > 0.3
+    barrier = {"carrier_below_seed": 2172.6, "defect_excess": 1982.2, "charge_cost_frac_c12_m5_1_upper_bound_at_U_eq_I": 0.0040, "charge_cost_frac_c0_barrier": 0.0, "m5_0.1_upper_bound": 0.119}   # a RECORDED ORDERING of stored literals (keeper N4C 6c), not a check; the c = 0 zero is the R-200 primitive
+    assert barrier["carrier_below_seed"] > barrier["defect_excess"] and barrier["charge_cost_frac_c12_m5_1_upper_bound_at_U_eq_I"] < 0.05
+    assert 8.479 < 68.16                                             # op B' reactive boundary vs op B's
+    # (1) again, on the round's OWN states (reviewer re-cut 8): the force-placement work term c<V,[B0,F]>
+    # against the friction term gd<V,V> - the DISCRIMINATING quantity, not the generic cyclicity identity
+    work = {"seed": (33730.0, 15272.0), "opBp_t4": (7589.0, 56.0)}
+    for k, (w, fr) in work.items():
+        assert w > fr, k                                             # the reactive force out-pumps the friction
+    # (3) again: the canonical charge is a DRIVE-OFF object (reviewer re-cut 11): 37.15 percent drift at Om0 = 14
+    drift_Om14 = 0.3715; assert drift_Om14 > 0.3 and drift["Q_can_c12_dt"] < 1e-7
+    # the *B0 charge: integrated and conserved (post-hoc; reviewer 3.81), second order
+    star = {"Q": -366.46, "drift_rel_dt": 6.81e-9, "drift_rel_dt_half": 1.83e-9}
+    assert star["drift_rel_dt"] / star["drift_rel_dt_half"] > 3.0
+    # the rate-matched baselines (reviewer A; meta-observer): the NEGATIVE by 7.8-11.8x, not 4 percent
+    lam = {"energy_matched": 36.57, "least_squares": 24.10}; t_base_rm = {k: 10 * 0.103 * v for k, v in lam.items()}
+    assert all(3.18 < v / 7.0 for v in t_base_rm.values())
+    # the frozen r was capped by seed algebra: ker(ad_B0) carries 30.69 percent of |F|^2 at the seed
+    assert abs(1.0 / 0.3069 - 3.2586) < 1e-3 and 3.2086 / 3.2586 > 0.98
+    return {
+        "force-placement work term on the round's states (c<V,[B0,F]> vs gd<V,V>)": work,
+        "canonical charge at Om0 = 14 (drive on): relative drift": drift_Om14,
+        "*B0 charge (integrated)": star,
+        "rate-matched baselines (tu)": t_base_rm,
+        "exact_clauses": "force placement not Lyapunov (sign-indefinite <V,[B0,F]>); Coriolis placement work-free (<V,[B0,V]> = 0), Lyapunov at Om0 = 0; variational (Euler-Poincare); canonical charge Q_can; drive = frame rotation c -> c - m5 Om0; op B' anisotropic mobility (1/gd on ker ad_B0, 1/sqrt(gd^2+c^2) on the planes) - not a uniform rescaling, not a placement",
+        "certified degree-0 times (upper bounds, 0.01 cadence)": cert,
+        "charge drifts (c = 12, Om0 = 0, gd = 0, 0.3 tu)": drift,
+        "no-centrifugal-barrier (keeper)": barrier,
+        "verdicts": "Q1' (op B') NEGATIVE on the plateau condition; Q1 (inertia) UNDECIDED 0/18; N73 (f2) attacked and not reached",
+        "tier": "DERIVED-A (the clauses, conditioned as stated) + DERIVED-numeric labelled sim provenance; CANDIDATE kernel; conditional on V4-m5",
+        "fence": "one cell, one seed class, c = 12, rho = 1e6; the kernel-parameter <-> tau5 map OPEN; gd a second counted constant; RUL-114 cl.3; RUL-092",
+    }
+
+
+def g8_track2b_fixed_charge_floor_is_configuration_independent(n_sites=64, n_fields=3, m5=1.7, seed=4):
+    """[COMPANION / CANDIDATE - G-8 kernel physics on the V4-m5 node; the identity itself is DERIVED-A within its
+    conditioning class] R-200 (Phase N4 Track 2 BRANCH B, 2026-09-04): THE FIXED-CHARGE KINETIC FLOOR OF THE
+    INERTIAL KERNEL IS CONFIGURATION-INDEPENDENT AT c = 0 - so the charge cannot stabilise a localized winding.
+
+    THE SETTING (R-199): the inertial realization of the banked kernel, dU/dt = U V, m5 dV/dt = g_eff F + c[B0,V]
+    - gd V, is variational with the canonical charges along the LEFT symmetry of E - R-194's gauge torus Z(B0) =
+    span{B0, *B0}, R-193's Goldstone; the body-frame velocity V is invariant under U -> RU (the RIGHT action is
+    NOT a symmetry: dE(U -> UR) = -7.69 on the round's seed, keeper N4C collision 4) - with charges
+        Q1 = m5 sum_s <A_s, V_s>,  Q2 = m5 sum_s <A*_s, V_s>,   A_s = U_s^T B0u U_s,  A*_s = U_s^T (*B0u) U_s,
+    <X,Y> = tr(X^T Y)/2 (the code's inner product; a^2 = <B0u,B0u> = 1 in this rig).
+
+    THE IDENTITY (E2', DERIVED-A, EXHAUSTIVE over the realization's conserved-charge sector; conditioning class:
+    c = 0, a UNIT-ROTOR field, the BI-INVARIANT body-frame kinetic metric K = (m5/2) sum_s <V_s,V_s>, this cell):
+    the left-symmetry commutant of the bond rotations is exactly 2-dimensional and the right-symmetry commutant is
+    0 (reviewer N4C, computed), so the model has EXACTLY these two conserved charges and both are covered. Because
+    |U^T B U| = |B| at every site for every U in SO(4), the Gram matrix of the two charge directions is
+    sum_s [<A,A> <A,A*>; <A*,A> <A*,A*>] = N diag(a^2, a*^2) for EVERY configuration, so the constrained minimum
+    of K at fixed (Q1, Q2) is
+        K_min(Q1, Q2) = Q1^2/(2 m5 N a^2) + Q2^2/(2 m5 N a*^2),   INDEPENDENT OF U,
+    attained at V_s = lam A_s + mu A*_s - the RIGID GLOBAL ROTATION (the Q-ball ansatz IS the Goldstone mode,
+    and it is free). THE MECHANISM, sharply (reviewer 1.3): the charge is the momentum conjugate to an EXACT GLOBAL
+    ZERO MODE (the left 2-torus), so its moment of inertia is the whole lattice's N a^2 and the defect contributes
+    nothing - K_min ~ Q^2/N falls with volume; the charge available here rides a DELOCALISED zero mode, and the
+    localized-carrier charge that Q-balls and spinning Skyrmions use does not exist in this realization. CONTRAST
+    CREDITED, not imported (no result consumes it): in the Skyrme model the isorotation acts by CONJUGATION
+    U -> A U A^dagger and its moment of inertia Lambda[F] is profile-dependent (Adkins-Nappi-Witten 1983, Nucl.
+    Phys. B228, 552), which is why spinning stabilises there; conjugation is not a symmetry of THIS energy (right
+    commutant 0; a right rotation by B0u moves E by 107.3 on the hedgehog). COROLLARY (the result): min_V [E(U) + K] at fixed charge = E(U) + const, so the fixed-charge
+    variational problem is EXACTLY the uncharged one plus a U-independent constant - no Q-ball and no rotating
+    relative equilibrium at any Q, at c = 0, on this realization. In R-142's language the charge inertia is
+    Theta = m5 N a^2, set by the CELL and independent of the configuration, so R-142's Theta(lambda) premise
+    (the cell-layer, amplitude-carrying Skyrme sector, section C.1) fails IDENTICALLY here - the V4-m5 node is a
+    measured lever against N73 (f2), not a realization of it (F5 grain-vs-cell). N73 (f2) is therefore EXCLUDED
+    BY CONSTRUCTION at c = 0 on this realization (not "closed": at c != 0 the potential charge c sum<B0,A> is
+    U-dependent - keeper: the barrier K_min(defect) - K_min(vacuum) at equal Q_can is -23.7 / -3.6 / +39.7 on
+    the round's three charged seeds at c = 12, of either sign and below 0.5 percent of the excess; and the
+    "energy-free reorientation" escape is refuted: Q_pot is exactly invariant on Z(B0)).
+    WOULD CHANGE IF: a U-DEPENDENT inertia - an amplitude degree of freedom (Track 1b's CGL field) or a
+    non-bi-invariant kinetic metric; the two old handles (a) "U-dependent inertia" and (b) "a gapped charge
+    channel" are ONE handle, the gap being Theta itself. QUANTIFIED (reviewer n4c_review_E_amplitude): restoring an
+    amplitude field_s = lambda_s U_s with a TOTAL core notch (r_c = 2.4) buys a static barrier of 0.255 percent of
+    |E_el| at Q = 416.5 (0.54 percent at r_c = 4, floor 0.2; 3.1 percent at Q = 1000), scaling as Q^2/N - the
+    amplitude lever re-opens the Q-ball IN KIND but is sub-percent at these charges on this cell; the Track 1b
+    freeze carries this number. The demonstrated failure mode below is exactly that hypothesis broken.
+
+    TWO SCOPE CLAUSES FROM THE META-OBSERVER: (i) the identity is a textbook Lie-group fact - the constancy of a
+    left-invariant generator's norm under a bi-invariant metric - to which the lattice contributes only the sum
+    over sites, so DERIVED-A reads 'an exact identity of the chosen kinematics', not 'a discovered property of the
+    D4 substrate'; the fixed-modulus antecedent is the Q-LUMP literature (Leese 1991, Nucl. Phys. B 366, the O(3)
+    sigma-model 'modified by the addition of a potential term'; Abraham-Townsend 1992, Q-kinks) - credited, not
+    imported. (ii) m5 is NOT an independent dial at Om0 = 0: (m5, c, gd, Om0, V, t) -> (1, c/sqrt(m5), gd/sqrt(m5),
+    sqrt(m5) Om0, sqrt(m5) V, t/sqrt(m5)) is an exact symmetry of the dynamics (bit-exact on the round's integrator,
+    three failing controls), so the c = 0 inertial family is governed by the single reduced damping
+    gd_hat = gd/sqrt(m5) with the gradient flow as its own overdamped endpoint, and the round's gd ladder IS an
+    inertia ladder {m5 = 1, 4, infinity}: certified-collapse energy 1.80 (gd_hat = inf) -> 9.18 (1) -> 17.05 (0.5)
+    -> never cools (0) percent of |E_el| - turning inertia on in any amount makes the winding die earlier in the
+    descent, and turning it up makes it worse.
+
+    THIS CHECK IS DATA-FREE (keeper LC-3: a 1e-13 tolerance on a stored constant is the calibration ledger's
+    tell): random SO(4) fields generated here, both charges, the constrained minimum computed through the
+    measured Gram matrix and compared with the closed form; K_min asserted IDENTICAL across independent random
+    fields (the U-independence itself); and the SAME check on a site-weighted (non-bi-invariant) kinetic metric,
+    where it must FAIL (rel ~ 0.2) - RUL-122 clause 1. The round's own numbers are RECORDED beside it, never
+    asserted: sparse-KKT minimum vs closed form 6.3e-14 with spread 1.2e-13 across 24 states (seeds, REF, every
+    stage's final state) at Q = 131.7 and 416.5, on the 2048-site CFW16 cell.
+
+    THE MEASURED COMPANION (CANDIDATE-strength, conditional on V4-m5; corroborative, not load-bearing): under
+    the multiplier-free reaction-coordinate criterion (E_tot at the element's last certificate-silent snapshot
+    vs the gradient-flow reference's first-firing energy, same U-seed, same c and Om0) EVERY inertial element's
+    CERTIFICATE OF DEGREE 0 fires at a higher energy than the gradient flow's - 9.2-31.1 percent of the defect's
+    excess above vacuum on E_tot (4.2-16.1 on E(U)) against the reference's 1.80 percent at all eight reached
+    c = 0 elements; 12.5 vs 5.2 percent at c = 12 (one decidable hot-seed element; the other NOT REACHED under the
+    frozen clause, a script-vs-freeze deviation recorded) - and no element was still certificate-silent below the
+    reference's firing energy. ONE-SIDEDNESS (reviewer 3.2): the certificate is one-sided, and at every energy
+    where an element was certified unwound the reference is merely SILENT (D theta 6.3-17.0 vs pi), so the data
+    order CERTIFIED-degree-0 energies, not loss energies - a preregistered non-existence, not 'inertia holds the
+    winding through less of the descent'. SENSITIVITY: the negative is decided inside a factor 5 of the round's
+    own (failed) reference bracket - at a reference of 9.2 or 15 percent, one or three elements would have
+    returned HOLDS-LOWER with the guard satisfied. The elements sit at EQUIPARTITION when certified (E(U)/K =
+    0.835-1.070), so 'loss energy rises with K' is one number, not eight; the one K-matched pair compares COHERENT
+    core rotation (D2(1)) with RANDOM core velocity (D0K, 2.25x rougher at every draw), +9.7 / +1.5 points at
+    gd = 1 / 0.5 - a V-coherence contrast, NOT a charge lever; and the localization guard was in a refusing state
+    at 5 of 10 reached elements. The elements carried 7.8-18.6 percent of their charge when judged (exactly
+    e^{-gd t/m5}: 0.078 = e^{-2.55}, 0.186 = e^{-1.68}), 30-75x the freeze's forecast. Monotone against the
+    evasion ON THE LOSS-ENERGY COORDINATE ACROSS THE TWO FRICTION RUNGS THE CRITERION CAN DECIDE (RUL-049); the
+    exactly-fixed-N arm (gd = 0) is undecidable by this criterion (E1: dQ/dt = -(gd/m5) Q against dE_tot/dt =
+    -(2gd/m5) K - the friction that cools is the friction that drains; verified to 4.6e-6 over the full 8 tu with
+    the fitted rate gd/m5 to 1.2e-5; SCOPE: with the ceiling DISENGAGED - the g_eff-weighted Noether source is
+    8.1e-8 / 71 / 9039 at rho = 1e6 / 33.8 / 3, exactly O(1/rho^2), the corpus's LC-2), and on the survival
+    coordinate it runs the other way (an artefact of the certificate's one-sidedness). The reference's loss energy
+    depends on c (1.80 / 5.20 / 5.99 percent at c = 0 / 12, Om0 = 0 / 14), a TAIL observable: every reference
+    descends >= 94 percent of the excess before firing. One story with R-198 (the ceiling is a loss) and R-199
+    (op B' is a clock): Derrick needs a scale-selecting term and no lever pulled has been one - inertia's
+    fixed-charge floor is a U-independent constant, exactly.
+    Records: knowledge/audit/g8_n4_track2b_2026-09-04/ (keeper n4c_keeper_E2_engine_check.py is the demonstrator)."""
+    import numpy as _np, itertools as _it
+    rng = _np.random.default_rng(seed)
+    def so4(n):
+        out = []
+        for _ in range(n):
+            X = rng.normal(size=(4, 4)); Qm, Rm = _np.linalg.qr(X); Qm = Qm @ _np.diag(_np.sign(_np.diag(Rm)))
+            if _np.linalg.det(Qm) < 0: Qm[:, 0] *= -1
+            out.append(Qm)
+        return _np.array(out)
+    ip = lambda A, B: 0.5 * float(_np.einsum('...ab,...ab->...', A, B).sum())
+    eps = _np.zeros((4, 4, 4, 4))
+    for p in _it.permutations(range(4)): eps[p] = _np.linalg.det(_np.eye(4)[list(p)])
+    # B0 = the unit bivector of the [1,1,1] type used by the G-8 rig (e12 + e13 + e23 normalised to <B,B> = 1)
+    B0 = _np.zeros((4, 4)); B0[0, 1] = B0[0, 2] = B0[1, 2] = 1.0; B0 = B0 - B0.T; B0 /= _np.sqrt(ip(B0, B0))
+    sB0 = 0.5 * _np.einsum('abcd,cd->ab', eps, B0)
+    a2, s2, cross = ip(B0, B0), ip(sB0, sB0), ip(B0, sB0)
+    assert abs(a2 - 1.0) < 1e-14 and abs(s2 - 1.0) < 1e-14 and abs(cross) < 1e-14        # orthonormal torus generators
+    Q1, Q2 = 3.7, -1.9; Kmins = []; grams = []
+    for _ in range(n_fields):
+        U = so4(n_sites)
+        A = _np.einsum('sba,bc,scd->sad', U, B0, U); As = _np.einsum('sba,bc,scd->sad', U, sB0, U)
+        G = _np.array([[ip(A, A), ip(A, As)], [ip(As, A), ip(As, As)]])
+        lam = _np.linalg.solve(G, _np.array([Q1, Q2]) / m5); V = lam[0] * A + lam[1] * As   # the constrained minimiser
+        assert abs(m5 * ip(A, V) - Q1) < 1e-10 and abs(m5 * ip(As, V) - Q2) < 1e-10      # the constraints hold
+        K = 0.5 * m5 * ip(V, V); Kmins.append(K); grams.append(G)
+        assert _np.allclose(G, n_sites * _np.diag([a2, s2]), atol=1e-12)                # Gram = N diag(a^2, a*^2) for EVERY field
+    closed = Q1 ** 2 / (2 * m5 * n_sites * a2) + Q2 ** 2 / (2 * m5 * n_sites * s2)
+    assert all(abs(K - closed) / closed < 1e-13 for K in Kmins)                           # numerical minimum = closed form
+    assert (max(Kmins) - min(Kmins)) / closed < 1e-13                                     # IDENTICAL across independent fields
+    # the DEMONSTRATED FAILURE MODE: a site-weighted (non-bi-invariant) metric K = (m5/2) sum_s w_s <V_s,V_s>
+    w = 1.0 + 0.5 * rng.random(n_sites); U = so4(n_sites); A = _np.einsum('sba,bc,scd->sad', U, B0, U)
+    lam_w = (Q1 / m5) / sum(0.5 * float(_np.einsum('ab,ab->', A[s], A[s])) / w[s] for s in range(n_sites))
+    Vw = _np.array([lam_w * A[s] / w[s] for s in range(n_sites)])
+    Kw = 0.5 * m5 * sum(w[s] * 0.5 * float(_np.einsum('ab,ab->', Vw[s], Vw[s])) for s in range(n_sites))
+    rel_fail = abs(Kw - Q1 ** 2 / (2 * m5 * n_sites * a2)) / (Q1 ** 2 / (2 * m5 * n_sites * a2))
+    assert rel_fail > 0.05                                                                 # the check CAN fail: it does, off the bi-invariant metric
+    # E1 (DERIVED-A on the frozen dynamics) and the round's recorded values - RECORDED, not asserted
+    recorded = {"round_KKT_vs_closed_max_rel": 6.3e-14, "round_spread_across_24_states": 1.2e-13, "round_cell_sites": 2048,
+                "decisive_charge_fractions_vs_law": {"gd1_t2.55": (0.078, math.exp(-2.55)), "gd0.5_t3.36": (0.186, math.exp(-0.5 * 3.36))},
+                "certified_degree0_energy_pct_above_vac": {"reference_c0": 1.80, "inertial_c0_range_Etot": (9.2, 31.1), "inertial_c0_range_EU": (4.2, 16.1), "reference_c12": 5.20, "hot_seed_c12_decidable": 12.5, "hot_seed_c12_D1(3)": "NOT REACHED"},
+                "equipartition_at_certification_EU_over_K": (0.835, 1.070), "amplitude_wcif_barrier_pct_at_Q416": 0.255,
+                "barrier_at_c12_equal_Qcan": {"D0": -23.67, "D2(0.1)": -3.65, "D2(1)": +39.65}}
+    for k, (meas, law) in recorded["decisive_charge_fractions_vs_law"].items(): assert abs(meas - law) < 2e-3, k
+    return {"identity": "K_min(Q1,Q2) = Q1^2/(2 m5 N a^2) + Q2^2/(2 m5 N a*^2), configuration-independent (c = 0, unit rotor, bi-invariant metric)",
+            "gram_first_field": grams[0].tolist(), "K_min_fields": Kmins, "closed_form": closed, "failure_mode_rel_on_site_weighted_metric": rel_fail,
+            "corollary": "min_V [E(U)+K] at fixed charge = E(U) + const: the charge cannot create a minimum the energy does not have; N73 (f2) EXCLUDED BY CONSTRUCTION at c = 0 on this realization",
+            "recorded_round_values": recorded, "tier": "identity DERIVED-A within its conditioning class; measured negative CANDIDATE-strength, conditional on V4-m5"}
+
+def g8_track1b_active_window_balance_and_zero_work_identity(n_sites=64, n_fields=3, seed=11):
+    """[COMPANION / CANDIDATE - G-8 kernel physics on the V4-ACTIVE node (an H9 CHALLENGE outside the banked class;
+    H9 stays banked as the passive (carrier-only) face of S5's menu); the identity itself is DERIVED-A] R-201 (Phase N4 Track 1b, 2026-09-06):
+    THE ACTIVE-WINDOW KERNEL RETURNS NO EXISTS UNDER ITS FROZEN CRITERION, AND HOSTS A GAIN/LOSS-BALANCED LOCALIZED
+    STATE THE CRITERION COULD NOT SEE.
+
+    THE KERNEL (first order, op B's placement): dU/dt = Om0 B0 U + U (G - Om0 B0), G = gamma_eff(|F|) F + c [B0, F],
+    gamma_eff = gamma (1 - a x + b x^2), x = |F|^2/|F|0^2 - a gain WINDOW in the dissipative coefficient (gamma_eff < 0
+    between two roots), parameterized by centre and width; the depth is DERIVED from the width (-w^2/(1 - w^2)).
+    Not a CQ-CGL medium (that description is withdrawn): a gain window in the mobility of a first-order rotor flow.
+
+    THE EXACT CLAUSE (DERIVED-A; any antisymmetric F, any B0): by trace cyclicity <F, [B0, F]> = 0, so
+        |G|^2 = gamma_eff^2 |F|^2 + c^2 |[B0, F]|^2   EXACTLY, sitewise,
+    hence |G| >= |gamma_eff| |F| at every site of every configuration, and G = 0 forces gamma_eff F = 0 AND
+    [B0, F] = 0. TWO COROLLARIES: (i) at Om0 = 0 an EXACTLY stationary state of the window form has every site
+    unstrained or at a ROOT of gamma_eff - for every centre and width (the stationary branch of the dial family is
+    closed by algebra, not by runs); (ii) with the banked identities F = -2 grad E and the zero-work term,
+    dE/dt = -(1/2) sum_s gamma_eff(|F_s|) |F_s|^2 at Om0 = 0 (verified to 0.08 percent against the production
+    stepper by the keeper), so with R-198's gamma_eff >= gamma > 0 the BANKED PASSIVE KERNEL ADMITS NO NON-VACUUM
+    STEADY STATE AT ZERO DRIVE - a strict descent; a steady state requires exactly sum gamma_eff |F|^2 = 0, i.e. a
+    window. The "|G| ~ 0 with gamma_eff != 0 on the core" signature is therefore unrealizable in this kernel class -
+    the developer's L1 discriminator tested for it and had one reachable branch (calibration row).
+
+    THE ROUND (CANDIDATE-strength, labelled sim provenance; CFW16, the R-199 hedgehog seed, |F|0 = 58.52 (a run-builder constant - the DEFECTIVE min-image radius truncated
+    the seed, RUL-128 at R-202; seam-free 41.66), three
+    windows W1 (1.0, 0.5) / W2 (0.5, 0.5) / W3 (2.0, 0.2) in (centre/|F|0, half-width), two drives, 8 tu): NO EXISTS
+    at any engaged element under the frozen criterion (certificate silent AND the R-199 plateau clause with its
+    guards); W3 NOT ENGAGED as designed (edge 104.7 vs the passive transient's 81.7); the passive reference certifies
+    degree 0 at 0.11 at both drives. The frozen LOCALIZATION GUARD (the band-amplitude near/far ratio normalized by
+    REF's) is computed NON-INVARIANT under the flow's banked left torus - 321.03 -> 1.188 on the seed under one exact
+    gauge motion (270x) while E, R_half, |F|max, D theta and the strain core/far ratio are bit-identical - and its
+    na/fa are exactly wavevector-independent per-site rotor-log amplitudes: it measured the gauge angle, not the
+    object, and the surviving state had accumulated omega t ~ 2.1 rad of that angle (RUL-122 clause 7). Its raw
+    contrast is 0.978 (the REF normalizer INFLATED it x1.62), so the NEGATIVE is stronger than the L1 said.
+    WHAT THE ROUND FOUND (Om0 = 0 / W1, the committed final state; NOT an EXISTS): strain-localized (core/far |F|
+    23.6 as run, 18.1 on the exact metric - RUL-128; 14 of 2048 sites above half-maximum; a localized strained CORE at r = 1.0-1.41 (from the lattice origin; exact on these 14 sites), below the pi3
+    representability window - never 'a winding'; certificate silence is free at D theta = 15.2), certificate-silent
+    for 8 tu and for 16 on the reviewer's read-only continuation (|F|max 41.611 -> 41.609; the imbalance DECAYING
+    +3.3 -> +0.38 per tu), GAIN/LOSS-BALANCED on the standard integral criterion: core gain -165.6 (14 sites)
+    against far-field loss +169.5 (2034 sites), a 97.6 percent cancellation tightening to 99.5 percent by t = 16 -
+    the balance PREDICTS the core gamma_eff -0.00700 against the measured -0.006838 (2 percent) - while the identical
+    state under the passive kernel is destroyed in 0.15 tu (6479x suppression of dE/dt). Its residual generator is
+    75 percent (93 percent on the core) along R-194's exact left torus at |omega| = 0.26025 rad/tu - a symmetry
+    rotation invisible to every torus-invariant observable (the classifier's STATIONARY is a statement about
+    invariant scalars) - with a co-moving residual of 0.4964 (whole) / 0.2603 (core; whole-state-fitted omega - 0.2411 was a separately
+    core-fitted value, keeper C1 at R-202) against the stationary ansatz's 1.0000 AT t = 8 - a SNAPSHOT of a state
+    RELAXING toward a relative equilibrium (0.1496 / 0.0654 by t = 14 under its own flow at constant |A|; R-202) whose co-moving solve (R-194's instrument, two-sided (A, B) family
+    seeded at (-0.23167, +0.11859)) is the owed Q3. W2 is a DIFFERENT object: at its ATTRACTING upper root, R-198's
+    limiter inside a window, unbalanced (21.8 percent), losing 1.5 percent of its excess per tu at t = 16. The Om0 =
+    14 elements do not move (net 0.18 / 0.21 site on paths of 3.3 / 12.1). CELL-SIZE FENCE: a 14-site emitter is
+    balanced by a 2034-site absorber - the box is load-bearing for this object; a second cell size is a required arm
+    of any re-freeze. Five freeze defects recorded (RECORDS 1-3). N73 (f3)(a): discharged in kind, undecided in
+    verdict. Records: knowledge/audit/g8_n4_track1b_2026-09-04/."""
+    import numpy as _np
+    rng = _np.random.default_rng(seed)
+    def antisym(n):
+        M = rng.normal(size=(n, 4, 4)); return M - M.transpose(0, 2, 1)
+    ip = lambda A, B: 0.5 * _np.einsum('...ab,...ab->...', A, B)
+    B0 = antisym(1)[0]; B0 /= _np.sqrt(ip(B0, B0))                      # a generic B0 (the identity needs none of its structure)
+    comm = lambda F: _np.einsum('ab,sbc->sac', B0, F) - _np.einsum('sab,bc->sac', F, B0)
+    worst = 0.0
+    for _ in range(n_fields):
+        F = antisym(n_sites); g = rng.normal(size=n_sites); c = float(rng.normal())      # random gamma_eff (either sign), random c
+        G = g[:, None, None] * F + c * comm(F)
+        lhs = ip(G, G); rhs = g ** 2 * ip(F, F) + c ** 2 * ip(comm(F), comm(F))
+        assert _np.all(_np.abs(ip(F, comm(F))) < 1e-12 * ip(F, F))                    # <F,[B0,F]> = 0 sitewise (trace cyclicity)
+        worst = max(worst, float(_np.max(_np.abs(lhs - rhs) / rhs)))
+        assert _np.all(_np.sqrt(lhs) >= _np.abs(g) * _np.sqrt(ip(F, F)) * (1 - 1e-12))  # |G| >= |gamma_eff||F|
+    assert worst < 1e-12
+    # DEMONSTRATED FAILURE MODE (RUL-122 cl. 1): a reactive channel that DOES WORK - X = [B0,F] + eps F (the force-placement
+    # class of R-199's recon leg 3, where <F,X> != 0) - breaks the identity; note B0 F alone would NOT (tr(sym . antisym) = 0)
+    F = antisym(n_sites); g = rng.normal(size=n_sites); c = 1.3; X = comm(F) + 0.3 * F; Gbad = g[:, None, None] * F + c * X
+    rel_fail = float(_np.max(_np.abs(ip(Gbad, Gbad) - (g ** 2 * ip(F, F) + c ** 2 * ip(X, X))) / (g ** 2 * ip(F, F) + c ** 2 * ip(X, X))))
+    assert rel_fail > 0.05
+    # the round's RECORDED values (never asserted as the identity)
+    recorded = {"frozen_verdict": "NO EXISTS at any engaged element", "raw_contrast_Om0_W1": 0.978, "guard_under_one_torus_motion": (321.03, 1.188),
+                "balance_core_far_t8": (-165.6, 169.5), "balance_core_far_t16": (-174.3, 172.6), "cancellation_pct": (97.6, 99.5),
+                "balance_predicted_vs_measured_core_geff": (-0.00700, -0.006838), "passive_twin_death_tu": 0.15, "continuation_Fmax": (41.611, 41.609),
+                "residual_torus_fraction": (0.75, 0.93), "omega_rad_per_tu": 0.26025, "comoving_residual_whole_core": (0.4964, 0.2411), "stationary_ansatz_residual": 1.0,
+                "W2": {"root": "attracting upper", "cancellation_pct": 21.8, "loss_pct_per_tu_t16": 1.5}, "core_sites": 14, "absorber_sites": 2034, "W3_edge": 104.7}
+    bal = recorded["balance_core_far_t16"]; assert abs(bal[0] + bal[1]) / abs(bal[1]) < 0.02                       # a recorded 99 percent cancellation
+    pv, me = recorded["balance_predicted_vs_measured_core_geff"]; assert abs(pv - me) / abs(pv) < 0.03
+    return {"identity": "|G|^2 = gamma_eff^2 |F|^2 + c^2 |[B0,F]|^2 exactly; |G| >= |gamma_eff||F|; G = 0 => gamma_eff F = 0 and [B0,F] = 0",
+            "worst_rel_on_random_fields": worst, "failure_mode_rel_working_reactive_channel": rel_fail,
+            "corollaries": "an exactly stationary state of the window form sits at roots of gamma_eff (every centre and width); the banked passive kernel admits no non-vacuum steady state at zero drive",
+            "recorded_round_values": recorded, "tier": "identity DERIVED-A; the round CANDIDATE-strength, conditional on V4-ACTIVE (an H9 challenge); the localized balanced state is NOT an EXISTS - Q3 (the co-moving solve) owed"}
+
+
+def g8_track1b2_root_offset_balance_identity(n_trials=200, seed=5):
+    """[COMPANION / CANDIDATE - G-8 kernel physics on the V4-ACTIVE node (outside the banked class; H9 stays banked as the passive (carrier-only) face of S5's menu);
+    the first-order identity itself is DERIVED-A] R-202 (Phase N4 Track 1b ROUND 2, 2026-09-06): THE CORE OF A
+    BALANCED WINDOW STATE SITS ABOVE THE WINDOW'S LOWER ROOT BY THE BOX'S LOSS, IN CLOSED FORM.
+
+    THE WINDOW: gamma_eff(x) = 1 - a x + b x^2, x = |F|^2/|F|0^2, with two real roots iff a^2 > 4b; the LOWER root is
+    x- = (a - sqrt(a^2 - 4b)) / (2b) and gamma_eff'(x-) = -sqrt(a^2 - 4b) < 0 (the gain band opens above it); the UPPER
+    root x+ has gamma_eff'(x+) = +sqrt(a^2 - 4b). (W1 of R-201/R-202: a = 8/3, b = 4/3 -> x- = 1/2, x+ = 3/2; 1/sqrt2 is
+    W1's lower root only - the general lower root is x-, and W2's object sat at ITS UPPER root, R-201.)
+    THE IDENTITY (first order in the offset; a core of uniform strain x- + dx, S = sum_core |F|^2, and a far-field loss
+    L = sum_far gamma_eff |F|^2 > 0): the integral balance sum_core gamma_eff |F|^2 = -L (R-201's exact clause
+    dE/dt = -(1/2) sum gamma_eff |F|^2 = 0) requires gamma_eff(x- + dx) S = -L, i.e.
+        dx = L / (sqrt(a^2 - 4b) S)  > 0        and in amplitude   |F|/|F|0 = sqrt(x- + dx) ~ sqrt(x-) + (L/S) / (2 sqrt(x-) sqrt(a^2 - 4b)).
+    THE ROOT SETS THE ZERO, THE BOX'S LOSS SETS THE OFFSET. The exact balanced strain is the lower root of
+    b x^2 - a x + (1 + L/S) = 0, which the first-order form reproduces to O((L/S)^2); it exists iff a^2 > 4b (1 + L/S) -
+    a loss too large for the window's depth has NO balanced amplitude (the state must collapse or blow up).
+    THE EXACT FORM (R-203 keeper, 2026-09-07; DERIVED-A, one line): gamma_eff(x) = b (x - x-)(x - x+) = b delta^2 - sqrt(a^2-4b) delta
+    with delta = x - x-, so for ANY set of core sites, weighted by |F|^2 (S = sum_core |F|^2, <.>_w the |F|^2-weighted core mean),
+        <delta>_w = (|G_core| / S) / sqrt(a^2 - 4b) + (b / sqrt(a^2 - 4b)) <delta^2>_w      EXACTLY,   |G_core| = -sum_core gamma_eff |F|^2,
+    verified to 1e-14 relative on all six committed states of rounds 2 and 3. The BALANCE is the separate assumption |G_core| = L
+    (the far-field loss): replacing |G_core| by L misses by exactly the state's imbalance (L - |G_core|)/L - +5.9 / -2.1 / -11.8 percent
+    on the round-3 final states; +14.2 percent on the R-202 CFW16/H.W1 state, i.e. 13.0 percent on its offset.
+    WITNESSES IN THE OFFSET UNIT (the measurand is <delta>_w, RECORDED not asserted; the earlier '0.12 / 0.018 / 0.011 percent'
+    were strain-ratio restatements in which the root itself is 99.4 percent of the number - R-203 keeper C1): R-202 CFW16/H.W1
+    measured <delta>_w 0.00507-class offsets against the L-based prediction miss by the imbalance; the exact form with |G_core|
+    reproduces them to 1e-14. No cross-cell offset ratio is quoted (the R-202 cells ran different rho1 - retired at R-203).
+    This is NOT R-201's content (R-201 banked
+    'stationary states sit at roots'; this is the offset FROM the root for a non-stationary balanced state), and it is
+    not 'the window sets the amplitude': the box enters through L. FAILURE MODES (RUL-122 cl. 1): (i) a window with
+    a^2 < 4b has no real root and the balance equation has no real solution for any L > 0; (ii) at the UPPER root the
+    offset is NEGATIVE (the sign of gamma_eff'), so a check that fixed the sign to 'above' fails there - W2's branch.
+    Records: knowledge/audit/g8_n4_track1b2_2026-09-06/ (RECORDS 1-3; the min-image instrument defect is recorded
+    there and in the R-202 row - this identity uses no geometry)."""
+    import numpy as _np
+    rng = _np.random.default_rng(seed)
+    def roots(a, b):
+        d = a * a - 4.0 * b
+        if d <= 0: return None
+        return ((a - _np.sqrt(d)) / (2.0 * b), (a + _np.sqrt(d)) / (2.0 * b))
+    worst = 0.0; n_ok = 0
+    for _ in range(n_trials):
+        a = float(rng.uniform(1.0, 4.0)); b = float(rng.uniform(0.05, 1.0))
+        D = a * a - 4.0 * b
+        if D <= 0.1: continue                                                     # two real roots, away from the degenerate window
+        xm, xp = roots(a, b); eps = float(rng.uniform(1e-4, 5e-3))               # eps = L/S, the loss per unit core strain mass
+        dx = eps / _np.sqrt(D)                                                    # the first-order offset
+        rr = _np.roots([b, -a, 1.0 + eps]); xe = float(_np.min(rr.real))          # the exact balanced strain (lower root)
+        assert xe > xm and dx > 0                                                 # ABOVE the lower root
+        worst = max(worst, abs(xe - (xm + dx)) / (b * eps ** 2 / D ** 1.5)); n_ok += 1   # the second-order term is b eps^2 / D^(3/2) exactly
+        assert abs(1.0 - a * xm + b * xm * xm) < 1e-12 and abs(-a + 2 * b * xm + _np.sqrt(D)) < 1e-12
+    assert n_ok > 50 and worst < 1.5                                              # O(eps^2) with the derived constant (ratio -> 1 as eps -> 0)
+    # W1 witness of the closed form (recorded numbers; the assertion is the algebra, the witness is the data)
+    a, b = 8.0 / 3.0, 4.0 / 3.0; xm = roots(a, b)[0]; assert abs(xm - 0.5) < 1e-15
+    L_S = 171.18 / 24261.5; pred = _np.sqrt(xm + L_S / _np.sqrt(a * a - 4 * b)); assert abs(pred - 0.710839) < 2e-6
+    # THE EXACT SECOND-ORDER IDENTITY (R-203): for random cores (weights w, strains x >= 0) and random two-root windows,
+    #   sum_w gamma_eff(x) = -sqrt(D) <delta>_w + b <delta^2>_w   EXACTLY   (delta = x - x-), i.e. <delta>_w = (|G|/S)/sqrt(D) + (b/sqrt(D)) <delta^2>_w
+    worst_id = 0.0
+    for _ in range(50):
+        a2 = float(rng.uniform(1.0, 4.0)); b2 = float(rng.uniform(0.05, 1.0)); D2 = a2 * a2 - 4.0 * b2
+        if D2 <= 0.1: continue
+        xm2 = (a2 - _np.sqrt(D2)) / (2.0 * b2); w = rng.uniform(0.1, 1.0, size=40); w /= w.sum(); x = xm2 + rng.uniform(0.005, 0.06, size=40)     # offsets ABOVE the root (a balanced core), so <delta>_w is O(0.03) and the wrong-discriminant failure is visible
+        g = 1.0 - a2 * x + b2 * x * x; dl = x - xm2; lhs = float((w * dl).sum()); rhs = float(-(w * g).sum() / _np.sqrt(D2) + (b2 / _np.sqrt(D2)) * (w * dl * dl).sum())
+        worst_id = max(worst_id, abs(lhs - rhs) / max(abs(lhs), 1e-12))
+        # its FAILURE MODE: expanding about the WRONG root (x+, where gamma_eff' = +sqrt(D)) with the lower-root formula fails at O(1)
+        xp2 = (a2 + _np.sqrt(D2)) / (2.0 * b2); dlp = x - xp2; lhs_p = float((w * dlp).sum()); bad = float(-(w * g).sum() / _np.sqrt(D2) + (b2 / _np.sqrt(D2)) * (w * dlp * dlp).sum()); assert abs(bad - lhs_p) / max(abs(lhs_p), 1e-12) > 0.05
+    assert worst_id < 1e-10
+    # DEMONSTRATED FAILURE MODES
+    assert roots(1.0, 1.0) is None                                                 # (i) a^2 < 4b: no root, no balance
+    assert _np.all(_np.abs(_np.roots([1.0, -1.0, 1.0 + 0.01]).imag) > 0)           #      ... and the balance equation has no real solution
+    xp = roots(a, b)[1]; dxu = -L_S / _np.sqrt(a * a - 4 * b)                      # (ii) the upper root: the offset is BELOW (sign flip)
+    xe_u = float(_np.max(_np.roots([b, -a, 1.0 + L_S]).real)); assert xe_u < xp and dxu < 0
+    return {"tier": "COMPANION / CANDIDATE (V4-ACTIVE); identity DERIVED-A at first order",
+            "lower_root_W1": xm, "upper_root_W1": xp, "worst_second_order_constant": worst, "trials": n_ok,
+            "witness_CFW16_HW1": {"measured": 0.711698, "balance_predicted": float(pred), "root_only": float(_np.sqrt(xm))},
+            "witness_CFW16_CONT": {"measured": 0.710973, "balance_predicted": 0.710847}, "witness_CFW16W_HW1": {"measured": 0.708535, "balance_predicted": 0.708457},
+            "exact_second_order_identity_worst_rel": worst_id, "balance_is_the_assumption": "|G_core| = L; replacing |G_core| by L misses by the imbalance",
+            "failure_modes": "a^2 < 4b -> no root and no real balance; upper root -> offset below (sign flip); expanding about the wrong root breaks the exact identity at O(1)",
+            "records": "knowledge/audit/g8_n4_track1b2_2026-09-06/"}
+
+def two_defect_tensor_complex_space():
+    """[DERIVED-A pointwise algebra, GENERIC-GIVEN-two-complex-structures — the
+    substrate supplies the structures (winding blades in the quaternionic
+    commutant span{1, e23, e13, e12} ≅ H), the split itself is blade-independent
+    linear algebra; consumes NO V3 pick. In-house verification of the
+    2026-08-31 external mock-review claim, coordinator-directed.]
+
+    THE RESULT: for two defects with winding blades B1, B2 (any of the 9
+    ordered pairs, equal or distinct), the commuting complex actions J1 (x) I
+    and I (x) J2 on the 16-real-dimensional H (x)_R H single out
+    ker(J1 (x) I - I (x) J2) — EXACTLY 8 real dimensions, J-invariant with
+    J^2 = -1: a C^4 = C^2 (x)_C C^2, the exact two-qubit space. WHY 8 IS
+    FORCED (the generic reason, asserted): K = J1 (x) J2 has K^2 = +1 and
+    tr K = (tr J1)(tr J2) = 0, so the eigensplit is 8/8 for ANY two complex
+    structures — the blades are not doing the work here. Same-blade: the swap
+    is complex-linear with eigenvalues {+1 x3, -1 x1} — the triplet/singlet
+    split, the singlet slot Lambda^2(C^2) one complex dimension. Distinct
+    blades: the identification Psi = I (x) L_q (q the commutant rotor with
+    q u1 q^{-1} = u2) maps the spaces exactly; it is NON-CANONICAL — q is
+    free up to right multiplication by exp(phi u1) — but that U(1) ambiguity
+    acts as a complex PHASE, so the SINGLET SLOT is invariant under the
+    choice (verified to ~7e-16): the slot is canonical, the identification is
+    not. THAT PER-PAIR U(1) FREEDOM IS EXACTLY THE SEED of the CP1
+    emergent-connection candidate (knowledge/candidates/ A-1/B-1).
+
+    SCOPE — what this does NOT establish (banked with the result, not beside
+    it): (i) it refutes ONLY the POINTWISE reading of the external
+    'Hopf-fibration-forbids-tensor-products' conjecture — the BUNDLE-LEVEL
+    question (does a CONTINUOUS global choice of identification exist over
+    the space of blade pairs?) is untouched and is where the Hopf topology
+    actually lives; (ii) N53 (the five-route located negative on
+    CONSTRUCTING the multi-defect space from the substrate) is NOT unbanked
+    — this is a new exact input to N53's route (c), and route (c)'s
+    double-counting tripwire still fires at any development; (iii) no
+    dynamics, no interaction, no photon — the gauge-boson reading stays
+    CANDIDATE. RELATION TO THE BANKED not_claimed ROW (twt_core's 'two-wing
+    tensor product (N53)' and §B.4's 'remains imported'): UNCHANGED — this
+    primitive supplies the POINTWISE complex structure only; the physical
+    two-defect state space stays imported until the bundle-level global
+    choice is constructed (the CP1 route's registered target)."""
+    import numpy as _np
+    import itertools as _it
+
+    def _Lq(a, b, c, d):
+        return _np.array([[a, -b, -c, -d], [b, a, -d, c],
+                          [c, d, a, -b], [d, -c, b, a]], float)
+
+    I4 = _np.eye(4)
+    U = {"i": _Lq(0, 1, 0, 0), "j": _Lq(0, 0, 1, 0), "k": _Lq(0, 0, 0, 1)}
+
+    def _ker(J1, J2):
+        D = _np.kron(J1, I4) - _np.kron(I4, J2)
+        _, s, Vt = _np.linalg.svd(D)
+        return Vt[s < 1e-10].T
+
+    dims = {}
+    for n1, n2 in _it.product("ijk", repeat=2):
+        J1, J2 = U[n1], U[n2]
+        K = _ker(J1, J2)
+        Jop = _np.kron(J1, I4)
+        assert K.shape[1] == 8
+        assert _np.linalg.norm(Jop @ K - K @ (K.T @ Jop @ K)) < 1e-12
+        assert _np.linalg.norm(Jop @ (Jop @ K) + K) < 1e-12
+        assert abs(_np.trace(_np.kron(J1, J2))) < 1e-14      # the generic reason
+        dims[n1 + n2] = 8
+    # same-blade two-qubit split: swap eigenvalues {+1 x3, -1 x1} on C^4
+    S = _np.zeros((16, 16))
+    for a in range(4):
+        for b in range(4):
+            S[b * 4 + a, a * 4 + b] = 1.0
+    J1 = U["i"]
+    K = _ker(J1, J1)
+    Jop = _np.kron(J1, I4)
+    assert _np.linalg.norm((S @ Jop - Jop @ S) @ K) < 1e-12  # S complex-linear
+    cb, used = [], _np.zeros((16, 0))
+    for idx in range(8):
+        v = K[:, idx].copy()
+        for m in range(used.shape[1]):
+            v -= used[:, m] * (used[:, m] @ v)
+        if _np.linalg.norm(v) < 1e-8:
+            continue
+        v /= _np.linalg.norm(v)
+        used = _np.column_stack([used, v, Jop @ v])
+        cb.append(v)
+        if len(cb) == 4:
+            break
+    M = _np.zeros((4, 4), complex)
+    for ci, v in enumerate(cb):
+        Sv = S @ v
+        for ri, u in enumerate(cb):
+            M[ri, ci] = (u @ Sv) + 1j * ((Jop @ u) @ Sv)
+    ev = _np.linalg.eigvals(M)
+    n_sing = int(_np.sum(_np.abs(ev + 1) < 1e-8))
+    n_trip = int(_np.sum(_np.abs(ev - 1) < 1e-8))
+    assert (n_sing, n_trip) == (1, 3)
+    # distinct blades: identification exists; U(1) choice leaves the singlet
+    # slot invariant
+    import math as _m
+    q1 = _Lq(1 / _m.sqrt(2), 0, 0, 1 / _m.sqrt(2))      # rotates i -> j
+    ph = 0.7
+    q2 = q1 @ _Lq(_m.cos(ph), _m.sin(ph), 0, 0)
+    Kij = _ker(U["i"], U["j"])
+    P = Kij @ Kij.T
+    wc = _np.linalg.eig(M)[1][:, int(_np.argmin(_np.abs(ev + 1)))]
+    sing = sum(wc[m].real * cb[m] + wc[m].imag * (Jop @ cb[m])
+               for m in range(4))
+    sing /= _np.linalg.norm(sing)
+    planes = []
+    for q in (q1, q2):
+        assert _np.allclose(q @ U["i"] @ q.T, U["j"], atol=1e-12)
+        v = _np.kron(I4, q) @ sing
+        assert _np.linalg.norm(v - P @ v) < 1e-12           # lands in ker(ij)
+        v /= _np.linalg.norm(v)
+        planes.append(_np.column_stack([v, _np.kron(U["i"], I4) @ v]))
+    slot_dev = float(_np.linalg.norm(planes[0] @ planes[0].T
+                                     - planes[1] @ planes[1].T))
+    assert slot_dev < 1e-12
+    return {
+        "tier": "DERIVED-A pointwise; GENERIC-given-two-complex-structures "
+                "(tr K = 0 forces 8/8 for ANY pair)",
+        "dims_all_9_pairs": dims,
+        "structure": "C^2 (x)_C C^2 exactly; same-blade swap split 3+1 "
+                     "(singlet Lambda^2 one complex dim)",
+        "identification": "non-canonical (U(1) ambiguity per pair) but the "
+                          "singlet SLOT is choice-invariant",
+        "slot_invariance_dev": slot_dev,
+        "scope": "pointwise only — the bundle-level global-choice question "
+                 "(the actual Hopf content) untouched; N53 NOT unbanked; "
+                 "route-(c) input; no dynamics/photon claim",
+    }
+
+
+
+def g8_linear_response_operator_twisted_vacuum(J: float = 1.0, D_over_J: float = 0.787,
+                                               C12: float = 12.0) -> dict:
+    """[DERIVED-A (the *B0 stiffness identity, CITED from R-192 and re-asserted here) +
+    DERIVED-numeric (the flow operator's spectrum at Gamma, the healing-length identity
+    xi = 1/|k0|, the selection PLANE — BRANCH- and D/J-LABELLED: body-diagonal, D/J = 0.787)
+    + CANDIDATE (the G-8 kernel whose first-order flow this is the linearization of)]
+    §D.5.7 / GR-1 (2026-09-15; the coherence keeper's spec of 2026-09-14, Q2/Q6) —
+    THE LINEAR-RESPONSE OPERATOR OF THE BANKED G-8 FLOW ABOUT ITS TWISTED VACUUM, AT THE
+    PRODUCTION DIAL Omega_0 = 0.
+
+    WHAT THIS IS A TEST OF. The GR-1 far-field programme (the Z^3 host's 1/r-consistent
+    field, `knowledge/audit/gravity_gr1_2026-09-09/GR1_LINEAR_RESPONSE_STEP{1,2,3}_NOTE_2026-09-14.md`)
+    measured the linearization of the banked op-B flow by SIX DELTA PLANTS on a 32^3 Z^3
+    cell (a 19-offset stencil) and read four facts off it numerically. This primitive is the
+    same operator written down: with H(k) the banked 6x6 Bloch stiffness of the D4
+    frame-bilinear model about the single-q canted state (`_estate_d4_magnon_rig`, R-192)
+    and ad_B0 the adjoint action of the canting bivector on so(4) in the E_ij basis,
+
+        L(k) = -( 1 + C12 * ad_B0 ) H(k)          (Omega_0 = 0, gamma_eff = 1),
+
+    i.e. `n1_lib.L_of(k, g = 1, c = C12, Om0 = 0)` of the N1 rig (verified there against
+    the stepper to 1e-9, GS-6c), lifted into the engine with the keeper's four checks.
+    REFERENT: the flow's FIRST-ORDER face at Omega_0 = 0 — H is a STATIC-face object (GS-6:
+    carry the face), L is the flow's own linearization; on the 2e4-invariant subspace
+    (k_4 = 0) L(k) IS the Z^3 stencil's L(k) by the OPT-2d reduction identity (z3_lib, 5e-16).
+    WHY THIS ROUTE: the delta-plant stencil is a measurement on one cell; the operator is
+    cell-free, and the four facts become one-line asserts a future reader can re-run.
+    WHAT COUNTS AS FAILURE: any of the four checks, or either planted failure passing.
+
+    THE FOUR CHECKS (the keeper's list) and THE TWO PLANTED FAILURES:
+      1. <*B0| H(k) |*B0> = 12 J ktilde^2(k) EXACTLY on the D4 stencil (R-192's identity; here
+         3 directions x 3 magnitudes, residual ~1e-14) — and the SAME assertion against the
+         6 J label-form (misses by 50 %) and against the continuum 12 |k|^2 (misses by 5 % at
+         |k| = 2pi/8, 17 % at k = (2pi/8)(1,1,1)) is SEEN TO FAIL: the stiffness is the full
+         lattice dispersion, not a leading term. The B0 sector carries the 0.6 % anisotropy of
+         UNDER-CLAIM 3 (0.994 along k0, 1.006 across it — returned, not asserted).
+      2. L(0) has EXACTLY two zero modes (the B0/*B0 Goldstone pair) and four gapped modes
+         -g (1 +- i C12): Im/Re = C12 exactly (H(0) commutes with ad_B0, check 4), and
+         |Re| = g = 12 J |k0|^2 to 0.2 % (the "-0.41 +- 4.95 i" of the step-2 note) — and the
+         UNTWISTED world (D = 0, k0 = 0) returns SIX zero modes: the 2 + 4 split is the twist's.
+      3. xi = 1/|k0|: the inverse pitch reproduces R-189's measured-minimum healing length on
+         the body-diagonal branch to 0.05 % (5.3909 vs 5.3883) — GR-1a's sqrt(12/g) is this
+         identity once the gap is recognised as 12 |k0|^2 (keeper UNDER-CLAIM 4).
+      4. THE SELECTION RULE IS A PLANE: [H(k), ad_B0] = 0 to 1e-13 for every k in
+         span{k0-hat, e4} — along k0 at three magnitudes, along e4, and at interpolations — and
+         0.07..0.21 (relative Frobenius) for every k OFF that plane (the control that makes the
+         null a discriminator); identically 0 in the untwisted world (H proportional to 1_6).
+         Since the smooth/satellite split IS the eigen-decomposition of ad_B0, commuting means
+         NO smooth-to-satellite drive at linear order for any in-plane wavevector, exactly. On
+         the 2e4-invariant slice the plane meets k_4 = 0 in the k0 LINE — why the Z^3 runs see a
+         line; the full 4D theory predicts a 2-plane of nulls for the first e4-populated run.
+      Provenance tie: the operator reproduces the DEPOSITED delta-plant stencil of
+      `gr1_linear_response_step2.py` (32^3, eps = 1e-4; `gr1_linear_response_step2.log`) —
+      D_B0/k^2 = 11.9844, D_*B0/k^2 = 11.9614 at k = 2pi/32 (1,0,0); L(0) gapped at
+      -0.41204 +- 4.94542 i; max Re eig over the 32^3 raster -0.24527, min |eig| 0.24543 — to
+      2e-4 relative (the residual is the plant's finite eps about a relative equilibrium),
+      asserted at 1e-3.
+
+    WHAT IT DOES NOT SAY. Nothing about the far-field LAW of an object: the coupled steady
+    state of this operator passes the T1 bar at 32^3 and FAILS at 64/80/96 (the step-2 headline
+    was withdrawn as non-generic; the 48^3 host's registered prediction decides). Nothing about
+    the DRIFT (step 3 died on its kill worlds: the object is lattice-pinned; RUL-132). Nothing
+    about the DRIVEN face: at Omega_0 > 0 the carrier term Omega_0 * ad_B0 is added and detunes
+    the very satellite coupling this operator carries (GS-6). PRIOR ART (Import Registry I-35,
+    a credit, no load): the operator is the helimagnon / spiral linear-spin-wave operator
+    (Kataoka 1987; Belitz, Kirkpatrick & Rosch 2006; the smectic-A twin Pershan 1974) with TWT's
+    departure CORRECTLY STATED (the L48/K-INV-2e keeper's COLLISION 1, 2026-09-17; the earlier
+    "saturates at 0.080" was the MEAN of the two channels and hid a banked instability): perpendicular
+    to the pitch the Schur-reduced smooth sector SPLITS — the B0 channel's stiffness saturates at
+    +0.183 (65:1 against the pitch's 11.93; the static Hessian's own smooth/satellite coupling, present
+    at C12 = 0), the *B0 channel's crosses zero at lambda_c = 773 a and saturates at -0.0231, which is
+    N70's banked curvature (-0.02305291) on an independent route — so the coupled member's B0 far field
+    is 1/r-class over xi ~ 5 a << r << 773 a (the 65:1 is the lambda -> infinity stiffness ratio; on cells <= 48 a the static far field is along-pitch anisotropic by only 1-7 %, K-INV-2f) and the cells the programme affords (32-96 a)
+    sample the crossover's entrance (`gr1_linresp_channel_split_check.py`; returned as
+    `perp_stiffness_channels`, asserted in the harness); every tail sentence read from L carries
+    "at Omega_0 = 0".
+
+    C-33: grain-layer, outside-frame; no inside-frame rate and no dimensionful number
+    (J = 1; k in units of 1/a). The conditioning class travels with every restatement:
+    branch body-diagonal, D/J = 0.787 (a CANDIDATE-half pick), C12 = 12 the reactive dial,
+    Omega_0 = 0 the production dial."""
+    import numpy as np
+    from twt_candidate_v3 import _estate_d4_magnon_rig
+    from scipy.optimize import minimize_scalar
+
+    rig = _estate_d4_magnon_rig(J)
+    T, biv, E_uniform = rig["T"], rig["biv"], rig["E_uniform"]
+    hessian_parts, H_of, ktilde2 = rig["hessian_parts"], rig["H_of"], rig["ktilde2"]
+    D0 = float(D_over_J) * J
+    B0 = biv([1, 1, 1])                                   # the body-diagonal branch's canting bivector
+    kdir = np.array([1.0, 1.0, 1.0, 0.0])
+    t_star = float(minimize_scalar(lambda t: E_uniform(t * kdir, B0, D0), bounds=(0.0, 1.2),
+                                   method="bounded", options=dict(xatol=1e-13)).x)
+    k0 = t_star * kdir
+    k0_abs = float(np.linalg.norm(k0))
+    onsite, bvec, Rs = hessian_parts(k0, B0, D0)
+
+    def H(k):
+        return H_of(np.asarray(k, float), onsite, bvec, Rs)
+
+    # ad_B0 in the E_ij basis, <T_m, [B0, T_n]>/2 with <T, T> = 2 (the T1 instrument's convention)
+    A = np.array([[0.5 * np.sum(T[m] * (B0 @ T[n] - T[n] @ B0)) for n in range(6)]
+                  for m in range(6)])
+    wA = np.linalg.eigvals(A)
+    assert sorted(np.round(np.abs(wA), 12)) == [0.0, 0.0, 1.0, 1.0, 1.0, 1.0], wA
+
+    def L(k):
+        return -(np.eye(6) + C12 * A) @ H(k)
+
+    # the smooth sectors: b0c = the B0 direction, sb = its partner inside ker(ad_B0)
+    b0c = np.array([0.5 * np.sum(T[n] * B0) for n in range(6)]); b0c /= np.linalg.norm(b0c)
+    w, V = np.linalg.eig(A); ker = np.real(V[:, np.abs(w) < 1e-9]); ker, _ = np.linalg.qr(ker)
+    sb = ker[:, 1] - (ker[:, 1] @ b0c) * b0c
+    if np.linalg.norm(sb) < 1e-6:
+        sb = ker[:, 0] - (ker[:, 0] @ b0c) * b0c
+    sb /= np.linalg.norm(sb)
+    assert abs(b0c @ sb) < 1e-12
+
+    # ---- check 1: the *B0 identity on 3 directions x 3 magnitudes, and its two planted failures
+    dirs = {"(1,0,0)": np.array([1.0, 0, 0, 0]), "(1,1,1)": np.array([1.0, 1, 1, 0]) / math.sqrt(3),
+            "(1,-1,0)": np.array([1.0, -1, 0, 0]) / math.sqrt(2)}
+    mags = [2 * math.pi / 32, 2 * math.pi / 16, 2 * math.pi / 8]
+    worst_identity = 0.0; worst_6J = 1.0; worst_cont = 1.0; aniso = {}
+    for name, e in dirs.items():
+        for kk in mags:
+            k = e * kk; Hk = H(k); ref = 12.0 * J * ktilde2(k)
+            Ds = float(np.real(sb @ Hk @ sb)); Db = float(np.real(b0c @ Hk @ b0c))
+            worst_identity = max(worst_identity, abs(Ds - ref) / ref)
+            worst_6J = min(worst_6J, abs(Ds - 6.0 * J * ktilde2(k)) / Ds)
+            worst_cont = min(worst_cont, abs(Ds - 12.0 * J * kk ** 2) / Ds)
+        aniso[name] = float(np.real(b0c @ H(e * mags[0]) @ b0c) / (12.0 * J * ktilde2(e * mags[0])))
+    k_big = np.array([1.0, 1, 1, 0]) * 2 * math.pi / 8               # the keeper's 17 % point
+    cont_miss_111 = abs(float(np.real(sb @ H(k_big) @ sb)) - 12.0 * J * float(k_big @ k_big)) / (12.0 * J * ktilde2(k_big))
+    assert worst_identity < 1e-10, worst_identity                    # the identity (R-192) holds
+    assert worst_6J > 0.4, worst_6J                                  # PLANTED FAILURE: the 6J label-form
+    assert worst_cont > 0.002 and cont_miss_111 > 0.1, (worst_cont, cont_miss_111)   # PLANTED FAILURE: the continuum 12|k|^2
+
+    # ---- check 2: L(0) = two zero modes + four at -g (1 +- i C12); the untwisted world has six zeros
+    ev0 = np.linalg.eigvals(L([0, 0, 0, 0]))
+    zeros0 = int(np.sum(np.abs(ev0) < 1e-9)); gapped = ev0[np.abs(ev0) >= 1e-9]
+    assert zeros0 == 2 and len(gapped) == 4, ev0
+    im_over_re = np.abs(gapped.imag / gapped.real)
+    g_meas = float(np.mean(-gapped.real))
+    assert np.all(np.abs(im_over_re - C12) < 1e-4 * C12), im_over_re
+    assert abs(g_meas - 12.0 * J * k0_abs ** 2) / (12.0 * J * k0_abs ** 2) < 0.01, (g_meas, 12 * J * k0_abs ** 2)
+    on0, bv0, Rs0 = hessian_parts(np.zeros(4), B0, 0.0)
+    ev_untwisted = np.linalg.eigvals(-(np.eye(6) + C12 * A) @ H_of(np.zeros(4), on0, bv0, Rs0))
+    zeros_untwisted = int(np.sum(np.abs(ev_untwisted) < 1e-9))
+    assert zeros_untwisted == 6, ev_untwisted                        # PLANTED FAILURE: no twist, no gap
+
+    # ---- check 3: xi = 1/|k0| against R-189's measured minimum on the same branch
+    xi_189 = float(core_healing_length_canted_vacuum(J)["xi_statistics"]["body-diagonal"]["measured_minimum"])
+    xi_inv_pitch = 1.0 / k0_abs
+    assert abs(xi_inv_pitch - xi_189) / xi_189 < 1e-3, (xi_inv_pitch, xi_189)
+
+    # ---- check 4: the selection PLANE span{k0-hat, e4}, with its off-plane control
+    def comm(k):
+        Hk = H(k); return float(np.linalg.norm(Hk @ A - A @ Hk) / (np.linalg.norm(Hk) * np.linalg.norm(A)))
+    e4 = np.array([0.0, 0, 0, 1]); k0h = k0 / k0_abs
+    in_plane = {"k0 2pi/32": k0h * 2 * math.pi / 32, "k0 2pi/8": k0h * 2 * math.pi / 8, "k0 2pi/2": k0h * math.pi,
+                "e4 0.3": 0.3 * e4, "mix 0.25": 0.7 * (0.25 * k0h + 0.75 * e4), "mix 0.5": 0.7 * (0.5 * k0h + 0.5 * e4),
+                "mix 0.75": 0.7 * (0.75 * k0h + 0.25 * e4)}
+    off_plane = {"(1,0,0) 2pi/16": np.array([1.0, 0, 0, 0]) * 2 * math.pi / 16,
+                 "(1,-1,0) 2pi/16": np.array([1.0, -1, 0, 0]) / math.sqrt(2) * 2 * math.pi / 16,
+                 "(1,1,0,1) 0.4": np.array([1.0, 1, 0, 1]) / math.sqrt(3) * 0.4}
+    c_in = {n: comm(k) for n, k in in_plane.items()}; c_off = {n: comm(k) for n, k in off_plane.items()}
+    assert max(c_in.values()) < 1e-12, c_in
+    assert min(c_off.values()) > 0.01, c_off                         # the control: off the plane the rule fails
+    H0u = lambda k: H_of(np.asarray(k, float), on0, bv0, Rs0)
+    c_untw = max(float(np.linalg.norm(H0u(k) @ A - A @ H0u(k))) for k in list(in_plane.values()) + list(off_plane.values()))
+    assert c_untw < 1e-12, c_untw
+
+    # ---- the provenance tie to the deposited 32^3 delta-plant stencil (gr1_linear_response_step2.log)
+    k1 = np.array([2 * math.pi / 32, 0, 0, 0]); L1 = L(k1)
+    D_B0 = -float(np.real(b0c @ L1 @ b0c)) / float(k1 @ k1); D_sB0 = -float(np.real(sb @ L1 @ sb)) / float(k1 @ k1)
+    dep = {"D_B0": 11.9844, "D_starB0": 11.9614, "L0_re": -0.41204, "L0_im": 4.94542, "K5_max_re": -0.24527, "K5_min_abs": 0.24543}
+    kf = 2 * math.pi * np.fft.fftfreq(32); KX, KY, KZ = np.meshgrid(kf, kf, kf, indexing="ij")
+    K = np.stack([KX, KY, KZ, np.zeros_like(KX)], -1).reshape(-1, 4)[1:]
+    PH = np.exp(1j * (K @ bvec.T))
+    LK = -(np.eye(6) + C12 * A) @ (onsite[None].astype(complex) + np.einsum('kn,nij->kij', PH, Rs)
+                                   + np.einsum('kn,nij->kij', np.conj(PH), np.transpose(Rs, (0, 2, 1))))
+    evK = np.linalg.eigvals(LK); k5_max_re = float(evK.real.max()); k5_min_abs = float(np.abs(evK).min())
+    tie = {"D_B0": D_B0, "D_starB0": D_sB0, "L0_re": float(gapped.real.mean()), "L0_im": float(np.abs(gapped.imag).mean()),
+           "K5_max_re": k5_max_re, "K5_min_abs": k5_min_abs}
+    worst_tie = max(abs(tie[q] - dep[q]) / abs(dep[q]) for q in dep)
+    assert worst_tie < 1e-3, (tie, dep)
+    assert k5_max_re < 0.0                                           # the steady state is damped (keeper UNDER-CLAIM 5: DRIVEN, not variational)
+
+    # the CHANNEL SPLIT of the Schur-reduced smooth sector (2026-09-17; the L48/K-INV-2e keeper's COLLISION 1):
+    # the four satellite directions complemented out, D_eff = -Re L_eff / k^2 read per channel at lambda = 65536
+    _Pk = np.stack([b0c, sb]); _Qs = np.linalg.svd(np.eye(6) - _Pk.T @ _Pk)[0][:, :4]
+
+    def _chan(k):
+        Lm = L(np.asarray(k, float)); Lss = _Pk @ Lm @ _Pk.T; LsS = _Pk @ Lm @ _Qs
+        LSs = _Qs.T @ Lm @ _Pk.T; LSS = _Qs.T @ Lm @ _Qs
+        Le = Lss - LsS @ np.linalg.solve(LSS, LSs); kk2 = float(np.dot(k[:3], k[:3]))
+        return -float(np.real(Le[0, 0])) / kk2, -float(np.real(Le[1, 1])) / kk2, -float(np.real(Le[0, 1])) / kk2
+    _kp = np.array([1.0, -1.0, 0.0, 0.0]) / np.sqrt(2.0) * (2 * np.pi / 65536)
+    _kl = np.array([1.0, 1.0, 1.0, 0.0]) / np.sqrt(3.0) * (2 * np.pi / 65536)
+    _pB, _pS, _pX = _chan(_kp); _lB, _lS, _lX = _chan(_kl)
+    perp_channels = {"lambda": 65536, "B0_perp": _pB, "starB0_perp": _pS, "offdiag_perp": _pX,
+                     "B0_pitch": _lB, "starB0_pitch": _lS, "N70_banked_curvature": -0.02305291,
+                     "mean_perp (the withdrawn '0.080')": 0.5 * (_pB + _pS),
+                     "reading": ("perpendicular to the pitch the smooth sector SPLITS: B0 saturates positive, *B0 negative "
+                                 "(= N70); the coupled member's B0 far field is an anisotropic 1/r over xi << r << 773 a")}
+    return {
+        "tier": ("DERIVED-A (the *B0 identity, R-192) + DERIVED-numeric (Gamma spectrum, xi = 1/|k0|, the "
+                 "selection plane; BRANCH body-diagonal, D/J = %.3f) + CANDIDATE (the G-8 kernel); at Omega_0 = 0; "
+                 "first-order face (H static-face, L the flow's linearization)" % D_over_J),
+        "operator": "L(k) = -(1 + C12 ad_B0) H(k); n1_lib.L_of(k, 1, C12, 0)",
+        "L_of": L, "H_of": H, "ad_B0": A, "b0c": b0c, "starb0c": sb, "k0": k0, "abs_k0": k0_abs,
+        "check1_starB0_identity_worst_rel": worst_identity,
+        "check1_planted_6J_min_miss": worst_6J, "check1_planted_continuum_min_miss": worst_cont,
+        "check1_planted_continuum_miss_at_(2pi/8)(1,1,1)": cont_miss_111,
+        "B0_stiffness_over_12ktilde2_by_direction (UNDER-CLAIM 3, returned not asserted)": aniso,
+        "check2_L0_zero_modes": zeros0, "check2_L0_gapped": gapped.tolist(), "check2_Im_over_Re": im_over_re.tolist(),
+        "check2_g_vs_12k0sq": (g_meas, 12.0 * J * k0_abs ** 2), "check2_planted_untwisted_zero_modes": zeros_untwisted,
+        "check3_xi_inverse_pitch": xi_inv_pitch, "check3_xi_R189_measured_min": xi_189,
+        "check4_commutator_in_plane": c_in, "check4_commutator_off_plane (control)": c_off,
+        "check4_untwisted_world_commutator_max": c_untw,
+        "provenance_tie_to_step2_stencil": {"engine": tie, "deposited": dep, "worst_rel": worst_tie},
+        "perp_stiffness_channels": perp_channels,
+        "prior_art": ("I-35 (helimagnon / spiral linear spin waves; Pershan 1974 the smectic-A twin) — a credit, no load; "
+                      "TWT's departure: the smooth sector SPLITS perpendicular to the pitch (B0 +0.183 saturating, *B0 -0.0231 = N70); "
+                      "the earlier 'D_perp saturates at 0.080' was their mean and is WITHDRAWN (2026-09-17)"),
+        "scope": ("the operator only; no far-field law (non-generic across cells), no drift (pinned; RUL-132), "
+                  "no driven-face statement (Omega_0 * ad_B0 detunes the satellite coupling, GS-6)"),
+    }
+
+
+# ######################################################################
+# ######################################################################
+# ##                                                                  ##
+
+# ---------------------------------------------------------------------------------------------------------------------
+# R-206 — JD-7 LEG B (the LS-Z2 discriminator (1) at O(X^4)): THE TWO READINGS OF THE BOND COST DIFFER BY EXACTLY THE
+# PSEUDOSCALAR (PFAFFIAN) CHANNEL. CANDIDATE section: the bond sum consumes the V3 D4 siting (the identity itself is pure).
+# ---------------------------------------------------------------------------------------------------------------------
+def g8_jd7_quartic_pfaffian_channel_identity(n_trials: int = 30, seed: int = 20260821):
+    """R-206 (JD-7 leg B, 2026-09-18; DERIVED-A on the identity, CANDIDATE on the bond sum) — the frame-bilinear reading
+    Tr(K W) and the rotor-linear reading <K U>_0 of the bond COST (W = exp X the 4x4 rotation, U = exp X in Cl+(4,0), X the
+    relative bivector across the bond) agree at O(X^2) and differ at O(X^4) by EXACTLY the pseudoscalar channel:
+
+        <X^4>_0 = 1/2 Tr(M^4) + 6 Pf(M)^2          (M the antisymmetric 4x4 matrix of the bivector X; X^2 = s + p I4)
+        Tr(M^4)  = 1/2 Tr(M^2)^2 - 4 Pf(M)^2        (so the channel is also the double trace)
+
+    and on the 24-bond D4 sum with X_b = sum_m b_m Omega_m (probe_07's construction; S1 = sum_{m,n} Tr(Om_m^2 Om_n^2),
+    S2 = sum_{m,n} Tr(Om_m Om_n Om_m Om_n), S3 = sum_b Pf(X_b)^2):
+
+        frame-bilinear  sum_b Tr(X_b^4)   = 8 S1 + 4 S2          (exactly)
+        rotor-linear    sum_b <X_b^4>_0   = 4 S1 + 2 S2 + 6 S3    (exactly)
+
+    The single-trace parts agree after the quadratic normalisation (the rotor's (4, 2) is half the frame's (8, 4), the same
+    1/2 relating <X^2>_0 to Tr(X^2)); the ENTIRE difference is the Pfaffian channel — the self-dual / anti-self-dual sector
+    of the I4 Hodge split. The two-channel L2 fraction 0.148 that the JD-7 run quoted (probe_07's 0.218 max-norm) is the
+    size of that fixed channel under ONE Gaussian ensemble on the gradient (0.003-0.26 across ensembles): NOT a constant of
+    the theory. The bare kappa_F = J/24 is reading-invariant (JD-7 KB1). The propagation to e stays BLOCKED at the dressed
+    sector (dossier D.4.3 branch (c)): no banked map carries the O(X^4) tensor to e. Every energy word here is a COST.
+    Record: knowledge/audit/jd7_quartic_2026-09-17/ (the note REV 1, the result review, the developer response).
+    Returns the max relative deviation of the per-bivector identity, the fitted coefficients under both readings on the
+    three channels, the three-channel residuals, the two-channel residual of the rotor reading (the artifact, reported),
+    and a planted failure (the Pfaffian coefficient set to 5): the residual it leaves, which must be large."""
+    import numpy as np
+    from twt_candidate_v3 import _gamma_bond_rig
+    IDX = list(itertools.combinations(range(1, 5), 2))
+    bonds = np.asarray(_gamma_bond_rig()["bonds"], float)
+    def mat(c):
+        M = np.zeros((4, 4))
+        for k, (i, j) in enumerate(IDX): M[i - 1, j - 1] += c[k]; M[j - 1, i - 1] -= c[k]
+        return M
+    def pf(M): return M[0, 1] * M[2, 3] - M[0, 2] * M[1, 3] + M[0, 3] * M[1, 2]
+    def mv(c): return sum((float(c[k]) * e(*IDX[k]) for k in range(6)), MV.from_dict({}))
+    rng = np.random.default_rng(seed)
+    dev = 0.0
+    for _ in range(n_trials):
+        c = rng.normal(size=6); M = mat(c); Xv = mv(c)
+        lhs = (Xv * Xv * Xv * Xv).coeff(()); rhs = 0.5 * np.trace(np.linalg.matrix_power(M, 4)) + 6 * pf(M) ** 2
+        dev = max(dev, abs(lhs - rhs) / abs(lhs))
+        dev = max(dev, abs(np.trace(np.linalg.matrix_power(M, 4)) - (0.5 * np.trace(M @ M) ** 2 - 4 * pf(M) ** 2)) / abs(lhs))
+    F, yf, yr = [], [], []
+    for _ in range(n_trials):
+        C = rng.normal(size=(4, 6)); Om = [mat(C[m]) for m in range(4)]; Omv = [mv(C[m]) for m in range(4)]
+        s1 = sum(np.trace(Om[m] @ Om[m] @ Om[q] @ Om[q]) for m in range(4) for q in range(4))
+        s2 = sum(np.trace(Om[m] @ Om[q] @ Om[m] @ Om[q]) for m in range(4) for q in range(4))
+        s3 = tf = tr = 0.0
+        for b in bonds:
+            Xb = sum(b[m] * Om[m] for m in range(4)); Xbv = sum((float(b[m]) * Omv[m] for m in range(4)), MV.from_dict({}))
+            s3 += pf(Xb) ** 2; tf += np.trace(np.linalg.matrix_power(Xb, 4)); tr += (Xbv * Xbv * Xbv * Xbv).coeff(())
+        F.append([s1, s2, s3]); yf.append(tf); yr.append(tr)
+    F = np.array(F); yf = np.array(yf); yr = np.array(yr)
+    def fit(A, y):
+        c, *_ = np.linalg.lstsq(A, y, rcond=None); return c, float(np.linalg.norm(y - A @ c) / np.linalg.norm(y))
+    cf, rf = fit(F, yf); cr, rr = fit(F, yr); _, r2 = fit(F[:, :2], yr)
+    planted = float(np.linalg.norm(yr - F @ np.array([4.0, 2.0, 5.0])) / np.linalg.norm(yr))
+    return {
+        "tier": "DERIVED-A on the identity <X^4>_0 = 1/2 Tr(M^4) + 6 Pf(M)^2 and on the two exact bond-sum decompositions; "
+                "CANDIDATE on the bond sum (V3 D4 siting); the e-propagation BLOCKED at the dressed sector (D.4.3 branch (c))",
+        "identity_max_rel_dev": float(dev),
+        "frame_coeffs_S1_S2_S3": [float(x) for x in cf], "frame_residual_3ch": rf,
+        "rotor_coeffs_S1_S2_S3": [float(x) for x in cr], "rotor_residual_3ch": rr,
+        "rotor_residual_2ch_the_artifact": r2,
+        "planted_failure_pf_coeff_5_residual": planted,
+        "reading_invariant_bare_coefficient": "kappa_F = J/24 under both readings (JD-7 KB1)",
+        "record": "knowledge/audit/jd7_quartic_2026-09-17/JD7_NOTE_2026-09-17.md (REV 1); JD7_RESULT_VERDICT_REVIEWER_2026-09-18.md",
+    }
+
+
+# ---------------------------------------------------------------------------------------------------------------------
+# R-207 — THE LEFT-TORUS GAUGE IDENTITY OF THE Z^3 GENERATOR + THE W1 GAIN-BAND IDENTITY. CANDIDATE section: the bond set
+# consumes the V3 D4 siting and the canted-vacuum twist (the identities themselves are pure algebra).
+# ---------------------------------------------------------------------------------------------------------------------
+def _z3_generator_rig(L: int = 4, D_over_J: float = 0.787):
+    """The e4-uniform Z^3 reduction of the G-8 kernel (the 18-bond simple-cubic model of the audit library z3_lib, rebuilt
+    here in numpy from the banked magnon rig so the engine does not import an audit directory): the six cubic bonds carry
+    the summed coupling of their two e4 partners, the twelve second neighbours their own; every bond's twist is
+    rod(k0.b, B0) with B0 = biv([1,1,1]) and k0 the body-diagonal pitch minimizing E_uniform at D/J. Returns the cell's
+    neighbour tables, the couplings K_i, the twists V_i, B0, *B0 and the torque/generator callables. Cross-checked at the
+    banking against knowledge/audit/kernel_inversion_2026-09-09/z3_lib.py: K_i, V_i and B0 identical (0.0), the generator
+    on a random L = 4 state equal to 3.6e-14."""
+    import numpy as np
+    from scipy.optimize import minimize_scalar
+    from twt_candidate_v3 import _estate_d4_magnon_rig
+    rig = _estate_d4_magnon_rig(1.0); biv, rod, E_uniform = rig["biv"], rig["rod"], rig["E_uniform"]
+    B4 = rig["BONDS"].astype(int); B0 = biv([1, 1, 1]); kdir = np.array([1., 1., 1., 0.])
+    t = float(minimize_scalar(lambda s: E_uniform(s * kdir, B0, D_over_J), bounds=(0.0, 1.2), method="bounded",
+                              options=dict(xatol=1e-13)).x); k0 = t * kdir
+    def Ea4(a):
+        M = np.zeros((4, 4)); M[a, 3] = 1.0; M[3, a] = -1.0; return M
+    VB = [rod(float(k0 @ b), B0) for b in B4]; CB = []
+    for b in B4:
+        C = -0.5 * np.eye(4)
+        if b[3] != 0:
+            a = int(np.nonzero(b[:3])[0][0]); C = C - (D_over_J / 2.0) * (float(b[a]) / math.sqrt(2.0)) * Ea4(a)
+        CB.append(C)
+    pairs = {}
+    for i, b in enumerate(B4): pairs.setdefault(tuple(b[:3]), []).append(i)
+    ZB, ZK, ZV = [], [], []
+    for b3 in sorted(pairs, key=lambda x: (int(np.abs(x).sum()), x)):
+        ids = pairs[b3]; ZB.append(np.array(b3)); ZK.append(sum(CB[i] for i in ids)); ZV.append(VB[ids[0]])
+    ZB = np.array(ZB); ZK = np.array(ZK); ZV = np.array(ZV); assert len(ZB) == 18
+    g = np.indices((L, L, L)).reshape(3, -1).T; idx = {tuple(x): i for i, x in enumerate(g)}
+    NBR = np.array([[idx[tuple((x + b) % L)] for x in g] for b in ZB]); NBR_rev = np.array([[idx[tuple((x - b) % L)] for x in g] for b in ZB])
+    eps = np.zeros((4, 4, 4, 4))
+    for p in itertools.permutations(range(4)):
+        s = 1
+        for i in range(4):
+            for j in range(i + 1, 4):
+                if p[i] > p[j]: s = -s
+        eps[p] = s
+    SB0 = 0.5 * np.einsum('ijkl,kl->ij', eps, B0)
+    def torque(U):
+        F = np.zeros_like(U)
+        for i in range(18):
+            W = np.einsum('sba,bc,scd->sad', U, ZV[i], U[NBR[i]]); F -= np.einsum('sab,cb->sac', W, ZK[i])
+            Wp = np.einsum('sba,bc,scd->sad', U[NBR_rev[i]], ZV[i], U); F += np.einsum('ba,sbc->sac', ZK[i], Wp)
+        F = 0.5 * (F - np.transpose(F, (0, 2, 1))); return 2.0 * F
+    def gen(U, a, b, rho1=58.517307, c12=12.0):
+        F = torque(U); x = np.einsum('sab,sab->s', F, F) / rho1 ** 2; geff = 1.0 - a * x + b * x ** 2
+        return geff[:, None, None] * F + c12 * (B0 @ F - F @ B0)
+    return {"L": L, "NS": L ** 3, "K": ZK, "V": ZV, "B0": B0, "SB0": SB0, "k0": k0, "torque": torque, "gen": gen}
+
+
+def g8_z3_left_torus_gauge_identity(L: int = 4, n_states: int = 3, theta: float = 0.7, seed: int = 20260921):
+    """R-207 (DERIVED-A on the identity; CANDIDATE on the generator it is an identity OF — the V4-ACTIVE G-8 kernel's Z^3
+    reduction, the V3 D4 siting and the canted-vacuum twist). The Z^3 generator G(U) = g_eff(|F|) F + C12 [B0, F] with the
+    18-bond torque F built from W_i = U_s^T V_i U_{s+b_i} K_i^T is INVARIANT under a UNIFORM LEFT rotation of every site in
+    the torus spanned by B0 and *B0:
+
+        G(R U) = G(U)   for R = exp(theta B0), exp(theta *B0), and every product of them,
+
+    because [B0, V_i] = [*B0, V_i] = 0 EXACTLY for all eighteen bond twists (V_i = rod(k0.b_i, B0), and B0, *B0 are
+    orthogonal simple planes); the couplings K_i act on the RIGHT and need not commute with anything. Hence the banked
+    Lie-midpoint stepper is left-EQUIVARIANT, step(R U) = R step(U), and a per-site LEFT drive dU_i/dt = Omega_i B0 U_i +
+    U_i G(U) with a UNIFORM Omega_i = Omega0 is an EXACT FRAME ROTATION: the drive's mean never reaches the coupling, so
+    carrier entrainment by a uniform left drive is VOID FOR EVERY Omega0, and only the input DIFFERENCES Omega_i - Omega_j
+    are physics. (This is the left-drive realization only; the adjoint realization's Omega0 [B0, U] is a dynamical dial —
+    the canon's GS-6 realization fence.)
+    KILL WORLDS (RUL-130), shipped: a planted LEFT rotation in the e13 plane (does not commute with the twists), a planted
+    RIGHT rotation in B0 (the K_i and the reactive term see it), and the planted commutators [e13, V_i]; each must be
+    LARGE. Every energy word here is a COST (the torque is a COST gradient); the drive rate is a ROTOR RATE.
+    Record: knowledge/audit/carrier_sync_2026-09-17/ (p45_gauge_check.py at 4.5e-13 on the P4.1 end states; the P4.5
+    brief's REV 1; RUL-138)."""
+    import numpy as np
+    from scipy.linalg import expm
+    r = _z3_generator_rig(L); B0, SB0, V, K = r["B0"], r["SB0"], r["V"], r["K"]
+    rho, rho1 = 36.877546, 58.517307; a = 8.0 / 3.0 * (rho1 / rho) ** 2; b = 4.0 / 3.0 * (rho1 / rho) ** 4
+    gen = lambda U: r["gen"](U, a, b, rho1)
+    def blade(i, j):
+        M = np.zeros((4, 4)); M[i, j] = 1.0; M[j, i] = -1.0; return M
+    E13 = blade(0, 2)
+    comm = lambda P, Q: float(np.abs(P @ Q - Q @ P).max())
+    out = {"comm_B0_V_max": max(comm(B0, Vi) for Vi in V), "comm_SB0_V_max": max(comm(SB0, Vi) for Vi in V),
+           "comm_B0_SB0": comm(B0, SB0), "planted_comm_e13_V_max": max(comm(E13, Vi) for Vi in V),
+           "comm_B0_K_max_not_needed": max(comm(B0, Ki) for Ki in K)}
+    rng = np.random.default_rng(seed); dev = {"left_B0": 0.0, "left_SB0": 0.0, "left_torus_product": 0.0,
+                                              "step_equivariance": 0.0, "planted_left_e13": 0.0, "planted_right_B0": 0.0}
+    scale = 0.0; dt = 1e-3
+    def step(U):
+        G1 = gen(U); Um = np.einsum('sab,sbc->sac', U, np.array([expm(0.5 * dt * g) for g in G1]))
+        G2 = gen(Um); return np.einsum('sab,sbc->sac', U, np.array([expm(dt * g) for g in G2]))
+    for _ in range(n_states):
+        X = rng.normal(size=(r["NS"], 4, 4)) * 0.9; X = X - np.transpose(X, (0, 2, 1))
+        U = np.array([expm(x) for x in X]); G0 = gen(U); scale = max(scale, float(np.abs(G0).max()))
+        RB, RS = expm(theta * B0), expm(1.3 * theta * SB0)
+        for key, R in (("left_B0", RB), ("left_SB0", RS), ("left_torus_product", RB @ RS)):
+            dev[key] = max(dev[key], float(np.abs(gen(np.einsum('ab,sbc->sac', R, U)) - G0).max()))
+        dev["step_equivariance"] = max(dev["step_equivariance"], float(np.abs(step(np.einsum('ab,sbc->sac', RB, U))
+                                                                             - np.einsum('ab,sbc->sac', RB, step(U))).max()))
+        dev["planted_left_e13"] = max(dev["planted_left_e13"], float(np.abs(gen(np.einsum('ab,sbc->sac', expm(theta * E13), U)) - G0).max()))
+        Gr = gen(np.einsum('sab,bc->sac', U, RB)); dev["planted_right_B0"] = max(dev["planted_right_B0"],
+                                                                             float(np.abs(Gr - np.einsum('ba,sbc,cd->sad', RB, G0, RB)).max()))
+    out.update({"dev_" + k: v for k, v in dev.items()}); out["gen_scale"] = scale
+    out["tier"] = ("DERIVED-A on the identity (the twists commute with the B0 / *B0 torus); CANDIDATE on the generator "
+                   "(V4-ACTIVE, the Z^3 reduction, the V3 D4 siting); the left-drive realization only (GS-6 fence)")
+    out["record"] = "knowledge/audit/carrier_sync_2026-09-17/p45_gauge_check.py; DISORDER_TONGUE_P45_DESIGN_BRIEF_2026-09-21.md REV 1"
+    return out
+
+
+def g8_w1_gain_band_identity(rho: float = 36.877546, rho1: float = 58.517307):
+    """R-207 (DERIVED-A on the identity; CANDIDATE on the window it is an identity OF — the V4-ACTIVE generator's W1
+    gain window). With x = |F|^2 / rho1^2, a = (8/3)(rho1/rho)^2, b = (4/3)(rho1/rho)^4 the window
+    g_eff = 1 - a x + b x^2 reads, in y = |F|^2 / rho^2, g_eff = 1 - (8/3) y + (4/3) y^2 — rho1 CANCELS — so:
+
+        g_eff < 0 (net GAIN, the anti-damping band)   exactly for   |F| in ( rho / sqrt 2 , rho sqrt(3/2) )
+        min g_eff = 1 - a^2 / (4 b) = -1/3            exactly at    |F| = rho
+
+    (the roots of 4y^2 - 8y + 3 = 0 are y = 1/2, 3/2). For rho = 36.877546 the band is [26.08, 45.17]. This is the band the
+    P4.1 strained steady state sits in (its site-mean |F| 37.9 near the peak gain, 68.5 % of sites in gain, gain and loss
+    balanced to < 1 % — labelled sim provenance, CANDIDATE on V4-ACTIVE given S5-LOCAL, one L = 16 cell; the COST excess
+    is a COST, the |F| a torque magnitude, neither a ROTOR RATE).
+    KILL WORLD (RUL-130), shipped: a planted window with b -> (3/2)(rho1/rho)^4 (the quartic weight moved) must MISS both
+    band edges and the minimum; and a planted rho1 in the (a, b) formulas different from the x normalization must fail
+    the rho1-cancellation. Record: knowledge/audit/carrier_sync_2026-09-17/CARRIER_SYNC_RESULT_RESPONSE_2026-09-21.md."""
+    import numpy as np
+    def window(Fm, a, b, r1=rho1):
+        x = Fm ** 2 / r1 ** 2; return 1.0 - a * x + b * x ** 2
+    a = 8.0 / 3.0 * (rho1 / rho) ** 2; b = 4.0 / 3.0 * (rho1 / rho) ** 4
+    lo, hi = rho / math.sqrt(2.0), rho * math.sqrt(1.5)
+    Fs = np.linspace(0.0, 2.0 * rho, 400001); g = window(Fs, a, b)
+    neg = Fs[g < 0]; imin = int(np.argmin(g))
+    exact = {"g_at_lo": float(window(lo, a, b)), "g_at_hi": float(window(hi, a, b)), "g_at_rho": float(window(rho, a, b)),
+             "min_formula": 1.0 - a * a / (4.0 * b)}
+    bp = 1.5 * (rho1 / rho) ** 4; gp = window(Fs, a, bp); negp = Fs[gp < 0]
+    planted = {"g_at_lo": float(window(lo, a, bp)), "g_at_hi": float(window(hi, a, bp)), "min": float(gp.min()),
+               "band": [float(negp.min()), float(negp.max())] if len(negp) else None}
+    r1_wrong = 1.1 * rho1; a_w = 8.0 / 3.0 * (r1_wrong / rho) ** 2; b_w = 4.0 / 3.0 * (r1_wrong / rho) ** 4
+    planted_r1 = {"g_at_rho": float(window(rho, a_w, b_w, rho1))}
+    return {"tier": "DERIVED-A on the identity; CANDIDATE on the window (V4-ACTIVE)",
+            "band_exact": [lo, hi], "band_grid": [float(neg.min()), float(neg.max())], "argmin_grid": float(Fs[imin]),
+            "min_grid": float(g[imin]), "exact": exact, "planted_quartic_moved": planted, "planted_rho1_mismatch": planted_r1,
+            "p41_recorded": {"F_mean": 37.9, "frac_sites_in_gain": 0.685, "gain_loss_balance": "< 1 %",
+                             "provenance": "labelled sim provenance, P4.1 run, L = 16"},
+            "record": "knowledge/audit/carrier_sync_2026-09-17/CARRIER_SYNC_RESULT_RESPONSE_2026-09-21.md"}

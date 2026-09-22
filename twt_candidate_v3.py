@@ -4750,8 +4750,19 @@ def magnon_stiffness_bands_canted_vacuum(J: float = 1.0) -> dict:
     referent drift this caution exists to prevent.
 
     WHAT IS COMPUTED.
-      (1) THE GAMMA SPECTRUM, and it is 2 gapless + 4 EXACTLY FOURFOLD-DEGENERATE
+            (1) THE GAMMA SPECTRUM, and it is 2 gapless + 4 EXACTLY FOURFOLD-DEGENERATE
           gapped, on BOTH single-`q` branches at D/J = 0.787:
+          *** FRAME CAUTION (GS-3 keeper item 5, 2026-09-09): Gamma-gapless != Goldstone. The four
+          Gamma-gapped modes carry LAB momentum +-k0; the band returns to zero at twisted k = +-k0
+          (R-189's +-k0 gapless points) - the canted vacuum has SIX exact Goldstones. The Gamma gap
+          is a STIFFNESS, not a mass gap, and no frequency or mass may be read from it (C-33). ***
+          *** STATIC-FACE CAUTION (GS-6, coordinator 2026-09-09): every number in this primitive is
+          read off the bond-energy Hessian - the STATIC face. On the DRIVEN face (the banked op-B flow's
+          own linearization, n1_lib.L_of, verified against the stepper to 1e-9) the carrier detunes
+          the inter-sector hybridization behind the branch anisotropies: at (g, c, Om0) = (1, 12, 14)
+          the +-k0 satellites' pitch/perpendicular ratio is 1.007 (static 2.000), their split 0.001 pct
+          (static 1.7 pct), and they sit at the carrier frequency with an isotropic quadratic band.
+          Quote nothing from here as an exposure without the words 'on the static face'. ***
               body-diagonal : [0, 0, 0.412121, 0.412121, 0.412121, 0.412121]
               axis          : [0, 0, 0.405987, 0.405987, 0.405987, 0.405987]
           ★ THE 2 + 4 SPLIT WITH FOURFOLD DEGENERACY IS BRANCH-ROBUST — a stronger
@@ -4915,7 +4926,10 @@ def magnon_stiffness_bands_canted_vacuum(J: float = 1.0) -> dict:
 
 
 def core_healing_length_canted_vacuum(J: float = 1.0) -> dict:
-    """[DERIVED-numeric (the healing lengths xi/a, BRANCH- and DIRECTION- and D/J-LABELLED;
+    """*** STATIC-FACE CAUTION (GS-6, 2026-09-09): N70's negative perpendicular curvature and the k_c crossover are
+    static-Hessian statements; on the driven face at the banked hot dial the slow pair's perpendicular decay rate is
+    +18.5 kappa^2 (c = 12) / +12.0 kappa^2 (c = 0) - the carrier lifts the softness (GS-6c C2). Carry the face. ***
+    [DERIVED-numeric (the healing lengths xi/a, BRANCH- and DIRECTION- and D/J-LABELLED;
     the k = +-k0 gapless points; the F1 reference-state curvature; the F2 turnover length)
     + DERIVED-A (L(e4) = 0 identically; the reduction to xi = sqrt(rho/g) when L = 0)
     + DERIVED-structural (the naive sqrt(12/g) is the FLOOR, not the value)
@@ -5405,7 +5419,8 @@ def core_healing_length_canted_vacuum(J: float = 1.0) -> dict:
 
 
 def spectral_branch_symmetry_class_filter(J: float = 1.0) -> dict:
-    """[DERIVED-numeric (the four measurements, BRANCH- and D/J-labelled) + CANDIDATE
+    """*** STATIC-FACE NOTE (face sweep 2026-09-09): the filter and the gapless set {Gamma, +-k0} are static-H statements; on the flow's own face those four modes are marginal and precessing at -+Om0 (R-192) - the count is face-invariant, the frequency reading is not. ***
+    [DERIVED-numeric (the four measurements, BRANCH- and D/J-labelled) + CANDIDATE
     (the filter as a kernel constraint); the real-class ASSIGNMENT explicitly flagged
     EVIDENCE-NOT-THEOREM] §D.5 — KC-1, A ONE-WAY SYMMETRY-CLASS FILTER ON #1-GAP KERNEL
     CANDIDATES.
@@ -8040,7 +8055,18 @@ def sterile_rh_z2_separate_mass_scale_check():
 # ======================================================================
 
 def n_goldstone_canted_FM() -> dict:
-    """[DERIVED-A] §16.6: number of broken Goldstone modes on the canted FM
+    """*** STATIC-FACE CAUTION (GS-6, 2026-09-09): the Goldstone census below is a static-Hessian count; on the
+    driven face at the banked dials the four +-k0 satellites sit at the carrier frequency with an isotropic
+    quadratic band - MARGINAL AND PRECESSING at -+Om0 (R-192's L|ker H(+-k0) = -+i Om0) IN THE FRAME AT REST WITH THE
+    BOND SET; the CARRIER-LOCKED observer reads them at the bare band 144 kappa^2, ungapped (the GS-6 meta-observer's
+    monodromy identity Phi(2 pi/Om0) = exp(L 2 pi/Om0), 2e-15) - so no observer-frequency 'gap' is asserted; the COUNT is face-invariant: six marginal modes at every banked
+    dial (2 at Gamma + 2 at each of +-k0, Re lambda = 0 to 1e-14; the face-sweep keeper's census 2026-09-09), so
+    N_eff = 6 (R-163 / R-037) is untouched. At the production dial Om0 = 0 the flow's face and the static face
+    share their ZERO SET (det L = det(-A) det H), the full spectrum only at c = 0; and every driven-face number at the
+    hot dial (1, 12, 14) is the linear response about a state R-192's banked boundary c* ~ 2.2 sqrt(g Om0) places on
+    the UNSTABLE side (finite-k growth +0.45 at |kappa| ~ 0.33; the patterned relative equilibrium R-194/R-197 is the
+    state that exists there). Carry the face AND the dial with any FREQUENCY statement. ***
+    [DERIVED-A] §16.6: number of broken Goldstone modes on the canted FM
 
     *** REFERENCE-STATE CONDITIONING (2026-08-27, N70 / R-189). *** The canted state named
     below is NOT a tree-level local minimum of the banked bond energy, on EITHER branch --
@@ -8083,10 +8109,13 @@ def n_goldstone_canted_FM() -> dict:
     and unrefuted AS A SECTOR STATEMENT — "SU(2)_L ≅ S³" names the L-orbit rotor
     target, a 3-dimensional subgroup of the state space, never the state space —
     but the broken group at the canted-FM vacuum of the FULL six-parameter state
-    space is not SU(2)_L, and the honest full-state-space number is supplied by
-    the exact 6-band Bogoliubov structure, which remains UN-BANKED (already
-    flagged as such at `induced_G_from_linear_face_band`: "N_G = 2 (2 gapless +
-    4 gapped) — exact 6-band Bogoliubov structure UN-BANKED"). Consumers of this
+    space is not SU(2)_L, and the honest full-state-space number is SIX — DISCHARGED 2026-09-09 (GS-3
+    keeper C-6 / R-189 [9]): the banked bond energy W_b = R_x^T R_{x+b} is invariant under
+    global left SO(4) and the spiral has trivial stabiliser, so six generators are broken
+    and six zero modes exist (2 at Gamma + 2 at +k0 + 2 at -k0 in the twisted frame); the
+    earlier '(2 gapless + 4 gapped)' gloss at `induced_G_from_linear_face_band` was a
+    twisted-frame Gamma count read as a mode count and is corrected there. The exact 6-band
+    Bogoliubov (paraunitary) structure remains a DIFFERENT, still-open object. Consumers of this
     count (`canting_critical_stiffness_at_DJ` → `electron_QCP_nu`) therefore carry
     the named premise "within the L-orbit sub-sector of the six-parameter state
     space" in their conditioning class.
@@ -12563,7 +12592,8 @@ def marginal_quartic_running_reach_to_cell_scale():
 
 
 def induced_G_from_linear_face_band():
-    """[DERIVED-given-the-NN-BAND-INPUT (the flat-band numbers I_lat and c_lat: the derived-band
+    """*** STATIC-FACE NOTE (face sweep 2026-09-09, keeper-computed, the GS-6 ceremony owed): 'the linear face' here is R-112 Face 1's operator, whose D = 0 band equals the static Hessian's 12J k~^2 to 1.8e-14 and COMMUTES with the carrier generator exactly, so GS-6's detuning cannot move c_lat = 21.83; the flow's own decay-rate band is g 12J k~^2 at every dial (5e-13); the canted caveat 'about 4 to 12.3 J' is a STATIC-face caveat the driven face tightens (9.91 to 18.54 at the hot dial); the face CHOICE (OA-LF-i names the occupation, not the operator) is ESCALATED. ***
+    [DERIVED-given-the-NN-BAND-INPUT (the flat-band numbers I_lat and c_lat: the derived-band
     proper-time integral is finite and CONVENTION-FREE, so no regularization choice enters it)
     + DERIVED-CONDITIONAL-on-(OA-LF-i AND OA-LF-ii) (the EH-COEFFICIENT reading, the a-value,
     and the normalization-spread adjudication), INHERITING R-041's FRAMING+CONDITIONAL xi = 0]
@@ -12636,7 +12666,8 @@ def induced_G_from_linear_face_band():
       ~93% rides proper time s < a^2 — so OA-LF is needed essentially only at the top of the band.
 
     c_lat = 21.83 IS THE GAPLESS-SHARED-BAND IDEALIZATION. The realistic canted vacuum has
-    N_G = 2 (2 gapless + 4 gapped, banked n_goldstone_canted_FM). A uniform-gap spot check
+    N_G = 2 AT GAMMA IN THE TWISTED FRAME (2 Gamma-gapless + 4 Gamma-gapped carrying lab momentum +-k0 -
+    SIX exact Goldstones in the lab frame, R-189; n_goldstone_canted_FM's N_G = 2 is the L-orbit count). A uniform-gap spot check
     (computed below) gives -2% at gap^2 = 1% of the band max and -7% at 4%; the honest
     refinement window for the realistic vacuum is -5% ... -25%, which maps to
         a in [1.61, 1.86] ell_Planck(full),
@@ -12653,7 +12684,7 @@ def induced_G_from_linear_face_band():
       `magnon_stiffness_bands_canted_vacuum`):
           g = 0.412121 ,  b_max ~ 64.8   =>   (g/b_max)^2 = 4.049e-05
       i.e. the spot check's assumed gap fraction is 247x to 988x TOO LARGE, and the true
-      structure is 2 GAPLESS + 4 GAPPED, not uniform-gap. So the window is not supported by the
+      structure is 2 GAPLESS + 4 GAPPED AT GAMMA IN THE TWISTED FRAME (six Goldstones in the lab frame, R-189), not uniform-gap. So the window is not supported by the
       object it claims to bound.
       NO REPLACEMENT NUMBER IS ASSERTED, and specifically none of the -0.111% class: that figure
       was the M = 15 term of a monotonically shrinking midpoint-grid sequence (-0.1445% at M = 11
@@ -12882,13 +12913,13 @@ def induced_G_from_linear_face_band():
         },
         "gapless_idealization": {
             "note": "c_lat = 21.83 is the GAPLESS-SHARED-BAND idealization",
-            "canted vacuum": "N_G = 2 (2 gapless + 4 gapped) — exact 6-band Bogoliubov structure UN-BANKED",
+            "canted vacuum": "N_G = 2 at Gamma in the twisted frame (2 Gamma-gapless + 4 Gamma-gapped carrying lab momentum +-k0); SIX exact Goldstones at zero lab momentum (R-189 [9]); the exact 6-band Bogoliubov structure UN-BANKED",
             "uniform-gap spot check (%)": gap_sens,
             "honest refinement window": (
                 "WITHDRAWN 2026-08-23 (estate of N64, B1) — the former '-5% ... -25% on c_lat' "
                 "rode a UNIFORM-GAP spot check assuming (gap/b_max)^2 in [0.01, 0.04], while the "
                 "actual canted vacuum gives (g/b_max)^2 = 4.049e-05 (247x-988x too large) and is "
-                "2 gapless + 4 gapped, not uniform-gap. NO WINDOW IS ASSERTED and no replacement "
+                "2 Gamma-gapless + 4 Gamma-gapped in the twisted frame (six Goldstones in the lab frame), not uniform-gap. NO WINDOW IS ASSERTED and no replacement "
                 "number is offered: the six-band measure is not resolved at M <= 47 (the shift "
                 "runs -0.1445% -> -0.0227% monotonically, Richardson limit CONSISTENT WITH ZERO), "
                 "which is what the banked induced_G_leading_coefficient_mass_independent line at "
@@ -12904,7 +12935,7 @@ def induced_G_from_linear_face_band():
                 "(g/b_max)^2": 4.049e-05,
                 "spot check assumed (gap/b_max)^2": [0.01, 0.04],
                 "too large by": "247x - 988x",
-                "true structure": "2 gapless + 4 gapped (magnon_stiffness_bands_canted_vacuum)",
+                "true structure": "2 Gamma-gapless + 4 Gamma-gapped in the twisted frame - six exact Goldstones at zero lab momentum, R-189 (magnon_stiffness_bands_canted_vacuum)",
                 "refined value": "NOT RESOLVED at M <= 47; Richardson limit consistent with ZERO",
                 "no number of the -0.111% class is asserted anywhere": True,
             },
@@ -13556,7 +13587,12 @@ def mass_equals_elastic_cost_premise():
                      "reading only (duty-free)"),
         "adjacent_to_not_content_of": ["R-123 residue (ii)", "N57", "C-7"],
         "used_by": ["R-133 (calibration; ANW honesty note)", "R-051", "R-135",
-                    "R-138"],
+                    "R-138",
+                    # added 2026-09-16 (RUL-133 spine sweep E1, coordinator-approved): the MeV value
+                    # of Theta_0 is denominated through the ANW (f_pi, e) pair fitted to N/Delta masses,
+                    # i.e. through this premise; the dimensionless 106.76 is not.
+                    "R-091a (top exclusion: Theta_0 in MeV)", "R-111 (1/Theta_0 ~ 196 MeV)",
+                    "the D.4 Theta_0 block"],
         "not_used_by": ["R-144 (dimensionless margin)"],
         "credit": "ANW 1983 / Schroers Lsk1 / Manton-Sutcliffe, via import I-5",
         "counted": True,
@@ -15767,7 +15803,7 @@ def g8_gate2_linear_partition() -> dict:
     the probe's own operationalization AT THE KERNEL-CLASS LEVEL ONLY -- R-193's
     computed mobility-frame menu shows all three frame placements {body-left,
     body-right/gradient, spatial-left} reproduce THIS SAME L(k), so the linear
-    partition is ROBUST ACROSS THE FRAME MENU, a licensed strengthening)] SD.5 --
+    partition is ROBUST ACROSS THE FRAME MENU, a licensed strengthening — SCOPE (R-199): across the three PLACEMENTS of one kernel (op A / B / C); a mobility-ROTATING flow (op B', the Coriolis-placed inertial form's overdamped limit) is a different kernel and does NOT reproduce L(k): c* 8.479 -> 68.16 at Om0 = 14, n4b_keeper_linear2)] SD.5 --
     KERNEL PROGRAMME GATE 2, LINEAR (R-192): THE STABILITY PARTITION OF THE G-8
     DIALS. FORWARD POINTER (R-193, the round's O-1 convention): the proven
     slow-block identity of boundary (4) EXTENDS to P0 L_eta P0 = -gamma P0 H P0 at
@@ -16226,7 +16262,7 @@ def g8_n1_lock_phase_rotation() -> dict:
     pattern whose developed state is a RELATIVE EQUILIBRIUM -- a frozen
     profile drifting rigidly along B0 at rate omega (T = 2*pi/|omega| ~ 34.5
     tu at the reference dial; NOT a limit cycle, the closed orbits are
-    non-isolated gauge translates; steady in the co-rotating frame; the
+    non-isolated gauge translates (and the neutral family is 3-PARAMETER: the gauge 2-torus PLUS the phason, R-195); steady in the co-rotating frame; the
     CYCLE-AVERAGE Delta = 2*pi/(Om0*T) = omega/Om0 = +1.301e-2 and T are ONE
     measurement; the once-quoted +1.2947e-2 is ONE CYCLE PHASE -- quote the
     cycle-average with the period, never a point value and never a band

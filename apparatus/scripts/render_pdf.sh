@@ -146,7 +146,7 @@ render knowledge/corpus/TWT_core_paper.md \
 # record rather than assumed here.
 render knowledge/corpus/TWT_foundational_paper.md \
        "$OUTDIR/TWT_foundational_paper.pdf" \
-       "Time-Wave Theory — the V3 Instance Dossier" \
+       "Theory of Wave-Time — the V3 Instance Dossier" \
        "margin=2.1cm" "10pt" \
        "The first candidate of TWT-Core, at full technical depth"
 
@@ -154,7 +154,7 @@ render knowledge/corpus/TWT_foundational_paper.md \
 # Landscape + smaller type keeps them readable instead of clipped.
 render knowledge/corpus/TWT_foundational_paper_companion.md \
        "$OUTDIR/TWT_foundational_paper_companion.pdf" \
-       "Time-Wave Theory — Foundational Paper V3: Companion" \
+       "Theory of Wave-Time — Foundational Paper V3: Companion" \
        "margin=1.6cm,landscape" "9pt"
 
 echo
@@ -253,7 +253,9 @@ else
   if git -C "$MIRROR" diff --cached --quiet; then
     echo "Mirror already current — nothing to push."
   else
-    git -C "$MIRROR" commit -m "sync from working corpus: $STAMP"
+    # TWT_MIRROR_NOTE (2026-09-22, RUL-140): an optional sentence appended to the mirror commit
+    # message, e.g. to name a same-class review the coordinator authorized; unset = unchanged.
+    git -C "$MIRROR" commit -m "sync from working corpus: $STAMP${TWT_MIRROR_NOTE:+ -- $TWT_MIRROR_NOTE}"
     git -C "$MIRROR" push origin main && echo "Mirror PUSHED to GitHub." \
       || echo "WARNING: push failed (offline? credentials?) — commit is local; push manually."
   fi
