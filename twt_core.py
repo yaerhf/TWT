@@ -3376,6 +3376,13 @@ def weak_su2_menu_exhaustion() -> dict:
             body-SD annihilates W- and acts with full rank on W+, body-ASD exactly mirrored --
             the same kernel structure the left reading used. V-A, generation-blindness, the
             doublet and up = SD are therefore NOT forfeited by the ruling.
+            [PREMISE BRIDGE-CHIR, stamped 2026-09-22 (external review v3): W+ / W- here are the
+            I4 eigen-halves. Their identification with the OBSERVER's chirality halves is an
+            UNBUILT bridge, and in the corpus's own LEFT-ACTING Dirac realization it cannot be
+            built: if G^2 = 1, {G, gamma-hat} = 0 and [T, gamma-hat] = 0 then T(1 + G) = 0
+            forces T = 0. The ideal fact above stands; the transfer to observed V-A rides the
+            bridge. The two-sided realization is the CANDIDATE route and costs the carrier pick
+            (knowledge/audit/external_review_v3_2026-09-22/, companion R-060 / R-079).]
         (iv) THE LEFT / SPACE-FRAME READING IS RETIRED AS THE INTERNAL HOST. Two grounds: the
             left-centralizer theorem (post-lock, the left-acting centralizer of the observer's
             so(1,3) inside Cl(4,0) is span{1, e123} = C -- a U(1), never an su(2)) -- BANKED

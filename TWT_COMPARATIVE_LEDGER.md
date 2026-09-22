@@ -1839,7 +1839,7 @@ nothing; they exist so that a reader meets both sides' structural inventories or
 > **two pass the separator's first two clauses** (the charge arc; the weak arc, given A-P2 and the
 > right-handed-singlet datum), each with an **exhibited failing counterfactual** and independent of
 > the free parameters — and, on the separator's third clause (added 2026-08-24; see the re-grade in
-> the tally below), **two structural passes and ZERO empirical**, against **zero CONVOLUTED premises**
+> the tally below), **ZERO structural passes and ZERO empirical** (re-graded: the charge arc's and the `B − L` closure's loads are one equation, not two sectors), against **zero CONVOLUTED premises**
 > on the input side.
 > That is what **structure without a unifying group** means here — at the price of a **larger
 > structural-commitment inventory than the incumbent's**, one unbuilt object that gates every
@@ -1998,8 +1998,8 @@ class is exactly "a new premise whose only motivation is making this result work
 that instrument returned **`CONVOLUTED` = 0, both demotion slots empty** (RUL-060's ground, from a
 run that in the same campaign returned five DOUBLE-BILLED findings and one UNDER-BILLED, four of six
 against TWT). **Both numbers are published together and neither is quoted without the other: zero
-convoluted premises on the input side; zero empirical excess and two structural passes on the
-output side.** Enacted in Core §3.1 and §3.2 in the round-4 §8a apply batch. **Revert:** strike this
+convoluted premises on the input side; zero empirical excess and zero structural passes on the
+output side.** Enacted in Core §3 (the grading and the third-clause recount) in the round-4 §8a apply batch, the structural figure re-graded to zero in the external-review v3 apply pass. **Revert:** strike this
 block and the separator returns to two clauses with "two pass cleanly", which is the state E-1
 found in unrelated contradiction with §4.1's own "no channel in which agreement would count as
 evidence".

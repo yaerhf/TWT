@@ -4508,7 +4508,14 @@ spatial extent of the vortex worldsheet is the wavelength of that oscillation,
 
 > `ℓ_e ~ c/ω_0 = ℏc/(m_e c²) = λ̄_C`  (R-055),
 
-the reduced Compton wavelength. (`ℓ_e` here is the defect's extent, *not* the classical electron
+the reduced Compton wavelength. **`ℓ_e` is the WAVELENGTH OF THAT OSCILLATION and not the defect's
+spatial core: the reading of `λ̄_C` as "the defect's extent" — a spatial size of the electron's field
+structure — is RETRACTED.** A defect whose mass is its static core energy obeys `M·R ≳ 1`, while the
+electron is pointlike below about `10⁻¹⁸ m`, five orders of magnitude inside `λ̄_C`, so a spatial core at
+`λ̄_C` is excluded by the data; what the section states is a frequency-to-length dictionary entry, with
+the defect's actual charge distribution unbuilt. In a driven oscillatory medium a defect's rotation
+frequency can be selected independently of its core energy, which is the open route and is carried in
+the Core paper's §4.4 exposure. (`ℓ_e` here is *not* the classical electron
 radius `r_e = α · λ̄_C` of §B.5b; the engine's `electron_two_windings` docstring writes this
 quantity `r_e`.) Two scope notes. It is **not a quantum-mechanical uncertainty-principle radius**
 — the framework does not take the uncertainty principle as primitive, it is emergent from the
@@ -4535,8 +4542,9 @@ dissolves into a non-defect wave — `π₃` forbids it. "The electron becomes a
 wrong picture of what a moving electron is: the phase unrolls, the topology does not.
 
 **And the unrolling is about phase, not about size — the two axes must not be merged.** A
-travelling electron is phase-unrolled while its amplitude core stays compact at `λ̄_C`, exactly as
-the rest-frame paragraph above has it; the boost changes the phase structure and not the envelope.
+travelling electron is phase-unrolled, and that is a statement about phase alone: the boost changes the
+phase structure, and this paragraph asserts nothing about the envelope — the identification of
+`λ̄_C` as a spatial core size is retracted above and is not reinstated here.
 The spreading of a *bound* electron over `a_0` is the other axis entirely — the resonant-cavity face
 of the field ontology of §B.3, an envelope statement about confinement rather than a phase statement
 about motion. Running the two together is how a compact travelling shape gets carried into an
@@ -7297,7 +7305,11 @@ entrain; for coupling with a reactive part a phase- and frequency-ordered state 
 property of this cell until a second size is read. And it is the active window's physics on the
 advance-axis-uniform subspace: a candidate node outside the banked passive kernel class — the carrier-only face of the driven-medium axiom, which the preferred direction does not take — carried given the preferred
 site-activity direction, with no mass, generation or carrier-lock reading riding it; every energy word in this
-paragraph is a cost, and every rate a rotor rate of the state or a kinematic rate of the flow.
+paragraph is a cost, and every rate a rotor rate of the state or a kinematic rate of the flow. **A
+winding planted into the strained state is lost within one to two of that state's rotation periods
+whether the window is on or off, as it is in the bare vacuum — the planted shape collapses on its own —
+and the travelling stiffness modulations tried do not lengthen its life; the strained state itself
+survives them, its cost excess moved by a quarter to a third and its coherence kept.**
 
 **The static grain critical points, stored (R-209).** On the static face at zero drive, with the bilinear bond
 cost supplemented by a permitted plaquette quartic, the reduced lattice holds non-vacuum critical points of the

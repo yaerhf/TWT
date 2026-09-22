@@ -343,6 +343,29 @@ PREMISE_REGISTRY = [
      "knowledge/corpus/TWT_foundational_paper_companion.md", r"^\| R-165 \|",
      "(P-op)", ("P-op", "operative-symmetry premise",
                 "symmetry **operative** on the sector")),
+    # Added 2026-09-22 by the external review's §5 (the four conditioning drifts it
+    # found in the Core paper, none of them covered here). Each row binds a premise
+    # that a paper sentence now rides to the companion row that states it.
+    # WHAT THESE ROWS ENFORCE, EXACTLY: that the premise is NAMED AT LEAST ONCE in a
+    # paper -- not that it is carried at every load-bearing site. The apply pass that
+    # created them is its own demonstration: WICK-CONT was named in C10 and MISSING from
+    # Core 5.3, which these rows passed. A per-entry SITE LIST is the open upgrade.
+    ("BRIDGE-CHIR (the I₄-grading ↔ observer-chirality bridge is UNBUILT, and the "
+     "corpus's own left-acting Dirac realization cannot build it)",
+     "knowledge/corpus/TWT_foundational_paper_companion.md", r"^\| R-079 \|",
+     "BRIDGE-CHIR", ("observer-chirality bridge", "eigen-halves of the substrate pseudoscalar")),
+    ("C-LIN-HOST (the body-frame weak host is complex-linear only on a U(1) of "
+     "itself, against the quantum package's own premise)",
+     "knowledge/corpus/TWT_foundational_paper_companion.md", r"^\| R-079 \|",
+     "C-LIN-HOST", ("complex-linear only on a `U(1)`", "complex-linearity constraint")),
+    ("WICK-CONT (the Euclidean→Lorentzian continuation k₄ = iω, on which the "
+     "degree↔dimension counting and the dimension-six reading ride)",
+     "knowledge/corpus/TWT_foundational_paper_companion.md", r"^\| R-186 \|",
+     "WICK-CONT", ("performed at `k₄ = iω`", "continued to the Lorentzian")),
+    ("NESS-ACTIVE (the self-sustained state is the active window's physics, "
+     "outside the banked passive kernel class)",
+     "knowledge/corpus/TWT_foundational_paper_companion.md", r"^\| R-208 \|",
+     "NESS-ACTIVE", ("outside the banked passive kernel class", "outside the banked passive class")),
     ("I-6 compositeness premise (elementary-field RGEs valid for a gauge sector "
      "this candidate holds emergent/composite at Λ_L)",
      "knowledge/corpus/TWT_foundational_paper_companion.md", r"^\| I-6 \|",
