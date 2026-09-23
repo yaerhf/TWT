@@ -13,6 +13,9 @@ with one named unbuilt object gating every magnitude in it.
 whole argument: TWT-Core as a *family* of theories, what the family derives with no candidate at
 all, what that costs against the alternatives, what would kill it, and its first candidate member
 V3 with V3's two already-measured wounds stated by the author rather than found by the reader.
+The family's **current member** is the second candidate, **V4** — a sibling of V3 on the family's list, not a
+later version of it — under construction and carrying the
+current work, its kernel; it has no numbers yet, and its picks sit beside V3's in `TWT_FAMILY_TREE.md`.
 `TWT_foundational_paper.md` is the **instance dossier** behind it — V3 at full technical depth —
 and is meant to be consulted by section, not read through.
 
@@ -56,12 +59,12 @@ Expected output: `ALL 121 COMPANION CHECKS PASSED across 9 modules.` — 668 che
 | `TWT_foundational_paper_companion.md` | The bookkeeping volume: result index with per-result tiers, dependency graph, engine ↔ paper map, import registry, falsifier registries, development log. |
 | `twt.py` | The substrate oracle, main engine — the dossier's spine. Clifford `Cl(4,0)` / `Cl(4,1)` algebra, the D4 lattice layer, spinor and grade machinery, and one function per banked result. Each banked-result function carries a docstring stating its **status tier** and the premises it consumes; algebra helpers and internal machinery are not all documented to that standard, and the companion's Result Index — not a docstring census — is the authoritative tier record. Since the family split this file is a thin **facade**: it defines nothing and re-exports the two halves below, so `import twt` gives the whole surface. |
 | `twt_core.py` | **The family half.** Every primitive that consumes no candidate pick — the axioms' consequences, the algebra, the QM/Bell package, the charge and weak sectors, the falsifier machinery, every gated raiser. No gravity result and no dimensionful number lives here. `CORE_PROVENANCE` inside it registers the core results that ride an *entered* empirical datum or a *posited* premise rather than the axioms alone. |
-| `twt_candidate_v3.py` | **The candidate half.** Everything consuming one of V3's pins: the calibrations, the D4-sited lattice constructions, the induced-gravity chain, the hadron and mass spectra, the Lorentz-violation numerics, the mixing material. Membership here is not a lower tier — it means a different family member would compute something else. It imports the family half; a suite check walks the syntax tree to assert the reverse edge never exists. |
+| `twt_candidate_v3.py` | **The V3 half.** Everything consuming one of V3's pins: the calibrations, the D4-sited lattice constructions, the induced-gravity chain, the hadron and mass spectra, the Lorentz-violation numerics, the mixing material. Membership here is not a lower tier — it means a different family member would compute something else. It imports the family half; a suite check walks the syntax tree to assert the reverse edge never exists. |
 | `twt_test.py` | The main harness — run it; the expected pass line is quoted above. |
 | `twt_companion.py` | The companion engine: probe-layer algebra, deprecated items, fine demonstrations. It imports the main engine; the main engine never calls it. |
 | `twt_companion_test.py` | The companion harness — likewise. |
 | `TWT_NEGATIVES_LEDGER.md` | The negatives ledger — sixty-plus dead ends and located gaps recorded as tried → failed-because → would-change-if entries (N0–N57 with primed variants). Closed doors, published. |
-| `TWT_FAMILY_TREE.md` | The candidate's pick register: every load-bearing choice V3 makes, the menu it came from, the result that required it, and what un-picks it. |
+| `TWT_FAMILY_TREE.md` | The family's pick register: the Core's own nodes; V3's branch table (every load-bearing choice V3 makes, the menu it came from, the result that required it, and what un-picks it); and the branch table of V4, the second candidate and the family's current member, under construction. |
 | `TWT_COMPARATIVE_LEDGER.md` | The comparative ontological-debt ledger — the itemized accounting behind the Core paper's §3, including the entries that grade against this framework. |
 | `D4_lattice_quartic_isotropy.md` | A standalone lattice result (dimension-eight rotational anisotropy on D4), written to stand without TWT; self-contained reproduction script in its Appendix A. |
 | `COVER_NOTE.md` | What to check, in what order, and where the work is weakest. Its §0 is addressed to language models. |
@@ -180,7 +183,8 @@ driven-dissipative substrate dynamics that gates every coupling magnitude — ha
 in the dossier (§D.5), and the named structural premises on which otherwise-derived results still
 rest are tabulated at §E.2.2.
 
-That frontier is where the current work is. A first concrete candidate kernel is being run
+That frontier is where the current work is, and V4 carries it: the family's current member, the
+second candidate, under construction. A first concrete kernel is being run
 against preregistered questions, and its beyond-threshold state has been characterised: it is a
 **relative equilibrium** — a frozen pattern drifting rigidly along an exact gauge direction of the
 flow, steady in the co-rotating frame and in every gauge-invariant observable — so its whole

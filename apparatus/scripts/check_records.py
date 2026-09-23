@@ -1828,6 +1828,206 @@ def main():
         if not re.search(_pat, _txt): _fs.append("%s: anchor missing (%s)" % (_f.split("/")[-1], _pat[:40]))
         _fs += ["%s: %s" % (_f.split("/")[-1], x) for x in _face_slips(_txt, _pat)]
     _ck("every banked canted-vacuum anisotropy site carries its face word (offenders: %s)" % (_fs[:3] or "none"), not _fs)
+    # ---- 8l. MEMBER CURRENCY (RUL-148, 2026-09-23 - the coordinator: "V4 is the current member"): the paper-facing
+    # documents must name EVERY candidate on the family's list and call the one the tree marks CURRENT the "current
+    # member". The drift class was measured FOUR times (external rounds r4, r6 and v3, and the coordinator's own report of
+    # 2026-09-23: V4's content reached readers unnamed, or charged to V3 or to the family). The TRUTH comes from the family
+    # tree: every "## " heading carrying BRANCH and a member token is a member, and exactly one heading carries the
+    # CURRENT MEMBER marker. What the check then enforces: every registered site names every member (the partial sites,
+    # the current one) and has a sentence that names the current member AND says "current member"; so moving the marker
+    # in the tree, or opening a branch, fails the sites until they follow. "Under construction", "current work" and "where
+    # the work is" are NOT currency words - RUL-148(a) rules them insufficient - and the first version of this check
+    # accepted them: the keeper pass (V4_CURRENT_BATCH_VERDICT_KEEPER_2026-09-23.md, K-1) showed it passed the audit's own
+    # pre-RUL-148 sentence, stayed green with the marker moved to V3, and missed a "## V5 BRANCH" heading. It checks NAMING
+    # and CURRENCY words, not content: a sentence that names V4 and then gives it a V3 pick passes (the C7 'inherits'
+    # class) - the keeper stays the instrument there. Specified by the V3/V4 framing audit (section 4.2); re-specified by
+    # that keeper pass (its A1). P6 enforces RUL-148(c): no sentence may call a member archived, retired or superseded
+    # until the ruling that does so exists; a NEGATED statement ("V3 is not archived") is not a defect.
+    print("member currency (RUL-148, self-tested):")
+    _HEAD = re.compile(r"^## (?=.*\bBRANCH\b).*$", re.M)
+    _MTOK = re.compile(r"(?<![\w-])(V\d+)(?![\w-])")
+    _CURMEM = re.compile(r"(?i)current\**\s+\**member")
+    _COUNTERFACTUAL = re.compile(r"second candidate would|would be a new table", re.I)
+    _CUR_NO_MEMBER = re.compile(r"current\s+formulation|TWT-current|the\s+current\s+derivation\b", re.I)
+    _RETIRE = re.compile(r"(?i)\b(?:archiv\w*|retir\w*|supersed\w*|obsolete)\b")
+    _RETIRE_NEG = re.compile(r"(?i)\b(?:not|never)\s+(?:yet\s+|been\s+|be\s+)?(?:archiv\w*|retir\w*|supersed\w*|obsolete)\b"
+                             r"|\bunarchiv\w*")
+    def _mlabel(l): return re.compile(r"(?<![\w-])%s(?![\w-])" % re.escape(l))     # 'V4-0' must NOT count as 'V4'
+    def _members(tree):
+        """[(label, is_current, under_construction)] from every '## ' heading carrying BRANCH and a member token"""
+        out = []
+        for m in _HEAD.finditer(tree or ""):
+            t = _MTOK.search(m.group(0))
+            if t: out.append((t.group(1), "CURRENT MEMBER" in m.group(0), "under construction" in m.group(0).lower()))
+        return out
+    def _msentences(t):
+        return [s for s in re.split(r"(?<=[.!?;])\s+|\n\s*\n", " ".join((t or "").split("\n"))) if s.strip()]
+    def _currency_defects(region, members, need_all):
+        labels = [l for l, _, _ in members]; cur = [l for l, c, _ in members if c]
+        missing = [l for l in (labels if need_all else cur) if not _mlabel(l).search(region or "")]
+        named = any(_mlabel(c).search(s) and _CURMEM.search(s) for c in cur for s in _msentences(region))
+        return missing, named, _COUNTERFACTUAL.findall(region or "")
+    def _retire_hits(text, labels):
+        return [s[:90] for s in _msentences(text) if any(_mlabel(l).search(s) for l in labels)
+                and _RETIRE.search(_RETIRE_NEG.sub("", s))]
+    def _region(text, start, end):
+        """start/end are regex anchors (None = file start/end); a missing START is a failure, never a skip"""
+        if text is None: return None
+        i = 0
+        if start is not None:
+            m = re.search(start, text, re.M)
+            if not m: return None
+            i = m.start()
+        j = len(text)
+        if end is not None:
+            m2 = re.search(end, text[i + 1:], re.M)
+            if m2: j = i + 1 + m2.start()
+        return text[i:j]
+    _T0 = ("## BRANCH — INSTANCE V3 (the family's first full leaf)\n## Branch protocol (standing)\n"
+           "## THE V4 BRANCH — the second candidate, under construction, and the family's CURRENT MEMBER\n")
+    _M0 = _members(_T0)
+    # the planted demonstrations (R2: every FIRE has a NOT-FIRE control), on text copies - the tree is never touched
+    _ck("8l demo 0: the planted tree reads two members, V4 current; 'Branch protocol' is not a member (%s)" % _M0,
+        _M0 == [("V3", False, False), ("V4", True, True)])
+    _ab0 = "publishes the family's first candidate member, V3, built all the way down to numbers."
+    _ck("8l demo 1: an abstract naming only V3 FIRES (V4 missing)", _currency_defects(_ab0, _M0, True)[0] == ["V4"])
+    _ab1 = _ab0 + " The family's **current member** is the second candidate, **V4**, under construction."
+    _ck("8l demo 2: the same abstract calling V4 the current member does NOT fire", _currency_defects(_ab1, _M0, True)[:2] == ([], True))
+    _ck("8l demo 3: the node-ID trap ('the carrier V4-0 is signed') still FIRES (V4-0 is not V4)",
+        _currency_defects(_ab0 + " The carrier V4-0 is signed.", _M0, True)[0] == ["V4"])
+    _ck("8l demo 4: 'V4 is a second candidate.' names V4 without the currency words and FIRES",
+        _currency_defects(_ab0 + " V4 is a second candidate.", _M0, True)[1] is False)
+    _k1b = _ab0 + (" A second candidate, **V4**, is under construction, and the programme's current work, building its"
+                   " kernel, is on it.")
+    _ck("8l demo 4b (the keeper's K1b): the audit's pre-RUL-148 wording - 'under construction', 'current work' - FIRES",
+        _currency_defects(_k1b, _M0, True)[1] is False)
+    _ck("8l demo 5: 'a second candidate would be a new table' FIRES the counterfactual predicate",
+        bool(_currency_defects("A second candidate would be a new table beside the first.", _M0, False)[2]))
+    _ck("8l demo 5 control: 'the second, V4, is under construction as a new table' does NOT",
+        not _currency_defects("The second, V4, is under construction as a new table.", _M0, False)[2])
+    _ck("8l demo 6: a planted tree with the V4 header removed FIRES the guard (fewer than 2 members)",
+        len(_members("## BRANCH — INSTANCE V3 (the first)\n")) < 2)
+    _MK2 = _members(_T0.replace(", and the family's CURRENT MEMBER", "").replace("(the family's first full leaf)",
+                                                                               "(the family's CURRENT MEMBER)"))
+    _ck("8l demo 6b (the keeper's K2): the CURRENT MEMBER marker moved to V3 makes a site that calls V4 current FIRE (%s)" % _MK2,
+        _MK2 == [("V3", True, False), ("V4", False, True)] and _currency_defects(_ab1, _MK2, True)[1] is False)
+    _MK3 = _members(_T0 + "## V5 BRANCH — opened (planted), the third candidate, under construction\n")
+    _ck("8l demo 6c (the keeper's K3): a '## V5 BRANCH' heading is a member, and a site that omits V5 FIRES",
+        [l for l, _, _ in _MK3] == ["V3", "V4", "V5"] and _currency_defects(_ab1, _MK3, True)[0] == ["V5"])
+    _ck("8l demo 6d: two CURRENT MEMBER markers FIRE the guard (exactly one allowed)",
+        sum(1 for _, c, _ in _members(_T0 + "## V5 BRANCH — the family's CURRENT MEMBER\n") if c) == 2)
+    _ck("8l demo 7: 'the current formulation' FIRES; its control 'this paper's formulation' does NOT",
+        bool(_CUR_NO_MEMBER.search("would falsify the current\nformulation".replace("\n", " "))) and
+        not _CUR_NO_MEMBER.search("would falsify this paper's formulation"))
+    _ck("8l demo 8 (P6): 'V3 is archived.' and 'V3 was superseded by V4.' FIRE; 'V3 is not archived.', 'V3 stays "
+        "unarchived.' and 'the archive/pre-v3 folder is superseded.' do NOT",
+        len(_retire_hits("V3 is archived. V3 was superseded by V4.", ["V3", "V4"])) == 2 and
+        not _retire_hits("V3 is not archived. V3 stays unarchived. The archive/pre-v3 folder is superseded.", ["V3", "V4"]))
+    # the real check
+    _mem = _members(_read("knowledge/ledgers/TWT_FAMILY_TREE.md"))
+    _ck("8l guard: the family tree lists at least two members and exactly one CURRENT MEMBER (%s) - if this fails, the truth "
+        "source moved: update the check, never the prose to fit" % [(l, "CURRENT" if c else "") for l, c, _ in _mem],
+        len(_mem) >= 2 and sum(1 for _, c, _ in _mem if c) == 1)
+    _MIRROR = os.environ.get("TWT_MIRROR_DIR") or os.path.join(os.path.expanduser("~"), "Claude", "Projects", "twt-engine")
+    def _read_abs(path):
+        # builtin open, not io.open: the gate does not import io, and the first version caught the resulting
+        # NameError in a broad except and printed SKIP on a README that exists - a check that reads nothing.
+        if not os.path.exists(path): return None
+        with open(path, encoding="utf-8") as fh: return fh.read()
+    _CORE_T = _read("knowledge/corpus/TWT_core_paper.md"); _COV_T = _read("knowledge/reviewer_package/COVER_NOTE.md")
+    _DOS_T = _read("knowledge/corpus/TWT_foundational_paper.md"); _RDM_T = _read_abs(os.path.join(_MIRROR, "README.md"))
+    _SITES = [("Core abstract", _CORE_T, r"^## Abstract$", r"^---$", True),
+              ("Core section 4.2 construction paragraph", _CORE_T, r"^\*\*Where the construction work stands\.\*\*",
+               r"\n\s*\n", True),
+              ("Core section 5 opening", _CORE_T, r"^# §5 ", r"^## 5\.2 ", True),
+              ("Core Closing", _CORE_T, r"^## Closing$", None, False),
+              ("Cover note opening", _COV_T, None, r"^## §0", True),
+              ("Cover note section 1", _COV_T, r"^## §1", r"^## §2", True),
+              ("Dossier opening", _DOS_T, None, r"^# To the reviewer", True),
+              ("Dossier A.6.5 list paragraph", _DOS_T, r"^\*\*The deliverable is a list\.\*\*", r"\n\s*\n", True)]
+    if _RDM_T is not None:
+        _SITES += [("README reviewer paragraph", _RDM_T, r"^\*\*If you are reviewing", r"\n\s*\n", True),
+                   ("README Status", _RDM_T, r"^## Status", None, False)]
+    else:
+        print("  [SKIP] the mirror README is not present at %s - its two sites are unchecked on this machine" % _MIRROR)
+    _mdef = []
+    for _lab, _txt, _st, _en, _all in _SITES:
+        _reg = _region(_txt, _st, _en)
+        if _reg is None: _mdef.append("%s: the site moved (start anchor missing)" % _lab); continue
+        _miss, _named, _cf = _currency_defects(_reg, _mem, _all)
+        if _miss: _mdef.append("%s: missing %s" % (_lab, _miss))
+        if not _named: _mdef.append("%s: no sentence calls the current member the 'current member'" % _lab)
+        if _cf: _mdef.append("%s: counterfactual %s" % (_lab, _cf))
+    _ck("8l every paper-facing site names each member and calls the tree's current one the current member (defects: %s)"
+        % (_mdef[:4] or "none"), not _mdef)
+    _p5, _p6 = [], []
+    for _nm, _txt in (("Core", _CORE_T), ("Cover note", _COV_T), ("Dossier", _DOS_T), ("README", _RDM_T)):
+        if _txt is None: continue
+        _hits = _CUR_NO_MEMBER.findall(" ".join(_txt.split()))
+        if _hits: _p5.append("%s: %d x %r" % (_nm, len(_hits), _hits[0]))
+        _rh = _retire_hits(_txt, [l for l, _, _ in _mem])
+        if _rh: _p6.append("%s: %d x %r" % (_nm, len(_rh), _rh[0]))
+    _ck("8l no paper-facing document calls a formulation 'current' without naming its member (%s)" % (_p5 or "none"), not _p5)
+    _ck("8l (P6, RUL-148(c)) no paper-facing sentence calls a member archived, retired or superseded (%s)" % (_p6 or "none"),
+        not _p6)
+
+    # ---- 8m. ATTRIBUTION CITED (2026-09-23): a finding credited to more checkers than made it, caught THREE times in one
+    # night (a report's section 2.4; REV 1 booking one complex unit's benefits with another's protections; REV 2's
+    # "confirmed by the keeper and meta" for a finding only the reviewer computed). Canon: a drift class caught twice is a
+    # process failure. The confirmation keeper's proposal, implemented: a decision document marked ATTRIBUTION-CITED
+    # carries a LEGEND mapping short codes to verdict files, and every [CODE:line] citation must resolve - the code in the
+    # legend, the file present beside the document, the line inside it. This catches PHANTOM attributions, not WRONG
+    # readings; the per-claim tally table is what catches those. Proposal revisions from REV 3 on must carry the marker,
+    # so a decision document cannot opt out by omission.
+    print("attribution cited (self-tested):")
+    _ATTR_MARK = "<!-- ATTRIBUTION-CITED -->"
+    _ATTR_CITE = re.compile(r"\[([A-Z][A-Z0-9]{1,5}):(\d+)\]")
+    _ATTR_LEGEND = re.compile(r"\b([A-Z][A-Z0-9]{1,5})\s*=\s*([\w.\-]+\.(?:md|out|txt|py|json|log))")
+    _ATTR_TRIGGERS = ("confirmed by", "all three agree", "converged", "concedes every", "concede every")
+    def _attr_defects(text, lines_of):
+        """lines_of(filename) -> line count or None if absent. Returns a list of defects."""
+        d = []
+        if _ATTR_MARK not in (text or ""): return ["no ATTRIBUTION-CITED marker"]
+        leg = dict(_ATTR_LEGEND.findall(text))
+        cites = _ATTR_CITE.findall(text)
+        if not cites: d.append("marked, but carries no citation at all (a marker with nothing behind it)")
+        for code, ln in cites:
+            if code not in leg: d.append("[%s:%s] code not in the legend" % (code, ln)); continue
+            n = lines_of(leg[code])
+            if n is None: d.append("[%s:%s] %s is not present" % (code, ln, leg[code]))
+            elif not (1 <= int(ln) <= n): d.append("[%s:%s] line outside %s (%d lines)" % (code, ln, leg[code], n))
+        for s in _msentences(text):
+            if any(t in s.lower() for t in _ATTR_TRIGGERS) and not _ATTR_CITE.search(s) and "“" not in s and '"' not in s:
+                d.append("an uncited attribution sentence: %r" % s[:70])
+        return d
+    _fake = {"A.md": 10}
+    _okdoc = _ATTR_MARK + "\nR2R = A.md\nThe bridge needs the unit `[R2R:5]`."
+    _ck("8m demo 1: a valid cited document does NOT fire", not _attr_defects(_okdoc, _fake.get))
+    _ck("8m demo 2: a PHANTOM code (not in the legend) fires", bool(_attr_defects(_okdoc + " Also `[R9X:2]`.", _fake.get)))
+    _ck("8m demo 3: a line OUTSIDE the cited file fires", bool(_attr_defects(_okdoc.replace("[R2R:5]", "[R2R:50]"), _fake.get)))
+    _ck("8m demo 4: a legend file that is ABSENT fires", bool(_attr_defects(_okdoc.replace("A.md", "B.md"), _fake.get)))
+    _ck("8m demo 5: REV 2's exact drift ('confirmed by the keeper and meta', no citation) fires",
+        bool(_attr_defects(_okdoc + "\nThe reframing is confirmed by the keeper and meta.", _fake.get)))
+    _ck("8m demo 6: the same sentence WITH a citation does NOT fire",
+        not _attr_defects(_okdoc + "\nThe reframing is confirmed by the reviewer `[R2R:7]`.", _fake.get))
+    _ck("8m demo 7: a marked document with no citation at all fires", bool(_attr_defects(_ATTR_MARK + "\nR2R = A.md\nNo cites.", _fake.get)))
+    _attr_bad = []
+    for _root, _dirs, _files in os.walk(os.path.join(ROOT, "knowledge", "audit")):
+        for _fn in _files:
+            if not _fn.endswith(".md"): continue
+            _pth = os.path.join(_root, _fn)
+            _m = re.search(r"_PROPOSAL_REV(\d+)_", _fn)
+            with open(_pth, encoding="utf-8", errors="replace") as _fh: _txt = _fh.read()
+            if _ATTR_MARK not in _txt:
+                if _m and int(_m.group(1)) >= 3: _attr_bad.append("%s: a proposal revision >= 3 without the marker" % _fn)
+                continue
+            def _lines_of(name, _root=_root):
+                _p2 = os.path.join(_root, name)
+                if not os.path.exists(_p2): return None
+                with open(_p2, encoding="utf-8", errors="replace") as _f2: return sum(1 for _ in _f2)
+            _attr_bad += ["%s: %s" % (_fn, x) for x in _attr_defects(_txt, _lines_of)]
+    _ck("8m every ATTRIBUTION-CITED document's citations resolve, and every proposal REV >= 3 carries the marker (defects: %s)"
+        % (_attr_bad[:3] or "none"), not _attr_bad)
 
     # ---- 9. REGISTER CENSUS (keeper S-2, under the RUL-024 policy): row counts in the
     # ruling register vs the count-bearing prose sites ------------------------------

@@ -25,7 +25,12 @@ python scripts/honesty_telemetry.py || true
 # bank.sh verifies the tree AS IT STANDS AT START; if the tree changes while the suites/RAG
 # run (another session, an editor, a subagent), the commit would sweep UNVERIFIED and
 # MIS-ATTRIBUTED content. Snapshot now, re-check before committing, refuse on drift.
-TREE_SNAPSHOT="$(git status --porcelain | git hash-object --stdin)"
+# THE LIVE MAILBOX IS OUTSIDE THE BANK (2026-09-23). knowledge/ideation/ is written by an external agent on
+# its own schedule (a watcher in Antigravity), so a write there mid-bank is expected, not an incident. The
+# sweep guard and the staging below both EXCLUDE it; its traffic is committed separately, with its own
+# attribution, by scripts/archive_mailbox.sh. Measured motivation: two refusals on 2026-09-22.
+MAILBOX_EXCL=":(exclude)knowledge/ideation"
+TREE_SNAPSHOT="$(git status --porcelain -- . "$MAILBOX_EXCL" | git hash-object --stdin)"
 
 echo "[1/4] substrate self-checks (twt_test.py + twt_companion_test.py)..."
 out="$(cd knowledge/corpus && python twt_test.py 2>&1)"; echo "$out" | tail -14
@@ -71,13 +76,13 @@ echo "[3/4] rebuilding RAG index (embeddings on the GPU)..."
 python rag/ingest.py
 
 echo "[4/4] committing timeline..."
-TREE_NOW="$(git status --porcelain | git hash-object --stdin)"
+TREE_NOW="$(git status --porcelain -- . "$MAILBOX_EXCL" | git hash-object --stdin)"
 if [ "$TREE_NOW" != "$TREE_SNAPSHOT" ]; then
   echo ">>> SWEEP GUARD: the working tree changed while bank.sh was running."
   echo ">>> Committing now would sweep unverified, mis-attributed content into this bank"
   echo ">>> (the 210643e incident class). NOT committing. Re-run bank.sh on the settled tree."
   exit 1
 fi
-git add -A
+git add -A -- . "$MAILBOX_EXCL"
 if git diff --cached --quiet; then echo "(nothing to commit)"; else git commit -m "$MSG"; fi
 echo "Banked: $MSG"

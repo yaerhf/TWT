@@ -13,8 +13,9 @@
 
 This paper defines a **family** of substrate theories — TWT-Core, seven axioms and one refusal, a
 structural-derivation programme rather than a completed unified theory — and publishes the family's
-**first candidate member**, V3, built all the way down to numbers. The family
-says which Standard-Model structural facts follow from which premises; its axioms are scale-free, so
+**first candidate member**, V3, built all the way down to numbers. The family's **current member** is the second
+candidate, **V4**, under construction; V4 has no calibrated numbers yet, so V3 is the candidate this paper
+works through (§4.2, §5). The family says which Standard-Model structural facts follow from which premises; its axioms are scale-free, so
 every coupling, absolute mass and absolute scale in the programme rides one named object, the
 driven-dissipative substrate dynamics, whose construction is the programme's open kernel problem (§4.4).
 
@@ -29,7 +30,7 @@ three conjugacy classes, which fixes the assignment **given an unbuilt bridge** 
 the substrate pseudoscalar's eigen-halves with the observer's chirality halves, which the family's own
 Dirac realization cannot supply — and given a complex-linearity constraint the host meets only on a
 `U(1)`. Against this paper's own separator (§3), the charge arc and the weak arc pass its first two
-clauses — the weak arc's conditional on that bridge and on a carrier pick — while four more pass only
+clauses — the weak arc's conditional on that bridge and on the carrier the weak host acts on — while four more pass only
 with a stated weakening, two are partial, one collapses into another and one is struck from the list; **the
 two reaching entries are one equation stated twice** (on the left-handed doublets `Y = (B − L)/2`), so
 the structural count is **zero**, and the empirical clause — a consequence tested in a
@@ -61,7 +62,7 @@ finished.
 | **Hydrogen neutrality is an identity in the charge functional's free normalization constant.** With `Q = T₃ + cY`, both brackets of `Q_p + Q_e` vanish separately, so the sum is zero for every `c`. | Four structural premises (P4–P7), an entered charge anchor, §2.4's weak assignment. Not a discriminator: the incumbent's surviving `B − L` direction preserves the same sum. |
 | **A wavefront-locked observer inside a positive-definite substrate reads its own kinematics as Lorentzian.** `Cl(4,0) ≅ Cl(1,3)` as real algebras, and the Lorentz generators come with it. | Two axioms — the substrate and the lock. Kinematics, not relativistic field theory; the signature is relocated, not derived. |
 | **Four-dimensional space carries exactly three independent anti-self-dual (isoclinic) generators, so the family makes exactly three generation seats available.** A fourth generation is structurally forbidden rather than excluded by tuning mass scales — a prohibition the data already satisfy, so it is a retrodiction and not a forward test. | The identification of those planes with generation seats, and an associativity premise. The seat's carrier is claimed by two readings at once and nothing local separates them. |
-| **The three-dimensional hosts for weak isospin inside the substrate's rotation algebra are computed closed at three conjugacy classes, and the self-dual host is fixed given the bridge below.** Generation-blindness, the doublet, the up-sector's chirality and V−A follow *given it*. | The weak-hosting premise; one datum read from experiment — right-handed fermions are weak singlets; the carrier branch this candidate takes; **the I₄-grading ↔ observer-chirality bridge, which is unbuilt** — the pseudoscalar's eigen-halves are not the observer's chirality halves in this realization; and **the complex-linearity constraint**, which the body-frame host meets only on a `U(1)`. |
+| **The three-dimensional hosts for weak isospin inside the substrate's rotation algebra are computed closed at three conjugacy classes, and the self-dual host is fixed given the bridge below.** Generation-blindness, the doublet, the up-sector's chirality and V−A follow *given it*. | The weak-hosting premise; one datum read from experiment — right-handed fermions are weak singlets; the carrier branch — which module the host acts on (§2.4); **the I₄-grading ↔ observer-chirality bridge, which is unbuilt** — the pseudoscalar's eigen-halves are not the observer's chirality halves in this realization; and **the complex-linearity constraint**, which the body-frame host meets only on a `U(1)`. |
 
 Every entry on that list is a sign, an integer, a dimension or an algebra identity; magnitudes belong
 to the kernel class (§4.4). The two measured constraints and the kill condition are in the abstract;
@@ -78,6 +79,9 @@ both constraints bind the first candidate.
   from one *relabelled*.
 - **The picks** — the pinned choices that turn the family into a candidate: fifteen recorded choices
   in the first one, each with its menu and what un-picks it (§5.1).
+- **V3 and V4** — the family's two candidates: siblings on its list, not successive revisions of one
+  theory. V3, the first, is built down to numbers and is the one §5 works through. V4, the second, is the
+  **current member** — under construction, and carrying the programme's current work, its kernel (§4.2).
 - **The two constraints** — the two places where the first candidate is already measured against and
   bounded (§5.3).
 - **The kill condition** — the one measurement that would end the whole family rather than one member
@@ -92,7 +96,7 @@ both constraints bind the first candidate.
 Six sections. §1 states the family. §2 is what the family derives with no candidate, each result in a
 fixed shape — claim, premises, scope fence, argument. §3 is the separator applied to the family's own
 list, and the comparison with the incumbent priced. §4 is the falsification surface. §5 is the first
-candidate. §6 is the method.
+candidate, V3; the current member, V4, is under construction (§4.2). §6 is the method.
 
 This paper carries no inline tier tags and no result numbers. Every claim's recorded tier, engine
 primitive, dependency edges and premise rows live in `TWT_foundational_paper_companion.md`; the dossier
@@ -304,10 +308,11 @@ candidate that goes the other way on any of them is still a member of the family
 > itself a non-conservative element, and the medium's activity a self-sustained rotation held by the balance of its own gain and
 > loss, with no external drive.
 
-The last is the direction the kernel programme leans on: on the one candidate kernel built so far, the
+The last is the direction the kernel programme leans on: on one of the kernels built so far, all of them the current member V4's
+(§4.2), the
 medium's own undriven flow settles into such a self-sustained, gain-balanced rotating state, and a cell
 whose sites carry scattered clock rates keeps one phase rate against a moderate scatter, up to about a
-tenth of its own phase rate (dossier §D.5.7) — exhibited on one kernel and one cell, not derived, and on
+tenth of its own phase rate (dossier §D.5.7) — exhibited on one kernel and one cell, not derived, on
 a variant that adds a gain window to the dissipation, which lies **outside the banked passive kernel
 class** rather than inside it.
 
@@ -658,8 +663,7 @@ that two-ideal occupancy is its Dirac-mass channel, so the other half is not emp
 *The conditioning of that step:* which module the host acts on is an open branch, and the verdict moves
 with it — computed: on the two candidate carriers the image of the self-dual factor on the right-handed
 half is empty on one and three-dimensional on the other, so on the second the datum would refute the
-assignment instead of confirming it. The elimination holds given the carrier branch this candidate
-takes, and §3 counts the weak arc's structural pass at that conditional strength.
+assignment instead of confirming it. The elimination holds on the first carrier and fails on the second, and §3 counts the weak arc's structural pass at that conditional strength.
 
 **C8 — Consequence (associativity alone).** Which side the host acts on is computed, not assumed: the
 body frame. The local state is a full four-dimensional orientation, so an algebra can act on it from
@@ -785,7 +789,8 @@ and the headline generality rides its absence. **The candidate's own chiral bond
 sector**: it sits on the twelve advance-axis bonds — premise (vi)'s case, the driven group's singled-out
 axis — is matrix-valued — premise (iv)'s — and its
 spatial fourth moment is the simple-cubic `Σᵢ kᵢ⁴`, so the protection is absent there, as §5.3 states;
-the first concrete kernel built in this programme inherits that same bond energy.
+the kernel the current member V4 is building (§4.2) runs on that same bond energy, as a working stage rather
+than as a pick of its own.
 *Not:* novel. That the D4/F4 lattice suppresses rotational-symmetry-breaking cutoff effects relative to
 the hypercubic lattice is established lattice field theory (*Related work*), and the result is quoted as
 a transfer from it. What is claimed is narrower: the generality of the proof — one-dimensionality of the
@@ -954,7 +959,7 @@ leave eight distinct claims:
 
 | Grade on clauses (i) and (ii) | Count | Which |
 |---|---|---|
-| **Pass both** | **2 — one unconditional, one riding a pick** | the **charge arc** (§2.1), and the **weak arc** (§2.4) *conditional on the carrier, on an unbuilt bridge and on a complex-linearity constraint*: the assignment's transfer to the observer's chirality halves is the unbuilt `I₄`-grading bridge, which this family's own Dirac realization cannot supply, and the host is complex-linear only on a `U(1)` of itself; and the weak assignment is made on one of two candidate carriers, and on the other the same datum that eliminates the competing class eliminates this one too — the engine returns *refuted by data* there, not merely *different*. So the weak arc's pass is a pass **given that pick**, and a reader who rejects the pick is left without the claim rather than with a weaker version of it. Counted here at that strength |
+| **Pass both** | **2 — one unconditional, one conditional** | the **charge arc** (§2.1), and the **weak arc** (§2.4) *conditional on the carrier, on an unbuilt bridge and on a complex-linearity constraint*: the assignment's transfer to the observer's chirality halves is the unbuilt `I₄`-grading bridge, which this family's own Dirac realization cannot supply, and the host is complex-linear only on a `U(1)` of itself; and the weak assignment is made on one of two candidate carriers, and on the other the same datum that eliminates the competing class eliminates this one too — the engine returns *refuted by data* there, not merely *different*. So the weak arc's pass is a pass **given that carrier**, and a reader who rejects it is left without the claim rather than with a weaker version of it. Counted here at that strength |
 | Pass with a stated weakening | 4 | the **generation count** (§2.3) — generic-given-four-dimensions, real but not substrate-specific · the **Lorentzian signature flip** (§2.2) — half-chosen: the algebra isomorphism is a theorem, the timelike placement is an axiom · the **monopole absence** (§2.6) — conditional on the winding-as-source identification, whose failing world is named in place · the **`B − L` closure** (§2.6) — narrowed, because the incumbent also obtains `B − L` as an accidental symmetry; what survives is the closure of the Dirac-versus-Majorana question the incumbent leaves open |
 | Partial or undecomposed | 2 | the **gauge group** — one factor is obtained, not the group, since colour is not a gauge group in this family at all · the **up/down mirror** — the parity relation is contentful, the SD/ASD label is convention, and no counterfactual was exhibited for it |
 | Collapsed into another entry | 1 | proton stability and the absence of neutrinoless double beta decay share the `B − L` root — one fact with three faces (§2.6), so no independent credit |
@@ -1132,7 +1137,7 @@ level and two are instance-level — one whose kill number rides a candidate's f
 calibration, one riding a candidate's identification of the observed light speed with the meta-time
 advance rate. Because this kill channel fires only where quantum mechanics also breaks, and because
 every §4.2 prohibition reaches a derivation or a preferred direction rather than an axiom, **a positive
-detection in any §4.2 channel removes the members that consume the reached premise and forces the next
+detection in any §4.2 channel removes the members that consume the reached premise and forces a new
 candidate; §4.1's channel alone ends the family, and because it fires only where quantum mechanics also
 breaks, no measurement anyone can currently make kills the family.** So the programme carries one
 inherited total kill condition, a set of family-level prohibitions, and no channel of its own in which
@@ -1205,14 +1210,17 @@ not a fifth: it and the `0νββ` row are two experiments on one underlying deri
 of §2.6, reached through different mechanisms — the same non-independence §3's grading books as a
 collapse.
 
-**Where the construction work stands.** §5's candidate is the family's first, and the one with numbers.
-A second candidate is under construction: it inherits the static and geometric picks, starts its
-dynamics from a clean slate, and its kernel programme's results so far are negatives, the sharpest being
-that **no kernel yet built sustains a localized topological defect** — a planted winding in the one
+**Where the construction work stands.** §5's candidate, V3, is the family's first, and the one with
+numbers. The family's **current member** is the second, **V4**, under construction. It takes V3's static
+and geometric picks by default, but its lattice arrangement, and the bond structure that rides it, are
+undecided while its kernel is built on V3's lattice, bond energy and calibrated ratio as a working stage; its dynamics start from a clean
+slate. The sharpest result of its kernel work so far is a negative: **no kernel yet built sustains a
+localized topological defect** — a planted winding in the one
 driven medium constructed dissolves within about one and a half rotations of its background, whether the
 medium's gain is on or off, and a travelling modulation of its bond stiffness does not extend that life.
 Axiom S4 therefore has no dynamical realization yet, and that ranks first among the family's open
-problems. The picks, the negatives and the runs are in the instance dossier and the family tree.
+problems. V4's picks are in the family tree beside V3's, and its kernel runs are in the instance dossier's
+§D.5.7.
 
 **What the family claims, and where the positive predictions would come from.** The family's own
 deliverable is structural: what the substrate's geometry makes available, what it forbids, and how
@@ -1239,8 +1247,8 @@ carries one of three tags.
 - **UNKNOWN-KNOWABILITY** — tagging it is itself the first task.
 
 This is why the family's deliverable is **a list of surviving candidates** — self-coherent, empirically
-plausible members — rather than one maximally pinned version. A second candidate is a new table beside
-the first one's, not a rewrite of this paper.
+plausible members — rather than one maximally pinned version. The second candidate, V4 — the current
+member — is a second table of picks beside the first one's in the family tree, not a rewrite of this paper (§4.2).
 
 ## 4.4 What the family does not claim, and what a candidate must deliver
 
@@ -1263,9 +1271,10 @@ is family-**ineligible** by the scale argument above.
 
 **Magnitudes.** Couplings, running, absolute masses and decoherence rates all ride the one object the
 kernel programme is building, the driven-dissipative substrate dynamics. **The family owns the kernel
-programme; the kernel is its open object.** What it holds at its own level is a **constraint class** — the conditions any admissible kernel
+programme; the kernel is its open object.** The kernels built so far are the current member V4's
+(§4.2). What the family holds at its own level is a **constraint class** — the conditions any admissible kernel
 must satisfy, each entered as a boundary on the object rather than a piece of it, one of them empirical
-and already binding (§5.3's dimension-six ceiling). The demand made of this programme most often is
+— a ceiling, conditionally binding and already in force on the first candidate (§5.3's dimension-six ceiling). The demand made of this programme most often is
 recorded here as ill-formed at family level: an exact microscopic kernel for the four-dimensional medium
 is not what a theory written from inside the lock is in a position to hand over. **The success criterion
 the family accepts instead is a compatible effective kernel class, on the order of four to six
@@ -1356,11 +1365,22 @@ not a candidate's detail.
 no numbers at all, which is a different thing and a worse one. (iii) The picks that buy those numbers,
 each recorded with the menu it came from and what un-picks it, so a branch point is visible as a branch
 point rather than as a result. (iv) The kernel — or, until there is one, an explicit inheritance of the gate, which is what the
-first candidate does; the kernel itself is undelivered and is the programme's open object.
+first candidate does. The kernel itself is undelivered, is the programme's open object, and is being built
+in the current member, V4 (§4.2).
 
 ---
 
 # §5 — The first candidate
+
+This section works through V3 because it is the only member built down to numbers. The family's current
+member is the second candidate, V4 (§4.2), which has no calibrated numbers yet. Both constraints of §5.3
+ride V3's picks, and V4 has not yet made the choices they ride: its lattice arrangement is undecided and
+it carries no calibration of its own. Its kernel runs on V3's lattice, bond truncation and calibrated
+ratio as a working stage, as the family tree records, so whatever those runs compute at either
+constraint's place prices the branch at which V4 would take V3's choices. Neither constraint binds V4 yet,
+for the same reason neither binds the family
+(§5.4), and a member that makes V3's choices at those places takes both constraints with it. V4 does not
+take pick 9 of the table below, because its kernel starts from a clean slate.
 
 ## 5.1 What V3 is, and what it pins
 
@@ -1780,7 +1800,7 @@ evidence that the family is true.**
 
 ## Readings, fixed
 
-Seven readings this paper supports, each beside the misreading it replaces, so both can be checked
+Eight readings this paper supports, each beside the misreading it replaces, so both can be checked
 against the text.
 
 - **§2.7 relocates the quantum postulate structure onto the axioms plus registered imports**, with the
@@ -1799,6 +1819,10 @@ against the text.
   about.
 - **§4.1's kill condition is the strongest option available at family level** — not a claim to be the
   most falsifiable theory in physics.
+- **§5 works through V3 because it is the only member built down to numbers; the current member is V4
+  (§4.2)** — not a sign that V3 is the current member or the one being built. Nor has V4 escaped V3's two
+  constraints: they do not bind it yet only because it has not yet made the choices they ride, and a
+  member that makes those choices takes both with it.
 
 ---
 
@@ -1808,7 +1832,8 @@ This paper states a family, what it derives, what that costs, what would kill it
 candidate is bounded. The strongest thing in it is a discrete charge spectrum obtained from topology
 without a unifying group, together with a neutrality identity that holds for every value of the
 normalization constant — earned, conditioned, and checkable in one line. Every magnitude in the
-programme rides one unbuilt object, the kernel, and the kernel programme is where the work is.
+programme rides one unbuilt object, the kernel, and the kernel programme is where the work is. That work
+is carried by the family's current member, the second candidate V4, now under construction.
 
 A specific claim is the thing to test; the places to test one are §5.3 and the engine, which reproduces
 every algebraic claim in one command.

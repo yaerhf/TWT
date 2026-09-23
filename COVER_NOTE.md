@@ -1,7 +1,7 @@
 # Cover note for reviewers — Theory of Wave-Time: the Core paper and its first candidate
 
 **Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
-Paper revision 2026-08-27 · verification suite: 668 checks (547 main + 121 companion) · engine: 360 public primitives (281 main + 79 companion), the main engine split family/instance 174 CORE + 107 CANDIDATE
+Paper revision 2026-09-23 · verification suite: 668 checks (547 main + 121 companion) · engine: 360 public primitives (281 main + 79 companion), the main engine split family/instance 174 CORE + 107 CANDIDATE
 
 ---
 
@@ -16,10 +16,14 @@ pages) and it is the whole argument: a **family** of theories, TWT-Core, fixed b
 one refusal; what that family derives with no candidate at all, each result with its condition
 stated once; what it costs measured against the Standard Model and against the interpretations of
 quantum mechanics; what would kill it; and its **first candidate member, V3**, with V3's two
-already-measured wounds named by us rather than found by you.
+already-measured wounds named by us rather than found by you. The family's **current member** is the
+second candidate, **V4** — a sibling of V3 on the family's list, not a later version of it — under construction and
+carrying the programme's current work, the kernel; it has
+no numbers yet, so the paper works through V3, and the family tree carries V4's picks beside V3's.
 
 **`TWT_foundational_paper.md` is not a second paper — it is the instance dossier**: V3's full
-technical development, Parts A–E, several hundred pages with its companion. Go there for the depth
+technical development, Parts A–E, several hundred pages with its companion, which also records the
+current member V4's kernel runs at §D.5.7. Go there for the depth
 behind any claim in the Core paper, which cites it by section. If you only have an hour, spend it
 on the Core paper; the dossier is a reference volume, not a second read.
 
@@ -123,8 +127,8 @@ named channels with current bounds, and none currently sits at experimental limi
 angle, and the paper's honest magnitude count is zero of nineteen. **The sharp form of the
 objection is not answered, and it is the reviewer's to press:** the paper concedes that no
 currently feasible measurement kills the *family* — a positive detection in any feasible channel
-forces the next candidate rather than ending the programme — and that numerical refutations
-reach only the candidate. The paper's own reply is the thing to attack, at the sections it
+forces a new candidate rather than ending the programme — and that numerical refutations
+reach only a candidate. The paper's own reply is the thing to attack, at the sections it
 cites for exactly that purpose.
 
 **What review would be most useful, in order:**
@@ -150,13 +154,14 @@ wavefront-locked configurations and matter as topological defects. It is a frame
 under construction, and says so: its largest gap (the driven-dissipative substrate dynamics,
 which gates every coupling magnitude) has its own section.
 
-**It is a family and a candidate, and the distinction is not cosmetic.** TWT-Core is the family —
+**It is a family and its candidates, and the distinction is not cosmetic.** TWT-Core is the family —
 seven axioms and one refusal — and it names no magnitude at all. V3 is the first candidate member
 built all the way down to numbers, and it is the one that pins a lattice arrangement, a bond
 truncation, calibrated ratios, a gravity route and a hadron toolbox. Both of the framework's
 already-measured exposures belong to V3, and the Core paper says in its own text that carrying
-neither of them is a bookkeeping fact rather than a defence. If you want to attack the programme,
-the candidate is where the surface is.
+neither of them is a bookkeeping fact rather than a defence. V4, the current member, is under
+construction and carries the kernel work, but has no numbers yet. If you want to attack the programme,
+V3 is where the measured surface is, and the kernel runs (dossier §D.5.7) are where the construction is.
 
 **What I am asking you to evaluate is not "is this finished physics" — it is not — but whether
 the derivations that are claimed are sound, whether the honest-labeling system holds up under
@@ -320,8 +325,9 @@ reviewer should spend time on them at all.
    script had to change. Inside the core half, `CORE_PROVENANCE` lists the third commitment class
    — core results riding an ENTERED empirical datum or a POSITED premise (the charge anchor and
    P4–P7, the right-handed-singlet datum, A-P2′) rather than the axioms alone.
-5. **The ledgers that ship with it** — the negatives ledger, the family tree (the candidate's pick
-   register, with each pick's menu and revert clause), and the comparative ontological-debt ledger
+5. **The ledgers that ship with it** — the negatives ledger, the family tree (the pick register of
+   both candidates, V3's branch table and the current member V4's side by side, each pick with its menu
+   and revert clause), and the comparative ontological-debt ledger
    behind the Core paper's §3.
 
 ## §4. The one convention you need: result tiers

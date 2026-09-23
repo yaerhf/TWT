@@ -1,4 +1,4 @@
-# FORMATION CORE — v1.8.1 (2026-09-22; DIRECTED — the coordinator's word, the paper sync: the ENDORSED count at every site, §0 only — NINE standing, S5-LOCAL added; nothing else changed; the consolidation ritual stays OWED.) v1.8 (2026-09-15/16; DIRECTED — the human coordinator's energy-face rule **COST ≠ ROTOR RATE**
+# FORMATION CORE — v1.8.2 (2026-09-23; DIRECTED — the coordinator's word RUL-148, "V4 is the current member", executed at its listed dependent §0 on the keeper's apply list A11 (knowledge/audit/V4_CURRENT_BATCH_VERDICT_KEEPER_2026-09-23.md): V4 named the family's CURRENT MEMBER with V3 on the books, unarchived; the inheritance sentence gains D-1's deferral and the WORKING STAGE; the D-1…D-5 status refreshed (D-3 taken, D-1 deferred, RUL-113); 'a FAMILY and its candidates'; nothing else changed; the consolidation ritual stays OWED.) v1.8.1 (2026-09-22; DIRECTED — the coordinator's word, the paper sync: the ENDORSED count at every site, §0 only — NINE standing, S5-LOCAL added; nothing else changed; the consolidation ritual stays OWED.) v1.8 (2026-09-15/16; DIRECTED — the human coordinator's energy-face rule **COST ≠ ROTOR RATE**
 (RUL-133; the inside face's word and the bare-'rate' ban approved 2026-09-16), executed on his word outside a scheduled consolidation: §1 gains the two words and §4 the
 trap, nothing pruned; the consolidation ritual stays OWED. Prior header, kept verbatim:)
 # v1.7 (2026-08-27; DIRECTED ALIGNMENT EVENT — the human coordinator's V4-alignment
@@ -124,7 +124,7 @@ discipline in this file is not there to stop you from winning. **It is what winn
 
 ## 0. THE ARCHITECTURE — CORE vs INSTANCE (read this before anything else)
 
-Since the 2026-08-17 pivot the program is **a FAMILY and its first candidate**, not one
+Since the 2026-08-17 pivot the program is **a FAMILY and its candidates** (V3 the first; V4 the current member), not one
 evolving version. Diagnosis: `knowledge/audit/pivot_2026-08-17/PIVOT_RECORD_2026-08-17.md`.
 
 **TWT-CORE — the family** (`CORE_CHARTER_DRAFT_2026-08-18.md`, RATIFIED RUL-055, finalized,
@@ -184,14 +184,16 @@ conditioning. (ii) The old ground is **WITHDRAWN**: *"a single-Weyl neutrino exc
 is FALSE — on the neutrino's own Weyl half the L-orbit and SD span the SAME algebra. The
 discriminator is the right-handed half (RV-7).
 
-**INSTANCE V4 — the SECOND candidate, UNDER CONSTRUCTION (RUL-098 "SIGN / OPEN / APPLY"; its own
+**INSTANCE V4 — the SECOND candidate, UNDER CONSTRUCTION, and the family's CURRENT MEMBER (RUL-148 — V3 stays on the books, unarchived; RUL-098 "SIGN / OPEN / APPLY"; its own
 branch table sits beside V3's in the family tree).** A live work surface, not a plan. **V4-0
 SIGNED:** the spinor carrier is `Cl⁺(4,0)` — the full even subalgebra, two body `su(2)`s — NOT the
 minimal ideal `S`. **V4-ASD is OPEN with NO pick:** what the body-ASD copy does {generation seat
 (ungauged) · gauged `SU(2)_R` · inert}; **Layer A ran and did NOT discriminate**, so the menu
 reverts THREE-WAY and **Layer B — the K2 stabiliser computation — is the SOLE decider**. The `W_R`
 exposure lives in that one cell and nowhere else. **V4-kernel is a CLEAN SLATE.** **INHERITANCE
-(RUL-098, the coordinator's own ground):** V4 takes V3's STATIC/GEOMETRIC picks unchanged;
+(RUL-098, the coordinator's own ground):** V4 takes V3's STATIC/GEOMETRIC picks unchanged EXCEPT the arrangement V3-1 and what rides it (V3-1a/1b, the
+bond layer V3-2/2a), DEFERRED under D-1 (RUL-113) and used by the kernel runs only as a WORKING STAGE (the
+family tree's D-1 block);
 **everything #1-gap-related starts clean** — the tongues lever is the stated motive — and boundary
 cases are inheritance-TBD-at-first-use. The M-3a split is already pinned that way: the two-rate
 structure INHERITS, the **rate ratio stays CLEAN**. **AND THE §D.5 SUCCESS CRITERION IS STATED UP
@@ -204,7 +206,8 @@ object owed is the configuration→mass map, and the sextet is covered as a bloc
 exists), and **CKM/PMNS are measured DIRECTLY — they show as UNCOVERED, never as savings.**
 **★ THE POPULATION AUDIT IS NOT THE TREE.** `knowledge/audit/v4_population_audit_2026-08-27/`
 scores every V3 pick INHERIT / INHERIT-MODIFIED / CLEAN-SLATE / DEFER / OWED — those are
-**RECOMMENDATIONS**, and its **five OWED decisions (D-1…D-5) are PENDING WITH THE HUMAN.** Do not
+**RECOMMENDATIONS**, and its **five OWED decisions: D-3 TAKEN (V4-HADRON, inherit-conditioned) and D-1 DEFERRED kernel-first (RUL-113); D-2,
+D-4, D-5 still OWED.** Do not
 work them as settled, and do not quote a score as a pick.
 
 **THE DELIVERABLE IS A LIST, NOT A WINNER (RUL-051).** At family level the program delivers

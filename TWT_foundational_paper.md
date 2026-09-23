@@ -10,7 +10,9 @@
 complete technical development of **V3**, the first candidate member of the TWT-Core family, in the
 substrate machinery it is built on — the picks in full, the calibrations, the mass, charge, gauge
 and mixing material, the open dynamics, and the wounds at full depth. It is the family's technical
-corpus, and it is the document that carries every `(R-NNN)` result marker.
+corpus, and it is the document that carries every `(R-NNN)` result marker. The family's **current
+member** is the second candidate, **V4**, under construction. It has no dossier of its own yet: its picks
+are in the family tree beside V3's, and its kernel runs are recorded here, in §D.5.7.
 
 **The family itself is stated elsewhere, and that is the entry point.** The seven axioms and the
 one refusal, what the family derives with no candidate at all, what that costs measured against the
@@ -45,7 +47,8 @@ is **V3**, the first candidate instance built all the way down to numbers. The l
 arrangement, the bond truncation, the calibrated ratios, the gravity route and the hadron toolbox
 are **instance-level** picks, each with a recorded menu and a recorded revert condition; so are
 both of the already-measured exposures named below. The programme's deliverable at family level is
-the list of surviving candidates, and V3 is its first entry. The Core is not vindicated by
+the list of surviving candidates, and V3 is its first entry; the family's current member is the second,
+V4, under construction (§A.6.5). The Core is not vindicated by
 carrying neither wound: it carries neither because it makes no numerical claim at either place.
 
 **What is derived, at its strongest.** From four counted substrate inputs plus the measured Newton
@@ -99,7 +102,8 @@ follow from which premises, and at what status.
 **The architecture — a family, and the first candidate that realizes it.** Read §A.6 before
 Part B. The programme is **TWT-Core**, a family fixed by seven axioms and one refusal, together
 with a list of candidate members; this paper develops **V3**, the family's **first candidate
-instance** and the first one built down to numbers. Three consequences for a reviewer. (i) The
+instance** and the first one built down to numbers (the current member is the second, V4, under construction;
+§A.6.5). Three consequences for a reviewer. (i) The
 picks are visible and reversible: eleven of them (three carrying recorded sub-choices), each recorded with the menu it came from and
 what un-picks it (§A.6.4) — the D4 arrangement and the `{J, D}` bond truncation among them, so
 two of the Opening's own premises are instance-level rather than axioms. (ii) Both already-measured
@@ -1042,8 +1046,8 @@ Read this before Part B, because it fixes what everything after it is a claim *a
 
 The Theory of Wave-Time is not one theory. It is a **family** — **TWT-Core**, defined by seven axioms
 and one refusal — together with a list of candidate members that realize it. Everything from
-Part B onward develops **V3**, the family's **first candidate instance**: the first member built
-all the way down to numbers. That V3 exists is an existence result, and that is all it is. V3
+Part B onward develops **V3**, the family's **first candidate instance** and the first member built
+all the way down to numbers — apart from the kernel runs of the current member, V4, recorded in §D.5.7 (§A.6.5). That V3 exists is an existence result, and that is all it is. V3
 can be dismantled entirely without a line of this section changing.
 
 The distinction is load-bearing in one direction in particular. The framework's two
@@ -1226,7 +1230,8 @@ neither is thereby answered.
 Sorting every numbered result against the definition (the companion's Result Index carries the
 sort per row): roughly a third consume nothing but the axioms; a comparable block consumes
 the axioms plus one or more preferred directions, each row standing or falling with the
-endorsement it consumes; the remainder need a choice that belongs to V3. The two blocks are
+endorsement it consumes; the remainder need a choice that belongs to a candidate — V3's, or, for the kernel runs of
+§D.5.7, the current member V4's, made on V3's choices as a working stage. The two blocks are
 never to be merged into one headline.
 
 **What the Core keeps — each block at its own level, the conditional ones conditionally.**
@@ -1260,8 +1265,9 @@ Core-relevant knowledge, not an instance detail.
 
 **The deliverable is a list.** At family level the programme delivers the **list of surviving
 candidates** — self-coherent, empirically plausible members — not one maximally pinned instance;
-V3 is the list's first entry, and a second candidate would be a new table beside §A.6.4's rather
-than a rewrite of this paper. One consequence for reading: questions that cannot be decided from
+V3 is the list's first entry; the family's current member is the second, V4, under construction as a
+new table beside §A.6.4's in the family tree rather than as a rewrite of this paper, and its kernel runs
+are recorded in §D.5.7. One consequence for reading: questions that cannot be decided from
 inside the lock, by the theory's own structure, are **family freedom**. They are recorded and not
 expanded on, because candidates differing only there are one member with several descriptions.
 
@@ -7117,6 +7123,11 @@ survivor, which vanishes on both high-symmetry branches but not on a generic wav
 conditional. (Pointers: §D.4.3 forward here; negatives ledger N62.)
 
 **The first kernel-class candidate, and what the symmetry-class filter says about it (R-191).**
+From here on, every run of a dynamical kernel is the current member V4's (§A.6.5): its kernel work
+starts from a clean slate, and the runs sit on this candidate's lattice, bond truncation and calibrated
+ratio as a working stage rather than as picks of V4's own; the static readings below — the canted
+vacuum's static face and the stored grain critical points — are this candidate's, or the family's where
+they say so.
 The candidate kernel class under examination is a driven-dissipative envelope equation on the
 rotor field — drive plus D4 elasticity plus saturating dissipation plus noise — whose
 linearization about the drive-locked canted reference state has the form
@@ -7194,8 +7205,8 @@ latch; a persistent saturated pattern that is steady in a co-rotating frame — 
 drifting frozen profile whose uniform collective drift rate is the frequency
 deficit (R-194); the same pattern with the opposite frequency shift.
 The dissipativity structure discriminates them physically (only the left placement's
-damping channel can pump energy), but the placement is an open pick of the family,
-registered as such; and the seeded-defect stages, run on both placements, return no
+damping channel can pump energy), but the placement is an open pick of the current member, V4, registered as such
+in the family tree; and the seeded-defect stages, run on both placements, return no
 surviving localized object under either — what distinguishes them is the aftermath
 the medium settles into. The excitable
 class itself is known physics — phase slips in optically injected lasers, with the
@@ -7709,9 +7720,9 @@ land at either level, and the difference is not rhetorical. A row that reaches o
 pick kills *this candidate* and leaves the family intact with a named menu to re-pick from. A row
 that reaches an axiom kills *every* candidate at once.
 
-This theory is under active construction. The falsifiers listed below concern, in the main, the
-**current formulation** — the specific derivations, identifications, and structural claims this
-paper makes. Most of them, if triggered, would falsify the current formulation and *force an
+This theory is under active construction. The falsifiers listed below concern, in the main,
+**this paper's formulation** — the specific derivations, identifications, and structural claims this
+paper makes. Most of them, if triggered, would falsify this paper's formulation and *force an
 evolution of the framework*: a reformulation of the substrate, a different identification of a
 symmetry, a modified derivation chain.
 
@@ -7738,7 +7749,7 @@ is not settled about it.
 
 Outside that channel, the underlying ontological premise — a wave-based Euclidean substrate with
 matter-as-defect — is compatible with a wide range of specific realizations and would evolve to
-accommodate an observed fact that contradicts the current formulation. That robustness is a fact
+accommodate an observed fact that contradicts this paper's formulation. That robustness is a fact
 about the family's generality, not a credit to it: **generality is what makes a family hard to
 kill and a candidate worth having**, and the two already-measured exposures below are the price
 this candidate pays for saying numbers at all.
@@ -7752,13 +7763,13 @@ discriminators are a smaller subset.
 
 **Row-by-row classification against this scope.** Reading E.3.1 with this lens:
 
-- *Kills TWT-current AND SM together* (both would need to reformulate): CHSH > 2√2 (row 9),
+- *Kills this formulation AND SM together* (both would need to reformulate): CHSH > 2√2 (row 9),
   fractional charge outside `{±1/3, ±2/3, ±1}` (row 11), tree-level FCNC (row 15), and a
   baryon containing a top quark (row 12 — standard QCD's `Γ_t ≫` hadronization-rate argument
   makes the same exclusion). These test
   QM-Tsirelson, algebraic charge quantization, Schur-lemma constraints, and a decay-timescale
   argument that the SM also commits to.
-- *TWT-current specific, SM survives* (would falsify TWT's current formulation but leave the SM
+- *Specific to this formulation, SM survives* (would falsify this paper's formulation but leave the SM
   unaffected): proton decay (row 2; SM predicts stability too, but TWT's topological route is
   what fails), `0νββ` (row 3; SM allows Majorana, TWT commits to Dirac), magnetic monopole
   (row 10; SM allows monopoles, TWT forbids), fourth generation (row 13; SM allows,
@@ -7772,7 +7783,7 @@ discriminators are a smaller subset.
   both. A framework that derives QM inside-frame (§B.3) cannot be discriminated from QM by an
   experiment whose possible outcomes QM already fixes; naming these as near-term *kills* would
   over-sell them, and they sit in the table as null-result checks rather than as discriminators.
-- *Framework-general vs specific-derivation* (kill the current derivation but the framework's
+- *Framework-general vs specific-derivation* (kill this paper's derivation but the framework's
   ontology can plausibly evolve): `c_GW ≠ c_γ` (row 1),
   differential `c_meta` (row 6), optical-clock decoherence (row 7), macromolecule decoherence
   (row 8), truly independent `θ_C` (row 14).
@@ -7898,7 +7909,7 @@ kills but break the internal construction.
 
 ### E.3.5 Internal pre-mortem — five things to be wrong about
 
-The four preceding categories list *external* detections that would kill the current
+The four preceding categories list *external* detections that would kill this paper's
 formulation. The complement is the **internal pre-mortem**: the five biggest structural
 exposures inside TWT itself, where the framework could be right about its pillars and still fail
 because a load-bearing construction does not close. The first three are not falsifiers in the
@@ -7940,9 +7951,9 @@ question) *and at the full point group* (P-op — under the driven subgroup an a
 quartic is permitted, and is absent by the bond set's computed zero spatial fourth moment rather
 than by symmetry; §B.1.5). What is not closed is the rotationally invariant dimension-six term, whose coefficient
 the framework cannot yet compute and whose *naive* value at `c = 1` is excluded unconditionally by about one order of magnitude (a single model-independent cosmic-ray analysis, superluminal branch), and by six to seven orders only under a mass-composition assumption the same observatory's data disfavours. This
-is a measured exposure, not merely a pending detection: **a number is already measured, and the framework owes a coefficient that fits under it — under the unconditional bound today, and under the conditional corner if composition resolves against the family.** If the substrate
-dynamics deliver `η⁽⁴⁾ ~ O(1)`, the current formulation is dead — not evolved. And "the current
-formulation" is exact rather than a hedge: what dies is **this candidate instance**, killed at
+is a measured exposure, not merely a pending detection: **a number is already measured, and the framework owes a coefficient that fits under it — under the unconditional bound today, and under the conditional corner if composition resolves against this candidate.** If the substrate
+dynamics deliver `η⁽⁴⁾ ~ O(1)`, this candidate is dead — not evolved. And "this candidate" is exact rather than a hedge: what dies
+is **V3**, killed at
 three pinned choices in series — a regular arrangement, its back-fit size, and one induced-gravity
 chain to denominate it (§B.6.3, §A.6.4). The family would survive holding the *problem*, not an
 answer to it, and a member proposed at the irregular-discrete branch inherits a different
@@ -8096,14 +8107,15 @@ Paper 2 agenda) rather than the body.
 ## §E.5 — A candidate for the #1-gap kernel
 
 §D.5 named the framework's largest unbuilt object: the driven-dissipative substrate dynamics,
-whose master dial is the transport function `Im χ(ω)`. This section proposes a concrete
+whose master dial is the transport function `Im χ(ω)`. This section records V3's concrete
 **candidate** for it — not a derivation, but the execution of the closure route the companion's
 Section 12 already sanctioned (**Class 2b**: a minimal counted-INPUT kernel family + registry
 over-determination). It was produced by a dedicated selection campaign run on the
 framework's numerical substrate testbench against the
 engine's own acceptance inventory, with every phase
 independently reviewed to consensus. It is proposed strictly as a
-**candidate** — a surviving candidate *class*, not a single pinned kernel.
+**candidate** — a surviving candidate *class*, not a single pinned kernel. It is V3's candidate: the current member
+V4's kernel work starts from a clean slate and does not use it (§D.5.7).
 
 **The form (R-153).** `Im χ(ω)` is taken to be an odd, passive, Kramers–Kronig-causal function
 with IR exponent `s ≥ 3` (the s=3 Adler/Goldstone floor, §D.5.5) and a UV cutoff — a
@@ -8196,7 +8208,7 @@ registry's left column.
 
 What this paper offers is the **structural framework**, an explicit account of what within it is
 derived and what is open, and the methodology by which the distinction is maintained. The
-falsifier table (§E.3) names what would kill the current formulation; the parameter reduction
+falsifier table (§E.3) names what would kill this paper's formulation; the parameter reduction
 (§E.2.3) states its case; the pending-values registry names what remains
 open. Each is honestly labeled.
 
