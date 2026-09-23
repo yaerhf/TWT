@@ -5,7 +5,7 @@ programme deriving Standard-Model *structure* (signature, quantum postulates, ga
 charges, generation count) from a four-dimensional Euclidean Clifford substrate carrying a wave,
 with one named unbuilt object gating every magnitude in it.
 
-**Yaer Aharon Haddad Fennech** · Independent Researcher · hfyaer@gmail.com
+**Yaer Aharon Haddad Fennech** · Independent Researcher
 
 **Citing a revision.** This mirror is synced from the working corpus at each release, so cite it by commit: `git rev-parse --short HEAD` in your clone names the revision you read, and that sync commit's own message carries the render date, the working-corpus commit it was built from, and the two suite counts that passed at it. A review written against a named commit can be answered against the same one.
 
